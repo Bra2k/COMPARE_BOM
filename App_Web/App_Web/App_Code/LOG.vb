@@ -55,9 +55,6 @@ Public Class LOG
         Dim con As New SqlConnection
         Dim cmd As New SqlCommand
 
-        Dim swLOG As New StreamWriter("C:\sources\App_Web_LOG\" & sPoste_User & ".log", True)
-        Dim swLOG_ERR As New StreamWriter("C:\sources\App_Web_LOG\" & sPoste_User & "_erreur.log", True)
-
         Dim pageHandler As Page = HttpContext.Current.CurrentHandler
         Dim MP_Label_ERR_MSG As WebControls.Label
 
@@ -68,6 +65,8 @@ Public Class LOG
             cmd.CommandText = sQuery
             cmd.ExecuteNonQuery()
         Catch ex As Exception
+            Dim swLOG As New StreamWriter("C:\sources\App_Web_LOG\" & sPoste_User & ".log", True)
+            Dim swLOG_ERR As New StreamWriter("C:\sources\App_Web_LOG\" & sPoste_User & "_erreur.log", True)
             swLOG_ERR.WriteLine(DateTime.Now.ToString() & ex.Message)
             swLOG.WriteLine(DateTime.Now.ToString() & ex.Message)
             swLOG_ERR.WriteLine(DateTime.Now.ToString() & " - Fonction : " & mbFunction.Name & " - Message : " & sMessage)
