@@ -132,11 +132,12 @@ Public Class Class_PDF
     End Sub
 
     Public Shared Function PDF_REPL_VAR(dt_var_pdf_replace As DataTable, sA_Replacer As String, sDe_Remplacement As String) As DataTable
-        Dim row As DataRow = dt_var_pdf_replace.NewRow()
+        Dim row As DataRow
         Try
             If Not dt_var_pdf_replace.Columns.Contains("Variable") Then dt_var_pdf_replace.Columns.Add("Variable", Type.GetType("System.String"))
             If Not dt_var_pdf_replace.Columns.Contains("Valeur") Then dt_var_pdf_replace.Columns.Add("Valeur", Type.GetType("System.String"))
             dt_var_pdf_replace.NewRow()
+            row = dt_var_pdf_replace.NewRow()
             row("Variable") = sA_Replacer
             row("Valeur") = sDe_Remplacement
             dt_var_pdf_replace.Rows.Add(row)

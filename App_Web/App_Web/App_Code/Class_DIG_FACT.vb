@@ -16,16 +16,9 @@ Public Class Class_DIG_FACT
     Public Shared Function DIG_FACT_VERI_FORM_NU_SER(sCD_ARTI As String, sNM_PARA As String, sNU_SER As String) As Boolean
 
         Dim sFORM As String = "", sMESS_ERR As String = ""
-        'Dim sQuerySql As String = "SELECT [CD_ARTI], [NM_PARA], [VAL_PARA]
-        '                             FROM [MES_Digital_Factory].[dbo].[V_DER_DTM_REF_PARA]
-        '                            WHERE [CD_ARTI] = '" & sCD_ARTI & "' AND [NM_PARA] = '" & sNM_PARA & "'"
-        'Dim sChaineConnexion As String = "Data Source=cedb03,1433;Initial Catalog=MES_Digital_Factory;Integrated Security=False;User ID=sa;Password=mdpsa@SQL;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
         Dim dt_PARA As New DataTable
 
         Try
-            'dt_PARA = SQL_SELE_TO_DT(sQuerySql, sChaineConnexion)
-            'If dt_PARA Is Nothing Then Throw New Exception("La base n'a pas été configurée")
-            'sFORM = dt_PARA(0)("VAL_PARA").ToString
             sFORM = Class_DIG_FACT_SQL.DIG_FACT_SQL_GET_PARA(sCD_ARTI, sNM_PARA)
             If sFORM Is Nothing Then Throw New Exception("La base n'a pas été configurée")
 
@@ -61,11 +54,11 @@ Public Class Class_DIG_FACT
         Dim sData_Crit As String = "", sDT_PROD As String = Now
         Dim dtAFKO, dtMARA, dtT179T, dtMAKT, dtLIPS, dtLIPSUP, dt_CFGR_ARTI_ECO, dt_ETAT_CTRL As New DataTable
         Dim sr As StreamReader
+        Randomize()
         Dim sfich As String = My.Settings.RPTR_TPRR & "\" & CInt(Int((1000 * Rnd()) + 1)) & "_" & Path.GetFileName(sFichier)
-        Dim sw As New StreamWriter(sfich, False, System.Text.Encoding.UTF8)
+        Dim sw As StreamWriter
 
         Try
-            Randomize()
             If File.Exists(sfich) Then My.Computer.FileSystem.DeleteFile(sfich)
             COMM_APP_WEB_COPY_FILE(sFichier, sfich, True)
             sr = New StreamReader(sfich, System.Text.Encoding.UTF8)
@@ -99,7 +92,7 @@ Public Class Class_DIG_FACT
             dtT179T = SAP_DATA_READ_T179T("PRODH EQ '" & dtMARA(0)("PRDHA").ToString & "'")
             'client
             sNM_CLIE = dtT179T(0)("VTEXT").ToString
-
+            sData = Replace(sData, "#NM_CLIE", sNM_CLIE)
             sData = Replace(sData, "#CD_ARTI_ECO", Trim(sCD_ARTI_ECO))
             dt_CFGR_ARTI_ECO = App_Web.Class_DIG_FACT_SQL.DIG_FACT_SQL_CFGR_ARTI_ECO(Trim(sCD_ARTI_ECO))
             If dt_CFGR_ARTI_ECO Is Nothing Then Throw New Exception("La base Digital Factory n'a pas été configurée pour l'article " & Trim(sCD_ARTI_ECO))
@@ -113,7 +106,7 @@ Public Class Class_DIG_FACT
             sData = Replace(sData, "#CD_FNS", App_Web.Class_DIG_FACT_SQL.DIG_FACT_SQL_GET_PARA(sNM_CLIE, "Format du code fournisseur"))
 
             If dt_ETAT_CTRL.Columns.Contains("DropDownList_CRIT_GENE_NU_SER") Then
-                Select Case dt_ETAT_CTRL(0)("DropDownList_CRIT_GENE_NU_SER").tostring
+                Select Case dt_ETAT_CTRL(0)("DropDownList_CRIT_GENE_NU_SER").ToString
             'Select Case COMM_APP_WEB_GET_PARA(sCD_ARTI_ECO & "|" & sTYPE_ETIQ, "DropDownList_CRIT_GENE_NU_SER", "ASP.pagesmembres_digital_factory_impr_etiq_prn_aspx")
                     Case "OF"
                         sData_Crit = sNU_OF
@@ -125,7 +118,7 @@ Public Class Class_DIG_FACT
             End If
             'If COMM_APP_WEB_GET_PARA(sCD_ARTI_ECO & "|" & sTYPE_ETIQ, "CheckBox_NU_SER_CLIE_GENE_AUTO", "ASP.pagesmembres_digital_factory_impr_etiq_prn_aspx") = "True" Then
             If dt_ETAT_CTRL.Columns.Contains("CheckBox_NU_SER_CLIE_GENE_AUTO") And dt_ETAT_CTRL.Columns.Contains("TextBox_FORM_NU_CLIE") And dt_ETAT_CTRL.Columns.Contains("CheckBox_REPR_NU_SER_REBU") Then
-                If dt_ETAT_CTRL(0)("CheckBox_NU_SER_CLIE_GENE_AUTO").tostring = "True" Then
+                If dt_ETAT_CTRL(0)("CheckBox_NU_SER_CLIE_GENE_AUTO").ToString = "True" Then
                     'sNU_CLIE = App_Web.Class_DIG_FACT_SQL.DIG_FACT_SQL_GENE_NU_SER_CLIE(App_Web.Class_DIG_FACT_SQL.DIG_FACT_SQL_GET_PARA(sCD_ARTI_ECO, "Encodage Numéro de série client"),
                     '                                                                    App_Web.Class_DIG_FACT_SQL.DIG_FACT_SQL_GET_PARA(sCD_ARTI_ECO, "Incrémentation flanc"),
                     '                                                                    COMM_APP_WEB_GET_PARA(sCD_ARTI_ECO & "|" & sTYPE_ETIQ, "TextBox_FORM_NU_CLIE", "ASP.pagesmembres_digital_factory_impr_etiq_prn_aspx"),
@@ -136,7 +129,7 @@ Public Class Class_DIG_FACT
                     '                                                                    sNU_OF)
                     sNU_CLIE = App_Web.Class_DIG_FACT_SQL.DIG_FACT_SQL_GENE_NU_SER_CLIE(dt_CFGR_ARTI_ECO(0)("Encodage Numéro de série client").ToString,
                                                                                     dt_CFGR_ARTI_ECO(0)("Incrémentation flanc").ToString,
-                                                                                    dt_ETAT_CTRL(0)("TextBox_FORM_NU_CLIE").tostring,
+                                                                                    dt_ETAT_CTRL(0)("TextBox_FORM_NU_CLIE").ToString,
                                                                                     sData_Crit,
                                                                                     sTYPE_ETIQ,
                                                                                     dt_ETAT_CTRL(0)("CheckBox_REPR_NU_SER_REBU").ToString,
@@ -149,15 +142,15 @@ Public Class Class_DIG_FACT
             sData = Replace(sData, "#NU_SER_ECO", sNU_ECO)
             'If COMM_APP_WEB_GET_PARA(sCD_ARTI_ECO & "|" & sTYPE_ETIQ, "CheckBox_EXTR_NU_SER_ECO", "ASP.pagesmembres_digital_factory_impr_etiq_prn_aspx") = "True" And sNU_ECO.IndexOf(sNU_OF) + 1 > 0 Then sData = Replace(sData, "#EXTR_NU_SER_ECO", Mid(sNU_ECO, sNU_ECO.IndexOf(sNU_OF) + 1, 13))
             If dt_ETAT_CTRL.Columns.Contains("CheckBox_EXTR_NU_SER_ECO") Then
-                If dt_ETAT_CTRL(0)("CheckBox_EXTR_NU_SER_ECO").tostring = "True" And sNU_ECO.IndexOf(sNU_OF) + 1 > 0 Then sData = Replace(sData, "#EXTR_NU_SER_ECO", Mid(sNU_ECO, sNU_ECO.IndexOf(sNU_OF) + 1, 13))
+                If dt_ETAT_CTRL(0)("CheckBox_EXTR_NU_SER_ECO").ToString = "True" And sNU_ECO.IndexOf(sNU_OF) + 1 > 0 Then sData = Replace(sData, "#EXTR_NU_SER_ECO", Mid(sNU_ECO, sNU_ECO.IndexOf(sNU_OF) + 1, 13))
             End If
             sData = Replace(sData, "#NB_QT", sNB_QT)
             sData = Replace(sData, "#NB_CART", sNB_CART)
 
             'sData = Replace(sData, "#DT_PROD", COMM_APP_WEB_CONV_FORM_DATE(sDT_PROD, COMM_APP_WEB_GET_PARA(sCD_ARTI_ECO & "|" & sTYPE_ETIQ, "TextBox_FT_DT_PROD", "ASP.pagesmembres_digital_factory_impr_etiq_prn_aspx")))
-            If dt_ETAT_CTRL.Columns.Contains("TextBox_FT_DT_PROD") Then sData = Replace(sData, "#DT_PROD", COMM_APP_WEB_CONV_FORM_DATE(sDT_PROD, dt_ETAT_CTRL(0)("TextBox_FT_DT_PROD").tostring))
+            If dt_ETAT_CTRL.Columns.Contains("TextBox_FT_DT_PROD") Then sData = Replace(sData, "#DT_PROD", COMM_APP_WEB_CONV_FORM_DATE(sDT_PROD, dt_ETAT_CTRL(0)("TextBox_FT_DT_PROD").ToString))
             'sData = Replace(sData, "#DT_EXP", COMM_APP_WEB_CONV_FORM_DATE(Now, COMM_APP_WEB_GET_PARA(sCD_ARTI_ECO & "|" & sTYPE_ETIQ, "TextBox_FT_DT_EXP", "ASP.pagesmembres_digital_factory_impr_etiq_prn_aspx")))
-            If dt_ETAT_CTRL.Columns.Contains("TextBox_FT_DT_EXP") Then sData = Replace(sData, "#DT_EXP", COMM_APP_WEB_CONV_FORM_DATE(Now, dt_ETAT_CTRL(0)("TextBox_FT_DT_EXP").tostring))
+            If dt_ETAT_CTRL.Columns.Contains("TextBox_FT_DT_EXP") Then sData = Replace(sData, "#DT_EXP", COMM_APP_WEB_CONV_FORM_DATE(Now, dt_ETAT_CTRL(0)("TextBox_FT_DT_EXP").ToString))
             sData = Replace(sData, "#IND_CLIE", dt_CFGR_ARTI_ECO(0)("Indice client").ToString)
             'sData = Replace(sData, "#IND_CLIE", App_Web.Class_DIG_FACT_SQL.DIG_FACT_SQL_GET_PARA(Trim(sCD_ARTI_ECO), "Indice client"))
             sData = Replace(sData, "#DDM", dt_CFGR_ARTI_ECO(0)("Nom du DDM").ToString)
@@ -171,7 +164,7 @@ Public Class Class_DIG_FACT
             For iVar = 1 To 15
                 sData = Replace(sData, "#var" & Right(COMM_APP_WEB_CONV_DEC_2_BASE_N(iVar, 36, 2), 1), "")
             Next
-
+            sw = New StreamWriter(sfich, False, System.Text.Encoding.UTF8)
             sw.WriteLine(sData)
             sw.Close()
             COMM_APP_WEB_IMPR_ETIQ_PRN(sfich, App_Web.Class_DIG_FACT_SQL.DIG_FACT_SQL_GET_PARA(System.Net.Dns.GetHostEntry(System.Web.HttpContext.Current.Request.UserHostAddress).HostName(), "Imprimante étiquette"))
@@ -239,7 +232,7 @@ Public Class Class_DIG_FACT
             dtT179T = SAP_DATA_READ_T179T("PRODH EQ '" & dtMARA(0)("PRDHA").ToString & "'")
             'client
             sNM_CLIE = dtT179T(0)("VTEXT").ToString
-
+            dt = PDF_REPL_VAR(dt, "#NM_CLIE", sNM_CLIE)
             dt_CFGR_ARTI_ECO = App_Web.Class_DIG_FACT_SQL.DIG_FACT_SQL_CFGR_ARTI_ECO(Trim(sCD_ARTI_ECO))
             If dt_CFGR_ARTI_ECO Is Nothing Then Throw New Exception("La base Digital Factory n'a pas été configurée pour l'article " & Trim(sCD_ARTI_ECO))
             dt_ETAT_CTRL = COMM_APP_WEB_ETAT_CTRL(sCD_ARTI_ECO & "|" & sTYPE_ETIQ, "ASP.pagesmembres_digital_factory_impr_etiq_prn_aspx")
