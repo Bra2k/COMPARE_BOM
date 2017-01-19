@@ -1,0 +1,104 @@
+﻿<%@ Master Language="VB" AutoEventWireup="true" CodeBehind="Site.master.vb" Inherits="App_Web.SiteMaster" %>
+
+<%@ Import Namespace="App_Web" %>
+<%@ Import Namespace="Microsoft.AspNet.Identity" %>
+<!DOCTYPE html>
+
+<html lang="fr">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %>- Applications Eolane Combrée</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+</head>
+<body>
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <%--Pour plus d'informations sur les scripts de regroupement dans ScriptManager, consultez http://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Scripts Framework--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="bootstrap" />
+                <asp:ScriptReference Name="respond" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Scripts de site--%>
+            </Scripts>
+        </asp:ScriptManager>
+
+        <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: #002F60">
+            
+            <div class="container" style="background-color: #002F60">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>                    
+                    <a class="navbar-brand" runat="server" href="~/" ><img src="/App_Themes/PIC_CHAR/DFEC_V2.png" alt="Applications Eolane Combrée" Height="24" Width="47"></a>
+                    </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a runat="server" href="~/">Accueil</a></li>
+                        <li><a runat="server" href="~/About">À propos de</a></li>
+                        <li><a runat="server" href="~/Contact">Contact</a></li>
+                    </ul>
+                    <asp:LoginView runat="server" ViewStateMode="Disabled">
+                        <AnonymousTemplate>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a runat="server" href="~/Account/Login">Se connecter</a></li>
+                            </ul>
+                        </AnonymousTemplate>
+                        <LoggedInTemplate>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a runat="server" title="Manage your account">Bonjour, <%: Session("displayname")  %> !</a></li>
+                                <li>
+                                    <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Se déconnecter" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" onloggedout="APP_WEB_LoggedOut" />
+                                </li>
+                            </ul>
+                        </LoggedInTemplate>
+                    </asp:LoginView>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container body-content">
+
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                <p style="font-family: Verdana;"></p>
+            </asp:ContentPlaceHolder>
+
+            <br />
+            <asp:UpdatePanel ID="UpdatePanel_PGS_TACH" runat="server" ChildrenAsTriggers="False" UpdateMode="Conditional">
+                <ContentTemplate>
+                    <asp:Label ID="Label_PGS_TACH" runat="server" Text=""></asp:Label>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+
+            <br />
+            <asp:Label ID="Label_ERR_MSG" runat="server" Font-Bold="True" ForeColor="Red"></asp:Label>
+            <br />
+            <hr />
+            <footer>
+                <p style="vertical-align: bottom"><asp:Image ID="Image_LOGO_ECO" runat="server" ImageUrl="~/App_Themes/PIC_CHAR/Comb1.jpg" Height="55px" Width="134px" />
+                    © <%--Pour plus d'informations sur les scripts de regroupement dans ScriptManager, consultez http://go.microsoft.com/fwlink/?LinkID=301884 --%>- ASP.NET Application</p>
+            </footer>
+        </div>
+    </form>
+</body>
+</html>
