@@ -25,7 +25,7 @@
         <br />
             <table style="margin-top: 0px; margin-bottom: 0px; position: relative; top: -222px; left: 313px; height: 298px; width: 676px;">
                 <tr>
-                    <td style="width: 200px">coucou<asp:ImageButton ID="InBox" runat="server" Height="100px" ImageUrl="~/App_Themes/PIC_CHAR/14740.png" Width="100px" BorderColor="#3333CC" BorderStyle="Solid" BorderWidth="3px" PostBackUrl="~/PagesMembres/Digital_factory/CLSg" /></td>
+                    <td style="width: 200px">blabla<asp:ImageButton ID="InBox" runat="server" Height="100px" ImageUrl="~/App_Themes/PIC_CHAR/14740.png" Width="100px" BorderColor="#3333CC" BorderStyle="Solid" BorderWidth="3px" PostBackUrl="~/PagesMembres/Digital_factory/CLSg" /></td>
                     <td style="width: 200px"><asp:ImageButton ID="AdressBook" ImageUrl="~\App_Themes\PIC_CHAR\21257.png" runat="server" Height="100px" Width="100px" BorderColor="#3333CC" BorderStyle="Solid" BorderWidth="3px" PostBackUrl="~/PagesMembres/Production/ALMS/ADD_MAC_ADRE.aspx" /></td>
                     <td style="width: 200px"><asp:ImageButton ID="FixedPc" ImageUrl="~\App_Themes\PIC_CHAR\2699117232_small_1.png" runat="server" Height="100px" Width="100px" BorderColor="#3333CC" BorderStyle="Solid" BorderWidth="3px" PostBackUrl="~/PagesMembres/Developpement/CFGR_POST.aspx" /></td>
                     <td style="width: 200px"><asp:ImageButton ID="WindTurbine" ImageUrl="~\App_Themes\PIC_CHAR\eolienneanimee.gif" runat="server" Height="100px" Width="100px" BorderColor="#3333CC" BorderStyle="Solid" BorderWidth="3px" PostBackUrl="~/PagesMembres/Developpement/Page_ESSAI.aspx" /></td>
