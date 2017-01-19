@@ -5,7 +5,7 @@
                 <asp:View ID="View_Unlog" runat="server">
                     Vous n&#39;êtes pas connecté. Cliquez sur le lien Connexion pour vous inscrire.
                 </asp:View>--%>
-                blabla<br />
+                <br />
                 <table style="width:115%; height: 198px;">
                     <tr><td style="width: 296px; vertical-align: top;">Vous êtes connecté.</td></tr>
                     <tr><td>Bienvenue <%: Session("displayname") %></td></tr>
