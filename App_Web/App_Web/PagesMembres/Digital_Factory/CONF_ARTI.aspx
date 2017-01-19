@@ -27,31 +27,35 @@
         <tr>
             <td><asp:CheckBox ID="CheckBox_SUIV_NU_SER_ORDR_CROIS" runat="server" Text="&nbsp;Suivi des numéros de série dans l'ordre croissant" ToolTip="Suivi des numéros de série dans l'ordre croissant au colisage" /></td></tr>
     </table>
-    Format du numéro de commande :
-    <asp:TextBox ID="TextBox_FORM_NU_CMD" runat="server" Width="627px"></asp:TextBox>
-    <br />
-    Format du numéro de BL :
-    <asp:TextBox ID="TextBox_FORM_NU_BL" runat="server" Width="679px"></asp:TextBox>
-    <br />
-    Format du code carton :
-    <asp:TextBox ID="TextBox_FORM_CD_CART" runat="server" Width="693px"></asp:TextBox>
-    <br />
-    Format du code fournisseur :
-    <asp:TextBox ID="TextBox_FORM_CD_FNS" runat="server" Width="662px"></asp:TextBox>
-    <br />
-    Format du numéro de série Client :
-    <asp:TextBox ID="TextBox_FORM_NU_SER_CLIE" runat="server" Width="625px"></asp:TextBox>
-    <br />
-    Format du numéro de série Eolane :
-    <asp:TextBox ID="TextBox_FORM_NU_SER_ECO" runat="server" Width="617px"></asp:TextBox>
-    <br />
-    Quantité dans un carton :
-    <asp:TextBox ID="TextBox_QT_CART" runat="server" Width="684px">9999</asp:TextBox>
-    <br />
-    Quantité dans un flanc :
-    <asp:TextBox ID="TextBox_QT_FLAN" runat="server" Width="694px">1</asp:TextBox>
-    <br />
-    Incrémentation des numéros de série : <asp:TextBox ID="TextBox_INC_NU_SER" runat="server" Width="603px">1</asp:TextBox>
+    <table class="tab_format_qte">
+        <tr>
+            <td><label>Format du numéro de commande :</label></td>
+            <td><asp:TextBox ID="TextBox_FORM_NU_CMD" runat="server" Width="627px"></asp:TextBox></td></tr>
+        <tr>
+            <td><label>Format du numéro de BL :</label></td>
+            <td><asp:TextBox ID="TextBox_FORM_NU_BL" runat="server" Width="679px"></asp:TextBox></td></tr>
+        <tr>
+            <td><label>Format du code carton :</label></td>
+            <td><asp:TextBox ID="TextBox_FORM_CD_CART" runat="server" Width="693px"></asp:TextBox></td></tr>
+        <tr>
+            <td><label>Format du code fournisseur :</label></td>
+            <td><asp:TextBox ID="TextBox_FORM_CD_FNS" runat="server" Width="662px"></asp:TextBox></td></tr>
+        <tr>
+            <td><label>Format du numéro de série Client :</label></td>
+            <td><asp:TextBox ID="TextBox_FORM_NU_SER_CLIE" runat="server" Width="625px"></asp:TextBox></td></tr>
+        <tr>
+            <td><label>Format du numéro de série Eolane :</label></td>
+            <td><asp:TextBox ID="TextBox_FORM_NU_SER_ECO" runat="server" Width="617px"></asp:TextBox></td></tr>
+        <tr>
+            <td><label>Quantité dans un carton :</label></td>
+            <td><asp:TextBox ID="TextBox_QT_CART" runat="server" Width="684px">9999</asp:TextBox></td></tr>
+        <tr>
+            <td><label>Quantité dans un flanc :</label></td>
+            <td><asp:TextBox ID="TextBox_QT_FLAN" runat="server" Width="694px">1</asp:TextBox></td></tr>
+        <tr>
+            <td><label>Incrémentation des numéros de série :</label></td>
+            <td><asp:TextBox ID="TextBox_INC_NU_SER" runat="server" Width="603px">1</asp:TextBox></td></tr>
+    </table>
     <br />
     <asp:CheckBox ID="CheckBox_SAI_OF_CART_TERM" runat="server" Text="Saisie de l'of pour chaque carton terminé" />
     <br />
