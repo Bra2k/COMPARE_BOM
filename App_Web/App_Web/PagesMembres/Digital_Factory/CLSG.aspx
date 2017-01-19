@@ -13,7 +13,7 @@
                 <asp:View ID="View_OF" runat="server">
                     <table style="width:100%;">
                         <tr>
-                            <td><label>Saisir l&#39;OF hello:</label>
+                            <td><label>Saisir l&#39;OF :</label>
                                 <asp:TextBox ID="TextBox_NU_OF" runat="server" AutoPostBack="True" Width="128px"></asp:TextBox>
                             </td>
                             <td style="vertical-align: middle"><label>
