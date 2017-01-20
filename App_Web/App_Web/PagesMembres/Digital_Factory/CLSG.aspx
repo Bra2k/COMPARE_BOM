@@ -17,7 +17,7 @@
                                 <asp:TextBox ID="TextBox_NU_OF" runat="server" AutoPostBack="True" Width="128px"></asp:TextBox>
                             </td>
                             <td style="vertical-align: middle"><label>
-                                Associer un n° de palette à un BL :</label>
+                                Associer un n° de palette à un BL (test) :</label>
                                 <asp:ImageButton ID="Button_SAI_PALE_BL" runat="server" Height="63px" ImageUrl="~/App_Themes/PIC_CHAR/AjoutBonDeLivraison.png" ToolTip="Associer un n° de palette à un BL"  Width="63px"/>
                             </td>
                             <td>
