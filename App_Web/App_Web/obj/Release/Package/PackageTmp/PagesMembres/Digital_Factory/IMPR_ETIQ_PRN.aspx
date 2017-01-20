@@ -104,7 +104,6 @@
             &nbsp;(modifiable via la page
             <asp:HyperLink ID="HyperLink_CONF_ARTI4" runat="server" NavigateUrl="~/PagesMembres/Digital_Factory/CONF_ARTI.aspx">Configurer un nouvel article pour le colisage</asp:HyperLink>)
         </p>
-        <br />
         <table>
             <tr>
                 <td><label>Variable 1 :</label></td>
@@ -182,23 +181,20 @@
                 <td>&nbsp;<asp:Button ID="Button_VAR_15" runat="server" Text="Sauvegarder la Variable 15" /></td>
             </tr>
         </table>
-        <br />
-        <p>
-            <label>Quantité à imprimer :</label>
-            <asp:TextBox ID="TextBox_QT_GENE" runat="server" Text="1"></asp:TextBox>
-            <asp:CheckBox ID="CheckBox_GENE_ETIQ_IDEN" runat="server" Text="&nbsp;Générer des étiquettes identiques" />
-            &nbsp;<asp:CheckBox ID="CheckBox_GENE_QT_TOTA_OF" runat="server" AutoPostBack="True" Text="&nbsp;Générer la quantité totale de l'OF" />
-        </p>
         <table>
+            <tr>
+                <td><label>Quantité à imprimer :</label></td>
+                <td><asp:TextBox ID="TextBox_QT_GENE" runat="server" Text="1"></asp:TextBox>
+            <asp:CheckBox ID="CheckBox_GENE_ETIQ_IDEN" runat="server" Text="&nbsp;Générer des étiquettes identiques" />
+            &nbsp;<asp:CheckBox ID="CheckBox_GENE_QT_TOTA_OF" runat="server" AutoPostBack="True" Text="&nbsp;Générer la quantité totale de l'OF" /></td></tr>
         <tr>
             <td><label>Fichier modèle :</label></td>
             <td><asp:TextBox ID="TextBox_FICH_MODE" runat="server" Width="629px" AutoPostBack="True"></asp:TextBox></td>
         </tr>
         <tr>
             <td><label>Imprimante :</label></td>
-            <td><asp:TextBox ID="TextBox_IMPR_RESE" runat="server" Width="650px"></asp:TextBox></td>
-            <td>&nbsp;(Modifiable via la page<asp:HyperLink ID="HyperLink_CFGR_POST" runat="server">Configuration des postes</asp:HyperLink>)</td>
-        </tr>
+            <td><asp:TextBox ID="TextBox_IMPR_RESE" runat="server" Width="650px"></asp:TextBox>
+            &nbsp;(Modifiable via la page<asp:HyperLink ID="HyperLink_CFGR_POST" runat="server">&nbsp;Configuration des postes</asp:HyperLink>)</td></tr>
         <tr>
             <td><asp:Button ID="Button_IMPR" runat="server" Text="Imprimer" /></td>
         </tr>

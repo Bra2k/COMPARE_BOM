@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="Colisage" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="CLSG.aspx.vb" Inherits="App_Web.CLSG" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <table style="width:100%;">
+     <table style="width:100%;">
         <tr>
             <td>
                 <br />
@@ -17,7 +17,7 @@
                                 <asp:TextBox ID="TextBox_NU_OF" runat="server" AutoPostBack="True" Width="128px"></asp:TextBox>
                             </td>
                             <td style="vertical-align: middle"><label>
-                                Associer un n° de palette à un BL (test) :</label>
+                                Associer un n° de palette à un BL :</label>
                                 <asp:ImageButton ID="Button_SAI_PALE_BL" runat="server" Height="63px" ImageUrl="~/App_Themes/PIC_CHAR/AjoutBonDeLivraison.png" ToolTip="Associer un n° de palette à un BL"  Width="63px"/>
                             </td>
                             <td>

@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="Colisage" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="CLSG.aspx.vb" Inherits="App_Web.CLSG" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <table style="width:100%;">
+     <table style="width:100%;">
         <tr>
             <td>
                 <br />
