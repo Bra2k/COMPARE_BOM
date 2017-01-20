@@ -48,16 +48,16 @@
                             <td>
                                 <asp:MultiView ID="MultiView_BASC_SAI_SEL" runat="server" ActiveViewIndex="0">
                                     <asp:View ID="View_SAI_ENS" runat="server">
-                                        <label>N° de carton :</label>
-                                        <asp:TextBox ID="TextBox_NU_CART_SCFQ" runat="server" AutoPostBack="True" Enabled="False"></asp:TextBox>
-                                        <br />
-                                        <br />
-                                        <label>Numéro de série Eolane :</label>
-                                        <asp:TextBox ID="TextBox_NU_SER_ECO" runat="server" AutoPostBack="True" Enabled="False"></asp:TextBox>
-                                        <br />
-                                        <br />
-                                        <label>Numéro de série Client :</label>
-                                        <asp:TextBox ID="TextBox_NU_SER_CLIE" runat="server" AutoPostBack="True" Enabled="False"></asp:TextBox>
+                                        <table>
+                                            <tr><td><label>N° de carton :</label></td>
+                                            <td><asp:TextBox ID="TextBox_NU_CART_SCFQ" runat="server" AutoPostBack="True" Enabled="False"></asp:TextBox></td></tr>
+                                        <tr>
+                                            <td><label>Numéro de série Eolane :</label></td>
+                                            <td><asp:TextBox ID="TextBox_NU_SER_ECO" runat="server" AutoPostBack="True" Enabled="False"></asp:TextBox></td></tr>
+                                        <tr>
+                                            <td><label>Numéro de série Client :</label></td>
+                                            <td><asp:TextBox ID="TextBox_NU_SER_CLIE" runat="server" AutoPostBack="True" Enabled="False"></asp:TextBox></td></tr>
+                                        </table>
                                     </asp:View>
                                     <asp:View ID="View_SEL" runat="server">
                                         Sélectionner le sous-ensemble :
@@ -133,8 +133,7 @@
                                     <SortedDescendingHeaderStyle BackColor="#000065" />
                                 </asp:GridView>
                                 <asp:ImageButton ID="Button_SUPP_LIGN" runat="server" Height="36px" ImageUrl="~/App_Themes/PIC_CHAR/imgres.jpg" tooltip="Supprimer un enregistrement" Width="36px" />
-                                <br />
-                                
+                                <br />                  
                             </td>
                             <td style="vertical-align: top">Numéro de la palette :
                                 <asp:Label ID="Label_NU_PALE_NU_V_NU_SER" runat="server"></asp:Label>
