@@ -1444,6 +1444,7 @@ Public Class CLSG
         Dim sQuery As String = ""
         Dim dt, dt_CFGR_ARTI_ECO As New DataTable
         Try
+            'blabla
             dt_CFGR_ARTI_ECO = DIG_FACT_SQL_CFGR_ARTI_ECO(Trim(Label_CD_ARTI_ECO.Text))
 
             If Not (Label_NB_CART.Text = "" Or Label_NB_CART.Text = "0") Then Button_CLOR_CART_Click(sender, e)
