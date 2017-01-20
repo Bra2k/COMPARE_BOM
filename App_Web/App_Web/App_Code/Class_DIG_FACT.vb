@@ -292,6 +292,7 @@ Public Class Class_DIG_FACT
                     End If
                 Next
             End If
+            dt = PDF_REPL_VAR(dt, "#NU_PALE" & iINS_VAR, sNU_PAL)
             dt = PDF_REPL_VAR(dt, "#NM_DSGT_ARTI", sDSGT_ARTI)
             dt = PDF_REPL_VAR(dt, "#NU_SER_CLIE", sNU_CLIE)
             dt = PDF_REPL_VAR(dt, "#NU_SER_ECO", sNU_ECO)

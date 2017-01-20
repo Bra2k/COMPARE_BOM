@@ -1262,8 +1262,8 @@ Public Class CLSG
 
             sQuery = "SELECT [NU_PALE]
                         FROM [dbo].[V_CLSG_PRD_DTM_HIST_LIVR]
-                             INNER JOIN [SAP].[dbo].[AFKO] ON [AUFNR] LIKE '%' + CONVERT(NVARCHAR,[NU_OF])
-                       WHERE [NU_BL] IS NULL AND NOT [NU_PALE] IS NULL AND RTRIM(LTRIM(PLNBEZ)) = '" & Label_CD_ARTI_ECO_V_PALE.Text & "'
+                             INNER JOIN [SAP].[dbo].[V_AFKO_CLEA] ON [AUFNR] = [NU_OF]
+                       WHERE [NU_BL] IS NULL AND NOT [NU_PALE] IS NULL AND PLNBEZ = '" & Label_CD_ARTI_ECO_V_PALE.Text & "'
                       GROUP BY [NU_PALE]"
             dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
             If Not dt Is Nothing Then
@@ -1336,6 +1336,10 @@ Public Class CLSG
             '    Next
             'Next
             'Dim sARTI_ECO As String =
+            sQuery = "SELECT COUNT(DT_SCAN) AS NB_NS
+                        FROM [dbo].[V_CLSG_PRD_DTM_HIST_LIVR]
+                       WHERE NU_PALE = '" & Label_NU_PALE_NU_V_NU_SER.Text & " '"
+            dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
             Dim sFichier_Modele As String = COMM_APP_WEB_GET_PARA(Label_CD_ARTI_ECO_V_PALE.Text & StrDup(18 - Len(Label_CD_ARTI_ECO_V_PALE.Text), " ") & "|Palette", "TextBox_FICH_MODE", "ASP.pagesmembres_digital_factory_impr_etiq_prn_aspx")
             Select Case Right(sFichier_Modele, 3)
                 Case "PDF", "pdf" 'Imprimer PDF
@@ -1399,8 +1403,8 @@ Public Class CLSG
 
             sQuery = "SELECT [NU_PALE] AS [Numéro de palette]
                         FROM [dbo].[V_CLSG_PRD_DTM_HIST_LIVR]
-                             INNER JOIN [SAP].[dbo].[AFKO] ON [AUFNR] LIKE '%' + CONVERT(NVARCHAR,[NU_OF])
-                       WHERE [NU_BL] IS NULL AND NOT [NU_PALE] IS NULL AND RTRIM(LTRIM(PLNBEZ)) = '" & Label_CD_ARTI_ECO_V_PALE.Text & "'
+                             INNER JOIN [SAP].[dbo].[V_AFKO_CLEA] ON [AUFNR] = [NU_OF]
+                       WHERE [NU_BL] IS NULL AND NOT [NU_PALE] IS NULL AND PLNBEZ = '" & Label_CD_ARTI_ECO_V_PALE.Text & "'
                       GROUP BY [NU_PALE]"
             dt3 = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
             If Not dt3 Is Nothing Then
@@ -1446,7 +1450,18 @@ Public Class CLSG
         Try
             'blabla
             dt_CFGR_ARTI_ECO = DIG_FACT_SQL_CFGR_ARTI_ECO(Trim(Label_CD_ARTI_ECO.Text))
-
+            sQuery = "SELECT COUNT(DT_SCAN) AS NB_NS
+                        FROM [dbo].[V_CLSG_PRD_DTM_HIST_LIVR]
+                       WHERE NU_PALE = '" & Label_NU_PALE_NU_V_NU_SER.Text & " '"
+            dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
+            If dt Is Nothing Then Throw New Exception("La palette n°" & Label_NU_PALE_NU_V_NU_SER.Text & " n'existe pas dans la base de données")
+            Dim sFichier As String = DIG_FACT_IMPR_PDF("\\ceapp03\Sources\Digital Factory\Etiquettes\_Génériques\SSO_IMP1017012013040.pdf",
+                                                                       Label_NU_OF.Text, "", "Palette",
+                                                                       "", "", "", dt(0)("NB_NS").ToString,
+                                                                       Label_NB_CART_PALE.Text, Label_NU_PALE_NU_V_NU_SER.Text, Nothing)
+            ClientScript.RegisterStartupScript([GetType](), "printPdf", "document.getElementById(""pdf"").src = """ & Path.GetFileName(sFichier) & """;
+                                                                                     document.getElementById(""pdf"").onload = function() {window.frames[""pdf""].focus();
+                                                                                                                                           window.frames[""pdf""].print();};", True)
             If Not (Label_NB_CART.Text = "" Or Label_NB_CART.Text = "0") Then Button_CLOR_CART_Click(sender, e)
             sQuery = "SELECT ISNULL(MAX([NU_PALE])," & Label_NU_OF.Text & "00) + 1 AS NEW_NU_PALE
                             FROM (
