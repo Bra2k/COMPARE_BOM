@@ -31,7 +31,6 @@
                     <table style="width:100%;">
                         <tr>
                             <td rowspan="2">
-                               
                                 <asp:ImageButton ID="Button_CLOR_CART" runat="server" Enabled="False" Height="63px" Width="63px"  ToolTip="Clore le carton" ImageUrl="~/App_Themes/PIC_CHAR/39344.png"/>
                                 <br />
                                 <br />
