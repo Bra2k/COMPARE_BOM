@@ -104,103 +104,99 @@
             &nbsp;(modifiable via la page
             <asp:HyperLink ID="HyperLink_CONF_ARTI4" runat="server" NavigateUrl="~/PagesMembres/Digital_Factory/CONF_ARTI.aspx">Configurer un nouvel article pour le colisage</asp:HyperLink>)
         </p>
-        <br />
         <table>
             <tr>
                 <td><label>Variable 1 :</label></td>
                 <td><asp:TextBox ID="TextBox_VAR_1" runat="server" ToolTip="#var1"></asp:TextBox></td>
-                <td>&nbsp;<asp:Button ID="Button_VAR_1" runat="server" Text="Sauvegarder la Variable 1" /></td>
+                <td>&nbsp;<asp:Button ID="Button_VAR_1" runat="server" Text="Sauvegarder la Variable 1" BackColor="#002F60" Font-Bold="True" ForeColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" /></td>
             </tr>
             <tr>
                 <td><label>Variable 2 :</label></td>
                 <td><asp:TextBox ID="TextBox_VAR_2" runat="server" ToolTip="#var2"></asp:TextBox></td>
-                <td>&nbsp;<asp:Button ID="Button_VAR_2" runat="server" Text="Sauvegarder la Variable 2" /></td>
+                <td>&nbsp;<asp:Button ID="Button_VAR_2" runat="server" Text="Sauvegarder la Variable 2" BackColor="#002F60" Font-Bold="True" ForeColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" /></td>
             </tr>
             <tr>
                 <td><label>Variable 3 :</label></td>
                 <td><asp:TextBox ID="TextBox_VAR_3" runat="server" ToolTip="#var3"></asp:TextBox></td>
-                <td>&nbsp;<asp:Button ID="Button_VAR_3" runat="server" Text="Sauvegarder la Variable 3" /></td>
+                <td>&nbsp;<asp:Button ID="Button_VAR_3" runat="server" Text="Sauvegarder la Variable 3" BackColor="#002F60" Font-Bold="True" ForeColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" /></td>
             </tr>
             <tr>
                 <td><label>Variable 4 :</label></td>
                 <td><asp:TextBox ID="TextBox_VAR_4" runat="server" ToolTip="#var4"></asp:TextBox></td>
-                <td>&nbsp;<asp:Button ID="Button_VAR_4" runat="server" Text="Sauvegarder la Variable 4" /></td>
+                <td>&nbsp;<asp:Button ID="Button_VAR_4" runat="server" Text="Sauvegarder la Variable 4" BackColor="#002F60" Font-Bold="True" ForeColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" /></td>
             </tr>
             <tr>
                 <td><label>Variable 5 :</label></td>
                 <td><asp:TextBox ID="TextBox_VAR_5" runat="server" ToolTip="#var5"></asp:TextBox></td>
-                <td>&nbsp;<asp:Button ID="Button_VAR_5" runat="server" Text="Sauvegarder la Variable 5" /></td>
+                <td>&nbsp;<asp:Button ID="Button_VAR_5" runat="server" Text="Sauvegarder la Variable 5" BackColor="#002F60" Font-Bold="True" ForeColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" /></td>
             </tr>
             <tr>
                 <td><label>Variable 6 :</label></td>
                 <td><asp:TextBox ID="TextBox_VAR_6" runat="server" ToolTip="#var6"></asp:TextBox></td>
-                <td>&nbsp;<asp:Button ID="Button_VAR_6" runat="server" Text="Sauvegarder la Variable 6" /></td>
+                <td>&nbsp;<asp:Button ID="Button_VAR_6" runat="server" Text="Sauvegarder la Variable 6" BackColor="#002F60" Font-Bold="True" ForeColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" /></td>
             </tr>
             <tr>
                 <td><label>Variable 7 :</label></td>
                 <td><asp:TextBox ID="TextBox_VAR_7" runat="server" ToolTip="#var7"></asp:TextBox></td>
-                <td>&nbsp;<asp:Button ID="Button_VAR_7" runat="server" Text="Sauvegarder la Variable 7" /></td>
+                <td>&nbsp;<asp:Button ID="Button_VAR_7" runat="server" Text="Sauvegarder la Variable 7" BackColor="#002F60" Font-Bold="True" ForeColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" /></td>
             </tr>
             <tr>
                 <td><label>Variable 8 :</label></td>
                 <td><asp:TextBox ID="TextBox_VAR_8" runat="server" ToolTip="#var8"></asp:TextBox></td>
-                <td>&nbsp;<asp:Button ID="Button_VAR_8" runat="server" Text="Sauvegarder la Variable 8" /></td>
+                <td>&nbsp;<asp:Button ID="Button_VAR_8" runat="server" Text="Sauvegarder la Variable 8" BackColor="#002F60" Font-Bold="True" ForeColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" /></td>
             </tr>
             <tr>
                <td><label>Variable 9 :</label></td>
                <td><asp:TextBox ID="TextBox_VAR_9" runat="server" ToolTip="#var9"></asp:TextBox></td>
-               <td>&nbsp;<asp:Button ID="Button_VAR_9" runat="server" Text="Sauvegarder la Variable 9" /></td>
+               <td>&nbsp;<asp:Button ID="Button_VAR_9" runat="server" Text="Sauvegarder la Variable 9" BackColor="#002F60" Font-Bold="True" ForeColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" /></td>
             </tr>
             <tr>
                 <td><label>Variable 10 :</label></td>
                 <td><asp:TextBox ID="TextBox_VAR_10" runat="server" ToolTip="#varA"></asp:TextBox></td>
-                <td>&nbsp;<asp:Button ID="Button_VAR_10" runat="server" Text="Sauvegarder la Variable 10" /></td>
+                <td>&nbsp;<asp:Button ID="Button_VAR_10" runat="server" Text="Sauvegarder la Variable 10" BackColor="#002F60" Font-Bold="True" ForeColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" /></td>
             </tr>
             <tr>
                 <td><label>Variable 11 :</label></td>
                 <td><asp:TextBox ID="TextBox_VAR_11" runat="server" ToolTip="#varB"></asp:TextBox></td>
-                <td>&nbsp;<asp:Button ID="Button_VAR_11" runat="server" Text="Sauvegarder la Variable 11" /></td>
+                <td>&nbsp;<asp:Button ID="Button_VAR_11" runat="server" Text="Sauvegarder la Variable 11" BackColor="#002F60" Font-Bold="True" ForeColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" /></td>
             </tr>
             <tr>
                 <td><label>Variable 12 :</label></td>
                 <td><asp:TextBox ID="TextBox_VAR_12" runat="server" ToolTip="#varC"></asp:TextBox></td>
-                <td>&nbsp;<asp:Button ID="Button_VAR_12" runat="server" Text="Sauvegarder la Variable 12"/></td>
+                <td>&nbsp;<asp:Button ID="Button_VAR_12" runat="server" Text="Sauvegarder la Variable 12" BackColor="#002F60" Font-Bold="True" ForeColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" /></td>
             </tr>
             <tr>
                 <td><label>Variable 13 :</label></td>
                 <td><asp:TextBox ID="TextBox_VAR_13" runat="server" ToolTip="#varD"></asp:TextBox></td>
-                <td>&nbsp;<asp:Button ID="Button_VAR_13" runat="server" Text="Sauvegarder la Variable 13" /></td>
+                <td>&nbsp;<asp:Button ID="Button_VAR_13" runat="server" Text="Sauvegarder la Variable 13" BackColor="#002F60" Font-Bold="True" ForeColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" /></td>
             </tr>
             <tr>
                 <td><label>Variable 14 :</label></td>
                 <td><asp:TextBox ID="TextBox_VAR_14" runat="server" ToolTip="#varE"></asp:TextBox></td>
-                <td>&nbsp;<asp:Button ID="Button_VAR_14" runat="server" Text="Sauvegarder la Variable 14" /></td>
+                <td>&nbsp;<asp:Button ID="Button_VAR_14" runat="server" Text="Sauvegarder la Variable 14" BackColor="#002F60" Font-Bold="True" ForeColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" /></td>
             </tr>
             <tr>
                 <td><label>Variable 15 :</label></td>
                 <td><asp:TextBox ID="TextBox_VAR_15" runat="server" ToolTip="#varF"></asp:TextBox></td>
-                <td>&nbsp;<asp:Button ID="Button_VAR_15" runat="server" Text="Sauvegarder la Variable 15" /></td>
+                <td>&nbsp;<asp:Button ID="Button_VAR_15" runat="server" Text="Sauvegarder la Variable 15" BackColor="#002F60" Font-Bold="True" ForeColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" /></td>
             </tr>
         </table>
-        <br />
-        <p>
-            <label>Quantité à imprimer :</label>
-            <asp:TextBox ID="TextBox_QT_GENE" runat="server" Text="1"></asp:TextBox>
-            <asp:CheckBox ID="CheckBox_GENE_ETIQ_IDEN" runat="server" Text="&nbsp;Générer des étiquettes identiques" />
-            &nbsp;<asp:CheckBox ID="CheckBox_GENE_QT_TOTA_OF" runat="server" AutoPostBack="True" Text="&nbsp;Générer la quantité totale de l'OF" />
-        </p>
         <table>
+            <tr>
+                <td><label>Quantité à imprimer :</label></td>
+                <td><asp:TextBox ID="TextBox_QT_GENE" runat="server" Text="1"></asp:TextBox>
+            <asp:CheckBox ID="CheckBox_GENE_ETIQ_IDEN" runat="server" Text="&nbsp;Générer des étiquettes identiques" />
+            &nbsp;<asp:CheckBox ID="CheckBox_GENE_QT_TOTA_OF" runat="server" AutoPostBack="True" Text="&nbsp;Générer la quantité totale de l'OF" /></td></tr>
         <tr>
             <td><label>Fichier modèle :</label></td>
             <td><asp:TextBox ID="TextBox_FICH_MODE" runat="server" Width="629px" AutoPostBack="True"></asp:TextBox></td>
         </tr>
         <tr>
             <td><label>Imprimante :</label></td>
-            <td><asp:TextBox ID="TextBox_IMPR_RESE" runat="server" Width="650px"></asp:TextBox></td>
-            <td>&nbsp;(Modifiable via la page<asp:HyperLink ID="HyperLink_CFGR_POST" runat="server">Configuration des postes</asp:HyperLink>)</td>
-        </tr>
-        <tr>
-            <td><asp:Button ID="Button_IMPR" runat="server" Text="Imprimer" /></td>
-        </tr>
-    </table>
+            <td><asp:TextBox ID="TextBox_IMPR_RESE" runat="server" Width="650px"></asp:TextBox>
+            &nbsp;(Modifiable via la page<asp:HyperLink ID="HyperLink_CFGR_POST" runat="server">&nbsp;Configuration des postes</asp:HyperLink>)</td></tr>
+        </table>
+            <br />
+            <asp:Button ID="Button_IMPR" runat="server" Text="Imprimer" BackColor="#002F60" Font-Bold="True" ForeColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" Height="40px" Width="180px" />
+            <br />
 </asp:Content>

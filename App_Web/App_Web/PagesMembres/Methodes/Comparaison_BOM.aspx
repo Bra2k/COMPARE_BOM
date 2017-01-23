@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="Comparaison de BOM" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="Comparaison_BOM.aspx.vb" Inherits="App_Web.Comparaison_BOM" Theme="Skin_CHRT_ECO"%>
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server"><br />
     <div style="font-family: Verdana; font-size: xx-large; font-weight: 900; font-variant: normal; color: #002F60">
     Comparaison de BOM&nbsp;&nbsp;&nbsp;
     <asp:Label ID="Label_LOAD" runat="server" Text="Chargement en cours ..." Visible="False"></asp:Label>
@@ -29,9 +29,9 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <br />
             <br />
-            Sélectionner le fichier BOM à contrôler :<asp:FileUpload ID="FileUpload_BOM" runat="server" />
+            Sélectionner le fichier BOM à contrôler :<asp:FileUpload ID="FileUpload_BOM" runat="server" BackColor="#002F60" Font-Bold="True" ForeColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" />
             <br />
-            <asp:Button ID="Button_Importer" runat="server" Text="Importer" />
+            <asp:Button ID="Button_Importer" runat="server" Text="Importer" BackColor="#002F60" Font-Bold="True" ForeColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" /><br />
             <asp:SqlDataSource ID="SqlDataSource_PARA_BOM" runat="server" ConnectionString="<%$ ConnectionStrings:SERCELConnectionString %>" InsertCommand="INSERT INTO TEST.[dbo].[Essai_PARA_BOM]
            ([NM_CLIE]
            ,[NM_PARA]
@@ -135,7 +135,7 @@ FROM         (SELECT     NM_CLIE, NM_PARA, MAX(DT_MAJ_PARA) AS DT_MAJ_PARA
                                 &nbsp;:&nbsp;
                                 <asp:TextBox ID="TextBox_RESU_ANA_REPE_CARA_SPEC" runat="server" Width="390px"></asp:TextBox>
                                 &nbsp;&nbsp;&nbsp;
-                                <asp:Button ID="Button_RESU_ANA_REPE_CARA_SPEC" runat="server" Text="Valider" />
+                                <asp:Button ID="Button_RESU_ANA_REPE_CARA_SPEC" runat="server" Text="Valider" BackColor="#002F60" Font-Bold="True" ForeColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" />
                                 <br />
                                 <br />
                                 <asp:RadioButtonList ID="RadioButtonList_GENE_RPR_RPC_CARA" runat="server">
@@ -147,19 +147,19 @@ FROM         (SELECT     NM_CLIE, NM_PARA, MAX(DT_MAJ_PARA) AS DT_MAJ_PARA
                                 Saisir le ou la suite de caractères à supprimer :
                                 <asp:TextBox ID="TextBoxSUPP_LETT_CD_ARTI_BOM_CLIE" runat="server"></asp:TextBox>
                                 &nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:Button ID="ButtonSUPP_LETT_CD_ARTI_BOM_CLIE" runat="server" SkinID="BOUT_VALI" Text="Valider" />
+                                <asp:Button ID="ButtonSUPP_LETT_CD_ARTI_BOM_CLIE" runat="server" SkinID="BOUT_VALI" Text="Valider" BackColor="#002F60" Font-Bold="True" ForeColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px"/>
                             </asp:View>
                             <asp:View ID="View_SUPP_CRCR_RPR" runat="server">
                                 Saisir le ou la suite de caractères à supprimer :
                                 <asp:TextBox ID="TextBox_SUPP_CRCR_RPR" runat="server"></asp:TextBox>
                                 &nbsp;&nbsp;&nbsp;
-                                <asp:Button ID="Button_SUPP_CRCR_RPR" runat="server" SkinID="BOUT_VALI" Text="Valider" />
+                                <asp:Button ID="Button_SUPP_CRCR_RPR" runat="server" SkinID="BOUT_VALI" Text="Valider" BackColor="#002F60" Font-Bold="True" ForeColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" />
                             </asp:View>
                             <asp:View ID="View_REPE_MULT_COLO_REPE" runat="server">
                                 Saisir le caractère séparateur :
                                 <asp:TextBox ID="TextBox_REPE_MULT_COLO_REPE" runat="server"></asp:TextBox>
                                 &nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:Button ID="Button_REPE_MULT_COLO_REPE" runat="server" Text="Valider" SkinID="BOUT_VALI" />
+                                <asp:Button ID="Button_REPE_MULT_COLO_REPE" runat="server" Text="Valider" SkinID="BOUT_VALI" BackColor="#002F60" Font-Bold="True" ForeColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" />
                                 <br />
                                 <asp:RadioButtonList ID="RadioButtonList_QTE_PLUS_LIGN" runat="server" RepeatDirection="Horizontal">
                                     <asp:ListItem Selected="True">Une quantité par ligne</asp:ListItem>
