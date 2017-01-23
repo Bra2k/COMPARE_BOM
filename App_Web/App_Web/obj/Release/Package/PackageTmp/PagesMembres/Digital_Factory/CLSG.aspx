@@ -5,7 +5,7 @@
                     <table style="width:100%;">
                         <tr>
                             <td><label>Saisir l&#39;OF :</label>
-                                <asp:TextBox ID="TextBox_NU_OF" runat="server" AutoPostBack="True" Width="128px"></asp:TextBox>
+                                <asp:TextBox ID="TextBox_NU_OF" runat="server" AutoPostBack="True" Width="128px" BackColor="#989000" ForeColor="White" ></asp:TextBox>
                             </td>
                             <td style="vertical-align: middle"><label>
                                 Associer un n° de palette à un BL :</label>

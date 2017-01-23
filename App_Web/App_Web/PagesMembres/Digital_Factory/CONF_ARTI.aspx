@@ -108,19 +108,19 @@
     <table class="tab_chemin_reseau">
         <tr>
             <td><label>Chemin réseau de la sauvegarde du fichier PDF :</label></td>
-            <td><asp:TextBox ID="TextBox_NM_CHEM_FICH_PDF" runat="server" Width="500px" ToolTip="Chemin réseau de la sauvegarde du fichier PDF surtout utilisé pour le colisage" TextMode="MultiLine"></asp:TextBox></td></tr>
+            <td><asp:TextBox ID="TextBox_NM_CHEM_FICH_PDF" runat="server" Width="350px" ToolTip="Chemin réseau de la sauvegarde du fichier PDF surtout utilisé pour le colisage" TextMode="MultiLine"></asp:TextBox></td></tr>
         <tr>
             <td><label>Chemin réseau du fichier d&#39;impression d&#39;étiquette d&#39;un numéro de série Eolane :</label></td>
-            <td><asp:TextBox ID="TextBox_CHEM_FICH_IMPR_NU_SER_ECO" runat="server" Width="500px" TextMode="MultiLine"></asp:TextBox></td></tr>
+            <td><asp:TextBox ID="TextBox_CHEM_FICH_IMPR_NU_SER_ECO" runat="server" Width="350px" TextMode="MultiLine"></asp:TextBox></td></tr>
         <tr>
             <td><label>Chemin réseau du fichier d&#39;impression d&#39;étiquette d&#39;un numéro de série Client :</label></td>
-            <td><asp:TextBox ID="TextBox_CHEM_FICH_IMPR_NU_SER_CLIE" runat="server" Width="500px" TextMode="MultiLine"></asp:TextBox></td></tr>
+            <td><asp:TextBox ID="TextBox_CHEM_FICH_IMPR_NU_SER_CLIE" runat="server" Width="350px" TextMode="MultiLine"></asp:TextBox></td></tr>
         <tr>
             <td><label>Chemin réseau du fichier d&#39;impression d&#39;étiquette d&#39;un carton:</label></td>
-            <td><asp:TextBox ID="TextBox_CHEM_FICH_IMPR_CART" runat="server" Width="500px" TextMode="MultiLine"></asp:TextBox></td></tr>
+            <td><asp:TextBox ID="TextBox_CHEM_FICH_IMPR_CART" runat="server" Width="350px" TextMode="MultiLine"></asp:TextBox></td></tr>
         <tr>
             <td><label>Chemin réseau du fichier d&#39;impression d&#39;étiquette d&#39;une palette :</label></td>
-            <td><asp:TextBox ID="TextBox_CHEM_FICH_IMPR_PALE" runat="server" Width="500px" TextMode="MultiLine"></asp:TextBox></td></tr>
+            <td><asp:TextBox ID="TextBox_CHEM_FICH_IMPR_PALE" runat="server" Width="350px" TextMode="MultiLine"></asp:TextBox></td></tr>
     </table>
     <asp:CheckBox ID="CheckBox_ETIQ_PACK_NU_SER_ECO" runat="server" Text="&nbsp;Impression d'une étiquette packaging avec numéro de série Eolane" />
         <br />
@@ -156,7 +156,7 @@
     <table class="tab_02">
         <tr>
             <td><label>Chemin du fichier de rapport de traçabilité :</label></td>
-            <td style="width: 584px"><asp:TextBox ID="TextBox_CHEM_FICH_RAPP_TCBL" runat="server" Width="500px" TextMode="MultiLine"></asp:TextBox></td></tr>
+            <td style="width: 584px"><asp:TextBox ID="TextBox_CHEM_FICH_RAPP_TCBL" runat="server" Width="350px" TextMode="MultiLine"></asp:TextBox></td></tr>
         <tr>
             <td><label>Nom de la vue pour l&#39;extration du fichier PDF :</label></td>
             <td style="width: 584px"><asp:TextBox ID="TextBox_VUE_FICH_PDF" runat="server" Width="790px"></asp:TextBox></td></tr>
