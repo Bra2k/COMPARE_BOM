@@ -1,14 +1,5 @@
 ﻿<%@ Page Title="Colisage" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="CLSG.aspx.vb" Inherits="App_Web.CLSG" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-     <table style="width:100%;">
-        <tr>
-            <td>
-                <br />
-                <br />
-                <br />
-                <br />
-            </td>
-            <td>
             <asp:MultiView ID="MultiView_SAIS" runat="server" ActiveViewIndex="0">
                 <asp:View ID="View_OF" runat="server">
                     <table style="width:100%;">
@@ -86,7 +77,7 @@
                                 </asp:GridView>
                                 <br />
                             </td>
-                            <td style="vertical-align: top">OF :
+                            <td style="vertical-align: top"><br />OF :
                                 <asp:Label ID="Label_NU_OF" runat="server"></asp:Label>
                                 <br />
                                 Client :
@@ -280,25 +271,14 @@
                             </td>
                         </tr>
                     </table>
-                  
                 </asp:View>
                 <asp:View ID="View_TCBL_SS_ENSE" runat="server">
                     <br />
                     <br />
                 </asp:View>
             </asp:MultiView>
-            </td>         
-        </tr>
-        <tr>
-            <td>
-                &nbsp;</td>
-            <td>
                 <asp:Label ID="Label_NM_DSGT_ARTI_ECO" runat="server" Visible="False">Colisage</asp:Label>
                 <asp:Label ID="Label_NU_OP" runat="server" Visible="False"></asp:Label>
-            </td>
-        </tr>
-        </table>
-
     <iframe id="pdf" name = "pdf" src ="02.pdf" style="width: 768px; height: 1024px;" hidden="hidden"></iframe>
 </asp:Content>
 

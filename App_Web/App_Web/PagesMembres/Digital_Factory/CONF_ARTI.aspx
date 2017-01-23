@@ -42,10 +42,10 @@
             <td><asp:TextBox ID="TextBox_FORM_CD_FNS" runat="server" Width="842px"></asp:TextBox></td></tr>
         <tr>
             <td><label>Format du numéro de série Client :</label></td>
-            <td><asp:TextBox ID="TextBox_FORM_NU_SER_CLIE" runat="server" Width="842px"></asp:TextBox></td></tr>
+            <td><asp:TextBox ID="TextBox_FORM_NU_SER_CLIE" runat="server" Width="350px" TextMode="MultiLine"></asp:TextBox></td></tr>
         <tr>
             <td><label>Format du numéro de série Eolane :</label></td>
-            <td><asp:TextBox ID="TextBox_FORM_NU_SER_ECO" runat="server" Width="842px"></asp:TextBox></td></tr>
+            <td><asp:TextBox ID="TextBox_FORM_NU_SER_ECO" runat="server" Width="350px" TextMode="MultiLine"></asp:TextBox></td></tr>
         <tr>
             <td><label>Quantité dans un carton :</label></td>
             <td><asp:TextBox ID="TextBox_QT_CART" runat="server" Width="842px">9999</asp:TextBox></td></tr>
@@ -108,19 +108,19 @@
     <table class="tab_chemin_reseau">
         <tr>
             <td><label>Chemin réseau de la sauvegarde du fichier PDF :</label></td>
-            <td><asp:TextBox ID="TextBox_NM_CHEM_FICH_PDF" runat="server" Width="550px" ToolTip="Chemin réseau de la sauvegarde du fichier PDF surtout utilisé pour le colisage" TextMode="MultiLine"></asp:TextBox></td></tr>
+            <td><asp:TextBox ID="TextBox_NM_CHEM_FICH_PDF" runat="server" Width="500px" ToolTip="Chemin réseau de la sauvegarde du fichier PDF surtout utilisé pour le colisage" TextMode="MultiLine"></asp:TextBox></td></tr>
         <tr>
             <td><label>Chemin réseau du fichier d&#39;impression d&#39;étiquette d&#39;un numéro de série Eolane :</label></td>
-            <td><asp:TextBox ID="TextBox_CHEM_FICH_IMPR_NU_SER_ECO" runat="server" Width="550px" TextMode="MultiLine"></asp:TextBox></td></tr>
+            <td><asp:TextBox ID="TextBox_CHEM_FICH_IMPR_NU_SER_ECO" runat="server" Width="500px" TextMode="MultiLine"></asp:TextBox></td></tr>
         <tr>
             <td><label>Chemin réseau du fichier d&#39;impression d&#39;étiquette d&#39;un numéro de série Client :</label></td>
-            <td><asp:TextBox ID="TextBox_CHEM_FICH_IMPR_NU_SER_CLIE" runat="server" Width="550px" TextMode="MultiLine"></asp:TextBox></td></tr>
+            <td><asp:TextBox ID="TextBox_CHEM_FICH_IMPR_NU_SER_CLIE" runat="server" Width="500px" TextMode="MultiLine"></asp:TextBox></td></tr>
         <tr>
             <td><label>Chemin réseau du fichier d&#39;impression d&#39;étiquette d&#39;un carton:</label></td>
-            <td><asp:TextBox ID="TextBox_CHEM_FICH_IMPR_CART" runat="server" Width="550px" TextMode="MultiLine"></asp:TextBox></td></tr>
+            <td><asp:TextBox ID="TextBox_CHEM_FICH_IMPR_CART" runat="server" Width="500px" TextMode="MultiLine"></asp:TextBox></td></tr>
         <tr>
             <td><label>Chemin réseau du fichier d&#39;impression d&#39;étiquette d&#39;une palette :</label></td>
-            <td><asp:TextBox ID="TextBox_CHEM_FICH_IMPR_PALE" runat="server" Width="550px" TextMode="MultiLine"></asp:TextBox></td></tr>
+            <td><asp:TextBox ID="TextBox_CHEM_FICH_IMPR_PALE" runat="server" Width="500px" TextMode="MultiLine"></asp:TextBox></td></tr>
     </table>
     <asp:CheckBox ID="CheckBox_ETIQ_PACK_NU_SER_ECO" runat="server" Text="&nbsp;Impression d'une étiquette packaging avec numéro de série Eolane" />
         <br />
@@ -156,7 +156,7 @@
     <table class="tab_02">
         <tr>
             <td><label>Chemin du fichier de rapport de traçabilité :</label></td>
-            <td style="width: 584px"><asp:TextBox ID="TextBox_CHEM_FICH_RAPP_TCBL" runat="server" Width="790px"></asp:TextBox></td></tr>
+            <td style="width: 584px"><asp:TextBox ID="TextBox_CHEM_FICH_RAPP_TCBL" runat="server" Width="500px" TextMode="MultiLine"></asp:TextBox></td></tr>
         <tr>
             <td><label>Nom de la vue pour l&#39;extration du fichier PDF :</label></td>
             <td style="width: 584px"><asp:TextBox ID="TextBox_VUE_FICH_PDF" runat="server" Width="790px"></asp:TextBox></td></tr>
@@ -165,6 +165,6 @@
         <asp:TextBox ID="TextBox_VUE_NU_SER_ENSE_SOUS_ENSE" runat="server" Width="427px"></asp:TextBox>
     <br />
     <br />
-        <asp:Button ID="Button_VALI" runat="server" Text="Valider" BackColor="#3333CC" Font-Bold="True" ForeColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" />
+        <asp:Button ID="Button_VALI" runat="server" Text="Valider" BackColor="#002F60" Font-Bold="True" ForeColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" Height="40px" Width="180px" />
     <br />
 </asp:Content>
