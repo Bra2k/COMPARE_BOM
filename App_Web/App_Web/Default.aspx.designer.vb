@@ -93,4 +93,58 @@ Partial Public Class _Default
     '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
     '''</remarks>
     Protected WithEvents Takaya As Global.System.Web.UI.WebControls.ImageButton
+    
+    '''<summary>
+    '''Contrôle Indicateur.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents Indicateur As Global.System.Web.UI.WebControls.ImageButton
+    
+    '''<summary>
+    '''Contrôle CodeBarre.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents CodeBarre As Global.System.Web.UI.WebControls.ImageButton
+    
+    '''<summary>
+    '''Contrôle Imprimeur.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents Imprimeur As Global.System.Web.UI.WebControls.ImageButton
+    
+    '''<summary>
+    '''Contrôle BancTest.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents BancTest As Global.System.Web.UI.WebControls.ImageButton
+    
+    '''<summary>
+    '''Contrôle Composant.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents Composant As Global.System.Web.UI.WebControls.ImageButton
+    
+    '''<summary>
+    '''Contrôle Batterie.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents Batterie As Global.System.Web.UI.WebControls.ImageButton
 End Class

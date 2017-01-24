@@ -1,27 +1,26 @@
 ﻿<%@ Page Title="Saisie des composants sur une carte" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="TCBL_COMP.aspx.vb" Inherits="App_Web.TCBL_COMP" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server"> 
         <br />
         <table style="width:100%;">
             <tr>
                 <td style="vertical-align: top;">
-    
         <asp:MultiView ID="MultiView_Tracabilité" runat="server" ActiveViewIndex="0">
             <asp:View ID="View_DATA_ENTR" runat="server">
-                Entrer l&#39;OF :
+                <label>Entrer l&#39;OF :</label>
                 <asp:TextBox ID="TextBox_OF" runat="server" AutoPostBack="True"></asp:TextBox>
                 <br />
                 <br />
-                Entrer l&#39;OP :
+                <label>Entrer l&#39;OP :</label>
                 <asp:DropDownList ID="DropDownList_OP" runat="server">
                 </asp:DropDownList>
                 <br />
                 <br />
-                <asp:CheckBox ID="CheckBox_GENE_ETI_ENS" runat="server" AutoPostBack="True" Text="Générer les étiquettes d'ensemble" />
+                <asp:CheckBox ID="CheckBox_GENE_ETI_ENS" runat="server" AutoPostBack="True" Text="&nbsp;Générer les étiquettes d'ensemble" />
                 <br />
-                <asp:CheckBox ID="CheckBox_SS_ENS_FERT" runat="server" AutoPostBack="True" Checked="True" Text="Sous-ensemble déclaré dans SAP" />
+                <asp:CheckBox ID="CheckBox_SS_ENS_FERT" runat="server" AutoPostBack="True" Checked="True" Text="&nbsp;Sous-ensemble déclaré dans SAP" />
                 <br />
-                <asp:Button ID="Button_VALI_ENTER" runat="server" Text="Valider" />
+                <br />
+                <asp:Button ID="Button_VALI_ENTER" runat="server" Text="Valider" BackColor="#002F60" Font-Bold="True" ForeColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" Height="40px" Width="180px"/>
             </asp:View>
             <asp:View ID="View_SAIS_OTLG" runat="server">
             </asp:View>
@@ -86,29 +85,29 @@
                 </asp:GridView>
                     <asp:Label ID="Label_RES" runat="server" Text=""></asp:Label>
                 </td>
-                <td style="vertical-align: top">OF :
+                <td style="vertical-align: top"><label>OF :</label>
                     <asp:Label ID="Label_OF" runat="server"></asp:Label>
                     <br />
-                    Client :
+                    <label>Client :</label>
                     <asp:Label ID="Label_CLIE" runat="server"></asp:Label>
                     <br />
-                    Code article :
+                    <label>Code article :</label>
                     <asp:Label ID="Label_CD_ARTI" runat="server"></asp:Label>
                     <br />
-                    Désignation Article :
+                    <label>Désignation Article :</label>
                     <asp:Label ID="Label_DES_ARTI" runat="server"></asp:Label>
                     <br />
-                    Opération :
+                    <label>Opération :</label>
                     <asp:Label ID="Label_OP" runat="server"></asp:Label>
                     <br />
-                    Désignation de l&#39;opération :
+                    <label>Désignation de l&#39;opération :</label>
                     <asp:Label ID="Label_DES_OP" runat="server"></asp:Label>
                     <br />
-                    Quantité :
+                    <label>Quantité :</label>
                     <asp:Label ID="Label_QT_OF" runat="server"></asp:Label>
                     <br />
                     <br />
-                    Numéros de série tracés :<br />
+                    <label>Numéros de série tracés :</label><br />
                     <asp:GridView ID="GridView_SN_TRAC" runat="server" SkinID="GV_AFF_DONN" PageSize="7" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical" Font-Size="10pt">
                         <AlternatingRowStyle BackColor="#DCDCDC" />
                         <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
@@ -125,5 +124,4 @@
             </tr>
         </table>
         <br />
-    
-        </asp:Content>
+</asp:Content>
