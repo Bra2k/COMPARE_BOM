@@ -1,25 +1,29 @@
 ﻿<%@ Page Title="Saisie de l'association des numéros de série Ensemble / Sous-ensemble" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="TCBL_ESB_SS_ESB_V2.aspx.vb" Inherits="App_Web.TCBL_ESB_SS_ESB_V2" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    
-        DIGITAL FACTORY : Saisie de l&#39;association des numéros de série Ensemble / Sous-ensemble<table style="width:100%;">
+        <br />
+            <div style="font-family: Verdana; font-size: xx-large; font-weight: 900; font-variant: normal; color: #002F60">
+                DIGITAL FACTORY : Saisie de l&#39;association des numéros de série Ensemble / Sous-ensemble
+            </div>
+        <br />
+        <table style="width:100%;">
             <tr>
                 <td style="vertical-align: top;">
-    
         <asp:MultiView ID="MultiView_Tracabilité" runat="server" ActiveViewIndex="0">
             <asp:View ID="View_DATA_ENTR" runat="server">
-                Entrer l&#39;OF :
-                <asp:TextBox ID="TextBox_OF" runat="server"></asp:TextBox>
+                <table>
+                    <tr>
+                        <td><label>Entrer l&#39;OF :&nbsp;<asp:TextBox ID="TextBox_OF" runat="server"></asp:TextBox>
+                            </label></td></tr>
+                    <tr>
+                        <td><label>Entrer l&#39;OP :&nbsp;<asp:TextBox ID="TextBox_OP" runat="server"></asp:TextBox>
+                            </label></td></tr>
+                    <tr>
+                        <td><asp:CheckBox ID="CheckBox_GENE_ETI_ENS" runat="server" Text="&nbsp;Générer les étiquettes d'ensemble" AutoPostBack="True" /></td></tr>
+                    <tr>
+                        <td><asp:CheckBox ID="CheckBox_SS_ENS_FERT" runat="server" Text="&nbsp;Sous-ensemble déclaré dans SAP" Checked="True" AutoPostBack="True" /></td></tr>
+                </table>
                 <br />
-                <br />
-                Entrer l&#39;OP :
-                <asp:TextBox ID="TextBox_OP" runat="server"></asp:TextBox>
-                <br />
-                <br />
-                <asp:CheckBox ID="CheckBox_GENE_ETI_ENS" runat="server" Text="Générer les étiquettes d'ensemble" AutoPostBack="True" />
-                <br />
-                <asp:CheckBox ID="CheckBox_SS_ENS_FERT" runat="server" Text="Sous-ensemble déclaré dans SAP" Checked="True" AutoPostBack="True" />
-                <br />
-                <asp:Button ID="Button_VALI_ENTER" runat="server" Text="Valider" />
+                <asp:Button ID="Button_VALI_ENTER" runat="server" Text="Valider" BackColor="#002F60" Font-Bold="True" ForeColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" Height="40px" Width="180px" />
             </asp:View>
             <asp:View ID="View_SAIS_ENS" runat="server">
                 Entrer le numéro d&#39;ensemble :
@@ -58,34 +62,33 @@
         </asp:MultiView>
                     <asp:Label ID="Label_RES" runat="server" Text=""></asp:Label>
                 </td>
-                <td style="vertical-align: top">OF :
+                <td style="vertical-align: top"><label>OF :</label>
                     <asp:Label ID="Label_OF" runat="server"></asp:Label>
                     <br />
-                    Client :
+                    <label>Client :</label>
                     <asp:Label ID="Label_CLIE" runat="server"></asp:Label>
                     <br />
-                    Code article :
+                    <label>Code article :</label>
                     <asp:Label ID="Label_CD_ARTI" runat="server"></asp:Label>
                     <br />
-                    Désignation Article :
+                    <label>Désignation article :</label>
                     <asp:Label ID="Label_DES_ARTI" runat="server"></asp:Label>
                     <br />
-                    Opération :
+                    <label>Opération :</label>
                     <asp:Label ID="Label_OP" runat="server"></asp:Label>
                     <br />
-                    Désignation de l&#39;opération :
+                    <label>Désignation de l&#39;opération :</label>
                     <asp:Label ID="Label_DES_OP" runat="server"></asp:Label>
                     <br />
-                    Quantité :
+                    <label>Quantité :</label>
                     <asp:Label ID="Label_QT_OF" runat="server"></asp:Label>
                     <br />
                     <br />
-                    Numéros de série tracés :<br />
+                    <label>Numéros de série tracés :</label>
                     <asp:GridView ID="GridView_SN_TRAC" runat="server" SkinID="GV_AFF_DONN" AllowPaging="True" PageSize="7">
                     </asp:GridView>
                 </td>
             </tr>
         </table>
         <br />
-    
-        </asp:Content>
+</asp:Content>
