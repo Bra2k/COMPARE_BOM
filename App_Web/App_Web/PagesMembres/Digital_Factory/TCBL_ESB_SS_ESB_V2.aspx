@@ -1,8 +1,8 @@
 ﻿<%@ Page Title="Saisie de l'association des numéros de série Ensemble / Sous-ensemble" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="TCBL_ESB_SS_ESB_V2.aspx.vb" Inherits="App_Web.TCBL_ESB_SS_ESB_V2" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
         <br />
-            <div style="font-family: Verdana; font-size: xx-large; font-weight: 900; font-variant: normal; color: #002F60">
-                DIGITAL FACTORY : Saisie de l&#39;association des numéros de série Ensemble / Sous-ensemble
+            <div style="font-family: Verdana; color: #002F60">
+                <h2>Digital Factory : Saisie de l&#39;association des numéros de série Ensemble / Sous-ensemble</h2>
             </div>
         <br />
         <table style="width:100%;">

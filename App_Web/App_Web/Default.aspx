@@ -23,6 +23,7 @@
         </div>
         <br />
         <br />
+        <div class="central_menu">
             <table style="margin-top: 0px; margin-bottom: 0px; position: relative; top: -222px; left: 313px; height: 526px; width: 922px;">
                 <tr>
                     <td style="width: 200px"><asp:ImageButton ID="InBox" ToolTip="Page colisage" runat="server" ImageUrl="~/App_Themes/ICON_COMPARE/parcel2.ico" Height="100px" Width="100px" PostBackUrl="~/PagesMembres/Digital_factory/CLSg" /></td>
@@ -43,4 +44,5 @@
                     <td style="width: 200px"><asp:ImageButton ID="Composant" ToolTip="Page composants" ImageUrl="~\App_Themes\ICON_COMPARE\composant2.ico" runat="server" Height="100px" Width="100px" PostBackUrl="~/PagesMembres/Digital_Factory/TCBL_COMP.aspx" /></td>
                     <td style="width: 200px"><asp:ImageButton ID="Batterie" ToolTip="Page batterie" ImageUrl="~\App_Themes\ICON_COMPARE\batterie2.ico" runat="server" Height="100px" Width="100px" PostBackUrl="~/PagesMembres/Provisoire/TEST_BATT_TUCK.aspx" /></td></tr>
             </table>
+        </div>
 </asp:Content>

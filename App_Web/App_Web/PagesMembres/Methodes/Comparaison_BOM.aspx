@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="Comparaison de BOM" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="Comparaison_BOM.aspx.vb" Inherits="App_Web.Comparaison_BOM" Theme="Skin_CHRT_ECO"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server"><br />
-    <div style="font-family: Verdana; font-size: xx-large; font-weight: 900; font-variant: normal; color: #002F60">
-    Comparaison de BOM&nbsp;&nbsp;&nbsp;
+    <div style="font-family: Verdana; color: #002F60">
+    <h2>Méthodes : Comparaison de BOM&nbsp;&nbsp;&nbsp;</h2>
     <asp:Label ID="Label_LOAD" runat="server" Text="Chargement en cours ..." Visible="False"></asp:Label>
 </div>
     <asp:Image ID="Image_EOL_LOAD_1" runat="server" ImageUrl="~/App_Themes/PIC_CHAR/eolienneanimee.gif" Visible="False" />

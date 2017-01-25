@@ -1,6 +1,10 @@
 ﻿<%@ Page Title="Journaux de l'application" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="JOUR_APP.aspx.vb" Inherits="App_Web.JOUR_APP" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <br />
+    <div style="font-family: Verdana; color: #002F60">
+        <h2>Développement : Table des logs&nbsp;&nbsp;&nbsp;</h2>
+        <asp:Label ID="Label_LOAD" runat="server" Text="Chargement en cours ..." Visible="False"></asp:Label>
+    </div><br />
     <asp:GridView ID="GridView_JOUR" style="border:3px solid black" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource_JOUR" AllowPaging="True" PageSize="25">
         <Columns>
             <asp:BoundField DataField="Date" HeaderText="Date" SortExpression="Date" />

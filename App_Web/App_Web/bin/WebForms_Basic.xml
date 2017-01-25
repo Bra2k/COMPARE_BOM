@@ -177,6 +177,15 @@ Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
+<member name="F:App_Web.CFGR_POST._Label_LOAD">
+<summary>
+Contrôle Label_LOAD.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
 <member name="F:App_Web.CFGR_POST._TextBox_POST">
 <summary>
 Contrôle TextBox_POST.
@@ -537,6 +546,15 @@ Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
+<member name="F:App_Web.JOUR_APP._Label_LOAD">
+<summary>
+Contrôle Label_LOAD.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
 <member name="F:App_Web.JOUR_APP._GridView_JOUR">
 <summary>
 Contrôle GridView_JOUR.
@@ -549,6 +567,15 @@ Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans 
 <member name="F:App_Web.JOUR_APP._SqlDataSource_JOUR">
 <summary>
 Contrôle SqlDataSource_JOUR.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.Page_ESSAI._Label_LOAD">
+<summary>
+Contrôle Label_LOAD.
 </summary>
 <remarks>
 Champ généré automatiquement.
@@ -621,6 +648,15 @@ Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans 
 <member name="F:App_Web.CLSG._View_OF">
 <summary>
 Contrôle View_OF.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.CLSG._Label_LOAD">
+<summary>
+Contrôle Label_LOAD.
 </summary>
 <remarks>
 Champ généré automatiquement.
@@ -1122,6 +1158,15 @@ Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
+<member name="F:App_Web.CONF_ARTI._Label_LOAD">
+<summary>
+Contrôle Label_LOAD.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
 <member name="F:App_Web.CONF_ARTI._TextBox_CD_ARTI_ECO">
 <summary>
 Contrôle TextBox_CD_ARTI_ECO.
@@ -1617,6 +1662,15 @@ Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
+<member name="F:App_Web.IDCT_PASS._Label_LOAD">
+<summary>
+Contrôle Label_LOAD.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
 <member name="F:App_Web.IDCT_PASS._Calendar_DEB">
 <summary>
 Contrôle Calendar_DEB.
@@ -1683,6 +1737,15 @@ Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans 
 <member name="F:App_Web.IDCT_PASS._Label_FIN">
 <summary>
 Contrôle Label_FIN.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.IMPR_ETIQ_PRN._Label_LOAD">
+<summary>
+Contrôle Label_LOAD.
 </summary>
 <remarks>
 Champ généré automatiquement.
@@ -2439,6 +2502,15 @@ Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans 
 <member name="F:App_Web.TCBL_COMP._View_DATA_ENTR">
 <summary>
 Contrôle View_DATA_ENTR.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.TCBL_COMP._Label_LOAD">
+<summary>
+Contrôle Label_LOAD.
 </summary>
 <remarks>
 Champ généré automatiquement.
@@ -3725,6 +3797,15 @@ Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans 
   les recherches de ressources à l'aide de cette classe de ressource fortement typée.
 </summary>
 </member>
+<member name="F:App_Web.ADD_MAC_ADRE._Label_LOAD">
+<summary>
+Contrôle Label_LOAD.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
 <member name="F:App_Web.ADD_MAC_ADRE._RadioButtonList_CHOI_IMPO">
 <summary>
 Contrôle RadioButtonList_CHOI_IMPO.
@@ -4031,6 +4112,15 @@ Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
+<member name="F:App_Web.AJOU_EMPL_MAJ_FICH_BANC_TEST._Label_LOAD">
+<summary>
+Contrôle Label_LOAD.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
 <member name="F:App_Web.AJOU_EMPL_MAJ_FICH_BANC_TEST._TextBox_NU_BANC">
 <summary>
 Contrôle TextBox_NU_BANC.
@@ -4094,6 +4184,15 @@ Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
+<member name="F:App_Web.CSTT_RESU_TEST_TAKA._Label_LOAD">
+<summary>
+Contrôle Label_LOAD.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
 <member name="F:App_Web.CSTT_RESU_TEST_TAKA._TextBox_NU_SER">
 <summary>
 Contrôle TextBox_NU_SER.
@@ -4106,6 +4205,15 @@ Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans 
 <member name="F:App_Web.CSTT_RESU_TEST_TAKA._GridView_RESU_TAKA">
 <summary>
 Contrôle GridView_RESU_TAKA.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.IMPR_RAPP_TCBL_STW_V2._Label_LOAD">
+<summary>
+Contrôle Label_LOAD.
 </summary>
 <remarks>
 Champ généré automatiquement.
@@ -4160,6 +4268,15 @@ Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans 
 <member name="F:App_Web.IMPR_RAPP_TCBL_STW._Button_GENE_RAPP">
 <summary>
 Contrôle Button_GENE_RAPP.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.TEST_BATT_TUCK._Label_LOAD">
+<summary>
+Contrôle Label_LOAD.
 </summary>
 <remarks>
 Champ généré automatiquement.
