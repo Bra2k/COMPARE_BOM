@@ -258,6 +258,7 @@
     <Compile Include="App_Code\Class_PDF.vb" />
     <Compile Include="App_Code\Class_SQL.vb" />
     <Content Include="Account\Login_SAP.aspx" />
+    <Content Include="App_Themes\CSS\CSS_MediaQuery.css" />
     <Content Include="App_Themes\ICON_COMPARE\article4.ico" />
     <Content Include="App_Themes\ICON_COMPARE\banc_test.ico" />
     <Content Include="App_Themes\ICON_COMPARE\barcode3.ico" />

@@ -1,15 +1,16 @@
 ﻿<%@ Page Title="Saisie des composants sur une carte" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="TCBL_COMP.aspx.vb" Inherits="App_Web.TCBL_COMP" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server"> 
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <link href="App_Themes/CSS/CSS_MediaQuery.css" rel="stylesheet" type="text/css" />
         <br />
         <table style="width:100%;">
             <tr>
                 <td style="vertical-align: top;">
         <asp:MultiView ID="MultiView_Tracabilité" runat="server" ActiveViewIndex="0">
             <asp:View ID="View_DATA_ENTR" runat="server">
-                <div style="font-family: Verdana; color: #002F60">
-                    <h2>Digital Factory : Composants&nbsp;&nbsp;&nbsp;</h2>
-                    <asp:Label ID="Label_LOAD" runat="server" Text="Chargement en cours ..." Visible="False"></asp:Label>
-                </div><br />
+                <div class="titre_page">
+                    <h2>Digital Factory : Composants</h2>
+                </div>
+                <br />
                 <label>Entrer l&#39;OF :</label>
                 <asp:TextBox ID="TextBox_OF" runat="server" AutoPostBack="True"></asp:TextBox>
                 <br />

@@ -1,10 +1,10 @@
 ﻿<%@ Page Title="Colisage" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="CLSG.aspx.vb" Inherits="App_Web.CLSG" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <link href="App_Themes/CSS/CSS_MediaQuery.css" rel="stylesheet" type="text/css" />
             <asp:MultiView ID="MultiView_SAIS" runat="server" ActiveViewIndex="0">
                 <asp:View ID="View_OF" runat="server">
-                    <div style="font-family: Verdana; color: #002F60">
-                        <h2>Digital Factory : Colisage&nbsp;&nbsp;&nbsp;</h2>
-                        <asp:Label ID="Label_LOAD" runat="server" Text="Chargement en cours ..." Visible="False"></asp:Label>
+                    <div class="titre_page">
+                        <h2>Digital Factory : Colisage</h2>
                     </div>
                     <table style="width:100%;">
                         <tr>

@@ -1,10 +1,11 @@
 ﻿<%@ Page Title="Configuration des postes" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="CFGR_POST.aspx.vb" Inherits="App_Web.CFGR_POST" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <link href="App_Themes/CSS/CSS_MediaQuery.css" rel="stylesheet" type="text/css" />
     <br />
-    <div style="font-family: Verdana; color: #002F60">
-        <h2>Développement : Configuration&nbsp;&nbsp;&nbsp;</h2>
-        <asp:Label ID="Label_LOAD" runat="server" Text="Chargement en cours ..." Visible="False"></asp:Label>
-    </div><br />
+    <div class="titre_page">
+        <h2>Développement : Configuration</h2>
+    </div>
+    <br />
     <table>
         <tr>
             <td><label>Numéro du poste :</label></td><td><asp:TextBox ID="TextBox_POST" runat="server" AutoPostBack="True" Width="855px"></asp:TextBox></td></tr>

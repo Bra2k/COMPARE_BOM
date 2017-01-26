@@ -1,12 +1,14 @@
 ﻿<%@ Page Title="Comparaison de BOM" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="Comparaison_BOM.aspx.vb" Inherits="App_Web.Comparaison_BOM" Theme="Skin_CHRT_ECO"%>
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server"><br />
-    <div style="font-family: Verdana; color: #002F60">
-    <h2>Méthodes : Comparaison de BOM&nbsp;&nbsp;&nbsp;</h2>
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <link href="App_Themes/CSS/CSS_MediaQuery.css" rel="stylesheet" type="text/css" />
+    <br />
+    <div class="titre_page">
+        <h2>Méthodes : Comparaison de BOM</h2>
     <asp:Label ID="Label_LOAD" runat="server" Text="Chargement en cours ..." Visible="False"></asp:Label>
-</div>
-    <asp:Image ID="Image_EOL_LOAD_1" runat="server" ImageUrl="~/App_Themes/PIC_CHAR/eolienneanimee.gif" Visible="False" />
-<asp:Image ID="Image_EOL_LOAD_2" runat="server" ImageUrl="~/App_Themes/PIC_CHAR/eolienneanimee.gif" Visible="False" />
-<asp:Image ID="Image_EOL_LOAD_3" runat="server" ImageUrl="~/App_Themes/PIC_CHAR/eolienneanimee.gif" Visible="False" />
+    </div>
+    <!--<asp:Image ID="Image_EOL_LOAD_1" runat="server" ImageUrl="~/App_Themes/PIC_CHAR/eolienneanimee.gif" Visible="False" />
+    <asp:Image ID="Image_EOL_LOAD_2" runat="server" ImageUrl="~/App_Themes/PIC_CHAR/eolienneanimee.gif" Visible="False" />
+    <asp:Image ID="Image_EOL_LOAD_3" runat="server" ImageUrl="~/App_Themes/PIC_CHAR/eolienneanimee.gif" Visible="False" /> -->
     <br />
     <asp:MultiView ID="MultiView_COMP_BOM" runat="server" ActiveViewIndex="0">
         <asp:View ID="View_SEL_BOM" runat="server">
@@ -31,7 +33,7 @@
             <br />
             Sélectionner le fichier BOM à contrôler :<asp:FileUpload ID="FileUpload_BOM" runat="server" BackColor="#002F60" Font-Bold="True" ForeColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" />
             <br />
-            <asp:Button ID="Button_Importer" runat="server" Text="Importer" BackColor="#002F60" Font-Bold="True" ForeColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" /><br />
+            <asp:Button ID="Button_Importer" runat="server" Text="Importer"  BackColor="#002F60" Font-Bold="True" ForeColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" Height="40px" Width="180px" /><br />
             <asp:SqlDataSource ID="SqlDataSource_PARA_BOM" runat="server" ConnectionString="<%$ ConnectionStrings:SERCELConnectionString %>" InsertCommand="INSERT INTO TEST.[dbo].[Essai_PARA_BOM]
            ([NM_CLIE]
            ,[NM_PARA]
@@ -64,13 +66,13 @@ FROM         (SELECT     NM_CLIE, NM_PARA, MAX(DT_MAJ_PARA) AS DT_MAJ_PARA
             <asp:DropDownList ID="DropDownList_ONGL_BOM_CLIE" runat="server">
             </asp:DropDownList>
             &nbsp;&nbsp;&nbsp;
-            <asp:Button ID="Button_ONGL_BOM_CLIE" runat="server" Text="Valider" SkinID="BOUT_VALI" />
+            <asp:Button ID="Button_ONGL_BOM_CLIE" runat="server" Text="Valider" SkinID="BOUT_VALI"  BackColor="#002F60" Font-Bold="True" ForeColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" Height="40px" Width="180px" />
 
         </asp:View>
         <asp:View ID="View_SEL_DONN" runat="server">
             <br />
             Saisir la première ligne où commencent les données :&nbsp;<asp:TextBox ID="TextBox_PREM_LIGN_DONN" runat="server"></asp:TextBox>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+            <br />
             <br />
             Saisir la dernière ligne où terminent les données :
             <asp:TextBox ID="TextBox_DERN_LIGN_DONN" runat="server"></asp:TextBox>
@@ -93,7 +95,7 @@ FROM         (SELECT     NM_CLIE, NM_PARA, MAX(DT_MAJ_PARA) AS DT_MAJ_PARA
                     <br />
                     Saisir la colonne où se trouvent les repères :
                     <asp:TextBox ID="TextBox_COLO_REPE" runat="server"></asp:TextBox>
-                    &nbsp;<br />
+                    <br />
                     <br />
                     Saisir la colonne où se trouvent les quantités :
                     <asp:TextBox ID="TextBox_COLO_QTE" runat="server"></asp:TextBox>
@@ -105,11 +107,9 @@ FROM         (SELECT     NM_CLIE, NM_PARA, MAX(DT_MAJ_PARA) AS DT_MAJ_PARA
                     Aperçu du fichier BOM :
                     <div  style="vertical-align:top;  width: 1198px; height: 539px; overflow: auto;">
                         <asp:GridView ID="GridView_FICH_BOM_CLIE" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical" SkinID="GV_AFF_DONN">
-                          
                             <Columns>
                                 <asp:CommandField SelectText="Sélectionner la dernière ligne" ShowSelectButton="True" />
                             </Columns>
-                            
                         </asp:GridView>
                     </div>
                     <br />
@@ -176,13 +176,10 @@ FROM         (SELECT     NM_CLIE, NM_PARA, MAX(DT_MAJ_PARA) AS DT_MAJ_PARA
                 <tr>
                     <td> 
                         <div style="vertical-align:top;  width: 300px; height: 800px; overflow: auto;">
-                        <asp:GridView ID="GridView_PIVO_BOM_CLIE" runat="server" SkinID="GV_AFF_DONN">
-                        </asp:GridView>
-                    </div>
-
+                            <asp:GridView ID="GridView_PIVO_BOM_CLIE" runat="server" SkinID="GV_AFF_DONN"></asp:GridView>
+                        </div>
                     </td>
                 </tr>
-                
             </table>
             <br />
             <br />

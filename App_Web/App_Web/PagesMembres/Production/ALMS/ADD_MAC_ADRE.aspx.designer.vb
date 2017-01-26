@@ -14,15 +14,6 @@ Option Explicit On
 Partial Public Class ADD_MAC_ADRE
     
     '''<summary>
-    '''Contrôle Label_LOAD.
-    '''</summary>
-    '''<remarks>
-    '''Champ généré automatiquement.
-    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-    '''</remarks>
-    Protected WithEvents Label_LOAD As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
     '''Contrôle RadioButtonList_CHOI_IMPO.
     '''</summary>
     '''<remarks>

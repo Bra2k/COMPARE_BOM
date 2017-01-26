@@ -1,10 +1,11 @@
 ﻿<%@ Page Title="Configurer un nouvel article pour le colisage" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="CONF_ARTI.aspx.vb" Inherits="App_Web.CONF_ARTI" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <link href="App_Themes/CSS/CSS_MediaQuery.css" rel="stylesheet" type="text/css" />
     <br />
-    <div style="font-family: Verdana; color: #002F60">
-        <h2>Digital Factory : Article&nbsp;&nbsp;&nbsp;</h2>
-        <asp:Label ID="Label_LOAD" runat="server" Text="Chargement en cours ..." Visible="False"></asp:Label>
-    </div><br />
+    <div class="titre_page">
+        <h2>Digital Factory : Article</h2>
+    </div>
+    <br />
     <table class="article_cli">
         <tr>
             <td><label>Entrer le code article :</label></td><td><asp:TextBox ID="TextBox_CD_ARTI_ECO" runat="server" Width="900px" ToolTip="Code article Eolane" AutoPostBack="True"></asp:TextBox></td></tr>

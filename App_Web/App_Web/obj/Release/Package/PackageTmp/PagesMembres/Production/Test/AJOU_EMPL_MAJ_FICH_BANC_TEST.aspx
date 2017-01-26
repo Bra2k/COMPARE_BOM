@@ -1,10 +1,11 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="AJOU_EMPL_MAJ_FICH_BANC_TEST.aspx.vb" Inherits="App_Web.AJOU_EMPL_MAJ_FICH_BANC_TEST" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <link href="App_Themes/CSS/CSS_MediaQuery.css" rel="stylesheet" type="text/css" />
     <br />
-    <div style="font-family: Verdana; color: #002F60">
-        <h2>Production : Banc de test&nbsp;&nbsp;&nbsp;</h2>
-        <asp:Label ID="Label_LOAD" runat="server" Text="Chargement en cours ..." Visible="False"></asp:Label>
-    </div><br />
+    <div class="titre_page">
+        <h2>Production : Banc de test</h2>
+    </div>
+    <br />
     <table>
         <tr>
             <td><label>Entrer le n° du banc :</label></td>

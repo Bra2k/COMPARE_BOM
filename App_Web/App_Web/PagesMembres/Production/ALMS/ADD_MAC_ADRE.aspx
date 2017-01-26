@@ -1,10 +1,11 @@
 ﻿<%@ Page Title="Importer des adresses MAC" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="ADD_MAC_ADRE.aspx.vb" Inherits="App_Web.ADD_MAC_ADRE" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <link href="App_Themes/CSS/CSS_MediaQuery.css" rel="stylesheet" type="text/css" />
     <br />
-    <div style="font-family: Verdana; color: #002F60">
-        <h2>Production : MAC adresses&nbsp;&nbsp;&nbsp;</h2>
-        <asp:Label ID="Label_LOAD" runat="server" Text="Chargement en cours ..." Visible="False"></asp:Label>
-    </div><br />
+    <div class="titre_page">
+        <h2>Production : MAC adresses</h2>
+    </div>
+    <br />
     <asp:RadioButtonList ID="RadioButtonList_CHOI_IMPO" runat="server" AutoPostBack="True">
         <asp:ListItem Value="VAL_QT">&nbsp;Par quantité</asp:ListItem>
         <asp:ListItem Value="VAL_PLAG_ADRE">&nbsp;Par plage d&#39;adresse</asp:ListItem>

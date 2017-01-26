@@ -1,0 +1,70 @@
+﻿/* Règles multi-pages */
+
+.titre_page {
+    font-family: 'Gill Sans MT', 'Gill Sans', Verdana, Calibri, 'Trebuchet MS', sans-serif;
+    color: #002F60;
+}
+
+/* CSS Page Menu*/
+
+.tab_infos_con {
+    background-color: #002F60;
+    box-shadow : 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    color : #ffffff;
+    border-radius: 10px;
+}
+
+.tab_menu {
+    margin-top: 0px;
+    margin-bottom: 0px; 
+    position: relative; 
+    top: -222px; 
+    left: 313px; 
+    height: 526px; 
+    width: 922px;
+}
+
+a.info {
+    position:relative;
+    z-index:24;
+    color:#000;
+    text-decoration: none;
+    border-radius: 10px;
+}
+
+a.info:hover {
+    z-index: 25;
+    background-color: #002F60;
+    border-radius: 10px;
+}
+ 
+a.info span {
+    display: none;
+}
+ 
+a.info:hover span {
+    display: block;
+    position: absolute;
+    top:2em; left:2em; width:13em;
+    background-color: #002F60;
+    border-radius: 10px;
+    color: #ffffff;
+    text-align: justify;
+    padding: 5px;
+    font-weight: 700;
+}
+
+/*.colonne {
+    display: inline-block;
+    width: 100px;
+    margin: 20px;
+}
+
+.cellule {
+    white-space: nowrap;
+    width: 200px;
+    text-align : center;
+}*/
+
+/* MediaQueries */
+
