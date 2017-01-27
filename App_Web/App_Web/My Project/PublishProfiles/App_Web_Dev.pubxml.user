@@ -22,7 +22,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>01/19/2017 15:39:23</publishTime>
     </File>
     <File Include="App_Themes/CSS/CSS_MediaQuery.css">
-      <publishTime>01/26/2017 16:38:05</publishTime>
+      <publishTime>01/27/2017 12:39:36</publishTime>
     </File>
     <File Include="App_Themes/ICON_COMPARE/aricle.ico">
       <publishTime>01/23/2017 15:24:26</publishTime>
@@ -232,7 +232,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>01/19/2017 15:39:23</publishTime>
     </File>
     <File Include="bin/App_Web.dll">
-      <publishTime>01/26/2017 17:09:41</publishTime>
+      <publishTime>01/27/2017 12:39:57</publishTime>
     </File>
     <File Include="bin/AspNet.ScriptManager.bootstrap.dll">
       <publishTime>01/19/2017 15:39:32</publishTime>
@@ -436,7 +436,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>01/19/2017 15:39:34</publishTime>
     </File>
     <File Include="bin/WebForms_Basic.xml">
-      <publishTime>01/26/2017 17:09:41</publishTime>
+      <publishTime>01/27/2017 12:39:57</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>01/19/2017 15:39:37</publishTime>
@@ -445,7 +445,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>01/19/2017 15:39:26</publishTime>
     </File>
     <File Include="Contact.aspx">
-      <publishTime>01/26/2017 15:55:37</publishTime>
+      <publishTime>01/27/2017 08:43:07</publishTime>
     </File>
     <File Include="Content/bootstrap.css">
       <publishTime>01/25/2017 14:46:32</publishTime>
@@ -460,7 +460,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>01/25/2017 09:54:28</publishTime>
     </File>
     <File Include="Default.aspx">
-      <publishTime>01/26/2017 15:13:49</publishTime>
+      <publishTime>01/27/2017 09:09:53</publishTime>
     </File>
     <File Include="favicon.ico">
       <publishTime>01/19/2017 15:39:26</publishTime>
@@ -591,6 +591,9 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
     <File Include="Scripts/respond.min.js">
       <publishTime>01/19/2017 15:39:31</publishTime>
     </File>
+    <File Include="Scripts/snow.js">
+      <publishTime>01/27/2017 10:51:45</publishTime>
+    </File>
     <File Include="Scripts/WebForms/DetailsView.js">
       <publishTime>01/19/2017 15:39:31</publishTime>
     </File>
@@ -655,10 +658,10 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>01/19/2017 15:39:32</publishTime>
     </File>
     <File Include="Scripts/_references.js">
-      <publishTime>01/19/2017 15:39:31</publishTime>
+      <publishTime>01/27/2017 09:01:08</publishTime>
     </File>
     <File Include="Site.Master">
-      <publishTime>01/26/2017 17:09:26</publishTime>
+      <publishTime>01/27/2017 09:05:36</publishTime>
     </File>
     <File Include="Site.Mobile.Master">
       <publishTime>01/19/2017 15:39:32</publishTime>
@@ -667,7 +670,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>01/19/2017 15:39:32</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>01/26/2017 17:09:52</publishTime>
+      <publishTime>01/27/2017 12:40:10</publishTime>
     </File>
   </ItemGroup>
 </Project>
