@@ -445,3 +445,4 @@ C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\obj\Release\App_Web
 C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\obj\Release\App_Web.dll
 C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\obj\Release\WebForms_Basic.xml
 C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\obj\Release\App_Web.pdb
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\obj\Release\App_Web.vbprojResolveAssemblyReference.cache

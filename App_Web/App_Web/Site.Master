@@ -95,7 +95,7 @@
                     <asp:Image ID="Image_LOGO_ECO" runat="server" ImageUrl="~/App_Themes/PIC_CHAR/Comb1.jpg" Height="55px" Width="134px" />
                     <%--Pour plus d'informations sur les scripts de regroupement dans ScriptManager, consultez http://go.microsoft.com/fwlink/?LinkID=301884 --%>
                 </div>
-                <div style="position: relative; bottom: 0; right: 0;"> Copyright © 1995-<%: Year(Now()) %> - Asp.NET App</div>
+                <div style="position: relative; bottom: 0; right: 0;"> Copyright © Selco/Eolane 1995-<%: Year(Now()) %> - Asp.NET Application</div>
             </footer>
         </div>
     </form>
