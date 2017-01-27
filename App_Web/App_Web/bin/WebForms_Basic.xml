@@ -555,6 +555,15 @@ Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
+<member name="F:App_Web.Page_ESSAI._Label_LOAD">
+<summary>
+Contrôle Label_LOAD.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
 <member name="F:App_Web.Page_ESSAI._Button1">
 <summary>
 Contrôle Button1.

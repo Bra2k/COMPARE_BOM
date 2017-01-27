@@ -1,7 +1,11 @@
 ﻿<%@ Page Title="Colisage" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="CLSG.aspx.vb" Inherits="App_Web.CLSG" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <link href="App_Themes/CSS/CSS_MediaQuery.css" rel="stylesheet" type="text/css" />
             <asp:MultiView ID="MultiView_SAIS" runat="server" ActiveViewIndex="0">
                 <asp:View ID="View_OF" runat="server">
+                    <div class="titre_page">
+                        <h2>Digital Factory : Colisage</h2>
+                    </div>
                     <table style="width:100%;">
                         <tr>
                             <td><label>Saisir l&#39;OF :</label>

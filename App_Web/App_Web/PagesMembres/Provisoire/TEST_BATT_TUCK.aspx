@@ -1,5 +1,10 @@
 ﻿<%@ Page Title="Test batterie Tucky" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="TEST_BATT_TUCK.aspx.vb" Inherits="App_Web.TEST_BATT_TUCK" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <link href="App_Themes/CSS/CSS_MediaQuery.css" rel="stylesheet" type="text/css" />
+    <br />
+    <div class="titre_page">
+        <h2>Provisoire: Batteries</h2>
+    </div>
     <br />
     <table>
         <tr>

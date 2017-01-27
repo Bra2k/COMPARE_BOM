@@ -1,5 +1,10 @@
 ﻿<%@ Page Title="Configurer un nouvel article pour le colisage" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="CONF_ARTI.aspx.vb" Inherits="App_Web.CONF_ARTI" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <link href="App_Themes/CSS/CSS_MediaQuery.css" rel="stylesheet" type="text/css" />
+    <br />
+    <div class="titre_page">
+        <h2>Digital Factory : Article</h2>
+    </div>
     <br />
     <table class="article_cli">
         <tr>

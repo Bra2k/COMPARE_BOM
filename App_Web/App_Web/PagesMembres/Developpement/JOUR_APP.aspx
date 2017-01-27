@@ -1,5 +1,10 @@
 ﻿<%@ Page Title="Journaux de l'application" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="JOUR_APP.aspx.vb" Inherits="App_Web.JOUR_APP" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <link href="App_Themes/CSS/CSS_MediaQuery.css" rel="stylesheet" type="text/css" />
+    <br />
+    <div class="titre_page">
+        <h2>Développement : Table des logs</h2>
+    </div>
     <br />
     <asp:GridView ID="GridView_JOUR" style="border:3px solid black" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource_JOUR" AllowPaging="True" PageSize="25">
         <Columns>

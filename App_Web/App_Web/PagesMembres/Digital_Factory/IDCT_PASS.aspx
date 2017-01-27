@@ -1,5 +1,10 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="IDCT_PASS.aspx.vb" Inherits="App_Web.IDCT_PASS" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <link href="App_Themes/CSS/CSS_MediaQuery.css" rel="stylesheet" type="text/css" />
+        <br />
+        <div class="titre_page">
+            <h2>Digital Factory : Indicateur</h2>
+        </div>
         <br />
         <table style="width:100%;">
             <tr>

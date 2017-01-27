@@ -1,5 +1,10 @@
 ﻿<%@ Page Title="Générer un rapport de traçabilité STW" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="IMPR_RAPP_TCBL_STW_V2.aspx.vb" Inherits="App_Web.IMPR_RAPP_TCBL_STW_V2" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <link href="App_Themes/CSS/CSS_MediaQuery.css" rel="stylesheet" type="text/css" />
+    <br />
+    <div class="titre_page">
+        <h2>Provisoire : Rapport STW</h2>
+    </div>
     <br />
     <table class="STW">
         <tr>

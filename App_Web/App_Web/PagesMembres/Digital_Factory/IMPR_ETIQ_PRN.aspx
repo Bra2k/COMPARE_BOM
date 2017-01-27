@@ -1,5 +1,10 @@
 ﻿<%@ Page Title="Imprimer une étiquette" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="IMPR_ETIQ_PRN.aspx.vb" Inherits="App_Web.IMPR_ETIQ_PRN" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <link href="App_Themes/CSS/CSS_MediaQuery.css" rel="stylesheet" type="text/css" />
+    <br />
+    <div class="titre_page">
+        <h2>Digital Factory : Etiquettes</h2>
+    </div>
     <br />
     <table>
         <tr>

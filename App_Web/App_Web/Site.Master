@@ -1,9 +1,7 @@
 ﻿<%@ Master Language="VB" AutoEventWireup="true" CodeBehind="Site.master.vb" Inherits="App_Web.SiteMaster" %>
-
 <%@ Import Namespace="App_Web" %>
 <%@ Import Namespace="Microsoft.AspNet.Identity" %>
 <!DOCTYPE html>
-
 <html lang="fr">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -40,9 +38,7 @@
                 <%--Scripts de site--%>
             </Scripts>
         </asp:ScriptManager>
-
         <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: #002F60">
-            
             <div class="container" style="background-color: #002F60">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -95,8 +91,11 @@
             <br />
             <hr />
             <footer>
-                <p style="vertical-align: bottom"><asp:Image ID="Image_LOGO_ECO" runat="server" ImageUrl="~/App_Themes/PIC_CHAR/Comb1.jpg" Height="55px" Width="134px" />
-                    © <%--Pour plus d'informations sur les scripts de regroupement dans ScriptManager, consultez http://go.microsoft.com/fwlink/?LinkID=301884 --%>- ASP.NET Application</p>
+                <div style="position: fixed; bottom: 0; left: 0; right: 0;">
+                    <asp:Image ID="Image_LOGO_ECO" runat="server" ImageUrl="~/App_Themes/PIC_CHAR/Comb1.jpg" Height="55px" Width="134px" />
+                    <%--Pour plus d'informations sur les scripts de regroupement dans ScriptManager, consultez http://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                </div>
+                <div style="position: relative; bottom: 0; right: 0;"> Copyright © 1995-<%: Year(Now()) %> - Asp.NET App</div>
             </footer>
         </div>
     </form>

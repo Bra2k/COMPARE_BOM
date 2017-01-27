@@ -1,5 +1,10 @@
 ﻿<%@ Page Title="Configuration des postes" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="CFGR_POST.aspx.vb" Inherits="App_Web.CFGR_POST" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <link href="App_Themes/CSS/CSS_MediaQuery.css" rel="stylesheet" type="text/css" />
+    <br />
+    <div class="titre_page">
+        <h2>Développement : Configuration</h2>
+    </div>
     <br />
     <table>
         <tr>

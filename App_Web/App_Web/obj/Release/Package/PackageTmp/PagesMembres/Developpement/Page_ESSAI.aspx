@@ -1,6 +1,10 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="Page_ESSAI.aspx.vb" Inherits="App_Web.Page_ESSAI" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 <br />
+    <div style="font-family: Verdana; color: #002F60">
+        <h2>Développement : Essais&nbsp;&nbsp;&nbsp;</h2>
+        <asp:Label ID="Label_LOAD" runat="server" Text="Chargement en cours ..." Visible="False"></asp:Label>
+    </div><br />
     <asp:Button ID="Button1" runat="server" Text="Button" />
     <asp:Button ID="Button2" runat="server" Text="Button2" />
 <br />
