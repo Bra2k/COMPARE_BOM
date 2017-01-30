@@ -18,15 +18,15 @@
             <td><br /><asp:Button ID="Button_EMPL_FICH_TEST" runat="server" Text="Valider" BackColor="#002F60" Font-Bold="True" ForeColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" Height="40px" Width="180px" /></td></tr>
     </table>
     <br />
-    <asp:GridView ID="GridView_EMPL_FICH_TEST" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource_EMPL_FICH_TEST" BorderColor="#004796" BorderStyle="Solid" BorderWidth="3px">
+    <asp:GridView ID="GridView_EMPL_FICH_TEST" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource_EMPL_FICH_TEST" BorderColor="#002F60" BorderStyle="Solid" BorderWidth="3px">
         <Columns>
             <asp:BoundField DataField="Banc" HeaderText="Banc" SortExpression="Banc" />
             <asp:BoundField DataField="Emplacement des fichiers de test" HeaderText="Emplacement des fichiers de test" SortExpression="Emplacement des fichiers de test" />
         </Columns>
         <SelectedRowStyle BackColor="#FFFFCC" />
     </asp:GridView>
-    <asp:SqlDataSource ID="SqlDataSource_EMPL_FICH_TEST" runat="server" ConnectionString="<%$ ConnectionStrings:SERCELConnectionString %>" SelectCommand="SELECT [ID_BANC] AS Banc
-      ,[NM_CHEM_EMPL] AS [Emplacement des fichiers de test]
-  FROM [MES_Digital_Factory].[dbo].[V_DTM_TEST_FONC_REF_EMPL_RES]
-ORDER BY [ID_BANC]"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource_EMPL_FICH_TEST" runat="server" ConnectionString="<%$ ConnectionStrings:SERCELConnectionString %>" 
+        SelectCommand="SELECT [ID_BANC] AS Banc, [NM_CHEM_EMPL] AS [Emplacement des fichiers de test]
+                        FROM [MES_Digital_Factory].[dbo].[V_DTM_TEST_FONC_REF_EMPL_RES]
+                        ORDER BY [ID_BANC]"></asp:SqlDataSource>
 </asp:Content>
