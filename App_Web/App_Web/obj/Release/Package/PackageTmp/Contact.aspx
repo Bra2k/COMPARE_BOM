@@ -12,9 +12,11 @@
     <address>
         <table>
             <tr>
-                <td><strong>Support:</strong></td><td><a href="mailto:vincent.sperperini@eolane.com">vincent.sperperini@eolane.com</a></td></tr>
+                <td><strong>Support:</strong></td><td><a href="mailto:vincent.sperperini@eolane.com">&nbsp;vincent.sperperini@eolane.com</a></td></tr>
             <tr>
-                <td>&nbsp;</td><td><a href="mailto:florian.acker@eolane.com">florian.acker@eolane.com</a></td></tr>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OU</td></tr>
+            <tr>
+                <td>&nbsp;</td><td><a href="mailto:florian.acker@eolane.com">&nbsp;florian.acker@eolane.com</a></td></tr>
         </table>
         <%--<strong>Marketing:</strong><a href="mailto:Marketing@example.com">Marketing@example.com</a>--%>
     </address>

@@ -8,11 +8,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%: Page.Title %>- Applications Eolane Combrée</title>
-
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
-
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 </head>
@@ -72,20 +70,16 @@
                 </div>
             </div>
         </div>
-        
         <div class="container body-content">
-
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
                 <p style="font-family: Verdana;"></p>
             </asp:ContentPlaceHolder>
-
             <br />
             <asp:UpdatePanel ID="UpdatePanel_PGS_TACH" runat="server" ChildrenAsTriggers="False" UpdateMode="Conditional">
                 <ContentTemplate>
                     <asp:Label ID="Label_PGS_TACH" runat="server" Text=""></asp:Label>
                 </ContentTemplate>
             </asp:UpdatePanel>
-
             <br />
             <asp:Label ID="Label_ERR_MSG" runat="server" Font-Bold="True" ForeColor="Red"></asp:Label>
             <br />
@@ -95,7 +89,7 @@
                     <asp:Image ID="Image_LOGO_ECO" runat="server" ImageUrl="~/App_Themes/PIC_CHAR/Comb1.jpg" Height="55px" Width="134px" />
                     <%--Pour plus d'informations sur les scripts de regroupement dans ScriptManager, consultez http://go.microsoft.com/fwlink/?LinkID=301884 --%>
                 </div>
-                <div style="position: relative; bottom: 0; right: 0;"> Copyright © Selco/Eolane 1995-<%: Year(Now()) %> - Asp.NET Application</div>
+              <div style="position: relative; bottom: 0; right: 0;"> Copyright © Selco/Eolane 1986-<%: Year(Now()) %> - Asp.NET Application</div>
             </footer>
         </div>
     </form>

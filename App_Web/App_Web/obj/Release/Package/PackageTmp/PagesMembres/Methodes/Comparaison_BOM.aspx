@@ -35,21 +35,14 @@
             <br />
             <asp:Button ID="Button_Importer" runat="server" Text="Importer"  BackColor="#002F60" Font-Bold="True" ForeColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" Height="40px" Width="180px" /><br />
             <asp:SqlDataSource ID="SqlDataSource_PARA_BOM" runat="server" ConnectionString="<%$ ConnectionStrings:SERCELConnectionString %>" InsertCommand="INSERT INTO TEST.[dbo].[Essai_PARA_BOM]
-           ([NM_CLIE]
-           ,[NM_PARA]
-           ,[NM_PARA_VAL]
-           ,[DT_MAJ_PARA])
-     VALUES
-           (@NM_CLIE
-           ,@NM_PARA
-           ,@NM_PARA_VAL
-           ,GETDATE())" SelectCommand="SELECT     Essai_PARA_BOM_1.NM_CLIE, Essai_PARA_BOM_1.NM_PARA, Essai_PARA_BOM_1.NM_PARA_VAL
-FROM         (SELECT     NM_CLIE, NM_PARA, MAX(DT_MAJ_PARA) AS DT_MAJ_PARA
-                       FROM          TEST.dbo.Essai_PARA_BOM
+           ([NM_CLIE], [NM_PARA], [NM_PARA_VAL], [DT_MAJ_PARA]) VALUES(@NM_CLIE, @NM_PARA, @NM_PARA_VAL,GETDATE())"
+           SelectCommand="SELECT Essai_PARA_BOM_1.NM_CLIE, Essai_PARA_BOM_1.NM_PARA, Essai_PARA_BOM_1.NM_PARA_VAL
+                       FROM (SELECT NM_CLIE, NM_PARA, MAX(DT_MAJ_PARA) AS DT_MAJ_PARA
+                       FROM TEST.dbo.Essai_PARA_BOM
                        GROUP BY NM_CLIE, NM_PARA
-                       HAVING      (NM_CLIE = @NM_CLIE)) AS DERN_CONF INNER JOIN
-                      TEST.dbo.Essai_PARA_BOM AS Essai_PARA_BOM_1 ON DERN_CONF.NM_PARA = Essai_PARA_BOM_1.NM_PARA AND 
-                      DERN_CONF.NM_CLIE = Essai_PARA_BOM_1.NM_CLIE AND DERN_CONF.DT_MAJ_PARA = Essai_PARA_BOM_1.DT_MAJ_PARA">
+                       HAVING (NM_CLIE = @NM_CLIE)) AS DERN_CONF INNER JOIN
+                       TEST.dbo.Essai_PARA_BOM AS Essai_PARA_BOM_1 ON DERN_CONF.NM_PARA = Essai_PARA_BOM_1.NM_PARA AND 
+                       DERN_CONF.NM_CLIE = Essai_PARA_BOM_1.NM_CLIE AND DERN_CONF.DT_MAJ_PARA = Essai_PARA_BOM_1.DT_MAJ_PARA">
                 <InsertParameters>
                     <asp:Parameter Name="NM_CLIE" />
                     <asp:Parameter Name="NM_PARA" />
@@ -71,40 +64,33 @@ FROM         (SELECT     NM_CLIE, NM_PARA, MAX(DT_MAJ_PARA) AS DT_MAJ_PARA
         </asp:View>
         <asp:View ID="View_SEL_DONN" runat="server">
             <br />
-            Saisir la première ligne où commencent les données :&nbsp;<asp:TextBox ID="TextBox_PREM_LIGN_DONN" runat="server"></asp:TextBox>
+            <label>Saisir la première ligne où commencent les données :&nbsp;</label><asp:TextBox ID="TextBox_PREM_LIGN_DONN" runat="server"></asp:TextBox>
             <br />
+            <label>Saisir la dernière ligne où terminent les données :</label><asp:TextBox ID="TextBox_DERN_LIGN_DONN" runat="server"></asp:TextBox>
             <br />
-            Saisir la dernière ligne où terminent les données :
-            <asp:TextBox ID="TextBox_DERN_LIGN_DONN" runat="server"></asp:TextBox>
-            <br />
-            <br />
-            <asp:CheckBox ID="CheckBox_COLO_FORM" runat="server" AutoPostBack="True" Checked="True" Text="Colonnes séparées" />
+            <asp:CheckBox ID="CheckBox_COLO_FORM" runat="server" AutoPostBack="True" Checked="True" Text="&nbsp;Colonnes séparées" />
             <br />
             <asp:MultiView ID="MultiView_CONF_COLO" runat="server"  ActiveViewIndex="1">
                 <asp:View ID="View_COLO_UNIQ" runat="server">
                     Saisir le caractère séparateur :
                     <asp:TextBox ID="TextBox_CARA_SEPA" runat="server"></asp:TextBox>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <asp:Button ID="Button_CARA_SEPA" runat="server" SkinID="BOUT_VALI" Text="Valider" />
+                    <asp:Button ID="Button_CARA_SEPA" runat="server" SkinID="BOUT_VALI" Text="Valider" BackColor="#002F60" Font-Bold="True" ForeColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" Height="40px" Width="180px" />
                     <br />
                 </asp:View>
                 <asp:View ID="View_CONF_MULT" runat="server">
-                    Saisir la colonne où se trouvent les codes articles client :
+                    <label>Saisir la colonne où se trouvent les codes articles client :</label>
                     <asp:TextBox ID="TextBox_COLO_CD_ARTI_CLIE" runat="server"></asp:TextBox>
                     <br />
-                    <br />
-                    Saisir la colonne où se trouvent les repères :
+                    <label>Saisir la colonne où se trouvent les repères :</label>
                     <asp:TextBox ID="TextBox_COLO_REPE" runat="server"></asp:TextBox>
                     <br />
-                    <br />
-                    Saisir la colonne où se trouvent les quantités :
+                    <label>Saisir la colonne où se trouvent les quantités :</label>
                     <asp:TextBox ID="TextBox_COLO_QTE" runat="server"></asp:TextBox>
                     <br />
+                    <asp:Button ID="Button_APER_PIVO" runat="server" Text="Afficher l'extraction du fichier BOM client" BackColor="#002F60" Font-Bold="True" ForeColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" />
                     <br />
-                    <asp:Button ID="Button_APER_PIVO" runat="server" Text="Afficher l'extraction du fichier BOM client" />
-                    <br />
-                    <br />
-                    Aperçu du fichier BOM :
+                    <label>Aperçu du fichier BOM :</label>
                     <div  style="vertical-align:top;  width: 1198px; height: 539px; overflow: auto;">
                         <asp:GridView ID="GridView_FICH_BOM_CLIE" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical" SkinID="GV_AFF_DONN">
                             <Columns>
@@ -197,17 +183,15 @@ FROM         (SELECT     NM_CLIE, NM_PARA, MAX(DT_MAJ_PARA) AS DT_MAJ_PARA
                             </Columns>
                         </asp:GridView>
                         <asp:SqlDataSource ID="SqlDataSource_DIFF_BOM_CLIE" runat="server" ConnectionString="<%$ ConnectionStrings:SERCELConnectionString %>" SelectCommand="SELECT [CD_ARTI] AS [Code article Client], [NM_REPE] AS [Repère Client], [QT_REPE] AS [Quantité Client]
-FROM [APP_WEB_ECO].[dbo].[DWH_CPRS_BOM_PIVO_CLIE]
-WHERE NOT EXISTS (
-SELECT [CD_ARTI_CLIE]
-      ,[NM_REPE_CLIE]
-      ,[QT_REPE_CLIE]    
-  FROM [APP_WEB_ECO].[dbo].[V_CRPS_BOM_PIVO_EGAL]
-  WHERE [DWH_CPRS_BOM_PIVO_CLIE].[CD_ARTI] = [V_CRPS_BOM_PIVO_EGAL].[CD_ARTI_CLIE] AND
-  [DWH_CPRS_BOM_PIVO_CLIE].[NM_REPE] = [V_CRPS_BOM_PIVO_EGAL].[NM_REPE_CLIE] AND
-   [DWH_CPRS_BOM_PIVO_CLIE].[QT_REPE] = [V_CRPS_BOM_PIVO_EGAL].[QT_REPE_CLIE]) AND [QT_REPE] &lt;&gt; '0'
-   GROUP BY [CD_ARTI], [NM_REPE], [QT_REPE]
-   	  ORDER BY [NM_REPE]"></asp:SqlDataSource>
+                            FROM [APP_WEB_ECO].[dbo].[DWH_CPRS_BOM_PIVO_CLIE]
+                            WHERE NOT EXISTS (SELECT [CD_ARTI_CLIE], [NM_REPE_CLIE], [QT_REPE_CLIE]    
+                            FROM [APP_WEB_ECO].[dbo].[V_CRPS_BOM_PIVO_EGAL]
+                            WHERE [DWH_CPRS_BOM_PIVO_CLIE].[CD_ARTI] = [V_CRPS_BOM_PIVO_EGAL].[CD_ARTI_CLIE] AND
+                                [DWH_CPRS_BOM_PIVO_CLIE].[NM_REPE] = [V_CRPS_BOM_PIVO_EGAL].[NM_REPE_CLIE] AND
+                                [DWH_CPRS_BOM_PIVO_CLIE].[QT_REPE] = [V_CRPS_BOM_PIVO_EGAL].[QT_REPE_CLIE]) AND [QT_REPE] &lt;&gt; '0'
+                            GROUP BY [CD_ARTI], [NM_REPE], [QT_REPE]
+   	                        ORDER BY [NM_REPE]">
+                        </asp:SqlDataSource>
                             </div>
                     </td>
                     <td style="vertical-align: top">Lignes de SAP non-présentes dans le fichier BOM du client:<br />
@@ -220,22 +204,21 @@ SELECT [CD_ARTI_CLIE]
                             </Columns>
                         </asp:GridView>
                         <asp:SqlDataSource ID="SqlDataSource_DIFF_BOM_SAP" runat="server" ConnectionString="<%$ ConnectionStrings:SERCELConnectionString %>" SelectCommand="SELECT [CD_ARTI] AS [Code article SAP], [NM_REPE] AS [Repère SAP], [QT_REPE] AS [Quantité SAP]
-FROM [APP_WEB_ECO].[dbo].[DWH_CPRS_BOM_PIVO_SAP]
-WHERE NOT EXISTS (SELECT [CD_ARTI_SAP]
-      ,[NM_REPE_SAP]
-      ,[QT_REPE_SAP]    
-  FROM [APP_WEB_ECO].[dbo].[V_CRPS_BOM_PIVO_EGAL]
-  WHERE [DWH_CPRS_BOM_PIVO_SAP].[CD_ARTI] = [V_CRPS_BOM_PIVO_EGAL].[CD_ARTI_SAP] AND
-  [DWH_CPRS_BOM_PIVO_SAP].[NM_REPE] = [V_CRPS_BOM_PIVO_EGAL].[NM_REPE_SAP] AND
-   [DWH_CPRS_BOM_PIVO_SAP].[QT_REPE] = [V_CRPS_BOM_PIVO_EGAL].[QT_REPE_SAP])
-      GROUP BY [CD_ARTI], [NM_REPE], [QT_REPE]
-	  ORDER BY [NM_REPE]"></asp:SqlDataSource>
-                            </div>
+                            FROM [APP_WEB_ECO].[dbo].[DWH_CPRS_BOM_PIVO_SAP]
+                            WHERE NOT EXISTS (SELECT [CD_ARTI_SAP], [NM_REPE_SAP], [QT_REPE_SAP]    
+                            FROM [APP_WEB_ECO].[dbo].[V_CRPS_BOM_PIVO_EGAL]
+                            WHERE [DWH_CPRS_BOM_PIVO_SAP].[CD_ARTI] = [V_CRPS_BOM_PIVO_EGAL].[CD_ARTI_SAP] AND
+                                  [DWH_CPRS_BOM_PIVO_SAP].[NM_REPE] = [V_CRPS_BOM_PIVO_EGAL].[NM_REPE_SAP] AND
+                                  [DWH_CPRS_BOM_PIVO_SAP].[QT_REPE] = [V_CRPS_BOM_PIVO_EGAL].[QT_REPE_SAP])
+                            GROUP BY [CD_ARTI], [NM_REPE], [QT_REPE]
+	                        ORDER BY [NM_REPE]">
+                        </asp:SqlDataSource>
+                        </div>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan=2 align=center style="vertical-align: top; height: 300px; overflow: auto;">
-                                               Lignes du fichier BOM du client présent dans SAP :
+                    <td colspan=2 style="vertical-align: top; height: 300px; overflow: auto;">
+                       Lignes du fichier BOM du client présent dans SAP :
                         <asp:GridView ID="GridView_IDEN_BOM_SAP" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource_IDEN_BOM_SAP" SkinID="GV_AFF_DONN">
                             <Columns>
                                 <asp:BoundField DataField="Code article client" HeaderText="Code article client" SortExpression="Code article client" />
@@ -247,16 +230,13 @@ WHERE NOT EXISTS (SELECT [CD_ARTI_SAP]
                                 <asp:BoundField DataField="Quantité SAP" HeaderText="Quantité SAP" SortExpression="Quantité SAP" />
                             </Columns>
                         </asp:GridView>
-                        <asp:SqlDataSource ID="SqlDataSource_IDEN_BOM_SAP" runat="server" ConnectionString="<%$ ConnectionStrings:SERCELConnectionString %>" SelectCommand="SELECT CD_ARTI_CLIE AS [Code article client], NM_REPE_CLIE AS [Repère client], QT_REPE_CLIE AS [Quantité client], MIN_LVS AS [Nombre de caractères différents dans les codes article], CD_ARTI_SAP AS [Code article SAP], NM_REPE_SAP AS [Repère SAP], QT_REPE_SAP AS [Quantité SAP]
-  FROM [APP_WEB_ECO].[dbo].[V_CRPS_BOM_PIVO_EGAL]"></asp:SqlDataSource>
+                        <asp:SqlDataSource ID="SqlDataSource_IDEN_BOM_SAP" runat="server" ConnectionString="<%$ ConnectionStrings:SERCELConnectionString %>" 
+                            SelectCommand="SELECT CD_ARTI_CLIE AS [Code article client], NM_REPE_CLIE AS [Repère client], QT_REPE_CLIE AS [Quantité client], MIN_LVS AS [Nombre de caractères différents dans les codes article], CD_ARTI_SAP AS [Code article SAP], NM_REPE_SAP AS [Repère SAP], QT_REPE_SAP AS [Quantité SAP]
+                            FROM [APP_WEB_ECO].[dbo].[V_CRPS_BOM_PIVO_EGAL]">
+                        </asp:SqlDataSource>
                     </td>
-                    
                 </tr>
-            </table>
-            
+            </table>            
         </asp:View>
-        
-        <br />
-        
     </asp:MultiView>
-    </asp:Content>
+</asp:Content>
