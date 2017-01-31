@@ -41,13 +41,13 @@ Partial Public Class _Default
     Protected WithEvents FixedPc As Global.System.Web.UI.WebControls.ImageButton
     
     '''<summary>
-    '''Contrôle WindTurbine.
+    '''Contrôle FoncTest.
     '''</summary>
     '''<remarks>
     '''Champ généré automatiquement.
     '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
     '''</remarks>
-    Protected WithEvents WindTurbine As Global.System.Web.UI.WebControls.ImageButton
+    Protected WithEvents FoncTest As Global.System.Web.UI.WebControls.ImageButton
     
     '''<summary>
     '''Contrôle StickerPrinter.
@@ -147,4 +147,328 @@ Partial Public Class _Default
     '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
     '''</remarks>
     Protected WithEvents Batterie As Global.System.Web.UI.WebControls.ImageButton
+    
+    '''<summary>
+    '''Contrôle Eolienne.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents Eolienne As Global.System.Web.UI.WebControls.ImageButton
+    
+    '''<summary>
+    '''Contrôle EASY.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents EASY As Global.System.Web.UI.WebControls.ImageButton
+    
+    '''<summary>
+    '''Contrôle HELLO.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents HELLO As Global.System.Web.UI.WebControls.ImageButton
+    
+    '''<summary>
+    '''Contrôle ImageButton1.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents ImageButton1 As Global.System.Web.UI.WebControls.ImageButton
+    
+    '''<summary>
+    '''Contrôle ImageButton2.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents ImageButton2 As Global.System.Web.UI.WebControls.ImageButton
+    
+    '''<summary>
+    '''Contrôle ImageButton3.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents ImageButton3 As Global.System.Web.UI.WebControls.ImageButton
+    
+    '''<summary>
+    '''Contrôle ImageButton5.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents ImageButton5 As Global.System.Web.UI.WebControls.ImageButton
+    
+    '''<summary>
+    '''Contrôle ImageButton6.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents ImageButton6 As Global.System.Web.UI.WebControls.ImageButton
+    
+    '''<summary>
+    '''Contrôle ImageButton8.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents ImageButton8 As Global.System.Web.UI.WebControls.ImageButton
+    
+    '''<summary>
+    '''Contrôle BancTest2.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents BancTest2 As Global.System.Web.UI.WebControls.ImageButton
+    
+    '''<summary>
+    '''Contrôle TestFonc.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents TestFonc As Global.System.Web.UI.WebControls.ImageButton
+    
+    '''<summary>
+    '''Contrôle test3.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents test3 As Global.System.Web.UI.WebControls.ImageButton
+    
+    '''<summary>
+    '''Contrôle Parcel.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents Parcel As Global.System.Web.UI.WebControls.ImageButton
+    
+    '''<summary>
+    '''Contrôle ImageButton4.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents ImageButton4 As Global.System.Web.UI.WebControls.ImageButton
+    
+    '''<summary>
+    '''Contrôle ImageButton7.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents ImageButton7 As Global.System.Web.UI.WebControls.ImageButton
+    
+    '''<summary>
+    '''Contrôle ImageButton9.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents ImageButton9 As Global.System.Web.UI.WebControls.ImageButton
+    
+    '''<summary>
+    '''Contrôle ImageButton10.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents ImageButton10 As Global.System.Web.UI.WebControls.ImageButton
+    
+    '''<summary>
+    '''Contrôle Indic.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents Indic As Global.System.Web.UI.WebControls.ImageButton
+    
+    '''<summary>
+    '''Contrôle ImageButton11.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents ImageButton11 As Global.System.Web.UI.WebControls.ImageButton
+    
+    '''<summary>
+    '''Contrôle ImageButton12.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents ImageButton12 As Global.System.Web.UI.WebControls.ImageButton
+    
+    '''<summary>
+    '''Contrôle ImageButton13.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents ImageButton13 As Global.System.Web.UI.WebControls.ImageButton
+    
+    '''<summary>
+    '''Contrôle ImageButton14.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents ImageButton14 As Global.System.Web.UI.WebControls.ImageButton
+    
+    '''<summary>
+    '''Contrôle ImageButton15.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents ImageButton15 As Global.System.Web.UI.WebControls.ImageButton
+    
+    '''<summary>
+    '''Contrôle ImageButton16.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents ImageButton16 As Global.System.Web.UI.WebControls.ImageButton
+    
+    '''<summary>
+    '''Contrôle ImageButton17.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents ImageButton17 As Global.System.Web.UI.WebControls.ImageButton
+    
+    '''<summary>
+    '''Contrôle ImageButton18.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents ImageButton18 As Global.System.Web.UI.WebControls.ImageButton
+    
+    '''<summary>
+    '''Contrôle ImageButton19.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents ImageButton19 As Global.System.Web.UI.WebControls.ImageButton
+    
+    '''<summary>
+    '''Contrôle ImageButton20.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents ImageButton20 As Global.System.Web.UI.WebControls.ImageButton
+    
+    '''<summary>
+    '''Contrôle ImageButton21.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents ImageButton21 As Global.System.Web.UI.WebControls.ImageButton
+    
+    '''<summary>
+    '''Contrôle ImageButton22.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents ImageButton22 As Global.System.Web.UI.WebControls.ImageButton
+    
+    '''<summary>
+    '''Contrôle ImageButton23.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents ImageButton23 As Global.System.Web.UI.WebControls.ImageButton
+    
+    '''<summary>
+    '''Contrôle ImageButton24.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents ImageButton24 As Global.System.Web.UI.WebControls.ImageButton
+    
+    '''<summary>
+    '''Contrôle ImageButton25.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents ImageButton25 As Global.System.Web.UI.WebControls.ImageButton
+    
+    '''<summary>
+    '''Contrôle ImageButton26.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents ImageButton26 As Global.System.Web.UI.WebControls.ImageButton
+    
+    '''<summary>
+    '''Contrôle ImageButton27.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents ImageButton27 As Global.System.Web.UI.WebControls.ImageButton
+    
+    '''<summary>
+    '''Contrôle ImageButton28.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents ImageButton28 As Global.System.Web.UI.WebControls.ImageButton
 End Class
