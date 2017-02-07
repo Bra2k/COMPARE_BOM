@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="Contact" Language="VB" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Contact.aspx.vb" Inherits="App_Web.Contact" %>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div class="titre_page">
-        <h2><%: Title %></h2>
+        <h2>Contact</h2>
     </div>
     <address>
         éolane Combrée<br />

@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="About" Language="VB" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="About.aspx.vb" Inherits="App_Web.About" %>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div class="titre_page">
-        <h2><%: Title %></h2>
+        <h2>About</h2>
     </div>
         Ce service web est destiné à héberger une multitude d'application pour le compte d'Eolane Combrée.<br /><br />
     <asp:GridView ID="GridView_VERS" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource_VERS">

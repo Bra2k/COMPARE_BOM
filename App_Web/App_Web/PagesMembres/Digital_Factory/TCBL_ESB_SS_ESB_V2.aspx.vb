@@ -141,7 +141,7 @@ Public Class TCBL_ESB_SS_ESB_V2
         'vérifier que le ns est disponible
         Dim sQuerySql As String = "Select   NM_NS_SENS
                                      FROM   [MES_Digital_Factory].dbo.DTM_TR_CPT
-                                    WHERE   NM_NS_SENS = '" & TextBox_SS_ENS.Text & "'"
+                                     WHERE   NM_NS_SENS = '" & TextBox_SS_ENS.Text & "'"
         Dim sChaineConnexion As String = "Data Source=cedb03,1433;Initial Catalog=MES_Digital_Factory;Integrated Security=False;User ID=sa;Password=mdpsa@SQL;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
         Dim dt_TR_CPT, dtAFKO, dt_NS_TRAC, dtS034 As New DataTable
         Dim sParam_Format_NS As String = "Format Numéro de série Eolane"
@@ -168,7 +168,6 @@ Public Class TCBL_ESB_SS_ESB_V2
                     If Trim(dtAFKO(0)("PLNBEZ").ToString) = Trim(rGridView_REPE.Cells(1).Text) Then rGridView_REPE.Cells(3).Text = TextBox_SS_ENS.Text
                 Next
             Else
-
                 'vérifier par rapport à un format
                 If CheckBox_SS_ENS_FERT.Checked = False Then sParam_Format_NS = "Format Numéro de série Fournisseur"
                 's'il existe un format de numéro de lot pour le code article donnée utiliser ce paramètre

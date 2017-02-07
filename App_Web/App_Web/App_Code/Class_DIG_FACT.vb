@@ -554,10 +554,8 @@ Public Class Class_DIG_FACT_SQL
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
         End Try
-
         LOG_Msg(GetCurrentMethod, "Le numéro de série client " & sNU_SER_GENE & " a été généré.")
         Return sNU_SER_GENE
-
     End Function
 
     Public Shared Function DIG_FACT_SQL_CFGR_ARTI_ECO(sCD_ARTI_ECO As String) As DataTable
