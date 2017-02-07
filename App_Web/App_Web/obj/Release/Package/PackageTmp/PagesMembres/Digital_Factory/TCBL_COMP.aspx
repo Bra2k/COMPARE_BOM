@@ -36,19 +36,23 @@
                     <asp:ListItem>Code lot</asp:ListItem>
                 </asp:RadioButtonList>
                 <asp:MultiView ID="MultiView_SELE_COMP" runat="server" ActiveViewIndex="0">
-                    <asp:View ID="View_BAC" runat="server">Scanner un n° de BAC :
+                    <asp:View ID="View_BAC" runat="server">
+                        <label>Scanner un n° de BAC :</label>
                         <asp:TextBox ID="TextBox_NU_BAC" runat="server"></asp:TextBox>
+                        <br />
                     </asp:View>
-                    <asp:View ID="View_ID_COMP" runat="server">Scanner un ID composant :
+                    <asp:View ID="View_ID_COMP" runat="server">
+                        <label>Scanner un ID composant :</label>
                         <asp:TextBox ID="TextBox_ID_COMP" runat="server"></asp:TextBox>
+                        <br />
                     </asp:View>
                     <asp:View ID="View_CD_LOT" runat="server">
-                        <asp:MultiView ID="MultiView_SAIS_CD_LOT" runat="server">
+                        <asp:MultiView ID="MultiView_SAIS_CD_LOT" runat="server" ActiveViewIndex="0">
                             <asp:View ID="View_SAIS_CD_LOT_SLCN" runat="server">
-                                Sélectionner le composant :
+                                <label>Sélectionner le composant :</label>
                             </asp:View>
                             <asp:View ID="View_SAIS_CD_LOT_SAIS" runat="server">
-                                Entrer le code lot du composant
+                                <label>Entrer le code lot du composant</label>
                                 <asp:Label ID="Label_CD_COMP" runat="server"></asp:Label>
                                 &nbsp;:
                                 <asp:TextBox ID="TextBox_CD_LOT_COMP" runat="server" AutoPostBack="True"></asp:TextBox>
@@ -58,14 +62,14 @@
                 </asp:MultiView>
             </asp:View>
             <asp:View ID="View_SAIS_ENS" runat="server">
-                Entrer le numéro d&#39;ensemble :
+                <label>Entrer le numéro d&#39;ensemble :</label>
                 <asp:TextBox ID="TextBox_ENS" runat="server" AutoPostBack="True"></asp:TextBox>
                 <br />
                 <asp:MultiView ID="MultiView_BASC_SAI_SEL" runat="server" ActiveViewIndex="0">
                     <asp:View ID="View_VOID" runat="server">
                     </asp:View>
                     <asp:View ID="View_SAI" runat="server">
-                        Entrer le numéro du sous-ensemble
+                        <label>Entrer le numéro du sous-ensemble</label>
                         <asp:Label ID="Label_CD_SS_ENS" runat="server"></asp:Label>
                         :
                         <asp:TextBox ID="TextBox_SS_ENS" runat="server" AutoPostBack="True"></asp:TextBox>
@@ -73,7 +77,8 @@
                 </asp:MultiView>
                 <br />
             </asp:View>
-        </asp:MultiView><asp:GridView ID="GridView_REPE" runat="server" SkinID="GV_AFF_DONN" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical" Font-Size="8pt">
+        </asp:MultiView>
+                    <asp:GridView ID="GridView_REPE" runat="server" SkinID="GV_AFF_DONN" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical" Font-Size="8pt">
                         <AlternatingRowStyle BackColor="#DCDCDC" />
                     <Columns>
                         <asp:CommandField ShowSelectButton="True" />
@@ -112,7 +117,8 @@
                     <asp:Label ID="Label_QT_OF" runat="server"></asp:Label>
                     <br />
                     <br />
-                    <label>Numéros de série tracés :</label><br />
+                    <label>Numéros de série tracés :</label>
+                    <br />
                     <asp:GridView ID="GridView_SN_TRAC" runat="server" SkinID="GV_AFF_DONN" PageSize="7" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical" Font-Size="10pt">
                         <AlternatingRowStyle BackColor="#DCDCDC" />
                         <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />

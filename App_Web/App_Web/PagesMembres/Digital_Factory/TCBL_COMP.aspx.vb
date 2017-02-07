@@ -16,6 +16,8 @@ Public Class TCBL_COMP
         Dim dtAFKO, dtVRESB, dtSTPU, dtSTPO, dt_SS_ENS, dt_CD_ARTI_ENS_SENS_SAP, dt_NS_TRAC As New DataTable
         Dim sFiltre As String = "MTART = 'FERT'", sQuery = "" 'HALB
         Dim rdt_CD_ARTI_ENS_SENS_SAP As DataRow
+        Dim compteur As Integer
+
         Try
             dtAFKO = SAP_DATA_READ_AFKO("AUFNR LIKE '%" & TextBox_OF.Text & "'")
             If dtAFKO Is Nothing Then Throw New Exception("L'OF n°" & TextBox_OF.Text & " n'a pas été trouvé dans SAP.")
@@ -48,10 +50,14 @@ Public Class TCBL_COMP
                         Next
                         rdt_CD_ARTI_ENS_SENS_SAP("Repère") = COMM_APP_WEB_STRI_TRIM_RIGHT(rdt_CD_ARTI_ENS_SENS_SAP("Repère"), 1)
                 End Select
+                If rdt_CD_ARTI_ENS_SENS_SAP("Repère") = "PRODUIT" Then
+                    compteur = compteur + 1
+                End If
+
             Next
             GridView_REPE.DataSource = dt_SS_ENS
             GridView_REPE.DataBind()
-
+            Dim count_rows = GridView_REPE.Rows.Count
             Label_OF.Text = TextBox_OF.Text
 
             Dim dtMARA As DataTable = SAP_DATA_READ_MARA("MATNR EQ '" & dtAFKO(0)("PLNBEZ").ToString & "'")
@@ -90,10 +96,13 @@ Public Class TCBL_COMP
             COMM_APP_WEB_PARA_AFFI_LOAD(Label_CD_ARTI.Text & "(" & Label_OP.Text & ")", "CheckBox_NU_SER_EOL", View_SAIS_ENS)
             TextBox_ENS.Focus()
             Label_RES.Text = ""
-            MultiView_Tracabilité.SetActiveView(View_CONT_LOT_ID_COMP)
+            If count_rows = compteur Then
+                MultiView_Tracabilité.SetActiveView(View_SAIS_ENS)
+            Else
+                MultiView_Tracabilité.SetActiveView(View_CONT_LOT_ID_COMP)
+            End If
 
             'Chercher dans la liste des conteneurs s'il y a des composant qui ont été sorti pour cet OF et cette op
-
             'vérification de l'habilitation de la personne à saisir
             'vérification des outillages
         Catch ex As Exception
@@ -211,7 +220,6 @@ Public Class TCBL_COMP
             TextBox_SS_ENS.Focus()
             'Exit Sub
         End Try
-
     End Sub
 
     Protected Sub CheckBox_GENE_ETI_ENS_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox_GENE_ETI_ENS.CheckedChanged
@@ -386,7 +394,6 @@ Public Class TCBL_COMP
             TextBox_ID_COMP.Text = ""
             TextBox_ID_COMP.Focus()
         End Try
-
     End Sub
 
     Protected Sub RadioButtonList_SELE_COMP_SelectedIndexChanged(sender As Object, e As EventArgs) Handles RadioButtonList_SELE_COMP.SelectedIndexChanged
@@ -407,7 +414,6 @@ Public Class TCBL_COMP
                     End If
                 Next
         End Select
-
     End Sub
 
     Protected Sub _ERGT_TCBL(Optional sNU_SER_ECO As String = "0", Optional sNU_SER_CLIE As String = "vide")
@@ -440,7 +446,7 @@ Public Class TCBL_COMP
                 iIDTT = SQL_REQ_ACT_RET_IDTT(sQuery, sChaineConnexion)
                 If rGridView_REPE.Cells(5).Text <> "&nbsp;" Then
                     sQuery = "SELECT [ID_GST_CNTR]
-                                FROM [dbo].[V_LIST_CONT_NON_VIDE]
+                               FROM [dbo].[V_LIST_CONT_NON_VIDE]
                                WHERE [NM_CNTR] = '" & rGridView_REPE.Cells(5).Text & "' AND [NM_OF] = '" & TextBox_OF.Text & "'"
                     dt2 = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
                     If dt2 Is Nothing Then Throw New Exception("Le bac n°" & rGridView_REPE.Cells(5).Text & " n'existe pas ou est vide")
@@ -518,6 +524,7 @@ Public Class TCBL_COMP
             Label_RES.Text = "Le numéro de série " & TextBox_ENS.Text & " est tracé."
             TextBox_ENS.Text = ""
             TextBox_ENS.Focus()
+
             'vérifier la quantité de l'of  
             If dt_NS_TRAC.Rows.Count = Convert.ToDecimal(Replace(Label_QT_OF.Text, ".", ",")) Then
                 TextBox_OF.Text = ""
@@ -530,7 +537,5 @@ Public Class TCBL_COMP
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
         End Try
-
     End Sub
-
 End Class

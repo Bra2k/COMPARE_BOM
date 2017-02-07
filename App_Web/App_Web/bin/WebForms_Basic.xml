@@ -3714,54 +3714,54 @@ Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web._Default._ImageButton1">
+<member name="F:App_Web._Default._Parcel2">
 <summary>
-Contrôle ImageButton1.
+Contrôle Parcel2.
 </summary>
 <remarks>
 Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web._Default._ImageButton2">
+<member name="F:App_Web._Default._Ensemble">
 <summary>
-Contrôle ImageButton2.
+Contrôle Ensemble.
 </summary>
 <remarks>
 Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web._Default._ImageButton3">
+<member name="F:App_Web._Default._Imp_STW">
 <summary>
-Contrôle ImageButton3.
+Contrôle Imp_STW.
 </summary>
 <remarks>
 Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web._Default._ImageButton5">
+<member name="F:App_Web._Default._Etiquette">
 <summary>
-Contrôle ImageButton5.
+Contrôle Etiquette.
 </summary>
 <remarks>
 Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web._Default._ImageButton6">
+<member name="F:App_Web._Default._Composant2">
 <summary>
-Contrôle ImageButton6.
+Contrôle Composant2.
 </summary>
 <remarks>
 Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web._Default._ImageButton8">
+<member name="F:App_Web._Default._Compare_file">
 <summary>
-Contrôle ImageButton8.
+Contrôle Compare_file.
 </summary>
 <remarks>
 Champ généré automatiquement.
@@ -3786,9 +3786,9 @@ Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web._Default._test3">
+<member name="F:App_Web._Default._Test3">
 <summary>
-Contrôle test3.
+Contrôle Test3.
 </summary>
 <remarks>
 Champ généré automatiquement.
@@ -3804,36 +3804,36 @@ Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web._Default._ImageButton4">
+<member name="F:App_Web._Default._Composant3">
 <summary>
-Contrôle ImageButton4.
+Contrôle Composant3.
 </summary>
 <remarks>
 Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web._Default._ImageButton7">
+<member name="F:App_Web._Default._Parcel3">
 <summary>
-Contrôle ImageButton7.
+Contrôle Parcel3.
 </summary>
 <remarks>
 Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web._Default._ImageButton9">
+<member name="F:App_Web._Default._Composant4">
 <summary>
-Contrôle ImageButton9.
+Contrôle Composant4.
 </summary>
 <remarks>
 Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web._Default._ImageButton10">
+<member name="F:App_Web._Default._Battery2">
 <summary>
-Contrôle ImageButton10.
+Contrôle Battery2.
 </summary>
 <remarks>
 Champ généré automatiquement.
@@ -3849,162 +3849,162 @@ Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web._Default._ImageButton11">
+<member name="F:App_Web._Default._Sticker2">
 <summary>
-Contrôle ImageButton11.
+Contrôle Sticker2.
 </summary>
 <remarks>
 Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web._Default._ImageButton12">
+<member name="F:App_Web._Default._Parcle4">
 <summary>
-Contrôle ImageButton12.
+Contrôle Parcle4.
 </summary>
 <remarks>
 Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web._Default._ImageButton13">
+<member name="F:App_Web._Default._Parcel5">
 <summary>
-Contrôle ImageButton13.
+Contrôle Parcel5.
 </summary>
 <remarks>
 Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web._Default._ImageButton14">
+<member name="F:App_Web._Default._Parcel6">
 <summary>
-Contrôle ImageButton14.
+Contrôle Parcel6.
 </summary>
 <remarks>
 Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web._Default._ImageButton15">
+<member name="F:App_Web._Default._Computer">
 <summary>
-Contrôle ImageButton15.
+Contrôle Computer.
 </summary>
 <remarks>
 Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web._Default._ImageButton16">
+<member name="F:App_Web._Default._Config">
 <summary>
-Contrôle ImageButton16.
+Contrôle Config.
 </summary>
 <remarks>
 Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web._Default._ImageButton17">
+<member name="F:App_Web._Default._Test_Fonc">
 <summary>
-Contrôle ImageButton17.
+Contrôle Test_Fonc.
 </summary>
 <remarks>
 Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web._Default._ImageButton18">
+<member name="F:App_Web._Default._Sticker3">
 <summary>
-Contrôle ImageButton18.
+Contrôle Sticker3.
 </summary>
 <remarks>
 Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web._Default._ImageButton19">
+<member name="F:App_Web._Default._Barcode2">
 <summary>
-Contrôle ImageButton19.
+Contrôle Barcode2.
 </summary>
 <remarks>
 Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web._Default._ImageButton20">
+<member name="F:App_Web._Default._Compare_file2">
 <summary>
-Contrôle ImageButton20.
+Contrôle Compare_file2.
 </summary>
 <remarks>
 Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web._Default._ImageButton21">
+<member name="F:App_Web._Default._Log_diaries">
 <summary>
-Contrôle ImageButton21.
+Contrôle Log_diaries.
 </summary>
 <remarks>
 Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web._Default._ImageButton22">
+<member name="F:App_Web._Default._test4">
 <summary>
-Contrôle ImageButton22.
+Contrôle test4.
 </summary>
 <remarks>
 Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web._Default._ImageButton23">
+<member name="F:App_Web._Default._Indic2">
 <summary>
-Contrôle ImageButton23.
+Contrôle Indic2.
 </summary>
 <remarks>
 Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web._Default._ImageButton24">
+<member name="F:App_Web._Default._Ensemble2">
 <summary>
-Contrôle ImageButton24.
+Contrôle Ensemble2.
 </summary>
 <remarks>
 Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web._Default._ImageButton25">
+<member name="F:App_Web._Default._Imp_STW2">
 <summary>
-Contrôle ImageButton25.
+Contrôle Imp_STW2.
 </summary>
 <remarks>
 Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web._Default._ImageButton26">
+<member name="F:App_Web._Default._Banc_Test">
 <summary>
-Contrôle ImageButton26.
+Contrôle Banc_Test.
 </summary>
 <remarks>
 Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web._Default._ImageButton27">
+<member name="F:App_Web._Default._Composant5">
 <summary>
-Contrôle ImageButton27.
+Contrôle Composant5.
 </summary>
 <remarks>
 Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web._Default._ImageButton28">
+<member name="F:App_Web._Default._Battery3">
 <summary>
-Contrôle ImageButton28.
+Contrôle Battery3.
 </summary>
 <remarks>
 Champ généré automatiquement.

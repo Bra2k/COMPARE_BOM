@@ -13,11 +13,9 @@
             <asp:View ID="View_DATA_ENTR" runat="server">
                 <table>
                     <tr>
-                        <td><label>Entrer l&#39;OF :&nbsp;<asp:TextBox ID="TextBox_OF" runat="server"></asp:TextBox>
-                            </label></td></tr>
+                        <td><label>Entrer l&#39;OF :&nbsp;<asp:TextBox ID="TextBox_OF" runat="server"></asp:TextBox></label></td></tr>
                     <tr>
-                        <td><label>Entrer l&#39;OP :&nbsp;<asp:TextBox ID="TextBox_OP" runat="server"></asp:TextBox>
-                            </label></td></tr>
+                        <td><label>Entrer l&#39;OP :&nbsp;<asp:TextBox ID="TextBox_OP" runat="server"></asp:TextBox></label></td></tr>
                     <tr>
                         <td><asp:CheckBox ID="CheckBox_GENE_ETI_ENS" runat="server" Text="&nbsp;Générer les étiquettes d'ensemble" AutoPostBack="True" /></td></tr>
                     <tr>
@@ -27,11 +25,12 @@
                 <asp:Button ID="Button_VALI_ENTER" runat="server" Text="Valider" BackColor="#002F60" Font-Bold="True" ForeColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" Height="40px" Width="180px" />
             </asp:View>
             <asp:View ID="View_SAIS_ENS" runat="server">
-                Entrer le numéro d&#39;ensemble :
+                <label>Entrer le numéro d&#39;ensemble :</label>
                 <asp:TextBox ID="TextBox_ENS" runat="server" AutoPostBack="True"></asp:TextBox>
                 <br />
                 <br />
-                Options de saisie :<br />
+                <label>Options de saisie :</label>
+                <br />
                 <br />
                 <asp:CheckBox ID="CheckBox_SAI_AUTO" runat="server" Checked="True" Text="Mode saisie automatique" AutoPostBack="True" />
                 <br />

@@ -20,8 +20,8 @@
         <tr>
             <td><label>Code Article Eolane :</label></td>
             <td><asp:Label ID="Label_CD_ARTI_ECO" runat="server" ToolTip="#CD_ARTI_ECO"></asp:Label></td>
-            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Désignation de l&#39;article :</label></td>
-            <td><asp:Label ID="Label_NM_DSGT_ARTI" runat="server" ToolTip="#NM_DSGT_ARTI"></asp:Label></td></tr>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Désignation de l&#39;article :</label>
+            <asp:Label ID="Label_NM_DSGT_ARTI" runat="server" ToolTip="#NM_DSGT_ARTI"></asp:Label></td></tr>
         <tr>
             <td><label>Code article client :</label></td>
             <td><asp:TextBox ID="TextBox_CD_ARTI_CLIE" runat="server" ToolTip="#CD_ARTI_CLIE" Enabled="False"></asp:TextBox></td>
@@ -45,22 +45,30 @@
             <asp:View ID="View_VOID_GENE_CLIE" runat="server">
             </asp:View>
             <asp:View ID="View_PARA_GENE_CLIE" runat="server">
-                Base :
+                <label>Base :</label>
                 <asp:TextBox ID="TextBox_BASE_NU_CLIE" runat="server" Enabled="False"></asp:TextBox>
                 &nbsp;(modifiable via la page
                 <asp:HyperLink ID="HyperLink_CONF_ARTI1" runat="server" NavigateUrl="~/PagesMembres/Digital_Factory/CONF_ARTI.aspx">Configurer un nouvel article pour le colisage</asp:HyperLink>
-                )<br />
-                Incrémentation (Flanc) :
+                )
+                <br />
+                <label>Incrémentation (Flanc) :</label>
                 <asp:TextBox ID="TextBox_ICMT_NU_CLI" runat="server" Enabled="False"></asp:TextBox>
                 &nbsp;(modifiable via la page
                 <asp:HyperLink ID="HyperLink_CONF_ARTI2" runat="server" NavigateUrl="~/PagesMembres/Digital_Factory/CONF_ARTI.aspx">Configurer un nouvel article pour le colisage</asp:HyperLink>
-                )<br /> Format :
+                )
+                <br />
+                <label>Format :</label>
                 <asp:TextBox ID="TextBox_FORM_NU_CLIE" runat="server" AutoPostBack="True"></asp:TextBox>
-                &nbsp;(Légende : % = incrémentation au delà de la base 10 des lettres seront insérées; A = 10, B = 11, etc...)<br /> Exemple : %%%%%-%%% sur une base 36 pourra donner A10E3-005<br /> Critère de génération :
+                &nbsp;(Légende : % = incrémentation au delà de la base 10 des lettres seront insérées; A = 10, B = 11, etc...)
+                <br /> Exemple : %%%%%-%%% sur une base 36 pourra donner A10E3-005
+                <br />
+                <label>Critère de génération :</label>
                 <asp:DropDownList ID="DropDownList_CRIT_GENE_NU_SER" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource_CRIT_GENE_NU_SER" DataTextField="NM_CRIT" DataValueField="NM_CRIT">
                 </asp:DropDownList>
-                <asp:SqlDataSource ID="SqlDataSource_CRIT_GENE_NU_SER" runat="server" ConnectionString="<%$ ConnectionStrings:SERCELConnectionString %>" SelectCommand="SELECT [NM_CRIT]
-  FROM [APP_WEB_ECO].[dbo].[DTM_REF_LIST_CRIT_GENE_NUM]"></asp:SqlDataSource>
+                <asp:SqlDataSource ID="SqlDataSource_CRIT_GENE_NU_SER" runat="server" ConnectionString="<%$ ConnectionStrings:SERCELConnectionString %>" 
+                        SelectCommand="SELECT [NM_CRIT]
+                                       FROM [APP_WEB_ECO].[dbo].[DTM_REF_LIST_CRIT_GENE_NUM]">
+                </asp:SqlDataSource>
                 <asp:CheckBox ID="CheckBox_REPR_NU_SER_REBU" runat="server" AutoPostBack="True" Text="Reprendre des numéros de série rebutés ou perdus" />
                 <br />
             </asp:View>
