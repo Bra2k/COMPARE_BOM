@@ -58,6 +58,43 @@ Public Class Class_DIG_FACT
         Dim sfich As String = My.Settings.RPTR_TPRR & "\" & CInt(Int((1000 * Rnd()) + 1)) & "_" & Path.GetFileName(sFichier)
         Dim sw As StreamWriter
 
+        'Génération des étiquettes AVALUN
+        If sNU_CART.Length <= 6 Then 'Vérification s'il s'agit d'un carton (> 100.000) ou d'un numero de série (< 100.000)
+            Dim sfich_AVA As String = My.Settings.RPTR_TPRR & "\" & CInt(Int((1000 * Rnd()) + 1)) & "_" & Path.GetFileName("\\ceapp03\Sources\Digital Factory\Etiquettes\AVALUN\AVALUN.prn")
+            COMM_APP_WEB_COPY_FILE("\\ceapp03\Sources\Digital Factory\Etiquettes\AVALUN\AVALUN.prn", sfich_AVA, True)
+            If File.Exists(sfich_AVA) Then
+                Dim sr_AVA = New StreamReader(sfich_AVA, System.Text.Encoding.UTF8)
+                sData = sr_AVA.ReadToEnd()
+                sr_AVA.Close()
+                sData = Replace(sData, "#REF", "03760097080008")
+                sNU_CART = Convert.ToDecimal(sNU_CART) + 1
+                Dim length As Integer = sNU_CART.Length
+                Select Case length
+                    Case 1
+                        sData = Replace(sData, "#OF_SER_NUM", sNU_OF & "00000" & sNU_CART)
+                    Case 2
+                        sData = Replace(sData, "#OF_SER_NUM", sNU_OF & "0000" & sNU_CART)
+                    Case 3
+                        sData = Replace(sData, "#OF_SER_NUM", sNU_OF & "000" & sNU_CART)
+                    Case 4
+                        sData = Replace(sData, "#OF_SER_NUM", sNU_OF & "00" & sNU_CART)
+                    Case 5
+                        sData = Replace(sData, "#OF_SER_NUM", sNU_OF & "0" & sNU_CART)
+                    Case 6
+                        sData = Replace(sData, "#OF_SER_NUM", sNU_OF & sNU_CART)
+                End Select
+                Dim ser_num_Query As String = "INSERT INTO [dbo].[DTM_NU_SER]
+									            ([NM_CRIT], [NU_SER], [NM_TYPE], [DT_CREA])
+								               VALUES
+									            ('" & sNU_OF & "', '" & sNU_CART & "', 'Numéro de série Eolane', getdate())"
+                Try
+                    SQL_REQ_ACT(ser_num_Query, "Data Source=cedb03,1433;Initial Catalog=" & Replace(Replace(My.Computer.Name, "CEDB03", "MES_Digital_Factory_DEV"), "CEAPP03", "MES_Digital_Factory") & ";Integrated Security=False;User ID=sa;Password=mdpsa@SQL;Connect Timeout=7200;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False")
+                Catch ex As Exception
+                    LOG_Erreur(GetCurrentMethod, ex.Message)
+                End Try
+            End If
+        End If
+
         Try
             If File.Exists(sfich) Then My.Computer.FileSystem.DeleteFile(sfich)
             COMM_APP_WEB_COPY_FILE(sFichier, sfich, True)
@@ -104,50 +141,6 @@ Public Class Class_DIG_FACT
             sData = Replace(sData, "#NU_BL", sNU_BL)
             sData = Replace(sData, "#NU_CART", sNU_CART)
             sData = Replace(sData, "#CD_FNS", App_Web.Class_DIG_FACT_SQL.DIG_FACT_SQL_GET_PARA(sNM_CLIE, "Format du code fournisseur"))
-
-            'Génération etiquettes AVALUN
-            Dim sfich_AVA As String = My.Settings.RPTR_TPRR & "\" & CInt(Int((1000 * Rnd()) + 1)) & "_" & Path.GetFileName("\\ceapp03\Sources\Digital Factory\Etiquettes\AVALUN\AVALUN.prn")
-            COMM_APP_WEB_COPY_FILE("\\ceapp03\Sources\Digital Factory\Etiquettes\AVALUN\AVALUN.prn", sfich_AVA, True)
-            If File.Exists(sfich_AVA) Then
-                Dim sr_AVA = New StreamReader(sfich_AVA, System.Text.Encoding.UTF8)
-                sData = sr_AVA.ReadToEnd()
-                sr_AVA.Close()
-
-                sData = Replace(sData, "#REF", "03760097080008")
-
-                sNU_CART = Convert.ToDecimal(sNU_CART) + 1
-                Dim length As Integer = sNU_CART.Length
-                Select Case length
-                    Case 1
-                        sData = Replace(sData, "#OF_SER_NUM", sNU_OF & "00000" & sNU_CART)
-                    Case 2
-                        sData = Replace(sData, "#OF_SER_NUM", sNU_OF & "0000" & sNU_CART)
-                    Case 3
-                        sData = Replace(sData, "#OF_SER_NUM", sNU_OF & "000" & sNU_CART)
-                    Case 4
-                        sData = Replace(sData, "#OF_SER_NUM", sNU_OF & "00" & sNU_CART)
-                    Case 5
-                        sData = Replace(sData, "#OF_SER_NUM", sNU_OF & "0" & sNU_CART)
-                    Case 6
-                        sData = Replace(sData, "#OF_SER_NUM", sNU_OF & sNU_CART)
-                End Select
-
-                Dim ser_num_Query As String = "INSERT INTO [dbo].[DTM_NU_SER]
-									([NM_CRIT],
-									[NU_SER],
-									[NM_TYPE],
-									[DT_CREA])
-								VALUES
-									('" & sNU_OF & "',
-									 '" & sNU_CART & "',
-									 'Numéro de série Eolane',
-									 getdate())"
-                Try
-                    SQL_REQ_ACT(ser_num_Query, "Data Source=cedb03,1433;Initial Catalog=" & Replace(Replace(My.Computer.Name, "CEDB03", "MES_Digital_Factory_DEV"), "CEAPP03", "MES_Digital_Factory") & ";Integrated Security=False;User ID=sa;Password=mdpsa@SQL;Connect Timeout=7200;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False")
-                Catch ex As Exception
-                    LOG_Erreur(GetCurrentMethod, ex.Message)
-                End Try
-            End If
 
             If dt_ETAT_CTRL.Columns.Contains("DropDownList_CRIT_GENE_NU_SER") Then
                 Select Case dt_ETAT_CTRL(0)("DropDownList_CRIT_GENE_NU_SER").ToString

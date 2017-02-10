@@ -241,7 +241,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>01/19/2017 15:39:23</publishTime>
     </File>
     <File Include="bin/App_Web.dll">
-      <publishTime>02/10/2017 12:01:55</publishTime>
+      <publishTime>02/10/2017 14:56:50</publishTime>
     </File>
     <File Include="bin/AspNet.ScriptManager.bootstrap.dll">
       <publishTime>01/19/2017 15:39:32</publishTime>
@@ -421,10 +421,10 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>01/19/2017 15:39:36</publishTime>
     </File>
     <File Include="bin/roslyn/vbc.exe">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>01/19/2017 15:39:36</publishTime>
     </File>
     <File Include="bin/roslyn/VBCSCompiler.exe">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>01/19/2017 15:39:36</publishTime>
     </File>
     <File Include="bin/roslyn/VBCSCompiler.exe.config">
       <publishTime>01/19/2017 15:39:36</publishTime>
@@ -445,7 +445,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>01/19/2017 15:39:34</publishTime>
     </File>
     <File Include="bin/WebForms_Basic.xml">
-      <publishTime>02/10/2017 12:01:55</publishTime>
+      <publishTime>02/10/2017 14:56:50</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>01/19/2017 15:39:37</publishTime>
@@ -679,7 +679,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>01/19/2017 15:39:32</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>02/10/2017 12:02:09</publishTime>
+      <publishTime>02/10/2017 14:57:10</publishTime>
     </File>
   </ItemGroup>
 </Project>
