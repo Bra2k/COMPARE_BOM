@@ -105,6 +105,50 @@ Public Class Class_DIG_FACT
             sData = Replace(sData, "#NU_CART", sNU_CART)
             sData = Replace(sData, "#CD_FNS", App_Web.Class_DIG_FACT_SQL.DIG_FACT_SQL_GET_PARA(sNM_CLIE, "Format du code fournisseur"))
 
+            'Génération etiquettes AVALUN
+            Dim sfich_AVA As String = My.Settings.RPTR_TPRR & "\" & CInt(Int((1000 * Rnd()) + 1)) & "_" & Path.GetFileName("\\ceapp03\Sources\Digital Factory\Etiquettes\AVALUN\AVALUN.prn")
+            COMM_APP_WEB_COPY_FILE("\\ceapp03\Sources\Digital Factory\Etiquettes\AVALUN\AVALUN.prn", sfich_AVA, True)
+            If File.Exists(sfich_AVA) Then
+                Dim sr_AVA = New StreamReader(sfich_AVA, System.Text.Encoding.UTF8)
+                sData = sr_AVA.ReadToEnd()
+                sr_AVA.Close()
+
+                sData = Replace(sData, "#REF", "03760097080008")
+
+                sNU_CART = Convert.ToDecimal(sNU_CART) + 1
+                Dim length As Integer = sNU_CART.Length
+                Select Case length
+                    Case 1
+                        sData = Replace(sData, "#OF_SER_NUM", sNU_OF & "00000" & sNU_CART)
+                    Case 2
+                        sData = Replace(sData, "#OF_SER_NUM", sNU_OF & "0000" & sNU_CART)
+                    Case 3
+                        sData = Replace(sData, "#OF_SER_NUM", sNU_OF & "000" & sNU_CART)
+                    Case 4
+                        sData = Replace(sData, "#OF_SER_NUM", sNU_OF & "00" & sNU_CART)
+                    Case 5
+                        sData = Replace(sData, "#OF_SER_NUM", sNU_OF & "0" & sNU_CART)
+                    Case 6
+                        sData = Replace(sData, "#OF_SER_NUM", sNU_OF & sNU_CART)
+                End Select
+
+                Dim ser_num_Query As String = "INSERT INTO [dbo].[DTM_NU_SER]
+									([NM_CRIT],
+									[NU_SER],
+									[NM_TYPE],
+									[DT_CREA])
+								VALUES
+									('" & sNU_OF & "',
+									 '" & sNU_CART & "',
+									 'Numéro de série Eolane',
+									 getdate())"
+                Try
+                    SQL_REQ_ACT(ser_num_Query, "Data Source=cedb03,1433;Initial Catalog=" & Replace(Replace(My.Computer.Name, "CEDB03", "MES_Digital_Factory_DEV"), "CEAPP03", "MES_Digital_Factory") & ";Integrated Security=False;User ID=sa;Password=mdpsa@SQL;Connect Timeout=7200;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False")
+                Catch ex As Exception
+                    LOG_Erreur(GetCurrentMethod, ex.Message)
+                End Try
+            End If
+
             If dt_ETAT_CTRL.Columns.Contains("DropDownList_CRIT_GENE_NU_SER") Then
                 Select Case dt_ETAT_CTRL(0)("DropDownList_CRIT_GENE_NU_SER").ToString
             'Select Case COMM_APP_WEB_GET_PARA(sCD_ARTI_ECO & "|" & sTYPE_ETIQ, "DropDownList_CRIT_GENE_NU_SER", "ASP.pagesmembres_digital_factory_impr_etiq_prn_aspx")
@@ -178,8 +222,8 @@ Public Class Class_DIG_FACT
     Public Shared Function DIG_FACT_IMPR_PDF(sFichier As String, sNU_OF As String, sNU_BL As String, sTYPE_ETIQ As String,
                                          sNU_CLIE As String, sNU_ECO As String, sNU_CART As String, sNB_QT As String,
                                          sNB_CART As String, sNU_PAL As String, dtVar As DataTable,
-                                        Optional dtLIST_DATA As DataTable = Nothing, Optional i_DEBU_LIGN As Integer = 0,
-                                          Optional sDossier As String = "vide") As String
+                                         Optional dtLIST_DATA As DataTable = Nothing, Optional i_DEBU_LIGN As Integer = 0,
+                                         Optional sDossier As String = "vide") As String
 
         Dim sData As String = "", sCD_ARTI_ECO As String = "", sNM_CLIE As String = "", sDSGT_ARTI As String = ""
         Dim sData_Crit As String = "", sDT_PROD As String = Now
@@ -456,9 +500,7 @@ Public Class Class_DIG_FACT_SQL
         Finally
             SQL_Connexion = SQL_CLOS(SQL_Connexion)
         End Try
-
         Return sid_passage
-
     End Function
 
     Public Shared Sub DIG_FACT_SQL_SET_PARA(sCRIT As String, sNM_PARA As String, sVAL_PARA As String)
@@ -489,7 +531,6 @@ Public Class Class_DIG_FACT_SQL
             'LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
         End Try
-
         Return dt
     End Function
 
@@ -564,7 +605,7 @@ Public Class Class_DIG_FACT_SQL
 
         Try
             dt = SQL_SELE_TO_DT("SELECT *
-                                   FROM [dbo].[V_CFGR_ARTI_ECO]
+                                  FROM [dbo].[V_CFGR_ARTI_ECO]
                                   WHERE [CD_ARTI] = '" & sCD_ARTI_ECO & "'", sChaineConnexion)
             Return dt
         Catch ex As Exception
@@ -578,7 +619,7 @@ Public Class Class_DIG_FACT_SQL
 
         Try
             dt = SQL_SELE_TO_DT("SELECT *
-                                   FROM [dbo].[V_CFGR_CLIE]
+                                  FROM [dbo].[V_CFGR_CLIE]
                                   WHERE [NM_CLIE] = '" & sNM_CLIE & "'", sChaineConnexion)
             Return dt
         Catch ex As Exception
