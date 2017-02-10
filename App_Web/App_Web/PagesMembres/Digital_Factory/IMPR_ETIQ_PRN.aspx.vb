@@ -11,7 +11,6 @@ Public Class IMPR_ETIQ_PRN
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Label_DT_EXP.Text = Now
-
     End Sub
 
     Protected Sub CheckBox_NU_SER_ECO_GENE_AUTO_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox_NU_SER_ECO_GENE_AUTO.CheckedChanged
@@ -21,7 +20,6 @@ Public Class IMPR_ETIQ_PRN
             TextBox_NU_SER_ECO.Enabled = True
         End If
         If Label_CD_ARTI_ECO.Text <> "" And DropDownList_NM_ETI.SelectedValue <> "" Then COMM_APP_WEB_PARA_AFFI_SAVE(Label_CD_ARTI_ECO.Text & "|" & DropDownList_NM_ETI.SelectedValue, "CheckBox_NU_SER_ECO_GENE_AUTO", CheckBox_NU_SER_ECO_GENE_AUTO.Checked)
-
     End Sub
 
     Protected Sub TextBox_NU_OF_TextChanged(sender As Object, e As EventArgs) Handles TextBox_NU_OF.TextChanged
@@ -81,7 +79,6 @@ Public Class IMPR_ETIQ_PRN
             Else
                 TextBox_NU_CMDE.Enabled = True
             End If
-
 
             'recherche du dernier carton
             'COMM_APP_WEB_PARA_AFFI_LOAD(Label_CD_ARTI_ECO.Text & "|" & DropDownList_NM_ETI.SelectedValue, "CheckBox_RECH_DERN_NU_CART")
@@ -341,8 +338,6 @@ Public Class IMPR_ETIQ_PRN
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
         End Try
-
-
     End Sub
 
     Protected Sub TextBox_FICH_MODE_TextChanged(sender As Object, e As EventArgs) Handles TextBox_FICH_MODE.TextChanged

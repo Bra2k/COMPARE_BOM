@@ -6,6 +6,7 @@ Imports App_Web.Class_DIG_FACT_SQL
 Imports System.Data.SqlClient
 Imports App_Web.Class_SQL
 Imports App_Web.Class_COMM_APP_WEB
+Imports System.IO
 
 Public Class TCBL_COMP
     Inherits System.Web.UI.Page
@@ -53,7 +54,6 @@ Public Class TCBL_COMP
                 If rdt_CD_ARTI_ENS_SENS_SAP("Repère") = "PRODUIT" Then
                     compteur = compteur + 1
                 End If
-
             Next
             GridView_REPE.DataSource = dt_SS_ENS
             GridView_REPE.DataBind()
@@ -86,9 +86,16 @@ Public Class TCBL_COMP
             End If
             COMM_APP_WEB_PARA_AFFI_LOAD(Label_CD_ARTI.Text & "(" & Label_OP.Text & ")", "CheckBox_GENE_ETI_ENS", View_DATA_ENTR)
 
+            'Si la TextBox de génération des étiquettes est cochée
             If CheckBox_GENE_ETI_ENS.Checked = True Then
-                'générer un numéro d'ensemble par la base via sp sql
-                'TextBox_ENS.Text = 123
+                Dim last_ser_num As String = "SELECT [NU_SER_DERN] FROM [dbo].[V_DER_DTM_NU_SER] WHERE [NM_CRIT] = '" & TextBox_OF.Text & "'"
+                Dim dt As DataTable = SQL_SELE_TO_DT(last_ser_num, sChaineConnexion)
+                If dt Is Nothing Then
+                    last_ser_num = "0"
+                Else
+                    last_ser_num = dt(0)("NU_SER_DERN").ToString
+                End If
+                DIG_FACT_IMPR_ETIQ("\\ceapp03\Sources\Digital Factory\Etiquettes\AVALUN\AVALUN.prn", TextBox_OF.Text, "", "Numéro de série Eolane", "", TextBox_OF.Text & (Convert.ToDecimal(last_ser_num) + 1).ToString, last_ser_num, "", "", Nothing)
             End If
 
             'MultiView_Tracabilité.SetActiveView(View_SAIS_ENS)
@@ -108,7 +115,6 @@ Public Class TCBL_COMP
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
         End Try
-
     End Sub
 
     Protected Sub TextBox_ENS_TextChanged(sender As Object, e As EventArgs) Handles TextBox_ENS.TextChanged

@@ -3,8 +3,12 @@
     <link href="App_Themes/CSS/CSS_MediaQuery.css" rel="stylesheet" type="text/css" />
         <script type="text/javascript" src="Scripts/snow.js"></script>
         <script type="text/javascript">
-            window.onload = function () {
-                snow.init(80);
+            var cdate = new Date();
+            var cmois = cdate.getMonth() + 1;
+            if (cmois == '12' || cmois == '1' || cmois == '2') {
+                window.onload = function () {
+                    snow.init(80);
+                };
             };
         </script>
         <div class="headinfo" style="width: 236px">
