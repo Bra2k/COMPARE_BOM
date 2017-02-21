@@ -11,7 +11,8 @@ Imports PdfSharp
 Imports PdfSharp.Drawing
 Imports PdfSharp.Drawing.Layout
 Imports PdfSharp.Pdf
-Imports App_Web.class_pdf
+Imports App_Web.Class_PDF
+
 Public Class Class_COMM_APP_WEB
 
     Public Shared Function COMM_APP_WEB_CLEA_REPE(sRepère As String) As String
@@ -54,7 +55,7 @@ Public Class Class_COMM_APP_WEB
         Dim firstLine As Boolean = True
         Try
             If IO.File.Exists(savePath) Then
-                Using sr As New StreamReader(savePath)
+                Using sr As New StreamReader(savePath, Encoding.UTF8)
                     While Not sr.EndOfStream
                         If firstLine Then
                             firstLine = False

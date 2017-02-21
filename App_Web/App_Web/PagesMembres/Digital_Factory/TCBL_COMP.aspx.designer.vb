@@ -221,6 +221,15 @@ Partial Public Class TCBL_COMP
     Protected WithEvents TextBox_ENS As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
+    '''Contrôle Button_reload_impress.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents Button_reload_impress As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
     '''Contrôle MultiView_BASC_SAI_SEL.
     '''</summary>
     '''<remarks>

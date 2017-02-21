@@ -58,6 +58,8 @@
                         <td style="width: 200px"><a class="info" href="#"><asp:ImageButton ID="EASY" ImageUrl="~\App_Themes\ICON_COMPARE\easy.ico" runat="server" Height="100px" Width="100px" PostBackUrl="http://10.100.13.22/auth" /><span>Vers portail EASY</span></a></td>
                         <td style="width: 200px"><a class="info" href="#"><asp:ImageButton ID="HELLO" ImageUrl="~\App_Themes\ICON_COMPARE\intranet.ico" runat="server" Height="100px" Width="100px" PostBackUrl="http://10.100.13.17/Intranet/accueil.html" /><span>Vers portail HELLO</span></a></td></tr>
                 <% End If %>
+                <tr>
+                    <td style="width: 200px"><a class="info" href="#"><asp:ImageButton ID="ALMS_button" ImageUrl="~\App_Themes\ICON_COMPARE\injecter-seringue.ico" runat="server" Height="100px" Width="100px" PostBackUrl="~/PagesMembres/Production/ALMS/ALMS_IMPORT.aspx" /><span>Vers page import ALMS</span></a></td></tr>
             </table>
         <% Else If session("department") = "Production" Then %>
         <table class="tab_menu">
@@ -85,7 +87,7 @@
                 <tr>
                     <td style="width: 200px"><a class="info" href="#"><asp:ImageButton ID="Parcel" ImageUrl="~\App_Themes\ICON_COMPARE\parcel2.ico" runat="server" Height="100px" Width="100px" PostBackUrl="~/PagesMembres/Digital_factory/CLSg.aspx" /><span>Vers page colisage</span></a></td>
                     <td style="width: 200px"><a class="info" href="#"><asp:ImageButton ID="Composant3" ImageUrl="~\App_Themes\ICON_COMPARE\composant2.ico" runat="server" Height="100px" Width="100px" PostBackUrl="~/PagesMembres/Digital_Factory/TCBL_COMP.aspx" /><span>Vers page composants</span></a></td></tr>
-            <% Else If session("samaccountname") = "SO_GACNO" Then %>
+            <% ElseIf Session("samaccountname") = "SO_GACNO" Then %>
                 <tr>
                     <td style="width: 200px"><a class="info" href="#"><asp:ImageButton ID="Parcel3" ImageUrl="~\App_Themes\ICON_COMPARE\parcel2.ico" runat="server" Height="100px" Width="100px" PostBackUrl="~/PagesMembres/Digital_factory/CLSg.aspx" /><span>Vers page colisage</span></a></td>
                     <td style="width: 200px"><a class="info" href="#"><asp:ImageButton ID="Composant4" ImageUrl="~\App_Themes\ICON_COMPARE\composant2.ico" runat="server" Height="100px" Width="100px" PostBackUrl="~/PagesMembres/Digital_Factory/TCBL_COMP.aspx" /><span>Vers page composants</span></a></td>

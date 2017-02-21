@@ -6,7 +6,6 @@ Imports System.Data.SqlClient
 Imports App_Web.Class_SAP_DATA
 Imports App_Web.Class_EXCEL
 Imports App_Web.Class_WORD
-Imports System.DirectoryServices
 Imports App_Web.Class_SQL
 Imports App_Web.Class_COMM_APP_WEB
 Public Class Comparaison_BOM
@@ -62,7 +61,6 @@ Public Class Comparaison_BOM
             Select Case Right(savePath, 3)
                 Case "PDF", "pdf"
                     'WORD_PDF2TXT(savePath, "c:\sources\temp_App_Web\essai.txt")
-
                 Case "xls", "lsx" 'récupération des onglets du fichier excel
                     Dim dt_ONGL_EXCE As DataTable = EXCE_LIST_ONGL(savePath)
                     If dt_ONGL_EXCE Is Nothing Then Throw New Exception("Aucun onglet trouvé")
