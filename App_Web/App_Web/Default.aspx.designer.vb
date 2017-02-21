@@ -176,6 +176,15 @@ Partial Public Class _Default
     Protected WithEvents HELLO As Global.System.Web.UI.WebControls.ImageButton
     
     '''<summary>
+    '''Contrôle ALMS_button.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents ALMS_button As Global.System.Web.UI.WebControls.ImageButton
+    
+    '''<summary>
     '''Contrôle Parcel2.
     '''</summary>
     '''<remarks>

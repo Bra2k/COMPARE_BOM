@@ -59,31 +59,33 @@ Public Class Class_DIG_FACT
         Dim sw As StreamWriter
 
         'Génération des étiquettes AVALUN
-        If sNU_CART.Length <= 6 Then 'Vérification s'il s'agit d'un carton (> 100.000) ou d'un numero de série (< 100.000)
+        If sNU_CART.Length <= 6 Then 'Vérification s'il s'agit d'un carton (> 999.999) ou d'un numero de série (< 999.999)
             Dim sfich_AVA As String = My.Settings.RPTR_TPRR & "\" & CInt(Int((1000 * Rnd()) + 1)) & "_" & Path.GetFileName("\\ceapp03\Sources\Digital Factory\Etiquettes\AVALUN\AVALUN.prn")
             COMM_APP_WEB_COPY_FILE("\\ceapp03\Sources\Digital Factory\Etiquettes\AVALUN\AVALUN.prn", sfich_AVA, True)
-            If File.Exists(sfich_AVA) Then
-                Dim sr_AVA = New StreamReader(sfich_AVA, System.Text.Encoding.UTF8)
+            'If File.Exists(sfich_AVA) Then
+            Dim sr_AVA = New StreamReader(sfich_AVA, Encoding.UTF8)
                 sData = sr_AVA.ReadToEnd()
                 sr_AVA.Close()
                 sData = Replace(sData, "#REF", "03760097080008")
                 sNU_CART = Convert.ToDecimal(sNU_CART) + 1
                 Dim length As Integer = sNU_CART.Length
-                Select Case length
-                    Case 1
-                        sData = Replace(sData, "#OF_SER_NUM", sNU_OF & "00000" & sNU_CART)
-                    Case 2
-                        sData = Replace(sData, "#OF_SER_NUM", sNU_OF & "0000" & sNU_CART)
-                    Case 3
-                        sData = Replace(sData, "#OF_SER_NUM", sNU_OF & "000" & sNU_CART)
-                    Case 4
-                        sData = Replace(sData, "#OF_SER_NUM", sNU_OF & "00" & sNU_CART)
-                    Case 5
-                        sData = Replace(sData, "#OF_SER_NUM", sNU_OF & "0" & sNU_CART)
-                    Case 6
-                        sData = Replace(sData, "#OF_SER_NUM", sNU_OF & sNU_CART)
-                End Select
-                Dim ser_num_Query As String = "INSERT INTO [dbo].[DTM_NU_SER]
+
+            Select Case length
+                Case 1
+                    sData = Replace(sData, "#OF_SER_NUM", sNU_OF & "00000" & sNU_CART)
+                Case 2
+                    sData = Replace(sData, "#OF_SER_NUM", sNU_OF & "0000" & sNU_CART)
+                Case 3
+                    sData = Replace(sData, "#OF_SER_NUM", sNU_OF & "000" & sNU_CART)
+                Case 4
+                    sData = Replace(sData, "#OF_SER_NUM", sNU_OF & "00" & sNU_CART)
+                Case 5
+                    sData = Replace(sData, "#OF_SER_NUM", sNU_OF & "0" & sNU_CART)
+                Case 6
+                    sData = Replace(sData, "#OF_SER_NUM", sNU_OF & sNU_CART)
+            End Select
+
+            Dim ser_num_Query As String = "INSERT INTO [dbo].[DTM_NU_SER]
 									            ([NM_CRIT], [NU_SER], [NM_TYPE], [DT_CREA])
 								               VALUES
 									            ('" & sNU_OF & "', '" & sNU_CART & "', 'Numéro de série Eolane', getdate())"
@@ -92,7 +94,8 @@ Public Class Class_DIG_FACT
                 Catch ex As Exception
                     LOG_Erreur(GetCurrentMethod, ex.Message)
                 End Try
-            End If
+            'Exit Sub
+            'End If
         End If
 
         Try
@@ -209,7 +212,6 @@ Public Class Class_DIG_FACT
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Exit Sub
         End Try
-
     End Sub
 
     Public Shared Function DIG_FACT_IMPR_PDF(sFichier As String, sNU_OF As String, sNU_BL As String, sTYPE_ETIQ As String,

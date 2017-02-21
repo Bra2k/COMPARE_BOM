@@ -11,6 +11,20 @@ Imports System.IO
 Public Class TCBL_COMP
     Inherits System.Web.UI.Page
     Dim sChaineConnexion As String = "Data Source=cedb03,1433;Initial Catalog=" & Replace(Replace(My.Computer.Name, "CEDB03", "MES_Digital_Factory_DEV"), "CEAPP03", "MES_Digital_Factory") & ";Integrated Security=False;User ID=sa;Password=mdpsa@SQL;Connect Timeout=7200;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
+    Public Sub Button_reload_impress_Click(sender As Object, e As EventArgs) Handles Button_reload_impress.Click
+        Dim last_ser_num As String = "SELECT [NU_SER_DERN] FROM [dbo].[V_DER_DTM_NU_SER] WHERE [NM_CRIT] = '" & TextBox_OF.Text & "'"
+        Dim dt As DataTable = SQL_SELE_TO_DT(last_ser_num, sChaineConnexion)
+        If dt Is Nothing Then
+            last_ser_num = "0"
+        Else
+            last_ser_num = dt(0)("NU_SER_DERN").ToString
+        End If
+        Try
+            DIG_FACT_IMPR_ETIQ("\\ceapp03\Sources\Digital Factory\Etiquettes\AVALUN\AVALUN.prn", TextBox_OF.Text, "", "Numéro de série Eolane", "", TextBox_OF.Text & (Convert.ToDecimal(last_ser_num) + 1).ToString, last_ser_num, "", "", Nothing)
+        Catch ex As Exception
+            LOG_Erreur(GetCurrentMethod, ex.Message)
+        End Try
+    End Sub
 
     Public Sub Button_VALI_ENTER_Click(sender As Object, e As EventArgs) Handles Button_VALI_ENTER.Click
 

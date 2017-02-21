@@ -64,6 +64,7 @@
             <asp:View ID="View_SAIS_ENS" runat="server">
                 <label>Entrer le numéro d&#39;ensemble :</label>
                 <asp:TextBox ID="TextBox_ENS" runat="server" AutoPostBack="True"></asp:TextBox>
+                <asp:Button ID="Button_reload_impress" runat="server" Text="Imprimer l'étiquette suivante" BackColor="#002F60" Font-Bold="True" ForeColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" Height="40px" Width="205px"/>
                 <br />
                 <asp:MultiView ID="MultiView_BASC_SAI_SEL" runat="server" ActiveViewIndex="0">
                     <asp:View ID="View_VOID" runat="server">

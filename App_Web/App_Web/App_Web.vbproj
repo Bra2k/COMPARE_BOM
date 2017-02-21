@@ -283,6 +283,7 @@
     <Content Include="App_Themes\ICON_COMPARE\fichier_banc_test.ico" />
     <Content Include="App_Themes\ICON_COMPARE\imprimeur_stw.ico" />
     <Content Include="App_Themes\ICON_COMPARE\indicateur2.ico" />
+    <Content Include="App_Themes\ICON_COMPARE\injecter-seringue.ico" />
     <Content Include="App_Themes\ICON_COMPARE\intranet.ico" />
     <Content Include="App_Themes\ICON_COMPARE\log_diaries4.ico" />
     <Content Include="App_Themes\ICON_COMPARE\parcel2.ico" />
@@ -338,6 +339,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="PagesMembres\Production\ALMS\ADD_MAC_ADRE.aspx" />
+    <Content Include="PagesMembres\Production\ALMS\ALMS_IMPORT.aspx" />
     <Content Include="PagesMembres\Production\Controle_Reception\AJOU_FNS_CTRL_RCP.aspx" />
     <Content Include="PagesMembres\Production\CST_HEUR_SAI_BW.aspx" />
     <Content Include="PagesMembres\Production\Saisie_des_defauts\CHX_REPE_SIMI.aspx" />
@@ -565,6 +567,13 @@
     </Compile>
     <Compile Include="PagesMembres\Production\ALMS\ADD_MAC_ADRE.aspx.vb">
       <DependentUpon>ADD_MAC_ADRE.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="PagesMembres\Production\ALMS\ALMS_IMPORT.aspx.designer.vb">
+      <DependentUpon>ALMS_IMPORT.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagesMembres\Production\ALMS\ALMS_IMPORT.aspx.vb">
+      <DependentUpon>ALMS_IMPORT.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="PagesMembres\Production\Controle_Reception\AJOU_FNS_CTRL_RCP.aspx.designer.vb">
