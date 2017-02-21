@@ -77,15 +77,6 @@ Partial Public Class TCBL_COMP
     Protected WithEvents Button_VALI_ENTER As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
-    '''Contrôle View_SAIS_OTLG.
-    '''</summary>
-    '''<remarks>
-    '''Champ généré automatiquement.
-    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-    '''</remarks>
-    Protected WithEvents View_SAIS_OTLG As Global.System.Web.UI.WebControls.View
-    
-    '''<summary>
     '''Contrôle View_CONT_LOT_ID_COMP.
     '''</summary>
     '''<remarks>

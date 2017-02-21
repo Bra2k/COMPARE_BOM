@@ -228,6 +228,11 @@ Public Class CLSG
                        WHERE [NU_NS_EOL] = '" & TextBox_NU_SER_ECO.Text & "' AND [NU_OF] = '" & TextBox_NU_OF.Text & "'"
             dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
             If Not dt Is Nothing Then Throw New Exception("Le numéro de série " & TextBox_NU_SER_ECO.Text & " a déjà été scanné.")
+            'vérification que n° série appartient à l'OF
+            If dt_CFGR_ARTI_ECO(0)("Vérification cohérence OF numero serie eolane").ToString = "1" Then 'vérification
+                Dim sNU_SER_ECO As String = TextBox_NU_SER_ECO.Text, sOF As String = TextBox_NU_OF.Text
+                If sNU_SER_ECO.IndexOf(sOF) = -1 Then Throw New Exception("Le numéro de série " & sNU_SER_ECO & " n'appartient pas à l'OF " & sOF)
+            End If
 
             'Saisie suivante
             TextBox_NU_SER_ECO.Enabled = False

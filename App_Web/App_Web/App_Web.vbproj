@@ -326,6 +326,7 @@
     <Content Include="PagesMembres\Digital_Factory\IMPR_ETIQ_PRN.aspx" />
     <Content Include="PagesMembres\Digital_Factory\TCBL_COMP.aspx" />
     <Content Include="PagesMembres\Digital_Factory\TCBL_ESB_SS_ESB_V2.aspx" />
+    <Content Include="PagesMembres\Digital_Factory\TCBL_OPRT.aspx" />
     <Content Include="PagesMembres\Methodes\Comparaison_BOM.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
@@ -510,6 +511,13 @@
     <Compile Include="PagesMembres\Digital_Factory\TCBL_ESB_SS_ESB_V2.aspx.vb">
       <DependentUpon>TCBL_ESB_SS_ESB_V2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PagesMembres\Digital_Factory\TCBL_OPRT.aspx.designer.vb">
+      <DependentUpon>TCBL_OPRT.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagesMembres\Digital_Factory\TCBL_OPRT.aspx.vb">
+      <DependentUpon>TCBL_OPRT.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="PagesMembres\Methodes\Comparaison_BOM.aspx.designer.vb">
       <DependentUpon>Comparaison_BOM.aspx</DependentUpon>

@@ -747,4 +747,42 @@ Public Class Class_SAP_DATA
         LOG_Msg(GetCurrentMethod, "Lecture de la table STPO effectuée avec le filtre : " & sFILT)
         Return dtSTPO
     End Function
+
+    Public Shared Function SAP_DATA_Z_ORDOPEINFO_GET(V_AUFNR As String, Optional V_VORNR As String = "", Optional LOG_SAP As String = "") As DataTable
+        Dim dt_ORDOPEINFO_GET As New DataTable
+        Dim oSAP, RFC, oRFC_RET, oRFC_MSG, oT_ORDOPEINFO_GET As New Object
+
+        Try
+            oSAP = SAP_DATA_CONN()
+            RFC = oSAP.Add("Z_LOG_ACT_GET")
+            '   If V_PERNR <> "" Then V_PERNR = StrDup(8 - Len(V_PERNR), "0") & V_PERNR
+            RFC.exports("V_AUFNR") = V_AUFNR
+            RFC.exports("V_VORNR") = V_VORNR
+            RFC.exports("LOG_SAP") = LOG_SAP
+
+            oT_ORDOPEINFO_GET = RFC.Tables("T_ORDOPEINFO_GET")
+
+            If RFC.Call <> -1 Then Throw New Exception(RFC.exception)
+
+            For Each o_COL_T_LOG_ACT As Object In oT_ORDOPEINFO_GET.Columns
+                dt_ORDOPEINFO_GET.Columns.Add(o_COL_T_LOG_ACT.Name, Type.GetType("System.String"))
+            Next
+            For iRowIndex = 1 To oT_ORDOPEINFO_GET.RowCount
+                dt_ORDOPEINFO_GET.Rows.Add()
+                For iIndex = 1 To oT_ORDOPEINFO_GET.ColumnCount - 1
+                    dt_ORDOPEINFO_GET.Rows(dt_ORDOPEINFO_GET.Rows.Count - 1)(iIndex - 1) = oT_ORDOPEINFO_GET.Value(iRowIndex, iIndex)
+                Next
+            Next
+        Catch ex As Exception
+            LOG_Erreur(GetCurrentMethod, ex.Message)
+            Return Nothing
+        Finally
+            oSAP = SAP_DATA_DECO(oSAP)
+        End Try
+
+        LOG_Msg(GetCurrentMethod, "Exécution de la fonction Z_ORDOPEINFO_GET réussie. " & oT_ORDOPEINFO_GET.Rows.Count & " lignes trouvées.")
+        Return oT_ORDOPEINFO_GET
+
+    End Function
+
 End Class

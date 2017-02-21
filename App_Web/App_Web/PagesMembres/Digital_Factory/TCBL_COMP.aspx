@@ -27,8 +27,6 @@
                 <br />
                 <asp:Button ID="Button_VALI_ENTER" runat="server" Text="Valider" BackColor="#002F60" Font-Bold="True" ForeColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" Height="40px" Width="180px"/>
             </asp:View>
-            <asp:View ID="View_SAIS_OTLG" runat="server">
-            </asp:View>
             <asp:View ID="View_CONT_LOT_ID_COMP" runat="server">
                 <asp:RadioButtonList ID="RadioButtonList_SELE_COMP" runat="server" AutoPostBack="True" RepeatDirection="Horizontal" Width="500px">
                     <asp:ListItem Selected="True">Bac</asp:ListItem>
