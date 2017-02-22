@@ -32,6 +32,24 @@ Partial Public Class ALMS_IMPORT
     Protected WithEvents View_ALMS_DATA_ENTR As Global.System.Web.UI.WebControls.View
     
     '''<summary>
+    '''Contrôle Calendar_VAL.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents Calendar_VAL As Global.System.Web.UI.WebControls.Calendar
+    
+    '''<summary>
+    '''Contrôle Calendar_APP.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents Calendar_APP As Global.System.Web.UI.WebControls.Calendar
+    
+    '''<summary>
     '''Contrôle FileUpload_ALMS.
     '''</summary>
     '''<remarks>
@@ -39,24 +57,6 @@ Partial Public Class ALMS_IMPORT
     '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
     '''</remarks>
     Protected WithEvents FileUpload_ALMS As Global.System.Web.UI.WebControls.FileUpload
-    
-    '''<summary>
-    '''Contrôle Calendar_DEB.
-    '''</summary>
-    '''<remarks>
-    '''Champ généré automatiquement.
-    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-    '''</remarks>
-    Protected WithEvents Calendar_DEB As Global.System.Web.UI.WebControls.Calendar
-    
-    '''<summary>
-    '''Contrôle Calendar_FIN.
-    '''</summary>
-    '''<remarks>
-    '''Champ généré automatiquement.
-    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-    '''</remarks>
-    Protected WithEvents Calendar_FIN As Global.System.Web.UI.WebControls.Calendar
     
     '''<summary>
     '''Contrôle Button_ENVOYER.

@@ -8,16 +8,10 @@
                 <h2>Production : ALMS</h2>
             </div>
             <br />
-            <div class="ALMS_upload">
-            <label>Séléctionner un fichier à importer :</label>
-            <br />
-            <asp:FileUpload ID="FileUpload_ALMS" runat="server" BackColor="#002F60" Font-Bold="True" ForeColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" />
-            </div>
-            <br />
             <table style="width:100%;">
                 <tr>
                     <td><label>Sélectionner une date de validation :</label><br />
-                        <asp:Calendar ID="Calendar_DEB" runat="server" BackColor="White" BorderColor="#999999" CellPadding="4" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="Black" Height="180px" Width="200px">
+                        <asp:Calendar ID="Calendar_VAL" runat="server" BackColor="White" BorderColor="#999999" CellPadding="4" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="Black" Height="180px" Width="200px">
                         <DayHeaderStyle BackColor="#CCCCCC" Font-Bold="True" Font-Size="7pt" />
                         <NextPrevStyle VerticalAlign="Bottom" />
                         <OtherMonthDayStyle ForeColor="#808080" />
@@ -29,7 +23,7 @@
                         </asp:Calendar>        
                     </td>
                     <td><label>Sélectionner une date d'application :</label><br />
-                        <asp:Calendar ID="Calendar_FIN" runat="server" BackColor="White" BorderColor="#999999" CellPadding="4" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="Black" Height="180px" Width="200px">
+                        <asp:Calendar ID="Calendar_APP" runat="server" BackColor="White" BorderColor="#999999" CellPadding="4" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="Black" Height="180px" Width="200px">
                         <DayHeaderStyle BackColor="#CCCCCC" Font-Bold="True" Font-Size="7pt" />
                         <NextPrevStyle VerticalAlign="Bottom" />
                         <OtherMonthDayStyle ForeColor="#808080" />
@@ -42,6 +36,12 @@
                     </td>
                 </tr>
             </table>
+            <br />
+            <div class="ALMS_upload">
+            <label>Séléctionner un fichier à importer :</label>
+            <br />
+            <asp:FileUpload ID="FileUpload_ALMS" runat="server" BackColor="#002F60" Font-Bold="True" ForeColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" />
+            </div>
             <br />
             <div class="envoyer">
                 <asp:Button ID="Button_ENVOYER" runat="server" Text="ENVOYER" BackColor="#002F60" Font-Bold="True" ForeColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" Height="40px" Width="180px"/>

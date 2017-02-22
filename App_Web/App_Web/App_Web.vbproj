@@ -287,6 +287,7 @@
     <Content Include="App_Themes\ICON_COMPARE\intranet.ico" />
     <Content Include="App_Themes\ICON_COMPARE\log_diaries4.ico" />
     <Content Include="App_Themes\ICON_COMPARE\parcel2.ico" />
+    <Content Include="App_Themes\ICON_COMPARE\sensing.ico" />
     <Content Include="App_Themes\ICON_COMPARE\test2.ico" />
     <Content Include="App_Themes\ICON_COMPARE\tester_fonc.ico" />
     <Content Include="App_Themes\PIC_CHAR\14740.png" />
@@ -349,6 +350,7 @@
     <Content Include="PagesMembres\Provisoire\IMPR_RAPP_TCBL_STW_V2.aspx" />
     <Content Include="PagesMembres\Provisoire\IMPR_RAPP_TCBL_STW_AFAC_6-2017.aspx" />
     <Content Include="PagesMembres\Provisoire\TEST_BATT_TUCK.aspx" />
+    <Content Include="PagesMembres\Provisoire\SENSING.aspx" />
     <Content Include="PagesMembres\RDRC_PAGE_MEMB.aspx" />
     <Content Include="Scripts\snow.js" />
     <Content Include="Web.config">
@@ -638,6 +640,13 @@
     <Compile Include="PagesMembres\Provisoire\TEST_BATT_TUCK.aspx.vb">
       <DependentUpon>TEST_BATT_TUCK.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PagesMembres\Provisoire\SENSING.aspx.designer.vb">
+      <DependentUpon>SENSING.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagesMembres\Provisoire\SENSING.aspx.vb">
+      <DependentUpon>SENSING.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="PagesMembres\RDRC_PAGE_MEMB.aspx.designer.vb">
       <DependentUpon>RDRC_PAGE_MEMB.aspx</DependentUpon>

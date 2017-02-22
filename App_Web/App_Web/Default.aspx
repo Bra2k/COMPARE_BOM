@@ -59,7 +59,8 @@
                         <td style="width: 200px"><a class="info" href="#"><asp:ImageButton ID="HELLO" ImageUrl="~\App_Themes\ICON_COMPARE\intranet.ico" runat="server" Height="100px" Width="100px" PostBackUrl="http://10.100.13.17/Intranet/accueil.html" /><span>Vers portail HELLO</span></a></td></tr>
                 <% End If %>
                 <tr>
-                    <td style="width: 200px"><a class="info" href="#"><asp:ImageButton ID="ALMS_button" ImageUrl="~\App_Themes\ICON_COMPARE\injecter-seringue.ico" runat="server" Height="100px" Width="100px" PostBackUrl="~/PagesMembres/Production/ALMS/ALMS_IMPORT.aspx" /><span>Vers page import ALMS</span></a></td></tr>
+                    <td style="width: 200px"><a class="info" href="#"><asp:ImageButton ID="ALMS_button" ImageUrl="~\App_Themes\ICON_COMPARE\injecter-seringue.ico" runat="server" Height="100px" Width="100px" PostBackUrl="~/PagesMembres/Production/ALMS/ALMS_IMPORT.aspx" /><span>Vers page import ALMS</span></a></td>
+                    <td style="width: 200px"><a class="info" href="#"><asp:ImageButton ID="SENSING_button" ImageUrl="~\App_Themes\ICON_COMPARE\sensing.ico" runat="server" Height="100px" Width="100px" PostBackUrl="~/PagesMembres/Provisoire/SENSING.aspx" /><span>Vers page SENSING</span></a></td></tr>
             </table>
         <% Else If session("department") = "Production" Then %>
         <table class="tab_menu">

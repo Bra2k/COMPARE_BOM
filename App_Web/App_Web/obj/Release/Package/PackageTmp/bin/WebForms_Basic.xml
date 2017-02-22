@@ -3732,6 +3732,15 @@ Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
+<member name="F:App_Web._Default._SENSING_button">
+<summary>
+Contrôle SENSING_button.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
 <member name="F:App_Web._Default._Parcel2">
 <summary>
 Contrôle Parcel2.
@@ -4301,27 +4310,27 @@ Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
+<member name="F:App_Web.ALMS_IMPORT._Calendar_VAL">
+<summary>
+Contrôle Calendar_VAL.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.ALMS_IMPORT._Calendar_APP">
+<summary>
+Contrôle Calendar_APP.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
 <member name="F:App_Web.ALMS_IMPORT._FileUpload_ALMS">
 <summary>
 Contrôle FileUpload_ALMS.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.ALMS_IMPORT._Calendar_DEB">
-<summary>
-Contrôle Calendar_DEB.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.ALMS_IMPORT._Calendar_FIN">
-<summary>
-Contrôle Calendar_FIN.
 </summary>
 <remarks>
 Champ généré automatiquement.
