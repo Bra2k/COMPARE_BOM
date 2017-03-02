@@ -190,55 +190,60 @@ Public Class IMPR_ETIQ_PRN
         'Catch ex As Exception
         '    LOG_Erreur(GetCurrentMethod, ex.Message)
         '    Exit Sub
-        'End Try
+        'End Try 
         Dim dtvar As New DataTable
-        dtvar.Columns.Add("0", Type.GetType("System.String"))
-        dtvar.Columns.Add("1", Type.GetType("System.String"))
-        dtvar.Rows.Add()
-        dtvar.Rows(dtvar.Rows.Count - 1)("1") = TextBox_VAR_1.Text
-        dtvar.Rows.Add()
-        dtvar.Rows(dtvar.Rows.Count - 1)("1") = TextBox_VAR_2.Text
-        dtvar.Rows.Add()
-        dtvar.Rows(dtvar.Rows.Count - 1)("1") = TextBox_VAR_3.Text
-        dtvar.Rows.Add()
-        dtvar.Rows(dtvar.Rows.Count - 1)("1") = TextBox_VAR_4.Text
-        dtvar.Rows.Add()
-        dtvar.Rows(dtvar.Rows.Count - 1)("1") = TextBox_VAR_5.Text
-        dtvar.Rows.Add()
-        dtvar.Rows(dtvar.Rows.Count - 1)("1") = TextBox_VAR_6.Text
-        dtvar.Rows.Add()
-        dtvar.Rows(dtvar.Rows.Count - 1)("1") = TextBox_VAR_7.Text
-        dtvar.Rows.Add()
-        dtvar.Rows(dtvar.Rows.Count - 1)("1") = TextBox_VAR_8.Text
-        dtvar.Rows.Add()
-        dtvar.Rows(dtvar.Rows.Count - 1)("1") = TextBox_VAR_9.Text
-        dtvar.Rows.Add()
-        dtvar.Rows(dtvar.Rows.Count - 1)("1") = TextBox_VAR_10.Text
-        dtvar.Rows.Add()
-        dtvar.Rows(dtvar.Rows.Count - 1)("1") = TextBox_VAR_11.Text
-        dtvar.Rows.Add()
-        dtvar.Rows(dtvar.Rows.Count - 1)("1") = TextBox_VAR_12.Text
-        dtvar.Rows.Add()
-        dtvar.Rows(dtvar.Rows.Count - 1)("1") = TextBox_VAR_13.Text
-        dtvar.Rows.Add()
-        dtvar.Rows(dtvar.Rows.Count - 1)("1") = TextBox_VAR_14.Text
-        dtvar.Rows.Add()
-        dtvar.Rows(dtvar.Rows.Count - 1)("1") = TextBox_VAR_15.Text
+        Try
 
-        If CheckBox_GENE_QT_TOTA_OF.Checked = True Then
-            For iEtiquette As Integer = 1 To Session("QT_OF")
+            dtvar.Columns.Add("0", Type.GetType("System.String"))
+            dtvar.Columns.Add("1", Type.GetType("System.String"))
+            dtvar.Rows.Add()
+            dtvar.Rows(dtvar.Rows.Count - 1)("1") = TextBox_VAR_1.Text
+            dtvar.Rows.Add()
+            dtvar.Rows(dtvar.Rows.Count - 1)("1") = TextBox_VAR_2.Text
+            dtvar.Rows.Add()
+            dtvar.Rows(dtvar.Rows.Count - 1)("1") = TextBox_VAR_3.Text
+            dtvar.Rows.Add()
+            dtvar.Rows(dtvar.Rows.Count - 1)("1") = TextBox_VAR_4.Text
+            dtvar.Rows.Add()
+            dtvar.Rows(dtvar.Rows.Count - 1)("1") = TextBox_VAR_5.Text
+            dtvar.Rows.Add()
+            dtvar.Rows(dtvar.Rows.Count - 1)("1") = TextBox_VAR_6.Text
+            dtvar.Rows.Add()
+            dtvar.Rows(dtvar.Rows.Count - 1)("1") = TextBox_VAR_7.Text
+            dtvar.Rows.Add()
+            dtvar.Rows(dtvar.Rows.Count - 1)("1") = TextBox_VAR_8.Text
+            dtvar.Rows.Add()
+            dtvar.Rows(dtvar.Rows.Count - 1)("1") = TextBox_VAR_9.Text
+            dtvar.Rows.Add()
+            dtvar.Rows(dtvar.Rows.Count - 1)("1") = TextBox_VAR_10.Text
+            dtvar.Rows.Add()
+            dtvar.Rows(dtvar.Rows.Count - 1)("1") = TextBox_VAR_11.Text
+            dtvar.Rows.Add()
+            dtvar.Rows(dtvar.Rows.Count - 1)("1") = TextBox_VAR_12.Text
+            dtvar.Rows.Add()
+            dtvar.Rows(dtvar.Rows.Count - 1)("1") = TextBox_VAR_13.Text
+            dtvar.Rows.Add()
+            dtvar.Rows(dtvar.Rows.Count - 1)("1") = TextBox_VAR_14.Text
+            dtvar.Rows.Add()
+            dtvar.Rows(dtvar.Rows.Count - 1)("1") = TextBox_VAR_15.Text
+
+            If CheckBox_GENE_QT_TOTA_OF.Checked = True Then
+                For iEtiquette As Integer = 1 To Session("QT_OF")
+                    App_Web.Class_DIG_FACT.DIG_FACT_IMPR_ETIQ(TextBox_FICH_MODE.Text, TextBox_NU_OF.Text, TextBox_NU_BL.Text, DropDownList_NM_ETI.SelectedValue,
+                                             TextBox_NU_SER_CLIE.Text, TextBox_NU_SER_ECO.Text, TextBox_NU_CART.Text, TextBox_NB_QT.Text,
+                                             TextBox_NB_CART.Text, dtvar, Session("matricule"))
+                    'IMPR_ETIQ_PRN_IMPR(sFichier)
+                Next
+            Else
                 App_Web.Class_DIG_FACT.DIG_FACT_IMPR_ETIQ(TextBox_FICH_MODE.Text, TextBox_NU_OF.Text, TextBox_NU_BL.Text, DropDownList_NM_ETI.SelectedValue,
-                                         TextBox_NU_SER_CLIE.Text, TextBox_NU_SER_ECO.Text, TextBox_NU_CART.Text, TextBox_NB_QT.Text,
-                                         TextBox_NB_CART.Text, dtvar, Session("matricule"))
+                                             TextBox_NU_SER_CLIE.Text, TextBox_NU_SER_ECO.Text, TextBox_NU_CART.Text, TextBox_NB_QT.Text,
+                                             TextBox_NB_CART.Text, dtvar, Session("matricule"))
                 'IMPR_ETIQ_PRN_IMPR(sFichier)
-            Next
-        Else
-            App_Web.Class_DIG_FACT.DIG_FACT_IMPR_ETIQ(TextBox_FICH_MODE.Text, TextBox_NU_OF.Text, TextBox_NU_BL.Text, DropDownList_NM_ETI.SelectedValue,
-                                         TextBox_NU_SER_CLIE.Text, TextBox_NU_SER_ECO.Text, TextBox_NU_CART.Text, TextBox_NB_QT.Text,
-                                         TextBox_NB_CART.Text, dtvar, Session("matricule"))
-            'IMPR_ETIQ_PRN_IMPR(sFichier)
-        End If
-
+            End If
+        Catch ex As Exception
+            LOG_Erreur(GetCurrentMethod, ex.Message)
+            Exit Sub
+        End Try
     End Sub
 
     Protected Sub TextBox_NU_BL_TextChanged(sender As Object, e As EventArgs) Handles TextBox_NU_BL.TextChanged

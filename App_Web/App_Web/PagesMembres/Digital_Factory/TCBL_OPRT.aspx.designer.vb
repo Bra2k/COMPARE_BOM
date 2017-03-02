@@ -68,6 +68,33 @@ Partial Public Class TCBL_OPRT
     Protected WithEvents View_SAIS_OTLG As Global.System.Web.UI.WebControls.View
     
     '''<summary>
+    '''Contrôle MultiView_POST.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents MultiView_POST As Global.System.Web.UI.WebControls.MultiView
+    
+    '''<summary>
+    '''Contrôle View_SAIS_POST_MTRE_GNRQ.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents View_SAIS_POST_MTRE_GNRQ As Global.System.Web.UI.WebControls.View
+    
+    '''<summary>
+    '''Contrôle Label_POST.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents Label_POST As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
     '''Contrôle Label_TYPE_MTRE.
     '''</summary>
     '''<remarks>
@@ -104,6 +131,24 @@ Partial Public Class TCBL_OPRT
     Protected WithEvents Button_VALI_ENTER_OTLG As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
+    '''Contrôle View_SAIS_POST_MULT.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents View_SAIS_POST_MULT As Global.System.Web.UI.WebControls.View
+    
+    '''<summary>
+    '''Contrôle DropDownList_POST.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents DropDownList_POST As Global.System.Web.UI.WebControls.DropDownList
+    
+    '''<summary>
     '''Contrôle View_SAIS_NU_SER_CHEC.
     '''</summary>
     '''<remarks>
@@ -131,6 +176,69 @@ Partial Public Class TCBL_OPRT
     Protected WithEvents MultiView_ETAP As Global.System.Web.UI.WebControls.MultiView
     
     '''<summary>
+    '''Contrôle View_VOID.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents View_VOID As Global.System.Web.UI.WebControls.View
+    
+    '''<summary>
+    '''Contrôle View_CHEC_ETAP.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents View_CHEC_ETAP As Global.System.Web.UI.WebControls.View
+    
+    '''<summary>
+    '''Contrôle Label_CONS.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents Label_CONS As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''Contrôle Image_PHOT_ILST.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents Image_PHOT_ILST As Global.System.Web.UI.WebControls.Image
+    
+    '''<summary>
+    '''Contrôle Button_PASS.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents Button_PASS As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''Contrôle TextBox_VALE.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents TextBox_VALE As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''Contrôle Button_FAIL.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents Button_FAIL As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
     '''Contrôle View_SAIS_TCBL_COMP.
     '''</summary>
     '''<remarks>
@@ -138,6 +246,168 @@ Partial Public Class TCBL_OPRT
     '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
     '''</remarks>
     Protected WithEvents View_SAIS_TCBL_COMP As Global.System.Web.UI.WebControls.View
+    
+    '''<summary>
+    '''Contrôle MultiView_Tracabilité.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents MultiView_Tracabilité As Global.System.Web.UI.WebControls.MultiView
+    
+    '''<summary>
+    '''Contrôle View_CONT_LOT_ID_COMP.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents View_CONT_LOT_ID_COMP As Global.System.Web.UI.WebControls.View
+    
+    '''<summary>
+    '''Contrôle RadioButtonList_SELE_COMP.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents RadioButtonList_SELE_COMP As Global.System.Web.UI.WebControls.RadioButtonList
+    
+    '''<summary>
+    '''Contrôle MultiView_SELE_COMP.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents MultiView_SELE_COMP As Global.System.Web.UI.WebControls.MultiView
+    
+    '''<summary>
+    '''Contrôle View_BAC.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents View_BAC As Global.System.Web.UI.WebControls.View
+    
+    '''<summary>
+    '''Contrôle TextBox_NU_BAC.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents TextBox_NU_BAC As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''Contrôle View_ID_COMP.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents View_ID_COMP As Global.System.Web.UI.WebControls.View
+    
+    '''<summary>
+    '''Contrôle TextBox_ID_COMP.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents TextBox_ID_COMP As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''Contrôle View_CD_LOT.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents View_CD_LOT As Global.System.Web.UI.WebControls.View
+    
+    '''<summary>
+    '''Contrôle MultiView_SAIS_CD_LOT.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents MultiView_SAIS_CD_LOT As Global.System.Web.UI.WebControls.MultiView
+    
+    '''<summary>
+    '''Contrôle View_SAIS_CD_LOT_SLCN.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents View_SAIS_CD_LOT_SLCN As Global.System.Web.UI.WebControls.View
+    
+    '''<summary>
+    '''Contrôle View_SAIS_CD_LOT_SAIS.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents View_SAIS_CD_LOT_SAIS As Global.System.Web.UI.WebControls.View
+    
+    '''<summary>
+    '''Contrôle Label_CD_COMP.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents Label_CD_COMP As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''Contrôle TextBox_CD_LOT_COMP.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents TextBox_CD_LOT_COMP As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''Contrôle View_SAI_SOUS_ENSE.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents View_SAI_SOUS_ENSE As Global.System.Web.UI.WebControls.View
+    
+    '''<summary>
+    '''Contrôle Label_CD_SS_ENS.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents Label_CD_SS_ENS As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''Contrôle TextBox_SS_ENS.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents TextBox_SS_ENS As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''Contrôle GridView_REPE.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents GridView_REPE As Global.System.Web.UI.WebControls.GridView
     
     '''<summary>
     '''Contrôle Label_OF.
@@ -203,6 +473,15 @@ Partial Public Class TCBL_OPRT
     Protected WithEvents Label_QT_OF As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
+    '''Contrôle Label_QT_REST_OF.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents Label_QT_REST_OF As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
     '''Contrôle GridView_SN_TRAC.
     '''</summary>
     '''<remarks>
@@ -210,4 +489,13 @@ Partial Public Class TCBL_OPRT
     '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
     '''</remarks>
     Protected WithEvents GridView_SN_TRAC As Global.System.Web.UI.WebControls.GridView
+    
+    '''<summary>
+    '''Contrôle Label_RES.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents Label_RES As Global.System.Web.UI.WebControls.Label
 End Class

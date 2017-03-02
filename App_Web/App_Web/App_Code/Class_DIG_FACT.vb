@@ -59,16 +59,16 @@ Public Class Class_DIG_FACT
         Dim sw As StreamWriter
 
         'Génération des étiquettes AVALUN
-        If sNU_CART.Length <= 6 Then 'Vérification s'il s'agit d'un carton (> 999.999) ou d'un numero de série (< 999.999)
+        If sNU_CART.Length <= 6 And sNU_CART <> "" Then 'Vérification s'il s'agit d'un carton (> 999.999) ou d'un numero de série (< 999.999)
             Dim sfich_AVA As String = My.Settings.RPTR_TPRR & "\" & CInt(Int((1000 * Rnd()) + 1)) & "_" & Path.GetFileName("\\ceapp03\Sources\Digital Factory\Etiquettes\AVALUN\AVALUN.prn")
             COMM_APP_WEB_COPY_FILE("\\ceapp03\Sources\Digital Factory\Etiquettes\AVALUN\AVALUN.prn", sfich_AVA, True)
             'If File.Exists(sfich_AVA) Then
             Dim sr_AVA = New StreamReader(sfich_AVA, Encoding.UTF8)
-                sData = sr_AVA.ReadToEnd()
-                sr_AVA.Close()
-                sData = Replace(sData, "#REF", "03760097080008")
-                sNU_CART = Convert.ToDecimal(sNU_CART) + 1
-                Dim length As Integer = sNU_CART.Length
+            sData = sr_AVA.ReadToEnd()
+            sr_AVA.Close()
+            sData = Replace(sData, "#REF", "03760097080008")
+            sNU_CART = Convert.ToDecimal(sNU_CART) + 1
+            Dim length As Integer = sNU_CART.Length
 
             Select Case length
                 Case 1
@@ -89,11 +89,11 @@ Public Class Class_DIG_FACT
 									            ([NM_CRIT], [NU_SER], [NM_TYPE], [DT_CREA])
 								               VALUES
 									            ('" & sNU_OF & "', '" & sNU_CART & "', 'Numéro de série Eolane', getdate())"
-                Try
-                    SQL_REQ_ACT(ser_num_Query, "Data Source=cedb03,1433;Initial Catalog=" & Replace(Replace(My.Computer.Name, "CEDB03", "MES_Digital_Factory_DEV"), "CEAPP03", "MES_Digital_Factory") & ";Integrated Security=False;User ID=sa;Password=mdpsa@SQL;Connect Timeout=7200;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False")
-                Catch ex As Exception
-                    LOG_Erreur(GetCurrentMethod, ex.Message)
-                End Try
+            Try
+                SQL_REQ_ACT(ser_num_Query, "Data Source=cedb03,1433;Initial Catalog=" & Replace(Replace(My.Computer.Name, "CEDB03", "MES_Digital_Factory_DEV"), "CEAPP03", "MES_Digital_Factory") & ";Integrated Security=False;User ID=sa;Password=mdpsa@SQL;Connect Timeout=7200;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False")
+            Catch ex As Exception
+                LOG_Erreur(GetCurrentMethod, ex.Message)
+            End Try
             'Exit Sub
             'End If
         End If
@@ -141,6 +141,7 @@ Public Class Class_DIG_FACT
 
             'sData = Replace(sData, "#CD_ARTI_CLIE", App_Web.Class_DIG_FACT_SQL.DIG_FACT_SQL_GET_PARA(Trim(sCD_ARTI_ECO), "Code article client"))
             sData = Replace(sData, "#CD_ARTI_CLIE", dt_CFGR_ARTI_ECO(0)("Code article client").ToString)
+            sData = Replace(sData, "#NM_ARTI_CLIE", dt_CFGR_ARTI_ECO(0)("Désignation article client").ToString)
             sData = Replace(sData, "#NU_BL", sNU_BL)
             sData = Replace(sData, "#NU_CART", sNU_CART)
             sData = Replace(sData, "#CD_FNS", App_Web.Class_DIG_FACT_SQL.DIG_FACT_SQL_GET_PARA(sNM_CLIE, "Format du code fournisseur"))
@@ -230,7 +231,7 @@ Public Class Class_DIG_FACT
 
         Randomize()
         If sDossier = "vide" Then
-            sfich = "c:\sources\App_Web\PagesMembres\Digital_Factory\delivery_form_" & CInt(Int((1000 * Rnd()) + 1)) & ".pdf"
+            sfich = "c: \sources\App_Web\PagesMembres\Digital_Factory\delivery_form_" & CInt(Int((1000 * Rnd()) + 1)) & ".pdf"
         Else
             sfich = sDossier & "\delivery_form_" & CInt(Int((1000 * Rnd()) + 1)) & ".pdf"
         End If
@@ -545,11 +546,11 @@ Public Class Class_DIG_FACT_SQL
 
             'récupérer le premier numéro de série rebuté à réimprimer
             sQuerySql = "SELECT     MIN(NU_SER) AS [NU_REGE]
-                           FROM         dbo.V_NU_SER_A_RGNR
-                         GROUP BY NM_CRIT
-                         HAVING      (NM_CRIT = '" & sCritère & "')"
+                           FROM     dbo.V_NU_SER_A_RGNR
+                         GROUP BY   NM_CRIT
+                         HAVING     (NM_CRIT = '" & sCritère & "')"
             dtNU_REGE = SQL_SELE_TO_DT(sQuerySql, sChaineConnexion)
-            If bREPR_NU_SER_REBU = True And Not dtNU_REGE.Rows.Count = 0 Then
+            If bREPR_NU_SER_REBU = True And Not dtNU_REGE Is Nothing Then
                 sNU_SER_GENE = dtNU_REGE(0)("NU_REGE").ToString
             Else
                 'récupérer le dernier généré
@@ -558,10 +559,13 @@ Public Class Class_DIG_FACT_SQL
                               WHERE [NM_CRIT] = '" & sCritère & "' AND [NM_TYPE] = '" & sTypeEtiquette & "'"
                 dtDER_NU_SER = SQL_SELE_TO_DT(sQuerySql, sChaineConnexion)            '
                 'convertir en base 10
-                If dtDER_NU_SER.Rows.Count = 0 Then
+                If dtDER_NU_SER Is Nothing Then
                     iNU_SER_DEC = COMM_APP_WEB_CONV_BASE_N_2_DEC("1", Convert.ToDecimal(sBase))
                 Else
-                    iNU_SER_DEC = COMM_APP_WEB_CONV_BASE_N_2_DEC(dtDER_NU_SER(0)("NU_SER_DERN").ToString, Convert.ToDecimal(sBase))
+                    For iChar As Integer = 1 To Len(sFormat) 'extraction de la partie incrémentale
+                        If Mid(sFormat, iChar, 1) = "%" Then iNU_SER_DEC &= Mid(dtDER_NU_SER(0)("NU_SER_DERN").ToString, iChar, 1)
+                    Next
+                    iNU_SER_DEC = COMM_APP_WEB_CONV_BASE_N_2_DEC(iNU_SER_DEC, Convert.ToDecimal(sBase))
                 End If
 
                 'incrémenter
@@ -585,7 +589,7 @@ Public Class Class_DIG_FACT_SQL
             sQuerySql = "INSERT INTO [dbo].[DTM_NU_SER] ([NM_CRIT], [NU_SER], [NM_TYPE], [DT_CREA])
                               VALUES ('" & sCritère & "', '" & sNU_SER_GENE & "', '" & sTypeEtiquette & "', GETDATE())"
             SQL_REQ_ACT(sQuerySql, sChaineConnexion)
-            DIG_FACT_SQL_P_ADD_PSG_DTM_PSG("Impression numéro de série client", Now(), Now(), System.Net.Dns.GetHostEntry(System.Web.HttpContext.Current.Request.UserHostAddress).HostName(), HttpContext.Current.CurrentHandler.ToString, sMTCL, "", sNU_SER_GENE, "P", sNU_OF)
+            'DIG_FACT_SQL_P_ADD_PSG_DTM_PSG("Impression numéro de série client", Now(), Now(), System.Net.Dns.GetHostEntry(System.Web.HttpContext.Current.Request.UserHostAddress).HostName(), HttpContext.Current.CurrentHandler.ToString, sMTCL, "", sNU_SER_GENE, "P", sNU_OF)
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing

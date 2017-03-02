@@ -754,13 +754,13 @@ Public Class Class_SAP_DATA
 
         Try
             oSAP = SAP_DATA_CONN()
-            RFC = oSAP.Add("Z_LOG_ACT_GET")
+            RFC = oSAP.Add("Z_ORDOPEINFO_GET")
             '   If V_PERNR <> "" Then V_PERNR = StrDup(8 - Len(V_PERNR), "0") & V_PERNR
             RFC.exports("V_AUFNR") = V_AUFNR
             RFC.exports("V_VORNR") = V_VORNR
             RFC.exports("LOG_SAP") = LOG_SAP
 
-            oT_ORDOPEINFO_GET = RFC.Tables("T_ORDOPEINFO_GET")
+            oT_ORDOPEINFO_GET = RFC.Tables("Z_ORDOPEINFO_GET")
 
             If RFC.Call <> -1 Then Throw New Exception(RFC.exception)
 

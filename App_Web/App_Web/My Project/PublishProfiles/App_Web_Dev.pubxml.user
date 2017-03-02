@@ -6,7 +6,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>\\cedb03\sources\App_Web</_PublishTargetUrl>
+    <_PublishTargetUrl>\\cedb03\sources\Dev_app_web</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="About.aspx">
@@ -250,7 +250,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>02/21/2017 08:21:36</publishTime>
     </File>
     <File Include="bin/App_Web.dll">
-      <publishTime>02/21/2017 15:40:30</publishTime>
+      <publishTime>03/01/2017 15:58:54</publishTime>
     </File>
     <File Include="bin/AspNet.ScriptManager.bootstrap.dll">
       <publishTime>02/21/2017 08:21:43</publishTime>
@@ -454,7 +454,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>02/21/2017 08:21:45</publishTime>
     </File>
     <File Include="bin/WebForms_Basic.xml">
-      <publishTime>02/21/2017 15:40:30</publishTime>
+      <publishTime>03/01/2017 15:58:54</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>02/21/2017 08:21:46</publishTime>
@@ -529,16 +529,19 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="PagesMembres/Digital_Factory/IMPR_ETIQ_PRN.aspx">
-      <publishTime>02/21/2017 08:41:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="PagesMembres/Digital_Factory/TCBL_COMP.aspx">
       <publishTime>02/21/2017 15:33:29</publishTime>
     </File>
     <File Include="PagesMembres/Digital_Factory/TCBL_ESB_SS_ESB_V2.aspx">
-      <publishTime>02/21/2017 08:41:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="PagesMembres/Digital_Factory/TCBL_OPRT.aspx">
-      <publishTime>02/21/2017 15:43:45</publishTime>
+      <publishTime>03/01/2017 12:10:08</publishTime>
+    </File>
+    <File Include="PagesMembres/Digital_Factory/TCBL_OPRT.aspx.vb">
+      <publishTime>02/22/2017 09:27:49</publishTime>
     </File>
     <File Include="PagesMembres/Members.aspx">
       <publishTime>02/21/2017 08:21:43</publishTime>
@@ -694,7 +697,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>02/21/2017 08:21:43</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>02/21/2017 15:40:45</publishTime>
+      <publishTime>03/01/2017 15:58:58</publishTime>
     </File>
   </ItemGroup>
 </Project>

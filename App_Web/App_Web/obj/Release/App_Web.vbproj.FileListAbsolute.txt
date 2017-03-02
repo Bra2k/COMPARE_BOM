@@ -544,7 +544,6 @@ D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web\App_Web\bin\fr\Microsoft
 D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web\App_Web\bin\fr\Microsoft.Owin.Security.Google.resources.dll
 D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web\App_Web\bin\fr\Microsoft.Owin.Security.Twitter.resources.dll
 D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web\App_Web\bin\fr\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
-D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web\App_Web\obj\Release\App_Web.vbprojResolveAssemblyReference.cache
 D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web\App_Web\obj\Release\Interop.SAPFunctionsOCX.dll
 D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web\App_Web\obj\Release\Interop.SAPLogonCtrl.dll
 D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web\App_Web\obj\Release\Interop.SAPNETZLib.dll
