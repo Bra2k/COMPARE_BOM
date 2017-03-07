@@ -46,8 +46,7 @@ Public Class TCBL_OPRT
     Protected Sub Button_VALI_ENTER_Click(sender As Object, e As EventArgs) Handles Button_VALI_ENTER.Click
         Dim sQuery As String = "", sNS As String = ""
         Dim dt, dtAFKO, dtAFVC, dtVRESB, dtSTPO, dtSTPU, dt_POST, dt_LIST_NU_SER_TRAC, dt_SS_ENS, dt_CFGR_ARTI_ECO, dt_ETAT_CTRL As New DataTable
-        Dim rdt_CD_ARTI_ENS_SENS_SAP As DataRow
-        Dim i_COUN_VRFC_PROD_SS_ENS As Integer
+
         Try
             'dt = SAP_DATA_Z_ORDOPEINFO_GET(TextBox_OF.Text, DropDownList_OP.SelectedValue)
             dt = SAP_DATA_LECT_OF(TextBox_OF.Text)
@@ -117,82 +116,13 @@ Public Class TCBL_OPRT
             Session("dt_ETAP") = _ETCT_ETAP_OPRT()
 
             MultiView_SAIS_OPRT.SetActiveView(View_SAIS_NU_SER_CHEC)
+            Label_RES.Text = ""
 
             'Si la TextBox de génération des étiquettes est cochée
-            dt_CFGR_ARTI_ECO = DIG_FACT_SQL_CFGR_ARTI_ECO(Trim(Label_CD_ARTI.Text))
-            If dt_CFGR_ARTI_ECO(0)("Génération impression numéro de série").ToString = Label_OP.Text Then
-                Select Case "1"
-                    Case dt_CFGR_ARTI_ECO(0)("Numéro de série Eolane").ToString
-                        dt_ETAT_CTRL = COMM_APP_WEB_ETAT_CTRL(Trim(Label_CD_ARTI.Text) & "|Numéro de série Eolane", "ASP.pagesmembres_digital_factory_impr_etiq_prn_aspx")
-                        If dt_ETAT_CTRL Is Nothing Then Throw New Exception("La base App_Web_Eco n'as pas été configurée pour l'article " & Trim(Label_CD_ARTI.Text))
-                        sNS = Label_OF.Text & DIG_FACT_SQL_GENE_NU_SER_CLIE("10", "1", "%%%%%%", Label_OF.Text, "Numéro de série Eolane", False,
-                                                      Session("matricule"), Label_OF.Text)
-                        If dt_ETAT_CTRL.Columns.Contains("TextBox_FICH_MODE") Then
-                            DIG_FACT_IMPR_ETIQ(dt_ETAT_CTRL(0)("TextBox_FICH_MODE").ToString,
-                                               TextBox_OF.Text, "", "Numéro de série Eolane", "", sNS, "", "", "", Nothing)
-                        End If
-                    Case dt_CFGR_ARTI_ECO(0)("Numéro de série client").ToString
-                        Dim sFORM_NU_CLIE As String = ""
-                        dt_ETAT_CTRL = COMM_APP_WEB_ETAT_CTRL(Trim(Label_CD_ARTI.Text) & "|Numéro de série client", "ASP.pagesmembres_digital_factory_impr_etiq_prn_aspx")
-                        If dt_ETAT_CTRL Is Nothing Then Throw New Exception("La base App_Web_Eco n'as pas été configurée pour l'article " & Trim(Label_CD_ARTI.Text))
-                        If dt_ETAT_CTRL.Columns.Contains("TextBox_FORM_NU_CLIE") = True Then sFORM_NU_CLIE = dt_ETAT_CTRL(0)("TextBox_FORM_NU_CLIE").ToString
-                        sNS = DIG_FACT_SQL_GENE_NU_SER_CLIE(dt_CFGR_ARTI_ECO(0)("Encodage Numéro de série client").ToString,
-                                                            dt_CFGR_ARTI_ECO(0)("Incrémentation flanc").ToString,
-                                                            sFORM_NU_CLIE,
-                                                            Label_CD_ARTI.Text,
-                                                            "Numéro de série client",
-                                                            False,
-                                                            Session("matricule"),
-                                                            Label_OF.Text)
-                        If dt_ETAT_CTRL.Columns.Contains("TextBox_FICH_MODE") Then
-                            DIG_FACT_IMPR_ETIQ(dt_ETAT_CTRL(0)("TextBox_FICH_MODE").ToString,
-                                               TextBox_OF.Text, "", "Numéro de série client", sNS, "", "", "", "", Nothing)
-                        End If
-                End Select
-                Session("sNU_SER_IMPR") = sNS
-            End If
+            _IPRO_ETQT()
 
             'vérification si traçabilité composant à faire
-            Label_RES.Text = ""
-            dt_SS_ENS = App_Web.TCBL_ESB_SS_ESB_V2._LIST_ENS_SS_ENS(TextBox_OF.Text, DropDownList_OP.SelectedValue)
-            If Not dt_SS_ENS Is Nothing Then 'traçabilité composant à faire
-                dt_SS_ENS.Columns.Remove("Numéro de série associé")
-                dt_SS_ENS.Columns.Add("Repère", Type.GetType("System.String"))
-                dt_SS_ENS.Columns.Add("Quantité par produit", Type.GetType("System.String"))
-                dt_SS_ENS.Columns.Add("N° de conteneur", Type.GetType("System.String"))
-                dt_SS_ENS.Columns.Add("Id composant", Type.GetType("System.String"))
-                dt_SS_ENS.Columns.Add("Code lot", Type.GetType("System.String"))
-                dt_SS_ENS.Columns.Add("Quantité restante", Type.GetType("System.String"))
-                dtVRESB = SAP_DATA_READ_VRESB("RSNUM EQ '" & dtAFKO(0)("RSNUM").ToString & "' AND SPRAS EQ 'F' AND VORNR EQ '" & DropDownList_OP.SelectedValue & "'")
-                For Each rVRESB As DataRow In dtVRESB.Rows
-                    rdt_CD_ARTI_ENS_SENS_SAP = dt_SS_ENS.Select("[Code article SAP] = '" & rVRESB("MATNR").ToString & "'").FirstOrDefault
-                    If rdt_CD_ARTI_ENS_SENS_SAP Is Nothing Then Continue For
-                    dtSTPO = SAP_DATA_READ_STPO("STLNR EQ '" & rVRESB("STLNR").ToString & "' and STLKN EQ '" & rVRESB("STLKN").ToString & "' and STPOZ EQ '" & rVRESB("STPOZ").ToString & "'")
-                    rdt_CD_ARTI_ENS_SENS_SAP("Quantité par produit") = Convert.ToDecimal(Replace(dtSTPO(0)("MENGE").ToString, ".", ","))
-                    Select Case rVRESB("MTART").ToString
-                        Case "FERT"
-                            rdt_CD_ARTI_ENS_SENS_SAP("Repère") = "PRODUIT"
-                        Case "HALB"
-                            rdt_CD_ARTI_ENS_SENS_SAP("Repère") = "PRODUIT SEMI-FINI"
-                        Case Else
-                            dtSTPU = SAP_DATA_READ_STPU("STLNR EQ '" & rVRESB("STLNR").ToString & "' and STLKN EQ '" & rVRESB("STLKN").ToString & "' and STPOZ EQ '" & rVRESB("STPOZ").ToString & "'")
-                            If dtSTPU Is Nothing Then Continue For
-                            For Each rdtSTPU As DataRow In dtSTPU.Rows
-                                rdt_CD_ARTI_ENS_SENS_SAP("Repère") &= rdtSTPU("EBORT").ToString & "|"
-                            Next
-                            rdt_CD_ARTI_ENS_SENS_SAP("Repère") = COMM_APP_WEB_STRI_TRIM_RIGHT(rdt_CD_ARTI_ENS_SENS_SAP("Repère"), 1)
-                    End Select
-                    If rdt_CD_ARTI_ENS_SENS_SAP("Repère") = "PRODUIT" Then
-                        i_COUN_VRFC_PROD_SS_ENS += 1
-                    End If
-                Next
-                GridView_REPE.DataSource = dt_SS_ENS
-                GridView_REPE.DataBind()
-                If GridView_REPE.Rows.Count <> i_COUN_VRFC_PROD_SS_ENS Then 's'il y a des sous-ensemble de type différent de produit ou semi-fini alors saisir les codes lot
-                    MultiView_SAIS_OPRT.SetActiveView(View_SAIS_TCBL_COMP)
-                    MultiView_Tracabilité.SetActiveView(View_CONT_LOT_ID_COMP)
-                End If
-            End If
+            _VRFC_TCBL_COMP()
 
         Catch ex As Exception When dt_POST Is Nothing
             LOG_Erreur(GetCurrentMethod, "Pas de poste configuré dans la base, prévenir un méthode")
@@ -204,16 +134,34 @@ Public Class TCBL_OPRT
     Protected Sub Button_VALI_ENTER_OTLG_Click(sender As Object, e As EventArgs) Handles Button_VALI_ENTER_OTLG.Click
 
         Dim sQuery As String = ""
+        Dim dt As New DataTable
         Try
             'vérification qu'il existe (FER-M-0551)
+            sQuery = "SELECT [CD_ARTI]
+                            ,[NM_PARA]
+                            ,[VAL_PARA]
+                            ,[DT_PARA]
+                        FROM [dbo].[V_DER_DTM_REF_PARA]
+                       WHERE CD_ARTI = '" & TextBox_MTRE_GNRQ.Text & "' AND [NM_PARA] = 'Type matériel' AND [VAL_PARA] = '" & Label_TYPE_MTRE.Text & "'"
+            dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
+            If dt Is Nothing Then Throw New Exception("Le matériel n°" & TextBox_MTRE_GNRQ.Text & " n'est pas déclaré dans la base de données. Prévenir un méthode.")
 
-            'vérification si attribué
+            'Dissociation si attribué
+            sQuery = "INSERT INTO [dbo].[DTM_REF_PARA]([NM_CRIT],[NM_PARA],[VAL_PARA],[DT_PARA])
+	                       SELECT [CD_ARTI],'" & TextBox_MTRE_GNRQ.Text & "','0',GETDATE()
+	                         FROM [dbo].[V_DER_DTM_REF_PARA] 
+		                          INNER JOIN (SELECT MAX([DT_PARA]) AS MAX_DT_PARA
+						                        FROM [dbo].[V_DER_DTM_REF_PARA]
+						                       WHERE [NM_PARA] = '" & TextBox_MTRE_GNRQ.Text & "') AS A ON [DT_PARA] = A.MAX_DT_PARA
+	                        WHERE [NM_PARA] = '" & TextBox_MTRE_GNRQ.Text & "' AND [VAL_PARA] = '1'"
+            SQL_REQ_ACT(sQuery, sChaineConnexion)
 
             'enregistrement dans table
             For Each rGridView_LIST_MTRE As GridViewRow In GridView_LIST_MTRE.Rows
                 If rGridView_LIST_MTRE.Cells(0).Text = Label_TYPE_MTRE.Text Then rGridView_LIST_MTRE.Cells(1).Text = TextBox_MTRE_GNRQ.Text
                 If rGridView_LIST_MTRE.Cells(1).Text = "&nbsp;" Then
                     Label_TYPE_MTRE.Text = rGridView_LIST_MTRE.Cells(0).Text
+                    TextBox_MTRE_GNRQ.Text = ""
                     TextBox_MTRE_GNRQ.Focus()
                     Exit Sub
                 End If
@@ -221,7 +169,7 @@ Public Class TCBL_OPRT
 
             'enregistrer
             For Each rGridView_LIST_MTRE As GridViewRow In GridView_LIST_MTRE.Rows
-                LOG_Msg(GetCurrentMethod, rGridView_LIST_MTRE.Cells(2).Text)
+                'LOG_Msg(GetCurrentMethod, rGridView_LIST_MTRE.Cells(2).Text)
                 If rGridView_LIST_MTRE.Cells(2).Text = "G&#233;n&#233;rique" Then
                     sQuery = "INSERT INTO [dbo].[DTM_REF_PARA]([NM_CRIT],[NM_PARA],[VAL_PARA],[DT_PARA])
                                    VALUES ('" & Label_POST.Text & "','" & rGridView_LIST_MTRE.Cells(1).Text & "','1',GETDATE())"
@@ -229,9 +177,21 @@ Public Class TCBL_OPRT
                 End If
             Next
 
+            'Extraire la liste des étapes de l'opération
+            Session("dt_ETAP") = _ETCT_ETAP_OPRT()
+
             MultiView_SAIS_OPRT.SetActiveView(View_SAIS_NU_SER_CHEC)
+            Label_RES.Text = ""
+
+            'Impression étiquette
+            _IPRO_ETQT()
+
+            'vérification si traçabilité composant à faire
+            _VRFC_TCBL_COMP()
 
         Catch ex As Exception
+            TextBox_MTRE_GNRQ.Text = ""
+            TextBox_MTRE_GNRQ.Focus()
             LOG_Erreur(GetCurrentMethod, ex.Message)
         End Try
 
@@ -270,7 +230,7 @@ Public Class TCBL_OPRT
                     End Select
                     Exit Sub
                 End If
-                If Session("sNU_SER_IMPR") <> TextBox_NU_SER.Text Then Throw New Exception("Le numéro de série " & TextBox_NU_SER.Text & " n'est pas identique au dernier numéro de série imprimé " & Session("sNU_SER_IMPR") & ".")
+                If TextBox_NU_SER.Text.Contains(Session("sNU_SER_IMPR").ToString) = False Then Throw New Exception("Le numéro de série " & TextBox_NU_SER.Text & " n'est pas identique au dernier numéro de série imprimé " & Session("sNU_SER_IMPR") & ".")
             End If
             Select Case "1"
                 Case dt_CFGR_ARTI_ECO(0)("Numéro de série Eolane").ToString
@@ -543,7 +503,7 @@ Public Class TCBL_OPRT
                 Label_QT_REST_OF.Text = (Convert.ToDecimal(Replace(Label_QT_OF.Text, ".", ",")) - dt_LIST_NU_SER_TRAC.Rows.Count).ToString
                 If Convert.ToDecimal(Replace(Label_QT_OF.Text, ".", ",")) - dt_LIST_NU_SER_TRAC.Rows.Count = 0 Then 'OF terminé
                     For Each rGridView_LIST_MTRE As GridViewRow In GridView_LIST_MTRE.Rows 'Dissociation du matériel générique
-                        If rGridView_LIST_MTRE.Cells(2).Text = "Générique" Then
+                        If rGridView_LIST_MTRE.Cells(2).Text = "G&#233;n&#233;rique" Then
                             sQuery = "INSERT INTO [dbo].[DTM_REF_PARA]([NM_CRIT],[NM_PARA],[VAL_PARA],[DT_PARA])
                                            VALUES ('" & Label_POST.Text & "','" & rGridView_LIST_MTRE.Cells(1).Text & "','0',GETDATE())"
                             SQL_REQ_ACT(sQuery, sChaineConnexion)
@@ -581,39 +541,7 @@ Public Class TCBL_OPRT
             Else
                 Label_RES.Text = "Le numéro de série " & TextBox_NU_SER.Text & " est passé bon."
                 'imprimer une étiquette
-                'Si la TextBox de génération des étiquettes est cochée
-                dt_CFGR_ARTI_ECO = DIG_FACT_SQL_CFGR_ARTI_ECO(Trim(Label_CD_ARTI.Text))
-                If dt_CFGR_ARTI_ECO(0)("Génération impression numéro de série").ToString = Label_OP.Text Then
-                    Select Case "1"
-                        Case dt_CFGR_ARTI_ECO(0)("Numéro de série Eolane").ToString
-                            dt_ETAT_CTRL = COMM_APP_WEB_ETAT_CTRL(Trim(Label_CD_ARTI.Text) & "|Numéro de série Eolane", "ASP.pagesmembres_digital_factory_impr_etiq_prn_aspx")
-                            If dt_ETAT_CTRL Is Nothing Then Throw New Exception("La base App_Web_Eco n'as pas été configurée pour l'article " & Trim(Label_CD_ARTI.Text))
-                            sNS = Label_OF.Text & DIG_FACT_SQL_GENE_NU_SER_CLIE("10", "1", "%%%%%%", Label_OF.Text, "Numéro de série Eolane", False,
-                                                          Session("matricule"), Label_OF.Text)
-                            If dt_ETAT_CTRL.Columns.Contains("TextBox_FICH_MODE") Then
-                                DIG_FACT_IMPR_ETIQ(dt_ETAT_CTRL(0)("TextBox_FICH_MODE").ToString,
-                                                   TextBox_OF.Text, "", "Numéro de série Eolane", "", sNS, "", "", "", Nothing)
-                            End If
-                        Case dt_CFGR_ARTI_ECO(0)("Numéro de série client").ToString
-                            Dim sFORM_NU_CLIE As String = ""
-                            dt_ETAT_CTRL = COMM_APP_WEB_ETAT_CTRL(Trim(Label_CD_ARTI.Text) & "|Numéro de série client", "ASP.pagesmembres_digital_factory_impr_etiq_prn_aspx")
-                            If dt_ETAT_CTRL Is Nothing Then Throw New Exception("La base App_Web_Eco n'as pas été configurée pour l'article " & Trim(Label_CD_ARTI.Text))
-                            If dt_ETAT_CTRL.Columns.Contains("TextBox_FORM_NU_CLIE") = True Then sFORM_NU_CLIE = dt_ETAT_CTRL(0)("TextBox_FORM_NU_CLIE").ToString
-                            sNS = DIG_FACT_SQL_GENE_NU_SER_CLIE(dt_CFGR_ARTI_ECO(0)("Encodage Numéro de série client").ToString,
-                                                            dt_CFGR_ARTI_ECO(0)("Incrémentation flanc").ToString,
-                                                            sFORM_NU_CLIE,
-                                                            Label_CD_ARTI.Text,
-                                                            "Numéro de série client",
-                                                            False,
-                                                            Session("matricule"),
-                                                            Label_OF.Text)
-                            If dt_ETAT_CTRL.Columns.Contains("TextBox_FICH_MODE") Then
-                                DIG_FACT_IMPR_ETIQ(dt_ETAT_CTRL(0)("TextBox_FICH_MODE").ToString,
-                                               TextBox_OF.Text, "", "Numéro de série client", sNS, "", "", "", "", Nothing)
-                            End If
-                    End Select
-                    Session("sNU_SER_IMPR") = sNS
-                End If
+                _IPRO_ETQT()
             End If
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
@@ -695,40 +623,52 @@ Public Class TCBL_OPRT
     End Function
 
     Public Function _AFCG_POST_NMCT_TPLG() As String
-        Dim sQuery As String = ""
+        Dim sQuery As String = "", sQuery_MTRE As String = ""
         Dim dt_POST_NMCT_TPLG As New DataTable
         Try
-            sQuery = "SELECT ISNULL(B.VAL_PARA, NM_TYPE_MTRE) AS [Type de matériel]
-	                      ,ID_MTRE AS [ID du matériel]
-                          ,B_C.VAL_PARA AS [Catégorie]
-                      FROM (
-		                    SELECT NM_POST, ID_MTRE, VAL_PARA
-		                      FROM (
-				                    SELECT     NM_PARA AS ID_MTRE, CD_ARTI AS NM_POST
-				                      FROM          dbo.V_DER_DTM_REF_PARA
-				                     WHERE      (CD_ARTI = '" & Label_POST.Text & "') AND (VAL_PARA = '1')
-		                         ) AS DT_MTRE_ERGT INNER JOIN
-				                      dbo.V_DER_DTM_REF_PARA AS V_DER_DTM_REF_PARA_1 ON DT_MTRE_ERGT.ID_MTRE = V_DER_DTM_REF_PARA_1.CD_ARTI
-		                     WHERE     (V_DER_DTM_REF_PARA_1.NM_PARA = N'Type matériel')) AS B
-                    FULL OUTER JOIN (
-		                    SELECT CD_ARTI AS ID_POST, 
-			                       NM_TYPE_MTRE
-		                     FROM (
-				                    SELECT     CD_ARTI, NM_PARA, VAL_PARA
-				                    FROM         dbo.V_DER_DTM_REF_PARA
-				                    WHERE     (CD_ARTI LIKE N'POSTE_%') AND 
-						                      (NM_PARA = N'Article poste' OR NM_PARA = N'Opération poste')
-			                      ) as a 
-		                    pivot (max(VAL_PARA) for NM_PARA in ([Article poste], [Opération poste])) as pt
-		                    INNER JOIN dbo.V_POST_NMCT_TPLG ON dbo.V_POST_NMCT_TPLG.CD_ARTI_ECO_POST = pt.[Article poste] AND dbo.V_POST_NMCT_TPLG.NU_OP_POST = pt.[Opération poste]
-		                    WHERE CD_ARTI = '" & Label_POST.Text & "'
-                    ) AS A ON ID_POST = NM_POST AND VAL_PARA = NM_TYPE_MTRE
-                    LEFT OUTER JOIN (SELECT CD_ARTI, VAL_PARA
-									  FROM [dbo].[V_DER_DTM_REF_PARA]
-									 WHERE NM_PARA = 'Poste dédié') AS B_C ON CD_ARTI = ID_MTRE"
-            dt_POST_NMCT_TPLG = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
+            sQuery_MTRE = "SELECT ISNULL(B.VAL_PARA, NM_TYPE_MTRE) AS [Type de matériel]
+	                              ,ID_MTRE AS [ID du matériel]
+                                  ,ISNULL(B_C.VAL_PARA,'Générique') AS [Catégorie]
+                              FROM (
+		                            SELECT NM_POST, ID_MTRE, VAL_PARA
+		                              FROM (
+				                            SELECT     NM_PARA AS ID_MTRE, CD_ARTI AS NM_POST
+				                              FROM          dbo.V_DER_DTM_REF_PARA
+				                             WHERE      (CD_ARTI = '" & Label_POST.Text & "') AND (VAL_PARA = '1')
+		                                 ) AS DT_MTRE_ERGT INNER JOIN
+				                              dbo.V_DER_DTM_REF_PARA AS V_DER_DTM_REF_PARA_1 ON DT_MTRE_ERGT.ID_MTRE = V_DER_DTM_REF_PARA_1.CD_ARTI
+		                             WHERE     (V_DER_DTM_REF_PARA_1.NM_PARA = N'Type matériel')) AS B
+                            FULL OUTER JOIN (
+		                            SELECT CD_ARTI AS ID_POST, 
+			                               NM_TYPE_MTRE
+		                             FROM (
+				                            SELECT     CD_ARTI, NM_PARA, VAL_PARA
+				                            FROM         dbo.V_DER_DTM_REF_PARA
+				                            WHERE     (CD_ARTI LIKE N'POSTE_%') AND 
+						                              (NM_PARA = N'Article poste' OR NM_PARA = N'Opération poste')
+			                              ) as a 
+		                            pivot (max(VAL_PARA) for NM_PARA in ([Article poste], [Opération poste])) as pt
+		                            INNER JOIN dbo.V_POST_NMCT_TPLG ON dbo.V_POST_NMCT_TPLG.CD_ARTI_ECO_POST = pt.[Article poste] AND dbo.V_POST_NMCT_TPLG.NU_OP_POST = pt.[Opération poste]
+		                            WHERE CD_ARTI = '" & Label_POST.Text & "'
+                            ) AS A ON ID_POST = NM_POST AND VAL_PARA = NM_TYPE_MTRE
+                            LEFT OUTER JOIN (SELECT CD_ARTI, VAL_PARA
+									          FROM [dbo].[V_DER_DTM_REF_PARA]
+									         WHERE NM_PARA = 'Poste dédié') AS B_C ON CD_ARTI = ID_MTRE"
+            dt_POST_NMCT_TPLG = SQL_SELE_TO_DT(sQuery_MTRE, sChaineConnexion)
+
+            'Dissociation du matériel générique
+            For Each rdt_POST_NMCT_TPLG As DataRow In dt_POST_NMCT_TPLG.Rows
+                If rdt_POST_NMCT_TPLG("Catégorie").ToString = "Générique" Then
+                    sQuery = "INSERT INTO [dbo].[DTM_REF_PARA]([NM_CRIT],[NM_PARA],[VAL_PARA],[DT_PARA])
+                                           VALUES ('" & Label_POST.Text & "','" & rdt_POST_NMCT_TPLG("ID du matériel").ToString & "','0',GETDATE())"
+                    SQL_REQ_ACT(sQuery, sChaineConnexion)
+                End If
+            Next
+
+            dt_POST_NMCT_TPLG = SQL_SELE_TO_DT(sQuery_MTRE, sChaineConnexion)
             GridView_LIST_MTRE.DataSource = dt_POST_NMCT_TPLG
             GridView_LIST_MTRE.DataBind()
+
             For Each rGridView_LIST_MTRE As GridViewRow In GridView_LIST_MTRE.Rows
                 If rGridView_LIST_MTRE.Cells(1).Text = "&nbsp;" Then
                     Label_TYPE_MTRE.Text = rGridView_LIST_MTRE.Cells(0).Text
@@ -759,7 +699,6 @@ Public Class TCBL_OPRT
 
         Dim sQuerySql As String = "", sNU_SER_ECO As String = "", sNU_SER_CLIE As String = ""
         Dim dt_TR_CPT, dtAFKO, dt_NS_TRAC, dtS034 As New DataTable
-        Dim sParam_Format_NS As String = "Format Numéro de série Eolane"
         Dim iID_Passage As Integer = 0
         Dim dt_PARA, dt, dt_CFGR_ARTI_ECO As New DataTable
         Try
@@ -781,6 +720,8 @@ Public Class TCBL_OPRT
                     End If
                 Case dt_CFGR_ARTI_ECO(0)("Numéro de série client").ToString
                     If DIG_FACT_VERI_FORM_NU_SER(Trim(Label_CD_SS_ENS.Text), "Format Numéro de série client", TextBox_SS_ENS.Text) = False Then Throw New Exception("Le numéro de série " & TextBox_SS_ENS.Text & " ne correspond au format défini dans la base.")
+                Case dt_CFGR_ARTI_ECO(0)("Format Numéro de série Fournisseur").ToString <> ""
+                    If DIG_FACT_VERI_FORM_NU_SER(Trim(Label_CD_SS_ENS.Text), "Format Numéro de série Fournisseur", TextBox_SS_ENS.Text) = False Then Throw New Exception("Le numéro de série " & TextBox_SS_ENS.Text & " ne correspond au format défini dans la base.")
             End Select
 
             'Sauvegarder la donnée dans la colonne id composant
@@ -964,6 +905,105 @@ Public Class TCBL_OPRT
             LOG_Erreur(GetCurrentMethod, ex.Message)
             TextBox_CD_LOT_COMP.Text = ""
             TextBox_CD_LOT_COMP.Focus()
+        End Try
+    End Sub
+
+    Public Sub _IPRO_ETQT()
+        Dim dt_CFGR_ARTI_ECO, dt_ETAT_CTRL As New DataTable
+        Dim sNS As String = ""
+        Try
+            dt_CFGR_ARTI_ECO = DIG_FACT_SQL_CFGR_ARTI_ECO(Trim(Label_CD_ARTI.Text))
+            If dt_CFGR_ARTI_ECO(0)("Génération impression numéro de série").ToString = Label_OP.Text Then
+                Select Case "1"
+                    Case dt_CFGR_ARTI_ECO(0)("Numéro de série Eolane").ToString
+                        dt_ETAT_CTRL = COMM_APP_WEB_ETAT_CTRL(Trim(Label_CD_ARTI.Text) & "|Numéro de série Eolane", "ASP.pagesmembres_digital_factory_impr_etiq_prn_aspx")
+                        If dt_ETAT_CTRL Is Nothing Then Throw New Exception("La base App_Web_Eco n'as pas été configurée pour l'article " & Trim(Label_CD_ARTI.Text))
+                        sNS = Label_OF.Text & DIG_FACT_SQL_GENE_NU_SER_CLIE("10", "1", "%%%%%%", Label_OF.Text, "Numéro de série Eolane", False,
+                                                      Session("matricule"), Label_OF.Text)
+                        If dt_ETAT_CTRL.Columns.Contains("TextBox_FICH_MODE") Then
+                            DIG_FACT_IMPR_ETIQ(dt_ETAT_CTRL(0)("TextBox_FICH_MODE").ToString,
+                                               TextBox_OF.Text, "", "Numéro de série Eolane", "", sNS, "", "", "", Nothing)
+                        End If
+                    Case dt_CFGR_ARTI_ECO(0)("Numéro de série client").ToString
+                        Dim sFORM_NU_CLIE As String = ""
+                        dt_ETAT_CTRL = COMM_APP_WEB_ETAT_CTRL(Trim(Label_CD_ARTI.Text) & "|Numéro de série client", "ASP.pagesmembres_digital_factory_impr_etiq_prn_aspx")
+                        If dt_ETAT_CTRL Is Nothing Then Throw New Exception("La base App_Web_Eco n'as pas été configurée pour l'article " & Trim(Label_CD_ARTI.Text))
+                        If dt_ETAT_CTRL.Columns.Contains("TextBox_FORM_NU_CLIE") = True Then sFORM_NU_CLIE = dt_ETAT_CTRL(0)("TextBox_FORM_NU_CLIE").ToString
+                        sNS = DIG_FACT_SQL_GENE_NU_SER_CLIE(dt_CFGR_ARTI_ECO(0)("Encodage Numéro de série client").ToString,
+                                                            dt_CFGR_ARTI_ECO(0)("Incrémentation flanc").ToString,
+                                                            sFORM_NU_CLIE,
+                                                            Label_CD_ARTI.Text,
+                                                            "Numéro de série client",
+                                                            False,
+                                                            Session("matricule"),
+                                                            Label_OF.Text)
+                        If dt_ETAT_CTRL.Columns.Contains("TextBox_FICH_MODE") Then
+                            DIG_FACT_IMPR_ETIQ(dt_ETAT_CTRL(0)("TextBox_FICH_MODE").ToString,
+                                               TextBox_OF.Text, "", "Numéro de série client", sNS, "", "", "", "", Nothing)
+                        End If
+                End Select
+                Session("sNU_SER_IMPR") = sNS
+            End If
+        Catch ex As Exception
+            LOG_Erreur(GetCurrentMethod, ex.Message)
+        End Try
+
+    End Sub
+
+    Public Sub _VRFC_TCBL_COMP()
+        Dim dt_SS_ENS, dtAFKO, dtVRESB, dtSTPO, dtSTPU As New DataTable
+        Dim rdt_CD_ARTI_ENS_SENS_SAP As DataRow
+        Dim i_COUN_VRFC_PROD_SS_ENS As Integer = 0
+        Try
+            dtAFKO = SAP_DATA_READ_AFKO("AUFNR LIKE '%" & TextBox_OF.Text & "'")
+            If dtAFKO Is Nothing Then Throw New Exception("L'OF n°" & TextBox_OF.Text & " n'a pas été trouvé dans SAP.")
+
+            dt_SS_ENS = App_Web.TCBL_ESB_SS_ESB_V2._LIST_ENS_SS_ENS(TextBox_OF.Text, DropDownList_OP.SelectedValue)
+            If Not dt_SS_ENS Is Nothing Then 'traçabilité composant à faire
+                dt_SS_ENS.Columns.Remove("Numéro de série associé")
+                dt_SS_ENS.Columns.Add("Repère", Type.GetType("System.String"))
+                dt_SS_ENS.Columns.Add("Quantité par produit", Type.GetType("System.String"))
+                dt_SS_ENS.Columns.Add("N° de conteneur", Type.GetType("System.String"))
+                dt_SS_ENS.Columns.Add("Id composant", Type.GetType("System.String"))
+                dt_SS_ENS.Columns.Add("Code lot", Type.GetType("System.String"))
+                dt_SS_ENS.Columns.Add("Quantité restante", Type.GetType("System.String"))
+                dtVRESB = SAP_DATA_READ_VRESB("RSNUM EQ '" & dtAFKO(0)("RSNUM").ToString & "' AND SPRAS EQ 'F' AND VORNR EQ '" & DropDownList_OP.SelectedValue & "'")
+                For Each rVRESB As DataRow In dtVRESB.Rows
+                    rdt_CD_ARTI_ENS_SENS_SAP = dt_SS_ENS.Select("[Code article SAP] = '" & rVRESB("MATNR").ToString & "'").FirstOrDefault
+                    If rdt_CD_ARTI_ENS_SENS_SAP Is Nothing Then Continue For
+
+                    'Vérification saisie numéro de série (pour sous-ensemble non-déclaré en produit dans et SAP et nécessité de saisir le n° de série)
+                    If DIG_FACT_SQL_GET_PARA(Trim(rVRESB("MATNR").ToString), "Sérialisation article") = "1" Then rdt_CD_ARTI_ENS_SENS_SAP("Repère") = "PRODUIT"
+
+                    dtSTPO = SAP_DATA_READ_STPO("STLNR EQ '" & rVRESB("STLNR").ToString & "' and STLKN EQ '" & rVRESB("STLKN").ToString & "' and STPOZ EQ '" & rVRESB("STPOZ").ToString & "'")
+                    rdt_CD_ARTI_ENS_SENS_SAP("Quantité par produit") = Convert.ToDecimal(Replace(dtSTPO(0)("MENGE").ToString, ".", ","))
+                    Select Case rVRESB("MTART").ToString
+                        Case "FERT"
+                            rdt_CD_ARTI_ENS_SENS_SAP("Repère") = "PRODUIT"
+                        Case "HALB"
+                            rdt_CD_ARTI_ENS_SENS_SAP("Repère") = "PRODUIT SEMI-FINI"
+                        Case Else
+                            dtSTPU = SAP_DATA_READ_STPU("STLNR EQ '" & rVRESB("STLNR").ToString & "' and STLKN EQ '" & rVRESB("STLKN").ToString & "' and STPOZ EQ '" & rVRESB("STPOZ").ToString & "'")
+                            If dtSTPU Is Nothing Then Continue For
+                            For Each rdtSTPU As DataRow In dtSTPU.Rows
+                                rdt_CD_ARTI_ENS_SENS_SAP("Repère") &= rdtSTPU("EBORT").ToString & "|"
+                            Next
+                            rdt_CD_ARTI_ENS_SENS_SAP("Repère") = COMM_APP_WEB_STRI_TRIM_RIGHT(rdt_CD_ARTI_ENS_SENS_SAP("Repère"), 1)
+                    End Select
+                Next
+                GridView_REPE.DataSource = dt_SS_ENS
+                GridView_REPE.DataBind()
+                's'il y a des sous-ensemble de type différent de produit ou semi-fini alors saisir les codes lot
+                For Each rGridView_REPE As GridViewRow In GridView_REPE.Rows
+                    If Not (rGridView_REPE.Cells(3).Text = "PRODUIT" Or rGridView_REPE.Cells(3).Text = "PRODUIT SEMI-FINI") Then
+                        MultiView_SAIS_OPRT.SetActiveView(View_SAIS_TCBL_COMP)
+                        MultiView_Tracabilité.SetActiveView(View_CONT_LOT_ID_COMP)
+                        Exit Sub
+                    End If
+                Next
+            End If
+        Catch ex As Exception
+            LOG_Erreur(GetCurrentMethod, ex.Message)
         End Try
     End Sub
 End Class

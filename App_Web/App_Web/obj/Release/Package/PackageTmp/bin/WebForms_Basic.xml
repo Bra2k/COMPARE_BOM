@@ -4760,6 +4760,60 @@ Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
+<member name="F:App_Web.ADD_VERS_FDV._TextBox_CD_ARTI_ECO">
+<summary>
+Contrôle TextBox_CD_ARTI_ECO.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.ADD_VERS_FDV._TextBox_NM_RFRC_FDV">
+<summary>
+Contrôle TextBox_NM_RFRC_FDV.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.ADD_VERS_FDV._TextBox_NU_VERS_FDV">
+<summary>
+Contrôle TextBox_NU_VERS_FDV.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.ADD_VERS_FDV._TextBox_NU_OF_ACPT">
+<summary>
+Contrôle TextBox_NU_OF_ACPT.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.ADD_VERS_FDV._Button_VALI_ENTER">
+<summary>
+Contrôle Button_VALI_ENTER.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.ADD_VERS_FDV._GridView_LIST_FDV">
+<summary>
+Contrôle GridView_LIST_FDV.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
 <member name="F:App_Web.ALMS_IMPORT._MultiView_ALMS">
 <summary>
 Contrôle MultiView_ALMS.

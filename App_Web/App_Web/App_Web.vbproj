@@ -340,6 +340,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="PagesMembres\Production\ALMS\ADD_MAC_ADRE.aspx" />
+    <Content Include="PagesMembres\Production\ALMS\ADD_VERS_FDV.aspx" />
     <Content Include="PagesMembres\Production\ALMS\ALMS_IMPORT.aspx" />
     <Content Include="PagesMembres\Production\Controle_Reception\AJOU_FNS_CTRL_RCP.aspx" />
     <Content Include="PagesMembres\Production\CST_HEUR_SAI_BW.aspx" />
@@ -575,6 +576,13 @@
     </Compile>
     <Compile Include="PagesMembres\Production\ALMS\ADD_MAC_ADRE.aspx.vb">
       <DependentUpon>ADD_MAC_ADRE.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="PagesMembres\Production\ALMS\ADD_VERS_FDV.aspx.designer.vb">
+      <DependentUpon>ADD_VERS_FDV.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagesMembres\Production\ALMS\ADD_VERS_FDV.aspx.vb">
+      <DependentUpon>ADD_VERS_FDV.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="PagesMembres\Production\ALMS\ALMS_IMPORT.aspx.designer.vb">
