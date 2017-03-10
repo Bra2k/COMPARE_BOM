@@ -37,10 +37,20 @@
                 </tr>
             </table>
             <br />
-            <div class="ALMS_upload">
-            <label>Séléctionner un fichier à importer :</label>
+            <div class="TBOX_CD_ARTI">
+                <label>Saisissez un code article :</label>
+                <asp:TextBox ID="TextBox_CODE_ARTI" runat="server" AutoPostBack="True" Width="128px"></asp:TextBox>
+            </div>
             <br />
-            <asp:FileUpload ID="FileUpload_ALMS" runat="server" BackColor="#002F60" Font-Bold="True" ForeColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" />
+            <div class="DDLIST_GAMME">
+                <label>Choisissez une opération :</label>
+                <asp:DropDownList ID="DropDownList_Gamme" runat="server"></asp:DropDownList>
+            </div>
+            <br />
+            <div class="ALMS_upload">
+                <label>Séléctionner un fichier à importer :</label>
+                <br />
+                <asp:FileUpload ID="FileUpload_ALMS" runat="server" BackColor="#002F60" Font-Bold="True" ForeColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" />
             </div>
             <br />
             <div class="envoyer">
@@ -48,11 +58,13 @@
             </div>
         </asp:View>
         <asp:View ID="GridView_ALMS" runat="server">
-            <label>Aperçu du fichier CSV :</label>
-                    <div  style="vertical-align:top;  width: 1198px; height: 539px; overflow: auto;">
-                        <asp:GridView ID="GridView_CSV_ALMS" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical" SkinID="GV_AFF_DONN" ShowFooter="True">
-                        </asp:GridView>
-                    </div>
+            <div class="file_import">
+                <asp:ImageButton ID="Import_file" ImageUrl="~\App_Themes\ICON_COMPARE\importer.ico" runat="server" Height="50px" Width="50px" PostBackUrl="~/PagesMembres/Production/ALMS/ALMS_IMPORT.aspx" />
+            </div>
+            <div  style="vertical-align:top;  width: 1198px; height: 539px; overflow: auto;">
+                <asp:GridView ID="GridView_CSV_ALMS" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical" SkinID="GV_AFF_DONN" ShowFooter="True">
+                </asp:GridView>
+            </div>
         </asp:View>
     </asp:MultiView>
 </asp:Content>

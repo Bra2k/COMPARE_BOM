@@ -20,7 +20,6 @@ Public Class ALMS_IMPORT
         Dim date_store_query As String = "INSERT INTO [ALMS_PROD_DEV].[dbo].[DTM_SEQU_RFRC_LIST]
 									            ([NM_RFRC_SEQU], [NU_VERS_SEQU] ,[DT_APCT], [DT_VLDT])
 								          VALUES ('" & ref_sequ & "', '" & vers_sequ & "', '" & date_val & "', '" & date_app & "')"
-
         Try
             If Not (FileUpload_ALMS.HasFile) Then Throw New Exception("pas de fichier sélectionné")
             savePath += Server.HtmlEncode(FileUpload_ALMS.FileName)
@@ -38,6 +37,7 @@ Public Class ALMS_IMPORT
                 End Try
                 MultiView_ALMS.SetActiveView(GridView_ALMS)
                 PARSE_SEQU_ALMS(dt, FileUpload_ALMS.FileName)
+                'GENERATE_ID()
                 'LOG_Msg(GetCurrentMethod, dt.Rows(18)(24).ToString()
             Else
                 Throw New Exception("Le fichier séléctionné n'a pas l'extension [.csv] attendue")
@@ -77,31 +77,37 @@ Public Class ALMS_IMPORT
 
         Return vers_sequ
     End Function
+    Public Function GENERATE_ID() As Integer
+        Dim NU_GENE = DateTime.Now.ToString("yyyyMMddHHmmss")
+        LOG_Msg(GetCurrentMethod, NU_GENE)
+        Return NU_GENE
+    End Function
 
     Public Function PARSE_SEQU_ALMS(dt As DataTable, savePath As String) As Integer
         Dim vers_sequ = FIND_VERS_SEQU(savePath)
         Dim ref_sequ = FIND_REF_SEQU(savePath)
 
-        Dim NU_ORDR_SEQU = "" 'ok
-        Dim LB_MESS_ERRE = "" 'ok
-        Dim NM_DRIV = "" 'ok
-        Dim LB_PARA_DRIV = "" 'ok
-        Dim ID_SAUT_PASS = "" 'ok
-        Dim ID_SAUT_FAIL = "" 'ok
-        Dim BL_EXCT = "" 'ok
-        Dim NU_LIMI_BASS = "" 'ok
-        Dim NU_LIMI_HAUT = "" 'ok
-        Dim BL_COMP_LIMI = "" 'ok
-        Dim BL_ERRE = "" 'ok
+        Dim NU_ORDR_SEQU = ""           'ok
+        Dim LB_MESS_ERRE = ""           'ok
+        Dim NM_DRIV = ""                'ok
+        Dim LB_PARA_DRIV = ""           'ok
+        Dim ID_SAUT_PASS = ""           'ok
+        Dim ID_SAUT_FAIL = ""           'ok
+        Dim BL_EXCT = ""                'ok
+        Dim NU_LIMI_BASS = ""           'ok
+        Dim NU_LIMI_HAUT = ""           'ok
+        Dim BL_COMP_LIMI = ""           'ok
+        Dim BL_ERRE = ""                'ok
         Dim BL_AFFI_FACE_AVAN_LABV = "" 'ok
-        Dim BL_RAPP_ACTI = "" 'ok
-        Dim ID_TEST = "" 'ok
-        Dim BL_SORT_FCGF = "" 'ok
-        Dim NU_PHAS_FCGF = "" 'ok
-        Dim NM_PHAS_FCGF = "" 'ok
-        Dim NU_SOUS_PHAS_FCGF = "" 'ok
-        Dim NM_SOUS_PHAS_FCGF = "" 'ok
-        Dim NM_UNIT = "" 'ok
+        Dim BL_RAPP_ACTI = ""           'ok
+        Dim ID_TEST = ""                'ok
+        Dim BL_SORT_FCGF = ""           'ok
+        Dim NU_PHAS_FCGF = ""           'ok
+        Dim NM_PHAS_FCGF = ""           'ok
+        Dim NU_SOUS_PHAS_FCGF = ""      'ok
+        Dim NM_SOUS_PHAS_FCGF = ""      'ok
+        Dim NM_UNIT = ""                'ok
+        Dim BL_CH_VAL = ""              'ok
 
         For ligne As Integer = 0 To dt.Rows.Count - 1
             For col As Integer = 0 To dt.Columns.Count - 1
@@ -121,8 +127,10 @@ Public Class ALMS_IMPORT
                     Case 7
                         BL_EXCT = dt(ligne)(col).ToString
                     Case 12
+                        dt(ligne)(col) = Replace(dt(ligne)(col), ",", ".")
                         NU_LIMI_BASS = dt(ligne)(col).ToString
                     Case 14
+                        dt(ligne)(col) = Replace(dt(ligne)(col), ",", ".")
                         NU_LIMI_HAUT = dt(ligne)(col).ToString
                     Case 15
                         BL_COMP_LIMI = dt(ligne)(col).ToString
@@ -146,11 +154,13 @@ Public Class ALMS_IMPORT
                         NM_SOUS_PHAS_FCGF = dt(ligne)(col).ToString
                     Case 28
                         NM_UNIT = dt(ligne)(col).ToString
+                    Case 29
+                        BL_CH_VAL = dt(ligne)(col).ToString
                 End Select
             Next
             Dim saveCsv As String = "INSERT INTO [ALMS_PROD_DEV].[dbo].[DTM_SEQU_RFRC_DETA]
-									            ([NM_RFRC_SEQU], [NU_VERS_SEQU], [NU_ORDR_SEQU] ,[LB_MESS_ERRE], [NM_DRIV], [LB_PARA_DRIV], [ID_SAUT_PASS], [ID_SAUT_FAIL], [BL_EXCT], [NU_LIMI_BASS], [NU_LIMI_HAUT], [BL_COMP_LIMI], [BL_ERRE], [BL_AFFI_FACE_AVAN_LABV], [BL_RAPP_ACTI], [ID_TEST], [BL_SORT_FCGF], [NU_PHAS_FCGF], [NM_PHAS_FCGF], [NU_SOUS_PHAS_FCGF], [NM_SOUS_PHAS_FCGF], [NM_UNIT])
-								     VALUES ('" & ref_sequ & "', '" & vers_sequ & "', '" & NU_ORDR_SEQU & "', '" & LB_MESS_ERRE & "', '" & NM_DRIV & "', '" & LB_PARA_DRIV & "', '" & ID_SAUT_PASS & "', '" & ID_SAUT_FAIL & "', '" & BL_EXCT & "', '" & NU_LIMI_BASS & "', '" & NU_LIMI_HAUT & "', '" & BL_COMP_LIMI & "', '" & BL_ERRE & "' , '" & BL_AFFI_FACE_AVAN_LABV & "', '" & BL_RAPP_ACTI & "', '" & ID_TEST & "', '" & BL_SORT_FCGF & "', '" & NU_PHAS_FCGF & "', '" & NM_PHAS_FCGF & "', '" & NU_SOUS_PHAS_FCGF & "', '" & NM_SOUS_PHAS_FCGF & "', '" & NM_UNIT & "')"
+									            ([NM_RFRC_SEQU], [NU_VERS_SEQU], [NU_ORDR_SEQU] ,[LB_MESS_ERRE], [NM_DRIV], [LB_PARA_DRIV], [ID_SAUT_PASS], [ID_SAUT_FAIL], [BL_EXCT], [NU_LIMI_BASS], [NU_LIMI_HAUT], [BL_COMP_LIMI], [BL_ERRE], [BL_AFFI_FACE_AVAN_LABV], [BL_RAPP_ACTI], [ID_TEST], [BL_SORT_FCGF], [NU_PHAS_FCGF], [NM_PHAS_FCGF], [NU_SOUS_PHAS_FCGF], [NM_SOUS_PHAS_FCGF], [NM_UNIT], [BL_CH_VAL])
+								     VALUES ('" & ref_sequ & "', '" & vers_sequ & "', '" & NU_ORDR_SEQU & "', '" & LB_MESS_ERRE & "', '" & NM_DRIV & "', '" & LB_PARA_DRIV & "', '" & ID_SAUT_PASS & "', '" & ID_SAUT_FAIL & "', '" & BL_EXCT & "', '" & NU_LIMI_BASS & "', '" & NU_LIMI_HAUT & "', '" & BL_COMP_LIMI & "', '" & BL_ERRE & "' , '" & BL_AFFI_FACE_AVAN_LABV & "', '" & BL_RAPP_ACTI & "', '" & ID_TEST & "', '" & BL_SORT_FCGF & "', '" & NU_PHAS_FCGF & "', '" & NM_PHAS_FCGF & "', '" & NU_SOUS_PHAS_FCGF & "', '" & NM_SOUS_PHAS_FCGF & "', '" & NM_UNIT & "', '" & BL_CH_VAL & "')"
             Try
                 SQL_REQ_ACT(saveCsv, sChaineConnexion)
             Catch ex As Exception
@@ -158,7 +168,6 @@ Public Class ALMS_IMPORT
                 Return 1
             End Try
         Next
-
         Return 0
     End Function
 End Class

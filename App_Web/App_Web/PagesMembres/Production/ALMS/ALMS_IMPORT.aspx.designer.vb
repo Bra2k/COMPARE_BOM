@@ -50,6 +50,24 @@ Partial Public Class ALMS_IMPORT
     Protected WithEvents Calendar_APP As Global.System.Web.UI.WebControls.Calendar
     
     '''<summary>
+    '''Contrôle TextBox_CODE_ARTI.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents TextBox_CODE_ARTI As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''Contrôle DropDownList_Gamme.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents DropDownList_Gamme As Global.System.Web.UI.WebControls.DropDownList
+    
+    '''<summary>
     '''Contrôle FileUpload_ALMS.
     '''</summary>
     '''<remarks>
@@ -75,6 +93,15 @@ Partial Public Class ALMS_IMPORT
     '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
     '''</remarks>
     Protected WithEvents GridView_ALMS As Global.System.Web.UI.WebControls.View
+    
+    '''<summary>
+    '''Contrôle Import_file.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents Import_file As Global.System.Web.UI.WebControls.ImageButton
     
     '''<summary>
     '''Contrôle GridView_CSV_ALMS.

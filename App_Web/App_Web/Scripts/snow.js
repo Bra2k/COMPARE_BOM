@@ -6,7 +6,7 @@
     maxSpeed: 2,
     minSpeed: 1,
     color: "#fff",
-    char: "*",
+    char: "❄",
     maxSize: 20,
     minSize: 8,
 

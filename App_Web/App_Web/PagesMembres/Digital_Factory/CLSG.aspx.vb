@@ -34,7 +34,7 @@ Public Class CLSG
             dtAFKO = SAP_DATA_READ_AFKO("AUFNR LIKE '%" & TextBox_NU_OF.Text & "'")
             If dtAFKO Is Nothing Then Throw New Exception("L'OF " & TextBox_NU_OF.Text & " n'a pas été trouvé dans SAP.")
             dtMARA = SAP_DATA_READ_MARA("MATNR EQ '" & dtAFKO(0)("PLNBEZ").ToString & "'")
-            If dtMARA Is Nothing Then Throw New Exception("Larticle de l'OF " & TextBox_NU_OF.Text & " n'a pas été trouvé dans SAP.")
+            If dtMARA Is Nothing Then Throw New Exception("L'article de l'OF " & TextBox_NU_OF.Text & " n'a pas été trouvé dans SAP.")
             dtT179T = SAP_DATA_READ_T179T("PRODH EQ '" & dtMARA(0)("PRDHA").ToString & "'")
             If dtT179T Is Nothing Then Throw New Exception("Le client de l'OF " & TextBox_NU_OF.Text & " n'a pas été trouvé dans SAP.")
             dtMAKT = SAP_DATA_READ_MAKT("MATNR EQ '" & dtAFKO(0)("PLNBEZ").ToString & "'")

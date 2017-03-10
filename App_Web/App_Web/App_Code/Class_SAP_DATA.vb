@@ -21,6 +21,33 @@ Public Class Class_SAP_DATA
 
     End Function
 
+
+    Public Shared Function SAP_DATA_LIST_MAPL(cARTI As String) As DataTable 'Obtenir GrpGamme/CptGrpGamme à partir du code article
+        Dim dtMAPL As New DataTable
+        Try
+            dtMAPL = SAP_DATA_READ_TBL("MAPL", "|", "MATNR PLNNR PLNAL", "MATNR EQ '" & cARTI & "'")
+            If dtMAPL Is Nothing Then Throw New Exception("Pas de GrpDeGamme/CptGrpGamme pour l'article " & cARTI)
+        Catch ex As Exception
+            LOG_Erreur(GetCurrentMethod, ex.Message)
+            Return Nothing
+        End Try
+        LOG_Msg(GetCurrentMethod, "La liste GrpDeGamme a été extraite de SAP")
+        Return dtMAPL
+    End Function
+
+    'Public Shared Function SAP_DATA_LIST_PLKO(dtMAPL As DataTable) As DataTable 'Comparaison des gammes de MAPL & PLKO
+    'Dim dtPLKO As New DataTable
+
+    'Return dtPLKO
+    'End Function
+
+    'Public Shared Function SAP_DATA_LIST_PLPO(dtPLKO As DataTable) As DataTable 'Obtenir l'opération à partir des gammes
+    'Dim dtPLPO As New DataTable
+
+    'Return dtPLPO
+    'End Function
+
+
     Public Shared Function SAP_DATA_LIST_CLIE(Optional sFiltre As String = "") As DataTable
 
         Dim dtT179T As New DataTable

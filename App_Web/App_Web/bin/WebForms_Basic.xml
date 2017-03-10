@@ -3741,162 +3741,27 @@ Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web._Default._Parcel2">
+<member name="F:App_Web._Default._INDICE">
 <summary>
-Contrôle Parcel2.
+Contrôle INDICE.
 </summary>
 <remarks>
 Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web._Default._Ensemble">
+<member name="F:App_Web._Default._Admin">
 <summary>
-Contrôle Ensemble.
+Contrôle Admin.
 </summary>
 <remarks>
 Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web._Default._Imp_STW">
+<member name="F:App_Web._Default._SAP">
 <summary>
-Contrôle Imp_STW.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web._Default._Etiquette">
-<summary>
-Contrôle Etiquette.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web._Default._Composant2">
-<summary>
-Contrôle Composant2.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web._Default._Compare_file">
-<summary>
-Contrôle Compare_file.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web._Default._BancTest2">
-<summary>
-Contrôle BancTest2.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web._Default._TestFonc">
-<summary>
-Contrôle TestFonc.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web._Default._Test3">
-<summary>
-Contrôle Test3.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web._Default._Parcel">
-<summary>
-Contrôle Parcel.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web._Default._Composant3">
-<summary>
-Contrôle Composant3.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web._Default._Parcel3">
-<summary>
-Contrôle Parcel3.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web._Default._Composant4">
-<summary>
-Contrôle Composant4.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web._Default._Battery2">
-<summary>
-Contrôle Battery2.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web._Default._Indic">
-<summary>
-Contrôle Indic.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web._Default._Sticker2">
-<summary>
-Contrôle Sticker2.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web._Default._Parcle4">
-<summary>
-Contrôle Parcle4.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web._Default._Parcel5">
-<summary>
-Contrôle Parcel5.
+Contrôle SAP.
 </summary>
 <remarks>
 Champ généré automatiquement.
@@ -3921,15 +3786,6 @@ Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web._Default._Config">
-<summary>
-Contrôle Config.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
 <member name="F:App_Web._Default._Test_Fonc">
 <summary>
 Contrôle Test_Fonc.
@@ -3948,27 +3804,9 @@ Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web._Default._Barcode2">
-<summary>
-Contrôle Barcode2.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
 <member name="F:App_Web._Default._Compare_file2">
 <summary>
 Contrôle Compare_file2.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web._Default._Log_diaries">
-<summary>
-Contrôle Log_diaries.
 </summary>
 <remarks>
 Champ généré automatiquement.
@@ -4032,6 +3870,24 @@ Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans 
 <member name="F:App_Web._Default._Battery3">
 <summary>
 Contrôle Battery3.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web._Default._Sensing2">
+<summary>
+Contrôle Sensing2.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web._Default._ALMS2">
+<summary>
+Contrôle ALMS2.
 </summary>
 <remarks>
 Champ généré automatiquement.
@@ -4328,6 +4184,24 @@ Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
+<member name="F:App_Web.ALMS_IMPORT._TextBox_CODE_ARTI">
+<summary>
+Contrôle TextBox_CODE_ARTI.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.ALMS_IMPORT._DropDownList_Gamme">
+<summary>
+Contrôle DropDownList_Gamme.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
 <member name="F:App_Web.ALMS_IMPORT._FileUpload_ALMS">
 <summary>
 Contrôle FileUpload_ALMS.
@@ -4349,6 +4223,15 @@ Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans 
 <member name="F:App_Web.ALMS_IMPORT._GridView_ALMS">
 <summary>
 Contrôle GridView_ALMS.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.ALMS_IMPORT._Import_file">
+<summary>
+Contrôle Import_file.
 </summary>
 <remarks>
 Champ généré automatiquement.
@@ -4619,6 +4502,159 @@ Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans 
 <member name="F:App_Web.TEST_BATT_TUCK._Button_VALI">
 <summary>
 Contrôle Button_VALI.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.WebForm1._MultiView_Sensing">
+<summary>
+Contrôle MultiView_Sensing.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.WebForm1._View_DATA_ENTR">
+<summary>
+Contrôle View_DATA_ENTR.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.WebForm1._TextBox_NU_OF">
+<summary>
+Contrôle TextBox_NU_OF.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.WebForm1._DropDownList_OP">
+<summary>
+Contrôle DropDownList_OP.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.WebForm1._Label_NU_ARTI">
+<summary>
+Contrôle Label_NU_ARTI.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.WebForm1._TextBox_NU_SER">
+<summary>
+Contrôle TextBox_NU_SER.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.WebForm1._Label_CHECK_WF">
+<summary>
+Contrôle Label_CHECK_WF.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.WebForm1._Button_RAZ">
+<summary>
+Contrôle Button_RAZ.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.WebForm1._View_SAVE_TO_DB">
+<summary>
+Contrôle View_SAVE_TO_DB.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.WebForm1._Label_OF">
+<summary>
+Contrôle Label_OF.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.WebForm1._Label_OP">
+<summary>
+Contrôle Label_OP.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.WebForm1._Label_ART">
+<summary>
+Contrôle Label_ART.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.WebForm1._Label_NU_SER">
+<summary>
+Contrôle Label_NU_SER.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.WebForm1._Label_DEVEUI">
+<summary>
+Contrôle Label_DEVEUI.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.WebForm1._Button_RAZ2">
+<summary>
+Contrôle Button_RAZ2.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.WebForm1._Button_OK">
+<summary>
+Contrôle Button_OK.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.WebForm1._Button_NON">
+<summary>
+Contrôle Button_NON.
 </summary>
 <remarks>
 Champ généré automatiquement.
