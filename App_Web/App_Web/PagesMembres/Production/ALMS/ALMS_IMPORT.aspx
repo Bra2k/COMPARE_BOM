@@ -53,6 +53,12 @@
                 <asp:FileUpload ID="FileUpload_ALMS" runat="server" BackColor="#002F60" Font-Bold="True" ForeColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" />
             </div>
             <br />
+            <div>
+                <asp:GridView ID="GridView_OPE_ALMS" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical" SkinID="GV_AFF_DONN" ShowFooter="True">
+                </asp:GridView>
+                <asp:GridView ID="GridView_OPE2_ALMS" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical" SkinID="GV_AFF_DONN" ShowFooter="True">
+                </asp:GridView>
+            </div>
             <div class="envoyer">
                 <asp:Button ID="Button_ENVOYER" runat="server" Text="ENVOYER" BackColor="#002F60" Font-Bold="True" ForeColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" Height="40px" Width="180px"/>
             </div>

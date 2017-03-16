@@ -55,7 +55,7 @@ Public Class Class_COMM_APP_WEB
         Dim firstLine As Boolean = True
         Try
             If IO.File.Exists(savePath) Then
-                Using sr As New StreamReader(savePath, Encoding.UTF8)
+                Using sr As New StreamReader(savePath, Encoding.GetEncoding(1252))
                     While Not sr.EndOfStream
                         If firstLine Then
                             firstLine = False
@@ -77,7 +77,6 @@ Public Class Class_COMM_APP_WEB
 
         LOG_Msg(GetCurrentMethod, "Le fichier " & savePath & " a été importé.")
         Return dt
-
     End Function
 
     Public Shared Function COMM_APP_WEB_LVS_DIST(ByVal s As String, ByVal t As String) As Integer
@@ -186,7 +185,6 @@ Public Class Class_COMM_APP_WEB
 
         'LOG_Msg(GetCurrentMethod, "La date " & sDT & " a été convertie en " & sDT_CONV & ".")
         Return sDT_CONV
-
     End Function
 
     Public Shared Function COMM_APP_WEB_CONV_BASE_N_2_DEC(sNB_BASE_N As String, iBASE_N As Integer) As Integer
@@ -203,10 +201,8 @@ Public Class Class_COMM_APP_WEB
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
         End Try
-
         LOG_Msg(GetCurrentMethod, "Le nombre " & sNB_BASE_N & " en base " & iBASE_N.ToString & " a été convertie en " & iNB_DEC.ToString & ".")
         Return iNB_DEC
-
     End Function
 
     Public Shared Function COMM_APP_WEB_CONV_DEC_2_BASE_N(iNB_DEC As Integer, iBASE_N As Integer, iNB_CARA As Integer) As String

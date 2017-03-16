@@ -42,7 +42,6 @@ Public Class Class_SQL
             con = SQL_CLOS(con)
         End Try
         LOG_Msg(GetCurrentMethod, "la requête " & sQuery & " a été exécutée.")
-
     End Sub
 
     Public Shared Function SQL_REQ_ACT_RET_IDTT(sQuery As String, sChaineConnexion As String) As String

@@ -18,38 +18,9 @@ Public Class Class_SAP_DATA
         LOG_Msg(GetCurrentMethod, "La liste de client a été extraite de SAP.")
 
         Return dtPA0002
-
     End Function
-
-
-    Public Shared Function SAP_DATA_LIST_MAPL(cARTI As String) As DataTable 'Obtenir GrpGamme/CptGrpGamme à partir du code article
-        Dim dtMAPL As New DataTable
-        Try
-            dtMAPL = SAP_DATA_READ_TBL("MAPL", "|", "MATNR PLNNR PLNAL", "MATNR EQ '" & cARTI & "'")
-            If dtMAPL Is Nothing Then Throw New Exception("Pas de GrpDeGamme/CptGrpGamme pour l'article " & cARTI)
-        Catch ex As Exception
-            LOG_Erreur(GetCurrentMethod, ex.Message)
-            Return Nothing
-        End Try
-        LOG_Msg(GetCurrentMethod, "La liste GrpDeGamme a été extraite de SAP")
-        Return dtMAPL
-    End Function
-
-    'Public Shared Function SAP_DATA_LIST_PLKO(dtMAPL As DataTable) As DataTable 'Comparaison des gammes de MAPL & PLKO
-    'Dim dtPLKO As New DataTable
-
-    'Return dtPLKO
-    'End Function
-
-    'Public Shared Function SAP_DATA_LIST_PLPO(dtPLKO As DataTable) As DataTable 'Obtenir l'opération à partir des gammes
-    'Dim dtPLPO As New DataTable
-
-    'Return dtPLPO
-    'End Function
-
 
     Public Shared Function SAP_DATA_LIST_CLIE(Optional sFiltre As String = "") As DataTable
-
         Dim dtT179T As New DataTable
 
         Try
@@ -62,14 +33,13 @@ Public Class Class_SAP_DATA
 
         LOG_Msg(GetCurrentMethod, "La liste de client a été extraite de SAP.")
         Return dtT179T
-
     End Function
 
     Public Shared Function SAP_DATA_NMCT_ARTI(sArticle As String) As DataTable
-
         Dim dtNMCT_ARTI, dtMAST, dtSTAS_LKENZ_NE_X, dtSTAS_LKENZ_EQ_X, dtSTPO, dtMAKT, dtMARC, dtNMCT_ARTI_2, dtSTPU, dtNMCT_ARTI_3, dtAFKO As New DataTable
         'Dim rAFKO As DataRow
         'Dim MaxOF As Object
+
         Try
             With dtNMCT_ARTI.Columns
                 .Add("N° Nomenclature", Type.GetType("System.String"))
@@ -244,7 +214,6 @@ Public Class Class_SAP_DATA
     End Function
 
     Public Shared Function SAP_DATA_LIST_ARTI_CLIE(sClient As String, sType_produit As String) As DataTable
-
         Dim dtT179T, dtMARA As New DataTable
 
         Try
@@ -291,7 +260,6 @@ Public Class Class_SAP_DATA
 
         'LOG_Msg(GetCurrentMethod, "Connexion réussie")
         Return oSAP
-
     End Function
 
     Public Shared Function SAP_DATA_DECO(ByRef oFunctionSAP As Object) As Object
@@ -392,7 +360,6 @@ Public Class Class_SAP_DATA
     End Function
 
     Public Shared Function SAP_DATA_Z_LOG_CONF_GET(V_AUFNR As String, V_VORNR As String, V_PERNR As String, DATE_DEBUT As String, DATE_FIN As String) As DataTable
-
         Dim dt_T_LOG_CONF As New DataTable
         Dim oSAP, RFC, oRFC_RET, oRFC_MSG, oT_LOG_CONF As New Object
 
@@ -434,7 +401,6 @@ Public Class Class_SAP_DATA
     End Function
 
     Public Shared Function SAP_DATA_Z_LOG_ACT_GET(V_PERNR As String, DATE_DEBUT As String, DATE_FIN As String) As DataTable
-
         Dim dt_T_LOG_ACT As New DataTable
         Dim oSAP, RFC, oRFC_RET, oRFC_MSG, oT_LOG_ACT As New Object
 
@@ -468,7 +434,6 @@ Public Class Class_SAP_DATA
 
         LOG_Msg(GetCurrentMethod, "Exécution de la fonction Z_LOG_ACT_GET réussie. " & dt_T_LOG_ACT.Rows.Count & " lignes trouvées.")
         Return dt_T_LOG_ACT
-
     End Function
 
     Public Shared Function SAP_DATA_READ_MAKT(Optional sFILT As String = "") As DataTable
@@ -502,7 +467,6 @@ Public Class Class_SAP_DATA
     End Function
 
     Public Shared Function SAP_DATA_READ_AFPO(Optional sFILT As String = "") As DataTable
-
         Dim dtAFPO As New DataTable
 
         Try
@@ -518,7 +482,6 @@ Public Class Class_SAP_DATA
     End Function
 
     Public Shared Function SAP_DATA_READ_VRESB(Optional sFILT As String = "") As DataTable
-
         Dim dtVRESB As New DataTable
 
         Try
@@ -534,7 +497,6 @@ Public Class Class_SAP_DATA
     End Function
 
     Public Shared Function SAP_DATA_READ_T179T(Optional sFILT As String = "") As DataTable
-
         Dim dtT179T As New DataTable
 
         Try
@@ -550,7 +512,6 @@ Public Class Class_SAP_DATA
     End Function
 
     Public Shared Function SAP_DATA_READ_MARA(Optional sFILT As String = "") As DataTable
-
         Dim dtMARA As New DataTable
 
         Try
@@ -566,7 +527,6 @@ Public Class Class_SAP_DATA
     End Function
 
     Public Shared Function SAP_DATA_READ_AFVC(Optional sFILT As String = "") As DataTable
-
         Dim dtAFVC As New DataTable
 
         Try
@@ -582,7 +542,6 @@ Public Class Class_SAP_DATA
     End Function
 
     Public Shared Function SAP_DATA_READ_STPU(Optional sFILT As String = "") As DataTable
-
         Dim dtSTPU As New DataTable
 
         Try
@@ -598,7 +557,6 @@ Public Class Class_SAP_DATA
     End Function
 
     Public Shared Function SAP_DATA_READ_PA0002(Optional sFILT As String = "") As DataTable
-
         Dim dtPA0002 As New DataTable
 
         Try
@@ -614,7 +572,6 @@ Public Class Class_SAP_DATA
     End Function
 
     Public Shared Function SAP_DATA_READ_LIFNR(Optional sFILT As String = "") As DataTable
-
         Dim dtLIFNR As New DataTable
 
         Try
@@ -630,7 +587,6 @@ Public Class Class_SAP_DATA
     End Function
 
     Public Shared Function SAP_DATA_GET_CLIE_FROM_CD_ARTI(sCodeArticle As String) As String
-
         Dim dtMARA, dtT179T As New DataTable
 
         Try
@@ -644,11 +600,9 @@ Public Class Class_SAP_DATA
         End Try
         LOG_Msg(GetCurrentMethod, "Le client pour le code article " & sCodeArticle & " est " & dtT179T(0)("VTEXT").ToString())
         Return dtT179T(0)("VTEXT").ToString()
-
     End Function
 
     Public Shared Function SAP_DATA_READ_S034(Optional sFILT As String = "") As DataTable
-
         Dim dtS034 As New DataTable
 
         Try
@@ -664,7 +618,6 @@ Public Class Class_SAP_DATA
     End Function
 
     Public Shared Function SAP_DATA_READ_LIPS(Optional sFILT As String = "") As DataTable
-
         Dim dtLIPS As New DataTable
 
         Try
@@ -679,7 +632,6 @@ Public Class Class_SAP_DATA
         Return dtLIPS
     End Function
     Public Shared Function SAP_DATA_READ_LIPSUP(Optional sFILT As String = "") As DataTable
-
         Dim dtLIPSUP As New DataTable
 
         Try
@@ -695,7 +647,6 @@ Public Class Class_SAP_DATA
     End Function
 
     Public Shared Function SAP_DATA_READ_CRHD(Optional sFILT As String = "") As DataTable
-
         Dim dtCRHD As New DataTable
 
         Try
@@ -745,8 +696,8 @@ Public Class Class_SAP_DATA
 
     End Function
     Public Shared Function SAP_DATA_READ_MSEG(Optional sFILT As String = "") As DataTable
-
         Dim dtMSEG As New DataTable
+
         Try
             dtMSEG = SAP_DATA_READ_TBL("MSEG", "|", "", "MBLNR MJAHR ZEILE MATNR CHARG MENGE ELIKZ", sFILT)
             If dtMSEG Is Nothing Then Throw New Exception("Problème de lecture de la table MSEG avec le filtre : " & sFILT)
@@ -760,7 +711,6 @@ Public Class Class_SAP_DATA
     End Function
 
     Public Shared Function SAP_DATA_READ_STPO(Optional sFILT As String = "") As DataTable
-
         Dim dtSTPO As New DataTable
 
         Try

@@ -20,7 +20,7 @@ ORDER BY [NM_APP]"></asp:SqlDataSource>
     <br />
     <br />
     <label>Contenu :</label>
-    <asp:TextBox ID="TextBox_CONT" runat="server" Height="212px" Width="631px" TextMode="MultiLine"></asp:TextBox>
+    <asp:TextBox ID="TextBox_CONT" runat="server" Height="100px" Width="300px" TextMode="MultiLine"></asp:TextBox>
     <br />
     <br />
     <asp:Button ID="Button_VALI" runat="server" Text="Valider" BackColor="#002F60" Font-Bold="True" ForeColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" Height="40px" Width="180px"/>

@@ -4211,6 +4211,24 @@ Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
+<member name="F:App_Web.ALMS_IMPORT._GridView_OPE_ALMS">
+<summary>
+Contrôle GridView_OPE_ALMS.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.ALMS_IMPORT._GridView_OPE2_ALMS">
+<summary>
+Contrôle GridView_OPE2_ALMS.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
 <member name="F:App_Web.ALMS_IMPORT._Button_ENVOYER">
 <summary>
 Contrôle Button_ENVOYER.

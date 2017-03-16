@@ -458,9 +458,7 @@ Public Class Class_DIG_FACT_SQL
         Finally
             SQL_Connexion = SQL_CLOS(SQL_Connexion)
         End Try
-
         Return dt_result
-
     End Function
 
     Public Shared Function DIG_FACT_SQL_P_ADD_PSG_DTM_PSG(sLB_ETP As String, dDT_DEB As Date, dDT_FIN As Date, sLB_MOYN As String, sLB_PROG As String, siNM_MATR As Integer, sLB_DOC As String, sNM_NS_EOL As String, sLB_SCTN As String, sNM_OF As Integer) As String

@@ -77,6 +77,24 @@ Partial Public Class ALMS_IMPORT
     Protected WithEvents FileUpload_ALMS As Global.System.Web.UI.WebControls.FileUpload
     
     '''<summary>
+    '''Contrôle GridView_OPE_ALMS.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents GridView_OPE_ALMS As Global.System.Web.UI.WebControls.GridView
+    
+    '''<summary>
+    '''Contrôle GridView_OPE2_ALMS.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents GridView_OPE2_ALMS As Global.System.Web.UI.WebControls.GridView
+    
+    '''<summary>
     '''Contrôle Button_ENVOYER.
     '''</summary>
     '''<remarks>
