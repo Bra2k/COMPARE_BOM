@@ -7,6 +7,8 @@
     </div><br />
     <asp:Button ID="Button1" runat="server" Text="Button" />
     <asp:Button ID="Button2" runat="server" Text="Button2" />
+    <asp:Button ID="Button4" runat="server" Text="Button" />
+    <asp:GridView ID="GridView1" runat="server"></asp:GridView>
 <br />
     <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/PagesMembres/Digital_Factory/FICH_PDF.aspx" Target="_blank">HyperLink</asp:HyperLink>
 <br />

@@ -91,6 +91,10 @@ Public Class Class_DIG_FACT
 									            ('" & sNU_OF & "', '" & sNU_CART & "', 'Numéro de série Eolane', getdate())"
             Try
                 SQL_REQ_ACT(ser_num_Query, "Data Source=cedb03,1433;Initial Catalog=" & Replace(Replace(My.Computer.Name, "CEDB03", "MES_Digital_Factory_DEV"), "CEAPP03", "MES_Digital_Factory") & ";Integrated Security=False;User ID=sa;Password=mdpsa@SQL;Connect Timeout=7200;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False")
+                sw = New StreamWriter(sfich, False, System.Text.Encoding.UTF8)
+                sw.WriteLine(sData)
+                sw.Close()
+                COMM_APP_WEB_IMPR_ETIQ_PRN(sfich, App_Web.Class_DIG_FACT_SQL.DIG_FACT_SQL_GET_PARA(System.Net.Dns.GetHostEntry(System.Web.HttpContext.Current.Request.UserHostAddress).HostName(), "Imprimante étiquette"))
             Catch ex As Exception
                 LOG_Erreur(GetCurrentMethod, ex.Message)
             End Try
@@ -624,6 +628,37 @@ Public Class Class_DIG_FACT_SQL
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
+        End Try
+    End Function
+    Public Shared Function DIG_FACT_SQL_VRFC_WF(sNU_SER_ECO As String, sNU_SER_CLIE As String, sNU_OF As String, sLB_NU_OPRT As String, Optional sChaineConnexion As String = "Data Source=cedb03,1433;Initial Catalog=MES_Digital_Factory;Integrated Security=False;User ID=sa;Password=mdpsa@SQL;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False") As Boolean
+        Dim dt, dt_WF, dtAFKO As New DataTable, sQuery As String = "", sQuery_WF As String = ""
+        Try
+            dtAFKO = SAP_DATA_READ_AFKO("AUFNR LIKE '%" & sNU_OF & "'")
+            If dtAFKO Is Nothing Then Throw New Exception("La désignation d'aticle de l'OF " & sNU_OF & " n'a pas été trouvé dans SAP.")
+
+            'vérification workflow
+            sQuery = "SELECT REPLACE(NM_PARA, 'WORKFLOW étape ', '') AS NU_ETAP
+                        FROM dbo.V_DER_DTM_REF_PARA
+                       WHERE NM_PARA LIKE N'WORKFLOW étape%'
+                         AND CD_ARTI = '" & trim(dtAFKO(0)("PLNBEZ").ToString) & "'
+                         AND VAL_PARA = '" & sLB_NU_OPRT & "'"
+            dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
+            If dt Is Nothing Then Throw New Exception("Pas de Workflow configuré dans la base. Prévenir un Méthode")
+
+            If dt(0)("NU_ETAP").ToString <> "1" Then 'Première opération dans le workflow --> pas de vérification
+                sQuery_WF = "SELECT [NM_ETAP_PCDT]      
+                               FROM [dbo].[V_WORK_PASS]
+                              WHERE [NM_ETAP] = '" & sLB_NU_OPRT & "' 
+                                AND [NM_OF] = '" & sNU_OF & "' 
+                                AND [NU_SER_ECO] LIKE '%" & sNU_SER_ECO & "%'
+                                AND [NU_SER_CLIE] LIKE '%" & sNU_SER_CLIE & "%'"
+                dt_WF = SQL_SELE_TO_DT(sQuery_WF, sChaineConnexion)
+                If dt_WF Is Nothing Then Throw New Exception("Le numéro de série " & sNU_SER_ECO & sNU_SER_CLIE & " n'est pas passé à l'étape précédente")
+            End If
+            Return True
+        Catch ex As Exception
+            LOG_Erreur(GetCurrentMethod, ex.Message)
+            Return False
         End Try
     End Function
 End Class

@@ -582,6 +582,24 @@ Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
+<member name="F:App_Web.Page_ESSAI._Button4">
+<summary>
+Contrôle Button4.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.Page_ESSAI._GridView1">
+<summary>
+Contrôle GridView1.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
 <member name="F:App_Web.Page_ESSAI._HyperLink1">
 <summary>
 Contrôle HyperLink1.
@@ -3069,6 +3087,15 @@ Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans 
 <member name="F:App_Web.TCBL_OPRT._Button_VALI_ENTER">
 <summary>
 Contrôle Button_VALI_ENTER.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.TCBL_OPRT._GridView1">
+<summary>
+Contrôle GridView1.
 </summary>
 <remarks>
 Champ généré automatiquement.

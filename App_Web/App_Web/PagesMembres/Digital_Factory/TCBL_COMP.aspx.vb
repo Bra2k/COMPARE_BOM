@@ -201,6 +201,15 @@ Public Class TCBL_COMP
             dt_TR_CPT = SQL_SELE_TO_DT(sQuerySql, sChaineConnexion)
             If Not dt_TR_CPT Is Nothing Then Throw New Exception("Le numéro de série " & TextBox_SS_ENS.Text & " est déjà attribué dans la base.")
 
+            'Extraction code article d'un numéro de série Eolane de SAP
+            dtAFKO = SAP_DATA_READ_AFKO("AUFNR LIKE '%" & Left(TextBox_SS_ENS.Text, 7) & "'")
+            If Not dtAFKO Is Nothing Then
+                For Each rGridView_REPE As GridViewRow In GridView_REPE.Rows
+                    'attribution du code article si dans la liste
+                    If rGridView_REPE.Cells(1).Text = Trim(dtAFKO(0)("PLNBEZ").ToString) Then Label_CD_SS_ENS.Text = Trim(dtAFKO(0)("PLNBEZ").ToString)
+                Next
+            End If
+
             'Vérifier le format du numéro de série
             dt_CFGR_ARTI_ECO = DIG_FACT_SQL_CFGR_ARTI_ECO(Trim(Label_CD_SS_ENS.Text))
             Select Case "1"
@@ -492,7 +501,7 @@ Public Class TCBL_COMP
         Try
             MultiView_BASC_SAI_SEL.SetActiveView(View_VOID)
             Label_CD_SS_ENS.Text = ""
-            sQuery = "SELECT ISNULL([NM_NS_CLT],[NM_NS_EOL]) AS [Numéros de série tracés]
+            sQuery = "SELECT ISNULL(CASE [NM_NS_CLT] WHEN '' THEN [NM_NS_EOL] ELSE [NM_NS_CLT] END,[NM_NS_EOL]) AS [Numéros de série tracés]
                         FROM [dbo].[ID_PF_View]
                        WHERE [LB_ETP] = '" & Label_DES_OP.Text & " (OP:" & Label_OP.Text & ")' AND [NM_OF] = '" & Label_OF.Text & "'
                       GROUP BY ISNULL([NM_NS_CLT],[NM_NS_EOL]), [LB_ETP], [NM_OF]

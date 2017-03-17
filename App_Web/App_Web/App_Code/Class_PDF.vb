@@ -26,7 +26,7 @@ Public Class Class_PDF
     End Sub
 
     Public Shared Sub PDF_CHAR_CONF(ByRef gfx As XGraphics, sfich_config As String, dt_var_pdf_replace As DataTable)
-        Dim sr As StreamReader, sData As String, sloctext As String(), sText As String = ""
+        Dim sr As StreamReader = Nothing, sData As String, sloctext As String(), sText As String = ""
         Try
             sr = New StreamReader(sfich_config, System.Text.Encoding.UTF8)
             Do While sr.Peek() >= 0

@@ -164,13 +164,6 @@ Public Class CLSG
                 Label_NB_CART_PALE.Text = dt.Rows.Count.ToString
             End If
 
-            'si param générer un ns client (medria)
-            If COMM_APP_WEB_GET_PARA(Label_CD_ARTI_ECO.Text & "|Numéro de série client", "CheckBox_NU_SER_CLIE_GENE_AUTO", "ASP.pagesmembres_digital_factory_impr_etiq_prn_aspx") = "True" Then
-                DIG_FACT_IMPR_ETIQ(COMM_APP_WEB_GET_PARA(Label_CD_ARTI_ECO.Text & "|Numéro de série client", "TextBox_FICH_MODE", "ASP.pagesmembres_digital_factory_impr_etiq_prn_aspx"),
-                                   TextBox_NU_OF.Text, "", "Numéro de série client", "", "",
-                                   "", "", "", Nothing, Session("matricule"))
-            End If
-
             'Sélectionner la textbox
             Select Case "1"
                 Case dt_CFGR_ARTI_ECO(0)("Carton spécifique").ToString
@@ -194,10 +187,21 @@ Public Class CLSG
                     Dim rdtCRHD = dtCRHD.Select("ARBPL = 'EMB01'").FirstOrDefault
                     If Not rdtCRHD Is Nothing Then
                         Label_NM_DSGT_ARTI_ECO.Text = Trim(rdtAFVC("LTXA1").ToString)
-                        Label_NU_OP.Text = Trim(rdtAFVC("VORNR").ToString)
+                        Label_NU_OP.Text = Convert.ToDecimal(Trim(rdtAFVC("VORNR").ToString))
                     End If
                 End If
             Next
+
+            'si param générer un ns client (medria)
+            If dt_CFGR_ARTI_ECO(0)("Génération impression numéro de série").ToString = Label_NU_OP.Text Then
+                'If COMM_APP_WEB_GET_PARA(Label_CD_ARTI_ECO.Text & "|Numéro de série client", "CheckBox_NU_SER_CLIE_GENE_AUTO", "ASP.pagesmembres_digital_factory_impr_etiq_prn_aspx") = "True" Then
+                DIG_FACT_IMPR_ETIQ(COMM_APP_WEB_GET_PARA(Label_CD_ARTI_ECO.Text & "|Numéro de série client", "TextBox_FICH_MODE", "ASP.pagesmembres_digital_factory_impr_etiq_prn_aspx"),
+                                   TextBox_NU_OF.Text, "", "Numéro de série client", "", "",
+                                   "", "", "", Nothing, Session("matricule"))
+            End If
+
+            'Génération impression numéro de série
+
             dt_REPE = TCBL_ESB_SS_ESB_V2._LIST_ENS_SS_ENS(Label_NU_OF.Text, Label_NU_OP.Text)
             If Not dt_REPE Is Nothing Then
                 GridView_REPE.DataSource = dt_REPE
@@ -231,8 +235,10 @@ Public Class CLSG
             'vérification que n° série appartient à l'OF
             If dt_CFGR_ARTI_ECO(0)("Vérification cohérence OF numero serie eolane").ToString = "1" Then 'vérification
                 Dim sNU_SER_ECO As String = TextBox_NU_SER_ECO.Text, sOF As String = TextBox_NU_OF.Text
-                If sNU_SER_ECO.IndexOf(sOF) = -1 Then Throw New Exception("Le numéro de série " & sNU_SER_ECO & " n'appartient pas à l'OF " & sOF)
+                If sNU_SER_ECO.Contains(sOF) = False Then Throw New Exception("Le numéro de série " & sNU_SER_ECO & " n'appartient pas à l'OF " & sOF)
             End If
+            'vérification workflow
+            If DIG_FACT_SQL_VRFC_WF(TextBox_NU_SER_ECO.Text, "", TextBox_NU_OF.Text, Label_NM_DSGT_ARTI_ECO.Text & " (OP:" & Label_NU_OP.Text & ")", sChaineConnexion) = False Then Throw New Exception("Problème détecté dans le Workflow.")
 
             'Saisie suivante
             TextBox_NU_SER_ECO.Enabled = False
@@ -283,6 +289,8 @@ Public Class CLSG
                        WHERE [NU_NS_CLI] = '" & TextBox_NU_SER_CLIE.Text & "' AND [NU_OF] = '" & TextBox_NU_OF.Text & "'"
             dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
             If Not dt Is Nothing Then Throw New Exception("Le numéro de série " & TextBox_NU_SER_CLIE.Text & " a déjà été scanné.")
+            'vérification workflow
+            If DIG_FACT_SQL_VRFC_WF("", TextBox_NU_SER_CLIE.Text, TextBox_NU_OF.Text, Label_NM_DSGT_ARTI_ECO.Text & " (OP:" & Label_NU_OP.Text & ")", sChaineConnexion) = False Then Throw New Exception("Problème détecté dans le Workflow.")
 
             'Saisie suivante
             TextBox_NU_SER_ECO.Enabled = False
@@ -410,6 +418,13 @@ Public Class CLSG
                     End If
 
                 Case "PRN", "prn" 'impression étiquette PRN
+                    'truc pourri pour ALMS, retirer le code article court au début du SN
+                    If Label_NM_CLIE.Text = "AIR LIQUIDE MEDICAL" Then
+
+                        TextBox_NU_SER_CLIE.Text = COMM_APP_WEB_STRI_TRIM_LEFT(TextBox_NU_SER_CLIE.Text, TextBox_NU_SER_CLIE.Text.IndexOf("-"))
+                        LOG_Msg(GetCurrentMethod, TextBox_NU_SER_CLIE.Text)
+                    End If
+                    LOG_Msg(GetCurrentMethod, "123")
                     DIG_FACT_IMPR_ETIQ(sFichier_Modele,
                                        TextBox_NU_OF.Text, "", "Carton", TextBox_NU_SER_CLIE.Text, TextBox_NU_SER_ECO.Text,
                                        Label_NU_CART.Text, Label_NB_CART.Text, "", dtVar)
@@ -544,7 +559,7 @@ Public Class CLSG
                            VALUES (" & dt(0)("NEW_ID_PSG").ToString & "," & Label_NU_PALE_NU_V_NU_SER.Text & ")"
             SQL_REQ_ACT(sQuery, sChaineConnexion)
             'impression d'une étiquette packaging
-            If Not dt_CFGR_ARTI_ECO(0)("Impression étiquette packaging numéro de série client").ToString Is Nothing Then
+            If dt_CFGR_ARTI_ECO(0)("Impression étiquette packaging numéro de série client").ToString = "1" Then
                 dt_var.Columns.Add("0")
                 dt_var.Columns.Add("1")
                 dt_var.Rows.Add()
@@ -552,13 +567,14 @@ Public Class CLSG
                 DIG_FACT_IMPR_ETIQ(COMM_APP_WEB_GET_PARA(Label_CD_ARTI_ECO.Text & "|Numéro de série client", "TextBox_FICH_MODE", "ASP.pagesmembres_digital_factory_impr_etiq_prn_aspx"),
                                    sNU_OF, "", "Numéro de série client", sNU_SER_CLIE, "", "", "", "", dt_var, Session("matricule"))
             End If
-            If Not dt_CFGR_ARTI_ECO(0)("Impression étiquette packaging numéro de série Eolane").ToString Is Nothing Then
+            If dt_CFGR_ARTI_ECO(0)("Impression étiquette packaging numéro de série Eolane").ToString = "1" Then
                 DIG_FACT_IMPR_ETIQ(COMM_APP_WEB_GET_PARA(Label_CD_ARTI_ECO.Text & "|Numéro de série Eolane", "TextBox_FICH_MODE", "ASP.pagesmembres_digital_factory_impr_etiq_prn_aspx"),
                                    sNU_OF, "", "Numéro de série Eolane", "", sNU_SER_ECO, "", "", "", Nothing, Session("matricule"))
             End If
 
             'si param générer un ns client (medria)
-            If COMM_APP_WEB_GET_PARA(Label_CD_ARTI_ECO.Text & "|Numéro de série client", "CheckBox_NU_SER_CLIE_GENE_AUTO", "ASP.pagesmembres_digital_factory_impr_etiq_prn_aspx") = "True" Then
+            If dt_CFGR_ARTI_ECO(0)("Génération impression numéro de série").ToString = Label_NU_OP.Text Then
+                'If COMM_APP_WEB_GET_PARA(Label_CD_ARTI_ECO.Text & "|Numéro de série client", "CheckBox_NU_SER_CLIE_GENE_AUTO", "ASP.pagesmembres_digital_factory_impr_etiq_prn_aspx") = "True" Then
                 DIG_FACT_IMPR_ETIQ(COMM_APP_WEB_GET_PARA(Label_CD_ARTI_ECO.Text & "|Numéro de série client", "TextBox_FICH_MODE", "ASP.pagesmembres_digital_factory_impr_etiq_prn_aspx"),
                                    TextBox_NU_OF.Text, "", "Numéro de série client", "", "",
                                    "", "", "", Nothing, Session("matricule"))

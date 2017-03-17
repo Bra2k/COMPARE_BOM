@@ -17,6 +17,8 @@ Imports System.Drawing.Imaging
 Imports System.IO
 Imports System.Windows.Forms
 Imports App_Web.Class_DIG_FACT_SQL
+Imports App_Web.Class_SAP_DATA
+
 
 'Imports System.Drawing.Printing
 'Imports System.Printing
@@ -234,6 +236,95 @@ Public Class Page_ESSAI
         ClientScript.RegisterStartupScript([GetType](), "printPdf", "document.getElementById(""pdf"").src = """ & Path.GetFileName(sFichier) & """;
                                                                                      document.getElementById(""pdf"").onload = function() {window.frames[""pdf""].focus();};", True)
     End Sub
+
+    Protected Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+
+        Dim dt = SAP_DATA_CARO_ROUT_READ("1", "2", "3")
+        GridView1.DataSource = dt
+        GridView1.DataBind()
+    End Sub
+
+    Public Shared Function SAP_DATA_READ_MAPL(cARTI As String) As DataTable
+        Dim dtMAPL As New DataTable
+
+        Try
+            dtMAPL = SAP_DATA_READ_TBL("MAPL", "|", "", "PLNNR", "MATNR LIKE '" & cARTI & "%' AND PLNTY EQ 'N' AND WERKS EQ 'DI31'")
+            If dtMAPL Is Nothing Then Throw New Exception("L'article '" & cARTI & "' est inconnu ou ne possède pas de gamme")
+        Catch ex As Exception
+            LOG_Erreur(GetCurrentMethod, ex.Message)
+            Return Nothing
+        End Try
+        LOG_Msg(GetCurrentMethod, "La liste GrpDeGamme a été extraite de SAP")
+        Return dtMAPL
+    End Function
+
+    Public Shared Function SAP_DATA_READ_PLKO(V_PLNNR As String) As DataTable
+        Dim dtPLKO As New DataTable
+
+        Try
+            dtPLKO = SAP_DATA_READ_TBL("PLKO", "|", "", "PLNAL", "PLNNR EQ '" & V_PLNNR & "' AND STATU EQ '4'")
+            If dtPLKO Is Nothing Then Throw New Exception("Erreur sur le PLNNR")
+        Catch ex As Exception
+            LOG_Erreur(GetCurrentMethod, ex.Message)
+            Return Nothing
+        End Try
+        LOG_Msg(GetCurrentMethod, "La liste a été extraite de SAP")
+        Return dtPLKO
+    End Function
+
+    Public Function SAP_DATA_CARO_ROUT_READ(V_MATNR As String, V_PLNNR As String, V_PLNAL As String) As DataTable
+        Dim oSAP, RFC, oT_CARO_ROUT_READ, DATE_FROM, DATE_TO, PLNTY, PLNNR, PLNAL, MATNR As New Object
+        Dim dt_T_CARO_ROUT_READ As New DataTable
+        'Dim DATE_FROM, DATE_TO, PLNTY, PLNNR, PLNAL, MATNR As String
+
+        LOG_Msg(GetCurrentMethod, "Result :'" & V_MATNR & "' '" & V_PLNNR & "' '" & V_PLNAL & "'")
+        Try
+            oSAP = SAP_DATA_CONN()
+            LOG_Msg(GetCurrentMethod, "-1")
+            RFC = oSAP.Add("CARO_ROUTING_READ")
+            LOG_Msg(GetCurrentMethod, RFC.status)
+            DATE_FROM = RFC.Exports("DATE_FROM")
+            LOG_Msg(GetCurrentMethod, RFC.imports("DATE_FROM"))
+            DATE_FROM.value = "19990101" 'COMM_APP_WEB_CONV_FORM_DATE(Calendar_APP.SelectedDate, "ddMMyyyy")
+            LOG_Msg(GetCurrentMethod, RFC.imports("DATE_FROM"))
+            RFC.Exports("DATE_TO") = "20170313" 'COMM_APP_WEB_CONV_FORM_DATE(Calendar_VAL.SelectedDate, "ddMMyyyy")
+            LOG_Msg(GetCurrentMethod, "11")
+            RFC.Exports("PLNTY") = "N"
+
+            LOG_Msg(GetCurrentMethod, "12")
+            'If V_PLNNR <> "" Then
+            RFC.Exports("PLNNR") = "50024232" 'V_PLNNR
+            'End If
+            'If V_PLNAL <> "" Then
+            RFC.Exports("PLNAL") = "01" 'V_PLNAL
+            'End If
+            'If V_MATNR <> "" Then
+            RFC.Exports("MATNR") = "EKCE21000$" 'V_MATNR
+            'End If
+            LOG_Msg(GetCurrentMethod, "1")
+            'LOG_Msg(GetCurrentMethod, "2")
+            oT_CARO_ROUT_READ = RFC.Tables("OPR_TAB")
+            If RFC.Call <> -1 Then Throw New Exception(RFC.exception)
+            For Each o_COL_T_LOG_CONF As Object In oT_CARO_ROUT_READ.Columns
+                dt_T_CARO_ROUT_READ.Columns.Add(o_COL_T_LOG_CONF.Name, Type.GetType("System.String"))
+                LOG_Msg(GetCurrentMethod, o_COL_T_LOG_CONF.Name)
+            Next
+            For iRowIndex = 1 To oT_CARO_ROUT_READ.RowCount
+                dt_T_CARO_ROUT_READ.Rows.Add()
+                For iIndex = 1 To oT_CARO_ROUT_READ.ColumnCount - 1
+                    dt_T_CARO_ROUT_READ.Rows(dt_T_CARO_ROUT_READ.Rows.Count - 1)(iIndex - 1) = oT_CARO_ROUT_READ.Value(iRowIndex, iIndex)
+                    LOG_Msg(GetCurrentMethod, oT_CARO_ROUT_READ.Value(iRowIndex, iIndex))
+                Next
+            Next
+        Catch ex As Exception
+            LOG_Erreur(GetCurrentMethod, ex.Message)
+            Return Nothing
+        Finally
+            oSAP = SAP_DATA_DECO(oSAP)
+        End Try
+        Return dt_T_CARO_ROUT_READ
+    End Function
+
 
     'Private WithEvents p_Document As PrintDocument = Nothing
 

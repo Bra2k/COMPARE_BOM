@@ -41,6 +41,24 @@ Partial Public Class Page_ESSAI
     Protected WithEvents Button2 As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
+    '''Contrôle Button4.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents Button4 As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''Contrôle GridView1.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents GridView1 As Global.System.Web.UI.WebControls.GridView
+    
+    '''<summary>
     '''Contrôle HyperLink1.
     '''</summary>
     '''<remarks>

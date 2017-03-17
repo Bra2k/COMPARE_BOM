@@ -59,6 +59,15 @@ Partial Public Class TCBL_OPRT
     Protected WithEvents Button_VALI_ENTER As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
+    '''Contrôle GridView1.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents GridView1 As Global.System.Web.UI.WebControls.GridView
+    
+    '''<summary>
     '''Contrôle View_SAIS_OTLG.
     '''</summary>
     '''<remarks>

@@ -23,6 +23,10 @@
                         
                         <br />
                         <asp:Button ID="Button_VALI_ENTER" runat="server" BackColor="#002F60" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" Font-Bold="True" ForeColor="White" Height="40px" Text="Valider" Width="180px" />
+                        <br />
+                        <br />
+                        <asp:GridView ID="GridView1" runat="server">
+                        </asp:GridView>
                     </asp:View>
                     <asp:View ID="View_SAIS_OTLG" runat="server">
 

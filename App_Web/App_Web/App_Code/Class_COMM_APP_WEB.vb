@@ -55,7 +55,7 @@ Public Class Class_COMM_APP_WEB
         Dim firstLine As Boolean = True
         Try
             If IO.File.Exists(savePath) Then
-                Using sr As New StreamReader(savePath, Encoding.UTF8)
+                Using sr As New StreamReader(savePath, Encoding.GetEncoding(1252))
                     While Not sr.EndOfStream
                         If firstLine Then
                             firstLine = False
