@@ -34,12 +34,11 @@ Public Class IDCT_PASS
         Try
             Label_DEB.Text = COMM_APP_WEB_CONV_FORM_DATE(Calendar_DEB.SelectedDate, "yyyy-MM-dd")
             Label_FIN.Text = COMM_APP_WEB_CONV_FORM_DATE(Calendar_FIN.SelectedDate, "yyyy-MM-dd")
-            sQuery = "SELECT * FROM [dbo].[F_IDCT_PASS]('" & Label_DEB.Text & "', '" & Label_FIN.Text & "', '" & TextBox_OF.Text & "', '" & TextBox_CD_ARTI_ECO.Text & "')"
+            sQuery = "SELECT * FROM [dbo].[F_IDCT_PASS]('" & Label_DEB.Text & "', '" & Label_FIN.Text & "', '" & TextBox_OF.Text & "', '" & TextBox_CD_ARTI_ECO.Text & "') ORDER BY [OF] DESC"
             dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
             If dt Is Nothing Then Throw New Exception("pas de données entre le " & Label_DEB.Text & " et le " & Label_FIN.Text & ".")
             GridView_RES.DataSource = dt
             GridView_RES.DataBind()
-
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
         End Try

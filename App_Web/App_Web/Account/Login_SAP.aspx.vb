@@ -15,7 +15,7 @@ Public Class Login_SAP
             Session("sn") = LTrim(RTrim(dt_matr(0)("NACHN").ToString))
             Session("givenname") = LTrim(RTrim(dt_matr(0)("VORNA").ToString))
             Session("displayname") = Session("sn") & " " & Session("givenname")
-            'Request.ServerVariables("HTTP_REFERER")
+            ''Request.ServerVariables("HTTP_REFERER")
             'LOG_Msg(GetCurrentMethod, Page.PreviousPage.Request.Url.ToString())
             Response.Redirect(Session("UrlReferrer"))
         Catch ex As Exception

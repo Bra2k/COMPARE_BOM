@@ -60,6 +60,12 @@
     <Reference Include="BarcodeLib.Barcode.ASP.NET">
       <HintPath>..\..\..\..\..\Mes_Donnees_so_spevi\Travail\Projets\Colisage E-Takes Care\BarcodeLib.Barcode.ASP.NET.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp">
+      <HintPath>..\..\..\ALMS\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp.pdfa">
+      <HintPath>..\..\..\ALMS\itextsharp.pdfa.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.0.1011, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -253,11 +259,37 @@
       <DependentUpon>Login_SAP.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="PagesMembres\Developpement\UPLO_FICH_TO_CAB.aspx.designer.vb">
+      <DependentUpon>UPLO_FICH_TO_CAB.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagesMembres\Developpement\UPLO_FICH_TO_CAB.aspx.vb">
+      <DependentUpon>UPLO_FICH_TO_CAB.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PagesMembres\Digital_Factory\CTTO_POST.aspx.designer.vb">
+      <DependentUpon>CTTO_POST.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagesMembres\Digital_Factory\CTTO_POST.aspx.vb">
+      <DependentUpon>CTTO_POST.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="PagesMembres\Production\ALMS\ALMS_IMPORT.aspx.designer.vb">
+      <DependentUpon>ALMS_IMPORT.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagesMembres\Production\ALMS\ALMS_IMPORT.aspx.vb">
+      <DependentUpon>ALMS_IMPORT.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="App_Code\Class_COMM_APP_WEB.vb" />
     <Compile Include="App_Code\Class_DIG_FACT.vb" />
     <Compile Include="App_Code\Class_PDF.vb" />
     <Compile Include="App_Code\Class_SQL.vb" />
     <Content Include="Account\Login_SAP.aspx" />
+    <Content Include="App_Themes\ICON_COMPARE\tracabilite_ope.ico" />
+    <Content Include="App_Themes\PIC_CHAR\tracabilite_ope.ico" />
+    <Content Include="PagesMembres\Developpement\UPLO_FICH_TO_CAB.aspx" />
+    <Content Include="PagesMembres\Digital_Factory\CTTO_POST.aspx" />
+    <Content Include="PagesMembres\Production\ALMS\ALMS_IMPORT.aspx" />
     <Content Include="App_Themes\CSS\CSS_MediaQuery.css" />
     <Content Include="App_Themes\ICON_COMPARE\article4.ico" />
     <Content Include="App_Themes\ICON_COMPARE\banc_test.ico" />
@@ -287,8 +319,12 @@
     <Content Include="App_Themes\PIC_CHAR\39317.png" />
     <Content Include="App_Themes\PIC_CHAR\39344.png" />
     <Content Include="App_Themes\PIC_CHAR\acces-interdit-aux-personnes-non-autorisees-iz-2463.jpg" />
+    <Content Include="App_Themes\PIC_CHAR\AjoutBonDeLivraison.png" />
+    <Content Include="App_Themes\PIC_CHAR\camion-de-palette-avec-la-palette-et-les-cadres-22203588.jpg" />
     <Content Include="App_Themes\PIC_CHAR\Comb1.jpg" />
     <Content Include="App_Themes\PIC_CHAR\Custom-Icon-Design-Pretty-Office-9-Delete-file.ico" />
+    <Content Include="App_Themes\PIC_CHAR\delivery_256.png" />
+    <Content Include="App_Themes\PIC_CHAR\depositphotos_107060668-stock-illustration-forklift-truck-with-boxes-icon.jpg" />
     <Content Include="App_Themes\PIC_CHAR\depositphotos_111867916-stock-illustration-cargo-boxes-pallet-icon.jpg" />
     <Content Include="App_Themes\PIC_CHAR\DFEC.png" />
     <Content Include="App_Themes\PIC_CHAR\DFEC_V2.png" />
@@ -297,6 +333,7 @@
     <Content Include="App_Themes\PIC_CHAR\eolienneanimee.gif" />
     <Content Include="App_Themes\PIC_CHAR\eos1_800.jpg" />
     <Content Include="App_Themes\PIC_CHAR\icones_01356.png" />
+    <Content Include="App_Themes\PIC_CHAR\icone_film_palette_coiffe_palette.png" />
     <Content Include="App_Themes\PIC_CHAR\image.jpg" />
     <Content Include="App_Themes\PIC_CHAR\image_bommanage.png" />
     <Content Include="App_Themes\PIC_CHAR\imgres.jpg" />
@@ -308,7 +345,9 @@
     <Content Include="App_Themes\Skin_CHRT_ECO\Default.css" />
     <Content Include="PagesMembres\Developpement\ADD_VERS_APCT.aspx" />
     <Content Include="PagesMembres\Developpement\AMNS_APP_WEB.aspx" />
-    <Content Include="PagesMembres\Developpement\CFGR_POST.aspx" />
+    <Content Include="PagesMembres\Developpement\CFGR_POST.aspx">
+      <BrowseToURL>Numéros de série tracés :~/PagesMembres/Developpement/CFGR_POST.aspx</BrowseToURL>
+    </Content>
     <Content Include="PagesMembres\Developpement\Fonctions_Class_SAP_DATA.aspx" />
     <Content Include="PagesMembres\Developpement\JOUR_APP.aspx" />
     <Content Include="PagesMembres\Developpement\Page_ESSAI.aspx" />
@@ -333,7 +372,8 @@
     </Content>
     <Content Include="PagesMembres\Production\ALMS\ADD_MAC_ADRE.aspx" />
     <Content Include="PagesMembres\Production\ALMS\ADD_VERS_FDV.aspx" />
-    <Content Include="PagesMembres\Production\ALMS\ALMS_IMPORT.aspx" />
+    <Content Include="PagesMembres\Production\ALMS\ALMS_menu.aspx" />
+    <Content Include="PagesMembres\Production\ALMS\GEST_ANML_NC_DRGT.aspx" />
     <Content Include="PagesMembres\Production\Controle_Reception\AJOU_FNS_CTRL_RCP.aspx" />
     <Content Include="PagesMembres\Production\CST_HEUR_SAI_BW.aspx" />
     <Content Include="PagesMembres\Production\Saisie_des_defauts\CHX_REPE_SIMI.aspx" />
@@ -344,6 +384,7 @@
     <Content Include="PagesMembres\Provisoire\IMPR_RAPP_TCBL_STW_AFAC_6-2017.aspx" />
     <Content Include="PagesMembres\Provisoire\TEST_BATT_TUCK.aspx" />
     <Content Include="PagesMembres\RDRC_PAGE_MEMB.aspx" />
+    <Content Include="Scripts\LoginSAP.js" />
     <Content Include="Scripts\snow.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -578,11 +619,11 @@
       <DependentUpon>ADD_VERS_FDV.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="PagesMembres\Production\ALMS\ALMS_IMPORT.aspx.designer.vb">
-      <DependentUpon>ALMS_IMPORT.aspx</DependentUpon>
+    <Compile Include="PagesMembres\Production\ALMS\GEST_ANML_NC_DRGT.aspx.designer.vb">
+      <DependentUpon>GEST_ANML_NC_DRGT.aspx</DependentUpon>
     </Compile>
-    <Compile Include="PagesMembres\Production\ALMS\ALMS_IMPORT.aspx.vb">
-      <DependentUpon>ALMS_IMPORT.aspx</DependentUpon>
+    <Compile Include="PagesMembres\Production\ALMS\GEST_ANML_NC_DRGT.aspx.vb">
+      <DependentUpon>GEST_ANML_NC_DRGT.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="PagesMembres\Production\Controle_Reception\AJOU_FNS_CTRL_RCP.aspx.designer.vb">

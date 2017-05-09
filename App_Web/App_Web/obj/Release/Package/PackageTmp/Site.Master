@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head runat="server">
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -15,7 +16,9 @@
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 </head>
 <body>
-    <form runat="server">
+
+    <form runat="server">        
+
         <asp:ScriptManager runat="server">
             <Scripts>
                 <%--Pour plus d'informations sur les scripts de regroupement dans ScriptManager, consultez http://go.microsoft.com/fwlink/?LinkID=301884 --%>
@@ -36,6 +39,8 @@
                 <%--Scripts de site--%>
             </Scripts>
         </asp:ScriptManager>
+        <script type="text/javascript" src="Scripts/LoginSAP.js"></script>
+
         <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: #002F60">
             <div class="container" style="background-color: #002F60">
                 <div class="navbar-header">
@@ -70,20 +75,30 @@
                 </div>
             </div>
         </div>
+        <%--<div id="cont_NDkxMDN8MXw1fDF8MXwwMDJlNjB8MXxGRkZGRkZ8Y3wx"><div id="spa_NDkxMDN8MXw1fDF8MXwwMDJlNjB8MXxGRkZGRkZ8Y3wx"><a id="a_NDkxMDN8MXw1fDF8MXwwMDJlNjB8MXxGRkZGRkZ8Y3wx" href="http://www.meteocity.com/france/combree_v49103/" target="_blank" style="color:#333;text-decoration:none;"></a></div><script type="text/javascript" src="http://widget.meteocity.com/js/NDkxMDN8MXw1fDF8MXwwMDJlNjB8MXxGRkZGRkZ8Y3wx"></script></div>--%>
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
-                <p style="font-family: Verdana;"></p>
+                <p style="font-family: Verdana;">
+                    
+                    
+                </p>
             </asp:ContentPlaceHolder>
+            
+            
+            
             <br />
             <asp:UpdatePanel ID="UpdatePanel_PGS_TACH" runat="server" ChildrenAsTriggers="False" UpdateMode="Conditional">
                 <ContentTemplate>
                     <asp:Label ID="Label_PGS_TACH" runat="server" Text=""></asp:Label>
+                    
                 </ContentTemplate>
             </asp:UpdatePanel>
             <br />
+            <asp:Label ID="Label_LOG_SAP" runat="server" Text=""></asp:Label>                
             <asp:Label ID="Label_ERR_MSG" runat="server" Font-Bold="True" ForeColor="Red"></asp:Label>
             <br />
             <hr />
+
             <footer>
                 <div style="position: fixed; bottom: 0; left: 0; right: 0;">
                     <asp:Image ID="Image_LOGO_ECO" runat="server" ImageUrl="~/App_Themes/PIC_CHAR/Comb1.jpg" Height="55px" Width="134px" />

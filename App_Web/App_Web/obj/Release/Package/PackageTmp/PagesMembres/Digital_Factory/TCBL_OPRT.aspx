@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <table style="width:100%;">
         <tr>
-            <td style="vertical-align: top">
+            <td style="vertical-align: top" rowspan="3">
                 <div class="titre_page">
                             <h2>Digital Factory : Opérations</h2>
                         </div>
@@ -24,9 +24,6 @@
                         <br />
                         <asp:Button ID="Button_VALI_ENTER" runat="server" BackColor="#002F60" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" Font-Bold="True" ForeColor="White" Height="40px" Text="Valider" Width="180px" />
                         <br />
-                        <br />
-                        <asp:GridView ID="GridView1" runat="server">
-                        </asp:GridView>
                     </asp:View>
                     <asp:View ID="View_SAIS_OTLG" runat="server">
 
@@ -59,6 +56,7 @@
                             <asp:View ID="View_SAIS_POST_MULT" runat="server">
                                 Sélectionner le poste : <asp:DropDownList ID="DropDownList_POST" runat="server" AutoPostBack="True">
                         </asp:DropDownList>
+                                <asp:Button ID="Button_VALI_POST" runat="server" BackColor="#002F60" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" Font-Bold="True" ForeColor="White" Height="40px" Text="Valider" Width="180px" />
                             </asp:View>
                         </asp:MultiView>
                         <br />
@@ -68,7 +66,6 @@
 
                         Saisir le numéro de série :
                         <asp:TextBox ID="TextBox_NU_SER" runat="server" AutoPostBack="True"></asp:TextBox>
-                        <br />
                         <br />
                         <asp:MultiView ID="MultiView_ETAP" runat="server">
 
@@ -100,12 +97,81 @@
 
                         </asp:MultiView>
 
+                        <asp:MultiView ID="MultiView_Tracabilité" runat="server" ActiveViewIndex="0">
+                            <asp:View ID="View_VOID_2" runat="server">
+                            </asp:View>
+                            <asp:View ID="View_SAI_SOUS_ENSE" runat="server">
+                                <label>
+                                Entrer le numéro du sous-ensemble</label>
+                                <asp:Label ID="Label_CD_SS_ENS" runat="server"></asp:Label>
+                                :
+                                <asp:TextBox ID="TextBox_SS_ENS" runat="server" AutoPostBack="True"></asp:TextBox>
+                                <br />
+                                <br />
+                                Liste des sous-ensembles à tracer :<asp:GridView ID="GridView_REPE" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" Font-Size="8pt" GridLines="Vertical" SkinID="GV_AFF_DONN">
+                                    <AlternatingRowStyle BackColor="#DCDCDC" />
+                                    <Columns>
+                                        <asp:CommandField ShowSelectButton="True" />
+                                    </Columns>
+                                    <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
+                                    <HeaderStyle BackColor="#002F60" Font-Bold="True" ForeColor="#989000" />
+                                    <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                                    <RowStyle BackColor="#EEEEEE" ForeColor="Black" />
+                                    <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
+                                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                                    <SortedAscendingHeaderStyle BackColor="#0000A9" />
+                                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                                    <SortedDescendingHeaderStyle BackColor="#000065" />
+                                </asp:GridView>
+                            </asp:View>
+                        </asp:MultiView>
+
+                        <br />
+                        <asp:MultiView ID="MultiView_DCMT" runat="server">
+                            <asp:View ID="View_VOID_3" runat="server">
+                            </asp:View>
+                            <asp:View ID="View_DCMT" runat="server">
+                                <table style="width:100%;">
+                                    <tr>
+                                        <td>
+                                            <asp:Button ID="Button_DCMT_PASS" runat="server" Text="Bon" BackColor="Lime" Font-Bold="True" />
+                                        </td>                                        
+                                        <td>
+                                            <asp:Button ID="Button_DCMT_FAIL" runat="server" BackColor="Red" Font-Bold="True" Text="Mauvais" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Nombre de ligne 4.1. NQI, Dérogation, Hors-gamme :</td>                                       
+                                                                           </tr>
+                                    <tr>
+                                        <td>
+                                            Nombre de ligne 4.2 Autres écarts : </td>                                       
+                                                                           </tr>
+                                    <tr>
+                                        <td>FCGF : </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Rapport de contrôle : </td>
+                                    </tr>
+                                </table>
+                                <iframe id="pdf" name = "pdf" src ="1.pdf" style="width: 768px; height: 1024px;" ></iframe>
+                            </asp:View>
+                        </asp:MultiView>
+                        <asp:MultiView ID="MultiView_VLDT" runat="server">
+
+                            <asp:View ID="View_VOID_4" runat="server">
+                            </asp:View>
+                            <asp:View ID="View_VLDT_OPRT" runat="server">
+                                Afin de valider l&#39;ensemble des étapes, scanner le numéro de série du produit :<br />
+                                <asp:TextBox ID="TextBox_NU_SER_VLDT_OPRT" runat="server"></asp:TextBox>
+                            </asp:View>
+
+                        </asp:MultiView>
                     </asp:View>
                     
                     <asp:View ID="View_SAIS_TCBL_COMP" runat="server">
-                        <asp:MultiView ID="MultiView_Tracabilité" runat="server" ActiveViewIndex="0">
-                            <asp:View ID="View_CONT_LOT_ID_COMP" runat="server">
-                                <asp:RadioButtonList ID="RadioButtonList_SELE_COMP" runat="server" AutoPostBack="True" RepeatDirection="Horizontal" Width="500px">
+                               <asp:RadioButtonList ID="RadioButtonList_SELE_COMP" runat="server" AutoPostBack="True" RepeatDirection="Horizontal" Width="500px">
                                     <asp:ListItem Selected="True">Bac</asp:ListItem>
                                     <asp:ListItem>ID Composant</asp:ListItem>
                                     <asp:ListItem>Code lot</asp:ListItem>
@@ -139,16 +205,8 @@
                                         </asp:MultiView>
                                     </asp:View>
                                 </asp:MultiView>
-                            </asp:View>
-                            <asp:View ID="View_SAI_SOUS_ENSE" runat="server">
-                                <label>
-                                Entrer le numéro du sous-ensemble</label>
-                                <asp:Label ID="Label_CD_SS_ENS" runat="server"></asp:Label>
-                                :
-                                <asp:TextBox ID="TextBox_SS_ENS" runat="server" AutoPostBack="True"></asp:TextBox>
-                            </asp:View>
-                        </asp:MultiView>
-                        <asp:GridView ID="GridView_REPE" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" Font-Size="8pt" GridLines="Vertical" SkinID="GV_AFF_DONN">
+                               <br />
+                        <asp:GridView ID="GridView_REPE0" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" Font-Size="8pt" GridLines="Vertical" SkinID="GV_AFF_DONN">
                             <AlternatingRowStyle BackColor="#DCDCDC" />
                             <Columns>
                                 <asp:CommandField ShowSelectButton="True" />
@@ -166,8 +224,11 @@
                     </asp:View>
                     
                 </asp:MultiView>
+                <%--<asp:Label ID="Label_RES" runat="server" Text=""></asp:Label>--%>
             </td>
-            <td style="vertical-align: top"><label>OF :</label>
+
+            
+            <td style="vertical-align:top"><label>OF :</label>
                     <asp:Label ID="Label_OF" runat="server"></asp:Label>
                     <br />
                     <label>Client :</label>
@@ -194,10 +255,45 @@
                     <br />
                     <label>Numéros de série tracés :</label>
                     <br />
-                    <asp:GridView ID="GridView_SN_TRAC" runat="server" SkinID="GV_AFF_DONN" PageSize="7" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical" Font-Size="10pt">
+                    <div style="width: auto; height: 400px; overflow: scroll;">
+                        <asp:GridView ID="GridView_SN_TRAC" runat="server" SkinID="GV_AFF_DONN" PageSize="7" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical" Font-Size="10pt">
+                            <AlternatingRowStyle BackColor="#DCDCDC" />
+                            <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
+                            <HeaderStyle BackColor="#002F60" Font-Bold="True" ForeColor="#989000" />
+                            <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                            <RowStyle BackColor="#EEEEEE" ForeColor="Black" />
+                            <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
+                            <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                            <SortedAscendingHeaderStyle BackColor="#0000A9" />
+                            <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                            <SortedDescendingHeaderStyle BackColor="#000065" />
+                        </asp:GridView>
+                    </div>
+                </td>
+            
+        </tr>
+ 
+        
+
+
+<tr>       
+          <td style="height: 22px; vertical-align: top;">&nbsp;</td>
+</tr>        
+        
+        
+
+
+<tr>       
+          <td style="height: 22px; vertical-align: top;">Poste n° : </td>
+</tr>        
+        
+        <%-- <tr>
+            <td style="vertical-align: top">
+                        
+                    <asp:GridView ID="GridView_FCGF" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical">
                         <AlternatingRowStyle BackColor="#DCDCDC" />
                         <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
-                        <HeaderStyle BackColor="#002F60" Font-Bold="True" ForeColor="#989000" />
+                        <HeaderStyle BackColor="#000084" Font-Bold="True" ForeColor="White" />
                         <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
                         <RowStyle BackColor="#EEEEEE" ForeColor="Black" />
                         <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
@@ -206,17 +302,9 @@
                         <SortedDescendingCellStyle BackColor="#CAC9C9" />
                         <SortedDescendingHeaderStyle BackColor="#000065" />
                     </asp:GridView>
-                </td>
-        </tr>
-        <tr>
-            <td style="vertical-align: top">
-                        <asp:Label ID="Label_RES" runat="server" Text=""></asp:Label>
+                        
                     </td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <td style="vertical-align: top">&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
+        </tr>--%>
+                
     </table>
 </asp:Content>

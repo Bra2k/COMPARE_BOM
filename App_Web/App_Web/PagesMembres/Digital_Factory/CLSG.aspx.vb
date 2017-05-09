@@ -16,13 +16,19 @@ Public Class CLSG
     Dim sChaineConnexion As String = "Data Source=cedb03,1433;Initial Catalog=" & Replace(Replace(My.Computer.Name, "CEDB03", "MES_Digital_Factory_DEV"), "CEAPP03", "MES_Digital_Factory") & ";Integrated Security=False;User ID=sa;Password=mdpsa@SQL;Connect Timeout=7200;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        'If Not IsPostBack Then
-        '    If Session("displayname") = "" Then
-        '        Context.GetOwinContext().Authentication.SignOut(Microsoft.AspNet.Identity.DefaultAuthenticationTypes.ApplicationCookie)
-        '    Else
-        '        If App_Web.Class_COMM_APP_WEB.COMM_APP_WEB_GET_DROI_PAGE(Replace(HttpContext.Current.Request.Url.AbsoluteUri, "http://" & LCase(My.Computer.Name) & "/PagesMembres/", "~/PagesMembres/") & ".aspx", Session("department"), Session("User_Name")) = False Then Response.Redirect("~/PagesMembres/RDRC_PAGE_MEMB.aspx")
-        '    End If
-        'End If
+        If Not IsPostBack Then
+            '    If Session("displayname") = "" Then
+            '        Context.GetOwinContext().Authentication.SignOut(Microsoft.AspNet.Identity.DefaultAuthenticationTypes.ApplicationCookie)
+            '    Else
+            '        If App_Web.Class_COMM_APP_WEB.COMM_APP_WEB_GET_DROI_PAGE(Replace(HttpContext.Current.Request.Url.AbsoluteUri, "http://" & LCase(My.Computer.Name) & "/PagesMembres/", "~/PagesMembres/") & ".aspx", Session("department"), Session("User_Name")) = False Then Response.Redirect("~/PagesMembres/RDRC_PAGE_MEMB.aspx")
+            '    End If
+            If Session("OF_TO_CLSG") <> "" Then
+                TextBox_NU_OF.Text = Session("OF_TO_CLSG")
+                Session("OF_TO_CLSG") = ""
+                TextBox_OF_TextChanged(sender, e)
+            End If
+
+        End If
         'LOG_Msg(GetCurrentMethod, sChaineConnexion)
     End Sub
 
@@ -312,12 +318,6 @@ Public Class CLSG
                         TextBox_NU_SER_CLIE.Focus()
                 End Select
             End If
-            ''si param générer un ns client (medria)
-            'If COMM_APP_WEB_GET_PARA(Label_CD_ARTI_ECO.Text & "|Numéro de série client", "CheckBox_NU_SER_CLIE_GENE_AUTO", "ASP.pagesmembres_digital_factory_impr_etiq_prn_aspx") = "True" Then
-            '    DIG_FACT_IMPR_ETIQ(COMM_APP_WEB_GET_PARA(Label_CD_ARTI_ECO.Text & "|Numéro de série client", "TextBox_FICH_MODE", "ASP.pagesmembres_digital_factory_impr_etiq_prn_aspx"),
-            '                       TextBox_NU_OF.Text, "", "Numéro de série client", "", "",
-            '                       "", "", "", Nothing, Session("matricule"))
-            'End If
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             TextBox_NU_SER_CLIE.Text = ""
@@ -384,12 +384,6 @@ Public Class CLSG
             sFichier_Modele = COMM_APP_WEB_GET_PARA(Label_CD_ARTI_ECO.Text & "|Carton", "TextBox_FICH_MODE", "ASP.pagesmembres_digital_factory_impr_etiq_prn_aspx")
             Select Case Right(sFichier_Modele, 3)
                 Case "PDF", "pdf" 'Impression PDF
-                    'Dim sFichier As String = DIG_FACT_IMPR_PDF(sFichier_Modele,
-                    '                                           TextBox_NU_OF.Text, "", "Carton", TextBox_NU_SER_CLIE.Text, TextBox_NU_SER_ECO.Text,
-                    '                                           Label_NU_CART.Text, Label_NB_CART.Text, "", "", dtVar)
-                    'ClientScript.RegisterStartupScript([GetType](), "printPdf", "document.getElementById(""pdf"").src = """ & Path.GetFileName(sFichier) & """;
-                    '                                                             document.getElementById(""pdf"").onload = function() {window.frames[""pdf""].focus();
-                    '                                                                                                                   window.frames[""pdf""].print();};", True)
                     'vue pdf carton
                     sQuery = "SELECT *
                                 FROM [dbo].[" & dt_CFGR_ARTI_ECO(0)("Vue fichier PDF").ToString & "]
@@ -969,7 +963,7 @@ Public Class CLSG
 
     Protected Sub Button_CLOR_PALE_Click(sender As Object, e As EventArgs) Handles Button_CLOR_PALE.Click 'clore la saisie du BL
         Dim sQuery As String = "", sData As String = "", dt, dtLIPS, dtVar, dtLIST_DATA, dt_CFGR_ARTI_ECO As New DataTable, sFichier_PDF As String
-
+        Randomize()
         Try
             dt_CFGR_ARTI_ECO = DIG_FACT_SQL_CFGR_ARTI_ECO(Trim(Label_CD_ARTI_ECO_V_CART.Text))
 

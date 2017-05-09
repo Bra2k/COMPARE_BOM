@@ -6,7 +6,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>\\ceapp03\Sources\App_Web_Qual</_PublishTargetUrl>
+    <_PublishTargetUrl>\\cedb03\Sources\App_Web</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="About.aspx">
@@ -90,6 +90,9 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
     <File Include="App_Themes/ICON_COMPARE/tester_fonc.ico">
       <publishTime>03/07/2017 08:30:11</publishTime>
     </File>
+    <File Include="App_Themes/ICON_COMPARE/tracabilite_ope.ico">
+      <publishTime>04/12/2017 15:10:00</publishTime>
+    </File>
     <File Include="App_Themes/PIC_CHAR/14740.png">
       <publishTime>02/21/2017 08:21:36</publishTime>
     </File>
@@ -108,10 +111,22 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
     <File Include="App_Themes/PIC_CHAR/acces-interdit-aux-personnes-non-autorisees-iz-2463.jpg">
       <publishTime>02/21/2017 08:21:36</publishTime>
     </File>
+    <File Include="App_Themes/PIC_CHAR/AjoutBonDeLivraison.png">
+      <publishTime>02/21/2017 08:21:36</publishTime>
+    </File>
+    <File Include="App_Themes/PIC_CHAR/camion-de-palette-avec-la-palette-et-les-cadres-22203588.jpg">
+      <publishTime>02/21/2017 08:21:36</publishTime>
+    </File>
     <File Include="App_Themes/PIC_CHAR/Comb1.jpg">
       <publishTime>02/21/2017 08:21:36</publishTime>
     </File>
     <File Include="App_Themes/PIC_CHAR/Custom-Icon-Design-Pretty-Office-9-Delete-file.ico">
+      <publishTime>02/21/2017 08:21:36</publishTime>
+    </File>
+    <File Include="App_Themes/PIC_CHAR/delivery_256.png">
+      <publishTime>02/21/2017 08:21:36</publishTime>
+    </File>
+    <File Include="App_Themes/PIC_CHAR/depositphotos_107060668-stock-illustration-forklift-truck-with-boxes-icon.jpg">
       <publishTime>02/21/2017 08:21:36</publishTime>
     </File>
     <File Include="App_Themes/PIC_CHAR/depositphotos_111867916-stock-illustration-cargo-boxes-pallet-icon.jpg">
@@ -138,6 +153,9 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
     <File Include="App_Themes/PIC_CHAR/icones_01356.png">
       <publishTime>02/21/2017 08:21:36</publishTime>
     </File>
+    <File Include="App_Themes/PIC_CHAR/icone_film_palette_coiffe_palette.png">
+      <publishTime>02/21/2017 08:21:36</publishTime>
+    </File>
     <File Include="App_Themes/PIC_CHAR/image.jpg">
       <publishTime>02/21/2017 08:21:36</publishTime>
     </File>
@@ -159,6 +177,9 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
     <File Include="App_Themes/PIC_CHAR/TAKAYA.jpg">
       <publishTime>02/21/2017 08:21:36</publishTime>
     </File>
+    <File Include="App_Themes/PIC_CHAR/tracabilite_ope.ico">
+      <publishTime>03/29/2017 15:45:24</publishTime>
+    </File>
     <File Include="App_Themes/PIC_CHAR/Valider.ico">
       <publishTime>02/21/2017 08:21:36</publishTime>
     </File>
@@ -175,7 +196,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>02/21/2017 08:21:36</publishTime>
     </File>
     <File Include="bin/App_Web.dll">
-      <publishTime>03/17/2017 09:19:37</publishTime>
+      <publishTime>05/03/2017 15:10:12</publishTime>
     </File>
     <File Include="bin/AspNet.ScriptManager.bootstrap.dll">
       <publishTime>02/21/2017 08:21:43</publishTime>
@@ -236,6 +257,12 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
     </File>
     <File Include="bin/fr/System.Web.Optimization.resources.dll">
       <publishTime>02/21/2017 08:21:45</publishTime>
+    </File>
+    <File Include="bin/itextsharp.dll">
+      <publishTime>07/10/2016 15:33:44</publishTime>
+    </File>
+    <File Include="bin/itextsharp.pdfa.dll">
+      <publishTime>07/10/2016 15:33:38</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
       <publishTime>02/21/2017 08:21:44</publishTime>
@@ -376,7 +403,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>02/21/2017 08:21:45</publishTime>
     </File>
     <File Include="bin/WebForms_Basic.xml">
-      <publishTime>03/17/2017 09:19:37</publishTime>
+      <publishTime>05/03/2017 15:10:12</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>02/21/2017 08:21:46</publishTime>
@@ -388,7 +415,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>03/07/2017 08:30:12</publishTime>
     </File>
     <File Include="Content/bootstrap.css">
-      <publishTime>03/07/2017 08:30:12</publishTime>
+      <publishTime>04/24/2017 12:51:50</publishTime>
     </File>
     <File Include="Content/bootstrap.min.css">
       <publishTime>02/21/2017 08:21:38</publishTime>
@@ -397,7 +424,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>03/07/2017 08:30:12</publishTime>
     </File>
     <File Include="Default.aspx">
-      <publishTime>03/07/2017 08:30:12</publishTime>
+      <publishTime>04/21/2017 08:19:10</publishTime>
     </File>
     <File Include="favicon.ico">
       <publishTime>02/21/2017 08:21:38</publishTime>
@@ -438,11 +465,17 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
     <File Include="PagesMembres/Developpement/Page_ESSAI.aspx">
       <publishTime>03/14/2017 11:44:01</publishTime>
     </File>
+    <File Include="PagesMembres/Developpement/UPLO_FICH_TO_CAB.aspx">
+      <publishTime>04/20/2017 09:50:03</publishTime>
+    </File>
     <File Include="PagesMembres/Digital_Factory/CLSG.aspx">
-      <publishTime>03/07/2017 08:30:12</publishTime>
+      <publishTime>04/25/2017 10:28:23</publishTime>
     </File>
     <File Include="PagesMembres/Digital_Factory/CONF_ARTI.aspx">
       <publishTime>03/07/2017 08:30:12</publishTime>
+    </File>
+    <File Include="PagesMembres/Digital_Factory/CTTO_POST.aspx">
+      <publishTime>04/20/2017 09:32:04</publishTime>
     </File>
     <File Include="PagesMembres/Digital_Factory/IDCT_PASS.aspx">
       <publishTime>03/07/2017 08:30:12</publishTime>
@@ -457,7 +490,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>03/07/2017 08:30:12</publishTime>
     </File>
     <File Include="PagesMembres/Digital_Factory/TCBL_OPRT.aspx">
-      <publishTime>03/16/2017 08:12:00</publishTime>
+      <publishTime>05/03/2017 12:48:09</publishTime>
     </File>
     <File Include="PagesMembres/Members.aspx">
       <publishTime>02/21/2017 08:21:43</publishTime>
@@ -472,7 +505,16 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>03/07/2017 08:30:12</publishTime>
     </File>
     <File Include="PagesMembres/Production/ALMS/ALMS_IMPORT.aspx">
-      <publishTime>03/07/2017 08:30:12</publishTime>
+      <publishTime>02/04/2017 17:56:20</publishTime>
+    </File>
+    <File Include="PagesMembres/Production/ALMS/ALMS_IMPORT_V2.aspx">
+      <publishTime>03/21/2017 17:28:19</publishTime>
+    </File>
+    <File Include="PagesMembres/Production/ALMS/ALMS_menu.aspx">
+      <publishTime>04/12/2017 15:07:41</publishTime>
+    </File>
+    <File Include="PagesMembres/Production/ALMS/GEST_ANML_NC_DRGT.aspx">
+      <publishTime>04/25/2017 10:19:48</publishTime>
     </File>
     <File Include="PagesMembres/Production/Controle_Reception/AJOU_FNS_CTRL_RCP.aspx">
       <publishTime>02/21/2017 08:21:43</publishTime>
@@ -496,7 +538,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>02/21/2017 08:21:43</publishTime>
     </File>
     <File Include="PagesMembres/Provisoire/IMPR_RAPP_TCBL_STW_V2.aspx">
-      <publishTime>03/07/2017 08:30:12</publishTime>
+      <publishTime>04/25/2017 15:00:26</publishTime>
     </File>
     <File Include="PagesMembres/Provisoire/TEST_BATT_TUCK.aspx">
       <publishTime>03/07/2017 08:30:12</publishTime>
@@ -527,6 +569,9 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
     </File>
     <File Include="Scripts/jquery-1.10.2.min.map">
       <publishTime>02/21/2017 08:21:43</publishTime>
+    </File>
+    <File Include="Scripts/LoginSAP.js">
+      <publishTime>04/25/2017 15:27:44</publishTime>
     </File>
     <File Include="Scripts/modernizr-2.6.2.js">
       <publishTime>02/21/2017 08:21:43</publishTime>
@@ -604,10 +649,10 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>02/21/2017 08:21:43</publishTime>
     </File>
     <File Include="Scripts/_references.js">
-      <publishTime>03/07/2017 08:30:12</publishTime>
+      <publishTime>04/25/2017 10:43:10</publishTime>
     </File>
     <File Include="Site.Master">
-      <publishTime>03/07/2017 08:30:12</publishTime>
+      <publishTime>04/26/2017 08:26:54</publishTime>
     </File>
     <File Include="Site.Mobile.Master">
       <publishTime>02/21/2017 08:21:43</publishTime>
@@ -616,7 +661,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>02/21/2017 08:21:43</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>03/17/2017 09:19:41</publishTime>
+      <publishTime>05/03/2017 15:10:13</publishTime>
     </File>
   </ItemGroup>
 </Project>

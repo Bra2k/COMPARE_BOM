@@ -18,6 +18,7 @@ Imports System.IO
 Imports System.Windows.Forms
 Imports App_Web.Class_DIG_FACT_SQL
 Imports App_Web.Class_SAP_DATA
+Imports App_Web.Class_SQL
 
 
 'Imports System.Drawing.Printing
@@ -47,11 +48,11 @@ Public Class Page_ESSAI
         Try
             'Image1.ImageUrl = Session("thumbnailphoto")
             'Image1. = Session("thumbnailphoto")
-            ''LOG_Msg(GetCurrentMethod, )
+            LOG_Msg(GetCurrentMethod, "<img src='data:image/jpeg;base64, " + System.Convert.ToBase64String(Session("thumbnailphoto")) + "' alt='photo'/>")
             'Dim bPhoto As Byte = System.Convert.ToBase64String(Session("thumbnailphoto"))
             'Dim img = Me.Items.Item("coucou")
             'img.ToString()
-            '"<img src='data:image/jpeg;base64, " + System.Convert.ToBase64String(data) + "' alt='photo' />"
+            '"<img src='data:image/jpeg;base64, " + System.Convert.ToBase64String(Session("thumbnailphoto")) + "' alt='photo' />"
 
             'Dim strTempFile = "C:\sources\App_Web\App_Themes\PIC_CHAR\image.jpg"
             'Dim Stream = New System.IO.FileStream(strTempFile, System.IO.FileMode.Create)
@@ -65,50 +66,50 @@ Public Class Page_ESSAI
             ''iPhoto.Save(saveImagePath, ImageFormat.Jpeg)
             'Image1.ImageUrl = "~\App_Themes\PIC_CHAR\image.jpg"
             'Image1.source
-            Dim sEMET As String = "mail généric"
-            If Session("mail") <> "" Then sEMET = Session("mail")
-            COMM_APP_WEB_ENVO_MAIL(
-           "smtp.eolane.com",
-            sEMET,
-            "vincent.sperperini@eolane.com;vincent.sperperini@eolane.com",
-           "CREDENTIAL",
-           "Bonjour " & vbCrLf & "Vous trouverez ci-joint",
-           Session,
-           "vide",
-           "vide",
-           "\\so2k3vm02\Bureautique\Groupes\SO_CLIENTS\C43 (EDF)\Télécommande\C43E978550$ Ens. Télécommande\F-Donnees de sortie\3-Fiches Suiveuses\Colisage\delivery_form_20161118081913.pdf")
+            ' Dim sEMET As String = "mail généric"
+            ' If Session("mail") <> "" Then sEMET = Session("mail")
+            ' COMM_APP_WEB_ENVO_MAIL(
+            '"smtp.eolane.com",
+            ' sEMET,
+            ' "vincent.sperperini@eolane.com;vincent.sperperini@eolane.com",
+            '"CREDENTIAL",
+            '"Bonjour " & vbCrLf & "Vous trouverez ci-joint",
+            'Session,
+            '"vide",
+            '"vide",
+            '"\\so2k3vm02\Bureautique\Groupes\SO_CLIENTS\C43 (EDF)\Télécommande\C43E978550$ Ens. Télécommande\F-Donnees de sortie\3-Fiches Suiveuses\Colisage\delivery_form_20161118081913.pdf")
 
-            COMM_APP_WEB_ENVO_MAIL(
-           "smtp.eolane.com",
-           sEMET,
-            "vincent.sperperini@eolane.com;vincent.sperperini@eolane.com",
-           "CREDENTIAL",
-           "Bonjour " & vbCrLf & "Vous trouverez ci-joint",
-           Session,
-           "vide",
-           "vide",
-           "\\cedb03\sources\temp_App_Web\VALEURS_825.csv")
+            ' COMM_APP_WEB_ENVO_MAIL(
+            '"smtp.eolane.com",
+            'sEMET,
+            ' "vincent.sperperini@eolane.com;vincent.sperperini@eolane.com",
+            '"CREDENTIAL",
+            '"Bonjour " & vbCrLf & "Vous trouverez ci-joint",
+            'Session,
+            '"vide",
+            '"vide",
+            '"\\cedb03\sources\temp_App_Web\VALEURS_825.csv")
 
-            COMM_APP_WEB_ENVO_MAIL(
-           "smtp.eolane.com",
-            sEMET,
-            "vincent.sperperini@eolane.com;vincent.sperperini@eolane.com",
-           "CREDENTIAL",
-           "Bonjour " & vbCrLf & "Vous trouverez ci-joint",
-           Session,
-           "vide",
-           "vide",
-           "\\so2k3vm02\Bureautique\Groupes\SO_CLIENTS\C43 (EDF)\Télécommande\C43E978550$ Ens. Télécommande\F-Donnees de sortie\3-Fiches Suiveuses\Colisage\delivery_form_20161118081913.pdf;\\so2k3vm02\Bureautique\Groupes\SO_CLIENTS\C43 (EDF)\Télécommande\C43E978550$ Ens. Télécommande\F-Donnees de sortie\3-Fiches Suiveuses\Colisage\delivery_form_20161118081913.pdf")
+            ' COMM_APP_WEB_ENVO_MAIL(
+            '"smtp.eolane.com",
+            ' sEMET,
+            ' "vincent.sperperini@eolane.com;vincent.sperperini@eolane.com",
+            '"CREDENTIAL",
+            '"Bonjour " & vbCrLf & "Vous trouverez ci-joint",
+            'Session,
+            '"vide",
+            '"vide",
+            '"\\so2k3vm02\Bureautique\Groupes\SO_CLIENTS\C43 (EDF)\Télécommande\C43E978550$ Ens. Télécommande\F-Donnees de sortie\3-Fiches Suiveuses\Colisage\delivery_form_20161118081913.pdf;\\so2k3vm02\Bureautique\Groupes\SO_CLIENTS\C43 (EDF)\Télécommande\C43E978550$ Ens. Télécommande\F-Donnees de sortie\3-Fiches Suiveuses\Colisage\delivery_form_20161118081913.pdf")
 
-            COMM_APP_WEB_ENVO_MAIL(DIG_FACT_SQL_GET_PARA("C43E978550$", "Serveur SMTP mail"),
-                                               sEMET,
-                                               DIG_FACT_SQL_GET_PARA("C43E978550$", "Destinataires mail"),
-                                               DIG_FACT_SQL_GET_PARA("C43E978550$", "Sujet mail"),
-                                               DIG_FACT_SQL_GET_PARA("C43E978550$", "Contenu mail"),
-                                               Session,
-                                               DIG_FACT_SQL_GET_PARA("C43E978550$", "Destinataires en copie mail"),
-                                               DIG_FACT_SQL_GET_PARA("C43E978550$", "Destinataires en copie cachée mail"),
-                                                "\\so2k3vm02\Bureautique\Groupes\SO_CLIENTS\C43 (EDF)\Télécommande\C43E978550$ Ens. Télécommande\F-Donnees de sortie\3-Fiches Suiveuses\Colisage\delivery_form_20161118081913.pdf;\\so2k3vm02\Bureautique\Groupes\SO_CLIENTS\C43 (EDF)\Télécommande\C43E978550$ Ens. Télécommande\F-Donnees de sortie\3-Fiches Suiveuses\Colisage\delivery_form_20161118081913.pdf")
+            ' COMM_APP_WEB_ENVO_MAIL(DIG_FACT_SQL_GET_PARA("C43E978550$", "Serveur SMTP mail"),
+            '                                    sEMET,
+            '                                    DIG_FACT_SQL_GET_PARA("C43E978550$", "Destinataires mail"),
+            '                                    DIG_FACT_SQL_GET_PARA("C43E978550$", "Sujet mail"),
+            '                                    DIG_FACT_SQL_GET_PARA("C43E978550$", "Contenu mail"),
+            '                                    Session,
+            '                                    DIG_FACT_SQL_GET_PARA("C43E978550$", "Destinataires en copie mail"),
+            '                                    DIG_FACT_SQL_GET_PARA("C43E978550$", "Destinataires en copie cachée mail"),
+            '                                     "\\so2k3vm02\Bureautique\Groupes\SO_CLIENTS\C43 (EDF)\Télécommande\C43E978550$ Ens. Télécommande\F-Donnees de sortie\3-Fiches Suiveuses\Colisage\delivery_form_20161118081913.pdf;\\so2k3vm02\Bureautique\Groupes\SO_CLIENTS\C43 (EDF)\Télécommande\C43E978550$ Ens. Télécommande\F-Donnees de sortie\3-Fiches Suiveuses\Colisage\delivery_form_20161118081913.pdf")
 
 
 
@@ -239,9 +240,31 @@ Public Class Page_ESSAI
 
     Protected Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
 
-        Dim dt = SAP_DATA_CARO_ROUT_READ("1", "2", "3")
-        GridView1.DataSource = dt
-        GridView1.DataBind()
+        'Dim sQuery = "SELECT *
+        '                        FROM [dbo].[]
+        '                       WHERE [NU_CART] = '1167947001'"
+        'dtLIST_DATA = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
+        'If dtLIST_DATA Is Nothing Then
+        '    Dim sFichier As String = DIG_FACT_IMPR_PDF("\\CEAPP03",
+        '                                                       TextBox_NU_OF.Text, "", "Carton", TextBox_NU_SER_CLIE.Text, TextBox_NU_SER_ECO.Text,
+        '                                                       Label_NU_CART.Text, Label_NB_CART.Text, "", "", dtVar, dtLIST_DATA)
+        '    ClientScript.RegisterStartupScript([GetType](), "printPdf", "document.getElementById(""pdf"").src = """ & Path.GetFileName(sFichier) & """;
+        '                                                                             document.getElementById(""pdf"").onload = function() {window.frames[""pdf""].focus();
+        '                                                                                                                                   window.frames[""pdf""].print();};", True)
+        '    sFichier_PDF = sFichier
+        'Else
+        '    sFichier_PDF = "c:\sources\App_Web\PagesMembres\Digital_Factory\delivery_form_" & CInt(Int((10000000 * Rnd()) + 1)) & "_merge.pdf"
+        '    For iPDF = 0 To dtLIST_DATA.Rows.Count - 1 Step Convert.ToDecimal(dt_CFGR_ARTI_ECO(0)("Nombre de ligne dans le fichier PDF").ToString)
+        '        Dim sFichier As String = DIG_FACT_IMPR_PDF(sFichier_Modele,
+        '                                                               TextBox_NU_OF.Text, "", "Carton", TextBox_NU_SER_CLIE.Text, TextBox_NU_SER_ECO.Text,
+        '                                                               Label_NU_CART.Text, Label_NB_CART.Text, "", "", dtVar,
+        '                    dtLIST_DATA, iPDF)
+        '        sFichier_PDF = PDF_CCTN_FICH(sFichier_PDF, sFichier)
+        '    Next
+        '    ClientScript.RegisterStartupScript([GetType](), "printPdf", "document.getElementById(""pdf"").src = """ & Path.GetFileName(sFichier_PDF) & """;
+        '                                                                             document.getElementById(""pdf"").onload = function() {window.frames[""pdf""].focus();
+        '                                                                                                                                   window.frames[""pdf""].print();};", True)
+        'End If
     End Sub
 
     Public Shared Function SAP_DATA_READ_MAPL(cARTI As String) As DataTable

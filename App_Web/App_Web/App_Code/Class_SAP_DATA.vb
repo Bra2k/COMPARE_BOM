@@ -247,11 +247,14 @@ Public Class Class_SAP_DATA
         Dim oConn As Object = oSAP.Connection
 
         Try
-            If My.Computer.Name = "CEDB03" Then Serveur = "SAP_QEO"
+            'If My.Computer.Name = "CEDB03" Then Serveur = "SAP_QEO"
             With oConn
+                '.SystemID = "PEO"
+                '.System = "PEO"
                 .AutoLogon = True
                 .Client = Codeclient
                 .User = User
+                .Language = "FR"
                 .Password = Password
                 .ApplicationServer = Serveur
                 .SystemNumber = SystemNumber
@@ -391,6 +394,7 @@ Public Class Class_SAP_DATA
             Next
             For iRowIndex = 1 To oT_LOG_CONF.RowCount
                 dt_T_LOG_CONF.Rows.Add()
+                'For Each o_COL_T_LOG_CONF As Object In oT_LOG_CONF.Columns
                 For iIndex = 1 To oT_LOG_CONF.ColumnCount - 1
                     dt_T_LOG_CONF.Rows(dt_T_LOG_CONF.Rows.Count - 1)(iIndex - 1) = oT_LOG_CONF.Value(iRowIndex, iIndex)
                 Next
@@ -680,7 +684,7 @@ Public Class Class_SAP_DATA
             Return Nothing
         End Try
 
-        LOG_Msg(GetCurrentMethod, "Lecture de la table LIPSUP effectuée avec le filtre : " & sFILT)
+        LOG_Msg(GetCurrentMethod, "Lecture de la table CRHD effectuée avec le filtre : " & sFILT)
         Return dtCRHD
     End Function
 
@@ -722,7 +726,7 @@ Public Class Class_SAP_DATA
 
         Dim dtMSEG As New DataTable
         Try
-            dtMSEG = SAP_DATA_READ_TBL("MSEG", "|", "", "MBLNR MJAHR ZEILE MATNR CHARG MENGE ELIKZ", sFILT)
+            dtMSEG = SAP_DATA_READ_TBL("MSEG", "|", "", "MBLNR MJAHR ZEILE MATNR CHARG MENGE ELIKZ AUFNR", sFILT)
             If dtMSEG Is Nothing Then Throw New Exception("Problème de lecture de la table MSEG avec le filtre : " & sFILT)
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
@@ -839,5 +843,232 @@ Public Class Class_SAP_DATA
         Return dt_ORDOPEINFO_GET
 
     End Function
+    'http://10.100.8.98:40000/PagesMembres/Production/ALMS/ALMS_IMPORT
 
+    Public Shared Function SAP_DATA_Z_GAMM_ARTI(V_MATNR As String, Optional sFilt As String = "") As DataTable
+        'Dim oSAP, RFC, oT_Z_GAMME_ARTI As New Object
+        Dim dt_T_Z_GAMME_ARTI As New DataTable
+
+        'LOG_Msg(GetCurrentMethod, V_MATNR)
+
+        'Try
+        '    LOG_Msg(GetCurrentMethod, "1")
+        '    oSAP = SAP_DATA_CONN("so_rouja", "Eolane49", "600", "SAP_PEO", "00")
+        '    LOG_Msg(GetCurrentMethod, "2")
+        '    RFC = oSAP.Add("Z_GAMME_ARTICLE")
+        '    LOG_Msg(GetCurrentMethod, "3")
+        '    RFC.exports("V_MATNR") = "TAEKC042100$      " 'V_MATNR
+        '    LOG_Msg(GetCurrentMethod, "4")
+        '    RFC.exports("WERKS") = "DI31"
+        '    LOG_Msg(GetCurrentMethod, "5")
+        '    RFC.exports("V_PLNTY") = "N"
+        '    LOG_Msg(GetCurrentMethod, "6")
+        '    RFC.exports("V_STATU") = "4"
+        '    LOG_Msg(GetCurrentMethod, "7")
+        '    oT_Z_GAMME_ARTI = RFC.Tables("")
+        '    If RFC.Call <> -1 Then Throw New Exception(RFC.exception)
+        'For Each o_COL_T_LOG_CONF As Object In oT_Z_GAMME_ARTI.Columns
+        '    dt_T_Z_GAMME_ARTI.Columns.Add(o_COL_T_LOG_CONF.Name, Type.GetType("System.String"))
+        'Next
+        'For iRowIndex = 1 To oT_Z_GAMME_ARTI.RowCount
+        '    dt_T_Z_GAMME_ARTI.Rows.Add()
+        '    For iIndex = 1 To oT_Z_GAMME_ARTI.ColumnCount - 1
+        '        dt_T_Z_GAMME_ARTI.Rows(dt_T_Z_GAMME_ARTI.Rows.Count - 1)(iIndex - 1) = oT_Z_GAMME_ARTI.Value(iRowIndex, iIndex)
+        '    Next
+        'Next
+        'GridView_OPE_ALMS.DataSource = dt_T_Z_GAMME_ARTI
+        'GridView_OPE_ALMS.DataBind()
+        'Catch ex As Exception
+        '    LOG_Erreur(GetCurrentMethod, ex.Message)
+        '    Return Nothing
+        'Finally
+        '    oSAP = SAP_DATA_DECO(oSAP)
+        'End Try
+        'Return dt_T_Z_GAMME_ARTI
+
+        'Dim dtZMOYENTYPETEST As New DataTable
+
+        Try
+            dt_T_Z_GAMME_ARTI = SAP_DATA_READ_TBL("Z_GAMME_ARTICLE", "|", "", "V_MATNR WERKS V_PLNTY V_STATU", sFilt)
+            If dt_T_Z_GAMME_ARTI Is Nothing Then Throw New Exception("Problème de lecture de la table Z_GAMME_ARTICLE avec le filtre : " & sFilt)
+        Catch ex As Exception
+            LOG_Erreur(GetCurrentMethod, ex.Message)
+            Return Nothing
+        End Try
+
+        LOG_Msg(GetCurrentMethod, "Lecture de la table Z_GAMME_ARTICLE effectuée avec le filtre : " & sFilt)
+        Return dt_T_Z_GAMME_ARTI
+
+
+    End Function
+
+    Public Shared Function SAP_DATA_READ_MAPL(Optional sFILT As String = "") As DataTable
+
+        Dim dtMAPL As New DataTable
+
+        Try
+            dtMAPL = SAP_DATA_READ_TBL("MAPL", "|", "", "MATNR PLNNR PLNAL WERKS LOEKZ", sFILT)
+            If dtMAPL Is Nothing Then Throw New Exception("Problème de lecture de la table MAPL avec le filtre : " & sFILT)
+        Catch ex As Exception
+            LOG_Erreur(GetCurrentMethod, ex.Message)
+            Return Nothing
+        End Try
+
+        LOG_Msg(GetCurrentMethod, "Lecture de la table MAPL effectuée avec le filtre : " & sFILT)
+        Return dtMAPL
+    End Function
+
+    Public Shared Function SAP_DATA_READ_PLAS(Optional sFILT As String = "") As DataTable
+
+        Dim dtPLAS As New DataTable
+
+        Try
+            dtPLAS = SAP_DATA_READ_TBL("PLAS", "|", "", "PLNAL PLNNR ZAEHL LOEKZ", sFILT)
+            If dtPLAS Is Nothing Then Throw New Exception("Problème de lecture de la table PLAS avec le filtre : " & sFILT)
+        Catch ex As Exception
+            LOG_Erreur(GetCurrentMethod, ex.Message)
+            Return Nothing
+        End Try
+
+        LOG_Msg(GetCurrentMethod, "Lecture de la table PLAS effectuée avec le filtre : " & sFILT)
+        Return dtPLAS
+    End Function
+
+    Public Shared Function SAP_DATA_READ_PLPO(Optional sFILT As String = "") As DataTable
+
+        Dim dtPLPO As New DataTable
+
+        Try
+            dtPLPO = SAP_DATA_READ_TBL("PLPO", "|", "", "VORNR LTXA1 STEUS ARBID PLNNR PLNKN", sFILT)
+            If dtPLPO Is Nothing Then Throw New Exception("Problème de lecture de la table PLPO avec le filtre : " & sFILT)
+        Catch ex As Exception
+            LOG_Erreur(GetCurrentMethod, ex.Message)
+            Return Nothing
+        End Try
+
+        LOG_Msg(GetCurrentMethod, "Lecture de la table PLPO effectuée avec le filtre : " & sFILT)
+        Return dtPLPO
+    End Function
+
+    Public Shared Function SAP_DATA_READ_ZVERIF(Optional sFILT As String = "") As DataTable
+
+        Dim dtZVERIF As New DataTable
+
+        Try
+            dtZVERIF = SAP_DATA_READ_TBL("ZVERIF", "|", "", "MANDT BUKRS NO_MOYEN NO_VERIF DATEVERIF REALPAR COMMENTAIRES CHEMIN_CONSTAT CREE_PAR DATE_CREATION HEURE_CREATION", sFILT)
+            If dtZVERIF Is Nothing Then Throw New Exception("Problème de lecture de la table ZVERIF avec le filtre : " & sFILT)
+        Catch ex As Exception
+            LOG_Erreur(GetCurrentMethod, ex.Message)
+            Return Nothing
+        End Try
+
+        LOG_Msg(GetCurrentMethod, "Lecture de la table ZVERIF effectuée avec le filtre : " & sFILT)
+        Return dtZVERIF
+    End Function
+
+    Public Shared Function SAP_DATA_READ_KNMT(Optional sFILT As String = "") As DataTable
+
+        Dim dtKNMT As New DataTable
+
+        Try
+            dtKNMT = SAP_DATA_READ_TBL("KNMT", "|", "", "KDMAT MATNR KUNNR VKORG VTWEG", sFILT)
+            If dtKNMT Is Nothing Then Throw New Exception("Problème de lecture de la table KNMT avec le filtre : " & sFILT)
+        Catch ex As Exception
+            LOG_Erreur(GetCurrentMethod, ex.Message)
+            Return Nothing
+        End Try
+
+        LOG_Msg(GetCurrentMethod, "Lecture de la table KNMT effectuée avec le filtre : " & sFILT)
+        Return dtKNMT
+    End Function
+
+    Public Shared Function SAP_DATA_READ_ZMOYENTYPETEST(Optional sFILT As String = "") As DataTable
+        Dim dtZMOYENTYPETEST As New DataTable
+
+        Try
+            dtZMOYENTYPETEST = SAP_DATA_READ_TBL("ZMOYENTYPETEST", "|", "", "NO_MOYEN PROCHVERIF", sFILT)
+            '"MANDT BUKRS NO_MOYEN DESIG REFCLIENT NO_TYPE_TEST DEV_PAR DATEMES RESPMES INDMAT VERSLOG LOCA STKG TECHRESP1 TECHRESP2 TECHRESP3 PERIOMAINT PROCHMAINT PROCMAINT PERIOVERIF PROCHVERIF PROCVERIF MODELECONSTAT CREE_PAR DATE_CREATION HEURE_CREATION MODIFIE_PAR DATE_MODIF HEURE_MODIF INACTIF VERIF_N_A INDICE_DMT ARCHIVE TPS_INTERV ACTION_EC LINE_INDEX", sFILT)
+            If dtZMOYENTYPETEST Is Nothing Then Throw New Exception("Problème de lecture de la table ZMOYENTYPETEST avec le filtre : " & sFILT)
+        Catch ex As Exception
+            LOG_Erreur(GetCurrentMethod, ex.Message)
+            Return Nothing
+        End Try
+
+        LOG_Msg(GetCurrentMethod, "Lecture de la table ZMOYENTYPETEST effectuée avec le filtre : " & sFILT)
+        Return dtZMOYENTYPETEST
+
+        'V_STATU
+    End Function
+
+    Public Shared Function SAP_DATA_Z_GET_DOC_INFO(V_AUFNR As String, V_VORNR As String) As DataTable
+
+        Dim dt_T_TAB_DOC_SAP As New DataTable
+        Dim oSAP, RFC, oRFC_RET, oRFC_MSG, oT_TAB_DOC_SAP As New Object
+
+        Try
+            oSAP = SAP_DATA_CONN()
+            RFC = oSAP.Add("Z_GET_DOC_INFO")
+            'V_AUFNR = "1173833"
+            'V_VORNR = "100"
+            If V_AUFNR <> "" Then V_AUFNR = StrDup(12 - Len(V_AUFNR), "0") & V_AUFNR
+            RFC.exports("V_AUFNR") = V_AUFNR
+            If V_VORNR <> "" Then V_VORNR = StrDup(4 - Len(V_VORNR), "0") & V_VORNR
+            RFC.exports("V_VORNR") = V_VORNR
+
+            oT_TAB_DOC_SAP = RFC.Tables("T_TAB_DOC_SAP")
+
+            If RFC.Call <> -1 Then Throw New Exception(RFC.exception)
+
+            If oT_TAB_DOC_SAP.ColumnCount = 0 Then Throw New Exception("Aucune colonne trouvée")
+            For Each o_COL_T_TAB_DOC_SAP As Object In oT_TAB_DOC_SAP.Columns
+                'LOG_Msg(GetCurrentMethod, o_COL_T_TAB_DOC_SAP.Name)
+                dt_T_TAB_DOC_SAP.Columns.Add(o_COL_T_TAB_DOC_SAP.Name, Type.GetType("System.String", 2000))
+            Next
+
+            If oT_TAB_DOC_SAP.RowCount = 0 Then Throw New Exception("Aucune ligne trouvée")
+
+            For Each o_LIGN_T_TAB_DOC_SAP As Object In oT_TAB_DOC_SAP.rows
+                dt_T_TAB_DOC_SAP.Rows.Add()
+                For Each o_COL_T_TAB_DOC_SAP As Object In oT_TAB_DOC_SAP.Columns
+                    'LOG_Msg(GetCurrentMethod, o_LIGN_T_TAB_DOC_SAP(o_COL_T_TAB_DOC_SAP.Name))
+                    dt_T_TAB_DOC_SAP.Rows(dt_T_TAB_DOC_SAP.Rows.Count - 1)(o_COL_T_TAB_DOC_SAP.Name) = o_LIGN_T_TAB_DOC_SAP(o_COL_T_TAB_DOC_SAP.Name)
+                Next
+                'LOG_Msg(GetCurrentMethod, "DKTXT" & o_LIGN_T_TAB_DOC_SAP("DKTXT").ToString)
+            Next
+
+            'For iRowIndex = 1 To oT_TAB_DOC_SAP.RowCount
+            '    dt_T_TAB_DOC_SAP.Rows.Add()
+            '    For iIndex = 1 To oT_TAB_DOC_SAP.ColumnCount - 1
+            '        dt_T_TAB_DOC_SAP.Rows(dt_T_TAB_DOC_SAP.Rows.Count - 1)(iIndex - 1) = oT_TAB_DOC_SAP.Value(iRowIndex, iIndex)
+
+            '        LOG_Msg(GetCurrentMethod, oT_TAB_DOC_SAP.Value(iRowIndex, iIndex))
+            '    Next
+            'Next
+        Catch ex As Exception
+            LOG_Erreur(GetCurrentMethod, ex.Message)
+            Return Nothing
+        Finally
+            oSAP = SAP_DATA_DECO(oSAP)
+        End Try
+
+        LOG_Msg(GetCurrentMethod, "Exécution de la fonction Z_GET_DOC_INFO réussie. " & dt_T_TAB_DOC_SAP.Rows.Count & " lignes trouvées")
+        Return dt_T_TAB_DOC_SAP
+
+    End Function
+
+    Public Shared Function SAP_DATA_READ_ZGMO_OUTIL_VER(Optional sFILT As String = "") As DataTable
+
+        Dim dtZGMO_OUTIL_VER As New DataTable
+
+        Try
+            dtZGMO_OUTIL_VER = SAP_DATA_READ_TBL("ZGMO_OUTIL_VER", "|", "", "ID PROCHVERIF1", sFILT)
+            If dtZGMO_OUTIL_VER Is Nothing Then Throw New Exception("Problème de lecture de la table ZGMO_OUTIL_VER avec le filtre : " & sFILT)
+        Catch ex As Exception
+            LOG_Erreur(GetCurrentMethod, ex.Message)
+            Return Nothing
+        End Try
+
+        LOG_Msg(GetCurrentMethod, "Lecture de la table ZGMO_OUTIL_VER effectuée avec le filtre : " & sFILT)
+        Return dtZGMO_OUTIL_VER
+    End Function
 End Class

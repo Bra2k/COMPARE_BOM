@@ -276,10 +276,6 @@
                         </tr>
                     </table>
                 </asp:View>
-                <asp:View ID="View_TCBL_SS_ENSE" runat="server">
-                    <br />
-                    <br />
-                </asp:View>
             </asp:MultiView>
                 <asp:Label ID="Label_NM_DSGT_ARTI_ECO" runat="server" Visible="False">Colisage</asp:Label>
                 <asp:Label ID="Label_NU_OP" runat="server" Visible="False"></asp:Label>

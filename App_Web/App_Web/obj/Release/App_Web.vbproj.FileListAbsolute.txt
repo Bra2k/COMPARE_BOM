@@ -554,4 +554,7 @@ D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web\App_Web\obj\Release\App_
 D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web\App_Web\obj\Release\App_Web.dll
 D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web\App_Web\obj\Release\WebForms_Basic.xml
 D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web\App_Web\obj\Release\App_Web.pdb
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web\App_Web\bin\itextsharp.pdfa.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web\App_Web\bin\itextsharp.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web\App_Web\bin\itextsharp.xml
 D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web\App_Web\obj\Release\App_Web.vbprojResolveAssemblyReference.cache
