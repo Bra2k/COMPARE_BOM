@@ -164,18 +164,18 @@ Public Class Class_SQL
 
     Public Shared Function SQL_CALL_STOR_PROC(ByRef cn As SqlConnection, SqlCommand_String As String) As SqlCommand
 
-        Dim cmd As SqlCommand
+        'Dim cmd As SqlCommand
 
         Try
-            cmd = New SqlCommand(SqlCommand_String, cn)
-            cmd.CommandType = CommandType.StoredProcedure
+            Using cmd As New SqlCommand(SqlCommand_String, cn)
+                cmd.CommandType = CommandType.StoredProcedure
+                LOG_Msg(GetCurrentMethod, $"La procédure stockée {SqlCommand_String} a été appelée.")
+                Return cmd
+            End Using
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
         End Try
-
-        LOG_Msg(GetCurrentMethod, $"La procédure stockée {SqlCommand_String} a été appelée.")
-        Return cmd
 
     End Function
 
