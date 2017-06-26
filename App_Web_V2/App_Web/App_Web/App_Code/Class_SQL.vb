@@ -229,15 +229,17 @@ Public Class Class_SQL
 
     Public Shared Sub SQL_BULK_COPY_DT(sChaineConnexion As String, sTable As String, dtDonnées As DataTable)
 
-        Dim bulkCopy As New SqlBulkCopy(sChaineConnexion, SqlBulkCopyOptions.KeepIdentity)
+        'Dim bulkCopy As New SqlBulkCopy(sChaineConnexion, SqlBulkCopyOptions.KeepIdentity)
 
         Try
-            For Each col As DataColumn In dtDonnées.Columns
-                bulkCopy.ColumnMappings.Add(col.ColumnName, col.ColumnName)
-            Next
-            bulkCopy.BulkCopyTimeout = 600
-            bulkCopy.DestinationTableName = sTable
-            bulkCopy.WriteToServer(dtDonnées)
+            Using bulkCopy As New SqlBulkCopy(sChaineConnexion, SqlBulkCopyOptions.KeepIdentity)
+                For Each col As DataColumn In dtDonnées.Columns
+                    bulkCopy.ColumnMappings.Add(col.ColumnName, col.ColumnName)
+                Next
+                bulkCopy.BulkCopyTimeout = 600
+                bulkCopy.DestinationTableName = sTable
+                bulkCopy.WriteToServer(dtDonnées)
+            End Using
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Exit Sub
