@@ -141,15 +141,6 @@ Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web._Default._AdressBook">
-<summary>
-Contrôle AdressBook.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
 <member name="F:App_Web._Default._FixedPc">
 <summary>
 Contrôle FixedPc.
@@ -351,15 +342,6 @@ Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans 
 <member name="F:App_Web._Default._Parcel6">
 <summary>
 Contrôle Parcel6.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web._Default._Computer">
-<summary>
-Contrôle Computer.
 </summary>
 <remarks>
 Champ généré automatiquement.
@@ -5375,6 +5357,33 @@ Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans 
 <member name="F:App_Web.ALMS_IMPORT._GridView_CSV_ALMS">
 <summary>
 Contrôle GridView_CSV_ALMS.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.ALMS_MENU._HyperLinkADD_MAC_ADRE">
+<summary>
+Contrôle HyperLinkADD_MAC_ADRE.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.ALMS_MENU._HyperLinkALMS_IMPORT">
+<summary>
+Contrôle HyperLinkALMS_IMPORT.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.ALMS_MENU._HyperLinkGEST_ANML_NC_DRGT">
+<summary>
+Contrôle HyperLinkGEST_ANML_NC_DRGT.
 </summary>
 <remarks>
 Champ généré automatiquement.

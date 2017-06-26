@@ -667,10 +667,10 @@ D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\f
 D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\fr\Microsoft.Owin.Security.Google.resources.dll
 D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\fr\Microsoft.Owin.Security.Twitter.resources.dll
 D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\fr\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
-D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\obj\Release\App_Web.vbprojResolveAssemblyReference.cache
 D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\System.Web.Extensions.dll
 D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\App_Web_DEV.dll.config
 D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\App_Web_DEV.dll
 D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\App_Web_DEV.pdb
 D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\obj\Release\App_Web_DEV.dll
 D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\obj\Release\App_Web_DEV.pdb
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\obj\Release\App_Web.vbprojResolveAssemblyReference.cache

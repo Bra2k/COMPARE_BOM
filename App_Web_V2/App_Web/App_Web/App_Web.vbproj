@@ -353,6 +353,7 @@
     <Content Include="PagesMembres\Methodes\Comparaison_BOM.aspx" />
     <Content Include="PagesMembres\Production\ALMS\ADD_MAC_ADRE.aspx" />
     <Content Include="PagesMembres\Production\ALMS\ALMS_IMPORT.aspx" />
+    <Content Include="PagesMembres\Production\ALMS\ALMS_MENU.aspx" />
     <Content Include="PagesMembres\Production\ALMS\GEST_ANML_NC_DRGT.aspx" />
     <Content Include="PagesMembres\Production\Controle_Reception\AJOU_FNS_CTRL_RCP.aspx" />
     <Content Include="PagesMembres\Production\CST_HEUR_SAI_BW.aspx" />
@@ -617,6 +618,13 @@
     </Compile>
     <Compile Include="PagesMembres\Production\ALMS\ALMS_IMPORT.aspx.vb">
       <DependentUpon>ALMS_IMPORT.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="PagesMembres\Production\ALMS\ALMS_MENU.aspx.designer.vb">
+      <DependentUpon>ALMS_MENU.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagesMembres\Production\ALMS\ALMS_MENU.aspx.vb">
+      <DependentUpon>ALMS_MENU.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="PagesMembres\Production\ALMS\GEST_ANML_NC_DRGT.aspx.designer.vb">

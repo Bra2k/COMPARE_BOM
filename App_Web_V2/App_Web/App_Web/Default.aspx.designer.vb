@@ -32,15 +32,6 @@ Partial Public Class _Default
     Protected WithEvents InBox As Global.System.Web.UI.WebControls.ImageButton
     
     '''<summary>
-    '''Contrôle AdressBook.
-    '''</summary>
-    '''<remarks>
-    '''Champ généré automatiquement.
-    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-    '''</remarks>
-    Protected WithEvents AdressBook As Global.System.Web.UI.WebControls.ImageButton
-    
-    '''<summary>
     '''Contrôle FixedPc.
     '''</summary>
     '''<remarks>
@@ -246,15 +237,6 @@ Partial Public Class _Default
     '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
     '''</remarks>
     Protected WithEvents Parcel6 As Global.System.Web.UI.WebControls.ImageButton
-    
-    '''<summary>
-    '''Contrôle Computer.
-    '''</summary>
-    '''<remarks>
-    '''Champ généré automatiquement.
-    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-    '''</remarks>
-    Protected WithEvents Computer As Global.System.Web.UI.WebControls.ImageButton
     
     '''<summary>
     '''Contrôle Test_Fonc.
