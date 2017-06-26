@@ -4,9 +4,9 @@
 Class _Default
     Inherits Page
 
-    'Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
-    '    Label_PHOT.Text = Session("thumbnailphoto")
-    'End Sub
+    Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Label_PHOT.Text = Session("thumbnailphoto")
+    End Sub
 
     'Protected Sub ImageButton1_Click(sender As Object, e As ImageClickEventArgs) Handles ImageButton1.Click
 
