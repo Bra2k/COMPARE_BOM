@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2f967ad0661c461282b758ee4a9e1852" Name="Diagram1">
+        <EntityTypeShape EntityType="ALMS_PROD_PRDModel.DTM_ADRE_MAC" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ALMS_PROD_PRDModel.DTM_HSQR_STAT_PROD" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ALMS_PROD_PRDModel.DTM_NC_DETA" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ALMS_PROD_PRDModel.DTM_NC_LIST" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ALMS_PROD_PRDModel.DTM_NMCT_PROD" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ALMS_PROD_PRDModel.DTM_NU_SER" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ALMS_PROD_PRDModel.DTM_REF_GAMM" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ALMS_PROD_PRDModel.DTM_REF_GAMM_ARTI" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ALMS_PROD_PRDModel.DTM_REF_ID_TEST" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ALMS_PROD_PRDModel.DTM_REF_MTRE_LIST" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ALMS_PROD_PRDModel.DTM_REF_OPRT" Width="1.5" PointX="2.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ALMS_PROD_PRDModel.DTM_REF_STAT" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ALMS_PROD_PRDModel.DTM_REF_TYPE_NU_SER" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ALMS_PROD_PRDModel.DTM_RESU_TEST_DETA" Width="1.5" PointX="8.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ALMS_PROD_PRDModel.DTM_RESU_TEST_LIST" Width="1.5" PointX="4.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ALMS_PROD_PRDModel.DTM_SEQU_RFRC_DETA" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ALMS_PROD_PRDModel.DTM_SEQU_RFRC_LIST" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ALMS_PROD_PRDModel.DTM_REF_ID" Width="1.5" PointX="10.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ALMS_PROD_PRDModel.V_DHR_ECAR_PDTO" Width="1.5" PointX="10.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ALMS_PROD_PRDModel.V_FCGF" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ALMS_PROD_PRDModel.V_FCGF_ANML" Width="1.5" PointX="12.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ALMS_PROD_PRDModel.V_LIST_TCBL_NMCT_PROD" Width="1.5" PointX="6.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ALMS_PROD_PRDModel.V_NC_LIST_CD_ARTI_TCBL_UNIT" Width="1.5" PointX="8.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ALMS_PROD_PRDModel.V_NC_LIST_INFO_NU_INCI" Width="1.5" PointX="10.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ALMS_PROD_PRDModel.V_NC_LIST_NU_INCI_NU_SER" Width="1.5" PointX="12.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ALMS_PROD_PRDModel.V_NC_LIST_PHAS_FAIL_NU_SER_ID_SEQ" Width="1.5" PointX="2.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ALMS_PROD_PRDModel.V_NC_LIST_PROD_RETO_PDTO" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ALMS_PROD_PRDModel.V_NC_LIST_SEQU_FAIL_NU_SER" Width="1.5" PointX="14.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ALMS_PROD_PRDModel.V_POST_FCGF" Width="1.5" PointX="14.75" PointY="6.75" IsExpanded="true" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

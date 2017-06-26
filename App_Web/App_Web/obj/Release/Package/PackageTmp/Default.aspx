@@ -18,7 +18,7 @@
                 </asp:View>--%>
                 <br />
                 <table class="tab_infos_con">
-                    <tr><td>
+                   <%-- <tr><td>--%>
 <%--                        <div id="cont_NDkxMDN8MXw0fDF8MXwwMDJlNjB8MXxGRkZGRkZ8Y3wx">
                             <div id="spa_NDkxMDN8MXw0fDF8MXwwMDJlNjB8MXxGRkZGRkZ8Y3wx">
                                 <a id="a_NDkxMDN8MXw0fDF8MXwwMDJlNjB8MXxGRkZGRkZ8Y3wx" href="http://www.meteocity.com/france/combree_v49103/" target="_blank" style="color:#333;text-decoration:none;">Météo Combrée</a> ©
@@ -27,21 +27,23 @@
                             <script type="text/javascript" src="http://widget.meteocity.com/js/NDkxMDN8MXw0fDF8MXwwMDJlNjB8MXxGRkZGRkZ8Y3wx"></script>
                         </div>
                     </td></tr>--%>
-                    <tr><td><label>&nbsp;&nbsp;Bienvenue</label> <%: Session("displayname") %></td></tr>
-                    <tr><td><label>&nbsp;&nbsp;Titre :</label> <%: Session("title") %></td></tr>
-                    <tr><td><label>&nbsp;&nbsp;Mail :</label> <%: Session("mail") %></td></tr>
-                    <tr><td><label>&nbsp;&nbsp;Session :</label> <%: Session("samaccountname") %></td></tr>
-                    <tr><td><label>&nbsp;&nbsp;Nom :</label> <%: Session("sn") %></td></tr>
-                    <tr><td><label>&nbsp;&nbsp;Prénom :</label> <%: Session("givenname") %></td></tr>
-                    <tr><td><label>&nbsp;&nbsp;Matricule SAP :</label> <%: Session("matricule") %></td></tr>
-                    <tr><td><label>&nbsp;&nbsp;Service :</label> <%: Session("department") %></td></tr>
+                    <tr style="vertical-align: middle; text-align: center; clip: rect(10px, auto, auto, auto);"><td colspan="2"><asp:Label ID="Label_PHOT" runat="server" Text=""></asp:Label></td></tr>
+                    <tr><td><label>&nbsp;&nbsp;Bienvenue</label></td><td><%: Session("displayname") %></td></tr>
+                    <tr><td><label>&nbsp;&nbsp;Titre :</label></td><td><%: Session("title") %></td></tr>
+                    <tr><td><label>&nbsp;&nbsp;Mail :</label></td><td><%: Session("mail") %></td></tr>
+                    <tr><td><label>&nbsp;&nbsp;Session :</label></td><td><%: Session("samaccountname") %></td></tr>
+                    <tr><td><label>&nbsp;&nbsp;Nom :</label></td><td><%: Session("sn") %></td></tr>
+                    <tr><td><label>&nbsp;&nbsp;Prénom :</label></td><td><%: Session("givenname") %></td></tr>
+                    <tr><td><label>&nbsp;&nbsp;Matricule SAP :</label></td><td><%: Session("matricule") %></td></tr>
+                    <tr><td><label>&nbsp;&nbsp;Service :</label></td><td><%: Session("department") %></td></tr>
                 </table>
                 <%--<asp:View ID="View_LOG" runat="server">
                <%-- </asp:View>
             </asp:MultiView>--%>
-        </div>
+   <%--     </div>
+    <div>--%>
         <% If session("department") = "Informatique" Then %>
-        <table class="tab_menu">
+        <table class="tab_menu col-md-3"">
                 <tr>
                     <td style="width: 200px"><a class="info" href="#"><asp:ImageButton ID="InBox" runat="server" ImageUrl="~/App_Themes/ICON_COMPARE/parcel2.ico" Height="100px" Width="100px" PostBackUrl="~/PagesMembres/Digital_factory/CLSg.aspx" /><span>Vers page colisage</span></a></td>
                     <td style="width: 200px"><a class="info" href="#"><asp:ImageButton ID="AdressBook" ImageUrl="~\App_Themes\ICON_COMPARE/computer3.ico" runat="server" Height="100px" Width="100px" PostBackUrl="~/PagesMembres/Production/ALMS/ADD_MAC_ADRE.aspx" /><span>Vers page MAC adresses</span></a></td>
@@ -93,6 +95,15 @@
                     <td style="width: 200px"><a class="info" href="#"><asp:ImageButton ID="Sensing2" ImageUrl="~\App_Themes\ICON_COMPARE\sensing.ico" runat="server" Height="100px" Width="100px" PostBackUrl="~/PagesMembres/Provisoire/SENSING.aspx" /><span>Vers page SENSING L.</span></a></td>
                     <td style="width: 200px"><a class="info" href="#"><asp:ImageButton ID="ALMS2" ImageUrl="~\App_Themes\ICON_COMPARE\injecter-seringue.ico" runat="server" Height="100px" Width="100px" PostBackUrl="~/PagesMembres/Production/ALMS/ALMS_menu.aspx" /><span>Vers page import ALMS</span></a></td>
                     <td style="width: 200px"><a class="info" href="#"><asp:ImageButton ID="ImageButton_TCBL_OPRT" ImageUrl="~\App_Themes\ICON_COMPARE\tracabilite_ope.ico" runat="server" Height="100px" Width="100px" PostBackUrl="~/PagesMembres/Digital_Factory/TCBL_OPRT.aspx" /><span>Vers page traçabilité opération Digital Factory</span></a></td></tr>
+                 <tr>
+                    <td style="width: 200px"><a class="info" href="#"><asp:ImageButton ID="ImageButton2" ImageUrl="~\App_Themes\ICON_COMPARE/configuration2.ico" runat="server" Height="100px" Width="100px" PostBackUrl="~/PagesMembres/Developpement/CFGR_POST.aspx" /><span>Vers page configuration</span></a></td>
+                    <td style="width: 200px"><a class="info" href="#"></td>
+                    <td style="width: 200px"><a class="info" href="#"></td>
+                    <td style="width: 200px"><a class="info" href="#"></td>
+                    <td style="width: 200px"><a class="info" href="#"></td></tr>                                  
+
+
             </table>
     <% End If %>
+        </div>
 </asp:Content>

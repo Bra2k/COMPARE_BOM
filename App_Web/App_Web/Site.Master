@@ -1,23 +1,24 @@
 ﻿<%@ Master Language="VB" AutoEventWireup="true" CodeBehind="Site.master.vb" Inherits="App_Web.SiteMaster" %>
+
 <%@ Import Namespace="App_Web" %>
 <%@ Import Namespace="Microsoft.AspNet.Identity" %>
 <!DOCTYPE html>
 <html lang="fr">
 <head runat="server">
 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%: Page.Title %>- Applications Eolane Combrée</title>
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
-    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 </head>
 <body>
 
-    <form runat="server">        
+    <form runat="server">
 
         <asp:ScriptManager runat="server">
             <Scripts>
@@ -39,7 +40,7 @@
                 <%--Scripts de site--%>
             </Scripts>
         </asp:ScriptManager>
-        <script type="text/javascript" src="Scripts/LoginSAP.js"></script>
+        <%--<script type="text/javascript" src="Scripts/LoginSAP.js"></script>--%>
 
         <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: #002F60">
             <div class="container" style="background-color: #002F60">
@@ -48,9 +49,10 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
-                    </button>                    
-                    <a class="navbar-brand" runat="server" href="~/" ><img src="/App_Themes/PIC_CHAR/DFEC_V2.png" alt="Applications Eolane Combrée" Height="24" Width="47"></a>
-                    </div>
+                    </button>
+                    <a class="navbar-brand" runat="server" href="~/">
+                        <img src="/App_Themes/PIC_CHAR/DFEC_V2.png" alt="Applications Eolane Combrée" height="24" width="47"></a>
+                </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/">Accueil</a></li>
@@ -67,7 +69,7 @@
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a runat="server" title="Manage your account">Bonjour, <%: Session("displayname")  %> !</a></li>
                                 <li>
-                                    <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Se déconnecter" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" onloggedout="APP_WEB_LoggedOut" />
+                                    <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Se déconnecter" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" OnLoggedOut="APP_WEB_LoggedOut" />
                                 </li>
                             </ul>
                         </LoggedInTemplate>
@@ -77,24 +79,31 @@
         </div>
         <%--<div id="cont_NDkxMDN8MXw1fDF8MXwwMDJlNjB8MXxGRkZGRkZ8Y3wx"><div id="spa_NDkxMDN8MXw1fDF8MXwwMDJlNjB8MXxGRkZGRkZ8Y3wx"><a id="a_NDkxMDN8MXw1fDF8MXwwMDJlNjB8MXxGRkZGRkZ8Y3wx" href="http://www.meteocity.com/france/combree_v49103/" target="_blank" style="color:#333;text-decoration:none;"></a></div><script type="text/javascript" src="http://widget.meteocity.com/js/NDkxMDN8MXw1fDF8MXwwMDJlNjB8MXxGRkZGRkZ8Y3wx"></script></div>--%>
         <div class="container body-content">
-            <asp:ContentPlaceHolder ID="MainContent" runat="server">
-                <p style="font-family: Verdana;">
-                    
-                    
-                </p>
-            </asp:ContentPlaceHolder>
-            
-            
-            
+            <asp:MultiView ID="MultiView_Master" runat="server" ActiveViewIndex="0">
+                <asp:View ID="View_Master" runat="server">
+                    <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                        <p style="font-family: Verdana;">
+                        </p>
+                    </asp:ContentPlaceHolder>
+                </asp:View>
+                <asp:View ID="View_LOG_SAP" runat="server">
+                    &nbsp;&nbsp;Entrer le matricule :
+                             <asp:TextBox ID="TextBox_LOG_SAP" runat="server" AutoPostBack="True"></asp:TextBox>
+                </asp:View>
+            </asp:MultiView>
+
+
+
             <br />
             <asp:UpdatePanel ID="UpdatePanel_PGS_TACH" runat="server" ChildrenAsTriggers="False" UpdateMode="Conditional">
                 <ContentTemplate>
-                    <asp:Label ID="Label_PGS_TACH" runat="server" Text=""></asp:Label>
-                    
+                    <label id="Label_PGS_TACH"></label>
+
                 </ContentTemplate>
             </asp:UpdatePanel>
             <br />
-            <asp:Label ID="Label_LOG_SAP" runat="server" Text=""></asp:Label>                
+            <%--            <asp:Label ID="Label_LOG_SAP" runat="server" Text=""></asp:Label>    --%>
+            <%--<Label ID="Label_LOG_SAP"></Label>--%>
             <asp:Label ID="Label_ERR_MSG" runat="server" Font-Bold="True" ForeColor="Red"></asp:Label>
             <br />
             <hr />
@@ -104,7 +113,7 @@
                     <asp:Image ID="Image_LOGO_ECO" runat="server" ImageUrl="~/App_Themes/PIC_CHAR/Comb1.jpg" Height="55px" Width="134px" />
                     <%--Pour plus d'informations sur les scripts de regroupement dans ScriptManager, consultez http://go.microsoft.com/fwlink/?LinkID=301884 --%>
                 </div>
-              <div style="position: relative; bottom: 0; right: 0;"> Copyright © Selco/Eolane 1986-<%: Year(Now()) %> - Asp.NET Application</div>
+                <div style="position: relative; bottom: 0; right: 0;">Copyright © Selco/Eolane 1986-<%: Year(Now()) %> - Asp.NET Application</div>
             </footer>
         </div>
     </form>

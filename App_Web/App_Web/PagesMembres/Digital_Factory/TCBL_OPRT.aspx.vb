@@ -23,11 +23,6 @@ Public Class TCBL_OPRT
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
-            Label_CD_ARTI.Text = "TAEKC042100$"
-            Label_DES_ARTI.Text = "Ventilateur Vendome ST40 IND01X 08/12/16"
-            CREA_DHR("VE40-000156", "1173833")
-            'CREA_FCGF("VE40-000114", "1173833")
-            CREA_LIST_TCBL("VE40-000156", "1164008")
 
             '      HttpContext.Current.Response.Write(" < body <> Script type=""text/javascript"">
             '   var pmt = prompt(""Entrer votre matricule SAP"","""");
@@ -51,14 +46,41 @@ Public Class TCBL_OPRT
 
     End Sub
 
-
     Protected Sub TextBox_OF_TextChanged(sender As Object, e As EventArgs) Handles TextBox_OF.TextChanged
         Dim dt, dtAFKO, dtAFVC, dt_op As New DataTable
-
+        Dim sQuery As String = ""
         Try
             'extraction données de l'OF
             dtAFKO = SAP_DATA_READ_AFKO("AUFNR LIKE '%" & TextBox_OF.Text & "'")
             If dtAFKO Is Nothing Then Throw New Exception("L'OF n°" & TextBox_OF.Text & " n'a pas été trouvé dans SAP.")
+
+            sQuery = "SELECT CONVERT(INTEGER,[AUFNR]) AS AUFNR
+                        FROM [SAP].[dbo].[AFKO]
+                       WHERE CONVERT(INTEGER,[AUFNR]) = " & TextBox_OF.Text
+            dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion_ALMS)
+            If dt Is Nothing Then
+                sQuery = "INSERT INTO [SAP].[dbo].[AFKO]
+                                   ([RSNUM]
+                                   ,[GAMNG]
+                                   ,[PLNBEZ]
+                                   ,[AUFNR]
+                                   ,[AUFPL]
+                                   ,[REVLV]
+                                   ,[STLNR]
+                                   ,[STLAL]
+                                   ,[GSTRS])
+                             VALUES
+                                   ('" & dtAFKO(0)("RSNUM").ToString & "'
+                                   ,'" & dtAFKO(0)("GAMNG").ToString & "'
+                                   ,'" & dtAFKO(0)("PLNBEZ").ToString & "'
+                                   ,'" & dtAFKO(0)("AUFNR").ToString & "'
+                                   ,'" & dtAFKO(0)("AUFPL").ToString & "'
+                                   ,'" & dtAFKO(0)("REVLV").ToString & "'
+                                   ,'" & dtAFKO(0)("STLNR").ToString & "'
+                                   ,'" & dtAFKO(0)("STLAL").ToString & "'
+                                   ,'" & dtAFKO(0)("GSTRS").ToString & "')"
+                SQL_REQ_ACT(sQuery, sChaineConnexion)
+            End If
 
             dt = SAP_DATA_LECT_OF(TextBox_OF.Text)
             With dt
@@ -118,7 +140,7 @@ Public Class TCBL_OPRT
             dtCRHD = SAP_DATA_READ_CRHD("OBJID EQ '" & dtAFVC(0)("ARBID").ToString & "' AND ARBPL LIKE 'RCT%'")
             If Not dtCRHD Is Nothing Then
                 If Session("matricule") = "" Then
-                    Session("UrlReferrer") = HttpContext.Current.Request.Url.AbsolutePath.ToString()
+                    Session("UrlReferrer") = HttpContext.Current.Request.Url.AbsolutePath.ToString
                     Response.Redirect("~/Account/Login_SAP.aspx")
                 End If
                 sQuery = "SELECT [DT_ATVT]
@@ -137,7 +159,7 @@ Public Class TCBL_OPRT
             Label_DES_OP.Text = Trim(dtAFVC(0)("LTXA1").ToString)
             Label_OP.Text = Convert.ToDecimal(DropDownList_OP.SelectedValue).ToString
 
-            'charger les ns entrés
+            'charger les ns entrés0000187124
             sQuery = "SELECT [NU_SER_CLIE] AS [Numéro de série client]
                             ,[NU_SER_ECO] AS [Numéro de série Eolane]
                         FROM [dbo].[V_DER_PASS_BON]
@@ -239,7 +261,7 @@ Public Class TCBL_OPRT
             'enregistrement dans table
             For Each rGridView_LIST_MTRE As GridViewRow In GridView_LIST_MTRE.Rows
                 With rGridView_LIST_MTRE
-                    If HttpUtility.HtmlDecode(.Cells(0).Text) = Label_TYPE_MTRE.Text Then .Cells(1).Text = TextBox_MTRE_GNRQ.Text
+                    If HttpUtility.HtmlDecode(.Cells(0).Text) = HttpUtility.HtmlDecode(Label_TYPE_MTRE.Text) Then .Cells(1).Text = TextBox_MTRE_GNRQ.Text
                     If .Cells(1).Text = "&nbsp;" Then
                         Label_TYPE_MTRE.Text = .Cells(0).Text
                         TextBox_MTRE_GNRQ.Text = ""
@@ -291,7 +313,7 @@ Public Class TCBL_OPRT
         Dim sNU_SER_ECO As String = "", sNU_SER_CLIE As String = ""
         Dim dt_PARA, dt_CFGR_ARTI_ECO, dt_ETAT_CTRL As New DataTable
         With TextBox_NU_SER
-            PDF_CREA_FCGF(.Text)
+            ' PDF_CREA_FCGF(.Text)
             Try
                 dt_CFGR_ARTI_ECO = DIG_FACT_SQL_CFGR_ARTI_ECO(Trim(Label_CD_ARTI.Text))
                 'Si la TextBox de génération des étiquettes est cochée
@@ -339,7 +361,7 @@ Public Class TCBL_OPRT
                             FROM [dbo].[ID_PF_View]
                            WHERE (NM_NS_EOL LIKE '%" & sNU_SER_ECO & "%' AND [NM_NS_CLT] LIKE '%" & sNU_SER_CLIE & "%') AND ([LB_ETP] = '" & Label_DES_OP.Text & " (OP:" & Label_OP.Text & ")' AND [LB_SCTN] = 'P')"
                 dt_PARA = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
-                If Not dt_PARA Is Nothing Then Throw New Exception("Le numéro de série " & TextBox_NU_SER.Text & " est déjà passé à l'opération " & Label_DES_OP.Text & " (OP:" & Label_OP.Text & ").")
+                If Not dt_PARA Is Nothing Then Throw New Exception("Le numéro de série " & .Text & " est déjà passé à l'opération " & Label_DES_OP.Text & " (OP:" & Label_OP.Text & ").")
 
                 'Création de l'ID_PSG
                 sQuery = "SELECT [NEW_ID_PSG], GETDATE() AS DT_DEB
@@ -370,7 +392,8 @@ Public Class TCBL_OPRT
                             If HttpUtility.HtmlDecode(.Cells(3).Text) = "PRODUIT" Or HttpUtility.HtmlDecode(.Cells(3).Text) = "PRODUIT SEMI-FINI" Then
                                 Label_CD_SS_ENS.Text = .Cells(1).Text
                                 'MultiView_SAIS_OPRT.SetActiveView(View_SAIS_TCBL_COMP)
-                                MultiView_Tracabilité.SetActiveView(View_SAI_SOUS_ENSE)
+                                'MultiView_Tracabilité.SetActiveView(View_SAI_SOUS_ENSE)
+                                MultiView_ETAP.SetActiveView(View_SAI_SOUS_ENSE)
                                 TextBox_SS_ENS.Text = ""
                                 TextBox_SS_ENS.Focus()
                                 Exit Sub
@@ -381,11 +404,18 @@ Public Class TCBL_OPRT
                 'si pas de sous-ensemble
 
                 'Vérification documentaire (FCGF, DHR)
-                If _VRFC_DCMT() = True Then Exit Sub
+                Select Case _VRFC_DCMT()
+                    Case 1
+                        Exit Sub
+                    Case -1
+                        _ERGT_OPRT_PASS("F")
+                        Throw New Exception("La vérification documentaire a échouée.")
+                End Select
 
                 If DIG_FACT_SQL_GET_PARA(Trim(Label_CD_ARTI.Text), "Scan numéro de série fin opération") = "1" Then
-                    MultiView_VLDT.SetActiveView(View_VLDT_OPRT)
+                    'MultiView_VLDT.SetActiveView(View_VLDT_OPRT)
                     'MultiView_SAIS_OPRT.SetActiveView(View_VLDT_OPRT)
+                    MultiView_ETAP.SetActiveView(View_VLDT_OPRT)
                     TextBox_NU_SER_VLDT_OPRT.Text = ""
                     TextBox_NU_SER_VLDT_OPRT.Focus()
                 Else
@@ -424,7 +454,8 @@ Public Class TCBL_OPRT
                         If HttpUtility.HtmlDecode(.Cells(3).Text) = "PRODUIT" Or HttpUtility.HtmlDecode(.Cells(3).Text) = "PRODUIT SEMI-FINI" Then
                             Label_CD_SS_ENS.Text = .Cells(1).Text
                             'MultiView_SAIS_OPRT.SetActiveView(View_SAIS_TCBL_COMP)
-                            MultiView_Tracabilité.SetActiveView(View_SAI_SOUS_ENSE)
+                            'MultiView_Tracabilité.SetActiveView(View_SAI_SOUS_ENSE)
+                            MultiView_ETAP.SetActiveView(View_SAI_SOUS_ENSE)
                             TextBox_SS_ENS.Text = ""
                             TextBox_SS_ENS.Focus()
                             Exit Sub
@@ -433,11 +464,18 @@ Public Class TCBL_OPRT
                 Next
                 'si pas de sous-ensemble
                 'Vérification documentaire (FCGF, DHR)
-                If _VRFC_DCMT() = True Then Exit Sub
+                Select Case _VRFC_DCMT()
+                    Case 1
+                        Exit Sub
+                    Case -1
+                        _ERGT_OPRT_PASS("F")
+                        Throw New Exception("La vérification documentaire a échouée.")
+                End Select
 
                 If DIG_FACT_SQL_GET_PARA(Trim(Label_CD_ARTI.Text), "Scan numéro de série fin opération") = "1" Then
-                    MultiView_VLDT.SetActiveView(View_VLDT_OPRT)
+                    'MultiView_VLDT.SetActiveView(View_VLDT_OPRT)
                     'MultiView_SAIS_OPRT.SetActiveView(View_VLDT_OPRT)
+                    MultiView_ETAP.SetActiveView(View_VLDT_OPRT)
                     TextBox_NU_SER_VLDT_OPRT.Text = ""
                     TextBox_NU_SER_VLDT_OPRT.Focus()
                 Else
@@ -473,7 +511,8 @@ Public Class TCBL_OPRT
                         If HttpUtility.HtmlDecode(.Cells(3).Text) = "PRODUIT" Or HttpUtility.HtmlDecode(.Cells(3).Text) = "PRODUIT SEMI-FINI" Then
                             Label_CD_SS_ENS.Text = .Cells(1).Text
                             'MultiView_SAIS_OPRT.SetActiveView(View_SAIS_TCBL_COMP)
-                            MultiView_Tracabilité.SetActiveView(View_SAI_SOUS_ENSE)
+                            ' MultiView_Tracabilité.SetActiveView(View_SAI_SOUS_ENSE)
+                            MultiView_ETAP.SetActiveView(View_SAI_SOUS_ENSE)
                             TextBox_SS_ENS.Text = ""
                             TextBox_SS_ENS.Focus()
                             Exit Sub
@@ -483,11 +522,18 @@ Public Class TCBL_OPRT
                 'si pas de sous-ensemble
 
                 'Vérification documentaire (FCGF, DHR)
-                If _VRFC_DCMT() = True Then Exit Sub
+                Select Case _VRFC_DCMT()
+                    Case 1
+                        Exit Sub
+                    Case -1
+                        _ERGT_OPRT_PASS("F")
+                        Throw New Exception("La vérification documentaire a échouée.")
+                End Select
 
                 If DIG_FACT_SQL_GET_PARA(Trim(Label_CD_ARTI.Text), "Scan numéro de série fin opération") = "1" Then
-                    MultiView_VLDT.SetActiveView(View_VLDT_OPRT)
+                    'MultiView_VLDT.SetActiveView(View_VLDT_OPRT)
                     'MultiView_SAIS_OPRT.SetActiveView(View_VLDT_OPRT)
+                    MultiView_ETAP.SetActiveView(View_VLDT_OPRT)
                     TextBox_NU_SER_VLDT_OPRT.Text = ""
                     TextBox_NU_SER_VLDT_OPRT.Focus()
                 Else
@@ -527,6 +573,7 @@ Public Class TCBL_OPRT
         Dim dt_PARA, dt, dt_CFGR_ARTI_ECO, dt2, dt_LIST_NU_SER_TRAC, dt_ETAT_CTRL, dtMSEG, dtAFVC, dtAFKO, dtCRHD As New DataTable
         Dim iIDTT As Integer
         Dim sPOST_TRAV As String = ""
+        Dim sIPMT_ETQT As String = ""
         Try
             dt_CFGR_ARTI_ECO = DIG_FACT_SQL_CFGR_ARTI_ECO(Trim(Label_CD_ARTI.Text))
             Select Case "1"
@@ -537,29 +584,7 @@ Public Class TCBL_OPRT
             End Select
             sID_NU_SER = DIG_FACT_SQL_ERGT_LIAI_ID_NU_SER(Label_OF.Text, TextBox_NU_SER.Text)
             If sID_NU_SER Is Nothing Then Throw New Exception("Pas d'ID numéro de série trouvé")
-            'dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
-            'If dt Is Nothing Then
-            '    Dim dt_CREA As DateTime = Now
-            '    sQuery = "INSERT INTO [dbo].[DTM_NU_SER] ([NM_CRIT],[NU_SER],[NM_TYPE],[DT_CREA])
-            '                   VALUES ('" & Label_OF.Text & "', '" & Label_OF.Text & "', 'OF', '" & dt_CREA & "')"
-            '    SQL_REQ_ACT(sQuery, sChaineConnexion)
-            '    sQuery = "SELECT [ID_NU_SER]
-            '             FROM [dbo].[DTM_NU_SER]
-            '            WHERE [NM_CRIT] = '" & Label_OF.Text & "'
-            '              AND [NU_SER] = '" & Label_OF.Text & "'
-            '              AND [NM_TYPE] = 'OF'
-            '                 AND [DT_CREA] = '" & dt_CREA & "'"
-            '    dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
-            '    Select Case "1"
-            '        Case dt_CFGR_ARTI_ECO(0)("Numéro de série Eolane").ToString
-            '            sQuery = "INSERT INTO [dbo].[DTM_NU_SER] ([NM_CRIT],[NU_SER],[NM_TYPE],[DT_CREA],[ID_NU_SER])
-            '                   VALUES ('" & Label_OF.Text & "', '" & sNU_SER_ECO & "', 'Numéro de série Eolane', '" & dt_CREA & "', " & dt(0)("ID_NU_SER").ToString & ")"
-            '        Case dt_CFGR_ARTI_ECO(0)("Numéro de série client").ToString
-            '            sQuery = "INSERT INTO [dbo].[DTM_NU_SER] ([NM_CRIT],[NU_SER],[NM_TYPE],[DT_CREA],[ID_NU_SER])
-            '                   VALUES ('" & Label_OF.Text & "', '" & sNU_SER_CLIE & "', 'Numéro de série client', '" & dt_CREA & "', " & dt(0)("ID_NU_SER").ToString & ")"
-            '    End Select
-            '    SQL_REQ_ACT(sQuery, sChaineConnexion)
-            'End If
+
             sQuery = "INSERT INTO [dbo].[DTM_TR_CPT] ([NM_NS_EOL],[NM_NS_CLT],[ID_CPT],[ID_PSG],[DT_PSG])
                                    VALUES ('" & sNU_SER_ECO & "', '" & sNU_SER_CLIE & "', '-', " & Session("ID_PSG") & ", GETDATE())"
             iIDTT = SQL_REQ_ACT_RET_IDTT(sQuery, sChaineConnexion)
@@ -574,7 +599,8 @@ Public Class TCBL_OPRT
                 sQuery = "INSERT INTO [dbo].[DTM_HIST_MTRE] ([ID_PSG],[ID_MTRE])
                                VALUES (" & Session("ID_PSG") & ",'" & HttpUtility.HtmlDecode(rGridView_LIST_MTRE.Cells(1).Text) & "')"
                 SQL_REQ_ACT(sQuery, sChaineConnexion)
-                If rGridView_LIST_MTRE.Cells(0).Text = "Poste de travail" Then sPOST_TRAV = rGridView_LIST_MTRE.Cells(1).Text
+                If HttpUtility.HtmlDecode(rGridView_LIST_MTRE.Cells(0).Text) = "Poste de travail" Then sPOST_TRAV = HttpUtility.HtmlDecode(rGridView_LIST_MTRE.Cells(1).Text)
+                If HttpUtility.HtmlDecode(rGridView_LIST_MTRE.Cells(0).Text) = "Imprimante étiquette" Then sIPMT_ETQT = HttpUtility.HtmlDecode(rGridView_LIST_MTRE.Cells(1).Text)
             Next
 
             'Enregistrement passage
@@ -651,15 +677,21 @@ Public Class TCBL_OPRT
                         .Cells(6).Text = ""
                     Else
                         If Convert.ToDecimal(HttpUtility.HtmlDecode(.Cells(8).Text)) = 0 Then
-                            MultiView_Tracabilité.SetActiveView(View_VOID_2)
+                            MultiView_SAIS_OPRT.SetActiveView(View_SAIS_TCBL_COMP)
                             Label_CD_COMP.Text = HttpUtility.HtmlDecode(.Cells(1).Text)
                         End If
                     End If
+                    For Each rGridView_REPE0 As GridViewRow In GridView_REPE0.Rows
+                        If HttpUtility.HtmlDecode(rGridView_REPE0.Cells(1).Text) = HttpUtility.HtmlDecode(.Cells(1).Text) Then
+                            rGridView_REPE0.Cells(4).Text = HttpUtility.HtmlDecode(.Cells(4).Text)
+                            rGridView_REPE0.Cells(5).Text = HttpUtility.HtmlDecode(.Cells(5).Text)
+                            rGridView_REPE0.Cells(6).Text = HttpUtility.HtmlDecode(.Cells(6).Text)
+                            rGridView_REPE0.Cells(7).Text = HttpUtility.HtmlDecode(.Cells(7).Text)
+                            rGridView_REPE0.Cells(8).Text = HttpUtility.HtmlDecode(.Cells(8).Text)
+                        End If
+                    Next
                 End With
             Next
-            GridView_REPE0.DataSource = GridView_REPE.DataSource
-            GridView_REPE0.DataBind()
-
 
             sQuery = "SELECT [NU_SER_CLIE] AS [Numéro de série client]
                             ,[NU_SER_ECO] AS [Numéro de série Eolane]
@@ -698,9 +730,6 @@ Public Class TCBL_OPRT
 
             MultiView_SAIS_OPRT.SetActiveView(View_SAIS_NU_SER_CHEC)
             MultiView_ETAP.SetActiveView(View_VOID)
-            MultiView_Tracabilité.SetActiveView(View_VOID_2)
-            MultiView_DCMT.SetActiveView(View_VOID_3)
-            MultiView_VLDT.SetActiveView(View_VOID_4)
 
             If sSANC = "F" Then
                 Label_CONS.Text = ""
@@ -719,6 +748,7 @@ Public Class TCBL_OPRT
                 If Not dtCRHD Is Nothing Then
                     dt_ETAT_CTRL = COMM_APP_WEB_ETAT_CTRL(Trim(Label_CD_ARTI.Text) & "|Carton", "ASP.pagesmembres_digital_factory_impr_etiq_prn_aspx")
                     DIG_FACT_IMPR_ETIQ_V2(dt_ETAT_CTRL(0)("TextBox_FICH_MODE").ToString,
+                                          sIPMT_ETQT,
                                           TextBox_OF.Text,
                                           "",
                                           "Carton",
@@ -931,27 +961,35 @@ Public Class TCBL_OPRT
                 'saisir le n° de série du prochain sous-ensemble
                 For Each rGridView_REPE As GridViewRow In GridView_REPE.Rows
                     With rGridView_REPE
-                        'LOG_Msg(GetCurrentMethod, HttpUtility.HtmlDecode(.Cells(6).Text))
-                        If .Cells(6).Text = "&nbsp;" And (HttpUtility.HtmlDecode(.Cells(3).Text) = "PRODUIT" Or HttpUtility.HtmlDecode(.Cells(3).Text) = "PRODUIT SEMI-FINI") Then
-                            MultiView_Tracabilité.SetActiveView(View_SAI_SOUS_ENSE)
+                        LOG_Msg(GetCurrentMethod, .Cells(6).Text)
+                        If (.Cells(6).Text = "&nbsp;" Or .Cells(6).Text = "") And (HttpUtility.HtmlDecode(.Cells(3).Text) = "PRODUIT" Or HttpUtility.HtmlDecode(.Cells(3).Text) = "PRODUIT SEMI-FINI") Then
+                            'MultiView_Tracabilité.SetActiveView(View_SAI_SOUS_ENSE)
+                            MultiView_ETAP.SetActiveView(View_SAI_SOUS_ENSE)
                             GridView_REPE.SelectRow(.RowIndex)
                             Label_CD_SS_ENS.Text = GridView_REPE.SelectedRow.Cells(1).Text
                             TextBox_SS_ENS.Text = ""
                             TextBox_SS_ENS.Focus()
-                            GridView_REPE0.DataSource = GridView_REPE.DataSource
-                            GridView_REPE0.DataBind()
+                            'GridView_REPE0.DataSource = GridView_REPE.DataSource
+                            'GridView_REPE0.DataBind()
                             Exit Sub
                         End If
                     End With
                 Next
 
                 'Vérification documentaire (FCGF, DHR)
-                If _VRFC_DCMT() = True Then Exit Sub
+                Select Case _VRFC_DCMT()
+                    Case 1
+                        Exit Sub
+                    Case -1
+                        _ERGT_OPRT_PASS("F")
+                        Throw New Exception("La vérification documentaire a échouée.")
+                End Select
 
                 'si terminé enregistrer les données
                 If DIG_FACT_SQL_GET_PARA(Trim(Label_CD_ARTI.Text), "Scan numéro de série fin opération") = "1" Then
-                    MultiView_VLDT.SetActiveView(View_VLDT_OPRT)
+                    'MultiView_VLDT.SetActiveView(View_VLDT_OPRT)
                     'MultiView_SAIS_OPRT.SetActiveView(View_VLDT_OPRT)
+                    MultiView_ETAP.SetActiveView(View_VLDT_OPRT)
                     TextBox_NU_SER_VLDT_OPRT.Text = ""
                     TextBox_NU_SER_VLDT_OPRT.Focus()
                 Else
@@ -960,7 +998,8 @@ Public Class TCBL_OPRT
 
             Catch ex As Exception
                 LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
-                MultiView_Tracabilité.SetActiveView(View_SAI_SOUS_ENSE)
+                'MultiView_Tracabilité.SetActiveView(View_SAI_SOUS_ENSE)
+                MultiView_ETAP.SetActiveView(View_SAI_SOUS_ENSE)
                 .Text = ""
                 .Focus()
                 Exit Sub
@@ -1019,10 +1058,18 @@ Public Class TCBL_OPRT
                         .Cells(7).Text = dtMSEG(0)("CHARG").ToString
                         .Cells(8).Text = Convert.ToDecimal(dt(0)("NM_QTE_INIT").ToString) - (Convert.ToDecimal(dt(0)("NB_UTLS").ToString) * Convert.ToDecimal(.Cells(4).Text))
                     End If
+                    For Each rGridView_REPE0 As GridViewRow In GridView_REPE0.Rows
+                        If HttpUtility.HtmlDecode(rGridView_REPE0.Cells(1).Text) = HttpUtility.HtmlDecode(.Cells(1).Text) Then
+                            rGridView_REPE0.Cells(4).Text = HttpUtility.HtmlDecode(.Cells(4).Text)
+                            rGridView_REPE0.Cells(5).Text = HttpUtility.HtmlDecode(.Cells(5).Text)
+                            rGridView_REPE0.Cells(6).Text = HttpUtility.HtmlDecode(.Cells(6).Text)
+                            rGridView_REPE0.Cells(7).Text = HttpUtility.HtmlDecode(.Cells(7).Text)
+                            rGridView_REPE0.Cells(8).Text = HttpUtility.HtmlDecode(.Cells(8).Text)
+                        End If
+                    Next
                 End With
             Next
-            GridView_REPE0.DataSource = GridView_REPE.DataSource
-            GridView_REPE0.DataBind()
+
             For Each rGridView_REPE As GridViewRow In GridView_REPE.Rows
                 With rGridView_REPE
                     If .Cells(8).Text = "&nbsp;" And Not (HttpUtility.HtmlDecode(.Cells(3).Text) = "PRODUIT" Or HttpUtility.HtmlDecode(.Cells(3).Text = "PRODUIT SEMI-FINI")) Then
@@ -1033,7 +1080,7 @@ Public Class TCBL_OPRT
                 End With
             Next
             MultiView_SAIS_OPRT.SetActiveView(View_SAIS_NU_SER_CHEC)
-            MultiView_Tracabilité.SetActiveView(View_VOID_2)
+            'MultiView_Tracabilité.SetActiveView(View_VOID_2)
             With TextBox_NU_SER
                 .Enabled = True
                 .Text = ""
@@ -1076,10 +1123,18 @@ Public Class TCBL_OPRT
                             If fQT_UTLS < Convert.ToDecimal(Replace(dtMSEG(0)("MENGE").ToString, ".", ",")) Then .Cells(8).Text = Convert.ToDecimal(Replace(dtMSEG(0)("MENGE").ToString, ".", ",")) - fQT_UTLS
                         End If
                     End If
+                    For Each rGridView_REPE0 As GridViewRow In GridView_REPE0.Rows
+                        If HttpUtility.HtmlDecode(rGridView_REPE0.Cells(1).Text) = HttpUtility.HtmlDecode(.Cells(1).Text) Then
+                            rGridView_REPE0.Cells(4).Text = HttpUtility.HtmlDecode(.Cells(4).Text)
+                            rGridView_REPE0.Cells(5).Text = HttpUtility.HtmlDecode(.Cells(5).Text)
+                            rGridView_REPE0.Cells(6).Text = HttpUtility.HtmlDecode(.Cells(6).Text)
+                            rGridView_REPE0.Cells(7).Text = HttpUtility.HtmlDecode(.Cells(7).Text)
+                            rGridView_REPE0.Cells(8).Text = HttpUtility.HtmlDecode(.Cells(8).Text)
+                        End If
+                    Next
                 End With
             Next
-            GridView_REPE0.DataSource = GridView_REPE.DataSource
-            GridView_REPE0.DataBind()
+
             For Each rGridView_REPE As GridViewRow In GridView_REPE.Rows
                 With rGridView_REPE
                     If .Cells(8).Text = "&nbsp;" And Not (HttpUtility.HtmlDecode(.Cells(3).Text) = "PRODUIT" Or HttpUtility.HtmlDecode(.Cells(3).Text) = "PRODUIT SEMI-FINI") Then
@@ -1090,7 +1145,7 @@ Public Class TCBL_OPRT
                 End With
             Next
             MultiView_SAIS_OPRT.SetActiveView(View_SAIS_NU_SER_CHEC)
-            MultiView_Tracabilité.SetActiveView(View_VOID_2)
+            'MultiView_Tracabilité.SetActiveView(View_VOID_2)
             With TextBox_NU_SER
                 .Enabled = True
                 .Text = ""
@@ -1139,10 +1194,18 @@ Public Class TCBL_OPRT
                         Next
                         .Cells(7).Text = TextBox_CD_LOT_COMP.Text
                     End If
+                    For Each rGridView_REPE0 As GridViewRow In GridView_REPE0.Rows
+                        If HttpUtility.HtmlDecode(rGridView_REPE0.Cells(1).Text) = HttpUtility.HtmlDecode(.Cells(1).Text) Then
+                            rGridView_REPE0.Cells(4).Text = HttpUtility.HtmlDecode(.Cells(4).Text)
+                            rGridView_REPE0.Cells(5).Text = HttpUtility.HtmlDecode(.Cells(5).Text)
+                            rGridView_REPE0.Cells(6).Text = HttpUtility.HtmlDecode(.Cells(6).Text)
+                            rGridView_REPE0.Cells(7).Text = HttpUtility.HtmlDecode(.Cells(7).Text)
+                            rGridView_REPE0.Cells(8).Text = HttpUtility.HtmlDecode(.Cells(8).Text)
+                        End If
+                    Next
                 End With
             Next
-            GridView_REPE0.DataSource = GridView_REPE.DataSource
-            GridView_REPE0.DataBind()
+
             For Each rGridView_REPE As GridViewRow In GridView_REPE.Rows
                 With rGridView_REPE
                     If .Cells(8).Text = "&nbsp;" And Not (HttpUtility.HtmlDecode(.Cells(3).Text) = "PRODUIT" Or HttpUtility.HtmlDecode(.Cells(3).Text) = "PRODUIT SEMI-FINI") Then
@@ -1156,7 +1219,7 @@ Public Class TCBL_OPRT
                 End With
             Next
             MultiView_SAIS_OPRT.SetActiveView(View_SAIS_NU_SER_CHEC)
-            MultiView_Tracabilité.SetActiveView(View_VOID_2)
+            'MultiView_Tracabilité.SetActiveView(View_VOID_2)
             With TextBox_NU_SER
                 .Enabled = True
                 .Text = ""
@@ -1175,9 +1238,14 @@ Public Class TCBL_OPRT
     End Sub
 
     Public Sub _IPRO_ETQT(Optional sNS As String = "")
-        Dim dt_CFGR_ARTI_ECO, dt_ETAT_CTRL As New DataTable
+        Dim dt_CFGR_ARTI_ECO, dt_ETAT_CTRL, dt As New DataTable
+        Dim sIPMT_ETQT As String = "", sQuery As String = ""
         Try
             dt_CFGR_ARTI_ECO = DIG_FACT_SQL_CFGR_ARTI_ECO(Trim(Label_CD_ARTI.Text))
+            For Each rGridView_LIST_MTRE As GridViewRow In GridView_LIST_MTRE.Rows
+                If HttpUtility.HtmlDecode(rGridView_LIST_MTRE.Cells(0).Text) = "Imprimante étiquette" Then sIPMT_ETQT = HttpUtility.HtmlDecode(rGridView_LIST_MTRE.Cells(1).Text)
+            Next
+
             If dt_CFGR_ARTI_ECO(0)("Génération impression numéro de série").ToString = Label_OP.Text Then
                 Select Case "1"
                     Case dt_CFGR_ARTI_ECO(0)("Numéro de série Eolane").ToString
@@ -1191,9 +1259,25 @@ Public Class TCBL_OPRT
                                                                                              False,
                                                                                              Session("matricule"),
                                                                                              Label_OF.Text)
+                        sQuery = "SELECT [ID_NU_SER]
+	                            FROM [dbo].[V_LIAIS_NU_SER]
+	                           WHERE [NU_SER_ECO] LIKE '%" & sNS & "%'	                    
+	                             AND [NU_OF] = '" & Label_OF.Text & "'"
+                        dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
+
                         If dt_ETAT_CTRL.Columns.Contains("TextBox_FICH_MODE") Then
-                            DIG_FACT_IMPR_ETIQ(dt_ETAT_CTRL(0)("TextBox_FICH_MODE").ToString,
-                                               TextBox_OF.Text, "", "Numéro de série Eolane", "", sNS, "", "", "", Nothing)
+                            DIG_FACT_IMPR_ETIQ_V2(dt_ETAT_CTRL(0)("TextBox_FICH_MODE").ToString,
+                                          sIPMT_ETQT,
+                                          TextBox_OF.Text,
+                                          "",
+                                          "Numéro de série Eolane",
+                                          dt(0)("ID_NU_SER").ToString,
+                                          "",
+                                          "",
+                                          "",
+                                          Nothing)
+                            'DIG_FACT_IMPR_ETIQ(dt_ETAT_CTRL(0)("TextBox_FICH_MODE").ToString,
+                            '                   TextBox_OF.Text, "", "Numéro de série Eolane", "", sNS, "", "", "", Nothing)
                         End If
                     Case dt_CFGR_ARTI_ECO(0)("Numéro de série client").ToString
                         Dim sFORM_NU_CLIE As String = ""
@@ -1210,9 +1294,25 @@ Public Class TCBL_OPRT
                                                                 Session("matricule"),
                                                                 Label_OF.Text)
                         End If
+                        sQuery = "SELECT [ID_NU_SER]
+	                            FROM [dbo].[V_LIAIS_NU_SER]
+	                           WHERE [NU_SER_CLIE] = '" & sNS & "'
+	                             AND [NU_OF] = '" & Label_OF.Text & "'"
+                        dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
+
                         If dt_ETAT_CTRL.Columns.Contains("TextBox_FICH_MODE") Then
-                            DIG_FACT_IMPR_ETIQ(dt_ETAT_CTRL(0)("TextBox_FICH_MODE").ToString,
-                                               TextBox_OF.Text, "", "Numéro de série client", sNS, "", "", "", "", Nothing)
+                            DIG_FACT_IMPR_ETIQ_V2(dt_ETAT_CTRL(0)("TextBox_FICH_MODE").ToString,
+                                          sIPMT_ETQT,
+                                          TextBox_OF.Text,
+                                          "",
+                                          "Numéro de série client",
+                                          dt(0)("ID_NU_SER").ToString,
+                                          "",
+                                          "",
+                                          "",
+                                          Nothing)
+                            'DIG_FACT_IMPR_ETIQ(dt_ETAT_CTRL(0)("TextBox_FICH_MODE").ToString,
+                            '                   TextBox_OF.Text, "", "Numéro de série client", sNS, "", "", "", "", Nothing)
                         End If
                 End Select
                 Session("sNU_SER_IMPR") = sNS
@@ -1273,7 +1373,7 @@ Public Class TCBL_OPRT
                 Next
                 GridView_REPE.DataSource = dt_SS_ENS
                 GridView_REPE.DataBind()
-                GridView_REPE0.DataSource = GridView_REPE.DataSource
+                GridView_REPE0.DataSource = dt_SS_ENS
                 GridView_REPE0.DataBind()
 
                 's'il y a des sous-ensemble de type différent de produit ou semi-fini alors saisir les codes lot
@@ -1281,7 +1381,7 @@ Public Class TCBL_OPRT
                     With rGridView_REPE
                         If Not (HttpUtility.HtmlDecode(.Cells(3).Text) = "PRODUIT" Or HttpUtility.HtmlDecode(.Cells(3).Text) = "PRODUIT SEMI-FINI") Then
                             MultiView_SAIS_OPRT.SetActiveView(View_SAIS_TCBL_COMP)
-                            MultiView_Tracabilité.SetActiveView(View_VOID_2)
+                            ' MultiView_Tracabilité.SetActiveView(View_VOID_2)
                             Exit Sub
                         End If
                     End With
@@ -1326,13 +1426,14 @@ Public Class TCBL_OPRT
         End If
     End Sub
 
-    Protected Sub GridView_REPE0_SelectedIndexChanged(sender As Object, e As EventArgs) Handles GridView_REPE0.SelectedIndexChanged
-        Label_CD_SS_ENS.Text = GridView_REPE0.SelectedRow.Cells(1).Text
-        MultiView_Tracabilité.SetActiveView(View_SAI_SOUS_ENSE)
-        TextBox_SS_ENS.Focus()
-    End Sub
+    'Protected Sub GridView_REPE0_SelectedIndexChanged(sender As Object, e As EventArgs) Handles GridView_REPE0.SelectedIndexChanged
+    '    Label_CD_SS_ENS.Text = GridView_REPE0.SelectedRow.Cells(1).Text
+    '    'MultiView_Tracabilité.SetActiveView(View_SAI_SOUS_ENSE)
+    '    MultiView_ETAP.SetActiveView(View_SAI_SOUS_ENSE)
+    '    TextBox_SS_ENS.Focus()
+    'End Sub
 
-    Public Function CREA_FCGF(sNU_SER As String, sOF As String)
+    Public Function CREA_FCGF(sNU_SER As String, sOF As String) As String
         Dim dt, dt_PHAS, dt_SEQU, dtKNMT, dt_RESU, dtZMOYENTYPETEST As New DataTable
         Dim sQuery As String = "", sList_inci As String = "Liste des numéros d'incident : "
         Dim dPDF As Document
@@ -1459,18 +1560,19 @@ SELECT TOP 100 PERCENT [NM_RFRC_SEQU]
             pt.AddCell(c_ENTE)
             sQuery = "SELECT     DTM_CSTA_POST_1.ID_POST, DTM_CSTA_POST_1.ID_MTRE, ISNULL(MES_Digital_Factory.dbo.V_POST_MTLG_MTRE.DT_VLDT, N'') 
                       AS DT_VLDT, ISNULL([LB_DCPT],MES_Digital_Factory.dbo.V_POST_MTLG_MTRE.NM_TYPE_MTRE) AS NM_TYPE_MTRE
-FROM         (SELECT     ID_POST, ID_MTRE, MAX(DT_AFCT) AS MAX_DT_AFCT, BL_SORT_FCGF
+FROM         (SELECT     ID_POST, ID_MTRE, MAX(DT_AFCT) AS MAX_DT_AFCT, ISNULL(BL_SORT_FCGF,0) AS BL_SORT_FCGF
                        FROM          dbo.DTM_CSTA_POST
                        GROUP BY ID_POST, ID_MTRE, BL_SORT_FCGF) AS DT_DERN_AFCT INNER JOIN
                       dbo.DTM_CSTA_POST AS DTM_CSTA_POST_1 ON DT_DERN_AFCT.ID_POST = DTM_CSTA_POST_1.ID_POST AND 
                       DT_DERN_AFCT.ID_MTRE = DTM_CSTA_POST_1.ID_MTRE AND DT_DERN_AFCT.MAX_DT_AFCT = DTM_CSTA_POST_1.DT_AFCT INNER JOIN
-                          (SELECT     'POSTE_' + ID_POST AS ID_POST
+                          (SELECT     CASE WHEN ID_POST LIKE 'P-%' THEN ID_POST ELSE 'POSTE_' + ID_POST END AS ID_POST
                             FROM          dbo.V_FCGF
                             WHERE      (NU_SER_SPFE = '" & sNU_SER & "')
                             GROUP BY NU_SER_SPFE, ID_POST) AS DT_LIST_POST ON DT_DERN_AFCT.ID_POST = DT_LIST_POST.ID_POST LEFT OUTER JOIN
                       MES_Digital_Factory.dbo.V_POST_MTLG_MTRE ON DTM_CSTA_POST_1.ID_MTRE = MES_Digital_Factory.dbo.V_POST_MTLG_MTRE.ID_MTRE
 					  INNER JOIN [dbo].[DTM_REF_MTRE_LIST] ON [dbo].[DTM_REF_MTRE_LIST].[ID_MTRE] = DTM_CSTA_POST_1.ID_MTRE
-WHERE     (DTM_CSTA_POST_1.BL_STAT = 1) AND (DTM_CSTA_POST_1.BL_SORT_FCGF = 1)"
+WHERE     (DTM_CSTA_POST_1.BL_STAT = 1) AND (DTM_CSTA_POST_1.BL_SORT_FCGF = 1)
+GROUP BY      DTM_CSTA_POST_1.ID_POST, DTM_CSTA_POST_1.ID_MTRE, ISNULL(MES_Digital_Factory.dbo.V_POST_MTLG_MTRE.DT_VLDT, N''), ISNULL([LB_DCPT],MES_Digital_Factory.dbo.V_POST_MTLG_MTRE.NM_TYPE_MTRE)"
             dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion_ALMS)
             para = New Paragraph(New Chunk("Poste", FontFactory.GetFont("ARIAL", 10, Font.BOLD)))
             c_ENTE = New PdfPCell(para)
@@ -1502,7 +1604,7 @@ WHERE     (DTM_CSTA_POST_1.BL_STAT = 1) AND (DTM_CSTA_POST_1.BL_SORT_FCGF = 1)"
                 If rdt("NM_TYPE_MTRE").ToString = "Interface de test" Then
                     dtZMOYENTYPETEST = SAP_DATA_READ_ZMOYENTYPETEST("NO_MOYEN EQ '" & rdt("ID_MTRE").ToString & "'")
                     If dtZMOYENTYPETEST Is Nothing Then Throw New Exception("Pas de date de validité pour le banc n°" & rdt("NM_TYPE_MTRE").ToString & " sous SAP.")
-                    para = New Paragraph(New Chunk(COMM_APP_WEB_CONV_FORM_DATE(Left(dtZMOYENTYPETEST(0)("PROCHVERIF").ToString, 10), "dd/MM/yyyy"), FontFactory.GetFont("ARIAL", 10)))
+                    para = New Paragraph(New Chunk(COMM_APP_WEB_CONV_FORM_DATE(Left(dtZMOYENTYPETEST(0)("PROCHVERIF").ToString, 10).Insert(6, "/").Insert(4, "/"), "dd/MM/yyyy"), FontFactory.GetFont("ARIAL", 10)))
                 Else
                     para = New Paragraph(New Chunk(Left(rdt("DT_VLDT").ToString, 10), FontFactory.GetFont("ARIAL", 10)))
                 End If
@@ -1555,11 +1657,13 @@ GROUP BY [NU_SER_SPFE], [ID_OPRT]"
             c_ENTE.Border = 0
             pt.AddCell(c_ENTE)
 
-            sQuery = "SELECT [NU_INCI]
-             FROM [dbo].[V_FCGF_ANML]
-            WHERE [NU_SER_SPFE] = '" & sNU_SER & "'
-              AND [BL_ETAT] = 1
-              AND [NM_RFRC_SEQU] LIKE '%SEQ%' "
+            sQuery = "SELECT     dbo.DTM_NC_LIST.NU_INCI
+FROM         (SELECT     NU_INCI, MAX(DT_ITVT) AS MAX_DT_ITVT, MAX(ID_STAT) AS DERN_ETAT
+                       FROM          dbo.DTM_NC_DETA AS DTM_NC_DETA_1
+                       GROUP BY NU_INCI) AS DT_MAX_ITVT INNER JOIN
+                      dbo.DTM_NC_LIST ON DT_MAX_ITVT.NU_INCI = dbo.DTM_NC_LIST.NU_INCI
+WHERE    [NU_SER_SPFE] = '" & sNU_SER & "'
+              AND  (DT_MAX_ITVT.DERN_ETAT >= 4)"
             dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion_ALMS)
             If Not dt Is Nothing Then
                 For Each rdt As DataRow In dt.Rows
@@ -1568,7 +1672,6 @@ GROUP BY [NU_SER_SPFE], [ID_OPRT]"
                 para = New Paragraph(New Chunk(COMM_APP_WEB_STRI_TRIM_RIGHT(sList_inci, 2), FontFactory.GetFont("ARIAL", 10)))
                 c_ENTE = New PdfPCell(para)
                 pt.AddCell(c_ENTE)
-
             End If
             dPDF.Add(pt)
 
@@ -1772,7 +1875,7 @@ ORDER BY [NU_OP]
 
 
         Catch ex As Exception
-            LOG_Erreur(GetCurrentMethod, ex.Message)
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
             Return Nothing
         Finally
             dPDF.Close()
@@ -1782,8 +1885,15 @@ ORDER BY [NU_OP]
 
     Protected Sub Button_DCMT_PASS_Click(sender As Object, e As EventArgs) Handles Button_DCMT_PASS.Click
         'ranger le doc
+        Dim sfihcsauv As String = DIG_FACT_SQL_GET_PARA(Trim(Label_CD_ARTI.Text), "Chemin de sauvegarde du fichier PDF")
+        COMM_APP_WEB_COPY_FILE(Session("fcgf"), sfihcsauv & "\OF " & Label_OF.Text & "\" & TextBox_NU_SER.Text & "_" & COMM_APP_WEB_CONV_FORM_DATE(Session("DT_DEB"), "ddMMyyyy_HHmmss") & ".pdf", True)
+        COMM_APP_WEB_COPY_FILE(Session("listetracabilite"), sfihcsauv & "\OF " & Label_OF.Text & "\" & TextBox_NU_SER.Text & " – NM.pdf", True)
+        COMM_APP_WEB_COPY_FILE(Session("dhr"), sfihcsauv & "\OF " & Label_OF.Text & "\DHR-" & TextBox_NU_SER.Text & ".pdf", True)
+
+
         If DIG_FACT_SQL_GET_PARA(Trim(Label_CD_ARTI.Text), "Scan numéro de série fin opération") = "1" Then
-            MultiView_VLDT.SetActiveView(View_VLDT_OPRT)
+            'MultiView_VLDT.SetActiveView(View_VLDT_OPRT)
+            MultiView_ETAP.SetActiveView(View_VLDT_OPRT)
             'MultiView_SAIS_OPRT.SetActiveView(View_VLDT_OPRT)
             TextBox_NU_SER_VLDT_OPRT.Text = ""
             TextBox_NU_SER_VLDT_OPRT.Focus()
@@ -1802,37 +1912,46 @@ ORDER BY [NU_OP]
 
     End Sub
 
-    Public Function _VRFC_DCMT() As Boolean
-        MultiView_ETAP.SetActiveView(View_VOID)
-        MultiView_Tracabilité.SetActiveView(View_VOID_2)
+    Public Function _VRFC_DCMT() As Integer
 
-        Dim sfich As String = ""
-        If Trim(Label_CLIE.Text) = "AIR LIQUIDE MEDICAL" And Label_DES_OP.Text = "CONTROLE FINAL" And Label_OP.Text = "180" Then
-            MultiView_DCMT.SetActiveView(View_DCMT)
-            sfich = CREA_FCGF(TextBox_NU_SER.Text, Label_OF.Text)
-            COMM_APP_WEB_COPY_FILE(sfich, "c:\sources\app_web\PagesMembres\Digital_Factory\1.pdf", True)
-            COMM_APP_WEB_COPY_FILE(sfich,
-                                   "\\so2k3vm02\Bureautique\Groupes\SO_CLIENTS\AIR LIQUIDE MEDICAL\Projet VENDOME\TAEKC042100$ (Ventilateur Vendome ST40)\F-Donnees de sortie\3-Fiches Suiveuses\OF " & Label_OF.Text & "\" & TextBox_NU_SER.Text & "_" & COMM_APP_WEB_CONV_FORM_DATE(Now, "ddMMyyyy_hhmmss") & ".pdf", True)
-            Return True
-        End If
-        'DHR
-        If Trim(Label_CLIE.Text) = "AIR LIQUIDE MEDICAL" And Label_DES_OP.Text = "ACCEPTATION QUALITE" And Label_OP.Text = "210" Then
-            MultiView_DCMT.SetActiveView(View_DCMT)
-            CREA_DHR(TextBox_NU_SER.Text, Label_OF.Text)
-            COMM_APP_WEB_COPY_FILE(sfich, "c:\sources\app_web\PagesMembres\Digital_Factory\1.pdf", True)
-            COMM_APP_WEB_COPY_FILE(sfich,
-                                   "\\so2k3vm02\Bureautique\Groupes\SO_CLIENTS\AIR LIQUIDE MEDICAL\Projet VENDOME\TAEKC042100$ (Ventilateur Vendome ST40)\F-Donnees de sortie\3-Fiches Suiveuses\OF " & Label_OF.Text & "\DHR-" & TextBox_NU_SER.Text & ".pdf", True)
-            '\\ceapp03\sources\App_Web\PagesMembres\Digital_Factory
-            Return True
-        End If
-        Return False
+        Try
+            MultiView_ETAP.SetActiveView(View_VOID)
+            'MultiView_Tracabilité.SetActiveView(View_VOID_2)
+
+            'Dim sfich As String = "", sfichdhr As String = "", sfichlisttcbl As String = ""
+            If Trim(Label_CLIE.Text) = "AIR LIQUIDE MEDICAL" And Label_DES_OP.Text = "CONTROLE FINAL" And Label_OP.Text = "180" Then
+                MultiView_ETAP.SetActiveView(View_DCMT)
+                Session("fcgf") = CREA_FCGF(TextBox_NU_SER.Text, Label_OF.Text)
+                If Session("fcgf") Is Nothing Then Throw New Exception("La création de la FCGF a échoué")
+                COMM_APP_WEB_COPY_FILE(Session("fcgf"), "c:\sources\app_web\PagesMembres\Digital_Factory\1.pdf", True)
+                Return 1
+            End If
+            'DHR
+            If Trim(Label_CLIE.Text) = "AIR LIQUIDE MEDICAL" And Label_DES_OP.Text = "ACCEPTATION QUALITE" And Label_OP.Text = "210" Then
+                MultiView_ETAP.SetActiveView(View_DCMT)
+
+                If Label_OF.Text = "1173833" Then
+                    Session("listetracabilite") = CREA_LIST_TCBL(TextBox_NU_SER.Text, "1164008") 'exception rétrofit
+                Else
+                    Session("listetracabilite") = CREA_LIST_TCBL(TextBox_NU_SER.Text, Label_OF.Text)
+                End If
+                If Session("listetracabilite") Is Nothing Then Throw New Exception("La création de la liste de traçabilité a échoué")
+
+                Session("dhr") = CREA_DHR(TextBox_NU_SER.Text, Label_OF.Text)
+                If Session("dhr") Is Nothing Then Throw New Exception("La création du DHR a échoué")
+                COMM_APP_WEB_COPY_FILE(Session("dhr"), "c:\sources\app_web\PagesMembres\Digital_Factory\1.pdf", True)
+                PDF_CCTN_FICH("c:\sources\app_web\PagesMembres\Digital_Factory\1.pdf", Session("listetracabilite"))
+                Return 1
+            End If
+            Return 0
+        Catch ex As Exception
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            Return -1
+        End Try
+
     End Function
 
-    Public Shared Function ITS_ADD_CELL()
-
-    End Function
-
-    Public Function CREA_DHR(sNU_SER As String, sOF As String) As Boolean
+    Public Function CREA_DHR(sNU_SER As String, sOF As String) As String
         Dim dt, dt_ETAP, dt_SEQU, dt_T_TAB_DOC_SAP, dtPA0002, dtKNMT, dtAFKO, dtZMOYENTYPETEST, dtZGMO_OUTIL_VER As New DataTable
         Dim sQuery As String = ""
         Dim dPDF As Document
@@ -1843,17 +1962,19 @@ ORDER BY [NU_OP]
         Dim para As Paragraph
         'Dim ipagenumber As Integer.
         Dim phr As Phrase
+        Dim sdatefcgf As String = ""
+        Dim sfich As String = “C:\sources\temp_App_Web\" & CInt(Int((10000000 * Rnd()) + 1)) & ".pdf”
         Try
             dPDF = New Document(PageSize.A4, 20, 20, 30, 20)
 
-            Dim writer = PdfAWriter.GetInstance(dPDF, New FileStream(“C:\sources\temp_App_Web\" & CInt(Int((10000000 * Rnd()) + 1)) & ".pdf”, FileMode.Create))
+            Dim writer = PdfAWriter.GetInstance(dPDF, New FileStream(sfich, FileMode.Create))
             Dim PageEventHandler As New HeaderFooter_DHR()
             writer.PageEvent = PageEventHandler
             dPDF.Open()
 
             'of
-            dPDF.Add(New Phrase("
-            "))
+            'dPDF.Add(New Phrase("
+            '"))
             pt = New PdfPTable(2)
 
             With pt
@@ -1940,7 +2061,7 @@ ORDER BY [NU_OP]
             c_ENTE.PaddingBottom = 15
             pt.AddCell(c_ENTE)
 
-            Dim sNOM_PREN_VISA As String = “Nom, Prénom, Visa : ” & Session("displayname")
+            Dim sNOM_PREN_VISA As String = “Nom, Prénom : ” & Session("displayname")
             para = New Paragraph(New Chunk(sNOM_PREN_VISA, FontFactory.GetFont("CALIBRI", 12, Font.BOLD)))
             c_ENTE = New PdfPCell(para)
             c_ENTE.PaddingTop = 15
@@ -2019,6 +2140,9 @@ FROM         dbo.DTM_PSG INNER JOIN
 ORDER BY CONVERT(integer, DT_WF.NU_ETAP)"
             dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
             For Each rdt As DataRow In dt.Rows
+                If Trim(rdt("NM_OPRT").ToString) = "ACCEPTATION QUALITE" Then Continue For
+                If Trim(rdt("NM_OPRT").ToString) = "PALETTISATION" Then Continue For
+                If Trim(rdt("NM_OPRT").ToString) = "CONTROLE FINAL" Then sdatefcgf = COMM_APP_WEB_CONV_FORM_DATE(rdt("DT_PASS").ToString(), "ddMMyyyy_HHmmss")
                 sQuery = "SELECT [NU_OF]
       ,[DT_DEB]
       ,[LB_ETP]
@@ -2039,6 +2163,11 @@ ORDER BY CONVERT(integer, DT_WF.NU_ETAP)"
 
                 dt_T_TAB_DOC_SAP = SAP_DATA_Z_GET_DOC_INFO(sOF, rdt("NU_OP").ToString)
                 If dt_T_TAB_DOC_SAP Is Nothing Then 'Throw New Exception("Pas de FI trouvée dans SAP")
+                    'If Trim(rdt("NM_OPRT").ToString) = "CONTROLE FINAL" Then
+                    '    para = New Paragraph(New Chunk("Dossier de contrôle", FontFactory.GetFont("CALIBRI", 10))) 'provisoire
+                    'Else
+                    '    para = New Paragraph(New Chunk("vide", FontFactory.GetFont("CALIBRI", 10)))
+                    'End If
                     para = New Paragraph(New Chunk("vide", FontFactory.GetFont("CALIBRI", 10)))
                 Else
                     para = New Paragraph(New Chunk(Trim(dt_T_TAB_DOC_SAP(0)("DKTXT").ToString), FontFactory.GetFont("CALIBRI", 10)))
@@ -2145,14 +2274,15 @@ FROM         dbo.DTM_HIST_MTRE INNER JOIN
                       dbo.V_LIAIS_NU_SER ON dbo.DTM_PSG.ID_NU_SER = dbo.V_LIAIS_NU_SER.ID_NU_SER INNER JOIN
                       dbo.V_POST_LIST_MTRE ON dbo.DTM_HIST_MTRE.ID_MTRE = dbo.V_POST_LIST_MTRE.ID_MTRE LEFT OUTER JOIN
                       dbo.V_POST_MTLG_MTRE ON dbo.DTM_HIST_MTRE.ID_MTRE = dbo.V_POST_MTLG_MTRE.ID_MTRE
-  WHERE dbo.V_LIAIS_NU_SER.NU_SER_CLIE = '" & sNU_SER & "'
+  WHERE dbo.V_LIAIS_NU_SER.NU_SER_CLIE = '" & sNU_SER & "' AND  dbo.DTM_PSG.LB_SCTN = 'P'
 GROUP BY dbo.V_LIAIS_NU_SER.NU_SER_ECO, dbo.V_LIAIS_NU_SER.NU_SER_CLIE, dbo.DTM_HIST_MTRE.ID_MTRE, dbo.V_POST_LIST_MTRE.NM_TYPE_MTRE, 
                       dbo.V_POST_MTLG_MTRE.DT_VLDT, dbo.DTM_PSG.LB_MOYN
 ORDER BY dbo.DTM_PSG.LB_MOYN"
             dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
             For Each rdt As DataRow In dt.Rows
+                rdt("ID_MTRE") = Replace(Replace(Replace(LCase(rdt("ID_MTRE").ToString), ".eolane.com", ""), "\\so2k8vm07\", ""), "\\so2k3vm05\", "")
                 If rdt("NM_TYPE_MTRE").ToString = "Poste de travail" Then Continue For
-                para = New Paragraph(New Chunk(Replace(Replace(Replace(rdt("ID_MTRE").ToString, ".eolane.com", ""), "\\so2k8vm07\", ""), "\\so2k3vm05\", ""), FontFactory.GetFont("CALIBRI", 10)))
+                para = New Paragraph(New Chunk(rdt("ID_MTRE").ToString, FontFactory.GetFont("CALIBRI", 10)))
                 c_ENTE = New PdfPCell(para)
                 pt.AddCell(c_ENTE)
                 para = New Paragraph(New Chunk(rdt("NM_TYPE_MTRE").ToString, FontFactory.GetFont("CALIBRI", 10)))
@@ -2162,18 +2292,18 @@ ORDER BY dbo.DTM_PSG.LB_MOYN"
                 If rdt("NM_TYPE_MTRE").ToString = "Interface de test" Then
                     dtZMOYENTYPETEST = SAP_DATA_READ_ZMOYENTYPETEST("NO_MOYEN EQ '" & rdt("ID_MTRE").ToString & "'")
                     If dtZMOYENTYPETEST Is Nothing Then Throw New Exception("Pas de date de validité pour le banc n°" & rdt("NM_TYPE_MTRE").ToString & " sous SAP.")
-                    para = New Paragraph(New Chunk(COMM_APP_WEB_CONV_FORM_DATE(dtZMOYENTYPETEST(0)("PROCHVERIF").ToString.Insert(6, "/").Insert(4, "/"), "dd/MM/yyyy"), FontFactory.GetFont("ARIAL", 10)))
+                    para = New Paragraph(New Chunk(Replace(COMM_APP_WEB_CONV_FORM_DATE(dtZMOYENTYPETEST(0)("PROCHVERIF").ToString.Insert(6, "/").Insert(4, "/"), "dd/MM/yyyy"), "0001/00/00", ""), FontFactory.GetFont("ARIAL", 10)))
                 Else
-                    para = New Paragraph(New Chunk(Left(rdt("DT_VLDT").ToString, 10), FontFactory.GetFont("ARIAL", 10)))
-                End If
-                If rdt("DT_VLDT").ToString = "" Then
-                    'rdt("DT_VLDT") = "N/A"
-                    dtZGMO_OUTIL_VER = SAP_DATA_READ_ZGMO_OUTIL_VER("ID LIKE '%" & rdt("ID_MTRE").ToString & "'")
-                    If Not dtZGMO_OUTIL_VER Is Nothing Then
-                        para = New Paragraph(New Chunk(COMM_APP_WEB_CONV_FORM_DATE(dtZGMO_OUTIL_VER(0)("PROCHVERIF1").ToString.Insert(6, "/").Insert(4, "/"), "dd/MM/yyyy"), FontFactory.GetFont("ARIAL", 10)))
+                    If rdt("DT_VLDT").ToString = "" Then
+                        'rdt("DT_VLDT") = "N/A"
+                        dtZGMO_OUTIL_VER = SAP_DATA_READ_ZGMO_OUTIL_VER("ID LIKE '%" & rdt("ID_MTRE").ToString & "'")
+                        If Not dtZGMO_OUTIL_VER Is Nothing Then
+                            para = New Paragraph(New Chunk(COMM_APP_WEB_CONV_FORM_DATE(dtZGMO_OUTIL_VER(0)("PROCHVERIF1").ToString.Insert(6, "/").Insert(4, "/"), "dd/MM/yyyy"), FontFactory.GetFont("ARIAL", 10)))
+                        Else
+                            para = New Paragraph(New Chunk("N/A", FontFactory.GetFont("ARIAL", 10)))
+                        End If
                     Else
-                        para = New Paragraph(New Chunk("N/A", FontFactory.GetFont("ARIAL", 10)))
-
+                        para = New Paragraph(New Chunk(Left(rdt("DT_VLDT").ToString, 10), FontFactory.GetFont("ARIAL", 10)))
                     End If
                 End If
 
@@ -2192,6 +2322,7 @@ ORDER BY dbo.DTM_PSG.LB_MOYN"
             'trouver pour chaque matériel qui était saisi dans la date
             'extraire le n° de poste physique
 
+            dPDF.NewPage()
             'liste écart prod
             para = New Paragraph(New Chunk(“4. LISTE DES ECARTS DE PRODUCTION”, FontFactory.GetFont("CALIBRI", 14, Font.BOLD Or Font.UNDERLINE)))
             para.SpacingAfter = 20
@@ -2201,10 +2332,10 @@ ORDER BY dbo.DTM_PSG.LB_MOYN"
             para = New Paragraph(New Chunk(“4.1. NQI, Dérogation, Hors-gamme :”, FontFactory.GetFont("CALIBRI", 12, Font.BOLD Or Font.UNDERLINE)))
             para.SpacingAfter = 20
             dPDF.Add(para)
-            pt = New PdfPTable(4)
+            pt = New PdfPTable(3)
             pt.LockedWidth = True
             pt.TotalWidth = dPDF.PageSize.Width - 80
-            Dim widths_5() As Single = {4, 3, 3, 4}
+            Dim widths_5() As Single = {4, 3, 3}
             pt.SetWidths(widths_5)
             para = New Paragraph(New Chunk("Evénement", FontFactory.GetFont("CALIBRI", 10, Font.BOLD)))
             c_ENTE = New PdfPCell(para)
@@ -2224,12 +2355,38 @@ ORDER BY dbo.DTM_PSG.LB_MOYN"
             c_ENTE.VerticalAlignment = Element.ALIGN_MIDDLE
             c_ENTE.BackgroundColor = New BaseColor(222, 234, 246)
             pt.AddCell(c_ENTE)
-            para = New Paragraph(New Chunk("Visa", FontFactory.GetFont("CALIBRI", 10, Font.BOLD)))
-            c_ENTE = New PdfPCell(para)
-            c_ENTE.HorizontalAlignment = Element.ALIGN_CENTER
-            c_ENTE.VerticalAlignment = Element.ALIGN_MIDDLE
-            c_ENTE.BackgroundColor = New BaseColor(222, 234, 246)
-            pt.AddCell(c_ENTE)
+            sQuery = "SELECT     dbo.DTM_NC_LIST.NU_DRGT + ' : ' + dbo.DTM_REF_TYPE_NC.NM_DCPO_NC AS NU_DRGT, dbo.DTM_NC_DETA.DT_ITVT, dbo.DTM_NC_DETA.ID_OPRT
+FROM         dbo.DTM_NC_DETA INNER JOIN
+                      dbo.DTM_NC_LIST ON dbo.DTM_NC_DETA.NU_INCI = dbo.DTM_NC_LIST.NU_INCI INNER JOIN
+                      dbo.DTM_REF_TYPE_NC ON dbo.DTM_NC_LIST.ID_TYPE_NC = dbo.DTM_REF_TYPE_NC.ID_TYPE_NC
+WHERE     (NOT (dbo.DTM_NC_LIST.NU_DRGT IS NULL)) AND (dbo.DTM_NC_LIST.NU_SER_SPFE = N'" & sNU_SER & "') AND (dbo.DTM_NC_DETA.ID_STAT = 4)"
+
+            dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion_ALMS)
+            If Not dt Is Nothing Then
+                For Each rdt As DataRow In dt.Rows
+                    para = New Paragraph(New Chunk(rdt("NU_DRGT").ToString, FontFactory.GetFont("CALIBRI", 10)))
+                    c_ENTE = New PdfPCell(para)
+                    pt.AddCell(c_ENTE)
+                    dtPA0002 = SAP_DATA_READ_TBL("PA0002", "|", "", "PERNR NACHN VORNA", "PERNR EQ '*" & rdt("ID_OPRT").ToString & "'")
+                    If dtPA0002 Is Nothing Then 'Throw New Exception("pas de nom/prénom trouvés pour le matricule " & rdt("ID_MTCL").ToString)
+                        para = New Paragraph(New Chunk("", FontFactory.GetFont("CALIBRI", 10)))
+                    Else
+                        para = New Paragraph(New Chunk(Trim(dtPA0002(0)("NACHN").ToString) & " " & Trim(dtPA0002(0)("VORNA").ToString), FontFactory.GetFont("CALIBRI", 10)))
+                    End If
+                    c_ENTE = New PdfPCell(para)
+                    pt.AddCell(c_ENTE)
+                    para = New Paragraph(New Chunk(COMM_APP_WEB_CONV_FORM_DATE(rdt("DT_ITVT").ToString, "dd/MM/yyyy"), FontFactory.GetFont("CALIBRI", 10)))
+                    c_ENTE = New PdfPCell(para)
+                    pt.AddCell(c_ENTE)
+                Next
+            Else
+                For i = 1 To 9
+                    para = New Paragraph(New Chunk("
+", FontFactory.GetFont("CALIBRI", 10, Font.BOLD)))
+                    c_ENTE = New PdfPCell(para)
+                    pt.AddCell(c_ENTE)
+                Next
+            End If
             pt.SpacingAfter = 30
             dPDF.Add(pt)
 
@@ -2238,10 +2395,10 @@ ORDER BY dbo.DTM_PSG.LB_MOYN"
             para.SpacingAfter = 20
             dPDF.Add(para)
 
-            pt = New PdfPTable(6)
+            pt = New PdfPTable(5)
             pt.LockedWidth = True
             pt.TotalWidth = dPDF.PageSize.Width - 80
-            Dim widths_6() As Single = {4, 3.5, 3.5, 3, 3, 2}
+            Dim widths_6() As Single = {4, 3.5, 3, 3, 2}
             pt.SetWidths(widths_6)
             para = New Paragraph(New Chunk("Description", FontFactory.GetFont("CALIBRI", 10, Font.BOLD)))
             c_ENTE = New PdfPCell(para)
@@ -2251,14 +2408,6 @@ ORDER BY dbo.DTM_PSG.LB_MOYN"
             pt.AddCell(c_ENTE)
             para = New Paragraph(New Chunk("Action à réaliser", FontFactory.GetFont("CALIBRI", 10, Font.BOLD)))
             c_ENTE = New PdfPCell(para)
-            c_ENTE.HorizontalAlignment = Element.ALIGN_CENTER
-            c_ENTE.VerticalAlignment = Element.ALIGN_MIDDLE
-            c_ENTE.BackgroundColor = New BaseColor(222, 234, 246)
-            pt.AddCell(c_ENTE)
-            phr = New Phrase
-            phr.Add(New Chunk("Action autorisée par ", FontFactory.GetFont("CALIBRI", 10, Font.BOLD)))
-            phr.Add(New Chunk("(nom & date)", FontFactory.GetFont("CALIBRI", 10)))
-            c_ENTE = New PdfPCell(phr)
             c_ENTE.HorizontalAlignment = Element.ALIGN_CENTER
             c_ENTE.VerticalAlignment = Element.ALIGN_MIDDLE
             c_ENTE.BackgroundColor = New BaseColor(222, 234, 246)
@@ -2287,6 +2436,53 @@ ORDER BY dbo.DTM_PSG.LB_MOYN"
             c_ENTE.VerticalAlignment = Element.ALIGN_MIDDLE
             c_ENTE.BackgroundColor = New BaseColor(222, 234, 246)
             pt.AddCell(c_ENTE)
+            sQuery = "SELECT [NM_DCPO_ANML]
+      ,[NM_ACTI_REAL]
+      ,[ID_OPRT_REAL]
+      ,[ID_OPRT_CONT]
+,[ID_STAT]
+      ,[DT_ACTI_CONT]
+      ,[DT_ACTI_REAL]
+  FROM [dbo].[V_DHR_ECAR_PDTO]
+ WHERE [NU_SER_SPFE] = '" & sNU_SER & "'"
+
+            dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion_ALMS)
+            If Not dt Is Nothing Then
+                For Each rdt As DataRow In dt.Rows
+                    para = New Paragraph(New Chunk(rdt("NM_DCPO_ANML").ToString, FontFactory.GetFont("CALIBRI", 10, Font.BOLD)))
+                    c_ENTE = New PdfPCell(para)
+                    pt.AddCell(c_ENTE)
+                    para = New Paragraph(New Chunk(rdt("NM_ACTI_REAL").ToString, FontFactory.GetFont("CALIBRI", 10, Font.BOLD)))
+                    c_ENTE = New PdfPCell(para)
+                    pt.AddCell(c_ENTE)
+                    dtPA0002 = SAP_DATA_READ_TBL("PA0002", "|", "", "PERNR NACHN VORNA", "PERNR EQ '*" & rdt("ID_OPRT_REAL").ToString & "'")
+                    If dtPA0002 Is Nothing Then 'Throw New Exception("pas de nom/prénom trouvés pour le matricule " & rdt("ID_MTCL").ToString)
+                        para = New Paragraph(New Chunk("", FontFactory.GetFont("CALIBRI", 10)))
+                    Else
+                        para = New Paragraph(New Chunk(Trim(dtPA0002(0)("NACHN").ToString) & " " & Trim(dtPA0002(0)("VORNA").ToString) & " le " & COMM_APP_WEB_CONV_FORM_DATE(rdt("DT_ACTI_REAL").ToString, "dd/MM/yyyy"), FontFactory.GetFont("CALIBRI", 10)))
+                    End If
+                    c_ENTE = New PdfPCell(para)
+                    pt.AddCell(c_ENTE)
+                    dtPA0002 = SAP_DATA_READ_TBL("PA0002", "|", "", "PERNR NACHN VORNA", "PERNR EQ '*" & rdt("ID_OPRT_CONT").ToString & "'")
+                    If dtPA0002 Is Nothing Then 'Throw New Exception("pas de nom/prénom trouvés pour le matricule " & rdt("ID_MTCL").ToString)
+                        para = New Paragraph(New Chunk("", FontFactory.GetFont("CALIBRI", 10)))
+                    Else
+                        para = New Paragraph(New Chunk(Trim(dtPA0002(0)("NACHN").ToString) & " " & Trim(dtPA0002(0)("VORNA").ToString) & " le " & COMM_APP_WEB_CONV_FORM_DATE(rdt("DT_ACTI_CONT").ToString, "dd/MM/yyyy"), FontFactory.GetFont("CALIBRI", 10)))
+                    End If
+                    c_ENTE = New PdfPCell(para)
+                    pt.AddCell(c_ENTE)
+                    para = New Paragraph(New Chunk(rdt("ID_STAT").ToString, FontFactory.GetFont("CALIBRI", 10, Font.BOLD)))
+                    c_ENTE = New PdfPCell(para)
+                    pt.AddCell(c_ENTE)
+                Next
+            Else
+                For i = 1 To 15
+                    para = New Paragraph(New Chunk("
+", FontFactory.GetFont("CALIBRI", 10, Font.BOLD)))
+                    c_ENTE = New PdfPCell(para)
+                    pt.AddCell(c_ENTE)
+                Next
+            End If
             pt.SpacingAfter = 30
             dPDF.Add(pt)
 
@@ -2312,40 +2508,64 @@ ORDER BY dbo.DTM_PSG.LB_MOYN"
             c_ENTE.VerticalAlignment = Element.ALIGN_MIDDLE
             c_ENTE.BackgroundColor = New BaseColor(222, 234, 246)
             pt.AddCell(c_ENTE)
+            'sdatefcgf = COMM_APP_WEB_CONV_FORM_DATE(sdatefcgf, "ddMMyyyy_HHmmss")
 
-            'fcgf à aller chercher
-            para = New Paragraph(New Chunk("Annexe 1 - Fiche de contrôle globale de fonctionnement " & "VE40-000156_04052017_154502.pdf", FontFactory.GetFont("CALIBRI", 11)))
+
+            Dim PdfReader As PdfReader
+            Dim sfihcsauv As String = DIG_FACT_SQL_GET_PARA(Trim(Label_CD_ARTI.Text), "Chemin de sauvegarde du fichier PDF")
+            Dim sfichfcgf = “C:\sources\temp_App_Web\" & CInt(Int((10000000 * Rnd()) + 1)) & ".pdf”
+            COMM_APP_WEB_COPY_FILE(sfihcsauv & "\OF " & sOF & "\" & sNU_SER & "_" & sdatefcgf & ".pdf", sfichfcgf, True)
+            PdfReader = New PdfReader(sfichfcgf)
+            Dim numberOfPages As Integer = PdfReader.NumberOfPages
+
+            para = New Paragraph(New Chunk("Annexe 1 - Fiche de contrôle globale de fonctionnement " & sNU_SER & "_" & sdatefcgf & ".pdf", FontFactory.GetFont("CALIBRI", 11)))
             c_ENTE = New PdfPCell(para)
             pt.AddCell(c_ENTE)
-            para = New Paragraph(New Chunk("", FontFactory.GetFont("CALIBRI", 11)))
+            para = New Paragraph(New Chunk(numberOfPages.ToString, FontFactory.GetFont("CALIBRI", 11)))
             c_ENTE = New PdfPCell(para)
             pt.AddCell(c_ENTE)
+
+            'COMM_APP_WEB_COPY_FILE(Session("listetracabilite"), sfihcsauv & "\OF " & Label_OF.Text & "\" & sNU_SER & " – NM.pdf", True)
 
             '???
-            para = New Paragraph(New Chunk("Annexe 2 - Rapport de contrôle n°" & "78945", FontFactory.GetFont("CALIBRI", 11)))
+            sQuery = "SELECT MAX(CONVERT(NVARCHAR,[Date_Saisie])) AS A
+                  ,[Rapport_Contrôle] 
+              FROM [SAISIES_DEFAUTS].[dbo].[T_Defauts]
+             WHERE [N°_série] = '" & sNU_SER & "' AND [OF] = '" & sOF & "'
+            GROUP BY [OF]
+                  ,[N°_série]   
+                  ,[Rapport_Contrôle]"
+            dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
+            If dt Is Nothing Then Throw New Exception("Pas de rapport de contrôle trouvé")
+            para = New Paragraph(New Chunk("Annexe 2 - Rapport de contrôle n°" & dt(0)("Rapport_Contrôle").ToString, FontFactory.GetFont("CALIBRI", 11)))
+
+            'para = New Paragraph(New Chunk("Annexe 2 - Rapport de contrôle n°123456", FontFactory.GetFont("CALIBRI", 11)))
             c_ENTE = New PdfPCell(para)
             pt.AddCell(c_ENTE)
-            para = New Paragraph(New Chunk("", FontFactory.GetFont("CALIBRI", 11)))
+            para = New Paragraph(New Chunk("1", FontFactory.GetFont("CALIBRI", 11)))
             c_ENTE = New PdfPCell(para)
             pt.AddCell(c_ENTE)
 
+            Dim scheminlistetracabilité As String = Session("listetracabilite")
+            PdfReader = New PdfReader(scheminlistetracabilité)
+            numberOfPages = PdfReader.NumberOfPages
             para = New Paragraph(New Chunk("Annexe 3 - Liste traçabilité " & sNU_SER & " – NM.pdf", FontFactory.GetFont("CALIBRI", 11)))
             c_ENTE = New PdfPCell(para)
             pt.AddCell(c_ENTE)
-            para = New Paragraph(New Chunk("", FontFactory.GetFont("CALIBRI", 11)))
+            para = New Paragraph(New Chunk(numberOfPages.ToString, FontFactory.GetFont("CALIBRI", 11)))
             c_ENTE = New PdfPCell(para)
             pt.AddCell(c_ENTE)
             dPDF.Add(pt)
         Catch ex As Exception
-            LOG_Erreur(GetCurrentMethod, ex.Message)
-            Return False
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            Return Nothing
         Finally
             dPDF.Close()
         End Try
-        Return True
+        Return sfich
     End Function
 
-    Public Function CREA_LIST_TCBL(sNU_SER As String, sOF As String)
+    Public Function CREA_LIST_TCBL(sNU_SER As String, sOF As String) As String
         Dim dt, dtKNMT, dtMSEG, dtMAKT As New DataTable
         Dim sQuery As String = ""
         Dim dPDF As Document
@@ -2355,60 +2575,58 @@ ORDER BY dbo.DTM_PSG.LB_MOYN"
         'Dim iLOGO As Image
         Dim para As Paragraph
         'Dim ipagenumber As Integer.
-        Dim phr As Phrase
+        Dim sfich As String = “C:\sources\temp_App_Web\" & CInt(Int((10000000 * Rnd()) + 1)) & ".pdf”, sCD_ARTI_PROD As String = ""
         Try
+            Session("sNU_SER") = sNU_SER
             dPDF = New Document(PageSize.A4, 20, 20, 30, 20)
+            Dim writer = PdfAWriter.GetInstance(dPDF, New FileStream(sfich, FileMode.Create))
 
-            Dim writer = PdfAWriter.GetInstance(dPDF, New FileStream(“C:\sources\temp_App_Web\" & CInt(Int((10000000 * Rnd()) + 1)) & ".pdf”, FileMode.Create))
+            Dim PageEventHandler As New HeaderFooter_LIST_TCBL()
+            writer.PageEvent = PageEventHandler
             dPDF.Open()
 
-            para = New Paragraph(New Chunk("Liste traçabilité " & sNU_SER & " – NM", FontFactory.GetFont("CALIBRI", 16, Font.BOLD)))
-            ' c_ENTE = New PdfPCell(para)
-            dPDF.Add(para)
-
-            'of
-            dPDF.Add(New Phrase("
-            "))
             pt = New PdfPTable(2)
 
             With pt
-                pt.LockedWidth = True
-                pt.TotalWidth = dPDF.PageSize.Width - 100
+                .LockedWidth = True
+                .TotalWidth = dPDF.PageSize.Width - 100
                 Dim widths() As Single = {18, 26}
-                pt.SetWidths(widths)
+                .SetWidths(widths)
                 para = New Paragraph(New Chunk(“Référence du produit : ”, FontFactory.GetFont("CALIBRI", 14, Font.BOLD)))
                 c_ENTE = New PdfPCell(para)
                 c_ENTE.Border = 0
                 c_ENTE.HorizontalAlignment = Element.ALIGN_RIGHT
-                pt.AddCell(c_ENTE)
+                .AddCell(c_ENTE)
                 para = New Paragraph(New Chunk(Label_DES_ARTI.Text & “ - ” & Label_CD_ARTI.Text, FontFactory.GetFont("CALIBRI", 14)))
                 c_ENTE = New PdfPCell(para)
                 c_ENTE.Border = 0
                 c_ENTE.BorderWidthBottom = 1
-                pt.AddCell(c_ENTE)
+                .AddCell(c_ENTE)
                 para = New Paragraph(New Chunk(“Référence ALMS : ”, FontFactory.GetFont("CALIBRI", 14, Font.BOLD)))
                 c_ENTE = New PdfPCell(para)
                 c_ENTE.Border = 0
                 c_ENTE.HorizontalAlignment = Element.ALIGN_RIGHT
-                pt.AddCell(c_ENTE)
+                .AddCell(c_ENTE)
 
                 dtKNMT = SAP_DATA_READ_KNMT("MATNR LIKE '" & Label_CD_ARTI.Text & "%' AND KUNNR EQ '0000000451' AND VKORG EQ 'ORC3' AND VTWEG EQ 'CD'")
                 If dtKNMT Is Nothing Then Throw New Exception("Code article client introuvable sous SAP")
-                para = New Paragraph(New Chunk(Trim(dtKNMT(0)("KDMAT").ToString), FontFactory.GetFont("CALIBRI", 14)))
+                sCD_ARTI_PROD = Trim(dtKNMT(0)("KDMAT").ToString)
+                para = New Paragraph(New Chunk(sCD_ARTI_PROD, FontFactory.GetFont("CALIBRI", 14)))
                 c_ENTE = New PdfPCell(para)
                 c_ENTE.Border = 0
                 c_ENTE.BorderWidthBottom = 1
-                pt.AddCell(c_ENTE)
+                .AddCell(c_ENTE)
                 para = New Paragraph(New Chunk(“Numéro de série : ”, FontFactory.GetFont("CALIBRI", 14, Font.BOLD)))
                 c_ENTE = New PdfPCell(para)
                 c_ENTE.Border = 0
                 c_ENTE.HorizontalAlignment = Element.ALIGN_RIGHT
-                pt.AddCell(c_ENTE)
+                .AddCell(c_ENTE)
                 para = New Paragraph(New Chunk(sNU_SER, FontFactory.GetFont("CALIBRI", 14)))
                 c_ENTE = New PdfPCell(para)
                 c_ENTE.Border = 0
                 c_ENTE.BorderWidthBottom = 1
-                pt.AddCell(c_ENTE)
+                .AddCell(c_ENTE)
+                .SpacingAfter = 30
                 dPDF.Add(pt)
             End With
 
@@ -2436,14 +2654,92 @@ ORDER BY dbo.DTM_PSG.LB_MOYN"
             c_ENTE.BackgroundColor = New BaseColor(222, 234, 246)
             pt.AddCell(c_ENTE)
 
-            'ajout traça unitaire
-            sQuery = "SELECT     dbo.DTM_NMCT_PROD.NU_SER_COMP, dbo.DTM_NMCT_PROD.CD_ARTI_COMP, dbo.DTM_NMCT_PROD.NM_DSGT_COMP
+            'ajout traça lot
+            Dim dt_MSEG_CLEAN As New DataTable
+            With dt_MSEG_CLEAN
+                .Columns.Add("MATNR", Type.GetType("System.String"))
+                .Columns.Add("CHARG", Type.GetType("System.String"))
+                .Columns.Add("MENGE", Type.GetType("System.String"))
+                dtMSEG = SAP_DATA_READ_MSEG("AUFNR LIKE '%" & sOF & "'")
+                'dtMSEG.DefaultView.Sort = "MATNR ASC"
+                'dtMSEG = dtMSEG.DefaultView.ToTable
+                For Each rdtMSEG As DataRow In dtMSEG.Rows
+                    Dim rdt_MSEG_CLEAN As DataRow = .Select("MATNR LIKE '%" & Trim(rdtMSEG("MATNR").ToString) & "%' AND CHARG = '" & rdtMSEG("CHARG").ToString & "'").FirstOrDefault()
+                    If rdt_MSEG_CLEAN Is Nothing Then
+                        .Rows.Add()
+                        .Rows(.Rows.Count - 1)("MATNR") = Trim(rdtMSEG("MATNR").ToString)
+                        .Rows(.Rows.Count - 1)("CHARG") = rdtMSEG("CHARG").ToString
+                        .Rows(.Rows.Count - 1)("MENGE") = rdtMSEG("MENGE").ToString
+                    Else
+                        If rdtMSEG("BWART").ToString = "262" Then
+                            rdt_MSEG_CLEAN("MENGE") = (Convert.ToDecimal(Replace(rdt_MSEG_CLEAN("MENGE").ToString, ".", ",")) - Convert.ToDecimal(Replace(rdtMSEG("MENGE").ToString, ".", ","))).ToString
+                        Else
+                            rdt_MSEG_CLEAN("MENGE") = (Convert.ToDecimal(Replace(rdt_MSEG_CLEAN("MENGE").ToString, ".", ",")) + Convert.ToDecimal(Replace(rdtMSEG("MENGE").ToString, ".", ","))).ToString
+                        End If
+                    End If
+                Next
+                '.DefaultView.Sort = "MATNR ASC"
+                'dt_MSEG_CLEAN = .DefaultView.ToTable
+            End With
+            sQuery = "Select     dbo.DTM_NMCT_PROD.NU_SER_COMP, dbo.DTM_NMCT_PROD.CD_ARTI_COMP, dbo.DTM_NMCT_PROD.NM_DSGT_COMP
 FROM         dbo.DTM_NMCT_PROD INNER JOIN
                           (SELECT     NU_SER_SPFE, CD_ARTI_COMP, MAX(DT_AFCT) AS MAX_DT_AFCT
                             FROM          dbo.DTM_NMCT_PROD AS DTM_NMCT_PROD_1
                             GROUP BY NU_SER_SPFE, CD_ARTI_COMP) AS dt_DERN_AFCT ON dt_DERN_AFCT.NU_SER_SPFE = dbo.DTM_NMCT_PROD.NU_SER_SPFE AND 
                       dt_DERN_AFCT.CD_ARTI_COMP = dbo.DTM_NMCT_PROD.CD_ARTI_COMP AND dt_DERN_AFCT.MAX_DT_AFCT = dbo.DTM_NMCT_PROD.DT_AFCT
-WHERE     (dbo.DTM_NMCT_PROD.NU_SER_SPFE = '" & sNU_SER & "')"
+WHERE     (dbo.DTM_NMCT_PROD.NU_SER_SPFE = '" & sNU_SER & "') AND [BL_TYPE_TCBL] = 1"
+            dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion_ALMS)
+            For Each rdtMSEG As DataRow In dt_MSEG_CLEAN.Select("MENGE <> '0'")
+                dtMAKT = SAP_DATA_READ_MAKT("MATNR LIKE '" & rdtMSEG("MATNR").ToString & "%'")
+                If dtMAKT Is Nothing Then Throw New Exception("Désignation article introuvable")
+                If Not dt.Select("NM_DSGT_COMP = '" & dtMAKT(0)("MAKTX").ToString & "'").FirstOrDefault Is Nothing Then Continue For
+                If Trim(rdtMSEG("MATNR").ToString) = "TAEKC042100$" Then Continue For
+                dtKNMT = SAP_DATA_READ_KNMT("MATNR LIKE '" & Trim(rdtMSEG("MATNR").ToString) & "%'")
+                If dtKNMT Is Nothing Then
+                    sQuery = "INSERT INTO [dbo].[DTM_NMCT_PROD]
+           ([NU_SER_SPFE]
+           ,[CD_ARTI_PROD]
+           ,[NU_SER_COMP]
+           ,[CD_ARTI_COMP]
+           ,[BL_TYPE_TCBL]
+           ,[DT_AFCT]
+           ,[NM_DSGT_COMP])
+VALUES ('" & sNU_SER & "'
+       ,'" & sCD_ARTI_PROD & "'
+       ,'" & Trim(rdtMSEG("CHARG").ToString) & "'
+       ,'" & Trim(rdtMSEG("MATNR").ToString) & "'
+       ," & 0 & "
+       ,'" & Session("DT_DEB") & "'
+       ,'" & Trim(dtMAKT(0)("MAKTX").ToString) & "')"
+                Else
+                    sQuery = "INSERT INTO [dbo].[DTM_NMCT_PROD]
+           ([NU_SER_SPFE]
+           ,[CD_ARTI_PROD]
+           ,[NU_SER_COMP]
+           ,[CD_ARTI_COMP]
+           ,[BL_TYPE_TCBL]
+           ,[DT_AFCT]
+           ,[NM_DSGT_COMP])
+VALUES ('" & sNU_SER & "'
+       ,'" & sCD_ARTI_PROD & "'
+       ,'" & Trim(rdtMSEG("CHARG").ToString) & "'
+       ,'" & Trim(dtKNMT(0)("KDMAT").ToString) & "'
+       ," & 0 & "
+       ,'" & Session("DT_DEB") & "'
+       ,'" & Trim(dtMAKT(0)("MAKTX").ToString) & "')"
+                End If
+                SQL_REQ_ACT(sQuery, sChaineConnexion_ALMS)
+            Next
+
+            'ajout traça unitaire
+            sQuery = "Select     dbo.DTM_NMCT_PROD.NU_SER_COMP, dbo.DTM_NMCT_PROD.CD_ARTI_COMP, dbo.DTM_NMCT_PROD.NM_DSGT_COMP
+FROM         dbo.DTM_NMCT_PROD INNER JOIN
+                          (SELECT     NU_SER_SPFE, CD_ARTI_COMP, MAX(DT_AFCT) AS MAX_DT_AFCT
+                            FROM          dbo.DTM_NMCT_PROD AS DTM_NMCT_PROD_1
+                            GROUP BY NU_SER_SPFE, CD_ARTI_COMP) AS dt_DERN_AFCT ON dt_DERN_AFCT.NU_SER_SPFE = dbo.DTM_NMCT_PROD.NU_SER_SPFE AND 
+                      dt_DERN_AFCT.CD_ARTI_COMP = dbo.DTM_NMCT_PROD.CD_ARTI_COMP AND dt_DERN_AFCT.MAX_DT_AFCT = dbo.DTM_NMCT_PROD.DT_AFCT
+WHERE     (dbo.DTM_NMCT_PROD.NU_SER_SPFE = '" & sNU_SER & "' AND dbo.DTM_NMCT_PROD.NU_SER_COMP <> '')
+ORDER BY [BL_TYPE_TCBL] DESC, [CD_ARTI_COMP], NU_SER_COMP"
             dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion_ALMS)
             For Each rdt As DataRow In dt.Rows
                 para = New Paragraph(New Chunk(rdt("CD_ARTI_COMP").ToString, FontFactory.GetFont("CALIBRI", 11)))
@@ -2457,44 +2753,74 @@ WHERE     (dbo.DTM_NMCT_PROD.NU_SER_SPFE = '" & sNU_SER & "')"
                 pt.AddCell(c_ENTE)
             Next
 
-            'ajout traça lot
-            dtMSEG = SAP_DATA_READ_MSEG("AUFNR LIKE '%" & sOF & "'")
-            For Each rdtMSEG As DataRow In dtMSEG.Rows
-                dtMAKT = SAP_DATA_READ_MAKT("MATNR LIKE '" & rdtMSEG("MATNR").ToString & "%'")
-                If dtMAKT Is Nothing Then Throw New Exception("Désignation article introuvable")
-                If Not dt.Select("NM_DSGT_COMP = '" & dtMAKT(0)("MAKTX").ToString & "'").FirstOrDefault Is Nothing Then Continue For
-                If rdtMSEG("MATNR").ToString = "TAEKC042100$" Then Continue For
-                dtKNMT = SAP_DATA_READ_KNMT("MATNR LIKE '" & Trim(rdtMSEG("MATNR").ToString) & "%'")
-                If dtKNMT Is Nothing Then
-                    para = New Paragraph(New Chunk("", FontFactory.GetFont("CALIBRI", 11)))
-                Else
-                    para = New Paragraph(New Chunk(Trim(dtKNMT(0)("KDMAT").ToString), FontFactory.GetFont("CALIBRI", 11)))
-                    Continue For 'Throw New Exception("Code article client introuvable sous SAP")
-                End If
-                c_ENTE = New PdfPCell(para)
-                pt.AddCell(c_ENTE)
-                'dtMAKT = SAP_DATA_READ_MAKT("MATNR LIKE '" & rdtMSEG("MATNR").ToString & "%'")
-                'If dtMAKT Is Nothing Then Throw New Exception("Désgnation article introuvable")
-                para = New Paragraph(New Chunk(Trim(dtMAKT(0)("MAKTX").ToString), FontFactory.GetFont("CALIBRI", 11)))
-                c_ENTE = New PdfPCell(para)
-                pt.AddCell(c_ENTE)
-                para = New Paragraph(New Chunk(rdtMSEG("CHARG").ToString, FontFactory.GetFont("CALIBRI", 11)))
-                c_ENTE = New PdfPCell(para)
-                pt.AddCell(c_ENTE)
-            Next
+            'Dim sum As Integer
+            'Dim dt_MSEG_CLEAN As New DataTable
+            'With dt_MSEG_CLEAN
+            '    .Columns.Add("MATNR", Type.GetType("System.String"))
+            '    .Columns.Add("CHARG", Type.GetType("System.String"))
+            '    .Columns.Add("MENGE", Type.GetType("System.String"))
+            '    dtMSEG = SAP_DATA_READ_MSEG("AUFNR LIKE '%" & sOF & "'")
+            '    dtMSEG.DefaultView.Sort = "MATNR ASC"
+            '    dtMSEG = dtMSEG.DefaultView.ToTable
+            '    For Each rdtMSEG As DataRow In dtMSEG.Rows
+            '        Dim rdt_MSEG_CLEAN As DataRow = .Select("MATNR LIKE '%" & Trim(rdtMSEG("MATNR").ToString) & "%' AND CHARG = '" & rdtMSEG("CHARG").ToString & "'").FirstOrDefault()
+            '        If rdt_MSEG_CLEAN Is Nothing Then
+            '            .Rows.Add()
+            '            .Rows(.Rows.Count - 1)("MATNR") = Trim(rdtMSEG("MATNR").ToString)
+            '            .Rows(.Rows.Count - 1)("CHARG") = rdtMSEG("CHARG").ToString
+            '            .Rows(.Rows.Count - 1)("MENGE") = rdtMSEG("MENGE").ToString
+            '        Else
+            '            If rdtMSEG("BWART").ToString = "262" Then
+            '                rdt_MSEG_CLEAN("MENGE") = (Convert.ToDecimal(Replace(rdt_MSEG_CLEAN("MENGE").ToString, ".", ",")) - Convert.ToDecimal(Replace(rdtMSEG("MENGE").ToString, ".", ","))).ToString
+            '            Else
+            '                rdt_MSEG_CLEAN("MENGE") = (Convert.ToDecimal(Replace(rdt_MSEG_CLEAN("MENGE").ToString, ".", ",")) + Convert.ToDecimal(Replace(rdtMSEG("MENGE").ToString, ".", ","))).ToString
+            '            End If
+            '        End If
+            '    Next
+            '    .DefaultView.Sort = "MATNR ASC"
+            '    dt_MSEG_CLEAN = .DefaultView.ToTable
+            'End With
+
+
+            'For Each rdtMSEG As DataRow In dt_MSEG_CLEAN.Select("MENGE <> '0'")
+            '    dtMAKT = SAP_DATA_READ_MAKT("MATNR LIKE '" & rdtMSEG("MATNR").ToString & "%'")
+            '    If dtMAKT Is Nothing Then Throw New Exception("Désignation article introuvable")
+            '    If Not dt.Select("NM_DSGT_COMP = '" & dtMAKT(0)("MAKTX").ToString & "'").FirstOrDefault Is Nothing Then Continue For
+
+            '    If Trim(rdtMSEG("MATNR").ToString) = "TAEKC042100$" Then Continue For
+            '    dtKNMT = SAP_DATA_READ_KNMT("MATNR LIKE '" & Trim(rdtMSEG("MATNR").ToString) & "%'")
+            '    If dtKNMT Is Nothing Then
+            '        para = New Paragraph(New Chunk(Trim(rdtMSEG("MATNR").ToString), FontFactory.GetFont("CALIBRI", 11)))
+            '    Else
+            '        para = New Paragraph(New Chunk(Trim(dtKNMT(0)("KDMAT").ToString), FontFactory.GetFont("CALIBRI", 11)))
+            '        'Continue For 'Throw New Exception("Code article client introuvable sous SAP")
+            '    End If
+            '    c_ENTE = New PdfPCell(para)
+            '    pt.AddCell(c_ENTE)
+            '    'dtMAKT = SAP_DATA_READ_MAKT("MATNR LIKE '" & rdtMSEG("MATNR").ToString & "%'")
+            '    'If dtMAKT Is Nothing Then Throw New Exception("Désgnation article introuvable")
+            '    para = New Paragraph(New Chunk(Trim(dtMAKT(0)("MAKTX").ToString), FontFactory.GetFont("CALIBRI", 11)))
+            '    c_ENTE = New PdfPCell(para)
+            '    pt.AddCell(c_ENTE)
+            '    para = New Paragraph(New Chunk(rdtMSEG("CHARG").ToString, FontFactory.GetFont("CALIBRI", 11)))
+            '    c_ENTE = New PdfPCell(para)
+            '    pt.AddCell(c_ENTE)
+            'Next
 
             pt.HeaderRows = 1
             pt.SpacingAfter = 30
             dPDF.Add(pt)
 
         Catch ex As Exception
-            LOG_Erreur(GetCurrentMethod, ex.Message)
-            Return False
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            Return Nothing
         Finally
             dPDF.Close() 'Ventilateur Vendome ST40 IND01X 08/12/16
         End Try
-        Return True
+        Return sfich
     End Function
+
+
 End Class
 Public Class HeaderFooter_FCGF
     Inherits PdfPageEventHelper
@@ -2568,14 +2894,14 @@ Public Class HeaderFooter_FCGF
         c_ENTE = New PdfPCell(para)
         c_ENTE.Border = 0
         pt.AddCell(c_ENTE)
-        para = New Paragraph(New Chunk("Date", FontFactory.GetFont("ARIAL", 10)))
-        c_ENTE = New PdfPCell(para)
-        c_ENTE.Border = 0
-        pt.AddCell(c_ENTE)
-        para = New Paragraph(New Chunk(Left(Now.ToString, 10), FontFactory.GetFont("ARIAL", 10, Font.BOLD)))
-        c_ENTE = New PdfPCell(para)
-        c_ENTE.Border = 0
-        pt.AddCell(c_ENTE)
+        'para = New Paragraph(New Chunk("Date", FontFactory.GetFont("ARIAL", 10)))
+        'c_ENTE = New PdfPCell(para)
+        'c_ENTE.Border = 0
+        'pt.AddCell(c_ENTE)
+        'para = New Paragraph(New Chunk(Left(Now.ToString, 10), FontFactory.GetFont("ARIAL", 10, Font.BOLD)))
+        'c_ENTE = New PdfPCell(para)
+        'c_ENTE.Border = 0
+        'pt.AddCell(c_ENTE)
         para = New Paragraph(New Chunk("Propriétaire", FontFactory.GetFont("ARIAL", 10)))
         c_ENTE = New PdfPCell(para)
         c_ENTE.Border = 0
@@ -2623,7 +2949,7 @@ Public Class HeaderFooter_FCGF
             Dim sNU_SER As String = System.Web.HttpContext.Current.Session("sNU_SER")
             cb.ShowText("SN Produit : " & sNU_SER)
             cb.SetTextMatrix(document.PageSize.Width / 2, 16)
-            cb.ShowText("FCGF_V1")
+            cb.ShowText("FCGF_V1.1")
             cb.SetTextMatrix(document.PageSize.Width - 90, 16)
             cb.ShowText(sText)
             cb.EndText()
@@ -2721,7 +3047,85 @@ Public Class HeaderFooter_DHR
         c_ENTE.HorizontalAlignment = Element.ALIGN_CENTER
         c_ENTE.VerticalAlignment = Element.ALIGN_MIDDLE
         pt_ENTE.AddCell(c_ENTE)
-        pt_ENTE.SpacingAfter = 10
+        pt_ENTE.SpacingAfter = 30
+        document.Add(pt_ENTE)
+
+    End Sub
+
+
+    Private moBF As BaseFont = pdf.BaseFont.CreateFont(pdf.BaseFont.HELVETICA, pdf.BaseFont.CP1252, pdf.BaseFont.NOT_EMBEDDED)
+
+    Public Overrides Sub OnEndPage(ByVal writer As PdfWriter, ByVal document As Document)
+        MyBase.OnEndPage(writer, document)
+
+        '*** PIED DE PAGE *************
+        'Affiche le N° de page 
+        Dim oTable As New PdfPTable(1)
+        With oTable
+            Dim iPageNumber As Integer = writer.PageNumber
+            Dim sText As String = "Page " & iPageNumber & " sur "
+
+            oTable.TotalWidth = document.PageSize.Width - 70
+            oTable.WriteSelectedRows(0, -1, 36, 15, writer.DirectContent)
+
+            Dim fLen As Single = moBF.GetWidthPoint(sText, 10)
+            cb.BeginText()
+            cb.SetFontAndSize(moBF, 8)
+            cb.SetTextMatrix(document.PageSize.Width - 90, 16)
+            cb.ShowText(sText)
+            cb.EndText()
+            cb.AddTemplate(template, document.PageSize.Width - 100 + fLen, 16)
+        End With
+    End Sub
+
+    ' Récupère le total des pages du PDF
+    Public Overrides Sub OnCloseDocument(ByVal writer As PdfWriter, ByVal document As Document)
+        MyBase.OnCloseDocument(writer, document)
+        template.BeginText()
+        template.SetFontAndSize(bf, 8)
+        template.SetTextMatrix(0, 0)
+        template.ShowText("" & Convert.ToString((writer.PageNumber)))
+        template.EndText()
+    End Sub
+
+End Class
+
+Public Class HeaderFooter_LIST_TCBL
+    Inherits PdfPageEventHelper
+
+    ' C'est un conteneur de texte
+    Private cb As PdfContentByte
+
+    ' we will put the final number of pages in a template
+    Private template As PdfTemplate
+
+    ' this is the BaseFont we are going to use for the header / footer
+    Private bf As BaseFont = Nothing
+
+    ' we override the onOpenDocument method
+    Public Overrides Sub OnOpenDocument(ByVal writer As PdfWriter, ByVal document As Document)
+        Try
+            bf = pdf.BaseFont.CreateFont(pdf.BaseFont.HELVETICA, pdf.BaseFont.CP1252, pdf.BaseFont.NOT_EMBEDDED)
+            cb = writer.DirectContent
+            ' Création de la plage qui recevra le nbre total de pages du document (vu dans le pied de page).
+            template = cb.CreateTemplate(50, 50)
+        Catch de As DocumentException
+        Catch ioe As System.IO.IOException
+        End Try
+    End Sub
+
+    Public Overrides Sub OnStartPage(ByVal writer As PdfWriter, ByVal document As Document)
+        MyBase.OnStartPage(writer, document)
+
+        Dim pt_ENTE = New PdfPTable(1)
+        pt_ENTE.TotalWidth = document.PageSize.Width - 40
+        Dim sNU_SER As String = System.Web.HttpContext.Current.Session("sNU_SER")
+        Dim para = New Paragraph(New Chunk("Liste traçabilité " & sNU_SER & " – NM", FontFactory.GetFont("CALIBRI", 16, Font.BOLD)))
+        Dim c_ENTE = New PdfPCell(para)
+        c_ENTE.Border = 0
+        c_ENTE.HorizontalAlignment = Element.ALIGN_CENTER
+        pt_ENTE.AddCell(c_ENTE)
+        pt_ENTE.SpacingAfter = 30
         document.Add(pt_ENTE)
 
     End Sub

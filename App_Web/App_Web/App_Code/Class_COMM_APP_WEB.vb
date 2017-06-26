@@ -204,7 +204,7 @@ Public Class Class_COMM_APP_WEB
             Return Nothing
         End Try
 
-        LOG_Msg(GetCurrentMethod, "Le nombre " & sNB_BASE_N & " en base " & iBASE_N.ToString & " a été convertie en " & iNB_DEC.ToString & ".")
+        'LOG_Msg(GetCurrentMethod, "Le nombre " & sNB_BASE_N & " en base " & iBASE_N.ToString & " a été convertie en " & iNB_DEC.ToString & ".")
         Return iNB_DEC
 
     End Function
@@ -212,22 +212,30 @@ Public Class Class_COMM_APP_WEB
     Public Shared Function COMM_APP_WEB_CONV_DEC_2_BASE_N(iNB_DEC As Integer, iBASE_N As Integer, iNB_CARA As Integer) As String
         Const BASENUMBERS As String = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         Dim sNB_BASE_N As String = "", iQuot As Integer = 9999, irest As Integer
-
+        Dim sbNB_BASE_N As New StringBuilder()
         Try
-            While iQuot > iBASE_N
-                iQuot = Math.Floor(iNB_DEC / iBASE_N)
-                irest = iNB_DEC - (iQuot * iBASE_N)
-                sNB_BASE_N = Mid(BASENUMBERS, irest + 1, 1) & sNB_BASE_N
-                iNB_DEC = iQuot
-            End While
-            sNB_BASE_N = Mid(BASENUMBERS, iQuot + 1, 1) & sNB_BASE_N
-            sNB_BASE_N = StrDup(iNB_CARA - Len(sNB_BASE_N), "0") & sNB_BASE_N
+            If iBASE_N = 10 Then
+                sNB_BASE_N = iNB_DEC.ToString
+            Else
+                While iQuot > iBASE_N
+                    iQuot = Math.Floor(iNB_DEC / iBASE_N)
+                    irest = iNB_DEC - (iQuot * iBASE_N)
+                    'sNB_BASE_N = Mid(BASENUMBERS, irest + 1, 1) & sNB_BASE_N
+                    sbNB_BASE_N.Append(Mid(BASENUMBERS, irest + 1, 1))
+                    iNB_DEC = iQuot
+                End While
+                'sNB_BASE_N = Mid(BASENUMBERS, iQuot + 1, 1) & sNB_BASE_N
+                sbNB_BASE_N.Append(Mid(BASENUMBERS, iQuot + 1, 1))
+            End If
+            'sNB_BASE_N = StrDup(iNB_CARA - Len(sNB_BASE_N), "0") & sNB_BASE_N
+            sbNB_BASE_N.Append(StrDup(iNB_CARA - Len(sNB_BASE_N), "0"))
+            sNB_BASE_N = sbNB_BASE_N.ToString.Reverse()
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
         End Try
 
-        LOG_Msg(GetCurrentMethod, "Le nombre " & iNB_DEC.ToString & " a été convertie en " & sNB_BASE_N & " en base " & iBASE_N.ToString & ".")
+        LOG_Msg(GetCurrentMethod, $"Le nombre {iNB_DEC.ToString} a été convertie en {sNB_BASE_N} en base {iBASE_N.ToString}.")
         Return sNB_BASE_N
     End Function
 
@@ -240,8 +248,9 @@ Public Class Class_COMM_APP_WEB
         Dim wic As WindowsImpersonationContext = Nothing
         Try
             If LogonUser("ce_adminsv", "eolane", "Eol@ne14", 9, 0, admin_token) = 0 Then Throw New Exception("Log as n'a pas fonctionné")
-            wid_admin = New WindowsIdentity(admin_token)
+        wid_admin = New WindowsIdentity(admin_token)
             wic = wid_admin.Impersonate()
+            Directory.CreateDirectory(Path.GetDirectoryName(sdestination))
             System.IO.File.Copy(sfichier_or, sdestination, boverwrite)
             If Not System.IO.File.Exists(sdestination) Then Throw New Exception("Le fichier " & sdestination & " n'existe pas")
         Catch ex As Exception
@@ -253,6 +262,23 @@ Public Class Class_COMM_APP_WEB
         LOG_Msg(GetCurrentMethod, "Le fichier " & sfichier_or & " a été copié à l'endroit " & sdestination & ".")
     End Sub
 
+    Public Shared Function COMM_APP_WEB_GET_FILE(spath As String, sssearchpattern As String) As String()
+        Dim admin_token As IntPtr
+        Dim wid_current As WindowsIdentity = WindowsIdentity.GetCurrent()
+        Dim wid_admin As WindowsIdentity = Nothing
+        Dim wic As WindowsImpersonationContext = Nothing
+        Try
+            If LogonUser("ce_adminsv", "eolane", "Eol@ne14", 9, 0, admin_token) = 0 Then Throw New Exception("Log as n'a pas fonctionné")
+            wid_admin = New WindowsIdentity(admin_token)
+            wic = wid_admin.Impersonate()
+            Return Directory.GetFiles(spath, sssearchpattern, SearchOption.AllDirectories)
+        Catch ex As Exception
+            LOG_Erreur(GetCurrentMethod, ex.Message)
+            Return Nothing
+        Finally
+            If wic IsNot Nothing Then wic.Undo()
+        End Try
+    End Function
     Public Shared Function COMM_APP_WEB_GET_PARA(sNM_PARA As String, sNM_CTRL As String, Optional pageHandler As String = Nothing) As String
 
         Dim sQuery As String = "", sChaineConnexion As String = "Data Source=cedb03,1433;Initial Catalog=APP_WEB_ECO;Integrated Security=False;User ID=sa;Password=mdpsa@SQL;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"

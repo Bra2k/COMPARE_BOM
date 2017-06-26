@@ -23,18 +23,18 @@ Public Class Class_DIG_FACT
             If sFORM Is Nothing Then Throw New Exception("La base n'a pas été configurée")
 
             'comparer
-            If Len(sFORM) <> Len(sNU_SER) Then Throw New Exception("Le nombre de caractère du numéro de série " & sNU_SER & " n'est pas identique au nombre de caractère du format " & sFORM)
+            If Len(sFORM) <> Len(sNU_SER) Then Throw New Exception($"Le nombre de caractère du numéro de série {sNU_SER} n'est pas identique au nombre de caractère du format {sFORM}")
 
             For iChar As Integer = 1 To Len(sFORM)
                 Select Case Mid(sFORM, iChar, 1)
                     Case "%"
-                        If Char.IsDigit(Mid(sNU_SER, iChar, 1)) = False Then Throw New Exception("le caractère n°" & iChar & " du numéro de série " & sNU_SER & "n'est pas un chiffre.")
+                        If Char.IsDigit(Mid(sNU_SER, iChar, 1)) = False Then Throw New Exception($"le caractère n°{iChar} du numéro de série {sNU_SER} n'est pas un chiffre.")
                     Case "£"
-                        If Char.IsLetter(Mid(sNU_SER, iChar, 1)) = False Then Throw New Exception("le caractère n°" & iChar & " du numéro de série " & sNU_SER & "n'est pas une lettre.")
+                        If Char.IsLetter(Mid(sNU_SER, iChar, 1)) = False Then Throw New Exception($"le caractère n°{iChar} du numéro de série {sNU_SER} n'est pas une lettre.")
                     Case "#"
-                        If Char.IsLetterOrDigit(Mid(sNU_SER, iChar, 1)) = False Then Throw New Exception("le caractère n°" & iChar & " du numéro de série " & sNU_SER & "n'est ni un chiffre ni une lettre.")
+                        If Char.IsLetterOrDigit(Mid(sNU_SER, iChar, 1)) = False Then Throw New Exception($"le caractère n°{iChar} du numéro de série {sNU_SER} n'est ni un chiffre ni une lettre.")
                     Case <> Mid(sNU_SER, iChar, 1)
-                        Throw New Exception("Le caractère " & Mid(sNU_SER, iChar, 1) & " du numéro de série " & sNU_SER & " ne se correspondent pas.")
+                        Throw New Exception($"Le caractère {Mid(sNU_SER, iChar, 1)} du numéro de série {sNU_SER} ne se correspondent pas.")
                 End Select
             Next
         Catch ex As Exception
@@ -55,7 +55,7 @@ Public Class Class_DIG_FACT
         Dim dtAFKO, dtMARA, dtT179T, dtMAKT, dtLIPS, dtLIPSUP, dt_CFGR_ARTI_ECO, dt_ETAT_CTRL As New DataTable
         Dim sr As StreamReader
         Randomize()
-        Dim sfich As String = My.Settings.RPTR_TPRR & "\" & CInt(Int((1000 * Rnd()) + 1)) & "_" & Path.GetFileName(sFichier)
+        Dim sfich As String = $"{My.Settings.RPTR_TPRR}\{CInt(Int((1000 * Rnd()) + 1))}_{Path.GetFileName(sFichier)}"
         Dim sw As StreamWriter
 
         'Génération des étiquettes AVALUN
@@ -215,7 +215,7 @@ Public Class Class_DIG_FACT
             Exit Sub
         End Try
     End Sub
-    Public Shared Sub DIG_FACT_IMPR_ETIQ_V2(sFichier As String, sNU_OF As String, sNU_BL As String, sTYPE_ETIQ As String,
+    Public Shared Sub DIG_FACT_IMPR_ETIQ_V2(sFichier As String, sNM_IPMT As String, sNU_OF As String, sNU_BL As String, sTYPE_ETIQ As String,
                                             sID_NU_SER As String, sNU_CART As String, sNB_QT As String,
                                             sNB_CART As String, dtVar As DataTable, Optional sMTCL As String = "")
         Dim sData As String = "", sCD_ARTI_ECO As String = "", sNM_CLIE As String = "", sNU_CLIE As String = "", sNU_ECO As String = "", sQuery As String = ""
@@ -223,7 +223,7 @@ Public Class Class_DIG_FACT
         Dim dtAFKO, dtMARA, dtT179T, dtMAKT, dtLIPS, dtLIPSUP, dt_CFGR_ARTI_ECO, dt_ETAT_CTRL, dt As New DataTable
         Dim sr As StreamReader
         Randomize()
-        Dim sfich As String = My.Settings.RPTR_TPRR & "\" & CInt(Int((1000 * Rnd()) + 1)) & "_" & Path.GetFileName(sFichier)
+        Dim sfich As String = $"{My.Settings.RPTR_TPRR}\{CInt(Int((1000 * Rnd()) + 1))}_{Path.GetFileName(sFichier)}"
         Dim sw As StreamWriter
 
         ''Génération des étiquettes AVALUN
@@ -390,21 +390,21 @@ Public Class Class_DIG_FACT
             sw.WriteLine(sData)
             sw.Close()
 
-            sQuery = "SELECT [Imprimante étiquette], [PC] 
-                        FROM (SELECT A.CD_ARTI AS NM_POST, B.[CD_ARTI], VAL_PARA  
-                                FROM (SELECT [CD_ARTI], [NM_PARA]
-                                        FROM [dbo].[V_DER_DTM_REF_PARA]
-                                       WHERE [VAL_PARA] = '1') AS A
-                                      INNER JOIN (SELECT [CD_ARTI], VAL_PARA 
-                                                    FROM [dbo].[V_DER_DTM_REF_PARA] 
-                                                   WHERE [NM_PARA] = 'Type matériel'
-                                                  ) AS B ON A.[NM_PARA] = B.[CD_ARTI]
-                              ) AS D
-                        PIVOT (MAX(D.[CD_ARTI]) FOR D.VAL_PARA IN ([Imprimante étiquette], [PC])) AS PIVOTABLE
-                        WHERE NOT ([Imprimante étiquette] IS NULL OR [PC] IS NULL) AND [PC] = '" & System.Net.Dns.GetHostEntry(System.Web.HttpContext.Current.Request.UserHostAddress).HostName() & "'"
+            'sQuery = "SELECT [Imprimante étiquette], [PC] 
+            '            FROM (SELECT A.CD_ARTI AS NM_POST, B.[CD_ARTI], VAL_PARA  
+            '                    FROM (SELECT [CD_ARTI], [NM_PARA]
+            '                            FROM [dbo].[V_DER_DTM_REF_PARA]
+            '                           WHERE [VAL_PARA] = '1') AS A
+            '                          INNER JOIN (SELECT [CD_ARTI], VAL_PARA 
+            '                                        FROM [dbo].[V_DER_DTM_REF_PARA] 
+            '                                       WHERE [NM_PARA] = 'Type matériel'
+            '                                      ) AS B ON A.[NM_PARA] = B.[CD_ARTI]
+            '                  ) AS D
+            '            PIVOT (MAX(D.[CD_ARTI]) FOR D.VAL_PARA IN ([Imprimante étiquette], [PC])) AS PIVOTABLE
+            '            WHERE NOT ([Imprimante étiquette] IS NULL OR [PC] IS NULL) AND [PC] = '" & System.Net.Dns.GetHostEntry(System.Web.HttpContext.Current.Request.UserHostAddress).HostName() & "'"
 
-            dt = SQL_SELE_TO_DT(sQuery, "Data Source=cedb03,1433;Initial Catalog=" & Replace(Replace(My.Computer.Name, "CEDB03", "MES_Digital_Factory_DEV"), "CEAPP03", "MES_Digital_Factory") & ";Integrated Security=False;User ID=sa;Password=mdpsa@SQL;Connect Timeout=7200;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False")
-            COMM_APP_WEB_IMPR_ETIQ_PRN(sfich, dt(0)("Imprimante étiquette").ToString)
+            'dt = SQL_SELE_TO_DT(sQuery, "Data Source=cedb03,1433;Initial Catalog=" & Replace(Replace(My.Computer.Name, "CEDB03", "MES_Digital_Factory_DEV"), "CEAPP03", "MES_Digital_Factory") & ";Integrated Security=False;User ID=sa;Password=mdpsa@SQL;Connect Timeout=7200;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False")
+            COMM_APP_WEB_IMPR_ETIQ_PRN(sfich, sNM_IPMT)
 
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
@@ -566,6 +566,7 @@ Public Class Class_DIG_FACT
         End Try
         Return sfich
     End Function
+
 End Class
 
 Public Class Class_DIG_FACT_SQL
@@ -752,35 +753,38 @@ Public Class Class_DIG_FACT_SQL
             'Else
             'récupérer le dernier généré
             sQuerySql = "SELECT [NU_SER_DERN]
-                               FROM [dbo].[V_DER_DTM_NU_SER]
-                              WHERE [NM_CRIT] = '" & sCritère & "' AND [NM_TYPE] = '" & sTypeEtiquette & "'"
+                           FROM [dbo].[V_DER_DTM_NU_SER]
+                          WHERE [NM_CRIT] = '" & sCritère & "' AND [NM_TYPE] = '" & sTypeEtiquette & "'"
                 dtDER_NU_SER = SQL_SELE_TO_DT(sQuerySql, sChaineConnexion)            '
-                'convertir en base 10
-                If dtDER_NU_SER Is Nothing Then
-                    iNU_SER_DEC = COMM_APP_WEB_CONV_BASE_N_2_DEC("1", Convert.ToDecimal(sBase))
-                Else
-                    For iChar As Integer = 1 To Len(sFormat) 'extraction de la partie incrémentale
+            'convertir en base 10
+            If dtDER_NU_SER Is Nothing Then
+                iNU_SER_DEC = COMM_APP_WEB_CONV_BASE_N_2_DEC("1", Convert.ToDecimal(sBase))
+            Else
+                For iChar As Integer = 1 To Len(sFormat) 'extraction de la partie incrémentale
                     If Mid(sFormat, iChar, 1) = "%" Then sNU_SER_INC &= Mid(dtDER_NU_SER(0)("NU_SER_DERN").ToString, iChar, 1)
                 Next
                 iNU_SER_DEC = COMM_APP_WEB_CONV_BASE_N_2_DEC(sNU_SER_INC, Convert.ToDecimal(sBase))
             End If
 
-                'incrémenter
-                iNU_SER_DEC += Convert.ToDecimal(sInc)
-                'convertir en base N
-                For iChar As Integer = 1 To Len(sFormat)
-                    If Mid(sFormat, iChar, 1) = "%" Then iNB_CARA += 1
-                Next
-                sNU_SER_BASE_N = COMM_APP_WEB_CONV_DEC_2_BASE_N(iNU_SER_DEC, Convert.ToDecimal(sBase), iNB_CARA)
-                'appliquer le format
-                For iChar As Integer = 1 To Len(sFormat)
-                    If Mid(sFormat, iChar, 1) = "%" Then
-                        sNU_SER_GENE = sNU_SER_GENE & Mid(sNU_SER_BASE_N, iPos_Car, 1)
-                        iPos_Car += 1
-                    Else
-                        sNU_SER_GENE = sNU_SER_GENE & Mid(sFormat, iChar, 1)
-                    End If
-                Next
+            'incrémenter
+            iNU_SER_DEC += Convert.ToDecimal(sInc)
+            'convertir en base N
+            For iChar As Integer = 1 To Len(sFormat)
+                If Mid(sFormat, iChar, 1) = "%" Then iNB_CARA += 1
+            Next
+            LOG_Msg(GetCurrentMethod, iNU_SER_DEC)
+            sNU_SER_BASE_N = COMM_APP_WEB_CONV_DEC_2_BASE_N(iNU_SER_DEC, Convert.ToDecimal(sBase), iNB_CARA)
+            LOG_Msg(GetCurrentMethod, sNU_SER_BASE_N)
+
+            'appliquer le format
+            For iChar As Integer = 1 To Len(sFormat)
+                If Mid(sFormat, iChar, 1) = "%" Then
+                    sNU_SER_GENE = sNU_SER_GENE & Mid(sNU_SER_BASE_N, iPos_Car, 1)
+                    iPos_Car += 1
+                Else
+                    sNU_SER_GENE = sNU_SER_GENE & Mid(sFormat, iChar, 1)
+                End If
+            Next
             'End If
             'Enregistrer dans la base
             sQuerySql = "INSERT INTO [dbo].[DTM_NU_SER] ([NM_CRIT], [NU_SER], [NM_TYPE], [DT_CREA])

@@ -240,32 +240,15 @@ Public Class Page_ESSAI
 
     Protected Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
 
-        'Dim sQuery = "SELECT *
-        '                        FROM [dbo].[]
-        '                       WHERE [NU_CART] = '1167947001'"
-        'dtLIST_DATA = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
-        'If dtLIST_DATA Is Nothing Then
-        '    Dim sFichier As String = DIG_FACT_IMPR_PDF("\\CEAPP03",
-        '                                                       TextBox_NU_OF.Text, "", "Carton", TextBox_NU_SER_CLIE.Text, TextBox_NU_SER_ECO.Text,
-        '                                                       Label_NU_CART.Text, Label_NB_CART.Text, "", "", dtVar, dtLIST_DATA)
-        '    ClientScript.RegisterStartupScript([GetType](), "printPdf", "document.getElementById(""pdf"").src = """ & Path.GetFileName(sFichier) & """;
-        '                                                                             document.getElementById(""pdf"").onload = function() {window.frames[""pdf""].focus();
-        '                                                                                                                                   window.frames[""pdf""].print();};", True)
-        '    sFichier_PDF = sFichier
-        'Else
-        '    sFichier_PDF = "c:\sources\App_Web\PagesMembres\Digital_Factory\delivery_form_" & CInt(Int((10000000 * Rnd()) + 1)) & "_merge.pdf"
-        '    For iPDF = 0 To dtLIST_DATA.Rows.Count - 1 Step Convert.ToDecimal(dt_CFGR_ARTI_ECO(0)("Nombre de ligne dans le fichier PDF").ToString)
-        '        Dim sFichier As String = DIG_FACT_IMPR_PDF(sFichier_Modele,
-        '                                                               TextBox_NU_OF.Text, "", "Carton", TextBox_NU_SER_CLIE.Text, TextBox_NU_SER_ECO.Text,
-        '                                                               Label_NU_CART.Text, Label_NB_CART.Text, "", "", dtVar,
-        '                    dtLIST_DATA, iPDF)
-        '        sFichier_PDF = PDF_CCTN_FICH(sFichier_PDF, sFichier)
-        '    Next
-        '    ClientScript.RegisterStartupScript([GetType](), "printPdf", "document.getElementById(""pdf"").src = """ & Path.GetFileName(sFichier_PDF) & """;
-        '                                                                             document.getElementById(""pdf"").onload = function() {window.frames[""pdf""].focus();
-        '                                                                                                                                   window.frames[""pdf""].print();};", True)
-        'End If
+        Using db = New MES_Digital_FactoryEntities1()
+            Dim req1 = From c In db.DTM_PSG 'nom de la table
+                       Select c
+            For Each item In req1
+                Console.WriteLine(item.DT_DEB) 'nom du champ
+            Next
+        End Using
     End Sub
+
 
     Public Shared Function SAP_DATA_READ_MAPL(cARTI As String) As DataTable
         Dim dtMAPL As New DataTable

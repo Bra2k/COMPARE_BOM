@@ -7,16 +7,22 @@ Imports App_Web.Class_DIG_FACT
 Imports App_Web.Class_DIG_FACT_SQL
 Imports App_Web.Class_COMM_APP_WEB
 Imports App_Web.Class_PDF
+Imports itextsharp.text.pdf
+Imports itextsharp.text
+Imports itextsharp
+Imports System
 'Imports PdfSharp
 'Imports PdfSharp.Drawing
 'Imports PdfSharp.Drawing.Layout
 'Imports PdfSharp.Pdf
 Public Class CLSG
     Inherits System.Web.UI.Page
-    Dim sChaineConnexion As String = "Data Source=cedb03,1433;Initial Catalog=" & Replace(Replace(My.Computer.Name, "CEDB03", "MES_Digital_Factory_DEV"), "CEAPP03", "MES_Digital_Factory") & ";Integrated Security=False;User ID=sa;Password=mdpsa@SQL;Connect Timeout=7200;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
+    'Dim sChaineConnexion As String = "Data Source=cedb03,1433;Initial Catalog=" & Replace(Replace(My.Computer.Name, "CEDB03", "MES_Digital_Factory_DEV"), "CEAPP03", "MES_Digital_Factory") & ";Integrated Security=False;User ID=sa;Password=mdpsa@SQL;Connect Timeout=7200;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
+    Dim sChaineConnexion As String = "Data Source=cedb03,1433;Initial Catalog=" & Replace(Replace(My.Computer.Name, "CEDB03", "MES_Digital_Factory"), "CEAPP03", "MES_Digital_Factory") & ";Integrated Security=False;User ID=sa;Password=mdpsa@SQL;Connect Timeout=7200;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not IsPostBack Then
+
             '    If Session("displayname") = "" Then
             '        Context.GetOwinContext().Authentication.SignOut(Microsoft.AspNet.Identity.DefaultAuthenticationTypes.ApplicationCookie)
             '    Else
@@ -29,7 +35,7 @@ Public Class CLSG
             End If
 
         End If
-        'LOG_Msg(GetCurrentMethod, sChaineConnexion)
+
     End Sub
 
     Protected Sub TextBox_OF_TextChanged(sender As Object, e As EventArgs) Handles TextBox_NU_OF.TextChanged
@@ -62,7 +68,7 @@ Public Class CLSG
             'Quantité restante dans l'of
             sQuery = "SELECT ISNULL(COUNT([NU_NS_EOL]) ,COUNT([NU_NS_CLI])) As NB_NU_NS
                        FROM [dbo].[V_CLSG_PRD_DTM_HIST_LIVR]
-                      WHERE [NU_OF] = '" & TextBox_NU_OF.Text & "'"
+                      WHERE [NU_OF] = '" & TextBox_NU_OF.Text & "' AND NOT (NU_CART IS NULL OR NU_PALE IS NULL)"
             dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
             If dt Is Nothing Then
                 Label_QT_REST_OF.Text = Label_QT_OF.Text
@@ -187,13 +193,17 @@ Public Class CLSG
             'recherche op et nom d'op
             Dim dtAFVC = SAP_DATA_READ_AFVC("AUFPL EQ '" & dtAFKO(0)("AUFPL").ToString & "'") '177508
             If dtAFVC Is Nothing Then Throw New Exception("Pas de données pour ce numéro de gamme")
+            dtAFVC.DefaultView.Sort = "VORNR DESC"
+            dtAFVC = dtAFVC.DefaultView.ToTable
+            'order by vornr desc
             For Each rdtAFVC As DataRow In dtAFVC.Rows
                 Dim dtCRHD = SAP_DATA_READ_CRHD("OBJID EQ '" & rdtAFVC("ARBID").ToString & "'")
                 If Not dtCRHD Is Nothing Then
-                    Dim rdtCRHD = dtCRHD.Select("ARBPL = 'EMB01'").FirstOrDefault
+                    Dim rdtCRHD = dtCRHD.Select("ARBPL = 'EMB01' OR ARBPL LIKE 'LIG%'").FirstOrDefault
                     If Not rdtCRHD Is Nothing Then
                         Label_NM_DSGT_ARTI_ECO.Text = Trim(rdtAFVC("LTXA1").ToString)
                         Label_NU_OP.Text = Convert.ToDecimal(Trim(rdtAFVC("VORNR").ToString))
+                        Exit For
                     End If
                 End If
             Next
@@ -207,7 +217,6 @@ Public Class CLSG
             End If
 
             'Génération impression numéro de série
-
             dt_REPE = TCBL_ESB_SS_ESB_V2._LIST_ENS_SS_ENS(Label_NU_OF.Text, Label_NU_OP.Text)
             If Not dt_REPE Is Nothing Then
                 GridView_REPE.DataSource = dt_REPE
@@ -219,7 +228,7 @@ Public Class CLSG
 
         Catch ex As Exception
             MultiView_SAIS.SetActiveView(View_OF)
-            LOG_Erreur(GetCurrentMethod, ex.Message)
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
         End Try
 
     End Sub
@@ -235,7 +244,7 @@ Public Class CLSG
             sQuery = "Select [NU_NS_EOL]
                             ,[NU_OF]
                         FROM [dbo].[V_CLSG_PRD_DTM_HIST_LIVR]
-                       WHERE [NU_NS_EOL] = '" & TextBox_NU_SER_ECO.Text & "' AND [NU_OF] = '" & TextBox_NU_OF.Text & "'"
+                       WHERE [NU_NS_EOL] = '" & TextBox_NU_SER_ECO.Text & "' AND [NU_OF] = '" & TextBox_NU_OF.Text & "' AND NOT (NU_CART IS NULL OR NU_PALE IS NULL)"
             dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
             If Not dt Is Nothing Then Throw New Exception("Le numéro de série " & TextBox_NU_SER_ECO.Text & " a déjà été scanné.")
             'vérification que n° série appartient à l'OF
@@ -275,7 +284,7 @@ Public Class CLSG
             End Select
 
         Catch ex As Exception
-            LOG_Erreur(GetCurrentMethod, ex.Message)
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
             TextBox_NU_SER_ECO.Text = ""
             TextBox_NU_SER_ECO.Focus()
         End Try
@@ -292,7 +301,7 @@ Public Class CLSG
             sQuery = "SELECT [NU_NS_CLI]
                             ,[NU_OF]
                         FROM [dbo].[V_CLSG_PRD_DTM_HIST_LIVR]
-                       WHERE [NU_NS_CLI] = '" & TextBox_NU_SER_CLIE.Text & "' AND [NU_OF] = '" & TextBox_NU_OF.Text & "'"
+                       WHERE [NU_NS_CLI] = '" & TextBox_NU_SER_CLIE.Text & "' AND [NU_OF] = '" & TextBox_NU_OF.Text & "' AND NOT (NU_CART IS NULL OR NU_PALE IS NULL)"
             dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
             If Not dt Is Nothing Then Throw New Exception("Le numéro de série " & TextBox_NU_SER_CLIE.Text & " a déjà été scanné.")
             'vérification workflow
@@ -319,7 +328,7 @@ Public Class CLSG
                 End Select
             End If
         Catch ex As Exception
-            LOG_Erreur(GetCurrentMethod, ex.Message)
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
             TextBox_NU_SER_CLIE.Text = ""
             TextBox_NU_SER_CLIE.Focus()
         End Try
@@ -354,11 +363,195 @@ Public Class CLSG
                     TextBox_NU_CART_SCFQ.Focus()
             End Select
         Catch ex As Exception
-            LOG_Erreur(GetCurrentMethod, ex.Message)
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
             TextBox_NU_CART_SCFQ.Text = ""
             TextBox_NU_CART_SCFQ.Focus()
         End Try
     End Sub
+
+    Public Function _CREA_FICH_LIVR_DF(sQuery As String, Optional sTYPE_ETQT As String = "carton", Optional sNM_CONT_CAB As String = "Premier numéro de série") As String
+        Dim dt As New DataTable
+        Dim dPDF As Document
+        Dim pt, pt_INFO_PROD, pt_LIST_SN As PdfPTable
+        Dim c_ENTE As PdfPCell
+        Randomize()
+        Dim sfich As String = “C:\sources\temp_App_Web\" & CInt(Int((10000000 * Rnd()) + 1)) & ".pdf”
+        Dim sgif_bc As String = “C:\sources\temp_App_Web\" & CInt(Int((10000000 * Rnd()) + 1)) & ".gif”
+        ' Dim iLOGO As Image
+        Dim para As Paragraph
+        ' Dim ipagenumber As Integer
+        Try
+            dPDF = New Document(PageSize.A4, 10, 10, 50, 10)
+
+            Dim writer = PdfAWriter.GetInstance(dPDF, New FileStream(sfich, FileMode.Create))
+            dPDF.Open()
+
+            'numéro de série
+            pt = New PdfPTable(2)
+            pt.TotalWidth = dPDF.PageSize.Width - 100
+            pt.LockedWidth = True
+            Dim widths() As Single = {2, 1}
+            pt.SetWidths(widths)
+            pt_INFO_PROD = New PdfPTable(2)
+            pt_INFO_PROD.DefaultCell.Border = Rectangle.NO_BORDER
+            Dim iLOGO = Image.GetInstance("C:\sources\Digital Factory\Etiquettes\Combrée-1.jpg")
+            iLOGO.SpacingAfter = 20
+            pt_INFO_PROD.AddCell(iLOGO)
+            para = New Paragraph(New Chunk("
+", FontFactory.GetFont("Calibri", 6)))
+            c_ENTE = New PdfPCell(para)
+            c_ENTE.Border = 0
+            pt_INFO_PROD.AddCell(c_ENTE)
+            para = New Paragraph(New Chunk(Label_NM_CLIE.Text, FontFactory.GetFont("Calibri", 18)))
+            c_ENTE = New PdfPCell(para)
+            c_ENTE.Border = 0
+            c_ENTE.VerticalAlignment = Element.ALIGN_BOTTOM
+            c_ENTE.HorizontalAlignment = Element.ALIGN_CENTER
+            c_ENTE.Colspan = 2
+            c_ENTE.FixedHeight = 30
+            pt_INFO_PROD.AddCell(c_ENTE)
+            para = New Paragraph(New Chunk(Label_NM_DSGT_ARTI.Text, FontFactory.GetFont("Calibri", 12)))
+            c_ENTE = New PdfPCell(para)
+            c_ENTE.Border = 0
+            c_ENTE.VerticalAlignment = Element.ALIGN_TOP
+            c_ENTE.HorizontalAlignment = Element.ALIGN_CENTER
+            c_ENTE.Colspan = 2
+            c_ENTE.FixedHeight = 30
+            pt_INFO_PROD.AddCell(c_ENTE)
+            Select Case sTYPE_ETQT
+                Case "carton"
+                    para = New Paragraph(New Chunk("N° Carton = " & Label_NU_CART.Text, FontFactory.GetFont("Calibri", 18)))
+                Case "palette"
+                    para = New Paragraph(New Chunk("N° Palette = " & Label_NU_PALE_NU_V_NU_SER.Text, FontFactory.GetFont("Calibri", 18)))
+                Case "bon de livraison"
+                    para = New Paragraph(New Chunk("N° BL = " & TextBox_NU_BL_V_PALE.Text, FontFactory.GetFont("Calibri", 18)))
+            End Select
+            c_ENTE = New PdfPCell(para)
+            c_ENTE.Border = 0
+            c_ENTE.VerticalAlignment = Element.ALIGN_MIDDLE
+            c_ENTE.HorizontalAlignment = Element.ALIGN_CENTER
+            c_ENTE.Colspan = 2
+            c_ENTE.FixedHeight = 30
+            pt_INFO_PROD.AddCell(c_ENTE)
+            para = New Paragraph(New Chunk(Label_CD_ARTI_ECO.Text, FontFactory.GetFont("Calibri", 12)))
+            c_ENTE = New PdfPCell(para)
+            c_ENTE.Border = 0
+            c_ENTE.VerticalAlignment = Element.ALIGN_MIDDLE
+            c_ENTE.HorizontalAlignment = Element.ALIGN_CENTER
+            c_ENTE.Colspan = 2
+            c_ENTE.FixedHeight = 30
+            pt_INFO_PROD.AddCell(c_ENTE)
+            'Select Case sTYPE_ETQT
+            '    Case "carton"
+            '        sQuery = "SELECT ISNULL([NU_NS_CLI],[NU_NS_EOL]) AS NU_SER
+            '            FROM [dbo].[V_CLSG_PRD_DTM_HIST_LIVR]
+            '           WHERE NU_CART = '" & sNU_CART_OR_PALE & "'"
+            '    Case "palette"
+            '        sQuery = "SELECT ISNULL([NU_NS_CLI],[NU_NS_EOL]) AS NU_SER
+            '            FROM [dbo].[V_CLSG_PRD_DTM_HIST_LIVR]
+            '           WHERE NU_PALE = '" & sNU_CART_OR_PALE & "'"
+            'End Select
+            dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
+            If dt Is Nothing Then Throw New Exception("pas de produit dans le carton ou palette")
+            Dim bc128 As New Barcode128()
+            Select Case sNM_CONT_CAB
+                Case "Premier numéro de série"
+                    bc128.Code = dt(0)("NU_SER").ToString
+                Case "Numéro de carton"
+                    bc128.Code = Label_NU_CART.Text
+                Case "Numéro de palette"
+                    bc128.Code = Label_NU_PALE_NU_V_NU_SER.Text
+                Case "Code article"
+                    bc128.Code = Label_CD_ARTI_ECO.Text
+                Case "Numéro de BL"
+                    bc128.Code = TextBox_NU_BL_V_PALE.Text
+            End Select
+            Dim bc As System.Drawing.Image = bc128.CreateDrawingImage(System.Drawing.Color.Black, System.Drawing.Color.White)
+            bc.Save(sgif_bc, System.Drawing.Imaging.ImageFormat.Gif)
+            Dim iCAB = Image.GetInstance(sgif_bc)
+            iCAB.SpacingAfter = 20
+            iCAB.Border = 0
+            c_ENTE = New PdfPCell(iCAB)
+            c_ENTE.Border = 0
+            c_ENTE.VerticalAlignment = Element.ALIGN_MIDDLE
+            c_ENTE.HorizontalAlignment = Element.ALIGN_CENTER
+            c_ENTE.Colspan = 2
+            c_ENTE.FixedHeight = 30
+            pt_INFO_PROD.AddCell(c_ENTE)
+
+            If sTYPE_ETQT <> "bon de livraison" Then
+                para = New Paragraph(New Chunk("OF :  " & Label_NU_OF.Text, FontFactory.GetFont("Calibri", 12)))
+                c_ENTE = New PdfPCell(para)
+                c_ENTE.Border = 0
+                c_ENTE.VerticalAlignment = Element.ALIGN_MIDDLE
+                c_ENTE.HorizontalAlignment = Element.ALIGN_CENTER
+                c_ENTE.Colspan = 2
+                c_ENTE.FixedHeight = 30
+                pt_INFO_PROD.AddCell(c_ENTE)
+            End If
+
+            para = New Paragraph(New Chunk("Nombre de produits = " & dt.Rows.Count.ToString, FontFactory.GetFont("Calibri", 18)))
+            c_ENTE = New PdfPCell(para)
+            c_ENTE.Border = 0
+            c_ENTE.VerticalAlignment = Element.ALIGN_MIDDLE
+            c_ENTE.HorizontalAlignment = Element.ALIGN_CENTER
+            c_ENTE.Colspan = 2
+            c_ENTE.FixedHeight = 30
+            pt_INFO_PROD.AddCell(c_ENTE)
+            para = New Paragraph(New Chunk("Date code = " & COMM_APP_WEB_CONV_FORM_DATE(Now, "yyWW"), FontFactory.GetFont("Calibri", 18)))
+            c_ENTE = New PdfPCell(para)
+            c_ENTE.Border = 0
+            c_ENTE.VerticalAlignment = Element.ALIGN_MIDDLE
+            c_ENTE.HorizontalAlignment = Element.ALIGN_CENTER
+            c_ENTE.Colspan = 2
+            c_ENTE.FixedHeight = 30
+            pt_INFO_PROD.AddCell(c_ENTE)
+            pt.AddCell(pt_INFO_PROD)
+
+
+            pt_LIST_SN = New PdfPTable(2)
+            pt_LIST_SN.DefaultCell.Border = Rectangle.NO_BORDER
+            Select Case sTYPE_ETQT
+                Case "carton"
+                    para = New Paragraph(New Chunk("Produits dans le carton :", FontFactory.GetFont("Calibri", 10)))
+                Case "palette"
+                    para = New Paragraph(New Chunk("Produits dans la palette :", FontFactory.GetFont("Calibri", 10)))
+                Case "bon de livraison"
+                    para = New Paragraph(New Chunk("Produits associés au BL :", FontFactory.GetFont("Calibri", 10)))
+            End Select
+            para.SpacingAfter = 20
+            c_ENTE = New PdfPCell(para)
+            c_ENTE.Border = 0
+            c_ENTE.Colspan = 2
+            c_ENTE.FixedHeight = 20
+            pt_LIST_SN.AddCell(c_ENTE)
+
+            Dim count As Integer = 1
+            For Each rdt As DataRow In dt.Rows
+                para = New Paragraph(New Chunk(rdt("NU_SER").ToString, FontFactory.GetFont("Calibri", 7)))
+                c_ENTE = New PdfPCell(para)
+                c_ENTE.Border = 0
+                c_ENTE.HorizontalAlignment = Element.ALIGN_CENTER
+                pt_LIST_SN.AddCell(c_ENTE)
+                count = +1
+            Next
+            If (count Mod 2) = 1 Then
+                para = New Paragraph(New Chunk("   ", FontFactory.GetFont("Calibri", 7)))
+                c_ENTE = New PdfPCell(para)
+                c_ENTE.Border = 0
+                c_ENTE.HorizontalAlignment = Element.ALIGN_CENTER
+                pt_LIST_SN.AddCell(c_ENTE)
+            End If
+            pt.AddCell(pt_LIST_SN)
+            dPDF.Add(pt)
+        Catch ex As Exception
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            Return Nothing
+        Finally
+            dPDF.Close()
+        End Try
+        Return sfich
+    End Function
 
     Protected Sub Button_CLOR_CART_Click(sender As Object, e As EventArgs) Handles Button_CLOR_CART.Click
         Dim sQuery As String = "", sFichier_Modele As String = "", sFichier_PDF As String = ""
@@ -393,6 +586,7 @@ Public Class CLSG
                         Dim sFichier As String = DIG_FACT_IMPR_PDF(sFichier_Modele,
                                                                TextBox_NU_OF.Text, "", "Carton", TextBox_NU_SER_CLIE.Text, TextBox_NU_SER_ECO.Text,
                                                                Label_NU_CART.Text, Label_NB_CART.Text, "", "", dtVar, dtLIST_DATA)
+                        COMM_APP_WEB_COPY_FILE(sFichier, "c:\sources\App_Web\PagesMembres\Digital_Factory\2.pdf", True)
                         ClientScript.RegisterStartupScript([GetType](), "printPdf", "document.getElementById(""pdf"").src = """ & Path.GetFileName(sFichier) & """;
                                                                                      document.getElementById(""pdf"").onload = function() {window.frames[""pdf""].focus();
                                                                                                                                            window.frames[""pdf""].print();};", True)
@@ -406,23 +600,33 @@ Public Class CLSG
                             dtLIST_DATA, iPDF)
                             sFichier_PDF = PDF_CCTN_FICH(sFichier_PDF, sFichier)
                         Next
+                        COMM_APP_WEB_COPY_FILE(sFichier_PDF, "c:\sources\App_Web\PagesMembres\Digital_Factory\2.pdf", True)
                         ClientScript.RegisterStartupScript([GetType](), "printPdf", "document.getElementById(""pdf"").src = """ & Path.GetFileName(sFichier_PDF) & """;
                                                                                      document.getElementById(""pdf"").onload = function() {window.frames[""pdf""].focus();
                                                                                                                                            window.frames[""pdf""].print();};", True)
                     End If
-
                 Case "PRN", "prn" 'impression étiquette PRN
                     'truc pourri pour ALMS, retirer le code article court au début du SN
-                    If Label_NM_CLIE.Text = "AIR LIQUIDE MEDICAL" Then
+                    'If Label_NM_CLIE.Text = "AIR LIQUIDE MEDICAL" Then
 
-                        TextBox_NU_SER_CLIE.Text = COMM_APP_WEB_STRI_TRIM_LEFT(TextBox_NU_SER_CLIE.Text, TextBox_NU_SER_CLIE.Text.IndexOf("-"))
-                        LOG_Msg(GetCurrentMethod, TextBox_NU_SER_CLIE.Text)
-                    End If
-                    LOG_Msg(GetCurrentMethod, "123")
+                    'TextBox_NU_SER_CLIE.Text = COMM_APP_WEB_STRI_TRIM_LEFT(TextBox_NU_SER_CLIE.Text, TextBox_NU_SER_CLIE.Text.IndexOf("-"))
+                    'LOG_Msg(GetCurrentMethod, TextBox_NU_SER_CLIE.Text)
+                    'En-d If
+                    'LOG_Msg(GetCurrentMethod, "123")
                     DIG_FACT_IMPR_ETIQ(sFichier_Modele,
                                        TextBox_NU_OF.Text, "", "Carton", TextBox_NU_SER_CLIE.Text, TextBox_NU_SER_ECO.Text,
                                        Label_NU_CART.Text, Label_NB_CART.Text, "", dtVar)
             End Select
+            If dt_CFGR_ARTI_ECO(0)("Document carton DF").ToString = "1" Then
+                sQuery = dt_CFGR_ARTI_ECO(0)("Requête liste produits dans le carton\palette document DF").ToString & " WHERE NU_CART = '" & Label_NU_CART.Text & "'"
+                Dim sfich_cart_df As String = _CREA_FICH_LIVR_DF(sQuery, "carton", dt_CFGR_ARTI_ECO(0)("Contenu du code à barre document DF").ToString)
+                Dim sfihcsauv As String = DIG_FACT_SQL_GET_PARA(Trim(Label_CD_ARTI_ECO.Text), "Chemin de sauvegarde du fichier PDF")
+                COMM_APP_WEB_COPY_FILE(sfich_cart_df, sfihcsauv & "\OF " & Label_NU_OF.Text & "\" & Label_NU_CART.Text & "_" & COMM_APP_WEB_CONV_FORM_DATE(Now, "ddMMyyyy_HHmmss") & ".pdf", True)
+                COMM_APP_WEB_COPY_FILE(sfich_cart_df, "c:\sources\App_Web\PagesMembres\Digital_Factory\" & Path.GetFileName(sfich_cart_df), True)
+                ClientScript.RegisterStartupScript([GetType](), "printPdf", "document.getElementById(""pdf"").src = """ & Path.GetFileName(sfich_cart_df) & """;
+                                                                                         document.getElementById(""pdf"").onload = function() {window.frames[""pdf""].focus();
+                                                                                                                                               window.frames[""pdf""].print();};", True)
+            End If
 
             'Rechercher le n° de palette
             'si quantité carton dans palette plein nouveau numéro de palette
@@ -446,14 +650,15 @@ Public Class CLSG
 
             dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
             If dt Is Nothing Then
-                sQuery = "SELECT ISNULL(MAX([NU_PALE])," & TextBox_NU_OF.Text & "00) + 1 AS NEW_NU_PALE
-                            FROM (
-                                    SELECT [NU_PALE], [NU_OF]
-                                      FROM [dbo].[V_CLSG_PRD_DTM_HIST_LIVR]
-                                     WHERE NU_OF = '" & TextBox_NU_OF.Text & "'
-                                 ) AS A"
-                dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
-                Label_NU_PALE_NU_V_NU_SER.Text = dt(0)("NEW_NU_PALE").ToString
+                'sQuery = "SELECT ISNULL(MAX([NU_PALE])," & TextBox_NU_OF.Text & "00) + 1 AS NEW_NU_PALE
+                '            FROM (
+                '                    SELECT [NU_PALE], [NU_OF]
+                '                      FROM [dbo].[V_CLSG_PRD_DTM_HIST_LIVR]
+                '                     WHERE NU_OF = '" & TextBox_NU_OF.Text & "'
+                '                 ) AS A"
+                'dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
+                'Label_NU_PALE_NU_V_NU_SER.Text = dt(0)("NEW_NU_PALE").ToString
+                ImageButton_CLOT_PALE_Click(sender, e)
             Else
                 Label_NU_PALE_NU_V_NU_SER.Text = dt(0)("MAX_NU_PALE").ToString
                 'Liste de cartons présents dans la palette
@@ -505,7 +710,7 @@ Public Class CLSG
             GridView_NU_SER_SCAN.DataBind()
             Button_CLOR_CART.Enabled = False
         Catch ex As Exception
-            LOG_Erreur(GetCurrentMethod, ex.Message)
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
         End Try
 
     End Sub
@@ -576,7 +781,7 @@ Public Class CLSG
             'MAJ Affichage
             sQuery = "SELECT ISNULL(COUNT([NU_NS_EOL]) ,COUNT([NU_NS_CLI])) As NB_NU_NS
                        FROM [dbo].[V_CLSG_PRD_DTM_HIST_LIVR]
-                      WHERE [NU_OF] = '" & sNU_OF & "'"
+                      WHERE [NU_OF] = '" & sNU_OF & "' AND NOT (NU_CART IS NULL OR NU_PALE IS NULL)"
             dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
             Label_QT_REST_OF.Text = (Convert.ToDecimal(Replace(Label_QT_OF.Text, ".", ",")) - Convert.ToDecimal(dt(0)("NB_NU_NS").ToString)).ToString
 
@@ -630,7 +835,7 @@ Public Class CLSG
             TextBox_NU_SER_CLIE.Text = ""
 
         Catch ex As Exception
-            LOG_Erreur(GetCurrentMethod, ex.Message)
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
         End Try
     End Sub
 
@@ -694,7 +899,7 @@ Public Class CLSG
             End If
             GridView_NU_SER_SCAN.DataBind()
         Catch ex As Exception
-            LOG_Erreur(GetCurrentMethod, ex.Message)
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
         End Try
 
     End Sub
@@ -748,7 +953,7 @@ Public Class CLSG
             End If
             GridView_NU_SER_SCAN.DataBind()
         Catch ex As Exception
-            LOG_Erreur(GetCurrentMethod, ex.Message)
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
         End Try
     End Sub
 
@@ -806,7 +1011,7 @@ Public Class CLSG
             TextBox_NU_CART.Focus()
         Catch ex As Exception
             MultiView_SAIS.SetActiveView(View_OF)
-            LOG_Erreur(GetCurrentMethod, ex.Message)
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
         End Try
     End Sub
 
@@ -894,6 +1099,7 @@ Public Class CLSG
                                                                        "", TextBox_NU_BL.Text, "Palette",
                                                                        "", "", "", Label_NB_CART_SCAN.Text,
                                                                        Label_NB_CART_SCAN.Text, Label_NU_PALE.Text, dtVar, dtLIST_DATA)
+                            COMM_APP_WEB_COPY_FILE(sFichier, "c:\sources\App_Web\PagesMembres\Digital_Factory\2.pdf", True)
                             ClientScript.RegisterStartupScript([GetType](), "printPdf", "document.getElementById(""pdf"").src = """ & Path.GetFileName(sFichier) & """;
                                                                                      document.getElementById(""pdf"").onload = function() {window.frames[""pdf""].focus();
                                                                                                                                            window.frames[""pdf""].print();};", True)
@@ -908,6 +1114,7 @@ Public Class CLSG
                                             dtLIST_DATA, iPDF)
                                 sFichier_PDF = PDF_CCTN_FICH(sFichier_PDF, sFichier)
                             Next
+                            COMM_APP_WEB_COPY_FILE(sFichier_PDF, "c:\sources\App_Web\PagesMembres\Digital_Factory\2.pdf", True)
                             ClientScript.RegisterStartupScript([GetType](), "printPdf", "document.getElementById(""pdf"").src = """ & Path.GetFileName(sFichier_PDF) & """;
                                                                                      document.getElementById(""pdf"").onload = function() {window.frames[""pdf""].focus();
                                                                                                                                            window.frames[""pdf""].print();};", True)
@@ -955,7 +1162,7 @@ Public Class CLSG
             End If
 
         Catch ex As Exception
-            LOG_Erreur(GetCurrentMethod, ex.Message)
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
         End Try
         TextBox_NU_CART.Text = ""
         TextBox_NU_CART.Focus()
@@ -996,6 +1203,7 @@ Public Class CLSG
                                                                        "", TextBox_NU_BL.Text, "Palette",
                                                                        "", "", "", Label_NB_CART_SCAN.Text,
                                                                        Label_NB_CART_SCAN.Text, Label_NU_PALE.Text, dtVar)
+                        COMM_APP_WEB_COPY_FILE(sFichier, "c:\sources\App_Web\PagesMembres\Digital_Factory\2.pdf", True)
                         ClientScript.RegisterStartupScript([GetType](), "printPdf", "document.getElementById(""pdf"").src = """ & Path.GetFileName(sFichier) & """;
                                                                                      document.getElementById(""pdf"").onload = function() {window.frames[""pdf""].focus();
                                                                                                                                            window.frames[""pdf""].print();};", True)
@@ -1010,6 +1218,7 @@ Public Class CLSG
                                             dtLIST_DATA, iPDF)
                             sFichier_PDF = PDF_CCTN_FICH(sFichier_PDF, sFichier)
                         Next
+                        COMM_APP_WEB_COPY_FILE(sFichier_PDF, "c:\sources\App_Web\PagesMembres\Digital_Factory\2.pdf", True)
                         ClientScript.RegisterStartupScript([GetType](), "printPdf", "document.getElementById(""pdf"").src = """ & Path.GetFileName(sFichier_PDF) & """;
                                                                                      document.getElementById(""pdf"").onload = function() {window.frames[""pdf""].focus();
                                                                                                                                            window.frames[""pdf""].print();};", True)
@@ -1057,7 +1266,7 @@ Public Class CLSG
             GridView_REPE.DataSource = ""
             GridView_REPE.DataBind()
         Catch ex As Exception
-            LOG_Erreur(GetCurrentMethod, ex.Message)
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
         End Try
     End Sub
     Protected Sub Button_SUPP_LIGN_V_CART_Click(sender As Object, e As ImageClickEventArgs) Handles Button_SUPP_LIGN_V_CART.Click
@@ -1233,6 +1442,7 @@ Public Class CLSG
                 dtNU_SSENS = SQL_SELE_TO_DT(sQuerySql, sChaineConnexion)
                 If dtNU_SSENS Is Nothing Then Throw New Exception("Pas de résultat dans la base de données")
                 sFichier_PDF = DIG_FACT_IMPR_PDF(dt_CFGR_ARTI_ECO(0)("Chemin fichier rapport de tracabilite").ToString, sOF, "0", "Carton", sNU_CLIE, sNU_ECO, "", "", "", "", dtNU_SSENS)
+                COMM_APP_WEB_COPY_FILE(sFichier_PDF, "c:\sources\App_Web\PagesMembres\Digital_Factory\2.pdf", True)
                 ClientScript.RegisterStartupScript([GetType](), "printPdf", "document.getElementById(""pdf"").src = """ & Path.GetFileName(sFichier_PDF) & """;
                                                                              document.getElementById(""pdf"").onload = function() {window.frames[""pdf""].focus();
                                                                                                                                    window.frames[""pdf""].print();};", True)
@@ -1243,7 +1453,7 @@ Public Class CLSG
             Next
 
         Catch ex As Exception
-            LOG_Erreur(GetCurrentMethod, ex.Message)
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
             MultiView_BASC_SAI_SEL.SetActiveView(View_SAI)
             'Exit Sub
         Finally
@@ -1268,13 +1478,15 @@ Public Class CLSG
             If dtLIPSUP Is Nothing Then Throw New Exception("Pas de données pour le BL n°" & TextBox_NU_BL_V_PALE.Text)
             'code article eolane
             Label_CD_ARTI_ECO_V_PALE.Text = Trim(dtLIPSUP(0)("MATNR").ToString)
+            Label_CD_ARTI_ECO.Text = Trim(dtLIPSUP(0)("MATNR").ToString)
             'désignation article
             Label_NM_DSGT_ARTI_V_PALE.Text = dtLIPSUP(0)("ARKTX").ToString
+            Label_NM_DSGT_ARTI.Text = dtLIPSUP(0)("ARKTX").ToString
             dtMARA = SAP_DATA_READ_MARA("MATNR EQ '" & Label_CD_ARTI_ECO_V_PALE.Text & "'")
             dtT179T = SAP_DATA_READ_T179T("PRODH EQ '" & dtMARA(0)("PRDHA").ToString & "'")
             'client
             Label_NM_CLIE_V_PALE.Text = dtT179T(0)("VTEXT").ToString
-
+            Label_NM_CLIE.Text = dtT179T(0)("VTEXT").ToString
             sQuery = "SELECT [NU_PALE]
                         FROM [dbo].[V_CLSG_PRD_DTM_HIST_LIVR]
                              INNER JOIN [SAP].[dbo].[AFKO] ON [AUFNR] LIKE '%' + CONVERT(NVARCHAR,[NU_OF])
@@ -1302,8 +1514,9 @@ Public Class CLSG
             TextBox_NU_BL_V_PALE.Focus()
 
             'MultiView_SAIS.SetActiveView(View_OF)
-            LOG_Erreur(GetCurrentMethod, ex.Message)
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
             TextBox_NU_BL_V_PALE.Text = ""
+            Exit Sub
         End Try
     End Sub
 
@@ -1363,6 +1576,7 @@ Public Class CLSG
                                                                        "", TextBox_NU_BL_V_PALE.Text, "Palette",
                                                                        "", "", "", Label_NB_CART_SCAN.Text,
                                                                        Label_NB_CART_SCAN.Text, TextBox_NU_PALE.Text, dtVar)
+                        COMM_APP_WEB_COPY_FILE(sFichier, "c:\sources\App_Web\PagesMembres\Digital_Factory\2.pdf", True)
                         ClientScript.RegisterStartupScript([GetType](), "printPdf", "document.getElementById(""pdf"").src = """ & Path.GetFileName(sFichier) & """;
                                                                                      document.getElementById(""pdf"").onload = function() {window.frames[""pdf""].focus();
                                                                                                                                            window.frames[""pdf""].print();};", True)
@@ -1377,6 +1591,7 @@ Public Class CLSG
                                             dtLIST_DATA, iPDF)
                             sFichier_PDF = PDF_CCTN_FICH(sFichier_PDF, sFichier)
                         Next
+                        COMM_APP_WEB_COPY_FILE(sFichier_PDF, "c:\sources\App_Web\PagesMembres\Digital_Factory\2.pdf", True)
                         ClientScript.RegisterStartupScript([GetType](), "printPdf", "document.getElementById(""pdf"").src = """ & Path.GetFileName(sFichier_PDF) & """;
                                                                                      document.getElementById(""pdf"").onload = function() {window.frames[""pdf""].focus();
                                                                                                                                            window.frames[""pdf""].print();};", True)
@@ -1433,7 +1648,7 @@ Public Class CLSG
                 GridView_LIST_PALE_ENTR.DataBind()
             End If
         Catch ex As Exception
-            LOG_Erreur(GetCurrentMethod, ex.Message)
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
         End Try
         TextBox_NU_PALE.Focus()
         TextBox_NU_PALE.Text = ""
@@ -1442,12 +1657,49 @@ Public Class CLSG
     End Sub
 
     Protected Sub Button_CLOR_LIVR_Click(sender As Object, e As ImageClickEventArgs) Handles Button_CLOR_LIVR.Click
-        MultiView_SAIS.SetActiveView(View_OF)
-        TextBox_NU_PALE.Text = ""
-        TextBox_NU_BL.Text = ""
-        Label_CD_ARTI_ECO_V_PALE.Text = ""
-        Label_NM_DSGT_ARTI_V_PALE.Text = ""
-        Label_NM_CLIE_V_PALE.Text = ""
+        Dim sQuery As String = "", sfihcsauv As String = ""
+        Dim dt, dt_CFGR_ARTI_ECO As New DataTable
+        Try
+            'blabla
+            dt_CFGR_ARTI_ECO = DIG_FACT_SQL_CFGR_ARTI_ECO(Trim(Label_CD_ARTI_ECO_V_PALE.Text))
+            If dt_CFGR_ARTI_ECO(0)("Document BL DF").ToString = "1" Then
+                sQuery = dt_CFGR_ARTI_ECO(0)("Requête liste produits dans le carton\palette document DF").ToString & " WHERE [NU_BL] = '" & TextBox_NU_BL_V_PALE.Text & "'"
+                Dim sfich_cart_df As String = _CREA_FICH_LIVR_DF(sQuery, "bon de livraison", dt_CFGR_ARTI_ECO(0)("Contenu du code à barre document DF").ToString)
+                sfihcsauv = DIG_FACT_SQL_GET_PARA(Trim(Label_CD_ARTI_ECO_V_PALE.Text), "Chemin de sauvegarde du fichier PDF")
+                COMM_APP_WEB_COPY_FILE(sfich_cart_df, sfihcsauv & "\BL " & TextBox_NU_BL_V_PALE.Text & "\Liste_produits_" & COMM_APP_WEB_CONV_FORM_DATE(Now, "ddMMyyyy_HHmmss") & ".pdf", True)
+                COMM_APP_WEB_COPY_FILE(sfich_cart_df, "c:\sources\App_Web\PagesMembres\Digital_Factory\" & Path.GetFileName(sfich_cart_df), True)
+                ClientScript.RegisterStartupScript([GetType](), "printPdf", "document.getElementById(""pdf"").src = """ & Path.GetFileName(sfich_cart_df) & """;
+                                                                                         document.getElementById(""pdf"").onload = function() {window.frames[""pdf""].focus();
+                                                                                                                                               window.frames[""pdf""].print();};", True)
+            End If 'transfert des fichiers
+            If dt_CFGR_ARTI_ECO(0)("Mise à disposition des documents par BL").ToString = "1" Then
+                dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
+                For Each rdt As DataRow In dt.Rows
+                    Dim dirs As String() = COMM_APP_WEB_GET_FILE(sfihcsauv, " * " & rdt("NU_SER").ToString & "*")
+                    For Each Dir As String In dirs
+                        COMM_APP_WEB_COPY_FILE(Dir, sfihcsauv & "\BL " & TextBox_NU_BL_V_PALE.Text & "\" & Path.GetFileName(Dir), True)
+                    Next
+                Next
+            End If
+
+            MultiView_SAIS.SetActiveView(View_OF)
+            TextBox_NU_BL_V_PALE.Text = ""
+            TextBox_NU_BL_V_PALE.Text = ""
+            Label_CD_ARTI_ECO_V_PALE.Text = ""
+            Label_NM_DSGT_ARTI_V_PALE.Text = ""
+            Label_NM_CLIE_V_PALE.Text = ""
+            Label_NM_CLIE.Text = ""
+            Label_NM_DSGT_ARTI.Text = ""
+            Label_CD_ARTI_ECO.Text = ""
+            GridView_LIST_PALE_ENTR.DataSource = ""
+            GridView_LIST_PALE_ENTR.DataBind()
+            GridView_LIST_PALE_LIBR.DataSource = ""
+            GridView_LIST_PALE_LIBR.DataBind()
+        Catch ex As Exception
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            Exit Sub
+        End Try
+
     End Sub
 
     Protected Sub Button_SAI_PALE_BL_Click(sender As Object, e As EventArgs) Handles Button_SAI_PALE_BL.Click
@@ -1463,6 +1715,16 @@ Public Class CLSG
             dt_CFGR_ARTI_ECO = DIG_FACT_SQL_CFGR_ARTI_ECO(Trim(Label_CD_ARTI_ECO.Text))
 
             If Not (Label_NB_CART.Text = "" Or Label_NB_CART.Text = "0") Then Button_CLOR_CART_Click(sender, e)
+            If dt_CFGR_ARTI_ECO(0)("Document palette DF").ToString = "1" Then
+                sQuery = dt_CFGR_ARTI_ECO(0)("Requête liste produits dans le carton\palette document DF").ToString & " WHERE NU_PALE = '" & Label_NU_PALE_NU_V_NU_SER.Text & "'"
+                Dim sfich_cart_df As String = _CREA_FICH_LIVR_DF(sQuery, "palette", dt_CFGR_ARTI_ECO(0)("Contenu du code à barre document DF").ToString)
+                Dim sfihcsauv As String = DIG_FACT_SQL_GET_PARA(Trim(Label_CD_ARTI_ECO.Text), "Chemin de sauvegarde du fichier PDF")
+                COMM_APP_WEB_COPY_FILE(sfich_cart_df, sfihcsauv & "\OF " & Label_NU_OF.Text & "\" & Label_NU_CART.Text & "_" & COMM_APP_WEB_CONV_FORM_DATE(Now, "ddMMyyyy_HHmmss") & ".pdf", True)
+                COMM_APP_WEB_COPY_FILE(sfich_cart_df, "c:\sources\App_Web\PagesMembres\Digital_Factory\" & Path.GetFileName(sfich_cart_df), True)
+                ClientScript.RegisterStartupScript([GetType](), "printPdf", "document.getElementById(""pdf"").src = """ & Path.GetFileName(sfich_cart_df) & """;
+                                                                                         document.getElementById(""pdf"").onload = function() {window.frames[""pdf""].focus();
+                                                                                                                                               window.frames[""pdf""].print();};", True)
+            End If
             sQuery = "SELECT ISNULL(MAX([NU_PALE])," & Label_NU_OF.Text & "00) + 1 AS NEW_NU_PALE
                             FROM (
                                     SELECT [NU_PALE], [NU_OF]
@@ -1494,7 +1756,7 @@ Public Class CLSG
             GridView_LIST_CART.DataBind()
             Label_NB_CART_PALE.Text = "0"
         Catch ex As Exception
-            LOG_Erreur(GetCurrentMethod, ex.Message)
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
         End Try
 
     End Sub

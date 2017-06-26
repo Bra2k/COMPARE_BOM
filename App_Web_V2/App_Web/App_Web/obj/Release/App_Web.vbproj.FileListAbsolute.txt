@@ -1,0 +1,676 @@
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\ApplicationInsights.config
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\roslyn\csc.exe
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\roslyn\System.Collections.Immutable.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\roslyn\System.Reflection.Metadata.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\roslyn\vbc.exe
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\roslyn\VBCSCompiler.exe
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\roslyn\VBCSCompiler.exe.config
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\App_Web.dll.config
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\App_Web.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\App_Web.pdb
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\WebForms_Basic.xml
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\Antlr3.Runtime.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\AspNet.ScriptManager.bootstrap.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\AspNet.ScriptManager.jQuery.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\EntityFramework.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\EntityFramework.SqlServer.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\Microsoft.AI.Agent.Intercept.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\Microsoft.AI.DependencyCollector.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\Microsoft.AI.PerfCounterCollector.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\Microsoft.AI.ServerTelemetryChannel.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\Microsoft.AI.Web.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\Microsoft.AI.WindowsServer.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\Microsoft.ApplicationInsights.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\Microsoft.AspNet.FriendlyUrls.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\Microsoft.AspNet.Identity.Core.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\Microsoft.Owin.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\Microsoft.Owin.Security.Cookies.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\Microsoft.Owin.Security.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\Microsoft.Owin.Security.Facebook.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\Microsoft.Owin.Security.Google.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\Microsoft.Owin.Security.OAuth.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\Microsoft.Owin.Security.Twitter.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\Microsoft.QualityTools.Testing.Fakes.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\Microsoft.ScriptManager.MSAjax.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\Microsoft.ScriptManager.WebForms.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\Microsoft.Web.Infrastructure.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\Newtonsoft.Json.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\Owin.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\PdfSharp.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\System.Net.Http.Formatting.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\System.Web.Http.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\System.Web.Http.WebHost.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\System.Web.Optimization.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\System.Web.Providers.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\WebGrease.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\Microsoft.AI.DependencyCollector.xml
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\Microsoft.AI.ServerTelemetryChannel.xml
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\Microsoft.AI.Web.xml
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\Microsoft.AI.WindowsServer.xml
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\Microsoft.ApplicationInsights.xml
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\PdfSharp.pdb
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\PdfSharp.xml
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\System.Net.Http.Formatting.xml
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\System.Web.Http.xml
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\System.Web.Http.WebHost.xml
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\System.Web.Optimization.xml
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\Antlr3.Runtime.pdb
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\Newtonsoft.Json.xml
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\Microsoft.AspNet.FriendlyUrls.xml
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\EntityFramework.xml
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\EntityFramework.SqlServer.xml
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\Microsoft.AspNet.Identity.Core.xml
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\System.Web.Providers.xml
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\Microsoft.Owin.xml
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\Microsoft.Owin.Security.xml
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\Microsoft.Owin.Security.Facebook.xml
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\Microsoft.Owin.Security.Cookies.xml
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\Microsoft.Owin.Security.Google.xml
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\Microsoft.Owin.Security.Twitter.xml
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\Microsoft.Owin.Security.OAuth.xml
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\fr\Microsoft.QualityTools.Testing.Fakes.resources.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\de\PdfSharp.resources.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\fr\System.Web.Optimization.resources.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\fr\Microsoft.AspNet.FriendlyUrls.resources.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\fr\EntityFramework.resources.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\fr\EntityFramework.SqlServer.resources.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\fr\Microsoft.AspNet.Identity.Core.resources.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\fr\Microsoft.AspNet.Identity.Owin.resources.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\fr\Microsoft.AspNet.Identity.EntityFramework.resources.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\fr\Microsoft.Owin.resources.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\fr\Microsoft.Owin.Host.SystemWeb.resources.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\fr\Microsoft.Owin.Security.resources.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\fr\Microsoft.Owin.Security.Facebook.resources.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\fr\Microsoft.Owin.Security.Google.resources.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\fr\Microsoft.Owin.Security.Twitter.resources.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\fr\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\obj\Release\Interop.SAPFunctionsOCX.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\obj\Release\Interop.SAPLogonCtrl.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\obj\Release\Interop.SAPNETZLib.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\obj\Release\Interop.SAPTableFactoryCtrl.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\obj\Release\App_Web.vbproj.ResolveComReference.cache
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\obj\Release\App_Web.Resources.resources
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\obj\Release\App_Web.vbproj.GenerateResource.Cache
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\obj\Release\App_Web.dll
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\obj\Release\WebForms_Basic.xml
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\obj\Release\App_Web.pdb
+D:\Documents\Visual Studio 2015\Projects\App_Web\App_Web\bin\BarcodeLib.Barcode.ASP.NET.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\obj\Release\Interop.SAPFunctionsOCX.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\obj\Release\Interop.SAPLogonCtrl.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\obj\Release\Interop.SAPNETZLib.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\obj\Release\Interop.SAPTableFactoryCtrl.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\obj\Release\App_Web.vbproj.ResolveComReference.cache
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\obj\Release\App_Web.Resources.resources
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\obj\Release\App_Web.vbproj.GenerateResource.Cache
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\obj\Release\App_Web.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\obj\Release\WebForms_Basic.xml
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\obj\Release\App_Web.pdb
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\ApplicationInsights.config
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\roslyn\csc.exe
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\roslyn\Microsoft.CodeAnalysis.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\roslyn\Microsoft.CSharp.Core.targets
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\roslyn\Microsoft.VisualBasic.Core.targets
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\roslyn\System.Collections.Immutable.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\roslyn\System.Reflection.Metadata.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\roslyn\vbc.exe
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\roslyn\VBCSCompiler.exe
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\roslyn\VBCSCompiler.exe.config
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\App_Web.dll.config
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\App_Web.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\App_Web.pdb
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\WebForms_Basic.xml
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\Antlr3.Runtime.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\AspNet.ScriptManager.bootstrap.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\AspNet.ScriptManager.jQuery.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\EntityFramework.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\EntityFramework.SqlServer.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\Microsoft.AI.Agent.Intercept.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\Microsoft.AI.DependencyCollector.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\Microsoft.AI.PerfCounterCollector.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\Microsoft.AI.ServerTelemetryChannel.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\Microsoft.AI.Web.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\Microsoft.AI.WindowsServer.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\Microsoft.ApplicationInsights.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\Microsoft.AspNet.FriendlyUrls.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\Microsoft.AspNet.Identity.Core.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\Microsoft.AspNet.Identity.Owin.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\Microsoft.Owin.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\Microsoft.Owin.Host.SystemWeb.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\Microsoft.Owin.Security.Cookies.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\Microsoft.Owin.Security.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\Microsoft.Owin.Security.Facebook.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\Microsoft.Owin.Security.Google.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\Microsoft.Owin.Security.OAuth.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\Microsoft.Owin.Security.Twitter.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\Microsoft.QualityTools.Testing.Fakes.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\Microsoft.ScriptManager.MSAjax.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\Microsoft.ScriptManager.WebForms.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\Microsoft.Web.Infrastructure.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\Newtonsoft.Json.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\Owin.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\System.Net.Http.Formatting.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\System.Web.Http.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\System.Web.Http.WebHost.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\System.Web.Optimization.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\System.Web.Providers.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\WebGrease.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\Microsoft.AI.DependencyCollector.xml
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\Microsoft.AI.ServerTelemetryChannel.xml
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\Microsoft.AI.Web.xml
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\Microsoft.AI.WindowsServer.xml
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\Microsoft.ApplicationInsights.xml
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\System.Net.Http.Formatting.xml
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\System.Web.Http.xml
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\System.Web.Http.WebHost.xml
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\System.Web.Optimization.xml
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\Antlr3.Runtime.pdb
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\Newtonsoft.Json.xml
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\Microsoft.AspNet.FriendlyUrls.xml
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\EntityFramework.xml
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\EntityFramework.SqlServer.xml
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\Microsoft.AspNet.Identity.Core.xml
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\Microsoft.AspNet.Identity.Owin.xml
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\System.Web.Providers.xml
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\Microsoft.Owin.xml
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\Microsoft.Owin.Host.SystemWeb.xml
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\Microsoft.Owin.Security.xml
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\Microsoft.Owin.Security.Facebook.xml
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\Microsoft.Owin.Security.Cookies.xml
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\Microsoft.Owin.Security.Google.xml
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\Microsoft.Owin.Security.Twitter.xml
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\Microsoft.Owin.Security.OAuth.xml
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\fr\Microsoft.QualityTools.Testing.Fakes.resources.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\fr\System.Web.Optimization.resources.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\fr\Microsoft.AspNet.FriendlyUrls.resources.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\fr\EntityFramework.resources.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\fr\EntityFramework.SqlServer.resources.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\fr\Microsoft.AspNet.Identity.Core.resources.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\fr\Microsoft.AspNet.Identity.Owin.resources.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\fr\Microsoft.AspNet.Identity.EntityFramework.resources.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\fr\Microsoft.Owin.resources.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\fr\Microsoft.Owin.Host.SystemWeb.resources.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\fr\Microsoft.Owin.Security.resources.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\fr\Microsoft.Owin.Security.Facebook.resources.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\fr\Microsoft.Owin.Security.Google.resources.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\fr\Microsoft.Owin.Security.Twitter.resources.dll
+\\cefs01\SO_INFORMATIQUE\2-LOGICIEL\DEVELOPPEMENT\VB.NET\Application Eolane Combree\Sources\App_Web\App_Web\bin\fr\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\ApplicationInsights.config
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\roslyn\csc.exe
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\roslyn\System.Collections.Immutable.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\roslyn\System.Reflection.Metadata.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\roslyn\vbc.exe
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\roslyn\VBCSCompiler.exe
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\roslyn\VBCSCompiler.exe.config
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\App_Web.dll.config
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\App_Web.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\App_Web.pdb
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\WebForms_Basic.xml
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\Antlr3.Runtime.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\AspNet.ScriptManager.bootstrap.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\AspNet.ScriptManager.jQuery.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\BarcodeLib.Barcode.ASP.NET.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\EntityFramework.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\EntityFramework.SqlServer.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\Microsoft.AI.Agent.Intercept.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\Microsoft.AI.DependencyCollector.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\Microsoft.AI.PerfCounterCollector.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\Microsoft.AI.ServerTelemetryChannel.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\Microsoft.AI.Web.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\Microsoft.AI.WindowsServer.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\Microsoft.ApplicationInsights.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\Microsoft.AspNet.FriendlyUrls.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\Microsoft.AspNet.Identity.Core.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\Microsoft.Owin.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\Microsoft.Owin.Security.Cookies.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\Microsoft.Owin.Security.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\Microsoft.Owin.Security.Facebook.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\Microsoft.Owin.Security.Google.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\Microsoft.Owin.Security.OAuth.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\Microsoft.Owin.Security.Twitter.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\Microsoft.QualityTools.Testing.Fakes.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\Microsoft.ScriptManager.MSAjax.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\Microsoft.ScriptManager.WebForms.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\Microsoft.Web.Infrastructure.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\Newtonsoft.Json.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\Owin.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\PdfSharp.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\System.Net.Http.Formatting.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\System.Web.Http.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\System.Web.Http.WebHost.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\System.Web.Optimization.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\System.Web.Providers.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\WebGrease.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\Microsoft.AI.DependencyCollector.xml
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\Microsoft.AI.ServerTelemetryChannel.xml
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\Microsoft.AI.Web.xml
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\Microsoft.AI.WindowsServer.xml
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\Microsoft.ApplicationInsights.xml
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\PdfSharp.pdb
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\PdfSharp.xml
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\System.Net.Http.Formatting.xml
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\System.Web.Http.xml
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\System.Web.Http.WebHost.xml
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\System.Web.Optimization.xml
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\Antlr3.Runtime.pdb
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\Newtonsoft.Json.xml
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\Microsoft.AspNet.FriendlyUrls.xml
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\EntityFramework.xml
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\EntityFramework.SqlServer.xml
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\Microsoft.AspNet.Identity.Core.xml
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\System.Web.Providers.xml
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\Microsoft.Owin.xml
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\Microsoft.Owin.Security.xml
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\Microsoft.Owin.Security.Facebook.xml
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\Microsoft.Owin.Security.Cookies.xml
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\Microsoft.Owin.Security.Google.xml
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\Microsoft.Owin.Security.Twitter.xml
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\Microsoft.Owin.Security.OAuth.xml
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\fr\Microsoft.QualityTools.Testing.Fakes.resources.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\de\PdfSharp.resources.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\fr\System.Web.Optimization.resources.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\fr\Microsoft.AspNet.FriendlyUrls.resources.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\fr\EntityFramework.resources.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\fr\EntityFramework.SqlServer.resources.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\fr\Microsoft.AspNet.Identity.Core.resources.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\fr\Microsoft.AspNet.Identity.Owin.resources.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\fr\Microsoft.AspNet.Identity.EntityFramework.resources.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\fr\Microsoft.Owin.resources.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\fr\Microsoft.Owin.Host.SystemWeb.resources.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\fr\Microsoft.Owin.Security.resources.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\fr\Microsoft.Owin.Security.Facebook.resources.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\fr\Microsoft.Owin.Security.Google.resources.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\fr\Microsoft.Owin.Security.Twitter.resources.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\bin\fr\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\obj\Release\App_Web.vbprojResolveAssemblyReference.cache
+D:\Documents\Depot App_Web\App_Web\App_Web\obj\Release\Interop.SAPFunctionsOCX.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\obj\Release\Interop.SAPLogonCtrl.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\obj\Release\Interop.SAPNETZLib.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\obj\Release\Interop.SAPTableFactoryCtrl.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\obj\Release\App_Web.vbproj.ResolveComReference.cache
+D:\Documents\Depot App_Web\App_Web\App_Web\obj\Release\App_Web.Resources.resources
+D:\Documents\Depot App_Web\App_Web\App_Web\obj\Release\App_Web.vbproj.GenerateResource.Cache
+D:\Documents\Depot App_Web\App_Web\App_Web\obj\Release\App_Web.dll
+D:\Documents\Depot App_Web\App_Web\App_Web\obj\Release\WebForms_Basic.xml
+D:\Documents\Depot App_Web\App_Web\App_Web\obj\Release\App_Web.pdb
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\ApplicationInsights.config
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\roslyn\csc.exe
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\roslyn\vbc.exe
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\roslyn\VBCSCompiler.exe
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\App_Web.dll.config
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\App_Web.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\App_Web.pdb
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\WebForms_Basic.xml
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\Antlr3.Runtime.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\AspNet.ScriptManager.bootstrap.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\AspNet.ScriptManager.jQuery.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\EntityFramework.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\EntityFramework.SqlServer.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\Microsoft.AI.Web.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\Microsoft.ApplicationInsights.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\Microsoft.AspNet.FriendlyUrls.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\Microsoft.Owin.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\Microsoft.Owin.Security.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\Microsoft.QualityTools.Testing.Fakes.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\Microsoft.ScriptManager.MSAjax.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\Microsoft.ScriptManager.WebForms.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\Newtonsoft.Json.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\Owin.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\System.Net.Http.Formatting.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\System.Web.Http.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\System.Web.Http.WebHost.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\System.Web.Optimization.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\System.Web.Providers.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\WebGrease.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\Microsoft.AI.Web.xml
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\Microsoft.ApplicationInsights.xml
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\System.Net.Http.Formatting.xml
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\System.Web.Http.xml
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\System.Web.Http.WebHost.xml
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\System.Web.Optimization.xml
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\Antlr3.Runtime.pdb
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\Newtonsoft.Json.xml
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\Microsoft.AspNet.FriendlyUrls.xml
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\EntityFramework.xml
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\EntityFramework.SqlServer.xml
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\System.Web.Providers.xml
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\Microsoft.Owin.xml
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\Microsoft.Owin.Security.xml
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\fr\Microsoft.QualityTools.Testing.Fakes.resources.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\fr\System.Web.Optimization.resources.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\fr\Microsoft.AspNet.FriendlyUrls.resources.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\fr\EntityFramework.resources.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\fr\EntityFramework.SqlServer.resources.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\fr\Microsoft.AspNet.Identity.Core.resources.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\fr\Microsoft.AspNet.Identity.Owin.resources.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\fr\Microsoft.AspNet.Identity.EntityFramework.resources.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\fr\Microsoft.Owin.resources.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\fr\Microsoft.Owin.Host.SystemWeb.resources.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\fr\Microsoft.Owin.Security.resources.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\fr\Microsoft.Owin.Security.Facebook.resources.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\fr\Microsoft.Owin.Security.Google.resources.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\fr\Microsoft.Owin.Security.Twitter.resources.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\bin\fr\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\obj\Release\Interop.SAPFunctionsOCX.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\obj\Release\Interop.SAPLogonCtrl.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\obj\Release\Interop.SAPNETZLib.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\obj\Release\Interop.SAPTableFactoryCtrl.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\obj\Release\App_Web.vbproj.ResolveComReference.cache
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\obj\Release\App_Web.Resources.resources
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\obj\Release\App_Web.vbproj.GenerateResource.Cache
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\obj\Release\App_Web.dll
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\obj\Release\WebForms_Basic.xml
+C:\Users\ce_ackfl.EOLANE\Desktop\compare_bom\App_Web\App_Web\obj\Release\App_Web.pdb
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\ApplicationInsights.config
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\roslyn\csc.exe
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\roslyn\System.Collections.Immutable.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\roslyn\System.Reflection.Metadata.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\roslyn\vbc.exe
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\roslyn\VBCSCompiler.exe
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\roslyn\VBCSCompiler.exe.config
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\App_Web.dll.config
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\App_Web.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\App_Web.pdb
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\WebForms_Basic.xml
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\Antlr3.Runtime.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\AspNet.ScriptManager.bootstrap.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\AspNet.ScriptManager.jQuery.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\BarcodeLib.Barcode.ASP.NET.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\EntityFramework.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\EntityFramework.SqlServer.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\Microsoft.AI.Agent.Intercept.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\Microsoft.AI.DependencyCollector.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\Microsoft.AI.PerfCounterCollector.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\Microsoft.AI.ServerTelemetryChannel.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\Microsoft.AI.Web.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\Microsoft.AI.WindowsServer.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\Microsoft.ApplicationInsights.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\Microsoft.AspNet.FriendlyUrls.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\Microsoft.AspNet.Identity.Core.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\Microsoft.Owin.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\Microsoft.Owin.Security.Cookies.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\Microsoft.Owin.Security.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\Microsoft.Owin.Security.Facebook.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\Microsoft.Owin.Security.Google.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\Microsoft.Owin.Security.OAuth.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\Microsoft.Owin.Security.Twitter.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\Microsoft.QualityTools.Testing.Fakes.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\Microsoft.ScriptManager.MSAjax.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\Microsoft.ScriptManager.WebForms.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\Microsoft.Web.Infrastructure.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\Newtonsoft.Json.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\Owin.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\PdfSharp.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\System.Net.Http.Formatting.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\System.Web.Http.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\System.Web.Http.WebHost.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\System.Web.Optimization.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\System.Web.Providers.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\WebGrease.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\Microsoft.AI.DependencyCollector.xml
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\Microsoft.AI.ServerTelemetryChannel.xml
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\Microsoft.AI.Web.xml
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\Microsoft.AI.WindowsServer.xml
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\Microsoft.ApplicationInsights.xml
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\PdfSharp.pdb
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\PdfSharp.xml
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\System.Net.Http.Formatting.xml
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\System.Web.Http.xml
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\System.Web.Http.WebHost.xml
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\System.Web.Optimization.xml
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\Antlr3.Runtime.pdb
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\Newtonsoft.Json.xml
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\Microsoft.AspNet.FriendlyUrls.xml
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\EntityFramework.xml
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\EntityFramework.SqlServer.xml
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\Microsoft.AspNet.Identity.Core.xml
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\System.Web.Providers.xml
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\Microsoft.Owin.xml
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\Microsoft.Owin.Security.xml
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\Microsoft.Owin.Security.Facebook.xml
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\Microsoft.Owin.Security.Cookies.xml
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\Microsoft.Owin.Security.Google.xml
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\Microsoft.Owin.Security.Twitter.xml
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\Microsoft.Owin.Security.OAuth.xml
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\fr\Microsoft.QualityTools.Testing.Fakes.resources.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\de\PdfSharp.resources.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\fr\System.Web.Optimization.resources.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\fr\Microsoft.AspNet.FriendlyUrls.resources.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\fr\EntityFramework.resources.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\fr\EntityFramework.SqlServer.resources.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\fr\Microsoft.AspNet.Identity.Core.resources.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\fr\Microsoft.AspNet.Identity.Owin.resources.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\fr\Microsoft.AspNet.Identity.EntityFramework.resources.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\fr\Microsoft.Owin.resources.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\fr\Microsoft.Owin.Host.SystemWeb.resources.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\fr\Microsoft.Owin.Security.resources.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\fr\Microsoft.Owin.Security.Facebook.resources.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\fr\Microsoft.Owin.Security.Google.resources.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\fr\Microsoft.Owin.Security.Twitter.resources.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\fr\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\obj\Release\Interop.SAPFunctionsOCX.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\obj\Release\Interop.SAPLogonCtrl.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\obj\Release\Interop.SAPNETZLib.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\obj\Release\Interop.SAPTableFactoryCtrl.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\obj\Release\App_Web.vbproj.ResolveComReference.cache
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\obj\Release\App_Web.Resources.resources
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\obj\Release\App_Web.vbproj.GenerateResource.Cache
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\obj\Release\App_Web.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\obj\Release\WebForms_Basic.xml
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\obj\Release\App_Web.pdb
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\itextsharp.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\itextsharp.pdfa.dll
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\bin\itextsharp.xml
+D:\Downloads\COMPARE_BOM-master\App_Web\App_Web\obj\Release\App_Web.vbprojResolveAssemblyReference.cache
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\obj\Release\Interop.SAPFunctionsOCX.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\obj\Release\Interop.SAPLogonCtrl.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\obj\Release\Interop.SAPNETZLib.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\obj\Release\Interop.SAPTableFactoryCtrl.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\obj\Release\App_Web.vbproj.ResolveComReference.cache
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\obj\Release\App_Web.Resources.resources
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\obj\Release\App_Web.vbproj.GenerateResource.Cache
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\obj\Release\WebForms_Basic.xml
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\ApplicationInsights.config
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\roslyn\csc.exe
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\roslyn\System.Collections.Immutable.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\roslyn\System.Reflection.Metadata.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\roslyn\vbc.exe
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\roslyn\VBCSCompiler.exe
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\roslyn\VBCSCompiler.exe.config
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\WebForms_Basic.xml
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Antlr3.Runtime.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\AspNet.ScriptManager.bootstrap.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\AspNet.ScriptManager.jQuery.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\EntityFramework.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\EntityFramework.SqlServer.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Microsoft.AI.Agent.Intercept.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Microsoft.AI.DependencyCollector.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Microsoft.AI.PerfCounterCollector.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Microsoft.AI.ServerTelemetryChannel.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Microsoft.AI.Web.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Microsoft.AI.WindowsServer.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Microsoft.ApplicationInsights.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Microsoft.AspNet.FriendlyUrls.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Microsoft.AspNet.Identity.Core.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Microsoft.Owin.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Microsoft.Owin.Security.Cookies.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Microsoft.Owin.Security.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Microsoft.Owin.Security.Facebook.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Microsoft.Owin.Security.Google.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Microsoft.Owin.Security.OAuth.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Microsoft.Owin.Security.Twitter.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Microsoft.QualityTools.Testing.Fakes.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Microsoft.ScriptManager.MSAjax.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Microsoft.ScriptManager.WebForms.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Microsoft.Web.Infrastructure.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Newtonsoft.Json.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Owin.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\System.Net.Http.Formatting.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\System.Web.Http.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\System.Web.Http.WebHost.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\System.Web.Optimization.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\System.Web.Providers.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\WebGrease.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Microsoft.AI.DependencyCollector.xml
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Microsoft.AI.ServerTelemetryChannel.xml
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Microsoft.AI.Web.xml
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Microsoft.AI.WindowsServer.xml
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Microsoft.ApplicationInsights.xml
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\System.Net.Http.Formatting.xml
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\System.Web.Http.xml
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\System.Web.Http.WebHost.xml
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\System.Web.Optimization.xml
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Antlr3.Runtime.pdb
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Newtonsoft.Json.xml
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Microsoft.AspNet.FriendlyUrls.xml
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\EntityFramework.xml
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\EntityFramework.SqlServer.xml
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Microsoft.AspNet.Identity.Core.xml
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\System.Web.Providers.xml
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Microsoft.Owin.xml
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Microsoft.Owin.Security.xml
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Microsoft.Owin.Security.Facebook.xml
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Microsoft.Owin.Security.Cookies.xml
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Microsoft.Owin.Security.Google.xml
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Microsoft.Owin.Security.Twitter.xml
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Microsoft.Owin.Security.OAuth.xml
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\fr\Microsoft.QualityTools.Testing.Fakes.resources.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\fr\System.Web.Optimization.resources.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\fr\Microsoft.AspNet.FriendlyUrls.resources.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\fr\EntityFramework.resources.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\fr\EntityFramework.SqlServer.resources.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\fr\Microsoft.AspNet.Identity.Core.resources.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\fr\Microsoft.AspNet.Identity.Owin.resources.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\fr\Microsoft.AspNet.Identity.EntityFramework.resources.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\fr\Microsoft.Owin.resources.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\fr\Microsoft.Owin.Host.SystemWeb.resources.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\fr\Microsoft.Owin.Security.resources.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\fr\Microsoft.Owin.Security.Facebook.resources.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\fr\Microsoft.Owin.Security.Google.resources.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\fr\Microsoft.Owin.Security.Twitter.resources.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\fr\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\obj\Release\App_Web.vbprojResolveAssemblyReference.cache
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\System.Web.Extensions.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\App_Web_DEV.dll.config
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\App_Web_DEV.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\App_Web_DEV.pdb
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\obj\Release\App_Web_DEV.dll
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\obj\Release\App_Web_DEV.pdb

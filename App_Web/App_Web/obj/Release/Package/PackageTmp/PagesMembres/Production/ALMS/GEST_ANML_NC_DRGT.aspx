@@ -8,6 +8,14 @@
                 <div class="titre_page">
                     <h2>
                         Gestion des anomalies / non-conformités ALMS</h2>
+                    <p>
+                        &nbsp;</p>
+                    <p>
+                        <asp:RadioButtonList ID="RadioButtonList_TYPE_INCI" runat="server" RepeatDirection="Horizontal" AutoPostBack="True" CellPadding="5" CellSpacing="5">
+                            <asp:ListItem Selected="True">Anomalies</asp:ListItem>
+                            <asp:ListItem>Dérogations</asp:ListItem>
+                        </asp:RadioButtonList>
+                    </p>
                 </div>
     <asp:MultiView ID="MultiView_ANML" runat="server" ActiveViewIndex="0">
         <asp:View ID="View_SAIS" runat="server">
@@ -43,7 +51,7 @@
                 <tr>
                     <td style="width: 256px; vertical-align: top;">Type de Non-Conformité :</td>
                     <td>
-                        <asp:DropDownList ID="DropDownList_TYPE_NC" runat="server"  Width="296px" Enabled="False">
+                        <asp:DropDownList ID="DropDownList_TYPE_NC" runat="server"  Width="296px" Enabled="False" AutoPostBack="True">
                         </asp:DropDownList>
                         <asp:GridView ID="GridView_TYPE_NC" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical" Font-Size="X-Small" AutoGenerateColumns="False" DataSourceID="SqlDataSource_DCPO_ANML">
                             <AlternatingRowStyle BackColor="#DCDCDC" />
@@ -60,7 +68,7 @@
                             <SortedDescendingCellStyle BackColor="#CAC9C9" />
                             <SortedDescendingHeaderStyle BackColor="#000065" />
                         </asp:GridView>
-                        <asp:SqlDataSource ID="SqlDataSource_DCPO_ANML" runat="server" ConnectionString="<%$ ConnectionStrings:ALMS_PROD_DEVConnectionString %>" SelectCommand="SELECT [NM_DCPO_NC] AS [Description de l'anomalie]FROM [DTM_REF_TYPE_NC] WHERE ([ID_TYPE_NC] = @ID_TYPE_NC)">
+                        <asp:SqlDataSource ID="SqlDataSource_DCPO_ANML" runat="server" ConnectionString="<%$ ConnectionStrings:ALMS_PROD_PRDConnectionString %>" SelectCommand="SELECT [NM_DCPO_NC] AS [Description de l'anomalie]FROM [DTM_REF_TYPE_NC] WHERE ([ID_TYPE_NC] = @ID_TYPE_NC)">
                             <SelectParameters>
                                 <asp:ControlParameter ControlID="DropDownList_TYPE_NC" Name="ID_TYPE_NC" PropertyName="SelectedValue" Type="Byte" />
                             </SelectParameters>
@@ -76,10 +84,11 @@
                     <td>
                         <asp:DropDownList ID="DropDownList_TYPE_CAUSE" runat="server"  Width="296px" Enabled="False" DataSourceID="SqlDataSource_LIST_TYPE_CAUS" DataTextField="NM_TYPE_CAUS" DataValueField="ID_TYPE_CAUS" AutoPostBack="True">
                         </asp:DropDownList>
-                        <asp:SqlDataSource ID="SqlDataSource_LIST_TYPE_CAUS" runat="server" ConnectionString="<%$ ConnectionStrings:ALMS_PROD_DEVConnectionString %>" SelectCommand="SELECT 'TDC_' + CONVERT(NVARCHAR,[ID_TYPE_CAUS]) AS NM_TYPE_CAUS
+                        <asp:SqlDataSource ID="SqlDataSource_LIST_TYPE_CAUS" runat="server" ConnectionString="<%$ ConnectionStrings:ALMS_PROD_PRDConnectionString %>" SelectCommand="SELECT 'TDC_' + CONVERT(NVARCHAR,[ID_TYPE_CAUS]) AS NM_TYPE_CAUS
       ,[ID_TYPE_CAUS]
   FROM [dbo].[DTM_REF_TYPE_CAUS]
- ORDER BY [ID_TYPE_DEFA]"></asp:SqlDataSource>
+ FULL OUTER JOIN (SELECT '' AS NM_TYPE_CAUS) AS A ON A.NM_TYPE_CAUS = [dbo].[DTM_REF_TYPE_CAUS].[ID_TYPE_CAUS]
+                            ORDER BY [ID_TYPE_DEFA]"></asp:SqlDataSource>
                         <br />
                         <asp:GridView ID="GridView_TYPE_CAUS" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical" Font-Size="X-Small" DataSourceID="SqlDataSource_DETA_CAUS" AutoGenerateColumns="False">
                             <AlternatingRowStyle BackColor="#DCDCDC" />
@@ -100,11 +109,13 @@
                             <SortedDescendingCellStyle BackColor="#CAC9C9" />
                             <SortedDescendingHeaderStyle BackColor="#000065" />
                         </asp:GridView>
-                        <asp:SqlDataSource ID="SqlDataSource_DETA_CAUS" runat="server" ConnectionString="<%$ ConnectionStrings:ALMS_PROD_DEVConnectionString %>" SelectCommand="SELECT NM_DSGT_DEFA AS Défaut, CD_ARTI_DFTE AS [Organe incriminé], NM_RSLT AS Résolution, NM_RFRC_SEQU AS [Séquence de retour en production], NM_PHAS_RETO AS [Phase de retour en production] FROM V_NC_LIST_INFO_TYPE_CAUS WHERE (ID_TYPE_CAUS = @ID_TYPE_CAUS)">
+                        <asp:SqlDataSource ID="SqlDataSource_DETA_CAUS" runat="server" ConnectionString="<%$ ConnectionStrings:ALMS_PROD_PRDConnectionString %>" SelectCommand="SELECT NM_DSGT_DEFA AS Défaut, CD_ARTI_DFTE AS [Organe incriminé], NM_RSLT AS Résolution, NM_RFRC_SEQU AS [Séquence de retour en production], NM_PHAS_RETO AS [Phase de retour en production] FROM V_NC_LIST_INFO_TYPE_CAUS WHERE (ID_TYPE_CAUS = @ID_TYPE_CAUS) GROUP BY NM_DSGT_DEFA, CD_ARTI_DFTE, NM_RSLT, NM_RFRC_SEQU, NM_PHAS_RETO, ID_TYPE_CAUS">
                             <SelectParameters>
                                 <asp:ControlParameter ControlID="DropDownList_TYPE_CAUSE" Name="ID_TYPE_CAUS" PropertyName="SelectedValue" />
                             </SelectParameters>
                         </asp:SqlDataSource>
+                        <br />
+                        <asp:Button ID="Button_VALI_ENTER2" runat="server" BackColor="#002F60" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" Font-Bold="True" ForeColor="White" Height="40px" Text="Valider" Width="180px" />
                     </td>
                     <td>
                         <asp:Button ID="Button_ADD_TYPE_CAUS" runat="server" Text="+" Enabled="False" />
@@ -132,7 +143,7 @@
                     <td>
                         <asp:DropDownList ID="DropDownList_TYPE_DEFA" runat="server" Height="16px" Width="433px" DataSourceID="SqlDataSource_LIST_TYPE_DEFA" DataTextField="NM_DSGT_DEFA" DataValueField="ID_TYPE_DEFA">
                         </asp:DropDownList>
-                        <asp:SqlDataSource ID="SqlDataSource_LIST_TYPE_DEFA" runat="server" ConnectionString="<%$ ConnectionStrings:ALMS_PROD_DEVConnectionString %>" SelectCommand="SELECT [ID_TYPE_DEFA], [NM_DSGT_DEFA] FROM [DTM_REF_TYPE_DEFA]"></asp:SqlDataSource>
+                        <asp:SqlDataSource ID="SqlDataSource_LIST_TYPE_DEFA" runat="server" ConnectionString="<%$ ConnectionStrings:ALMS_PROD_PRDConnectionString %>" SelectCommand="SELECT [ID_TYPE_DEFA], [NM_DSGT_DEFA] FROM [DTM_REF_TYPE_DEFA]"></asp:SqlDataSource>
                     </td>
                     <td>
                         <asp:Button ID="Button_ADD_TYPE_DEFA" runat="server" Text="+" />
@@ -155,7 +166,7 @@
                     <td colspan="2">
                         <asp:DropDownList ID="DropDownList_SEQU_RETO_PDTO" runat="server" Height="16px" Width="433px" DataSourceID="SqlDataSource_LIST_SEQU_RETO" DataTextField="NM_RFRC_SEQU" DataValueField="ID_RFRC_SEQU" AutoPostBack="True">
                         </asp:DropDownList>
-                        <asp:SqlDataSource ID="SqlDataSource_LIST_SEQU_RETO" runat="server" ConnectionString="<%$ ConnectionStrings:ALMS_PROD_DEVConnectionString %>" SelectCommand="SELECT DTM_SEQU_RFRC_LIST.ID_RFRC_SEQU, DTM_SEQU_RFRC_LIST.NM_RFRC_SEQU + '_V' + CONVERT (NVARCHAR, DTM_SEQU_RFRC_LIST.NU_VERS_SEQU) AS NM_RFRC_SEQU FROM DTM_SEQU_RFRC_LIST INNER JOIN (SELECT NM_RFRC_SEQU, MAX(NU_VERS_SEQU) AS MAX_NU_VERS_SEQU FROM DTM_SEQU_RFRC_LIST AS DTM_SEQU_RFRC_LIST_1 GROUP BY NM_RFRC_SEQU) AS DT_MAX_VERS_SEQU ON DTM_SEQU_RFRC_LIST.NM_RFRC_SEQU = DT_MAX_VERS_SEQU.NM_RFRC_SEQU AND DTM_SEQU_RFRC_LIST.NU_VERS_SEQU = DT_MAX_VERS_SEQU.MAX_NU_VERS_SEQU ORDER BY CONVERT (INTEGER, SUBSTRING(DTM_SEQU_RFRC_LIST.NM_RFRC_GAMM_ECO, CHARINDEX(':', DTM_SEQU_RFRC_LIST.NM_RFRC_GAMM_ECO) + 1, LEN(DTM_SEQU_RFRC_LIST.NM_RFRC_GAMM_ECO) - 1 - CHARINDEX(':', DTM_SEQU_RFRC_LIST.NM_RFRC_GAMM_ECO)))"></asp:SqlDataSource>
+                        <asp:SqlDataSource ID="SqlDataSource_LIST_SEQU_RETO" runat="server" ConnectionString="<%$ ConnectionStrings:ALMS_PROD_PRDConnectionString %>" SelectCommand="SELECT DTM_SEQU_RFRC_LIST.ID_RFRC_SEQU, DTM_SEQU_RFRC_LIST.NM_RFRC_SEQU + '_V' + CONVERT (NVARCHAR, DTM_SEQU_RFRC_LIST.NU_VERS_SEQU) AS NM_RFRC_SEQU FROM DTM_SEQU_RFRC_LIST INNER JOIN (SELECT NM_RFRC_SEQU, MAX(NU_VERS_SEQU) AS MAX_NU_VERS_SEQU FROM DTM_SEQU_RFRC_LIST AS DTM_SEQU_RFRC_LIST_1 GROUP BY NM_RFRC_SEQU) AS DT_MAX_VERS_SEQU ON DTM_SEQU_RFRC_LIST.NM_RFRC_SEQU = DT_MAX_VERS_SEQU.NM_RFRC_SEQU AND DTM_SEQU_RFRC_LIST.NU_VERS_SEQU = DT_MAX_VERS_SEQU.MAX_NU_VERS_SEQU ORDER BY CONVERT (INTEGER, SUBSTRING(DTM_SEQU_RFRC_LIST.NM_RFRC_GAMM_ECO, CHARINDEX(':', DTM_SEQU_RFRC_LIST.NM_RFRC_GAMM_ECO) + 1, LEN(DTM_SEQU_RFRC_LIST.NM_RFRC_GAMM_ECO) - 1 - CHARINDEX(':', DTM_SEQU_RFRC_LIST.NM_RFRC_GAMM_ECO)))"></asp:SqlDataSource>
                     </td>
                 </tr>
                 <tr>
@@ -163,7 +174,7 @@
                     <td colspan="2">
                         <asp:DropDownList ID="DropDownList_PHAS_RETO_PDTO" runat="server" Height="16px" Width="432px" DataSourceID="SqlDataSource_LIST_PHAS_RETO" DataTextField="NM_PHAS" DataValueField="NU_PHAS_FCGF">
                         </asp:DropDownList>
-                        <asp:SqlDataSource ID="SqlDataSource_LIST_PHAS_RETO" runat="server" ConnectionString="<%$ ConnectionStrings:ALMS_PROD_DEVConnectionString %>" SelectCommand="SELECT 'Phase n°' + CONVERT (nvarchar, NU_PHAS_FCGF) + ' : ' + NM_PHAS_FCGF AS NM_PHAS, NU_PHAS_FCGF FROM DTM_SEQU_RFRC_DETA WHERE (ID_RFRC_SEQU = @ID_RFRC_SEQU)">
+                        <asp:SqlDataSource ID="SqlDataSource_LIST_PHAS_RETO" runat="server" ConnectionString="<%$ ConnectionStrings:ALMS_PROD_PRDConnectionString %>" SelectCommand="SELECT 'Phase n°' + CONVERT (nvarchar, NU_PHAS_FCGF) + ' : ' + NM_PHAS_FCGF AS NM_PHAS, NU_PHAS_FCGF FROM DTM_SEQU_RFRC_DETA WHERE (ID_RFRC_SEQU = @ID_RFRC_SEQU) GROUP BY NU_PHAS_FCGF, NM_PHAS_FCGF, ID_RFRC_SEQU">
                             <SelectParameters>
                                 <asp:ControlParameter ControlID="DropDownList_SEQU_RETO_PDTO" Name="ID_RFRC_SEQU" PropertyName="SelectedValue" />
                             </SelectParameters>
@@ -197,19 +208,40 @@
         <asp:View ID="View_DRGT" runat="server">
             <table style="width:100%;">
                 <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
+                    <td>Numéro de dérogation :
+                        <asp:TextBox ID="TextBox_NU_DRGT" runat="server" AutoPostBack="True"></asp:TextBox>
+                        <br />
+                    </td>
+                    <td rowspan="4">Liste des numéros de série impactés :<asp:GridView ID="GridView_LIST_NU_SER_DRGT" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3"  Font-Size="X-Small" GridLines="Vertical">
+                        <AlternatingRowStyle BackColor="#DCDCDC" />
+                        <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
+                                                    <HeaderStyle BackColor="#002F60" Font-Bold="True" ForeColor="#989000" />
+
+                        <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                        <RowStyle BackColor="#EEEEEE" ForeColor="Black" />
+                        <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
+                        <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                        <SortedAscendingHeaderStyle BackColor="#0000A9" />
+                        <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                        <SortedDescendingHeaderStyle BackColor="#000065" />
+                        </asp:GridView>
+                    </td>
                 </tr>
                 <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
+                    <td>
+                        Numéro de série : <asp:TextBox ID="TextBox_NU_SER_DRGT" runat="server" AutoPostBack="True"></asp:TextBox>
+                    </td>
                 </tr>
                 <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
+                    <td>
+                        Description :
+                        <asp:TextBox ID="TextBox_NM_DCPO_DRGT" runat="server" Height="68px" Width="313px"></asp:TextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <asp:Button ID="Button_VALI_ENTER3" runat="server" BackColor="#002F60" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" Font-Bold="True" ForeColor="White" Height="40px" Text="Valider" Width="180px" />
+                    </td>
                 </tr>
             </table>
         </asp:View>
@@ -250,6 +282,13 @@
                 </td>
                         <td>
                 <asp:Label ID="Label_NU_INCI" runat="server" Text=""></asp:Label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Statut :
+                </td>
+                        <td>
+                            <asp:Label ID="Label_ID_STAT" runat="server" Text="Init"></asp:Label>
                         </td>
                     </tr>
                 </table>

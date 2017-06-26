@@ -1,0 +1,9 @@
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="CSTT_RESU_TEST_FONC.aspx.vb" Inherits="App_Web.CSTT_RESU_TEST_FONC" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <br />
+    <label>Entrer un numéro de série :</label>
+    <asp:TextBox ID="TextBox_NU_SER" runat="server"></asp:TextBox>
+    <br />
+    <asp:GridView ID="GridView_RESU_FONC" runat="server" AllowSorting="True">
+    </asp:GridView>
+</asp:Content>

@@ -11,9 +11,27 @@
             <td><label>Entrer le n° du banc :</label></td>
             <td><asp:TextBox ID="TextBox_NU_BANC" runat="server" Width="690px"></asp:TextBox></td></tr>
         <tr>
-            <td><label>Entrer l&#39;emplacement des fichiers de test :</label></td>
-            <td><asp:TextBox ID="TextBox_EMPL_FICH_TEST" runat="server" Width="689px"></asp:TextBox></td>
-            <td style="color: #FF0000">&nbsp; * le dossier doit être partagé</td></tr>
+            <td style="height: 102px"><label>Entrer l&#39;emplacement des fichiers de test :</label></td>
+            <td style="height: 102px"><asp:TextBox ID="TextBox_EMPL_FICH_TEST" runat="server" Width="689px"></asp:TextBox></td>
+            <td style="color: #FF0000; height: 102px;">&nbsp; * le dossier doit être partagé</td></tr>
+        <tr>
+            <td style="height: 102px"><label> Entrer le code article Eolane :</label></td>
+            <td style="height: 102px">
+                <asp:TextBox ID="TextBox_CD_ARTI_ECO" runat="server" Width="688px" AutoPostBack="True"></asp:TextBox>
+            </td>
+            <td style="color: #FF0000; height: 102px;">&nbsp;</td></tr>
+        <tr>
+            <td style="height: 102px">&nbsp;</td>
+            <td style="height: 102px">
+                &nbsp;</td>
+            <td style="color: #FF0000; height: 102px;">&nbsp;</td></tr>
+        <tr>
+            <td><Label>Sélectionner l'opération de la gamme auquel correpond le test :</Label>&nbsp;</td>
+            <td>
+                <asp:DropDownList ID="DropDownList_OP" runat="server" Height="17px" Width="334px">
+                </asp:DropDownList>
+            </td>
+            <td style="color: #FF0000">&nbsp;</td></tr>
         <tr>
             <td><br /><asp:Button ID="Button_EMPL_FICH_TEST" runat="server" Text="Valider" BackColor="#002F60" Font-Bold="True" ForeColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" Height="40px" Width="180px" /></td></tr>
     </table>

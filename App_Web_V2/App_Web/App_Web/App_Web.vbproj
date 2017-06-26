@@ -1,0 +1,892 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>
+    </SchemaVersion>
+    <ProjectGuid>{CD8E53D2-B177-494B-AE08-1CEEF98E43D7}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>App_Web</RootNamespace>
+    <AssemblyName>App_Web_DEV</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <MyType>Custom</MyType>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort>44354</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>enabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>WebForms_Basic.xml</DocumentationFile>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
+    <FilesToIncludeForPublish>AllFilesInTheProject</FilesToIncludeForPublish>
+    <PlatformTarget>x86</PlatformTarget>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+    <RegisterForComInterop>false</RegisterForComInterop>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>WebForms_Basic.xml</DocumentationFile>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+    <RegisterForComInterop>false</RegisterForComInterop>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BarcodeLib.Barcode.ASP.NET">
+      <HintPath>..\..\..\..\..\Mes_Donnees_so_spevi\Travail\Projets\Colisage E-Takes Care\BarcodeLib.Barcode.ASP.NET.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp">
+      <HintPath>..\..\..\..\Mes_Donnees_so_spevi\Travail\Projets\ALMS\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp.pdfa">
+      <HintPath>..\..\..\..\Mes_Donnees_so_spevi\Travail\Projets\ALMS\itextsharp.pdfa.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.0.1011, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=1.2.3.246, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.1.2.3\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=1.2.3.246, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.1.2.3\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=1.2.3.246, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.1.2.3\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=1.2.3.246, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.1.2.3\lib\net45\Microsoft.AI.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=1.2.3.246, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.1.2.3\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=1.2.3.490, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.1.2.3\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="PdfSharp">
+      <HintPath>..\..\..\..\..\Mes_Donnees_so_spevi\Travail\Projets\STW\PDFsharp\code\PdfSharp\bin\Debug\PdfSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.DirectoryServices.AccountManagement" />
+    <Reference Include="System.DirectoryServices.Protocols" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="AspNet.ScriptManager.bootstrap">
+      <HintPath>..\packages\AspNet.ScriptManager.bootstrap.3.0.0\lib\net45\AspNet.ScriptManager.bootstrap.dll</HintPath>
+    </Reference>
+    <Reference Include="AspNet.ScriptManager.jQuery">
+      <HintPath>..\packages\AspNet.ScriptManager.jQuery.1.10.2\lib\net45\AspNet.ScriptManager.jQuery.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ScriptManager.MSAjax">
+      <HintPath>..\packages\Microsoft.AspNet.ScriptManager.MSAjax.5.0.0\lib\net45\Microsoft.ScriptManager.MSAjax.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ScriptManager.WebForms">
+      <HintPath>..\packages\Microsoft.AspNet.ScriptManager.WebForms.5.0.0\lib\net45\Microsoft.ScriptManager.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <Private>True</Private>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Web.Optimization.WebForms">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.WebForms.1.1.3\lib\net45\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.FriendlyUrls">
+      <HintPath>..\packages\Microsoft.AspNet.FriendlyUrls.Core.1.0.2\lib\net45\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Providers">
+      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.2.0.0\lib\net40\System.Web.Providers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.0.1\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Collections.Specialized" />
+    <Import Include="System.Configuration" />
+    <Import Include="System.Text" />
+    <Import Include="System.Text.RegularExpressions" />
+    <Import Include="System.Web" />
+    <Import Include="System.Web.Caching" />
+    <Import Include="System.Web.Routing" />
+    <Import Include="System.Web.SessionState" />
+    <Import Include="System.Web.Security" />
+    <Import Include="System.Web.Profile" />
+    <Import Include="System.Web.UI" />
+    <Import Include="System.Web.UI.WebControls" />
+    <Import Include="System.Web.UI.WebControls.WebParts" />
+    <Import Include="System.Web.UI.HtmlControls" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="About.aspx" />
+    <Content Include="Account\Login.aspx" />
+    <Compile Include="Account\Login_SAP.aspx.designer.vb">
+      <DependentUpon>Login_SAP.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Login_SAP.aspx.vb">
+      <DependentUpon>Login_SAP.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="App_Code\Class_COMM_APP_WEB.vb" />
+    <Compile Include="App_Code\Class_DIG_FACT.vb" />
+    <Compile Include="App_Code\Class_PDF.vb" />
+    <Compile Include="App_Code\Class_SQL.vb" />
+    <Content Include="Account\Login_SAP.aspx" />
+    <Content Include="App_Themes\CSS\CSS_MediaQuery.css" />
+    <Content Include="App_Themes\ICON_COMPARE\admin.ico" />
+    <Content Include="App_Themes\ICON_COMPARE\article4.ico" />
+    <Content Include="App_Themes\ICON_COMPARE\banc_test.ico" />
+    <Content Include="App_Themes\ICON_COMPARE\barcode3.ico" />
+    <Content Include="App_Themes\ICON_COMPARE\batterie2.ico" />
+    <Content Include="App_Themes\ICON_COMPARE\comparer_fichier2.ico" />
+    <Content Include="App_Themes\ICON_COMPARE\composant2.ico" />
+    <Content Include="App_Themes\ICON_COMPARE\computer.ico" />
+    <Content Include="App_Themes\ICON_COMPARE\computer3.ico" />
+    <Content Include="App_Themes\ICON_COMPARE\configuration2.ico" />
+    <Content Include="App_Themes\ICON_COMPARE\easy.ico" />
+    <Content Include="App_Themes\ICON_COMPARE\ensemble.ico" />
+    <Content Include="App_Themes\ICON_COMPARE\essais.ico" />
+    <Content Include="App_Themes\ICON_COMPARE\etiquette3.ico" />
+    <Content Include="App_Themes\ICON_COMPARE\fichier_banc_test.ico" />
+    <Content Include="App_Themes\ICON_COMPARE\importer.ico" />
+    <Content Include="App_Themes\ICON_COMPARE\imprimeur_stw.ico" />
+    <Content Include="App_Themes\ICON_COMPARE\indicateur2.ico" />
+    <Content Include="App_Themes\ICON_COMPARE\indice.ico" />
+    <Content Include="App_Themes\ICON_COMPARE\injecter-seringue.ico" />
+    <Content Include="App_Themes\ICON_COMPARE\intranet.ico" />
+    <Content Include="App_Themes\ICON_COMPARE\log_diaries4.ico" />
+    <Content Include="App_Themes\ICON_COMPARE\parcel2.ico" />
+    <Content Include="App_Themes\ICON_COMPARE\sensing.ico" />
+    <Content Include="App_Themes\ICON_COMPARE\serveur.ico" />
+    <Content Include="App_Themes\ICON_COMPARE\test2.ico" />
+    <Content Include="App_Themes\ICON_COMPARE\tester_fonc.ico" />
+    <Content Include="App_Themes\ICON_COMPARE\tracabilite_ope.ico" />
+    <Content Include="App_Themes\PIC_CHAR\14740.png" />
+    <Content Include="App_Themes\PIC_CHAR\21257.png" />
+    <Content Include="App_Themes\PIC_CHAR\2699117232_small_1.png" />
+    <Content Include="App_Themes\PIC_CHAR\39317.png" />
+    <Content Include="App_Themes\PIC_CHAR\39344.png" />
+    <Content Include="App_Themes\PIC_CHAR\acces-interdit-aux-personnes-non-autorisees-iz-2463.jpg" />
+    <Content Include="App_Themes\PIC_CHAR\Comb1.jpg" />
+    <Content Include="App_Themes\PIC_CHAR\Custom-Icon-Design-Pretty-Office-9-Delete-file.ico" />
+    <Content Include="App_Themes\PIC_CHAR\depositphotos_111867916-stock-illustration-cargo-boxes-pallet-icon.jpg" />
+    <Content Include="App_Themes\PIC_CHAR\DFEC.png" />
+    <Content Include="App_Themes\PIC_CHAR\DFEC_V2.png" />
+    <Content Include="App_Themes\PIC_CHAR\document-modifier-icone-5437-16.png" />
+    <Content Include="App_Themes\PIC_CHAR\document-modifier-icone-5437-32.png" />
+    <Content Include="App_Themes\PIC_CHAR\eolienneanimee.gif" />
+    <Content Include="App_Themes\PIC_CHAR\eos1_800.jpg" />
+    <Content Include="App_Themes\PIC_CHAR\icones_01356.png" />
+    <Content Include="App_Themes\PIC_CHAR\image.jpg" />
+    <Content Include="App_Themes\PIC_CHAR\image_bommanage.png" />
+    <Content Include="App_Themes\PIC_CHAR\imgres.jpg" />
+    <Content Include="App_Themes\PIC_CHAR\log-file-29824.jpg" />
+    <Content Include="App_Themes\PIC_CHAR\maxresdefault.jpg" />
+    <Content Include="App_Themes\PIC_CHAR\poubelle-icone.thumbnail.jpg" />
+    <Content Include="App_Themes\PIC_CHAR\TAKAYA.jpg" />
+    <Content Include="App_Themes\PIC_CHAR\tracabilite_ope.ico" />
+    <Content Include="App_Themes\PIC_CHAR\Valider.ico" />
+    <Content Include="App_Themes\Skin_CHRT_ECO\Default.css" />
+    <Content Include="Default.aspx" />
+    <Content Include="Contact.aspx" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PagesMembres\Developpement\ADD_VERS_APCT.aspx" />
+    <Content Include="PagesMembres\Developpement\AMNS_APP_WEB.aspx" />
+    <Content Include="PagesMembres\Developpement\CFGR_POST.aspx" />
+    <Content Include="PagesMembres\Developpement\Fonctions_Class_SAP_DATA.aspx" />
+    <Content Include="PagesMembres\Developpement\JOUR_APP.aspx" />
+    <Content Include="PagesMembres\Developpement\Page_ESSAI.aspx" />
+    <Content Include="PagesMembres\Developpement\UPLO_FICH_TO_CAB.aspx" />
+    <Content Include="PagesMembres\Digital_Factory\CLSG.aspx" />
+    <Content Include="PagesMembres\Digital_Factory\CONF_ARTI.aspx" />
+    <Content Include="PagesMembres\Digital_Factory\CTTO_POST.aspx" />
+    <Content Include="PagesMembres\Digital_Factory\IDCT_GLOB_LIGN.aspx" />
+    <Content Include="PagesMembres\Digital_Factory\IDCT_PASS.aspx" />
+    <Content Include="PagesMembres\Digital_Factory\IMPR_ETIQ_PRN.aspx" />
+    <Content Include="PagesMembres\Digital_Factory\TCBL_COMP.aspx" />
+    <Content Include="PagesMembres\Digital_Factory\TCBL_ESB_SS_ESB_V2.aspx" />
+    <Content Include="PagesMembres\Digital_Factory\TCBL_OPRT.aspx" />
+    <Content Include="PagesMembres\Members.aspx" />
+    <Content Include="PagesMembres\Methodes\Comparaison_BOM.aspx" />
+    <Content Include="PagesMembres\Production\ALMS\ADD_MAC_ADRE.aspx" />
+    <Content Include="PagesMembres\Production\ALMS\ALMS_IMPORT.aspx" />
+    <Content Include="PagesMembres\Production\ALMS\GEST_ANML_NC_DRGT.aspx" />
+    <Content Include="PagesMembres\Production\Controle_Reception\AJOU_FNS_CTRL_RCP.aspx" />
+    <Content Include="PagesMembres\Production\CST_HEUR_SAI_BW.aspx" />
+    <Content Include="PagesMembres\Production\Saisie_des_defauts\CHX_REPE_SIMI.aspx" />
+    <Content Include="PagesMembres\Production\Test\AJOU_EMPL_MAJ_FICH_BANC_TEST.aspx" />
+    <Content Include="PagesMembres\Production\Test\CSTT_RESU_TEST_FONC.aspx" />
+    <Content Include="PagesMembres\Production\Test\CSTT_RESU_TEST_TAKA.aspx" />
+    <Content Include="PagesMembres\Provisoire\IMPR_RAPP_TCBL_STW_AFAC_6-2017.aspx" />
+    <Content Include="PagesMembres\Provisoire\IMPR_RAPP_TCBL_STW_V2.aspx" />
+    <Content Include="PagesMembres\Provisoire\SENSING.aspx" />
+    <Content Include="PagesMembres\Provisoire\TEST_BATT_TUCK.aspx" />
+    <Content Include="PagesMembres\RDRC_PAGE_MEMB.aspx" />
+    <Content Include="Scripts\LoginSAP.js" />
+    <Content Include="Scripts\snow.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Themes\Skin_CHRT_ECO\Skin_CHRT_ECO.skin" />
+    <None Include="My Project\PublishProfiles\App_Web.pubxml" />
+    <None Include="My Project\PublishProfiles\App_Web_Dev.pubxml" />
+    <None Include="My Project\PublishProfiles\App_Web_DEV_2.pubxml" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\ai.0.15.0-build58334.js" />
+    <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\WebForms\DetailsView.js" />
+    <Content Include="Scripts\WebForms\Focus.js" />
+    <Content Include="Scripts\WebForms\GridView.js" />
+    <Content Include="Scripts\WebForms\Menu.js" />
+    <Content Include="Scripts\WebForms\MenuStandards.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjax.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxApplicationServices.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxComponentModel.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxCore.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxGlobalization.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxHistory.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxNetwork.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxSerialization.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxTimer.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxWebForms.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxWebServices.js" />
+    <Content Include="Scripts\WebForms\SmartNav.js" />
+    <Content Include="Scripts\WebForms\TreeView.js" />
+    <Content Include="Scripts\WebForms\WebForms.js" />
+    <Content Include="Scripts\WebForms\WebParts.js" />
+    <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="favicon.ico" />
+    <Content Include="App_Code\Global.asax" />
+    <Content Include="Bundle.config" />
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Account\Login.aspx.designer.vb">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Login.aspx.vb">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Code\Class_WORD.vb" />
+    <Compile Include="App_Code\Class_SAP_DATA.vb" />
+    <Compile Include="App_Code\Class_EXCEL.vb" />
+    <Compile Include="App_Code\LOG.vb" />
+    <Compile Include="App_Start\BundleConfig.vb" />
+    <Compile Include="App_Start\IdentityConfig.vb" />
+    <Compile Include="App_Start\RouteConfig.vb" />
+    <Compile Include="About.aspx.designer.vb">
+      <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="About.aspx.vb">
+      <DependentUpon>About.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="App_Start\Startup.Auth.vb" />
+    <Compile Include="Default.aspx.designer.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Contact.aspx.designer.vb">
+      <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Contact.aspx.vb">
+      <DependentUpon>Contact.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="App_Code\Global.asax.vb">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IdentityModels.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\MyExtensions\MyWebExtension.vb">
+      <VBMyExtensionTemplateID>Microsoft.VisualBasic.Web.MyExtension</VBMyExtensionTemplateID>
+      <VBMyExtensionTemplateVersion>1.0.0.0</VBMyExtensionTemplateVersion>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="PagesMembres\Developpement\ADD_VERS_APCT.aspx.designer.vb">
+      <DependentUpon>ADD_VERS_APCT.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagesMembres\Developpement\ADD_VERS_APCT.aspx.vb">
+      <DependentUpon>ADD_VERS_APCT.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="PagesMembres\Developpement\AMNS_APP_WEB.aspx.designer.vb">
+      <DependentUpon>AMNS_APP_WEB.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagesMembres\Developpement\AMNS_APP_WEB.aspx.vb">
+      <DependentUpon>AMNS_APP_WEB.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="PagesMembres\Developpement\CFGR_POST.aspx.designer.vb">
+      <DependentUpon>CFGR_POST.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagesMembres\Developpement\CFGR_POST.aspx.vb">
+      <DependentUpon>CFGR_POST.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PagesMembres\Developpement\Fonctions_Class_SAP_DATA.aspx.designer.vb">
+      <DependentUpon>Fonctions_Class_SAP_DATA.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagesMembres\Developpement\Fonctions_Class_SAP_DATA.aspx.vb">
+      <DependentUpon>Fonctions_Class_SAP_DATA.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="PagesMembres\Developpement\JOUR_APP.aspx.designer.vb">
+      <DependentUpon>JOUR_APP.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagesMembres\Developpement\JOUR_APP.aspx.vb">
+      <DependentUpon>JOUR_APP.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="PagesMembres\Developpement\Page_ESSAI.aspx.designer.vb">
+      <DependentUpon>Page_ESSAI.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagesMembres\Developpement\Page_ESSAI.aspx.vb">
+      <DependentUpon>Page_ESSAI.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PagesMembres\Developpement\UPLO_FICH_TO_CAB.aspx.designer.vb">
+      <DependentUpon>UPLO_FICH_TO_CAB.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagesMembres\Developpement\UPLO_FICH_TO_CAB.aspx.vb">
+      <DependentUpon>UPLO_FICH_TO_CAB.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PagesMembres\Digital_Factory\CLSG.aspx.designer.vb">
+      <DependentUpon>CLSG.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagesMembres\Digital_Factory\CLSG.aspx.vb">
+      <DependentUpon>CLSG.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PagesMembres\Digital_Factory\CONF_ARTI.aspx.designer.vb">
+      <DependentUpon>CONF_ARTI.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagesMembres\Digital_Factory\CONF_ARTI.aspx.vb">
+      <DependentUpon>CONF_ARTI.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PagesMembres\Digital_Factory\CTTO_POST.aspx.designer.vb">
+      <DependentUpon>CTTO_POST.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagesMembres\Digital_Factory\CTTO_POST.aspx.vb">
+      <DependentUpon>CTTO_POST.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PagesMembres\Digital_Factory\IDCT_GLOB_LIGN.aspx.designer.vb">
+      <DependentUpon>IDCT_GLOB_LIGN.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagesMembres\Digital_Factory\IDCT_GLOB_LIGN.aspx.vb">
+      <DependentUpon>IDCT_GLOB_LIGN.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PagesMembres\Digital_Factory\IDCT_PASS.aspx.designer.vb">
+      <DependentUpon>IDCT_PASS.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagesMembres\Digital_Factory\IDCT_PASS.aspx.vb">
+      <DependentUpon>IDCT_PASS.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="PagesMembres\Digital_Factory\IMPR_ETIQ_PRN.aspx.designer.vb">
+      <DependentUpon>IMPR_ETIQ_PRN.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagesMembres\Digital_Factory\IMPR_ETIQ_PRN.aspx.vb">
+      <DependentUpon>IMPR_ETIQ_PRN.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="PagesMembres\Digital_Factory\TCBL_COMP.aspx.designer.vb">
+      <DependentUpon>TCBL_COMP.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagesMembres\Digital_Factory\TCBL_COMP.aspx.vb">
+      <DependentUpon>TCBL_COMP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PagesMembres\Digital_Factory\TCBL_ESB_SS_ESB_V2.aspx.designer.vb">
+      <DependentUpon>TCBL_ESB_SS_ESB_V2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagesMembres\Digital_Factory\TCBL_ESB_SS_ESB_V2.aspx.vb">
+      <DependentUpon>TCBL_ESB_SS_ESB_V2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PagesMembres\Digital_Factory\TCBL_OPRT.aspx.designer.vb">
+      <DependentUpon>TCBL_OPRT.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagesMembres\Digital_Factory\TCBL_OPRT.aspx.vb">
+      <DependentUpon>TCBL_OPRT.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PagesMembres\Members.aspx.designer.vb">
+      <DependentUpon>Members.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagesMembres\Members.aspx.vb">
+      <DependentUpon>Members.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="PagesMembres\Methodes\Comparaison_BOM.aspx.designer.vb">
+      <DependentUpon>Comparaison_BOM.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagesMembres\Methodes\Comparaison_BOM.aspx.vb">
+      <DependentUpon>Comparaison_BOM.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PagesMembres\Production\ALMS\ADD_MAC_ADRE.aspx.designer.vb">
+      <DependentUpon>ADD_MAC_ADRE.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagesMembres\Production\ALMS\ADD_MAC_ADRE.aspx.vb">
+      <DependentUpon>ADD_MAC_ADRE.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="PagesMembres\Production\ALMS\ALMS_IMPORT.aspx.designer.vb">
+      <DependentUpon>ALMS_IMPORT.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagesMembres\Production\ALMS\ALMS_IMPORT.aspx.vb">
+      <DependentUpon>ALMS_IMPORT.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="PagesMembres\Production\ALMS\GEST_ANML_NC_DRGT.aspx.designer.vb">
+      <DependentUpon>GEST_ANML_NC_DRGT.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagesMembres\Production\ALMS\GEST_ANML_NC_DRGT.aspx.vb">
+      <DependentUpon>GEST_ANML_NC_DRGT.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PagesMembres\Production\Controle_Reception\AJOU_FNS_CTRL_RCP.aspx.designer.vb">
+      <DependentUpon>AJOU_FNS_CTRL_RCP.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagesMembres\Production\Controle_Reception\AJOU_FNS_CTRL_RCP.aspx.vb">
+      <DependentUpon>AJOU_FNS_CTRL_RCP.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="PagesMembres\Production\CST_HEUR_SAI_BW.aspx.designer.vb">
+      <DependentUpon>CST_HEUR_SAI_BW.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagesMembres\Production\CST_HEUR_SAI_BW.aspx.vb">
+      <DependentUpon>CST_HEUR_SAI_BW.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="PagesMembres\Production\Saisie_des_defauts\CHX_REPE_SIMI.aspx.designer.vb">
+      <DependentUpon>CHX_REPE_SIMI.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagesMembres\Production\Saisie_des_defauts\CHX_REPE_SIMI.aspx.vb">
+      <DependentUpon>CHX_REPE_SIMI.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="PagesMembres\Production\Test\AJOU_EMPL_MAJ_FICH_BANC_TEST.aspx.designer.vb">
+      <DependentUpon>AJOU_EMPL_MAJ_FICH_BANC_TEST.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagesMembres\Production\Test\AJOU_EMPL_MAJ_FICH_BANC_TEST.aspx.vb">
+      <DependentUpon>AJOU_EMPL_MAJ_FICH_BANC_TEST.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="PagesMembres\Production\Test\CSTT_RESU_TEST_FONC.aspx.designer.vb">
+      <DependentUpon>CSTT_RESU_TEST_FONC.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagesMembres\Production\Test\CSTT_RESU_TEST_FONC.aspx.vb">
+      <DependentUpon>CSTT_RESU_TEST_FONC.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="PagesMembres\Production\Test\CSTT_RESU_TEST_TAKA.aspx.designer.vb">
+      <DependentUpon>CSTT_RESU_TEST_TAKA.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagesMembres\Production\Test\CSTT_RESU_TEST_TAKA.aspx.vb">
+      <DependentUpon>CSTT_RESU_TEST_TAKA.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PagesMembres\Provisoire\IMPR_RAPP_TCBL_STW_AFAC_6-2017.aspx.designer.vb">
+      <DependentUpon>IMPR_RAPP_TCBL_STW_AFAC_6-2017.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagesMembres\Provisoire\IMPR_RAPP_TCBL_STW_AFAC_6-2017.aspx.vb">
+      <DependentUpon>IMPR_RAPP_TCBL_STW_AFAC_6-2017.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PagesMembres\Provisoire\IMPR_RAPP_TCBL_STW_V2.aspx.designer.vb">
+      <DependentUpon>IMPR_RAPP_TCBL_STW_V2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagesMembres\Provisoire\IMPR_RAPP_TCBL_STW_V2.aspx.vb">
+      <DependentUpon>IMPR_RAPP_TCBL_STW_V2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PagesMembres\Provisoire\SENSING.aspx.designer.vb">
+      <DependentUpon>SENSING.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagesMembres\Provisoire\SENSING.aspx.vb">
+      <DependentUpon>SENSING.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="PagesMembres\Provisoire\TEST_BATT_TUCK.aspx.designer.vb">
+      <DependentUpon>TEST_BATT_TUCK.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagesMembres\Provisoire\TEST_BATT_TUCK.aspx.vb">
+      <DependentUpon>TEST_BATT_TUCK.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PagesMembres\RDRC_PAGE_MEMB.aspx.designer.vb">
+      <DependentUpon>RDRC_PAGE_MEMB.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagesMembres\RDRC_PAGE_MEMB.aspx.vb">
+      <DependentUpon>RDRC_PAGE_MEMB.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Site.Master.designer.vb">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Site.Master.vb">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Startup.vb" />
+    <Compile Include="ViewSwitcher.ascx.vb">
+      <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewSwitcher.ascx.designer.vb">
+      <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Site.Mobile.Master.vb">
+      <DependentUpon>Site.Mobile.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Mobile.Master.designer.vb">
+      <DependentUpon>Site.Mobile.Master</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="Site.Master" />
+    <Content Include="Site.Mobile.Master" />
+    <Content Include="ViewSwitcher.ascx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>7</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Word">
+      <Guid>{00020905-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>8</VersionMajor>
+      <VersionMinor>6</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <Private>True</Private>
+    </COMReference>
+    <COMReference Include="SAPFunctionsOCX">
+      <Guid>{5B076C00-2F26-11CF-9AE5-0800096E19F4}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="SAPLogonCtrl">
+      <Guid>{B24944D9-1501-11CF-8981-0000E8A49FA0}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>1</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="SAPNETZLib">
+      <Guid>{733CAE90-3959-11D0-83AF-0000E81EEFA0}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="SAPTableFactoryCtrl">
+      <Guid>{87D28511-6B43-101C-92CE-10005AF5DF4D}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>1</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>60958</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:60958/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Ce projet fait référence à des packages NuGet qui sont manquants sur cet ordinateur. Utilisez l'option de restauration des packages NuGet pour les télécharger. Pour plus d'informations, consultez http://go.microsoft.com/fwlink/?LinkID=322105. Le fichier manquant est : {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

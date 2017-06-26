@@ -5,21 +5,7 @@ Class _Default
     Inherits Page
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
-        'Session("User_Name") = Replace(Replace(System.Web.HttpContext.Current.User.Identity.Name, Environment.UserDomainName, ""), "\", "")
-        'Dim ctx As PrincipalContext = New PrincipalContext(ContextType.Domain, adDomainName, adDefaultOU, adUserAccount, adUserAccountPassword)
-        'Using userAd As UserPrincipal = UserPrincipal.FindByIdentity(ctx, IdentityType.SamAccountName, Session("User_Name"))
-        '    Dim DirectoryEntry As DirectoryEntry = userAd.GetUnderlyingObject()
-        '    Dim data As Byte() = DirectoryEntry.Properties("thumbnailphoto").Value
-        '    Dim PictureUser As String = ""
-        '-- If Not data = vbNull Then
-        'LOG_Msg(GetCurrentMethod, PictureUser)
-
-        'Dim PictureUser = "<img src='data:image/jpeg;base64, " + System.Convert.ToBase64String(Session("thumbnailphoto")) + "' alt='photo' />"
-        'Label_PHOT.text = PictureUser
-        'ClientScript.RegisterStartupScript([GetType](), "Affiche_Photo", "document.getElementById(""coucou"").src = 'data:image/jpeg;base64, """ + System.Convert.ToBase64String(data) + """';", True)
-        'PictureUser = "<img src='/medias/mediasEolane/userProfileDefault.png' alt='photo' />"
-        'End If
-        'End Using
+        'Label_PHOT.Text = Session("thumbnailphoto")
     End Sub
 
     'Protected Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click

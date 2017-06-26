@@ -1,0 +1,1038 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MES_Digital_FactoryModelStoreContainer" CdmEntityContainer="MES_Digital_FactoryEntities1">
+    <EntitySetMapping Name="DTM_ETP_WKF_OLD">
+      <EntityTypeMapping TypeName="MES_Digital_FactoryModel.DTM_ETP_WKF_OLD">
+        <MappingFragment StoreEntitySet="DTM_ETP_WKF_OLD">
+          <ScalarProperty Name="LB_ARTI" ColumnName="LB_ARTI" />
+          <ScalarProperty Name="NM_ORD" ColumnName="NM_ORD" />
+          <ScalarProperty Name="LB_ETP" ColumnName="LB_ETP" />
+          <ScalarProperty Name="NM_NBR" ColumnName="NM_NBR" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DTM_GST_CNTR">
+      <EntityTypeMapping TypeName="MES_Digital_FactoryModel.DTM_GST_CNTR">
+        <MappingFragment StoreEntitySet="DTM_GST_CNTR">
+          <ScalarProperty Name="ID_GST_CNTR" ColumnName="ID_GST_CNTR" />
+          <ScalarProperty Name="NM_CNTR" ColumnName="NM_CNTR" />
+          <ScalarProperty Name="DT_PREP" ColumnName="DT_PREP" />
+          <ScalarProperty Name="LB_SERV_PREP" ColumnName="LB_SERV_PREP" />
+          <ScalarProperty Name="ID_CPT" ColumnName="ID_CPT" />
+          <ScalarProperty Name="NM_QTE_INIT" ColumnName="NM_QTE_INIT" />
+          <ScalarProperty Name="NM_QTE" ColumnName="NM_QTE" />
+          <ScalarProperty Name="DT_LCSN" ColumnName="DT_LCSN" />
+          <ScalarProperty Name="LB_LCSN" ColumnName="LB_LCSN" />
+          <ScalarProperty Name="NM_OF" ColumnName="NM_OF" />
+          <ScalarProperty Name="NM_SAP_CPT" ColumnName="NM_SAP_CPT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DTM_GST_MOY_OLD">
+      <EntityTypeMapping TypeName="MES_Digital_FactoryModel.DTM_GST_MOY_OLD">
+        <MappingFragment StoreEntitySet="DTM_GST_MOY_OLD">
+          <ScalarProperty Name="ID_PST" ColumnName="ID_PST" />
+          <ScalarProperty Name="LB_PST" ColumnName="LB_PST" />
+          <ScalarProperty Name="LB_ETP" ColumnName="LB_ETP" />
+          <ScalarProperty Name="LB_MOY" ColumnName="LB_MOY" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DTM_GST_OUTI">
+      <EntityTypeMapping TypeName="MES_Digital_FactoryModel.DTM_GST_OUTI">
+        <MappingFragment StoreEntitySet="DTM_GST_OUTI">
+          <ScalarProperty Name="ID_OUTI" ColumnName="ID_OUTI" />
+          <ScalarProperty Name="LB_ARTI" ColumnName="LB_ARTI" />
+          <ScalarProperty Name="TP_OUTI" ColumnName="TP_OUTI" />
+          <ScalarProperty Name="LB_OUTI_OBLG" ColumnName="LB_OUTI_OBLG" />
+          <ScalarProperty Name="NM_OP" ColumnName="NM_OP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DTM_HIST_MTRE">
+      <EntityTypeMapping TypeName="MES_Digital_FactoryModel.DTM_HIST_MTRE">
+        <MappingFragment StoreEntitySet="DTM_HIST_MTRE">
+          <ScalarProperty Name="ID_PSG" ColumnName="ID_PSG" />
+          <ScalarProperty Name="ID_MTRE" ColumnName="ID_MTRE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DTM_LST_CNTR">
+      <EntityTypeMapping TypeName="MES_Digital_FactoryModel.DTM_LST_CNTR">
+        <MappingFragment StoreEntitySet="DTM_LST_CNTR">
+          <ScalarProperty Name="NM_CNTR" ColumnName="NM_CNTR" />
+          <ScalarProperty Name="LB_DISPO" ColumnName="LB_DISPO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DTM_NM_SN_ENS">
+      <EntityTypeMapping TypeName="MES_Digital_FactoryModel.DTM_NM_SN_ENS">
+        <MappingFragment StoreEntitySet="DTM_NM_SN_ENS">
+          <ScalarProperty Name="CD_SAP_ENS" ColumnName="CD_SAP_ENS" />
+          <ScalarProperty Name="NM_SERIE" ColumnName="NM_SERIE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DTM_OLD_TCBL_COMP">
+      <EntityTypeMapping TypeName="MES_Digital_FactoryModel.DTM_OLD_TCBL_COMP">
+        <MappingFragment StoreEntitySet="DTM_OLD_TCBL_COMP">
+          <ScalarProperty Name="ID_TR" ColumnName="ID_TR" />
+          <ScalarProperty Name="NM_NS_EOL" ColumnName="NM_NS_EOL" />
+          <ScalarProperty Name="NM_NS_CLT" ColumnName="NM_NS_CLT" />
+          <ScalarProperty Name="ID_CPT" ColumnName="ID_CPT" />
+          <ScalarProperty Name="ID_PSG" ColumnName="ID_PSG" />
+          <ScalarProperty Name="LB_RPR" ColumnName="LB_RPR" />
+          <ScalarProperty Name="DT_PSG" ColumnName="DT_PSG" />
+          <ScalarProperty Name="NM_SAP_CPT" ColumnName="NM_SAP_CPT" />
+          <ScalarProperty Name="NM_NS_SENS" ColumnName="NM_NS_SENS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DTM_PSG">
+      <EntityTypeMapping TypeName="MES_Digital_FactoryModel.DTM_PSG">
+        <MappingFragment StoreEntitySet="DTM_PSG">
+          <ScalarProperty Name="ID_PSG" ColumnName="ID_PSG" />
+          <ScalarProperty Name="LB_ETP" ColumnName="LB_ETP" />
+          <ScalarProperty Name="DT_DEB" ColumnName="DT_DEB" />
+          <ScalarProperty Name="DT_FIN" ColumnName="DT_FIN" />
+          <ScalarProperty Name="LB_MOYN" ColumnName="LB_MOYN" />
+          <ScalarProperty Name="LB_PROG" ColumnName="LB_PROG" />
+          <ScalarProperty Name="NM_MATR" ColumnName="NM_MATR" />
+          <ScalarProperty Name="LB_DOC" ColumnName="LB_DOC" />
+          <ScalarProperty Name="NM_NS_EOL" ColumnName="NM_NS_EOL" />
+          <ScalarProperty Name="LB_SCTN" ColumnName="LB_SCTN" />
+          <ScalarProperty Name="NM_OF" ColumnName="NM_OF" />
+          <ScalarProperty Name="ID_NU_SER" ColumnName="ID_NU_SER" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DTM_PSG_OUTI">
+      <EntityTypeMapping TypeName="MES_Digital_FactoryModel.DTM_PSG_OUTI">
+        <MappingFragment StoreEntitySet="DTM_PSG_OUTI">
+          <ScalarProperty Name="ID_PSG" ColumnName="ID_PSG" />
+          <ScalarProperty Name="NM_OUTI" ColumnName="NM_OUTI" />
+          <ScalarProperty Name="TP_OUTI" ColumnName="TP_OUTI" />
+          <ScalarProperty Name="DT_LIM_UTIL" ColumnName="DT_LIM_UTIL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DTM_REF_ENS">
+      <EntityTypeMapping TypeName="MES_Digital_FactoryModel.DTM_REF_ENS">
+        <MappingFragment StoreEntitySet="DTM_REF_ENS">
+          <ScalarProperty Name="ID_INTG" ColumnName="ID_INTG" />
+          <ScalarProperty Name="CD_CLT_ENS" ColumnName="CD_CLT_ENS" />
+          <ScalarProperty Name="CD_CLT_SENS" ColumnName="CD_CLT_SENS" />
+          <ScalarProperty Name="QT_SENS" ColumnName="QT_SENS" />
+          <ScalarProperty Name="LB_SENS" ColumnName="LB_SENS" />
+          <ScalarProperty Name="CD_SAP_SENS" ColumnName="CD_SAP_SENS" />
+          <ScalarProperty Name="CD_SAP_ENS" ColumnName="CD_SAP_ENS" />
+          <ScalarProperty Name="LB_VRSN" ColumnName="LB_VRSN" />
+          <ScalarProperty Name="LB_PRDT" ColumnName="LB_PRDT" />
+          <ScalarProperty Name="CD_PRDT" ColumnName="CD_PRDT" />
+          <ScalarProperty Name="FT_NS_SENS" ColumnName="FT_NS_SENS" />
+          <ScalarProperty Name="FT_NS_ENS" ColumnName="FT_NS_ENS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DTM_REF_PST_IMPR_OLD">
+      <EntityTypeMapping TypeName="MES_Digital_FactoryModel.DTM_REF_PST_IMPR_OLD">
+        <MappingFragment StoreEntitySet="DTM_REF_PST_IMPR_OLD">
+          <ScalarProperty Name="LB_PST" ColumnName="LB_PST" />
+          <ScalarProperty Name="LB_IMPR" ColumnName="LB_IMPR" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DTM_TR_CPT">
+      <EntityTypeMapping TypeName="MES_Digital_FactoryModel.DTM_TR_CPT">
+        <MappingFragment StoreEntitySet="DTM_TR_CPT">
+          <ScalarProperty Name="ID_TR" ColumnName="ID_TR" />
+          <ScalarProperty Name="NM_NS_EOL" ColumnName="NM_NS_EOL" />
+          <ScalarProperty Name="NM_NS_CLT" ColumnName="NM_NS_CLT" />
+          <ScalarProperty Name="ID_CPT" ColumnName="ID_CPT" />
+          <ScalarProperty Name="ID_PSG" ColumnName="ID_PSG" />
+          <ScalarProperty Name="LB_RPR" ColumnName="LB_RPR" />
+          <ScalarProperty Name="DT_PSG" ColumnName="DT_PSG" />
+          <ScalarProperty Name="NM_SAP_CPT" ColumnName="NM_SAP_CPT" />
+          <ScalarProperty Name="NM_NS_SENS" ColumnName="NM_NS_SENS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DTM_TST_RPRT">
+      <EntityTypeMapping TypeName="MES_Digital_FactoryModel.DTM_TST_RPRT">
+        <MappingFragment StoreEntitySet="DTM_TST_RPRT">
+          <ScalarProperty Name="ID_RPRT" ColumnName="ID_RPRT" />
+          <ScalarProperty Name="LB_BNC" ColumnName="LB_BNC" />
+          <ScalarProperty Name="CD_OPRT" ColumnName="CD_OPRT" />
+          <ScalarProperty Name="CD_PRDT" ColumnName="CD_PRDT" />
+          <ScalarProperty Name="NM_OF" ColumnName="NM_OF" />
+          <ScalarProperty Name="NM_NS" ColumnName="NM_NS" />
+          <ScalarProperty Name="DT_TST" ColumnName="DT_TST" />
+          <ScalarProperty Name="LB_SNCT" ColumnName="LB_SNCT" />
+          <ScalarProperty Name="LB_MD" ColumnName="LB_MD" />
+          <ScalarProperty Name="VRS_LOG" ColumnName="VRS_LOG" />
+          <ScalarProperty Name="VRS_SEQ" ColumnName="VRS_SEQ" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DTM_TST_VAL">
+      <EntityTypeMapping TypeName="MES_Digital_FactoryModel.DTM_TST_VAL">
+        <MappingFragment StoreEntitySet="DTM_TST_VAL">
+          <ScalarProperty Name="ID_VLR" ColumnName="ID_VLR" />
+          <ScalarProperty Name="LB_BNC" ColumnName="LB_BNC" />
+          <ScalarProperty Name="CD_OPRT" ColumnName="CD_OPRT" />
+          <ScalarProperty Name="CD_PRDT" ColumnName="CD_PRDT" />
+          <ScalarProperty Name="NM_OF" ColumnName="NM_OF" />
+          <ScalarProperty Name="NM_NS" ColumnName="NM_NS" />
+          <ScalarProperty Name="DT_TST" ColumnName="DT_TST" />
+          <ScalarProperty Name="LB_NM_MSR" ColumnName="LB_NM_MSR" />
+          <ScalarProperty Name="VAL_LIM_BS" ColumnName="VAL_LIM_BS" />
+          <ScalarProperty Name="VAL" ColumnName="VAL" />
+          <ScalarProperty Name="VAL_LIM_HT" ColumnName="VAL_LIM_HT" />
+          <ScalarProperty Name="CH_VAL" ColumnName="CH_VAL" />
+          <ScalarProperty Name="TU" ColumnName="TU" />
+          <ScalarProperty Name="TT" ColumnName="TT" />
+          <ScalarProperty Name="VRS_LOG" ColumnName="VRS_LOG" />
+          <ScalarProperty Name="VRS_SEQ" ColumnName="VRS_SEQ" />
+          <ScalarProperty Name="ID_RPRT" ColumnName="ID_RPRT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TMP_PST_FLAN">
+      <EntityTypeMapping TypeName="MES_Digital_FactoryModel.TMP_PST_FLAN">
+        <MappingFragment StoreEntitySet="TMP_PST_FLAN">
+          <ScalarProperty Name="LB_PST" ColumnName="LB_PST" />
+          <ScalarProperty Name="NM_CRT_FLAN" ColumnName="NM_CRT_FLAN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TMP_PST_NMCL">
+      <EntityTypeMapping TypeName="MES_Digital_FactoryModel.TMP_PST_NMCL">
+        <MappingFragment StoreEntitySet="TMP_PST_NMCL">
+          <ScalarProperty Name="LB_PST" ColumnName="LB_PST" />
+          <ScalarProperty Name="NM_LGN" ColumnName="NM_LGN" />
+          <ScalarProperty Name="NM_OF" ColumnName="NM_OF" />
+          <ScalarProperty Name="NM_OP" ColumnName="NM_OP" />
+          <ScalarProperty Name="LB_RPR" ColumnName="LB_RPR" />
+          <ScalarProperty Name="NM_SAP_CPT" ColumnName="NM_SAP_CPT" />
+          <ScalarProperty Name="LB_CPT" ColumnName="LB_CPT" />
+          <ScalarProperty Name="NM_QTE_PDT" ColumnName="NM_QTE_PDT" />
+          <ScalarProperty Name="NM_CNTR" ColumnName="NM_CNTR" />
+          <ScalarProperty Name="NM_QTE_CNTR" ColumnName="NM_QTE_CNTR" />
+          <ScalarProperty Name="ID_GST_CNTR" ColumnName="ID_GST_CNTR" />
+          <ScalarProperty Name="ID_CPT" ColumnName="ID_CPT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DTM_REF_ID">
+      <EntityTypeMapping TypeName="MES_Digital_FactoryModel.DTM_REF_ID">
+        <MappingFragment StoreEntitySet="DTM_REF_ID">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NM_CHAM" ColumnName="NM_CHAM" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TMP_PST_OUTI">
+      <EntityTypeMapping TypeName="MES_Digital_FactoryModel.TMP_PST_OUTI">
+        <MappingFragment StoreEntitySet="TMP_PST_OUTI">
+          <ScalarProperty Name="LB_PST" ColumnName="LB_PST" />
+          <ScalarProperty Name="TP_OUTI" ColumnName="TP_OUTI" />
+          <ScalarProperty Name="LB_OUTI_OBLG" ColumnName="LB_OUTI_OBLG" />
+          <ScalarProperty Name="NM_OUTI" ColumnName="NM_OUTI" />
+          <ScalarProperty Name="DT_LIM_UTIL" ColumnName="DT_LIM_UTIL" />
+          <ScalarProperty Name="ID_OUTI" ColumnName="ID_OUTI" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="C_old_V_CLSG_RAPP_TCBL">
+      <EntityTypeMapping TypeName="MES_Digital_FactoryModel.C_old_V_CLSG_RAPP_TCBL">
+        <MappingFragment StoreEntitySet="_old_V_CLSG_RAPP_TCBL">
+          <ScalarProperty Name="ID_PSG" ColumnName="ID_PSG" />
+          <ScalarProperty Name="DT_SCAN" ColumnName="DT_SCAN" />
+          <ScalarProperty Name="DT_EXPE" ColumnName="DT_EXPE" />
+          <ScalarProperty Name="NU_CART" ColumnName="NU_CART" />
+          <ScalarProperty Name="NU_CMD" ColumnName="NU_CMD" />
+          <ScalarProperty Name="NU_BL" ColumnName="NU_BL" />
+          <ScalarProperty Name="CD_CRTN" ColumnName="CD_CRTN" />
+          <ScalarProperty Name="NU_SER_ECO" ColumnName="NU_SER_ECO" />
+          <ScalarProperty Name="NU_SER_CLIE" ColumnName="NU_SER_CLIE" />
+          <ScalarProperty Name="NU_OF" ColumnName="NU_OF" />
+          <ScalarProperty Name="QT_CRTN" ColumnName="QT_CRTN" />
+          <ScalarProperty Name="NU_PALE" ColumnName="NU_PALE" />
+          <ScalarProperty Name="ID_VERS_SOFT" ColumnName="ID_VERS_SOFT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ID_Conteneur_View">
+      <EntityTypeMapping TypeName="MES_Digital_FactoryModel.ID_Conteneur_View">
+        <MappingFragment StoreEntitySet="ID_Conteneur_View">
+          <ScalarProperty Name="ID_GST_CNTR" ColumnName="ID_GST_CNTR" />
+          <ScalarProperty Name="NM_CNTR" ColumnName="NM_CNTR" />
+          <ScalarProperty Name="DT_PREP" ColumnName="DT_PREP" />
+          <ScalarProperty Name="LB_SERV_PREP" ColumnName="LB_SERV_PREP" />
+          <ScalarProperty Name="ID_CPT" ColumnName="ID_CPT" />
+          <ScalarProperty Name="NM_QTE_INIT" ColumnName="NM_QTE_INIT" />
+          <ScalarProperty Name="NM_QTE" ColumnName="NM_QTE" />
+          <ScalarProperty Name="DT_LCSN" ColumnName="DT_LCSN" />
+          <ScalarProperty Name="LB_LCSN" ColumnName="LB_LCSN" />
+          <ScalarProperty Name="NM_OF" ColumnName="NM_OF" />
+          <ScalarProperty Name="NM_SAP_CPT" ColumnName="NM_SAP_CPT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_CFGR_ARTI_ECO">
+      <EntityTypeMapping TypeName="MES_Digital_FactoryModel.V_CFGR_ARTI_ECO">
+        <MappingFragment StoreEntitySet="V_CFGR_ARTI_ECO">
+          <ScalarProperty Name="CD_ARTI" ColumnName="CD_ARTI" />
+          <ScalarProperty Name="Code_article_client" ColumnName="Code article client" />
+          <ScalarProperty Name="Désignation_article_client" ColumnName="Désignation article client" />
+          <ScalarProperty Name="OF" ColumnName="OF" />
+          <ScalarProperty Name="BL" ColumnName="BL" />
+          <ScalarProperty Name="Numéro_de_carton" ColumnName="Numéro de carton" />
+          <ScalarProperty Name="Numéro_de_série_Eolane" ColumnName="Numéro de série Eolane" />
+          <ScalarProperty Name="Numéro_de_série_client" ColumnName="Numéro de série client" />
+          <ScalarProperty Name="Carton_spécifique" ColumnName="Carton spécifique" />
+          <ScalarProperty Name="Code_fournisseur" ColumnName="Code fournisseur" />
+          <ScalarProperty Name="Suivi_numéro_de_série_par_ordre" ColumnName="Suivi numéro de série par ordre" />
+          <ScalarProperty Name="Format_du_numéro_de_commande" ColumnName="Format du numéro de commande" />
+          <ScalarProperty Name="Format_du_numéro_de_BL" ColumnName="Format du numéro de BL" />
+          <ScalarProperty Name="Format_du_code_carton" ColumnName="Format du code carton" />
+          <ScalarProperty Name="Format_du_code_fournisseur" ColumnName="Format du code fournisseur" />
+          <ScalarProperty Name="Format_Numéro_de_série_client" ColumnName="Format Numéro de série client" />
+          <ScalarProperty Name="Format_Numéro_de_série_Eolane" ColumnName="Format Numéro de série Eolane" />
+          <ScalarProperty Name="Quantité_carton" ColumnName="Quantité carton" />
+          <ScalarProperty Name="Quantité_flanc" ColumnName="Quantité flanc" />
+          <ScalarProperty Name="Incrémentation_flanc" ColumnName="Incrémentation flanc" />
+          <ScalarProperty Name="Retour_saisie_OF_pour_colisage" ColumnName="Retour saisie OF pour colisage" />
+          <ScalarProperty Name="Format_de_étiquette_Carton" ColumnName="Format de étiquette Carton" />
+          <ScalarProperty Name="Encodage_Numéro_de_série_client" ColumnName="Encodage Numéro de série client" />
+          <ScalarProperty Name="Format_Numéro_de_série_Fournisseur" ColumnName="Format Numéro de série Fournisseur" />
+          <ScalarProperty Name="Indice_client" ColumnName="Indice client" />
+          <ScalarProperty Name="Nom_du_DDM" ColumnName="Nom du DDM" />
+          <ScalarProperty Name="Sous_ensemble_associé_n_1" ColumnName="Sous-ensemble associé n°1" />
+          <ScalarProperty Name="Sous_ensemble_associé_n_2" ColumnName="Sous-ensemble associé n°2" />
+          <ScalarProperty Name="Sous_ensemble_associé_n_3" ColumnName="Sous-ensemble associé n°3" />
+          <ScalarProperty Name="Sous_ensemble_associé_n_4" ColumnName="Sous-ensemble associé n°4" />
+          <ScalarProperty Name="Sous_ensemble_associé_n_5" ColumnName="Sous-ensemble associé n°5" />
+          <ScalarProperty Name="Sous_ensemble_associé_n_6" ColumnName="Sous-ensemble associé n°6" />
+          <ScalarProperty Name="Format_Numéro_de_lot" ColumnName="Format Numéro de lot" />
+          <ScalarProperty Name="Quantité_de_carton_dans_la_palette" ColumnName="Quantité de carton dans la palette" />
+          <ScalarProperty Name="Nombre_de_ligne_dans_le_fichier_PDF" ColumnName="Nombre de ligne dans le fichier PDF" />
+          <ScalarProperty Name="Chemin_de_sauvegarde_du_fichier_PDF" ColumnName="Chemin de sauvegarde du fichier PDF" />
+          <ScalarProperty Name="Impression_étiquette_packaging_numéro_de_série_Eolane" ColumnName="Impression étiquette packaging numéro de série Eolane" />
+          <ScalarProperty Name="Impression_étiquette_packaging_numéro_de_série_client" ColumnName="Impression étiquette packaging numéro de série client" />
+          <ScalarProperty Name="Pourcentage_pour_la_recette_client" ColumnName="Pourcentage pour la recette client" />
+          <ScalarProperty Name="Sérialisation_article" ColumnName="Sérialisation article" />
+          <ScalarProperty Name="Serveur_SMTP_mail" ColumnName="Serveur SMTP mail" />
+          <ScalarProperty Name="Destinataires_mail" ColumnName="Destinataires mail" />
+          <ScalarProperty Name="Destinataires_en_copie_mail" ColumnName="Destinataires en copie mail" />
+          <ScalarProperty Name="Destinataires_en_copie_cachée_mail" ColumnName="Destinataires en copie cachée mail" />
+          <ScalarProperty Name="Sujet_mail" ColumnName="Sujet mail" />
+          <ScalarProperty Name="Contenu_mail" ColumnName="Contenu mail" />
+          <ScalarProperty Name="Chemin_fichier_rapport_de_tracabilite" ColumnName="Chemin fichier rapport de tracabilite" />
+          <ScalarProperty Name="Vue_fichier_PDF" ColumnName="Vue fichier PDF" />
+          <ScalarProperty Name="Vue_numéro_ensemble_numéros_sous_ensemble" ColumnName="Vue numéro ensemble numéros sous-ensemble" />
+          <ScalarProperty Name="WORKFLOW_étape_1" ColumnName="WORKFLOW étape 1" />
+          <ScalarProperty Name="WORKFLOW_étape_2" ColumnName="WORKFLOW étape 2" />
+          <ScalarProperty Name="WORKFLOW_étape_3" ColumnName="WORKFLOW étape 3" />
+          <ScalarProperty Name="WORKFLOW_étape_4" ColumnName="WORKFLOW étape 4" />
+          <ScalarProperty Name="WORKFLOW_étape_5" ColumnName="WORKFLOW étape 5" />
+          <ScalarProperty Name="WORKFLOW_étape_6" ColumnName="WORKFLOW étape 6" />
+          <ScalarProperty Name="WORKFLOW_étape_7" ColumnName="WORKFLOW étape 7" />
+          <ScalarProperty Name="WORKFLOW_étape_8" ColumnName="WORKFLOW étape 8" />
+          <ScalarProperty Name="WORKFLOW_étape_9" ColumnName="WORKFLOW étape 9" />
+          <ScalarProperty Name="WORKFLOW_étape_10" ColumnName="WORKFLOW étape 10" />
+          <ScalarProperty Name="Génération_impression_numéro_de_série" ColumnName="Génération impression numéro de série" />
+          <ScalarProperty Name="Format_numéro_de_série_Eolane_OF6INC" ColumnName="Format numéro de série Eolane OF6INC" />
+          <ScalarProperty Name="Vérification_cohérence_OF_numero_serie_eolane" ColumnName="Vérification cohérence OF numero serie eolane" />
+          <ScalarProperty Name="Vérification_cohérence_OF_par_numéro_de_série" ColumnName="Vérification cohérence OF par numéro de série" />
+          <ScalarProperty Name="Scan_numéro_de_série_fin_opération" ColumnName="Scan numéro de série fin opération" />
+          <ScalarProperty Name="Format_UDI" ColumnName="Format UDI" />
+          <ScalarProperty Name="GTIN" ColumnName="GTIN" />
+          <ScalarProperty Name="Document_carton_DF" ColumnName="Document carton DF" />
+          <ScalarProperty Name="Document_palette_DF" ColumnName="Document palette DF" />
+          <ScalarProperty Name="Document_BL_DF" ColumnName="Document BL DF" />
+          <ScalarProperty Name="Requête_liste_produits_dans_le_carton_palette_document_DF" ColumnName="Requête liste produits dans le carton\palette document DF" />
+          <ScalarProperty Name="Contenu_du_code_à_barre_document_DF" ColumnName="Contenu du code à barre document DF" />
+          <ScalarProperty Name="Mise_à_disposition_des_documents_par_BL" ColumnName="Mise à disposition des documents par BL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_CFGR_CLIE">
+      <EntityTypeMapping TypeName="MES_Digital_FactoryModel.V_CFGR_CLIE">
+        <MappingFragment StoreEntitySet="V_CFGR_CLIE">
+          <ScalarProperty Name="NM_CLIE" ColumnName="NM_CLIE" />
+          <ScalarProperty Name="OF" ColumnName="OF" />
+          <ScalarProperty Name="BL" ColumnName="BL" />
+          <ScalarProperty Name="Numéro_de_carton" ColumnName="Numéro de carton" />
+          <ScalarProperty Name="Numéro_de_série_Eolane" ColumnName="Numéro de série Eolane" />
+          <ScalarProperty Name="Numéro_de_série_client" ColumnName="Numéro de série client" />
+          <ScalarProperty Name="Carton_spécifique" ColumnName="Carton spécifique" />
+          <ScalarProperty Name="Code_fournisseur" ColumnName="Code fournisseur" />
+          <ScalarProperty Name="Suivi_numéro_de_série_par_ordre" ColumnName="Suivi numéro de série par ordre" />
+          <ScalarProperty Name="Format_du_code_fournisseur" ColumnName="Format du code fournisseur" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_CLSG_PRD_DTM_HIST_LIVR">
+      <EntityTypeMapping TypeName="MES_Digital_FactoryModel.V_CLSG_PRD_DTM_HIST_LIVR">
+        <MappingFragment StoreEntitySet="V_CLSG_PRD_DTM_HIST_LIVR">
+          <ScalarProperty Name="ID_PSG" ColumnName="ID_PSG" />
+          <ScalarProperty Name="DT_SCAN" ColumnName="DT_SCAN" />
+          <ScalarProperty Name="DT_EXPE" ColumnName="DT_EXPE" />
+          <ScalarProperty Name="NU_CART" ColumnName="NU_CART" />
+          <ScalarProperty Name="NU_CMD" ColumnName="NU_CMD" />
+          <ScalarProperty Name="NU_BL" ColumnName="NU_BL" />
+          <ScalarProperty Name="CD_CRTN" ColumnName="CD_CRTN" />
+          <ScalarProperty Name="NU_NS_EOL" ColumnName="NU_NS_EOL" />
+          <ScalarProperty Name="NU_NS_CLI" ColumnName="NU_NS_CLI" />
+          <ScalarProperty Name="NU_OF" ColumnName="NU_OF" />
+          <ScalarProperty Name="QT_CRTN" ColumnName="QT_CRTN" />
+          <ScalarProperty Name="NU_PALE" ColumnName="NU_PALE" />
+          <ScalarProperty Name="NU_SER_ECO" ColumnName="NU_SER_ECO" />
+          <ScalarProperty Name="NU_SER_CLIE" ColumnName="NU_SER_CLIE" />
+          <ScalarProperty Name="NU_UDI" ColumnName="NU_UDI" />
+          <ScalarProperty Name="NU_ADRE_MAC" ColumnName="NU_ADRE_MAC" />
+          <ScalarProperty Name="NU_DEV_EUI" ColumnName="NU_DEV_EUI" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_CLSG_PRD_DTM_REF_ARTI_FT">
+      <EntityTypeMapping TypeName="MES_Digital_FactoryModel.V_CLSG_PRD_DTM_REF_ARTI_FT">
+        <MappingFragment StoreEntitySet="V_CLSG_PRD_DTM_REF_ARTI_FT">
+          <ScalarProperty Name="CD_ARTI_EOL" ColumnName="CD_ARTI_EOL" />
+          <ScalarProperty Name="FT_CMD" ColumnName="FT_CMD" />
+          <ScalarProperty Name="FT_BL" ColumnName="FT_BL" />
+          <ScalarProperty Name="FT_CD_CRTN" ColumnName="FT_CD_CRTN" />
+          <ScalarProperty Name="FT_FRNS" ColumnName="FT_FRNS" />
+          <ScalarProperty Name="BL_NS_CLI" ColumnName="BL_NS_CLI" />
+          <ScalarProperty Name="FT_NS_CLI" ColumnName="FT_NS_CLI" />
+          <ScalarProperty Name="BL_NS_EOL" ColumnName="BL_NS_EOL" />
+          <ScalarProperty Name="FT_NS_EOL" ColumnName="FT_NS_EOL" />
+          <ScalarProperty Name="QT_CRTN" ColumnName="QT_CRTN" />
+          <ScalarProperty Name="QT_FLAN" ColumnName="QT_FLAN" />
+          <ScalarProperty Name="INC_FLAN" ColumnName="INC_FLAN" />
+          <ScalarProperty Name="CD_ARTI_CLI" ColumnName="CD_ARTI_CLI" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_CLSG_PRD_DTM_REF_OPTN_CLI">
+      <EntityTypeMapping TypeName="MES_Digital_FactoryModel.V_CLSG_PRD_DTM_REF_OPTN_CLI">
+        <MappingFragment StoreEntitySet="V_CLSG_PRD_DTM_REF_OPTN_CLI">
+          <ScalarProperty Name="LB_CLI" ColumnName="LB_CLI" />
+          <ScalarProperty Name="OPTN_OF" ColumnName="OPTN_OF" />
+          <ScalarProperty Name="OPTN_BL" ColumnName="OPTN_BL" />
+          <ScalarProperty Name="OPTN_N_CRTN" ColumnName="OPTN_N_CRTN" />
+          <ScalarProperty Name="OPTN_NS_EOL" ColumnName="OPTN_NS_EOL" />
+          <ScalarProperty Name="OPTN_NS_CLI" ColumnName="OPTN_NS_CLI" />
+          <ScalarProperty Name="OPTN_CRTN_SPEC" ColumnName="OPTN_CRTN_SPEC" />
+          <ScalarProperty Name="OPTN_CD_FRNS" ColumnName="OPTN_CD_FRNS" />
+          <ScalarProperty Name="FT_FRNS" ColumnName="FT_FRNS" />
+          <ScalarProperty Name="OPTN_SUIV_NU_SER_ORDR" ColumnName="OPTN_SUIV_NU_SER_ORDR" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_CLSG_PRD_DTM_REF_PST">
+      <EntityTypeMapping TypeName="MES_Digital_FactoryModel.V_CLSG_PRD_DTM_REF_PST">
+        <MappingFragment StoreEntitySet="V_CLSG_PRD_DTM_REF_PST">
+          <ScalarProperty Name="LB_PST" ColumnName="LB_PST" />
+          <ScalarProperty Name="LB_IMP" ColumnName="LB_IMP" />
+          <ScalarProperty Name="LB_FL_FRMT" ColumnName="LB_FL_FRMT" />
+          <ScalarProperty Name="LB_IMP_BL" ColumnName="LB_IMP_BL" />
+          <ScalarProperty Name="LB_FL_FRMT_BL" ColumnName="LB_FL_FRMT_BL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_DER_DTM_PSG_PAR_LB_ETP">
+      <EntityTypeMapping TypeName="MES_Digital_FactoryModel.V_DER_DTM_PSG_PAR_LB_ETP">
+        <MappingFragment StoreEntitySet="V_DER_DTM_PSG_PAR_LB_ETP">
+          <ScalarProperty Name="ID_PSG" ColumnName="ID_PSG" />
+          <ScalarProperty Name="LB_ETP" ColumnName="LB_ETP" />
+          <ScalarProperty Name="DT_DEB" ColumnName="DT_DEB" />
+          <ScalarProperty Name="DT_FIN" ColumnName="DT_FIN" />
+          <ScalarProperty Name="LB_MOYN" ColumnName="LB_MOYN" />
+          <ScalarProperty Name="LB_PROG" ColumnName="LB_PROG" />
+          <ScalarProperty Name="NM_MATR" ColumnName="NM_MATR" />
+          <ScalarProperty Name="LB_DOC" ColumnName="LB_DOC" />
+          <ScalarProperty Name="NM_NS_EOL" ColumnName="NM_NS_EOL" />
+          <ScalarProperty Name="LB_SCTN" ColumnName="LB_SCTN" />
+          <ScalarProperty Name="NM_OF" ColumnName="NM_OF" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_DTM_LST_CNTR">
+      <EntityTypeMapping TypeName="MES_Digital_FactoryModel.V_DTM_LST_CNTR">
+        <MappingFragment StoreEntitySet="V_DTM_LST_CNTR">
+          <ScalarProperty Name="NM_CNTR" ColumnName="NM_CNTR" />
+          <ScalarProperty Name="LB_DISPO" ColumnName="LB_DISPO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_DTM_REF_ENS">
+      <EntityTypeMapping TypeName="MES_Digital_FactoryModel.V_DTM_REF_ENS">
+        <MappingFragment StoreEntitySet="V_DTM_REF_ENS">
+          <ScalarProperty Name="ID_INTG" ColumnName="ID_INTG" />
+          <ScalarProperty Name="CD_CLT_ENS" ColumnName="CD_CLT_ENS" />
+          <ScalarProperty Name="CD_CLT_SENS" ColumnName="CD_CLT_SENS" />
+          <ScalarProperty Name="QT_SENS" ColumnName="QT_SENS" />
+          <ScalarProperty Name="CD_SAP_SENS" ColumnName="CD_SAP_SENS" />
+          <ScalarProperty Name="CD_SAP_ENS" ColumnName="CD_SAP_ENS" />
+          <ScalarProperty Name="LB_VRSN" ColumnName="LB_VRSN" />
+          <ScalarProperty Name="CD_PRDT" ColumnName="CD_PRDT" />
+          <ScalarProperty Name="FT_NS_SENS" ColumnName="FT_NS_SENS" />
+          <ScalarProperty Name="FT_NS_ENS" ColumnName="FT_NS_ENS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_DTM_TAKA">
+      <EntityTypeMapping TypeName="MES_Digital_FactoryModel.V_DTM_TAKA">
+        <MappingFragment StoreEntitySet="V_DTM_TAKA">
+          <ScalarProperty Name="ID_PSG" ColumnName="ID_PSG" />
+          <ScalarProperty Name="LB_ETP" ColumnName="LB_ETP" />
+          <ScalarProperty Name="DT_DEB" ColumnName="DT_DEB" />
+          <ScalarProperty Name="DT_FIN" ColumnName="DT_FIN" />
+          <ScalarProperty Name="LB_MOYN" ColumnName="LB_MOYN" />
+          <ScalarProperty Name="LB_PROG" ColumnName="LB_PROG" />
+          <ScalarProperty Name="NM_MATR" ColumnName="NM_MATR" />
+          <ScalarProperty Name="LB_DOC" ColumnName="LB_DOC" />
+          <ScalarProperty Name="NM_NS_EOL" ColumnName="NM_NS_EOL" />
+          <ScalarProperty Name="LB_SCTN" ColumnName="LB_SCTN" />
+          <ScalarProperty Name="NM_OF" ColumnName="NM_OF" />
+          <ScalarProperty Name="ID_ITEM" ColumnName="ID_ITEM" />
+          <ScalarProperty Name="VL_CHAM" ColumnName="VL_CHAM" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_DTM_TEST_FONC_NOM_TEST">
+      <EntityTypeMapping TypeName="MES_Digital_FactoryModel.V_DTM_TEST_FONC_NOM_TEST">
+        <MappingFragment StoreEntitySet="V_DTM_TEST_FONC_NOM_TEST">
+          <ScalarProperty Name="ID_TEST" ColumnName="ID_TEST" />
+          <ScalarProperty Name="ID_INDE" ColumnName="ID_INDE" />
+          <ScalarProperty Name="ID_REF_BANC" ColumnName="ID_REF_BANC" />
+          <ScalarProperty Name="CD_PROD" ColumnName="CD_PROD" />
+          <ScalarProperty Name="NM_MESU" ColumnName="NM_MESU" />
+          <ScalarProperty Name="NU_LIM_INF" ColumnName="NU_LIM_INF" />
+          <ScalarProperty Name="NU_LIM_SUP" ColumnName="NU_LIM_SUP" />
+          <ScalarProperty Name="ID_VERS_LOG" ColumnName="ID_VERS_LOG" />
+          <ScalarProperty Name="ID_VERS_SQC" ColumnName="ID_VERS_SQC" />
+          <ScalarProperty Name="NM_CHEM_PHOT_ETAP" ColumnName="NM_CHEM_PHOT_ETAP" />
+          <ScalarProperty Name="BL_ACVT_ETAP" ColumnName="BL_ACVT_ETAP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_DTM_TEST_FONC_RAPP">
+      <EntityTypeMapping TypeName="MES_Digital_FactoryModel.V_DTM_TEST_FONC_RAPP">
+        <MappingFragment StoreEntitySet="V_DTM_TEST_FONC_RAPP">
+          <ScalarProperty Name="ID_REF_BANC" ColumnName="ID_REF_BANC" />
+          <ScalarProperty Name="CD_OPER" ColumnName="CD_OPER" />
+          <ScalarProperty Name="CD_PROD" ColumnName="CD_PROD" />
+          <ScalarProperty Name="NU_OF" ColumnName="NU_OF" />
+          <ScalarProperty Name="NU_SER" ColumnName="NU_SER" />
+          <ScalarProperty Name="DT_TEST" ColumnName="DT_TEST" />
+          <ScalarProperty Name="DT_TEST_HEUR" ColumnName="DT_TEST_HEUR" />
+          <ScalarProperty Name="BL_RES" ColumnName="BL_RES" />
+          <ScalarProperty Name="ID_MODE" ColumnName="ID_MODE" />
+          <ScalarProperty Name="ID_VERS_LOG" ColumnName="ID_VERS_LOG" />
+          <ScalarProperty Name="ID_VERS_SQC" ColumnName="ID_VERS_SQC" />
+          <ScalarProperty Name="ID_EXEC" ColumnName="ID_EXEC" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_DTM_TEST_FONC_VAL">
+      <EntityTypeMapping TypeName="MES_Digital_FactoryModel.V_DTM_TEST_FONC_VAL">
+        <MappingFragment StoreEntitySet="V_DTM_TEST_FONC_VAL">
+          <ScalarProperty Name="ID_REF_BANC" ColumnName="ID_REF_BANC" />
+          <ScalarProperty Name="CD_OPER" ColumnName="CD_OPER" />
+          <ScalarProperty Name="CD_PROD" ColumnName="CD_PROD" />
+          <ScalarProperty Name="NU_OF" ColumnName="NU_OF" />
+          <ScalarProperty Name="NU_SER" ColumnName="NU_SER" />
+          <ScalarProperty Name="DT_TEST" ColumnName="DT_TEST" />
+          <ScalarProperty Name="NM_MESU" ColumnName="NM_MESU" />
+          <ScalarProperty Name="NU_LIM_INF" ColumnName="NU_LIM_INF" />
+          <ScalarProperty Name="NB_VAL" ColumnName="NB_VAL" />
+          <ScalarProperty Name="NU_LIM_SUP" ColumnName="NU_LIM_SUP" />
+          <ScalarProperty Name="BL_SANC" ColumnName="BL_SANC" />
+          <ScalarProperty Name="CH_VAL" ColumnName="CH_VAL" />
+          <ScalarProperty Name="TU" ColumnName="TU" />
+          <ScalarProperty Name="TT" ColumnName="TT" />
+          <ScalarProperty Name="ID_VERS_LOG" ColumnName="ID_VERS_LOG" />
+          <ScalarProperty Name="ID_VERS_SQC" ColumnName="ID_VERS_SQC" />
+          <ScalarProperty Name="ID_EXEC" ColumnName="ID_EXEC" />
+          <ScalarProperty Name="ID_TEST" ColumnName="ID_TEST" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_LIST_CONT_NON_VIDE">
+      <EntityTypeMapping TypeName="MES_Digital_FactoryModel.V_LIST_CONT_NON_VIDE">
+        <MappingFragment StoreEntitySet="V_LIST_CONT_NON_VIDE">
+          <ScalarProperty Name="ID_GST_CNTR" ColumnName="ID_GST_CNTR" />
+          <ScalarProperty Name="NM_CNTR" ColumnName="NM_CNTR" />
+          <ScalarProperty Name="DT_PREP" ColumnName="DT_PREP" />
+          <ScalarProperty Name="LB_SERV_PREP" ColumnName="LB_SERV_PREP" />
+          <ScalarProperty Name="ID_CPT" ColumnName="ID_CPT" />
+          <ScalarProperty Name="NM_QTE_INIT" ColumnName="NM_QTE_INIT" />
+          <ScalarProperty Name="NM_QTE" ColumnName="NM_QTE" />
+          <ScalarProperty Name="DT_LCSN" ColumnName="DT_LCSN" />
+          <ScalarProperty Name="LB_LCSN" ColumnName="LB_LCSN" />
+          <ScalarProperty Name="NM_OF" ColumnName="NM_OF" />
+          <ScalarProperty Name="NM_SAP_CPT" ColumnName="NM_SAP_CPT" />
+          <ScalarProperty Name="NB_UTLS" ColumnName="NB_UTLS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_LIST_LIAI_NU_SER_ECO_NU_SER_CLIE">
+      <EntityTypeMapping TypeName="MES_Digital_FactoryModel.V_LIST_LIAI_NU_SER_ECO_NU_SER_CLIE">
+        <MappingFragment StoreEntitySet="V_LIST_LIAI_NU_SER_ECO_NU_SER_CLIE">
+          <ScalarProperty Name="NM_NS_EOL" ColumnName="NM_NS_EOL" />
+          <ScalarProperty Name="NM_NS_CLT" ColumnName="NM_NS_CLT" />
+          <ScalarProperty Name="NM_OF" ColumnName="NM_OF" />
+          <ScalarProperty Name="ID_PSG" ColumnName="ID_PSG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_LIST_TEST_ODS_TEST_FONC_VAL">
+      <EntityTypeMapping TypeName="MES_Digital_FactoryModel.V_LIST_TEST_ODS_TEST_FONC_VAL">
+        <MappingFragment StoreEntitySet="V_LIST_TEST_ODS_TEST_FONC_VAL">
+          <ScalarProperty Name="Index_test" ColumnName="Index test" />
+          <ScalarProperty Name="Référence_banc_de_test" ColumnName="Référence banc de test" />
+          <ScalarProperty Name="Code_produit_en_test" ColumnName="Code produit en test" />
+          <ScalarProperty Name="Nom_de_la_mesure" ColumnName="Nom de la mesure" />
+          <ScalarProperty Name="Limite_inférieure" ColumnName="Limite inférieure" />
+          <ScalarProperty Name="Limite_supérieure" ColumnName="Limite supérieure" />
+          <ScalarProperty Name="Version_logicielle" ColumnName="Version logicielle" />
+          <ScalarProperty Name="Version_séquentielle" ColumnName="Version séquentielle" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_NEOE_NU_SER_ECO_NU_SER_SS_ENS">
+      <EntityTypeMapping TypeName="MES_Digital_FactoryModel.V_NEOE_NU_SER_ECO_NU_SER_SS_ENS">
+        <MappingFragment StoreEntitySet="V_NEOE_NU_SER_ECO_NU_SER_SS_ENS">
+          <ScalarProperty Name="CD_PROD" ColumnName="CD_PROD" />
+          <ScalarProperty Name="NU_SER_SOUS_ENSE" ColumnName="NU_SER_SOUS_ENSE" />
+          <ScalarProperty Name="NU_SER_ECO" ColumnName="NU_SER_ECO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_NEOE_TRAC_ENS_SS_ENSE">
+      <EntityTypeMapping TypeName="MES_Digital_FactoryModel.V_NEOE_TRAC_ENS_SS_ENSE">
+        <MappingFragment StoreEntitySet="V_NEOE_TRAC_ENS_SS_ENSE">
+          <ScalarProperty Name="CD_PROD" ColumnName="CD_PROD" />
+          <ScalarProperty Name="NM_NS_EOL" ColumnName="NM_NS_EOL" />
+          <ScalarProperty Name="DER_DATE_TEST" ColumnName="DER_DATE_TEST" />
+          <ScalarProperty Name="NU_PAD" ColumnName="NU_PAD" />
+          <ScalarProperty Name="NU_PAIR" ColumnName="NU_PAIR" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_NEW_PSG_ODS_TEST_FONC_RAPP">
+      <EntityTypeMapping TypeName="MES_Digital_FactoryModel.V_NEW_PSG_ODS_TEST_FONC_RAPP">
+        <MappingFragment StoreEntitySet="V_NEW_PSG_ODS_TEST_FONC_RAPP">
+          <ScalarProperty Name="ID_PSG" ColumnName="ID_PSG" />
+          <ScalarProperty Name="LB_ETP" ColumnName="LB_ETP" />
+          <ScalarProperty Name="DT_DEB" ColumnName="DT_DEB" />
+          <ScalarProperty Name="LB_MOYN" ColumnName="LB_MOYN" />
+          <ScalarProperty Name="LB_PROG" ColumnName="LB_PROG" />
+          <ScalarProperty Name="LB_DOC" ColumnName="LB_DOC" />
+          <ScalarProperty Name="NM_NS_EOL" ColumnName="NM_NS_EOL" />
+          <ScalarProperty Name="LB_SCTN" ColumnName="LB_SCTN" />
+          <ScalarProperty Name="NM_OF" ColumnName="NM_OF" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_NEW_RAPP_ODS_TEST_FONC_RAPP">
+      <EntityTypeMapping TypeName="MES_Digital_FactoryModel.V_NEW_RAPP_ODS_TEST_FONC_RAPP">
+        <MappingFragment StoreEntitySet="V_NEW_RAPP_ODS_TEST_FONC_RAPP">
+          <ScalarProperty Name="CD_PROD" ColumnName="CD_PROD" />
+          <ScalarProperty Name="ID_MODE" ColumnName="ID_MODE" />
+          <ScalarProperty Name="ID_EXEC" ColumnName="ID_EXEC" />
+          <ScalarProperty Name="CD_OPER_TEST" ColumnName="CD_OPER_TEST" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_NEW_TEST_ODS_TEST_FONC_VAL">
+      <EntityTypeMapping TypeName="MES_Digital_FactoryModel.V_NEW_TEST_ODS_TEST_FONC_VAL">
+        <MappingFragment StoreEntitySet="V_NEW_TEST_ODS_TEST_FONC_VAL">
+          <ScalarProperty Name="NM_CRIT" ColumnName="NM_CRIT" />
+          <ScalarProperty Name="NM_PARA" ColumnName="NM_PARA" />
+          <ScalarProperty Name="VAL_PARA" ColumnName="VAL_PARA" />
+          <ScalarProperty Name="DT_PARA" ColumnName="DT_PARA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_NEW_VALE_ODS_TEST_FONC_VAL">
+      <EntityTypeMapping TypeName="MES_Digital_FactoryModel.V_NEW_VALE_ODS_TEST_FONC_VAL">
+        <MappingFragment StoreEntitySet="V_NEW_VALE_ODS_TEST_FONC_VAL">
+          <ScalarProperty Name="ID_EXEC" ColumnName="ID_EXEC" />
+          <ScalarProperty Name="ID_TEST" ColumnName="ID_TEST" />
+          <ScalarProperty Name="NB_VAL" ColumnName="NB_VAL" />
+          <ScalarProperty Name="CH_VAL" ColumnName="CH_VAL" />
+          <ScalarProperty Name="TU" ColumnName="TU" />
+          <ScalarProperty Name="TT" ColumnName="TT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_RSLT_POIN_ARRE_TCBL_OPRT">
+      <EntityTypeMapping TypeName="MES_Digital_FactoryModel.V_RSLT_POIN_ARRE_TCBL_OPRT">
+        <MappingFragment StoreEntitySet="V_RSLT_POIN_ARRE_TCBL_OPRT">
+          <ScalarProperty Name="NU_SER_ECO" ColumnName="NU_SER_ECO" />
+          <ScalarProperty Name="NU_SER_CLIE" ColumnName="NU_SER_CLIE" />
+          <ScalarProperty Name="NU_OF" ColumnName="NU_OF" />
+          <ScalarProperty Name="LB_SCTN" ColumnName="LB_SCTN" />
+          <ScalarProperty Name="NM_MATR" ColumnName="NM_MATR" />
+          <ScalarProperty Name="LB_PROG" ColumnName="LB_PROG" />
+          <ScalarProperty Name="LB_MOYN" ColumnName="LB_MOYN" />
+          <ScalarProperty Name="DT_DEB" ColumnName="DT_DEB" />
+          <ScalarProperty Name="DT_FIN" ColumnName="DT_FIN" />
+          <ScalarProperty Name="LB_ETP" ColumnName="LB_ETP" />
+          <ScalarProperty Name="NB_VAL" ColumnName="NB_VAL" />
+          <ScalarProperty Name="CH_VAL" ColumnName="CH_VAL" />
+          <ScalarProperty Name="TU" ColumnName="TU" />
+          <ScalarProperty Name="TT" ColumnName="TT" />
+          <ScalarProperty Name="ID_TEST" ColumnName="ID_TEST" />
+          <ScalarProperty Name="CD_ARTI" ColumnName="CD_ARTI" />
+          <ScalarProperty Name="ID_INDE" ColumnName="ID_INDE" />
+          <ScalarProperty Name="LB_CONS_ETAP" ColumnName="LB_CONS_ETAP" />
+          <ScalarProperty Name="NM_CHEM_PHOT_ETAP" ColumnName="NM_CHEM_PHOT_ETAP" />
+          <ScalarProperty Name="NU_LIMI_IFRE_ETAP" ColumnName="NU_LIMI_IFRE_ETAP" />
+          <ScalarProperty Name="NU_LIMI_SPRE_ETAP" ColumnName="NU_LIMI_SPRE_ETAP" />
+          <ScalarProperty Name="NU_VERS_ETAP" ColumnName="NU_VERS_ETAP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_SERE_ARTI">
+      <EntityTypeMapping TypeName="MES_Digital_FactoryModel.V_SERE_ARTI">
+        <MappingFragment StoreEntitySet="V_SERE_ARTI">
+          <ScalarProperty Name="Code_article" ColumnName="Code article" />
+          <ScalarProperty Name="Nom_article" ColumnName="Nom article" />
+          <ScalarProperty Name="Code_article_EC" ColumnName="Code article EC" />
+          <ScalarProperty Name="C__RECETTE" ColumnName="% RECETTE" />
+          <ScalarProperty Name="sérialisé" ColumnName="sérialisé" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_TAE_TCBL_HSRQ_STAT_PROD">
+      <EntityTypeMapping TypeName="MES_Digital_FactoryModel.V_TAE_TCBL_HSRQ_STAT_PROD">
+        <MappingFragment StoreEntitySet="V_TAE_TCBL_HSRQ_STAT_PROD">
+          <ScalarProperty Name="NM_NS_CLT" ColumnName="NM_NS_CLT" />
+          <ScalarProperty Name="RN" ColumnName="RN" />
+          <ScalarProperty Name="ID_RFRC_SEQU" ColumnName="ID_RFRC_SEQU" />
+          <ScalarProperty Name="LB_SCTN" ColumnName="LB_SCTN" />
+          <ScalarProperty Name="DT_DEB" ColumnName="DT_DEB" />
+          <ScalarProperty Name="NM_MATR" ColumnName="NM_MATR" />
+          <ScalarProperty Name="LB_MOYN" ColumnName="LB_MOYN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_TAE_TCBL_NMCT_UNIT_PROD">
+      <EntityTypeMapping TypeName="MES_Digital_FactoryModel.V_TAE_TCBL_NMCT_UNIT_PROD">
+        <MappingFragment StoreEntitySet="V_TAE_TCBL_NMCT_UNIT_PROD">
+          <ScalarProperty Name="NU_SER_PROD" ColumnName="NU_SER_PROD" />
+          <ScalarProperty Name="CD_ARTI_PROD" ColumnName="CD_ARTI_PROD" />
+          <ScalarProperty Name="NU_SER_COMP" ColumnName="NU_SER_COMP" />
+          <ScalarProperty Name="CD_ARTI_COMP" ColumnName="CD_ARTI_COMP" />
+          <ScalarProperty Name="NM_DSGT_COMP" ColumnName="NM_DSGT_COMP" />
+          <ScalarProperty Name="NM_TYPE_TCBL" ColumnName="NM_TYPE_TCBL" />
+          <ScalarProperty Name="DT_AFTT" ColumnName="DT_AFTT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionName="MES_Digital_FactoryModel.Store.F_IDCT_PASS" FunctionImportName="F_IDCT_PASS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MES_Digital_FactoryModel.F_IDCT_PASS_Result">
+          <ScalarProperty Name="OF" ColumnName="OF" />
+          <ScalarProperty Name="Code_Article_Eolane" ColumnName="Code Article Eolane" />
+          <ScalarProperty Name="Désignation_Article_Eolane" ColumnName="Désignation Article Eolane" />
+          <ScalarProperty Name="Nom_du_client" ColumnName="Nom du client" />
+          <ScalarProperty Name="Opération" ColumnName="Opération" />
+          <ScalarProperty Name="Quantité_de_l_OF" ColumnName="Quantité de l'OF" />
+          <ScalarProperty Name="Nombre_de_cartes_produits_bons" ColumnName="Nombre de cartes/produits bons" />
+          <ScalarProperty Name="Nombre_de_cartes_produits_mauvais" ColumnName="Nombre de cartes/produits mauvais" />
+          <ScalarProperty Name="Nombre_de_passages_effectués" ColumnName="Nombre de passages effectués" />
+          <ScalarProperty Name="Taux_de_panne" ColumnName="Taux de panne" />
+          <ScalarProperty Name="FPY" ColumnName="FPY" />
+          <ScalarProperty Name="Pourcentage_de_l_of_effectué_à_l_opération" ColumnName="Pourcentage de l'of effectué à l'opération" />
+          <ScalarProperty Name="Quantité_restante_à_passer_à_l_opération" ColumnName="Quantité restante à passer à l'opération" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Ajout_Gestion_Conteneur" FunctionName="MES_Digital_FactoryModel.Store.Ajout_Gestion_Conteneur" />
+    <FunctionImportMapping FunctionImportName="Ajout_Traca_Matiere_Matricule_Passage" FunctionName="MES_Digital_FactoryModel.Store.Ajout_Traca_Matiere_Matricule_Passage" />
+    <FunctionImportMapping FunctionImportName="Ajout_Traca_Matiere_NS" FunctionName="MES_Digital_FactoryModel.Store.Ajout_Traca_Matiere_NS" />
+    <FunctionImportMapping FunctionImportName="Ajout_Traca_Matiere_NS_2" FunctionName="MES_Digital_FactoryModel.Store.Ajout_Traca_Matiere_NS_2" />
+    <FunctionImportMapping FunctionImportName="Ajout_Traca_Matiere_NS_ENS" FunctionName="MES_Digital_FactoryModel.Store.Ajout_Traca_Matiere_NS_ENS" />
+    <FunctionImportMapping FunctionImportName="Ajout_Traca_Matiere_Passage" FunctionName="MES_Digital_FactoryModel.Store.Ajout_Traca_Matiere_Passage" />
+    <FunctionImportMapping FunctionImportName="Ajout_Traca_Outillage" FunctionName="MES_Digital_FactoryModel.Store.Ajout_Traca_Outillage" />
+    <FunctionImportMapping FunctionImportName="Conteneur_Disponible" FunctionName="MES_Digital_FactoryModel.Store.Conteneur_Disponible" />
+    <FunctionImportMapping FunctionImportName="DEL_PSG" FunctionName="MES_Digital_FactoryModel.Store.DEL_PSG" />
+    <FunctionImportMapping FunctionImportName="Diminuer_Qte_Conteneur" FunctionName="MES_Digital_FactoryModel.Store.Diminuer_Qte_Conteneur" />
+    <FunctionImportMapping FunctionImportName="Donnees_Conteneur" FunctionName="MES_Digital_FactoryModel.Store.Donnees_Conteneur">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MES_Digital_FactoryModel.Donnees_Conteneur_Result">
+          <ScalarProperty Name="ID_GST_CNTR" ColumnName="ID_GST_CNTR" />
+          <ScalarProperty Name="NM_SAP_CPT" ColumnName="NM_SAP_CPT" />
+          <ScalarProperty Name="NM_QTE" ColumnName="NM_QTE" />
+          <ScalarProperty Name="ID_CPT" ColumnName="ID_CPT" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Doublon_Passage_NS_Etape" FunctionName="MES_Digital_FactoryModel.Store.Doublon_Passage_NS_Etape" />
+    <FunctionImportMapping FunctionImportName="ENS_INFO" FunctionName="MES_Digital_FactoryModel.Store.ENS_INFO">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MES_Digital_FactoryModel.ENS_INFO_Result">
+          <ScalarProperty Name="CD_CLT_ENS" ColumnName="CD_CLT_ENS" />
+          <ScalarProperty Name="LB_VRSN" ColumnName="LB_VRSN" />
+          <ScalarProperty Name="LB_PRDT" ColumnName="LB_PRDT" />
+          <ScalarProperty Name="CD_PRDT" ColumnName="CD_PRDT" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Etape_par_OF" FunctionName="MES_Digital_FactoryModel.Store.Etape_par_OF" />
+    <FunctionImportMapping FunctionImportName="Extraction_Traca_Matiere_NS" FunctionName="MES_Digital_FactoryModel.Store.Extraction_Traca_Matiere_NS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MES_Digital_FactoryModel.Extraction_Traca_Matiere_NS_Result">
+          <ScalarProperty Name="ID_PSG" ColumnName="ID_PSG" />
+          <ScalarProperty Name="LB_ETP" ColumnName="LB_ETP" />
+          <ScalarProperty Name="DT_DEB" ColumnName="DT_DEB" />
+          <ScalarProperty Name="NM_NS_EOL" ColumnName="NM_NS_EOL" />
+          <ScalarProperty Name="ID_CPT" ColumnName="ID_CPT" />
+          <ScalarProperty Name="LB_RPR" ColumnName="LB_RPR" />
+          <ScalarProperty Name="NM_SAP_CPT" ColumnName="NM_SAP_CPT" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Extraction_Traca_Matiere_OF" FunctionName="MES_Digital_FactoryModel.Store.Extraction_Traca_Matiere_OF">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MES_Digital_FactoryModel.Extraction_Traca_Matiere_OF_Result">
+          <ScalarProperty Name="ID_PSG" ColumnName="ID_PSG" />
+          <ScalarProperty Name="LB_ETP" ColumnName="LB_ETP" />
+          <ScalarProperty Name="DT_DEB" ColumnName="DT_DEB" />
+          <ScalarProperty Name="NM_NS_EOL" ColumnName="NM_NS_EOL" />
+          <ScalarProperty Name="ID_CPT" ColumnName="ID_CPT" />
+          <ScalarProperty Name="LB_RPR" ColumnName="LB_RPR" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Extraction_Traca_Matiere_OF_OP" FunctionName="MES_Digital_FactoryModel.Store.Extraction_Traca_Matiere_OF_OP">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MES_Digital_FactoryModel.Extraction_Traca_Matiere_OF_OP_Result">
+          <ScalarProperty Name="ID_PSG" ColumnName="ID_PSG" />
+          <ScalarProperty Name="LB_ETP" ColumnName="LB_ETP" />
+          <ScalarProperty Name="DT_DEB" ColumnName="DT_DEB" />
+          <ScalarProperty Name="NM_NS_EOL" ColumnName="NM_NS_EOL" />
+          <ScalarProperty Name="ID_CPT" ColumnName="ID_CPT" />
+          <ScalarProperty Name="LB_RPR" ColumnName="LB_RPR" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="INS_TMP_PST_NMCL" FunctionName="MES_Digital_FactoryModel.Store.INS_TMP_PST_NMCL" />
+    <FunctionImportMapping FunctionImportName="INS_TMP_PST_OUTI" FunctionName="MES_Digital_FactoryModel.Store.INS_TMP_PST_OUTI" />
+    <FunctionImportMapping FunctionImportName="INS_TR_PSG" FunctionName="MES_Digital_FactoryModel.Store.INS_TR_PSG" />
+    <FunctionImportMapping FunctionImportName="INS_TR_PSG_OF" FunctionName="MES_Digital_FactoryModel.Store.INS_TR_PSG_OF" />
+    <FunctionImportMapping FunctionImportName="Liste_Conteneurs_Servis_OF" FunctionName="MES_Digital_FactoryModel.Store.Liste_Conteneurs_Servis_OF">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MES_Digital_FactoryModel.Liste_Conteneurs_Servis_OF_Result">
+          <ScalarProperty Name="NM_SAP_CPT" ColumnName="NM_SAP_CPT" />
+          <ScalarProperty Name="ID_CPT" ColumnName="ID_CPT" />
+          <ScalarProperty Name="NM_CNTR" ColumnName="NM_CNTR" />
+          <ScalarProperty Name="NM_QTE_INIT" ColumnName="NM_QTE_INIT" />
+          <ScalarProperty Name="ID_GST_CNTR" ColumnName="ID_GST_CNTR" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Liste_Outillage_Attendu" FunctionName="MES_Digital_FactoryModel.Store.Liste_Outillage_Attendu">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MES_Digital_FactoryModel.Liste_Outillage_Attendu_Result">
+          <ScalarProperty Name="TP_OUTI" ColumnName="TP_OUTI" />
+          <ScalarProperty Name="LB_OUTI_OBLG" ColumnName="LB_OUTI_OBLG" />
+          <ScalarProperty Name="Outillage_Utilisé" ColumnName="Outillage_Utilisé" />
+          <ScalarProperty Name="Date_Limite_Utilisation" ColumnName="Date_Limite_Utilisation" />
+          <ScalarProperty Name="ID_OUTI" ColumnName="ID_OUTI" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Liste_Passage_OF_Etape" FunctionName="MES_Digital_FactoryModel.Store.Liste_Passage_OF_Etape" />
+    <FunctionImportMapping FunctionImportName="LST_PST_ETP_MOY" FunctionName="MES_Digital_FactoryModel.Store.LST_PST_ETP_MOY">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MES_Digital_FactoryModel.LST_PST_ETP_MOY_Result">
+          <ScalarProperty Name="LB_ETP" ColumnName="LB_ETP" />
+          <ScalarProperty Name="LB_MOY" ColumnName="LB_MOY" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="LST_SENS_Pour_ENS" FunctionName="MES_Digital_FactoryModel.Store.LST_SENS_Pour_ENS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MES_Digital_FactoryModel.LST_SENS_Pour_ENS_Result">
+          <ScalarProperty Name="CD_SAP_SENS" ColumnName="CD_SAP_SENS" />
+          <ScalarProperty Name="CD_CLT_SENS" ColumnName="CD_CLT_SENS" />
+          <ScalarProperty Name="LB_SENS" ColumnName="LB_SENS" />
+          <ScalarProperty Name="QT_SENS" ColumnName="QT_SENS" />
+          <ScalarProperty Name="N_serie" ColumnName="N_serie" />
+          <ScalarProperty Name="FT_NS_SENS" ColumnName="FT_NS_SENS" />
+          <ScalarProperty Name="FT_NS_ENS" ColumnName="FT_NS_ENS" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="LST_TAMP_OUTI" FunctionName="MES_Digital_FactoryModel.Store.LST_TAMP_OUTI">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MES_Digital_FactoryModel.LST_TAMP_OUTI_Result">
+          <ScalarProperty Name="TP_OUTI" ColumnName="TP_OUTI" />
+          <ScalarProperty Name="LB_OUTI_OBLG" ColumnName="LB_OUTI_OBLG" />
+          <ScalarProperty Name="NM_OUTI" ColumnName="NM_OUTI" />
+          <ScalarProperty Name="DT_LIM_UTIL" ColumnName="DT_LIM_UTIL" />
+          <ScalarProperty Name="ID_OUTI" ColumnName="ID_OUTI" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="LST_TMP_NMCL" FunctionName="MES_Digital_FactoryModel.Store.LST_TMP_NMCL">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MES_Digital_FactoryModel.LST_TMP_NMCL_Result">
+          <ScalarProperty Name="NM_LGN" ColumnName="NM_LGN" />
+          <ScalarProperty Name="NM_OF" ColumnName="NM_OF" />
+          <ScalarProperty Name="NM_OP" ColumnName="NM_OP" />
+          <ScalarProperty Name="LB_RPR" ColumnName="LB_RPR" />
+          <ScalarProperty Name="NM_SAP_CPT" ColumnName="NM_SAP_CPT" />
+          <ScalarProperty Name="LB_CPT" ColumnName="LB_CPT" />
+          <ScalarProperty Name="NM_QTE_PDT" ColumnName="NM_QTE_PDT" />
+          <ScalarProperty Name="NM_CNTR" ColumnName="NM_CNTR" />
+          <ScalarProperty Name="NM_QTE_CNTR" ColumnName="NM_QTE_CNTR" />
+          <ScalarProperty Name="ID_GST_CNTR" ColumnName="ID_GST_CNTR" />
+          <ScalarProperty Name="ID_CPT" ColumnName="ID_CPT" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="MAJ_Conteneur_Disponible" FunctionName="MES_Digital_FactoryModel.Store.MAJ_Conteneur_Disponible" />
+    <FunctionImportMapping FunctionImportName="MAJ_EUROPLACER" FunctionName="MES_Digital_FactoryModel.Store.MAJ_EUROPLACER" />
+    <FunctionImportMapping FunctionImportName="MAJ_EUROPLACER_Fichier" FunctionName="MES_Digital_FactoryModel.Store.MAJ_EUROPLACER_Fichier" />
+    <FunctionImportMapping FunctionImportName="MAJ_Qte_Conteneur" FunctionName="MES_Digital_FactoryModel.Store.MAJ_Qte_Conteneur" />
+    <FunctionImportMapping FunctionImportName="MAJ_TMP_PST_FLAN" FunctionName="MES_Digital_FactoryModel.Store.MAJ_TMP_PST_FLAN" />
+    <FunctionImportMapping FunctionImportName="New_N_ENS_SERAP" FunctionName="MES_Digital_FactoryModel.Store.New_N_ENS_SERAP" />
+    <FunctionImportMapping FunctionImportName="P_ADD_PSG_DTM_PSG" FunctionName="MES_Digital_FactoryModel.Store.P_ADD_PSG_DTM_PSG" />
+    <FunctionImportMapping FunctionImportName="P_ADD_PSG_DTM_PSG_V2" FunctionName="MES_Digital_FactoryModel.Store.P_ADD_PSG_DTM_PSG_V2" />
+    <FunctionImportMapping FunctionImportName="P_ADD_TCBL_COMP" FunctionName="MES_Digital_FactoryModel.Store.P_ADD_TCBL_COMP" />
+    <FunctionImportMapping FunctionImportName="P_ADD_TCBL_MAT_NS_ENS_V2" FunctionName="MES_Digital_FactoryModel.Store.P_ADD_TCBL_MAT_NS_ENS_V2" />
+    <FunctionImportMapping FunctionImportName="P_ADD_TCBL_MAT_NS_ENS_V3" FunctionName="MES_Digital_FactoryModel.Store.P_ADD_TCBL_MAT_NS_ENS_V3" />
+    <FunctionImportMapping FunctionImportName="P_ADD_TCBL_MAT_NS_ENS_V4" FunctionName="MES_Digital_FactoryModel.Store.P_ADD_TCBL_MAT_NS_ENS_V4" />
+    <FunctionImportMapping FunctionImportName="P_AVAE_GET_TCBL_NU_SER_ENSE" FunctionName="MES_Digital_FactoryModel.Store.P_AVAE_GET_TCBL_NU_SER_ENSE" />
+    <FunctionImportMapping FunctionImportName="P_CLSG_NEW_NU_CART" FunctionName="MES_Digital_FactoryModel.Store.P_CLSG_NEW_NU_CART" />
+    <FunctionImportMapping FunctionImportName="P_ENVO_MAIL_ECO" FunctionName="MES_Digital_FactoryModel.Store.P_ENVO_MAIL_ECO" />
+    <FunctionImportMapping FunctionImportName="P_GET_DERN_NU_SER" FunctionName="MES_Digital_FactoryModel.Store.P_GET_DERN_NU_SER" />
+    <FunctionImportMapping FunctionImportName="P_GET_OPTI" FunctionName="MES_Digital_FactoryModel.Store.P_GET_OPTI" />
+    <FunctionImportMapping FunctionImportName="P_GET_TRAC_NU_SER_ENS_NU_SER_SS_ENS" FunctionName="MES_Digital_FactoryModel.Store.P_GET_TRAC_NU_SER_ENS_NU_SER_SS_ENS" />
+    <FunctionImportMapping FunctionImportName="P_MAJ_RAPP_TEST" FunctionName="MES_Digital_FactoryModel.Store.P_MAJ_RAPP_TEST">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MES_Digital_FactoryModel.P_MAJ_RAPP_TEST_Result">
+          <ScalarProperty Name="Ref_Banc" ColumnName="Ref Banc" />
+          <ScalarProperty Name="code_opérateur" ColumnName="code opérateur" />
+          <ScalarProperty Name="Code_produit" ColumnName="Code produit" />
+          <ScalarProperty Name="OF" ColumnName="OF" />
+          <ScalarProperty Name="n__de_série" ColumnName="n° de série" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Heure" ColumnName="Heure" />
+          <ScalarProperty Name="Resultat" ColumnName="Resultat" />
+          <ScalarProperty Name="Mode" ColumnName="Mode" />
+          <ScalarProperty Name="Version_logicielle" ColumnName="Version logicielle" />
+          <ScalarProperty Name="Version_séquenceur" ColumnName="Version séquenceur" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="P_MAJ_TAKA" FunctionName="MES_Digital_FactoryModel.Store.P_MAJ_TAKA" />
+    <FunctionImportMapping FunctionImportName="P_MAJ_VALE_TEST" FunctionName="MES_Digital_FactoryModel.Store.P_MAJ_VALE_TEST" />
+    <FunctionImportMapping FunctionImportName="PRC_DNN_CNTR" FunctionName="MES_Digital_FactoryModel.Store.PRC_DNN_CNTR">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MES_Digital_FactoryModel.PRC_DNN_CNTR_Result">
+          <ScalarProperty Name="DT_PREP" ColumnName="DT_PREP" />
+          <ScalarProperty Name="LB_SERV_PREP" ColumnName="LB_SERV_PREP" />
+          <ScalarProperty Name="ID_CPT" ColumnName="ID_CPT" />
+          <ScalarProperty Name="NM_QTE_INIT" ColumnName="NM_QTE_INIT" />
+          <ScalarProperty Name="NM_QTE" ColumnName="NM_QTE" />
+          <ScalarProperty Name="DT_LCSN" ColumnName="DT_LCSN" />
+          <ScalarProperty Name="LB_LCSN" ColumnName="LB_LCSN" />
+          <ScalarProperty Name="NM_OF" ColumnName="NM_OF" />
+          <ScalarProperty Name="NM_SAP_CPT" ColumnName="NM_SAP_CPT" />
+          <ScalarProperty Name="ID_GST_CNTR" ColumnName="ID_GST_CNTR" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PRC_EXTR_APPR_SERAP" FunctionName="MES_Digital_FactoryModel.Store.PRC_EXTR_APPR_SERAP">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MES_Digital_FactoryModel.PRC_EXTR_APPR_SERAP_Result">
+          <ScalarProperty Name="ID_PSG" ColumnName="ID_PSG" />
+          <ScalarProperty Name="DT_DEB" ColumnName="DT_DEB" />
+          <ScalarProperty Name="NM_OF" ColumnName="NM_OF" />
+          <ScalarProperty Name="LB_ETP" ColumnName="LB_ETP" />
+          <ScalarProperty Name="NM_MATR" ColumnName="NM_MATR" />
+          <ScalarProperty Name="NM_SAP_CPT" ColumnName="NM_SAP_CPT" />
+          <ScalarProperty Name="NM_NS_SENS" ColumnName="NM_NS_SENS" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PRC_EXTR_CSV_NEOMEDLIGHT" FunctionName="MES_Digital_FactoryModel.Store.PRC_EXTR_CSV_NEOMEDLIGHT" />
+    <FunctionImportMapping FunctionImportName="PRC_EXTR_RPPR_CSV_NEOMEDLIGHT" FunctionName="MES_Digital_FactoryModel.Store.PRC_EXTR_RPPR_CSV_NEOMEDLIGHT" />
+    <FunctionImportMapping FunctionImportName="PRC_EXTR_SNCT_RPRT" FunctionName="MES_Digital_FactoryModel.Store.PRC_EXTR_SNCT_RPRT" />
+    <FunctionImportMapping FunctionImportName="PRC_EXTR_VAL_CSV_NEOMEDLIGHT" FunctionName="MES_Digital_FactoryModel.Store.PRC_EXTR_VAL_CSV_NEOMEDLIGHT" />
+    <FunctionImportMapping FunctionImportName="PRC_GSTN_ERR" FunctionName="MES_Digital_FactoryModel.Store.PRC_GSTN_ERR" />
+    <FunctionImportMapping FunctionImportName="PRC_INS_TST_RPRT" FunctionName="MES_Digital_FactoryModel.Store.PRC_INS_TST_RPRT" />
+    <FunctionImportMapping FunctionImportName="PRC_INS_TST_VAL" FunctionName="MES_Digital_FactoryModel.Store.PRC_INS_TST_VAL" />
+    <FunctionImportMapping FunctionImportName="PRC_LST_MDP" FunctionName="MES_Digital_FactoryModel.Store.PRC_LST_MDP" />
+    <FunctionImportMapping FunctionImportName="PRC_LST_PCB_OF" FunctionName="MES_Digital_FactoryModel.Store.PRC_LST_PCB_OF">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MES_Digital_FactoryModel.PRC_LST_PCB_OF_Result">
+          <ScalarProperty Name="NM_SAP_CPT" ColumnName="NM_SAP_CPT" />
+          <ScalarProperty Name="ID_CPT" ColumnName="ID_CPT" />
+          <ScalarProperty Name="NM_NS_EOL" ColumnName="NM_NS_EOL" />
+          <ScalarProperty Name="ID_PSG" ColumnName="ID_PSG" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PRC_LST_PSG_OF_ETP" FunctionName="MES_Digital_FactoryModel.Store.PRC_LST_PSG_OF_ETP" />
+    <FunctionImportMapping FunctionImportName="PRC_LST_SENS_TO_ENS" FunctionName="MES_Digital_FactoryModel.Store.PRC_LST_SENS_TO_ENS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MES_Digital_FactoryModel.PRC_LST_SENS_TO_ENS_Result">
+          <ScalarProperty Name="Date_Integration" ColumnName="Date_Integration" />
+          <ScalarProperty Name="NM_SAP_CPT" ColumnName="NM_SAP_CPT" />
+          <ScalarProperty Name="NM_NS_SENS" ColumnName="NM_NS_SENS" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PRC_MAJ_TST_RPRT" FunctionName="MES_Digital_FactoryModel.Store.PRC_MAJ_TST_RPRT" />
+    <FunctionImportMapping FunctionImportName="PRC_NEOD_EXTR_NS_ASSOC" FunctionName="MES_Digital_FactoryModel.Store.PRC_NEOD_EXTR_NS_ASSOC" />
+    <FunctionImportMapping FunctionImportName="PRC_NEOD_EXTR_NS_ASSOC_2" FunctionName="MES_Digital_FactoryModel.Store.PRC_NEOD_EXTR_NS_ASSOC_2" />
+    <FunctionImportMapping FunctionImportName="PRC_NEOD_EXTR_NS_ASSOC_3" FunctionName="MES_Digital_FactoryModel.Store.PRC_NEOD_EXTR_NS_ASSOC_3" />
+    <FunctionImportMapping FunctionImportName="PRC_PST_IMPR" FunctionName="MES_Digital_FactoryModel.Store.PRC_PST_IMPR" />
+    <FunctionImportMapping FunctionImportName="PRC_VERIF_DBL_PCB_NS" FunctionName="MES_Digital_FactoryModel.Store.PRC_VERIF_DBL_PCB_NS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MES_Digital_FactoryModel.PRC_VERIF_DBL_PCB_NS_Result">
+          <ScalarProperty Name="NM_OF" ColumnName="NM_OF" />
+          <ScalarProperty Name="LB_RPR" ColumnName="LB_RPR" />
+          <ScalarProperty Name="NM_NS_EOL" ColumnName="NM_NS_EOL" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PRC_VERIF_DBLN_NS_SENS" FunctionName="MES_Digital_FactoryModel.Store.PRC_VERIF_DBLN_NS_SENS" />
+    <FunctionImportMapping FunctionImportName="SUP_TMP_PST_NMCL" FunctionName="MES_Digital_FactoryModel.Store.SUP_TMP_PST_NMCL" />
+    <FunctionImportMapping FunctionImportName="SUP_TMP_PST_OUTI" FunctionName="MES_Digital_FactoryModel.Store.SUP_TMP_PST_OUTI" />
+    <FunctionImportMapping FunctionImportName="Supprimer_Gestion_Conteneur" FunctionName="MES_Digital_FactoryModel.Store.Supprimer_Gestion_Conteneur" />
+    <FunctionImportMapping FunctionImportName="TMP_NB_CRT_FLAN" FunctionName="MES_Digital_FactoryModel.Store.TMP_NB_CRT_FLAN" />
+    <FunctionImportMapping FunctionImportName="WorkFlow_NS_EOL" FunctionName="MES_Digital_FactoryModel.Store.WorkFlow_NS_EOL">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MES_Digital_FactoryModel.WorkFlow_NS_EOL_Result">
+          <ScalarProperty Name="ORD" ColumnName="ORD" />
+          <ScalarProperty Name="ETP" ColumnName="ETP" />
+          <ScalarProperty Name="NBR" ColumnName="NBR" />
+          <ScalarProperty Name="PSG" ColumnName="PSG" />
+          <ScalarProperty Name="CNF" ColumnName="CNF" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="WorkFlow_PDT" FunctionName="MES_Digital_FactoryModel.Store.WorkFlow_PDT">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MES_Digital_FactoryModel.WorkFlow_PDT_Result">
+          <ScalarProperty Name="ORD" ColumnName="ORD" />
+          <ScalarProperty Name="ETP" ColumnName="ETP" />
+          <ScalarProperty Name="NBR" ColumnName="NBR" />
+          <ScalarProperty Name="PSG" ColumnName="PSG" />
+          <ScalarProperty Name="CNF" ColumnName="CNF" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

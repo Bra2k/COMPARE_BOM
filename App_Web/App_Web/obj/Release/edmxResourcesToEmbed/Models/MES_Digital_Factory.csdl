@@ -1,0 +1,1433 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MES_Digital_FactoryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <ComplexType Name="F_IDCT_PASS_Result">
+    <Property Name="OF" Type="Int32" />
+    <Property Name="Code_Article_Eolane" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="Désignation_Article_Eolane" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="Nom_du_client" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="Opération" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Quantité_de_l_OF" Type="Double" />
+    <Property Name="Nombre_de_cartes_produits_bons" Type="Int32" Nullable="false" />
+    <Property Name="Nombre_de_cartes_produits_mauvais" Type="Int32" />
+    <Property Name="Nombre_de_passages_effectués" Type="Int32" />
+    <Property Name="Taux_de_panne" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+    <Property Name="FPY" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+    <Property Name="Pourcentage_de_l_of_effectué_à_l_opération" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+    <Property Name="Quantité_restante_à_passer_à_l_opération" Type="Double" />
+  </ComplexType>
+  <EntityType Name="DTM_ETP_WKF_OLD">
+    <Key>
+      <PropertyRef Name="LB_ARTI" />
+      <PropertyRef Name="NM_ORD" />
+    </Key>
+    <Property Name="LB_ARTI" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NM_ORD" Type="Int32" Nullable="false" />
+    <Property Name="LB_ETP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="NM_NBR" Type="Int32" />
+  </EntityType>
+  <EntityType Name="DTM_GST_CNTR">
+    <Key>
+      <PropertyRef Name="ID_GST_CNTR" />
+    </Key>
+    <Property Name="ID_GST_CNTR" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NM_CNTR" Type="String" MaxLength="7" FixedLength="false" Unicode="true" />
+    <Property Name="DT_PREP" Type="DateTime" Precision="3" />
+    <Property Name="LB_SERV_PREP" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="ID_CPT" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="NM_QTE_INIT" Type="Single" />
+    <Property Name="NM_QTE" Type="Single" />
+    <Property Name="DT_LCSN" Type="DateTime" Precision="3" />
+    <Property Name="LB_LCSN" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="NM_OF" Type="Int32" />
+    <Property Name="NM_SAP_CPT" Type="String" MaxLength="18" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="DTM_GST_MOY_OLD">
+    <Key>
+      <PropertyRef Name="ID_PST" />
+    </Key>
+    <Property Name="ID_PST" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LB_PST" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LB_ETP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LB_MOY" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="DTM_GST_OUTI">
+    <Key>
+      <PropertyRef Name="ID_OUTI" />
+    </Key>
+    <Property Name="ID_OUTI" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LB_ARTI" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="TP_OUTI" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="LB_OUTI_OBLG" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="NM_OP" Type="Int16" />
+  </EntityType>
+  <EntityType Name="DTM_HIST_MTRE">
+    <Key>
+      <PropertyRef Name="ID_PSG" />
+      <PropertyRef Name="ID_MTRE" />
+    </Key>
+    <Property Name="ID_PSG" Type="Int64" Nullable="false" />
+    <Property Name="ID_MTRE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DTM_LST_CNTR">
+    <Key>
+      <PropertyRef Name="NM_CNTR" />
+    </Key>
+    <Property Name="NM_CNTR" Type="String" MaxLength="7" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LB_DISPO" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="DTM_NM_SN_ENS">
+    <Key>
+      <PropertyRef Name="CD_SAP_ENS" />
+      <PropertyRef Name="NM_SERIE" />
+    </Key>
+    <Property Name="CD_SAP_ENS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NM_SERIE" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DTM_OLD_TCBL_COMP">
+    <Key>
+      <PropertyRef Name="ID_TR" />
+    </Key>
+    <Property Name="ID_TR" Type="Int64" Nullable="false" />
+    <Property Name="NM_NS_EOL" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="NM_NS_CLT" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ID_CPT" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ID_PSG" Type="Int64" Nullable="false" />
+    <Property Name="LB_RPR" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="DT_PSG" Type="DateTime" Precision="7" />
+    <Property Name="NM_SAP_CPT" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="NM_NS_SENS" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="DTM_PSG">
+    <Key>
+      <PropertyRef Name="ID_PSG" />
+      <PropertyRef Name="DT_DEB" />
+    </Key>
+    <Property Name="ID_PSG" Type="Int64" Nullable="false" />
+    <Property Name="LB_ETP" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DT_DEB" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="DT_FIN" Type="DateTime" Precision="7" />
+    <Property Name="LB_MOYN" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="LB_PROG" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="NM_MATR" Type="Int32" />
+    <Property Name="LB_DOC" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="NM_NS_EOL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="LB_SCTN" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Name="NM_OF" Type="Int32" />
+    <Property Name="ID_NU_SER" Type="Int64" />
+  </EntityType>
+  <EntityType Name="DTM_PSG_OUTI">
+    <Key>
+      <PropertyRef Name="ID_PSG" />
+      <PropertyRef Name="NM_OUTI" />
+    </Key>
+    <Property Name="ID_PSG" Type="Int64" Nullable="false" />
+    <Property Name="NM_OUTI" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TP_OUTI" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="DT_LIM_UTIL" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="DTM_REF_ENS">
+    <Key>
+      <PropertyRef Name="ID_INTG" />
+    </Key>
+    <Property Name="ID_INTG" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CD_CLT_ENS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CD_CLT_SENS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="QT_SENS" Type="Int32" />
+    <Property Name="LB_SENS" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CD_SAP_SENS" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="CD_SAP_ENS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LB_VRSN" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="LB_PRDT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CD_PRDT" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="FT_NS_SENS" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="FT_NS_ENS" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="DTM_REF_PST_IMPR_OLD">
+    <Key>
+      <PropertyRef Name="LB_PST" />
+    </Key>
+    <Property Name="LB_PST" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LB_IMPR" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="DTM_TR_CPT">
+    <Key>
+      <PropertyRef Name="ID_TR" />
+    </Key>
+    <Property Name="ID_TR" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NM_NS_EOL" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="NM_NS_CLT" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ID_CPT" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ID_PSG" Type="Int64" Nullable="false" />
+    <Property Name="LB_RPR" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="DT_PSG" Type="DateTime" Precision="7" />
+    <Property Name="NM_SAP_CPT" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="NM_NS_SENS" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="DTM_TST_RPRT">
+    <Key>
+      <PropertyRef Name="ID_RPRT" />
+    </Key>
+    <Property Name="ID_RPRT" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LB_BNC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CD_OPRT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CD_PRDT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NM_OF" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NM_NS" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DT_TST" Type="DateTime" Precision="3" />
+    <Property Name="LB_SNCT" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="LB_MD" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="VRS_LOG" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="VRS_SEQ" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="DTM_TST_VAL">
+    <Key>
+      <PropertyRef Name="ID_VLR" />
+    </Key>
+    <Property Name="ID_VLR" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LB_BNC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CD_OPRT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CD_PRDT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NM_OF" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NM_NS" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DT_TST" Type="DateTime" Precision="3" />
+    <Property Name="LB_NM_MSR" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="VAL_LIM_BS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="VAL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="VAL_LIM_HT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CH_VAL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="TU" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="VRS_LOG" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="VRS_SEQ" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ID_RPRT" Type="Int64" />
+  </EntityType>
+  <EntityType Name="TMP_PST_FLAN">
+    <Key>
+      <PropertyRef Name="LB_PST" />
+    </Key>
+    <Property Name="LB_PST" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NM_CRT_FLAN" Type="Int32" />
+  </EntityType>
+  <EntityType Name="TMP_PST_NMCL">
+    <Key>
+      <PropertyRef Name="LB_PST" />
+      <PropertyRef Name="NM_LGN" />
+    </Key>
+    <Property Name="LB_PST" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NM_LGN" Type="Int32" Nullable="false" />
+    <Property Name="NM_OF" Type="Int32" />
+    <Property Name="NM_OP" Type="Int32" />
+    <Property Name="LB_RPR" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="NM_SAP_CPT" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="LB_CPT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NM_QTE_PDT" Type="Single" />
+    <Property Name="NM_CNTR" Type="String" MaxLength="7" FixedLength="false" Unicode="true" />
+    <Property Name="NM_QTE_CNTR" Type="Single" />
+    <Property Name="ID_GST_CNTR" Type="Int32" />
+    <Property Name="ID_CPT" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="DTM_REF_ID">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NM_CHAM" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="TMP_PST_OUTI">
+    <Key>
+      <PropertyRef Name="LB_PST" />
+    </Key>
+    <Property Name="LB_PST" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TP_OUTI" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="LB_OUTI_OBLG" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="NM_OUTI" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="DT_LIM_UTIL" Type="DateTime" Precision="0" />
+    <Property Name="ID_OUTI" Type="Int32" />
+  </EntityType>
+  <EntityType Name="C_old_V_CLSG_RAPP_TCBL">
+    <Key>
+      <PropertyRef Name="ID_PSG" />
+      <PropertyRef Name="DT_SCAN" />
+    </Key>
+    <Property Name="ID_PSG" Type="Int64" Nullable="false" />
+    <Property Name="DT_SCAN" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="DT_EXPE" Type="DateTime" Precision="7" />
+    <Property Name="NU_CART" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NU_CMD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NU_BL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CD_CRTN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NU_SER_ECO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="NU_SER_CLIE" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="NU_OF" Type="Int32" />
+    <Property Name="QT_CRTN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NU_PALE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ID_VERS_SOFT" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ID_Conteneur_View">
+    <Key>
+      <PropertyRef Name="ID_GST_CNTR" />
+    </Key>
+    <Property Name="ID_GST_CNTR" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NM_CNTR" Type="String" MaxLength="7" FixedLength="false" Unicode="true" />
+    <Property Name="DT_PREP" Type="DateTime" Precision="3" />
+    <Property Name="LB_SERV_PREP" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="ID_CPT" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="NM_QTE_INIT" Type="Single" />
+    <Property Name="NM_QTE" Type="Single" />
+    <Property Name="DT_LCSN" Type="DateTime" Precision="3" />
+    <Property Name="LB_LCSN" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="NM_OF" Type="Int32" />
+    <Property Name="NM_SAP_CPT" Type="String" MaxLength="18" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="V_CFGR_ARTI_ECO">
+    <Key>
+      <PropertyRef Name="Code_article_client" />
+      <PropertyRef Name="Désignation_article_client" />
+      <PropertyRef Name="OF" />
+      <PropertyRef Name="BL" />
+      <PropertyRef Name="Numéro_de_carton" />
+      <PropertyRef Name="Numéro_de_série_Eolane" />
+      <PropertyRef Name="Numéro_de_série_client" />
+      <PropertyRef Name="Carton_spécifique" />
+      <PropertyRef Name="Code_fournisseur" />
+      <PropertyRef Name="Suivi_numéro_de_série_par_ordre" />
+      <PropertyRef Name="Format_du_numéro_de_commande" />
+      <PropertyRef Name="Format_du_numéro_de_BL" />
+      <PropertyRef Name="Format_du_code_carton" />
+      <PropertyRef Name="Format_du_code_fournisseur" />
+      <PropertyRef Name="Format_Numéro_de_série_client" />
+      <PropertyRef Name="Format_Numéro_de_série_Eolane" />
+      <PropertyRef Name="Quantité_carton" />
+      <PropertyRef Name="Quantité_flanc" />
+      <PropertyRef Name="Incrémentation_flanc" />
+      <PropertyRef Name="Retour_saisie_OF_pour_colisage" />
+      <PropertyRef Name="Format_de_étiquette_Carton" />
+      <PropertyRef Name="Encodage_Numéro_de_série_client" />
+      <PropertyRef Name="Format_Numéro_de_série_Fournisseur" />
+      <PropertyRef Name="Indice_client" />
+      <PropertyRef Name="Nom_du_DDM" />
+      <PropertyRef Name="Sous_ensemble_associé_n_1" />
+      <PropertyRef Name="Sous_ensemble_associé_n_2" />
+      <PropertyRef Name="Sous_ensemble_associé_n_3" />
+      <PropertyRef Name="Sous_ensemble_associé_n_4" />
+      <PropertyRef Name="Sous_ensemble_associé_n_5" />
+      <PropertyRef Name="Sous_ensemble_associé_n_6" />
+      <PropertyRef Name="Format_Numéro_de_lot" />
+      <PropertyRef Name="Quantité_de_carton_dans_la_palette" />
+      <PropertyRef Name="Nombre_de_ligne_dans_le_fichier_PDF" />
+      <PropertyRef Name="Chemin_de_sauvegarde_du_fichier_PDF" />
+      <PropertyRef Name="Impression_étiquette_packaging_numéro_de_série_Eolane" />
+      <PropertyRef Name="Impression_étiquette_packaging_numéro_de_série_client" />
+      <PropertyRef Name="Pourcentage_pour_la_recette_client" />
+      <PropertyRef Name="Sérialisation_article" />
+      <PropertyRef Name="Serveur_SMTP_mail" />
+      <PropertyRef Name="Destinataires_mail" />
+      <PropertyRef Name="Destinataires_en_copie_mail" />
+      <PropertyRef Name="Destinataires_en_copie_cachée_mail" />
+      <PropertyRef Name="Sujet_mail" />
+      <PropertyRef Name="Contenu_mail" />
+      <PropertyRef Name="Chemin_fichier_rapport_de_tracabilite" />
+      <PropertyRef Name="Vue_fichier_PDF" />
+      <PropertyRef Name="Vue_numéro_ensemble_numéros_sous_ensemble" />
+      <PropertyRef Name="WORKFLOW_étape_1" />
+      <PropertyRef Name="WORKFLOW_étape_2" />
+      <PropertyRef Name="WORKFLOW_étape_3" />
+      <PropertyRef Name="WORKFLOW_étape_4" />
+      <PropertyRef Name="WORKFLOW_étape_5" />
+      <PropertyRef Name="WORKFLOW_étape_6" />
+      <PropertyRef Name="WORKFLOW_étape_7" />
+      <PropertyRef Name="WORKFLOW_étape_8" />
+      <PropertyRef Name="WORKFLOW_étape_9" />
+      <PropertyRef Name="WORKFLOW_étape_10" />
+      <PropertyRef Name="Génération_impression_numéro_de_série" />
+      <PropertyRef Name="Format_numéro_de_série_Eolane_OF6INC" />
+      <PropertyRef Name="Vérification_cohérence_OF_numero_serie_eolane" />
+      <PropertyRef Name="Vérification_cohérence_OF_par_numéro_de_série" />
+      <PropertyRef Name="Scan_numéro_de_série_fin_opération" />
+      <PropertyRef Name="Format_UDI" />
+      <PropertyRef Name="GTIN" />
+      <PropertyRef Name="Document_carton_DF" />
+      <PropertyRef Name="Document_palette_DF" />
+      <PropertyRef Name="Document_BL_DF" />
+      <PropertyRef Name="Requête_liste_produits_dans_le_carton_palette_document_DF" />
+      <PropertyRef Name="Contenu_du_code_à_barre_document_DF" />
+      <PropertyRef Name="Mise_à_disposition_des_documents_par_BL" />
+    </Key>
+    <Property Name="CD_ARTI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Code_article_client" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Désignation_article_client" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OF" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="BL" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Numéro_de_carton" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Numéro_de_série_Eolane" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Numéro_de_série_client" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Carton_spécifique" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Code_fournisseur" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Suivi_numéro_de_série_par_ordre" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Format_du_numéro_de_commande" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Format_du_numéro_de_BL" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Format_du_code_carton" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Format_du_code_fournisseur" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Format_Numéro_de_série_client" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Format_Numéro_de_série_Eolane" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Quantité_carton" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Quantité_flanc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Incrémentation_flanc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Retour_saisie_OF_pour_colisage" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Format_de_étiquette_Carton" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Encodage_Numéro_de_série_client" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Format_Numéro_de_série_Fournisseur" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Indice_client" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Nom_du_DDM" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Sous_ensemble_associé_n_1" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Sous_ensemble_associé_n_2" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Sous_ensemble_associé_n_3" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Sous_ensemble_associé_n_4" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Sous_ensemble_associé_n_5" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Sous_ensemble_associé_n_6" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Format_Numéro_de_lot" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Quantité_de_carton_dans_la_palette" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Nombre_de_ligne_dans_le_fichier_PDF" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Chemin_de_sauvegarde_du_fichier_PDF" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Impression_étiquette_packaging_numéro_de_série_Eolane" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Impression_étiquette_packaging_numéro_de_série_client" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Pourcentage_pour_la_recette_client" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Sérialisation_article" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Serveur_SMTP_mail" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Destinataires_mail" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Destinataires_en_copie_mail" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Destinataires_en_copie_cachée_mail" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Sujet_mail" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Contenu_mail" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Chemin_fichier_rapport_de_tracabilite" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Vue_fichier_PDF" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Vue_numéro_ensemble_numéros_sous_ensemble" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="WORKFLOW_étape_1" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="WORKFLOW_étape_2" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="WORKFLOW_étape_3" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="WORKFLOW_étape_4" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="WORKFLOW_étape_5" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="WORKFLOW_étape_6" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="WORKFLOW_étape_7" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="WORKFLOW_étape_8" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="WORKFLOW_étape_9" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="WORKFLOW_étape_10" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Génération_impression_numéro_de_série" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Format_numéro_de_série_Eolane_OF6INC" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Vérification_cohérence_OF_numero_serie_eolane" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Vérification_cohérence_OF_par_numéro_de_série" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Scan_numéro_de_série_fin_opération" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Format_UDI" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="GTIN" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Document_carton_DF" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Document_palette_DF" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Document_BL_DF" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Requête_liste_produits_dans_le_carton_palette_document_DF" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Contenu_du_code_à_barre_document_DF" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Mise_à_disposition_des_documents_par_BL" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="V_CFGR_CLIE">
+    <Key>
+      <PropertyRef Name="OF" />
+      <PropertyRef Name="BL" />
+      <PropertyRef Name="Numéro_de_carton" />
+      <PropertyRef Name="Numéro_de_série_Eolane" />
+      <PropertyRef Name="Numéro_de_série_client" />
+      <PropertyRef Name="Carton_spécifique" />
+      <PropertyRef Name="Code_fournisseur" />
+      <PropertyRef Name="Suivi_numéro_de_série_par_ordre" />
+      <PropertyRef Name="Format_du_code_fournisseur" />
+    </Key>
+    <Property Name="NM_CLIE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OF" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="BL" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Numéro_de_carton" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Numéro_de_série_Eolane" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Numéro_de_série_client" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Carton_spécifique" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Code_fournisseur" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Suivi_numéro_de_série_par_ordre" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Format_du_code_fournisseur" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="V_CLSG_PRD_DTM_HIST_LIVR">
+    <Key>
+      <PropertyRef Name="ID_PSG" />
+      <PropertyRef Name="DT_SCAN" />
+    </Key>
+    <Property Name="ID_PSG" Type="Int64" Nullable="false" />
+    <Property Name="DT_SCAN" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="DT_EXPE" Type="DateTime" Precision="7" />
+    <Property Name="NU_CART" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NU_CMD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NU_BL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CD_CRTN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NU_NS_EOL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="NU_NS_CLI" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="NU_OF" Type="Int32" />
+    <Property Name="QT_CRTN" Type="Int32" />
+    <Property Name="NU_PALE" Type="Int32" />
+    <Property Name="NU_SER_ECO" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="NU_SER_CLIE" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="NU_UDI" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="NU_ADRE_MAC" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="NU_DEV_EUI" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="V_CLSG_PRD_DTM_REF_ARTI_FT">
+    <Key>
+      <PropertyRef Name="BL_NS_CLI" />
+      <PropertyRef Name="BL_NS_EOL" />
+    </Key>
+    <Property Name="CD_ARTI_EOL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FT_CMD" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="FT_BL" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="FT_CD_CRTN" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="FT_FRNS" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="BL_NS_CLI" Type="Int32" Nullable="false" />
+    <Property Name="FT_NS_CLI" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="BL_NS_EOL" Type="Int32" Nullable="false" />
+    <Property Name="FT_NS_EOL" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="QT_CRTN" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="QT_FLAN" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="INC_FLAN" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="CD_ARTI_CLI" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="V_CLSG_PRD_DTM_REF_OPTN_CLI">
+    <Key>
+      <PropertyRef Name="OPTN_OF" />
+      <PropertyRef Name="OPTN_BL" />
+      <PropertyRef Name="OPTN_N_CRTN" />
+      <PropertyRef Name="OPTN_NS_EOL" />
+      <PropertyRef Name="OPTN_NS_CLI" />
+      <PropertyRef Name="OPTN_CRTN_SPEC" />
+      <PropertyRef Name="OPTN_CD_FRNS" />
+      <PropertyRef Name="FT_FRNS" />
+      <PropertyRef Name="OPTN_SUIV_NU_SER_ORDR" />
+    </Key>
+    <Property Name="LB_CLI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OPTN_OF" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OPTN_BL" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OPTN_N_CRTN" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OPTN_NS_EOL" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OPTN_NS_CLI" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OPTN_CRTN_SPEC" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OPTN_CD_FRNS" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FT_FRNS" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OPTN_SUIV_NU_SER_ORDR" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="V_CLSG_PRD_DTM_REF_PST">
+    <Key>
+      <PropertyRef Name="LB_FL_FRMT" />
+      <PropertyRef Name="LB_FL_FRMT_BL" />
+    </Key>
+    <Property Name="LB_PST" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="LB_IMP" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="LB_FL_FRMT" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LB_IMP_BL" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="LB_FL_FRMT_BL" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="V_DER_DTM_PSG_PAR_LB_ETP">
+    <Key>
+      <PropertyRef Name="ID_PSG" />
+      <PropertyRef Name="DT_DEB" />
+    </Key>
+    <Property Name="ID_PSG" Type="Int64" Nullable="false" />
+    <Property Name="LB_ETP" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DT_DEB" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="DT_FIN" Type="DateTime" Precision="7" />
+    <Property Name="LB_MOYN" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="LB_PROG" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="NM_MATR" Type="Int32" />
+    <Property Name="LB_DOC" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="NM_NS_EOL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="LB_SCTN" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Name="NM_OF" Type="Int32" />
+  </EntityType>
+  <EntityType Name="V_DTM_LST_CNTR">
+    <Key>
+      <PropertyRef Name="LB_DISPO" />
+    </Key>
+    <Property Name="NM_CNTR" Type="String" MaxLength="7" FixedLength="false" Unicode="true" />
+    <Property Name="LB_DISPO" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="V_DTM_REF_ENS">
+    <Key>
+      <PropertyRef Name="QT_SENS" />
+    </Key>
+    <Property Name="ID_INTG" Type="Int64" />
+    <Property Name="CD_CLT_ENS" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="CD_CLT_SENS" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="QT_SENS" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CD_SAP_SENS" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="CD_SAP_ENS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LB_VRSN" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="CD_PRDT" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="FT_NS_SENS" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="FT_NS_ENS" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="V_DTM_TAKA">
+    <Key>
+      <PropertyRef Name="ID_PSG" />
+      <PropertyRef Name="DT_DEB" />
+    </Key>
+    <Property Name="ID_PSG" Type="Int64" Nullable="false" />
+    <Property Name="LB_ETP" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DT_DEB" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="DT_FIN" Type="DateTime" Precision="7" />
+    <Property Name="LB_MOYN" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="LB_PROG" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="NM_MATR" Type="Int32" />
+    <Property Name="LB_DOC" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="NM_NS_EOL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="LB_SCTN" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Name="NM_OF" Type="Int32" />
+    <Property Name="ID_ITEM" Type="Int32" />
+    <Property Name="VL_CHAM" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="V_DTM_TEST_FONC_NOM_TEST">
+    <Key>
+      <PropertyRef Name="ID_REF_BANC" />
+    </Key>
+    <Property Name="ID_TEST" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ID_INDE" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="ID_REF_BANC" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CD_PROD" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="NM_MESU" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="NU_LIM_INF" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="NU_LIM_SUP" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="ID_VERS_LOG" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="ID_VERS_SQC" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="NM_CHEM_PHOT_ETAP" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="BL_ACVT_ETAP" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="V_DTM_TEST_FONC_RAPP">
+    <Key>
+      <PropertyRef Name="ID_EXEC" />
+    </Key>
+    <Property Name="ID_REF_BANC" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="CD_OPER" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="CD_PROD" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="NU_OF" Type="Int32" />
+    <Property Name="NU_SER" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DT_TEST" Type="DateTime" Precision="0" />
+    <Property Name="DT_TEST_HEUR" Type="Time" Precision="7" />
+    <Property Name="BL_RES" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Name="ID_MODE" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ID_VERS_LOG" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ID_VERS_SQC" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ID_EXEC" Type="Int64" Nullable="false" />
+  </EntityType>
+  <EntityType Name="V_DTM_TEST_FONC_VAL">
+    <Key>
+      <PropertyRef Name="ID_REF_BANC" />
+      <PropertyRef Name="DT_TEST" />
+      <PropertyRef Name="BL_SANC" />
+      <PropertyRef Name="CH_VAL" />
+    </Key>
+    <Property Name="ID_REF_BANC" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CD_OPER" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="CD_PROD" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="NU_OF" Type="Int32" />
+    <Property Name="NU_SER" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DT_TEST" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="NM_MESU" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="NU_LIM_INF" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="NB_VAL" Type="Double" />
+    <Property Name="NU_LIM_SUP" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="BL_SANC" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CH_VAL" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TU" Type="Int32" />
+    <Property Name="TT" Type="Int32" />
+    <Property Name="ID_VERS_LOG" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="ID_VERS_SQC" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="ID_EXEC" Type="Int64" />
+    <Property Name="ID_TEST" Type="Int64" />
+  </EntityType>
+  <EntityType Name="V_LIST_CONT_NON_VIDE">
+    <Key>
+      <PropertyRef Name="ID_GST_CNTR" />
+    </Key>
+    <Property Name="ID_GST_CNTR" Type="Int32" Nullable="false" />
+    <Property Name="NM_CNTR" Type="String" MaxLength="7" FixedLength="false" Unicode="true" />
+    <Property Name="DT_PREP" Type="DateTime" Precision="3" />
+    <Property Name="LB_SERV_PREP" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="ID_CPT" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="NM_QTE_INIT" Type="Single" />
+    <Property Name="NM_QTE" Type="Single" />
+    <Property Name="DT_LCSN" Type="DateTime" Precision="3" />
+    <Property Name="LB_LCSN" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="NM_OF" Type="Int32" />
+    <Property Name="NM_SAP_CPT" Type="String" MaxLength="18" FixedLength="false" Unicode="true" />
+    <Property Name="NB_UTLS" Type="Int32" />
+  </EntityType>
+  <EntityType Name="V_LIST_LIAI_NU_SER_ECO_NU_SER_CLIE">
+    <Key>
+      <PropertyRef Name="ID_PSG" />
+    </Key>
+    <Property Name="NM_NS_EOL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="NM_NS_CLT" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="NM_OF" Type="Int32" />
+    <Property Name="ID_PSG" Type="Int64" Nullable="false" />
+  </EntityType>
+  <EntityType Name="V_LIST_TEST_ODS_TEST_FONC_VAL">
+    <Key>
+      <PropertyRef Name="Référence_banc_de_test" />
+    </Key>
+    <Property Name="Index_test" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="Référence_banc_de_test" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Code_produit_en_test" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="Nom_de_la_mesure" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="Limite_inférieure" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="Limite_supérieure" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="Version_logicielle" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="Version_séquentielle" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="V_NEOE_NU_SER_ECO_NU_SER_SS_ENS">
+    <Key>
+      <PropertyRef Name="NU_SER_SOUS_ENSE" />
+    </Key>
+    <Property Name="CD_PROD" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="NU_SER_SOUS_ENSE" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NU_SER_ECO" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="V_NEOE_TRAC_ENS_SS_ENSE">
+    <Key>
+      <PropertyRef Name="NU_PAD" />
+      <PropertyRef Name="NU_PAIR" />
+    </Key>
+    <Property Name="CD_PROD" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="NM_NS_EOL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DER_DATE_TEST" Type="DateTime" Precision="7" />
+    <Property Name="NU_PAD" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NU_PAIR" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="V_NEW_PSG_ODS_TEST_FONC_RAPP">
+    <Key>
+      <PropertyRef Name="LB_ETP" />
+      <PropertyRef Name="NM_NS_EOL" />
+      <PropertyRef Name="LB_SCTN" />
+      <PropertyRef Name="NM_OF" />
+    </Key>
+    <Property Name="ID_PSG" Type="Int64" />
+    <Property Name="LB_ETP" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DT_DEB" Type="DateTime" Precision="3" />
+    <Property Name="LB_MOYN" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="LB_PROG" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="LB_DOC" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="NM_NS_EOL" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LB_SCTN" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NM_OF" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="V_NEW_RAPP_ODS_TEST_FONC_RAPP">
+    <Key>
+      <PropertyRef Name="ID_EXEC" />
+    </Key>
+    <Property Name="CD_PROD" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="ID_MODE" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="ID_EXEC" Type="Int64" Nullable="false" />
+    <Property Name="CD_OPER_TEST" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="V_NEW_TEST_ODS_TEST_FONC_VAL">
+    <Key>
+      <PropertyRef Name="DT_PARA" />
+    </Key>
+    <Property Name="NM_CRIT" Type="Int64" />
+    <Property Name="NM_PARA" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="VAL_PARA" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="DT_PARA" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="V_NEW_VALE_ODS_TEST_FONC_VAL">
+    <Key>
+      <PropertyRef Name="ID_EXEC" />
+      <PropertyRef Name="CH_VAL" />
+    </Key>
+    <Property Name="ID_EXEC" Type="Int64" Nullable="false" />
+    <Property Name="ID_TEST" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NB_VAL" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="CH_VAL" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TU" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="TT" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="V_RSLT_POIN_ARRE_TCBL_OPRT">
+    <Key>
+      <PropertyRef Name="DT_DEB" />
+    </Key>
+    <Property Name="NU_SER_ECO" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="NU_SER_CLIE" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="NU_OF" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="LB_SCTN" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Name="NM_MATR" Type="Int32" />
+    <Property Name="LB_PROG" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="LB_MOYN" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DT_DEB" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="DT_FIN" Type="DateTime" Precision="7" />
+    <Property Name="LB_ETP" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="NB_VAL" Type="Double" />
+    <Property Name="CH_VAL" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="TU" Type="Int32" />
+    <Property Name="TT" Type="Int32" />
+    <Property Name="ID_TEST" Type="Int64" />
+    <Property Name="CD_ARTI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ID_INDE" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="LB_CONS_ETAP" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="NM_CHEM_PHOT_ETAP" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="NU_LIMI_IFRE_ETAP" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="NU_LIMI_SPRE_ETAP" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="NU_VERS_ETAP" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="V_SERE_ARTI">
+    <Key>
+      <PropertyRef Name="C__RECETTE" />
+      <PropertyRef Name="sérialisé" />
+    </Key>
+    <Property Name="Code_article" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Nom_article" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Code_article_EC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="C__RECETTE" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="sérialisé" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="V_TAE_TCBL_HSRQ_STAT_PROD">
+    <Key>
+      <PropertyRef Name="ID_RFRC_SEQU" />
+      <PropertyRef Name="LB_SCTN" />
+      <PropertyRef Name="DT_DEB" />
+    </Key>
+    <Property Name="NM_NS_CLT" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="RN" Type="Int64" />
+    <Property Name="ID_RFRC_SEQU" Type="Int16" Nullable="false" />
+    <Property Name="LB_SCTN" Type="Int32" Nullable="false" />
+    <Property Name="DT_DEB" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="NM_MATR" Type="Int32" />
+    <Property Name="LB_MOYN" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="V_TAE_TCBL_NMCT_UNIT_PROD">
+    <Key>
+      <PropertyRef Name="NM_TYPE_TCBL" />
+    </Key>
+    <Property Name="NU_SER_PROD" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="CD_ARTI_PROD" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="NU_SER_COMP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CD_ARTI_COMP" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="NM_DSGT_COMP" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="NM_TYPE_TCBL" Type="Int32" Nullable="false" />
+    <Property Name="DT_AFTT" Type="DateTime" Precision="7" />
+  </EntityType>
+  <EntityContainer Name="MES_Digital_FactoryEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="DTM_ETP_WKF_OLD" EntityType="Self.DTM_ETP_WKF_OLD" />
+    <EntitySet Name="DTM_GST_CNTR" EntityType="Self.DTM_GST_CNTR" />
+    <EntitySet Name="DTM_GST_MOY_OLD" EntityType="Self.DTM_GST_MOY_OLD" />
+    <EntitySet Name="DTM_GST_OUTI" EntityType="Self.DTM_GST_OUTI" />
+    <EntitySet Name="DTM_HIST_MTRE" EntityType="Self.DTM_HIST_MTRE" />
+    <EntitySet Name="DTM_LST_CNTR" EntityType="Self.DTM_LST_CNTR" />
+    <EntitySet Name="DTM_NM_SN_ENS" EntityType="Self.DTM_NM_SN_ENS" />
+    <EntitySet Name="DTM_OLD_TCBL_COMP" EntityType="Self.DTM_OLD_TCBL_COMP" />
+    <EntitySet Name="DTM_PSG" EntityType="Self.DTM_PSG" />
+    <EntitySet Name="DTM_PSG_OUTI" EntityType="Self.DTM_PSG_OUTI" />
+    <EntitySet Name="DTM_REF_ENS" EntityType="Self.DTM_REF_ENS" />
+    <EntitySet Name="DTM_REF_PST_IMPR_OLD" EntityType="Self.DTM_REF_PST_IMPR_OLD" />
+    <EntitySet Name="DTM_TR_CPT" EntityType="Self.DTM_TR_CPT" />
+    <EntitySet Name="DTM_TST_RPRT" EntityType="Self.DTM_TST_RPRT" />
+    <EntitySet Name="DTM_TST_VAL" EntityType="Self.DTM_TST_VAL" />
+    <EntitySet Name="TMP_PST_FLAN" EntityType="Self.TMP_PST_FLAN" />
+    <EntitySet Name="TMP_PST_NMCL" EntityType="Self.TMP_PST_NMCL" />
+    <EntitySet Name="DTM_REF_ID" EntityType="Self.DTM_REF_ID" />
+    <EntitySet Name="TMP_PST_OUTI" EntityType="Self.TMP_PST_OUTI" />
+    <EntitySet Name="C_old_V_CLSG_RAPP_TCBL" EntityType="Self.C_old_V_CLSG_RAPP_TCBL" />
+    <EntitySet Name="ID_Conteneur_View" EntityType="Self.ID_Conteneur_View" />
+    <EntitySet Name="V_CFGR_ARTI_ECO" EntityType="Self.V_CFGR_ARTI_ECO" />
+    <EntitySet Name="V_CFGR_CLIE" EntityType="Self.V_CFGR_CLIE" />
+    <EntitySet Name="V_CLSG_PRD_DTM_HIST_LIVR" EntityType="Self.V_CLSG_PRD_DTM_HIST_LIVR" />
+    <EntitySet Name="V_CLSG_PRD_DTM_REF_ARTI_FT" EntityType="Self.V_CLSG_PRD_DTM_REF_ARTI_FT" />
+    <EntitySet Name="V_CLSG_PRD_DTM_REF_OPTN_CLI" EntityType="Self.V_CLSG_PRD_DTM_REF_OPTN_CLI" />
+    <EntitySet Name="V_CLSG_PRD_DTM_REF_PST" EntityType="Self.V_CLSG_PRD_DTM_REF_PST" />
+    <EntitySet Name="V_DER_DTM_PSG_PAR_LB_ETP" EntityType="Self.V_DER_DTM_PSG_PAR_LB_ETP" />
+    <EntitySet Name="V_DTM_LST_CNTR" EntityType="Self.V_DTM_LST_CNTR" />
+    <EntitySet Name="V_DTM_REF_ENS" EntityType="Self.V_DTM_REF_ENS" />
+    <EntitySet Name="V_DTM_TAKA" EntityType="Self.V_DTM_TAKA" />
+    <EntitySet Name="V_DTM_TEST_FONC_NOM_TEST" EntityType="Self.V_DTM_TEST_FONC_NOM_TEST" />
+    <EntitySet Name="V_DTM_TEST_FONC_RAPP" EntityType="Self.V_DTM_TEST_FONC_RAPP" />
+    <EntitySet Name="V_DTM_TEST_FONC_VAL" EntityType="Self.V_DTM_TEST_FONC_VAL" />
+    <EntitySet Name="V_LIST_CONT_NON_VIDE" EntityType="Self.V_LIST_CONT_NON_VIDE" />
+    <EntitySet Name="V_LIST_LIAI_NU_SER_ECO_NU_SER_CLIE" EntityType="Self.V_LIST_LIAI_NU_SER_ECO_NU_SER_CLIE" />
+    <EntitySet Name="V_LIST_TEST_ODS_TEST_FONC_VAL" EntityType="Self.V_LIST_TEST_ODS_TEST_FONC_VAL" />
+    <EntitySet Name="V_NEOE_NU_SER_ECO_NU_SER_SS_ENS" EntityType="Self.V_NEOE_NU_SER_ECO_NU_SER_SS_ENS" />
+    <EntitySet Name="V_NEOE_TRAC_ENS_SS_ENSE" EntityType="Self.V_NEOE_TRAC_ENS_SS_ENSE" />
+    <EntitySet Name="V_NEW_PSG_ODS_TEST_FONC_RAPP" EntityType="Self.V_NEW_PSG_ODS_TEST_FONC_RAPP" />
+    <EntitySet Name="V_NEW_RAPP_ODS_TEST_FONC_RAPP" EntityType="Self.V_NEW_RAPP_ODS_TEST_FONC_RAPP" />
+    <EntitySet Name="V_NEW_TEST_ODS_TEST_FONC_VAL" EntityType="Self.V_NEW_TEST_ODS_TEST_FONC_VAL" />
+    <EntitySet Name="V_NEW_VALE_ODS_TEST_FONC_VAL" EntityType="Self.V_NEW_VALE_ODS_TEST_FONC_VAL" />
+    <EntitySet Name="V_RSLT_POIN_ARRE_TCBL_OPRT" EntityType="Self.V_RSLT_POIN_ARRE_TCBL_OPRT" />
+    <EntitySet Name="V_SERE_ARTI" EntityType="Self.V_SERE_ARTI" />
+    <EntitySet Name="V_TAE_TCBL_HSRQ_STAT_PROD" EntityType="Self.V_TAE_TCBL_HSRQ_STAT_PROD" />
+    <EntitySet Name="V_TAE_TCBL_NMCT_UNIT_PROD" EntityType="Self.V_TAE_TCBL_NMCT_UNIT_PROD" />
+    <FunctionImport Name="F_IDCT_PASS" IsComposable="true" ReturnType="Collection(MES_Digital_FactoryModel.F_IDCT_PASS_Result)">
+      <Parameter Name="DT_DEB" Mode="In" Type="DateTime" />
+      <Parameter Name="DT_FIN" Mode="In" Type="DateTime" />
+      <Parameter Name="OF" Mode="In" Type="String" />
+      <Parameter Name="CD_ARTI_ECO" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Ajout_Gestion_Conteneur">
+      <Parameter Name="N_Conteneur" Mode="In" Type="String" />
+      <Parameter Name="Preparateur" Mode="In" Type="String" />
+      <Parameter Name="ID_cpt" Mode="In" Type="String" />
+      <Parameter Name="Qte_Init" Mode="In" Type="Single" />
+      <Parameter Name="OF" Mode="In" Type="Int32" />
+      <Parameter Name="Code_SAP_cpt" Mode="In" Type="String" />
+      <Parameter Name="Result" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Ajout_Traca_Matiere_Matricule_Passage">
+      <Parameter Name="Etape" Mode="In" Type="String" />
+      <Parameter Name="ID_PF" Mode="In" Type="String" />
+      <Parameter Name="matricule" Mode="In" Type="Int16" />
+      <Parameter Name="Result" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Ajout_Traca_Matiere_NS">
+      <Parameter Name="ID_PF" Mode="In" Type="String" />
+      <Parameter Name="ID_CPT" Mode="In" Type="String" />
+      <Parameter Name="ID_Passage" Mode="In" Type="String" />
+      <Parameter Name="Repere" Mode="In" Type="String" />
+      <Parameter Name="Result" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Ajout_Traca_Matiere_NS_2">
+      <Parameter Name="ID_PF" Mode="In" Type="String" />
+      <Parameter Name="ID_CPT" Mode="In" Type="String" />
+      <Parameter Name="ID_Passage" Mode="In" Type="String" />
+      <Parameter Name="Repere" Mode="In" Type="String" />
+      <Parameter Name="Code_SAP_Cpt" Mode="In" Type="String" />
+      <Parameter Name="Result" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Ajout_Traca_Matiere_NS_ENS">
+      <Parameter Name="ID_PF" Mode="In" Type="String" />
+      <Parameter Name="ID_CPT" Mode="In" Type="String" />
+      <Parameter Name="ID_Passage" Mode="In" Type="String" />
+      <Parameter Name="Repere" Mode="In" Type="String" />
+      <Parameter Name="Code_SAP_Cpt" Mode="In" Type="String" />
+      <Parameter Name="NS_SENS" Mode="In" Type="String" />
+      <Parameter Name="Result" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Ajout_Traca_Matiere_Passage">
+      <Parameter Name="Etape" Mode="In" Type="String" />
+      <Parameter Name="ID_PF" Mode="In" Type="String" />
+      <Parameter Name="Result" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Ajout_Traca_Outillage">
+      <Parameter Name="Id_Passage" Mode="In" Type="String" />
+      <Parameter Name="N_Outillage" Mode="In" Type="String" />
+      <Parameter Name="Type_outillage" Mode="In" Type="String" />
+      <Parameter Name="Date_limite_Utilisation" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="Conteneur_Disponible">
+      <Parameter Name="N_conteneur" Mode="In" Type="String" />
+      <Parameter Name="result" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="DEL_PSG">
+      <Parameter Name="ID_PSG" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="Diminuer_Qte_Conteneur">
+      <Parameter Name="N_gestion" Mode="In" Type="Int32" />
+      <Parameter Name="Localisation" Mode="In" Type="String" />
+      <Parameter Name="Qte" Mode="In" Type="Single" />
+      <Parameter Name="Result" Mode="InOut" Type="Single" />
+    </FunctionImport>
+    <FunctionImport Name="Donnees_Conteneur" ReturnType="Collection(MES_Digital_FactoryModel.Donnees_Conteneur_Result)">
+      <Parameter Name="N_Conteneur" Mode="In" Type="String" />
+      <Parameter Name="OF" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Doublon_Passage_NS_Etape" ReturnType="Collection(String)">
+      <Parameter Name="NS" Mode="In" Type="String" />
+      <Parameter Name="Etape" Mode="In" Type="String" />
+      <Parameter Name="Nb_Passage" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ENS_INFO" ReturnType="Collection(MES_Digital_FactoryModel.ENS_INFO_Result)">
+      <Parameter Name="Ref_Produit" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Etape_par_OF" ReturnType="Collection(String)">
+      <Parameter Name="OF" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Extraction_Traca_Matiere_NS" ReturnType="Collection(MES_Digital_FactoryModel.Extraction_Traca_Matiere_NS_Result)">
+      <Parameter Name="NS" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Extraction_Traca_Matiere_OF" ReturnType="Collection(MES_Digital_FactoryModel.Extraction_Traca_Matiere_OF_Result)">
+      <Parameter Name="OF" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Extraction_Traca_Matiere_OF_OP" ReturnType="Collection(MES_Digital_FactoryModel.Extraction_Traca_Matiere_OF_OP_Result)">
+      <Parameter Name="OF" Mode="In" Type="String" />
+      <Parameter Name="Etape" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="INS_TMP_PST_NMCL">
+      <Parameter Name="Poste" Mode="In" Type="String" />
+      <Parameter Name="NM_LGN" Mode="In" Type="Int32" />
+      <Parameter Name="NM_OF" Mode="In" Type="Int32" />
+      <Parameter Name="NM_OP" Mode="In" Type="Int32" />
+      <Parameter Name="LB_RPR" Mode="In" Type="String" />
+      <Parameter Name="NM_SAP_CPT" Mode="In" Type="String" />
+      <Parameter Name="LB_CPT" Mode="In" Type="String" />
+      <Parameter Name="NM_QTE_PDT" Mode="In" Type="Single" />
+      <Parameter Name="NM_CNTR" Mode="In" Type="String" />
+      <Parameter Name="NM_QTE_CNTR" Mode="In" Type="Single" />
+      <Parameter Name="ID_GST_CNTR" Mode="In" Type="Int32" />
+      <Parameter Name="ID_CPT" Mode="In" Type="String" />
+      <Parameter Name="Result" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="INS_TMP_PST_OUTI">
+      <Parameter Name="Poste" Mode="In" Type="String" />
+      <Parameter Name="Type_Outil" Mode="In" Type="String" />
+      <Parameter Name="Outil_Oblig" Mode="In" Type="String" />
+      <Parameter Name="N_Outil" Mode="In" Type="String" />
+      <Parameter Name="Date_limit" Mode="In" Type="DateTime" />
+      <Parameter Name="ID_Outil" Mode="In" Type="Int32" />
+      <Parameter Name="Result" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="INS_TR_PSG">
+      <Parameter Name="Etape" Mode="In" Type="String" />
+      <Parameter Name="ID_PF" Mode="In" Type="String" />
+      <Parameter Name="LB_MOYN" Mode="In" Type="String" />
+      <Parameter Name="matricule" Mode="In" Type="Int16" />
+      <Parameter Name="Result" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="INS_TR_PSG_OF">
+      <Parameter Name="Etape" Mode="In" Type="String" />
+      <Parameter Name="ID_PF" Mode="In" Type="String" />
+      <Parameter Name="LB_MOYN" Mode="In" Type="String" />
+      <Parameter Name="matricule" Mode="In" Type="Int16" />
+      <Parameter Name="NM_OF" Mode="In" Type="Int32" />
+      <Parameter Name="Result" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Liste_Conteneurs_Servis_OF" ReturnType="Collection(MES_Digital_FactoryModel.Liste_Conteneurs_Servis_OF_Result)">
+      <Parameter Name="OF" Mode="In" Type="Int32" />
+      <Parameter Name="Preparateur" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Liste_Outillage_Attendu" ReturnType="Collection(MES_Digital_FactoryModel.Liste_Outillage_Attendu_Result)">
+      <Parameter Name="Article" Mode="In" Type="String" />
+      <Parameter Name="OP" Mode="In" Type="Int16" />
+    </FunctionImport>
+    <FunctionImport Name="Liste_Passage_OF_Etape" ReturnType="Collection(String)">
+      <Parameter Name="OF" Mode="In" Type="String" />
+      <Parameter Name="Etape" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="LST_PST_ETP_MOY" ReturnType="Collection(MES_Digital_FactoryModel.LST_PST_ETP_MOY_Result)">
+      <Parameter Name="LB_PST" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="LST_SENS_Pour_ENS" ReturnType="Collection(MES_Digital_FactoryModel.LST_SENS_Pour_ENS_Result)">
+      <Parameter Name="produit" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="LST_TAMP_OUTI" ReturnType="Collection(MES_Digital_FactoryModel.LST_TAMP_OUTI_Result)">
+      <Parameter Name="Poste" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="LST_TMP_NMCL" ReturnType="Collection(MES_Digital_FactoryModel.LST_TMP_NMCL_Result)">
+      <Parameter Name="LB_PST" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="MAJ_Conteneur_Disponible">
+      <Parameter Name="N_conteneur" Mode="In" Type="String" />
+      <Parameter Name="Disponible" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="MAJ_EUROPLACER">
+      <Parameter Name="RESULTAT" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="MAJ_EUROPLACER_Fichier">
+      <Parameter Name="FICHIER_EUROPLACER" Mode="In" Type="String" />
+      <Parameter Name="RESULTAT" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="MAJ_Qte_Conteneur">
+      <Parameter Name="N_gestion" Mode="In" Type="Int32" />
+      <Parameter Name="Localisation" Mode="In" Type="String" />
+      <Parameter Name="Qte" Mode="In" Type="Single" />
+      <Parameter Name="Result" Mode="InOut" Type="Single" />
+    </FunctionImport>
+    <FunctionImport Name="MAJ_TMP_PST_FLAN">
+      <Parameter Name="Poste" Mode="In" Type="String" />
+      <Parameter Name="NB_CTRL_FLAN" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="New_N_ENS_SERAP">
+      <Parameter Name="Produit" Mode="In" Type="String" />
+      <Parameter Name="Result" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="P_ADD_PSG_DTM_PSG">
+      <Parameter Name="LB_ETP" Mode="In" Type="String" />
+      <Parameter Name="DT_DEB" Mode="In" Type="DateTime" />
+      <Parameter Name="DT_FIN" Mode="In" Type="DateTime" />
+      <Parameter Name="LB_MOYN" Mode="In" Type="String" />
+      <Parameter Name="LB_PROG" Mode="In" Type="String" />
+      <Parameter Name="NM_MATR" Mode="In" Type="Int32" />
+      <Parameter Name="LB_DOC" Mode="In" Type="String" />
+      <Parameter Name="NM_NS_EOL" Mode="In" Type="String" />
+      <Parameter Name="LB_SCTN" Mode="In" Type="String" />
+      <Parameter Name="NM_OF" Mode="In" Type="Int32" />
+      <Parameter Name="Result" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="P_ADD_PSG_DTM_PSG_V2">
+      <Parameter Name="LB_ETP" Mode="In" Type="String" />
+      <Parameter Name="DT_DEB" Mode="In" Type="DateTime" />
+      <Parameter Name="DT_FIN" Mode="In" Type="DateTime" />
+      <Parameter Name="LB_MOYN" Mode="In" Type="String" />
+      <Parameter Name="LB_PROG" Mode="In" Type="String" />
+      <Parameter Name="NM_MATR" Mode="In" Type="Int32" />
+      <Parameter Name="LB_DOC" Mode="In" Type="String" />
+      <Parameter Name="NM_NS_EOL" Mode="In" Type="String" />
+      <Parameter Name="NM_NS_CLIE" Mode="In" Type="String" />
+      <Parameter Name="LB_SCTN" Mode="In" Type="String" />
+      <Parameter Name="NM_OF" Mode="In" Type="Int32" />
+      <Parameter Name="Result" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="P_ADD_TCBL_COMP">
+      <Parameter Name="ID_PF" Mode="In" Type="String" />
+      <Parameter Name="ID_CPT" Mode="In" Type="String" />
+      <Parameter Name="ID_Passage" Mode="In" Type="Int32" />
+      <Parameter Name="Repere" Mode="In" Type="String" />
+      <Parameter Name="NM_CNTR" Mode="In" Type="String" />
+      <Parameter Name="Result" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="P_ADD_TCBL_MAT_NS_ENS_V2">
+      <Parameter Name="ID_PF" Mode="In" Type="String" />
+      <Parameter Name="Repere" Mode="In" Type="String" />
+      <Parameter Name="Code_SAP_Cpt" Mode="In" Type="String" />
+      <Parameter Name="NS_SENS" Mode="In" Type="String" />
+      <Parameter Name="Etape" Mode="In" Type="String" />
+      <Parameter Name="OF" Mode="In" Type="String" />
+      <Parameter Name="ID_Passage" Mode="InOut" Type="Int64" />
+      <Parameter Name="Result" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="P_ADD_TCBL_MAT_NS_ENS_V3">
+      <Parameter Name="ID_PF" Mode="In" Type="String" />
+      <Parameter Name="Repere" Mode="In" Type="String" />
+      <Parameter Name="Code_SAP_Cpt" Mode="In" Type="String" />
+      <Parameter Name="NS_SENS" Mode="In" Type="String" />
+      <Parameter Name="Etape" Mode="In" Type="String" />
+      <Parameter Name="LB_MOYN" Mode="In" Type="String" />
+      <Parameter Name="LB_PROG" Mode="In" Type="String" />
+      <Parameter Name="NM_MATR" Mode="In" Type="Int32" />
+      <Parameter Name="OF" Mode="In" Type="String" />
+      <Parameter Name="ID_Passage" Mode="InOut" Type="Int64" />
+      <Parameter Name="Result" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="P_ADD_TCBL_MAT_NS_ENS_V4">
+      <Parameter Name="ID_PF" Mode="In" Type="String" />
+      <Parameter Name="Repere" Mode="In" Type="String" />
+      <Parameter Name="Code_SAP_Cpt" Mode="In" Type="String" />
+      <Parameter Name="NS_SENS" Mode="In" Type="String" />
+      <Parameter Name="Etape" Mode="In" Type="String" />
+      <Parameter Name="LB_MOYN" Mode="In" Type="String" />
+      <Parameter Name="LB_PROG" Mode="In" Type="String" />
+      <Parameter Name="NM_MATR" Mode="In" Type="Int32" />
+      <Parameter Name="OF" Mode="In" Type="String" />
+      <Parameter Name="ID_CPT" Mode="In" Type="String" />
+      <Parameter Name="ID_Passage" Mode="InOut" Type="Int64" />
+      <Parameter Name="Result" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="P_AVAE_GET_TCBL_NU_SER_ENSE">
+      <Parameter Name="NU_SER_ENSE_UDI" Mode="In" Type="String" />
+      <Parameter Name="NU_SER_MCU" Mode="InOut" Type="String" />
+      <Parameter Name="NU_SER_ANLS" Mode="InOut" Type="String" />
+      <Parameter Name="NU_SER_QR_CODE" Mode="InOut" Type="String" />
+      <Parameter Name="RES" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="P_CLSG_NEW_NU_CART">
+      <Parameter Name="NU_OF" Mode="In" Type="String" />
+      <Parameter Name="NU_CART" Mode="InOut" Type="String" />
+      <Parameter Name="RET" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="P_ENVO_MAIL_ECO">
+      <Parameter Name="NM_DEST" Mode="In" Type="String" />
+      <Parameter Name="NM_DEST_COPI" Mode="In" Type="String" />
+      <Parameter Name="NM_DEST_COPY_CACH" Mode="In" Type="String" />
+      <Parameter Name="NM_EXPE" Mode="In" Type="String" />
+      <Parameter Name="NM_DSGT_EXPE" Mode="In" Type="String" />
+      <Parameter Name="NM_DEST_REPO" Mode="In" Type="String" />
+      <Parameter Name="TX_CONT" Mode="In" Type="String" />
+      <Parameter Name="TX_SUJE" Mode="In" Type="String" />
+      <Parameter Name="NM_FICH_ATTA" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="P_GET_DERN_NU_SER">
+      <Parameter Name="NM_CRIT" Mode="In" Type="String" />
+      <Parameter Name="NM_TYPE" Mode="In" Type="String" />
+      <Parameter Name="NU_SER_DERN" Mode="InOut" Type="String" />
+      <Parameter Name="RET" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="P_GET_OPTI">
+      <Parameter Name="NM_CRIT" Mode="In" Type="String" />
+      <Parameter Name="MN_PARA" Mode="In" Type="String" />
+      <Parameter Name="VAL_PARA" Mode="InOut" Type="String" />
+      <Parameter Name="RET" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="P_GET_TRAC_NU_SER_ENS_NU_SER_SS_ENS">
+      <Parameter Name="OF" Mode="In" Type="String" />
+      <Parameter Name="ETAP" Mode="In" Type="String" />
+      <Parameter Name="RET" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="P_MAJ_RAPP_TEST" ReturnType="Collection(MES_Digital_FactoryModel.P_MAJ_RAPP_TEST_Result)">
+      <Parameter Name="Fichier_Rapport" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="P_MAJ_TAKA">
+      <Parameter Name="Fichier_Rapport" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="P_MAJ_VALE_TEST">
+      <Parameter Name="Fichier_valeurs" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PRC_DNN_CNTR" ReturnType="Collection(MES_Digital_FactoryModel.PRC_DNN_CNTR_Result)">
+      <Parameter Name="NM_CNTR" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PRC_EXTR_APPR_SERAP" ReturnType="Collection(MES_Digital_FactoryModel.PRC_EXTR_APPR_SERAP_Result)">
+      <Parameter Name="NM_NS_EOL" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PRC_EXTR_CSV_NEOMEDLIGHT" ReturnType="Collection(String)" />
+    <FunctionImport Name="PRC_EXTR_RPPR_CSV_NEOMEDLIGHT">
+      <Parameter Name="DIR_CSV_RAPPORT" Mode="In" Type="String" />
+      <Parameter Name="RESULTAT" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PRC_EXTR_SNCT_RPRT">
+      <Parameter Name="ID_RPRT" Mode="In" Type="Int64" />
+      <Parameter Name="NM_NS" Mode="InOut" Type="String" />
+      <Parameter Name="LB_SNCT" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PRC_EXTR_VAL_CSV_NEOMEDLIGHT">
+      <Parameter Name="DIR_CSV_VALEUR" Mode="In" Type="String" />
+      <Parameter Name="RESULTAT" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PRC_GSTN_ERR">
+      <Parameter Name="ERROR" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PRC_INS_TST_RPRT">
+      <Parameter Name="LB_BNC" Mode="In" Type="String" />
+      <Parameter Name="CD_OPRT" Mode="In" Type="String" />
+      <Parameter Name="CD_PRDT" Mode="In" Type="String" />
+      <Parameter Name="NM_OF" Mode="In" Type="String" />
+      <Parameter Name="NM_NS" Mode="In" Type="String" />
+      <Parameter Name="LB_SNCT" Mode="In" Type="String" />
+      <Parameter Name="LB_MD" Mode="In" Type="String" />
+      <Parameter Name="VRS_LOG" Mode="In" Type="String" />
+      <Parameter Name="VRS_SEQ" Mode="In" Type="String" />
+      <Parameter Name="ERROR" Mode="InOut" Type="String" />
+      <Parameter Name="ID_RPRT" Mode="InOut" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="PRC_INS_TST_VAL">
+      <Parameter Name="LB_BNC" Mode="In" Type="String" />
+      <Parameter Name="CD_OPRT" Mode="In" Type="String" />
+      <Parameter Name="CD_PRDT" Mode="In" Type="String" />
+      <Parameter Name="NM_OF" Mode="In" Type="String" />
+      <Parameter Name="NM_NS" Mode="In" Type="String" />
+      <Parameter Name="LB_NM_MSR" Mode="In" Type="String" />
+      <Parameter Name="VAL_LIM_BS" Mode="In" Type="String" />
+      <Parameter Name="VAL" Mode="In" Type="String" />
+      <Parameter Name="VAL_LIM_HT" Mode="In" Type="String" />
+      <Parameter Name="CH_VAL" Mode="In" Type="String" />
+      <Parameter Name="TU" Mode="In" Type="String" />
+      <Parameter Name="TT" Mode="In" Type="String" />
+      <Parameter Name="VRS_LOG" Mode="In" Type="String" />
+      <Parameter Name="VRS_SEQ" Mode="In" Type="String" />
+      <Parameter Name="ID_RPRT" Mode="In" Type="Int64" />
+      <Parameter Name="ERROR" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PRC_LST_MDP" ReturnType="Collection(String)" />
+    <FunctionImport Name="PRC_LST_PCB_OF" ReturnType="Collection(MES_Digital_FactoryModel.PRC_LST_PCB_OF_Result)">
+      <Parameter Name="NM_OF" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PRC_LST_PSG_OF_ETP" ReturnType="Collection(String)">
+      <Parameter Name="OF" Mode="In" Type="String" />
+      <Parameter Name="Etape" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PRC_LST_SENS_TO_ENS" ReturnType="Collection(MES_Digital_FactoryModel.PRC_LST_SENS_TO_ENS_Result)">
+      <Parameter Name="NM_NS_EOL" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PRC_MAJ_TST_RPRT">
+      <Parameter Name="ID_RPRT" Mode="In" Type="Int64" />
+      <Parameter Name="LB_SNCT" Mode="In" Type="String" />
+      <Parameter Name="ERROR" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PRC_NEOD_EXTR_NS_ASSOC">
+      <Parameter Name="NM_NS" Mode="In" Type="String" />
+      <Parameter Name="NM_ASSOC" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PRC_NEOD_EXTR_NS_ASSOC_2">
+      <Parameter Name="NS" Mode="In" Type="String" />
+      <Parameter Name="CD_PRDT" Mode="In" Type="String" />
+      <Parameter Name="NM_ASSOC" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PRC_NEOD_EXTR_NS_ASSOC_3">
+      <Parameter Name="NS" Mode="In" Type="String" />
+      <Parameter Name="CD_PROD" Mode="In" Type="String" />
+      <Parameter Name="NM_ASSOC" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PRC_PST_IMPR">
+      <Parameter Name="LB_PST" Mode="In" Type="String" />
+      <Parameter Name="LB_IMPR" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PRC_VERIF_DBL_PCB_NS" ReturnType="Collection(MES_Digital_FactoryModel.PRC_VERIF_DBL_PCB_NS_Result)">
+      <Parameter Name="NM_OF" Mode="In" Type="Int32" />
+      <Parameter Name="NM_NS_EOL" Mode="In" Type="String" />
+      <Parameter Name="DBL" Mode="InOut" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="PRC_VERIF_DBLN_NS_SENS">
+      <Parameter Name="NM_SAP_CPT" Mode="In" Type="String" />
+      <Parameter Name="NM_NS_SENS" Mode="In" Type="String" />
+      <Parameter Name="Result" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SUP_TMP_PST_NMCL">
+      <Parameter Name="Poste" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SUP_TMP_PST_OUTI">
+      <Parameter Name="Poste" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Supprimer_Gestion_Conteneur">
+      <Parameter Name="N_gestion" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="TMP_NB_CRT_FLAN">
+      <Parameter Name="LB_PST" Mode="In" Type="String" />
+      <Parameter Name="Result" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="WorkFlow_NS_EOL" ReturnType="Collection(MES_Digital_FactoryModel.WorkFlow_NS_EOL_Result)">
+      <Parameter Name="NS_EOL" Mode="In" Type="String" />
+      <Parameter Name="Etape" Mode="In" Type="String" />
+      <Parameter Name="Article" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="WorkFlow_PDT" ReturnType="Collection(MES_Digital_FactoryModel.WorkFlow_PDT_Result)">
+      <Parameter Name="Article" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="Donnees_Conteneur_Result">
+    <Property Type="Int32" Name="ID_GST_CNTR" Nullable="false" />
+    <Property Type="String" Name="NM_SAP_CPT" Nullable="true" MaxLength="18" />
+    <Property Type="Single" Name="NM_QTE" Nullable="true" />
+    <Property Type="String" Name="ID_CPT" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="ENS_INFO_Result">
+    <Property Type="String" Name="CD_CLT_ENS" Nullable="true" MaxLength="1000" />
+    <Property Type="String" Name="LB_VRSN" Nullable="true" MaxLength="1000" />
+    <Property Type="String" Name="LB_PRDT" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="CD_PRDT" Nullable="true" MaxLength="1000" />
+  </ComplexType>
+  <ComplexType Name="Extraction_Traca_Matiere_NS_Result">
+    <Property Type="Int64" Name="ID_PSG" Nullable="true" />
+    <Property Type="String" Name="LB_ETP" Nullable="true" MaxLength="255" />
+    <Property Type="DateTime" Name="DT_DEB" Nullable="true" />
+    <Property Type="String" Name="NM_NS_EOL" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ID_CPT" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="LB_RPR" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="NM_SAP_CPT" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="Extraction_Traca_Matiere_OF_Result">
+    <Property Type="Int64" Name="ID_PSG" Nullable="false" />
+    <Property Type="String" Name="LB_ETP" Nullable="true" MaxLength="255" />
+    <Property Type="DateTime" Name="DT_DEB" Nullable="false" />
+    <Property Type="String" Name="NM_NS_EOL" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ID_CPT" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="LB_RPR" Nullable="true" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="Extraction_Traca_Matiere_OF_OP_Result">
+    <Property Type="Int64" Name="ID_PSG" Nullable="false" />
+    <Property Type="String" Name="LB_ETP" Nullable="true" MaxLength="255" />
+    <Property Type="DateTime" Name="DT_DEB" Nullable="false" />
+    <Property Type="String" Name="NM_NS_EOL" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ID_CPT" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="LB_RPR" Nullable="true" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="Liste_Conteneurs_Servis_OF_Result">
+    <Property Type="String" Name="NM_SAP_CPT" Nullable="true" MaxLength="18" />
+    <Property Type="String" Name="ID_CPT" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="NM_CNTR" Nullable="true" MaxLength="7" />
+    <Property Type="Single" Name="NM_QTE_INIT" Nullable="true" />
+    <Property Type="Int32" Name="ID_GST_CNTR" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="Liste_Outillage_Attendu_Result">
+    <Property Type="String" Name="TP_OUTI" Nullable="true" MaxLength="25" />
+    <Property Type="String" Name="LB_OUTI_OBLG" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Outillage_Utilisé" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="Date_Limite_Utilisation" Nullable="false" MaxLength="1" />
+    <Property Type="Int32" Name="ID_OUTI" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="LST_PST_ETP_MOY_Result">
+    <Property Type="String" Name="LB_ETP" Nullable="true" MaxLength="1000" />
+    <Property Type="String" Name="LB_MOY" Nullable="true" MaxLength="1000" />
+  </ComplexType>
+  <ComplexType Name="LST_SENS_Pour_ENS_Result">
+    <Property Type="String" Name="CD_SAP_SENS" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="CD_CLT_SENS" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="LB_SENS" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="QT_SENS" Nullable="true" />
+    <Property Type="String" Name="N_serie" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="FT_NS_SENS" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="FT_NS_ENS" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="LST_TAMP_OUTI_Result">
+    <Property Type="String" Name="TP_OUTI" Nullable="true" MaxLength="25" />
+    <Property Type="String" Name="LB_OUTI_OBLG" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="NM_OUTI" Nullable="true" MaxLength="20" />
+    <Property Type="DateTime" Name="DT_LIM_UTIL" Nullable="true" />
+    <Property Type="Int32" Name="ID_OUTI" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="LST_TMP_NMCL_Result">
+    <Property Type="Int32" Name="NM_LGN" Nullable="false" />
+    <Property Type="Int32" Name="NM_OF" Nullable="true" />
+    <Property Type="Int32" Name="NM_OP" Nullable="true" />
+    <Property Type="String" Name="LB_RPR" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="NM_SAP_CPT" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="LB_CPT" Nullable="true" MaxLength="50" />
+    <Property Type="Single" Name="NM_QTE_PDT" Nullable="true" />
+    <Property Type="String" Name="NM_CNTR" Nullable="true" MaxLength="7" />
+    <Property Type="Single" Name="NM_QTE_CNTR" Nullable="true" />
+    <Property Type="Int32" Name="ID_GST_CNTR" Nullable="true" />
+    <Property Type="String" Name="ID_CPT" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="P_MAJ_RAPP_TEST_Result">
+    <Property Type="String" Name="Ref_Banc" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="code_opérateur" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="Code_produit" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="OF" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="n__de_série" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="Date" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="Heure" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="Resultat" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="Mode" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="Version_logicielle" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="Version_séquenceur" Nullable="true" MaxLength="4000" />
+  </ComplexType>
+  <ComplexType Name="PRC_DNN_CNTR_Result">
+    <Property Type="DateTime" Name="DT_PREP" Nullable="true" Precision="23" />
+    <Property Type="String" Name="LB_SERV_PREP" Nullable="true" MaxLength="25" />
+    <Property Type="String" Name="ID_CPT" Nullable="true" MaxLength="20" />
+    <Property Type="Single" Name="NM_QTE_INIT" Nullable="true" />
+    <Property Type="Single" Name="NM_QTE" Nullable="true" />
+    <Property Type="DateTime" Name="DT_LCSN" Nullable="true" Precision="23" />
+    <Property Type="String" Name="LB_LCSN" Nullable="true" MaxLength="25" />
+    <Property Type="Int32" Name="NM_OF" Nullable="true" />
+    <Property Type="String" Name="NM_SAP_CPT" Nullable="true" MaxLength="18" />
+    <Property Type="Int32" Name="ID_GST_CNTR" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="PRC_EXTR_APPR_SERAP_Result">
+    <Property Type="Int64" Name="ID_PSG" Nullable="false" />
+    <Property Type="DateTime" Name="DT_DEB" Nullable="false" />
+    <Property Type="Int32" Name="NM_OF" Nullable="true" />
+    <Property Type="String" Name="LB_ETP" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="NM_MATR" Nullable="true" />
+    <Property Type="String" Name="NM_SAP_CPT" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="NM_NS_SENS" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="PRC_LST_PCB_OF_Result">
+    <Property Type="String" Name="NM_SAP_CPT" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="ID_CPT" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="NM_NS_EOL" Nullable="true" MaxLength="200" />
+    <Property Type="Int64" Name="ID_PSG" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="PRC_LST_SENS_TO_ENS_Result">
+    <Property Type="DateTime" Name="Date_Integration" Nullable="true" />
+    <Property Type="String" Name="NM_SAP_CPT" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="NM_NS_SENS" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="PRC_VERIF_DBL_PCB_NS_Result">
+    <Property Type="Int32" Name="NM_OF" Nullable="true" />
+    <Property Type="String" Name="LB_RPR" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="NM_NS_EOL" Nullable="true" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="WorkFlow_NS_EOL_Result">
+    <Property Type="Int32" Name="ORD" Nullable="true" />
+    <Property Type="String" Name="ETP" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="NBR" Nullable="true" />
+    <Property Type="Int32" Name="PSG" Nullable="true" />
+    <Property Type="String" Name="CNF" Nullable="true" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="WorkFlow_PDT_Result">
+    <Property Type="Int32" Name="ORD" Nullable="true" />
+    <Property Type="String" Name="ETP" Nullable="true" MaxLength="1000" />
+    <Property Type="Int32" Name="NBR" Nullable="true" />
+    <Property Type="Int32" Name="PSG" Nullable="true" />
+    <Property Type="Int32" Name="CNF" Nullable="true" />
+  </ComplexType>
+</Schema>

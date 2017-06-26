@@ -32,8 +32,10 @@ Public Class ALMS_IMPORT
             ref_sequ = FIND_REF_SEQU(FileUpload_ALMS.FileName)
             vers_sequ = FIND_VERS_SEQUENCE(FileUpload_ALMS.FileName)
             If ref_sequ Is Nothing Or vers_sequ Is Nothing Then Throw New Exception("L'extraction du nom du séquenceur n'a pas été exécutée")
-            date_store_query = "INSERT INTO [dbo].[DTM_SEQU_RFRC_LIST] ([NM_RFRC_SEQU], [NU_VERS_SEQU], [ID_RFRC_SEQU], [DT_APCT], [DT_VLDT], [BL_VLDT], [NM_VALI_ECO], [NM_RFRC_GAMM_ECO])
-								     VALUES ('" & ref_sequ & "', '" & vers_sequ & "', '" & ID_GENE & "', '" & date_val & "', '" & date_app & "', 1, '" & Session("displayname") & "', '" & DropDownList_Gamme.SelectedValue & "')"
+            'date_store_query = "INSERT INTO [dbo].[DTM_SEQU_RFRC_LIST] ([NM_RFRC_SEQU], [NU_VERS_SEQU], [ID_RFRC_SEQU], [DT_APCT], [DT_VLDT], [BL_VLDT], [NM_VALI_ECO], [NM_RFRC_GAMM_ECO])
+            ' VALUES ('" & ref_sequ & "', '" & vers_sequ & "', '" & ID_GENE & "', '" & date_val & "', '" & date_app & "', 1, '" & Session("displayname") & "', '" & DropDownList_Gamme.SelectedValue & "')"
+            date_store_query = $"INSERT INTO [dbo].[DTM_SEQU_RFRC_LIST] ([NM_RFRC_SEQU], [NU_VERS_SEQU], [ID_RFRC_SEQU], [DT_APCT], [DT_VLDT], [BL_VLDT], [NM_VALI_ECO], [NM_RFRC_GAMM_ECO])
+								     VALUES ('{ref_sequ}', '{vers_sequ}', '{ID_GENE}', '{date_val}', '{date_app}', 1, '{Session("displayname")}', '{DropDownList_Gamme.SelectedValue}')"
 
             If Not (FileUpload_ALMS.HasFile) Then Throw New Exception("pas de fichier sélectionné")
             savePath += Server.HtmlEncode(FileUpload_ALMS.FileName)
@@ -346,9 +348,9 @@ Public Class ALMS_IMPORT
                     For Each rPLAS As DataRow In dt_PLAS.Rows
                         dt_PLPO = SAP_DATA_READ_PLPO("PLNNR EQ '" & rPLAS("PLNNR").ToString & "' AND PLNKN EQ '" & rPLAS("ZAEHL").ToString & "'")
                         If dt_PLPO Is Nothing Then Continue For
-                        dt_CRHD = SAP_DATA_READ_CRHD("OBJID EQ '" & dt_PLPO(0)("ARBID").ToString & "'")
-                        If dt_CRHD Is Nothing Then Continue For
-                        If Not (Left(dt_CRHD(0)("ARBPL").ToString, 3) = "TFC" Or Left(dt_CRHD(0)("ARBPL").ToString, 3) = "VRT") Then Continue For
+                        'dt_CRHD = SAP_DATA_READ_CRHD("OBJID EQ '" & dt_PLPO(0)("ARBID").ToString & "'")
+                        'If dt_CRHD Is Nothing Then Continue For
+                        'If Not (Left(dt_CRHD(0)("ARBPL").ToString, 3) = "TFC" Or Left(dt_CRHD(0)("ARBPL").ToString, 3) = "VRT") Then Continue For
                         .Rows.Add()
                         .Rows(.Rows.Count - 1)("op") = Trim(dt_PLPO(0)("LTXA1").ToString) & " (OP:" & Convert.ToDecimal(dt_PLPO(0)("VORNR")).ToString & ")"
                         .Rows(.Rows.Count - 1)("VORNR") = dt_PLPO(0)("VORNR").ToString

@@ -76,13 +76,13 @@
                                 <asp:Label ID="Label_CONS" runat="server" Text=""></asp:Label>
                                 <br />
                                 <br />
-                                <asp:Image ID="Image_PHOT_ILST" runat="server" Visible="False"/>
+                                <asp:Image ID="Image_PHOT_ILST" runat="server" Visible="False" />
                                 <br />
                                 <br />
                                 <table style="width:100%;">
                                     <tr>
                                         <td>
-                                            <asp:Button ID="Button_PASS" runat="server" Text="Bon" BackColor="Lime" Font-Bold="True" Visible="False" />
+                                            <asp:Button ID="Button_PASS" runat="server" BackColor="Lime" Font-Bold="True" Text="Bon" Visible="False" />
                                         </td>
                                         <td>
                                             <asp:TextBox ID="TextBox_VALE" runat="server" AutoPostBack="True" Visible="False"></asp:TextBox>
@@ -92,13 +92,6 @@
                                         </td>
                                     </tr>
                                 </table>
-
-                            </asp:View>
-
-                        </asp:MultiView>
-
-                        <asp:MultiView ID="MultiView_Tracabilité" runat="server" ActiveViewIndex="0">
-                            <asp:View ID="View_VOID_2" runat="server">
                             </asp:View>
                             <asp:View ID="View_SAI_SOUS_ENSE" runat="server">
                                 <label>
@@ -124,47 +117,41 @@
                                     <SortedDescendingHeaderStyle BackColor="#000065" />
                                 </asp:GridView>
                             </asp:View>
+                            <asp:View ID="View_DCMT" runat="server">
+                                <table style="width:100%;">
+                                    <tr>
+                                        <td>
+                                            <asp:Button ID="Button_DCMT_PASS" runat="server" BackColor="Lime" Font-Bold="True" Text="Bon" />
+                                        </td>
+                                        <td>
+                                            <asp:Button ID="Button_DCMT_FAIL" runat="server" BackColor="Red" Font-Bold="True" Text="Mauvais" />
+                                        </td>
+                                    </tr>
+                                </table>
+                                <iframe id="pdf" name="pdf" src="1.pdf" style="width: 768px; height: 1024px;"></iframe>
+                            </asp:View>
+                            <asp:View ID="View_VLDT_OPRT" runat="server">
+                                Afin de valider l&#39;ensemble des étapes, scanner le numéro de série du produit :<br />
+                                <asp:TextBox ID="TextBox_NU_SER_VLDT_OPRT" runat="server" AutoPostBack="True"></asp:TextBox>
+                            </asp:View>
+
+                        </asp:MultiView>
+
+                        <br />
+
+                        <asp:MultiView ID="MultiView_Tracabilité" runat="server" ActiveViewIndex="0">
+                            <asp:View ID="View_VOID_2" runat="server">
+                            </asp:View>
                         </asp:MultiView>
 
                         <br />
                         <asp:MultiView ID="MultiView_DCMT" runat="server">
                             <asp:View ID="View_VOID_3" runat="server">
                             </asp:View>
-                            <asp:View ID="View_DCMT" runat="server">
-                                <table style="width:100%;">
-                                    <tr>
-                                        <td>
-                                            <asp:Button ID="Button_DCMT_PASS" runat="server" Text="Bon" BackColor="Lime" Font-Bold="True" />
-                                        </td>                                        
-                                        <td>
-                                            <asp:Button ID="Button_DCMT_FAIL" runat="server" BackColor="Red" Font-Bold="True" Text="Mauvais" />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Nombre de ligne 4.1. NQI, Dérogation, Hors-gamme :</td>                                       
-                                                                           </tr>
-                                    <tr>
-                                        <td>
-                                            Nombre de ligne 4.2 Autres écarts : </td>                                       
-                                                                           </tr>
-                                    <tr>
-                                        <td>FCGF : </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Rapport de contrôle : </td>
-                                    </tr>
-                                </table>
-                                <iframe id="pdf" name = "pdf" src ="1.pdf" style="width: 768px; height: 1024px;" ></iframe>
-                            </asp:View>
                         </asp:MultiView>
                         <asp:MultiView ID="MultiView_VLDT" runat="server">
 
                             <asp:View ID="View_VOID_4" runat="server">
-                            </asp:View>
-                            <asp:View ID="View_VLDT_OPRT" runat="server">
-                                Afin de valider l&#39;ensemble des étapes, scanner le numéro de série du produit :<br />
-                                <asp:TextBox ID="TextBox_NU_SER_VLDT_OPRT" runat="server"></asp:TextBox>
                             </asp:View>
 
                         </asp:MultiView>

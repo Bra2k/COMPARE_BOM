@@ -157,8 +157,10 @@ Public Class Class_PDF
                 outputDocument = New Pdf.PdfDocument
             End If
             inputDocument = PdfSharp.Pdf.IO.PdfReader.Open(sFichier2, PdfSharp.Pdf.IO.PdfDocumentOpenMode.Import)
-            Dim page As PdfPage = inputDocument.Pages.Item(0)
-            outputDocument.AddPage(page)
+            For Each pageitem In inputDocument.Pages
+                'Dim page As PdfPage = pageitem.
+                outputDocument.AddPage(pageitem)
+            Next
             outputDocument.Save(sFichier1)
             outputDocument.Close()
             Return sFichier1
@@ -166,38 +168,5 @@ Public Class Class_PDF
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
         End Try
-    End Function
-    Public Shared Function PDF_CREA_FCGF(sNU_SER As String)
-
-        Dim sDate As String = Now.Year.ToString & Now.Month.ToString & Now.Day.ToString & "_" & Now.Hour.ToString & Now.Minute.ToString & Now.Second.ToString
-        Dim document As Pdf.PdfDocument, page As PdfPage, gfx As XGraphics
-        Try
-            COMM_APP_WEB_COPY_FILE("\\ceapp03\Sources\Digital Factory\Etiquettes\ALM\FCGF_Vendom.pdf", "c:\Sources\temp_App_Web\" & sNU_SER & "_" & sDate & ".pdf", True)
-
-            document = PdfSharp.Pdf.IO.PdfReader.Open("c:\Sources\temp_App_Web\" & sNU_SER & "_" & sDate & ".pdf")
-            page = document.Pages.Item(0)
-            gfx = XGraphics.FromPdfPage(page)
-            Dim font As New XFont("Arial", 10, XFontStyle.Regular)
-            Dim tf As New XTextFormatter(gfx)
-            Dim rect As New XRect(1, 1, 1000, 10000)
-
-            Try
-                gfx.DrawRectangle(XBrushes.Transparent, rect)
-                tf.DrawString("sdfkjedklfvnjdklfv
-                    dscvnjdkfjvdklef
-               efvrezfvrzbv ", font, XBrushes.Black, rect, XStringFormats.TopLeft)
-            Catch ex As Exception
-                LOG_Erreur(GetCurrentMethod, ex.Message)
-            End Try
-            document.AddPage(document.Clone())
-            page = document.Pages.Item(1)
-            gfx = XGraphics.FromPdfPage(page)
-            document.Save("c:\Sources\temp_App_Web\" & sNU_SER & "_" & sDate & ".pdf")
-            document.Close()
-        Catch ex As Exception
-            Return 0
-        End Try
-        Return 0
-
     End Function
 End Class

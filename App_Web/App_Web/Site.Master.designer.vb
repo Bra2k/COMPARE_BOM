@@ -14,6 +14,24 @@ Option Explicit On
 Partial Public Class SiteMaster
     
     '''<summary>
+    '''Contrôle MultiView_Master.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents MultiView_Master As Global.System.Web.UI.WebControls.MultiView
+    
+    '''<summary>
+    '''Contrôle View_Master.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents View_Master As Global.System.Web.UI.WebControls.View
+    
+    '''<summary>
     '''Contrôle MainContent.
     '''</summary>
     '''<remarks>
@@ -23,6 +41,24 @@ Partial Public Class SiteMaster
     Protected WithEvents MainContent As Global.System.Web.UI.WebControls.ContentPlaceHolder
     
     '''<summary>
+    '''Contrôle View_LOG_SAP.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents View_LOG_SAP As Global.System.Web.UI.WebControls.View
+    
+    '''<summary>
+    '''Contrôle TextBox_LOG_SAP.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents TextBox_LOG_SAP As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
     '''Contrôle UpdatePanel_PGS_TACH.
     '''</summary>
     '''<remarks>
@@ -30,24 +66,6 @@ Partial Public Class SiteMaster
     '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
     '''</remarks>
     Protected WithEvents UpdatePanel_PGS_TACH As Global.System.Web.UI.UpdatePanel
-    
-    '''<summary>
-    '''Contrôle Label_PGS_TACH.
-    '''</summary>
-    '''<remarks>
-    '''Champ généré automatiquement.
-    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-    '''</remarks>
-    Protected WithEvents Label_PGS_TACH As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''Contrôle Label_LOG_SAP.
-    '''</summary>
-    '''<remarks>
-    '''Champ généré automatiquement.
-    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-    '''</remarks>
-    Protected WithEvents Label_LOG_SAP As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
     '''Contrôle Label_ERR_MSG.

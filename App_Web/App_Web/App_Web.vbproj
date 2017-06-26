@@ -117,14 +117,40 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Windows.Forms" />
@@ -250,6 +276,315 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Code\Class_SAP_DATA.vb" />
+    <Compile Include="App_Start\BundleConfig2.vb" />
+    <Compile Include="App_Start\FilterConfig.vb" />
+    <Compile Include="App_Start\RouteConfig2.vb" />
+    <Compile Include="Models\ALMS_PROD_PRD.Context.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ALMS_PROD_PRD.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ALMS_PROD_PRD.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ALMS_PROD_PRD.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ALMS_PROD_PRD.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_old_V_CLSG_RAPP_TCBL.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Donnees_Conteneur_Result.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_ADRE_MAC.vb">
+      <DependentUpon>ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_ETP_WKF_OLD.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_GST_CNTR.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_GST_MOY_OLD.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_GST_OUTI.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_HIST_MTRE.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_HSQR_STAT_PROD.vb">
+      <DependentUpon>ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_LST_CNTR.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_NC_DETA.vb">
+      <DependentUpon>ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_NC_LIST.vb">
+      <DependentUpon>ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_NMCT_PROD.vb">
+      <DependentUpon>ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_NM_SN_ENS.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_NU_SER.vb">
+      <DependentUpon>ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_OLD_TCBL_COMP.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_PSG.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_PSG_OUTI.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_REF_ENS.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_REF_GAMM.vb">
+      <DependentUpon>ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_REF_GAMM_ARTI.vb">
+      <DependentUpon>ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_REF_ID.vb">
+      <DependentUpon>ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_REF_ID_TEST.vb">
+      <DependentUpon>ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_REF_MTRE_LIST.vb">
+      <DependentUpon>ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_REF_OPRT.vb">
+      <DependentUpon>ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_REF_PST_IMPR_OLD.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_REF_STAT.vb">
+      <DependentUpon>ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_REF_TYPE_NU_SER.vb">
+      <DependentUpon>ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_RESU_TEST_DETA.vb">
+      <DependentUpon>ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_RESU_TEST_LIST.vb">
+      <DependentUpon>ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_SEQU_RFRC_DETA.vb">
+      <DependentUpon>ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_SEQU_RFRC_LIST.vb">
+      <DependentUpon>ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_TR_CPT.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_TST_RPRT.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_TST_VAL.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ENS_INFO_Result.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Extraction_Traca_Matiere_NS_Result.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Extraction_Traca_Matiere_OF_OP_Result.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Extraction_Traca_Matiere_OF_Result.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\F_IDCT_PASS_Result.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ID_Conteneur_View.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Liste_Conteneurs_Servis_OF_Result.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Liste_Outillage_Attendu_Result.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LST_PST_ETP_MOY_Result.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LST_SENS_Pour_ENS_Result.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LST_TAMP_OUTI_Result.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LST_TMP_NMCL_Result.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MES_Digital_Factory.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PRC_DNN_CNTR_Result.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PRC_EXTR_APPR_SERAP_Result.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PRC_LST_PCB_OF_Result.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PRC_LST_SENS_TO_ENS_Result.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PRC_VERIF_DBL_PCB_NS_Result.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\P_MAJ_RAPP_TEST_Result.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TMP_PST_FLAN.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TMP_PST_NMCL.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TMP_PST_OUTI.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_CFGR_ARTI_ECO.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_CFGR_CLIE.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_CLSG_PRD_DTM_HIST_LIVR.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_CLSG_PRD_DTM_REF_ARTI_FT.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_CLSG_PRD_DTM_REF_OPTN_CLI.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_CLSG_PRD_DTM_REF_PST.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_DER_DTM_PSG_PAR_LB_ETP.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_DHR_ECAR_PDTO.vb">
+      <DependentUpon>ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_DTM_LST_CNTR.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_DTM_REF_ENS.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_DTM_TAKA.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_DTM_TEST_FONC_NOM_TEST.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_DTM_TEST_FONC_RAPP.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_DTM_TEST_FONC_VAL.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_FCGF.vb">
+      <DependentUpon>ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_FCGF_ANML.vb">
+      <DependentUpon>ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_LIST_CONT_NON_VIDE.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_LIST_LIAI_NU_SER_ECO_NU_SER_CLIE.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_LIST_TCBL_NMCT_PROD.vb">
+      <DependentUpon>ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_LIST_TEST_ODS_TEST_FONC_VAL.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_NC_LIST_CD_ARTI_TCBL_UNIT.vb">
+      <DependentUpon>ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_NC_LIST_INFO_NU_INCI.vb">
+      <DependentUpon>ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_NC_LIST_NU_INCI_NU_SER.vb">
+      <DependentUpon>ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_NC_LIST_PHAS_FAIL_NU_SER_ID_SEQ.vb">
+      <DependentUpon>ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_NC_LIST_PROD_RETO_PDTO.vb">
+      <DependentUpon>ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_NC_LIST_SEQU_FAIL_NU_SER.vb">
+      <DependentUpon>ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_NEOE_NU_SER_ECO_NU_SER_SS_ENS.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_NEOE_TRAC_ENS_SS_ENSE.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_NEW_PSG_ODS_TEST_FONC_RAPP.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_NEW_RAPP_ODS_TEST_FONC_RAPP.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_NEW_TEST_ODS_TEST_FONC_VAL.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_NEW_VALE_ODS_TEST_FONC_VAL.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_POST_FCGF.vb">
+      <DependentUpon>ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_RSLT_POIN_ARRE_TCBL_OPRT.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_SERE_ARTI.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_TAE_TCBL_HSRQ_STAT_PROD.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_TAE_TCBL_NMCT_UNIT_PROD.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WorkFlow_NS_EOL_Result.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WorkFlow_PDT_Result.vb">
+      <DependentUpon>MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
     <Content Include="About.aspx" />
     <Content Include="Account\Login.aspx" />
     <Compile Include="Account\Login_SAP.aspx.designer.vb">
@@ -258,6 +593,16 @@
     <Compile Include="Account\Login_SAP.aspx.vb">
       <DependentUpon>Login_SAP.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Models\MES_Digital_Factory.Context.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MES_Digital_Factory.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MES_Digital_Factory.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MES_Digital_Factory.edmx</DependentUpon>
     </Compile>
     <Compile Include="PagesMembres\Developpement\UPLO_FICH_TO_CAB.aspx.designer.vb">
       <DependentUpon>UPLO_FICH_TO_CAB.aspx</DependentUpon>
@@ -271,6 +616,13 @@
     </Compile>
     <Compile Include="PagesMembres\Digital_Factory\CTTO_POST.aspx.vb">
       <DependentUpon>CTTO_POST.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="PagesMembres\Digital_Factory\IDCT_GLOB_LIGN.aspx.designer.vb">
+      <DependentUpon>IDCT_GLOB_LIGN.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagesMembres\Digital_Factory\IDCT_GLOB_LIGN.aspx.vb">
+      <DependentUpon>IDCT_GLOB_LIGN.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="PagesMembres\Production\ALMS\ALMS_IMPORT.aspx.designer.vb">
@@ -287,10 +639,33 @@
     <Content Include="Account\Login_SAP.aspx" />
     <Content Include="App_Themes\ICON_COMPARE\tracabilite_ope.ico" />
     <Content Include="App_Themes\PIC_CHAR\tracabilite_ope.ico" />
+    <Content Include="Models\ALMS_PROD_PRD.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ALMS_PROD_PRD.edmx</DependentUpon>
+      <LastGenOutput>ALMS_PROD_PRD.Context.vb</LastGenOutput>
+    </Content>
+    <Content Include="Models\ALMS_PROD_PRD.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ALMS_PROD_PRD.edmx</DependentUpon>
+      <LastGenOutput>ALMS_PROD_PRD.vb</LastGenOutput>
+    </Content>
+    <Content Include="Models\MES_Digital_Factory.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MES_Digital_Factory.edmx</DependentUpon>
+      <LastGenOutput>MES_Digital_Factory.Context.vb</LastGenOutput>
+    </Content>
+    <Content Include="Models\MES_Digital_Factory.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MES_Digital_Factory.edmx</DependentUpon>
+      <LastGenOutput>MES_Digital_Factory.vb</LastGenOutput>
+    </Content>
     <Content Include="PagesMembres\Developpement\UPLO_FICH_TO_CAB.aspx" />
     <Content Include="PagesMembres\Digital_Factory\CTTO_POST.aspx" />
+    <Content Include="PagesMembres\Digital_Factory\IDCT_GLOB_LIGN.aspx" />
     <Content Include="PagesMembres\Production\ALMS\ALMS_IMPORT.aspx" />
-    <Content Include="App_Themes\CSS\CSS_MediaQuery.css" />
+    <Content Include="App_Themes\CSS\CSS_MediaQuery.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="App_Themes\ICON_COMPARE\article4.ico" />
     <Content Include="App_Themes\ICON_COMPARE\banc_test.ico" />
     <Content Include="App_Themes\ICON_COMPARE\barcode3.ico" />
@@ -371,30 +746,45 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="PagesMembres\Production\ALMS\ADD_MAC_ADRE.aspx" />
-    <Content Include="PagesMembres\Production\ALMS\ADD_VERS_FDV.aspx" />
-    <Content Include="PagesMembres\Production\ALMS\ALMS_menu.aspx" />
     <Content Include="PagesMembres\Production\ALMS\GEST_ANML_NC_DRGT.aspx" />
-    <Content Include="PagesMembres\Production\Controle_Reception\AJOU_FNS_CTRL_RCP.aspx" />
-    <Content Include="PagesMembres\Production\CST_HEUR_SAI_BW.aspx" />
     <Content Include="PagesMembres\Production\Saisie_des_defauts\CHX_REPE_SIMI.aspx" />
     <Content Include="PagesMembres\Production\Test\AJOU_EMPL_MAJ_FICH_BANC_TEST.aspx" />
     <Content Include="PagesMembres\Production\Test\CSTT_RESU_TEST_FONC.aspx" />
     <Content Include="PagesMembres\Production\Test\CSTT_RESU_TEST_TAKA.aspx" />
     <Content Include="PagesMembres\Provisoire\IMPR_RAPP_TCBL_STW_V2.aspx" />
     <Content Include="PagesMembres\Provisoire\IMPR_RAPP_TCBL_STW_AFAC_6-2017.aspx" />
+    <Content Include="PagesMembres\Provisoire\SENSING.aspx" />
     <Content Include="PagesMembres\Provisoire\TEST_BATT_TUCK.aspx" />
     <Content Include="PagesMembres\RDRC_PAGE_MEMB.aspx" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\LoginSAP.js" />
     <Content Include="Scripts\snow.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="App_Themes\Skin_CHRT_ECO\Skin_CHRT_ECO.skin" />
+    <EntityDeploy Include="Models\MES_Digital_Factory.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MES_Digital_Factory.Designer.vb</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\MES_Digital_Factory.edmx.diagram">
+      <DependentUpon>MES_Digital_Factory.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\ALMS_PROD_PRD.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ALMS_PROD_PRD.Designer.vb</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ALMS_PROD_PRD.edmx.diagram">
+      <DependentUpon>ALMS_PROD_PRD.edmx</DependentUpon>
+    </Content>
     <None Include="My Project\PublishProfiles\App_Web.pubxml" />
     <None Include="My Project\PublishProfiles\App_Web_Dev.pubxml" />
     <None Include="My Project\PublishProfiles\App_Web_Qual.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="PagesMembres\Members.aspx" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -430,9 +820,20 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Bundle.config" />
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Shared\Error.vbhtml" />
+    <Content Include="Views\_ViewStart.vbhtml" />
+    <Content Include="Views\Shared\_Layout.vbhtml" />
+    <Content Include="Views\web.config" />
+    <Content Include="Views\DTM_REF_OPRT\Create.vbhtml" />
+    <Content Include="Views\DTM_REF_OPRT\Delete.vbhtml" />
+    <Content Include="Views\DTM_REF_OPRT\Details.vbhtml" />
+    <Content Include="Views\DTM_REF_OPRT\Edit.vbhtml" />
+    <Content Include="Views\DTM_REF_OPRT\Index.vbhtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -449,7 +850,6 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="App_Code\Class_WORD.vb" />
-    <Compile Include="App_Code\Class_SAP_DATA.vb" />
     <Compile Include="App_Code\Class_EXCEL.vb" />
     <Compile Include="App_Code\LOG.vb" />
     <Compile Include="App_Start\BundleConfig.vb" />
@@ -598,13 +998,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="PagesMembres\Members.aspx.designer.vb">
-      <DependentUpon>Members.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="PagesMembres\Members.aspx.vb">
-      <DependentUpon>Members.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
     <Compile Include="PagesMembres\Production\ALMS\ADD_MAC_ADRE.aspx.designer.vb">
       <DependentUpon>ADD_MAC_ADRE.aspx</DependentUpon>
     </Compile>
@@ -612,32 +1005,11 @@
       <DependentUpon>ADD_MAC_ADRE.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="PagesMembres\Production\ALMS\ADD_VERS_FDV.aspx.designer.vb">
-      <DependentUpon>ADD_VERS_FDV.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="PagesMembres\Production\ALMS\ADD_VERS_FDV.aspx.vb">
-      <DependentUpon>ADD_VERS_FDV.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
     <Compile Include="PagesMembres\Production\ALMS\GEST_ANML_NC_DRGT.aspx.designer.vb">
       <DependentUpon>GEST_ANML_NC_DRGT.aspx</DependentUpon>
     </Compile>
     <Compile Include="PagesMembres\Production\ALMS\GEST_ANML_NC_DRGT.aspx.vb">
       <DependentUpon>GEST_ANML_NC_DRGT.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
-    <Compile Include="PagesMembres\Production\Controle_Reception\AJOU_FNS_CTRL_RCP.aspx.designer.vb">
-      <DependentUpon>AJOU_FNS_CTRL_RCP.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="PagesMembres\Production\Controle_Reception\AJOU_FNS_CTRL_RCP.aspx.vb">
-      <DependentUpon>AJOU_FNS_CTRL_RCP.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
-    <Compile Include="PagesMembres\Production\CST_HEUR_SAI_BW.aspx.designer.vb">
-      <DependentUpon>CST_HEUR_SAI_BW.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="PagesMembres\Production\CST_HEUR_SAI_BW.aspx.vb">
-      <DependentUpon>CST_HEUR_SAI_BW.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="PagesMembres\Production\Saisie_des_defauts\CHX_REPE_SIMI.aspx.designer.vb">
@@ -680,6 +1052,13 @@
     </Compile>
     <Compile Include="PagesMembres\Provisoire\IMPR_RAPP_TCBL_STW_AFAC_6-2017.aspx.vb">
       <DependentUpon>IMPR_RAPP_TCBL_STW_AFAC_6-2017.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PagesMembres\Provisoire\SENSING.aspx.designer.vb">
+      <DependentUpon>SENSING.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagesMembres\Provisoire\SENSING.aspx.vb">
+      <DependentUpon>SENSING.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="PagesMembres\Provisoire\TEST_BATT_TUCK.aspx.designer.vb">
@@ -743,6 +1122,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Controllers\" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">
@@ -773,42 +1153,6 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <Private>True</Private>
     </COMReference>
-    <COMReference Include="SAPFunctionsOCX">
-      <Guid>{5B076C00-2F26-11CF-9AE5-0800096E19F4}</Guid>
-      <VersionMajor>5</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
-    <COMReference Include="SAPLogonCtrl">
-      <Guid>{B24944D9-1501-11CF-8981-0000E8A49FA0}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>1</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
-    <COMReference Include="SAPNETZLib">
-      <Guid>{733CAE90-3959-11D0-83AF-0000E81EEFA0}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
-    <COMReference Include="SAPTableFactoryCtrl">
-      <Guid>{87D28511-6B43-101C-92CE-10005AF5DF4D}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>1</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
     <COMReference Include="stdole">
       <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
       <VersionMajor>2</VersionMajor>
@@ -830,6 +1174,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,0 +1,506 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ALMS_PROD_PRDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="DTM_ADRE_MAC">
+    <Key>
+      <PropertyRef Name="NU_ADRE_MAC" />
+    </Key>
+    <Property Name="NU_ADRE_MAC" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CD_ARTI_CART" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CD_ARTI_PROD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NU_BANC" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="BL_RSVT" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="DTM_HSQR_STAT_PROD">
+    <Key>
+      <PropertyRef Name="NU_SER_SPFE" />
+      <PropertyRef Name="NU_TEST" />
+      <PropertyRef Name="ID_RFRC_SEQU" />
+      <PropertyRef Name="NU_PHAS" />
+    </Key>
+    <Property Name="NU_SER_SPFE" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NU_TEST" Type="Byte" Nullable="false" />
+    <Property Name="ID_RFRC_SEQU" Type="Int64" Nullable="false" />
+    <Property Name="NU_PHAS" Type="Int16" Nullable="false" />
+    <Property Name="ID_STAT_PROD" Type="Byte" />
+    <Property Name="DT_STAT_PROD" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ID_OPRT" Type="Int16" />
+    <Property Name="ID_POST" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="DTM_NC_DETA">
+    <Key>
+      <PropertyRef Name="NU_INCI" />
+      <PropertyRef Name="ID_STAT" />
+    </Key>
+    <Property Name="NU_INCI" Type="Int32" Nullable="false" />
+    <Property Name="DT_ITVT" Type="DateTime" Precision="0" />
+    <Property Name="ID_OPRT" Type="Int16" />
+    <Property Name="BL_ETAT" Type="Boolean" />
+    <Property Name="ID_STAT" Type="Byte" Nullable="false" />
+    <Property Name="ID_TYPE_CAUS" Type="Byte" />
+  </EntityType>
+  <EntityType Name="DTM_NC_LIST">
+    <Key>
+      <PropertyRef Name="NU_INCI" />
+    </Key>
+    <Property Name="ID_TYPE_NC" Type="Byte" />
+    <Property Name="NU_INCI" Type="Int32" Nullable="false" />
+    <Property Name="NU_SER_SPFE" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CD_ARTI_PROD" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NU_DRGT" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="DTM_NMCT_PROD">
+    <Key>
+      <PropertyRef Name="NU_SER_SPFE" />
+      <PropertyRef Name="NU_SER_COMP" />
+      <PropertyRef Name="CD_ARTI_COMP" />
+    </Key>
+    <Property Name="NU_SER_SPFE" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CD_ARTI_PROD" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NU_SER_COMP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CD_ARTI_COMP" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="BL_TYPE_TCBL" Type="Boolean" />
+    <Property Name="BL_APVS_ECO" Type="Boolean" />
+    <Property Name="NU_VERS_COMP" Type="Int16" />
+    <Property Name="DT_AFCT" Type="DateTime" Precision="0" />
+    <Property Name="NM_DSGT_COMP" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="DTM_NU_SER">
+    <Key>
+      <PropertyRef Name="NU_SER_SPFE" />
+    </Key>
+    <Property Name="NU_SER_SPFE" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CD_ARTI_PROD" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NU_OF" Type="Int32" />
+    <Property Name="ID_TYPE_NU_SER" Type="Byte" />
+    <Property Name="NU_SER" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="DTM_REF_GAMM">
+    <Key>
+      <PropertyRef Name="ID_GAMM_PROD" />
+    </Key>
+    <Property Name="ID_GAMM_PROD" Type="Byte" Nullable="false" />
+    <Property Name="NM_DSGT_GAMM_PROD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ID_GAMM_PROD_ALMS" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="DTM_REF_GAMM_ARTI">
+    <Key>
+      <PropertyRef Name="ID_GAMM_PROD" />
+      <PropertyRef Name="CD_ARTI_PROD" />
+    </Key>
+    <Property Name="ID_GAMM_PROD" Type="Byte" Nullable="false" />
+    <Property Name="CD_ARTI_PROD" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NM_DSGT_ARTI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="DTM_REF_ID_TEST">
+    <Key>
+      <PropertyRef Name="ID_TEST" />
+      <PropertyRef Name="ID_GAMM_PROD" />
+    </Key>
+    <Property Name="ID_TEST" Type="Int32" Nullable="false" />
+    <Property Name="NM_DSGT_TEST" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ID_GAMM_PROD" Type="Byte" Nullable="false" />
+    <Property Name="BL_ATVT" Type="Boolean" />
+    <Property Name="DT_CREA" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="DTM_REF_MTRE_LIST">
+    <Key>
+      <PropertyRef Name="ID_MTRE" />
+      <PropertyRef Name="DT_ATVT" />
+    </Key>
+    <Property Name="ID_MTRE" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="BL_NATU" Type="Boolean" />
+    <Property Name="LB_DCPT" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="BL_ATVT" Type="Boolean" />
+    <Property Name="DT_ATVT" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="BL_SORT_FCGF" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="DTM_REF_OPRT">
+    <Key>
+      <PropertyRef Name="ID_OPRT" />
+    </Key>
+    <Property Name="ID_OPRT" Type="Int16" Nullable="false" />
+    <Property Name="LB_INIT" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="ID_HBLT_ALMS" Type="Byte" />
+    <Property Name="BL_ATVT" Type="Boolean" />
+    <Property Name="DT_ATVT" Type="DateTime" Precision="0" />
+    <Property Name="ID_MTCL_ECO" Type="Int16" />
+  </EntityType>
+  <EntityType Name="DTM_REF_STAT">
+    <Key>
+      <PropertyRef Name="ID_STAT" />
+    </Key>
+    <Property Name="ID_STAT" Type="Byte" Nullable="false" />
+    <Property Name="LB_DCPT_STAT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DTM_REF_TYPE_NU_SER">
+    <Key>
+      <PropertyRef Name="ID_TYPE_NU_SER" />
+    </Key>
+    <Property Name="ID_TYPE_NU_SER" Type="Byte" Nullable="false" />
+    <Property Name="NM_TYPE_NU_SER" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="DTM_RESU_TEST_DETA">
+    <Key>
+      <PropertyRef Name="NU_SER_SPFE" />
+      <PropertyRef Name="NU_TEST" />
+      <PropertyRef Name="NU_ORDR_SEQU" />
+      <PropertyRef Name="NU_TEST_PHAS" />
+      <PropertyRef Name="ID_RFRC_SEQU" />
+    </Key>
+    <Property Name="NU_SER_SPFE" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NU_TEST" Type="Byte" Nullable="false" />
+    <Property Name="NU_ORDR_SEQU" Type="Int16" Nullable="false" />
+    <Property Name="NU_TEST_PHAS" Type="Int16" Nullable="false" />
+    <Property Name="CD_ARTI_PROD" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="ID_RFRC_SEQU" Type="Int64" Nullable="false" />
+    <Property Name="NU_PHAS_FCGF" Type="Int16" />
+    <Property Name="NU_SOUS_PHAS_FCGF" Type="Int16" />
+    <Property Name="BL_SORT_FCGF" Type="Boolean" />
+    <Property Name="NU_LIMI_BASS" Type="Double" />
+    <Property Name="NU_VALE" Type="Double" />
+    <Property Name="LB_VALE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NU_LIMI_HAUT" Type="Double" />
+    <Property Name="ID_TEST" Type="Int32" />
+    <Property Name="NU_UNIT" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ID_STAT_PHAS" Type="Byte" />
+    <Property Name="BL_STAT_PHAS" Type="Boolean" />
+    <Property Name="ID_POST" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ID_OPRT" Type="Int16" />
+    <Property Name="DT_TEST_PHAS" Type="DateTime" Precision="0" />
+    <Property Name="NB_TT" Type="Int64" />
+  </EntityType>
+  <EntityType Name="DTM_RESU_TEST_LIST">
+    <Key>
+      <PropertyRef Name="NU_SER_SPFE" />
+      <PropertyRef Name="NU_TEST" />
+      <PropertyRef Name="ID_RFRC_SEQU" />
+    </Key>
+    <Property Name="NU_SER_SPFE" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NU_TEST" Type="Byte" Nullable="false" />
+    <Property Name="CD_ARTI_PROD" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="NM_RFRC_SEQU" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="NU_VERS_SEQU" Type="Byte" />
+    <Property Name="ID_RFRC_SEQU" Type="Int64" Nullable="false" />
+    <Property Name="NM_RFRC_FDV" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="NU_VERS_FDV" Type="Byte" />
+    <Property Name="ID_STAT_PROD" Type="Byte" />
+    <Property Name="BL_STAT_PROD" Type="Boolean" />
+    <Property Name="NU_OF" Type="Int32" />
+    <Property Name="DT_TEST" Type="DateTime" Precision="0" />
+    <Property Name="ID_OPRT" Type="Int16" />
+  </EntityType>
+  <EntityType Name="DTM_SEQU_RFRC_DETA">
+    <Key>
+      <PropertyRef Name="ID_RFRC_SEQU" />
+      <PropertyRef Name="NU_ORDR_SEQU" />
+    </Key>
+    <Property Name="ID_RFRC_SEQU" Type="Int64" Nullable="false" />
+    <Property Name="NU_PHAS_FCGF" Type="Int16" />
+    <Property Name="NU_SOUS_PHAS_FCGF" Type="Int16" />
+    <Property Name="NU_ORDR_SEQU" Type="Int16" Nullable="false" />
+    <Property Name="ID_TEST" Type="Int32" />
+    <Property Name="LB_MESS_ERRE" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="NM_DRIV" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="LB_PARA_DRIV" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ID_SAUT_PASS" Type="Int16" />
+    <Property Name="ID_SAUT_FAIL" Type="Int16" />
+    <Property Name="BL_EXCT" Type="Boolean" />
+    <Property Name="NU_LIMI_BASS" Type="Double" />
+    <Property Name="NU_LIMI_HAUT" Type="Double" />
+    <Property Name="BL_COMP_LIMI" Type="Boolean" />
+    <Property Name="BL_ERRE" Type="Boolean" />
+    <Property Name="BL_AFFI_FACE_AVAN_LABV" Type="Boolean" />
+    <Property Name="BL_RAPP_FCGF" Type="Boolean" />
+    <Property Name="BL_SORT_FCGF" Type="Boolean" />
+    <Property Name="NM_UNIT" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="NM_PHAS_FCGF" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="NM_SOUS_PHAS_FCGF" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="BL_RAPP_ACTI" Type="Boolean" />
+    <Property Name="BL_CH_VAL" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="DTM_SEQU_RFRC_LIST">
+    <Key>
+      <PropertyRef Name="NM_RFRC_SEQU" />
+      <PropertyRef Name="NU_VERS_SEQU" />
+      <PropertyRef Name="ID_RFRC_SEQU" />
+    </Key>
+    <Property Name="NM_RFRC_SEQU" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NU_VERS_SEQU" Type="Byte" Nullable="false" />
+    <Property Name="ID_RFRC_SEQU" Type="Int64" Nullable="false" />
+    <Property Name="DT_APCT" Type="DateTime" Precision="0" />
+    <Property Name="DT_VLDT" Type="DateTime" Precision="0" />
+    <Property Name="BL_VLDT" Type="Boolean" />
+    <Property Name="NM_VALI_ALMS" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="NM_VALI_ECO" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="NM_RFRC_GAMM_ECO" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="DTM_REF_ID">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NM_CHAM" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="V_DHR_ECAR_PDTO">
+    <Key>
+      <PropertyRef Name="NU_SER_SPFE" />
+      <PropertyRef Name="ID_STAT" />
+    </Key>
+    <Property Name="NM_DCPO_ANML" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="NM_ACTI_REAL" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="NU_SER_SPFE" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ID_OPRT_REAL" Type="Int16" />
+    <Property Name="ID_OPRT_CONT" Type="Int16" />
+    <Property Name="ID_STAT" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DT_ACTI_CONT" Type="DateTime" Precision="0" />
+    <Property Name="DT_ACTI_REAL" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="V_FCGF">
+    <Key>
+      <PropertyRef Name="NU_SER_SPFE" />
+      <PropertyRef Name="LB_STAT_PROD" />
+      <PropertyRef Name="NM_STAT_PROD" />
+      <PropertyRef Name="LB_DCPT_STAT" />
+      <PropertyRef Name="LB_STAT_PHAS" />
+      <PropertyRef Name="NU_ORDR_SEQU" />
+    </Key>
+    <Property Name="NU_SER_SPFE" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NM_RFRC_SEQU" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="NU_VERS_SEQU" Type="Byte" />
+    <Property Name="NM_RFRC_FDV" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="NU_VERS_FDV" Type="Byte" />
+    <Property Name="LB_STAT_PROD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NM_STAT_PROD" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NU_OF" Type="Int32" />
+    <Property Name="DT_TEST" Type="DateTime" Precision="0" />
+    <Property Name="NM_PHAS" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="NM_SOUS_PHAS" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="NU_LIMI_BASS" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="NU_VALE" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="LB_VALE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NU_LIMI_HAUT" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="NU_UNIT" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="LB_DCPT_STAT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LB_STAT_PHAS" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ID_POST" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ID_OPRT" Type="Int16" />
+    <Property Name="NU_OP" Type="Int32" />
+    <Property Name="NU_ORDR_SEQU" Type="Int16" Nullable="false" />
+    <Property Name="NU_PHAS_FCGF" Type="Int16" />
+    <Property Name="NU_SOUS_PHAS_FCGF" Type="Int16" />
+    <Property Name="BL_STAT_PHAS" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="V_FCGF_ANML">
+    <Key>
+      <PropertyRef Name="NU_INCI" />
+      <PropertyRef Name="NU_SER_SPFE" />
+      <PropertyRef Name="LB_DCPT_STAT" />
+      <PropertyRef Name="NM_RFRC_SEQU" />
+      <PropertyRef Name="NU_VERS_SEQU" />
+      <PropertyRef Name="NM_RFRC_SEQU_RETO" />
+      <PropertyRef Name="NU_VERS_SEQU_RETO" />
+    </Key>
+    <Property Name="NU_INCI" Type="Int32" Nullable="false" />
+    <Property Name="NU_DRGT" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="NU_SER_SPFE" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DT_ITVT" Type="DateTime" Precision="0" />
+    <Property Name="LB_INIT" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="ID_MTCL_ECO" Type="Int16" />
+    <Property Name="BL_ETAT" Type="Boolean" />
+    <Property Name="LB_DCPT_STAT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NM_DCPO_NC" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="NM_TYPE_NC" Type="String" MaxLength="105" FixedLength="false" Unicode="true" />
+    <Property Name="NM_RFRC_SEQU" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NU_VERS_SEQU" Type="Byte" Nullable="false" />
+    <Property Name="NM_PHAS" Type="String" MaxLength="241" FixedLength="false" Unicode="true" />
+    <Property Name="NM_SOUS_PHAS" Type="String" MaxLength="246" FixedLength="false" Unicode="true" />
+    <Property Name="CD_ARTI_DFTE" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="NM_DSGT_DEFA" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="NM_RSLT" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="NM_RFRC_SEQU_RETO" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NU_VERS_SEQU_RETO" Type="Byte" Nullable="false" />
+    <Property Name="NM_PHAS_RETO" Type="String" MaxLength="241" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="V_LIST_TCBL_NMCT_PROD">
+    <Key>
+      <PropertyRef Name="NU_SER_SPFE" />
+      <PropertyRef Name="NU_SER_COMP" />
+      <PropertyRef Name="CD_ARTI_COMP" />
+      <PropertyRef Name="NM_TYPE_TCBL" />
+    </Key>
+    <Property Name="NU_SER_SPFE" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CD_ARTI_PROD" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="NU_SER_COMP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CD_ARTI_COMP" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NM_DSGT_COMP" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="NM_TYPE_TCBL" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DT_AFCT" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="V_NC_LIST_CD_ARTI_TCBL_UNIT">
+    <Key>
+      <PropertyRef Name="CD_ARTI_COMP" />
+      <PropertyRef Name="CD_ARTI_PROD" />
+    </Key>
+    <Property Name="CD_ARTI_COMP" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CD_ARTI_PROD" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="BL_TYPE_TCBL" Type="Boolean" />
+    <Property Name="ID_TYPE_CAUS" Type="Byte" />
+  </EntityType>
+  <EntityType Name="V_NC_LIST_INFO_NU_INCI">
+    <Key>
+      <PropertyRef Name="NU_INCI" />
+      <PropertyRef Name="NU_SER_SPFE" />
+      <PropertyRef Name="ID_RFRC_SEQU" />
+      <PropertyRef Name="LB_DCPT_STAT" />
+    </Key>
+    <Property Name="NU_INCI" Type="Int32" Nullable="false" />
+    <Property Name="NU_SER_SPFE" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ID_TYPE_NC" Type="Byte" />
+    <Property Name="NM_TYPE_NC" Type="String" MaxLength="105" FixedLength="false" Unicode="true" />
+    <Property Name="NM_DCPO_NC" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="ID_RFRC_SEQU" Type="Int64" Nullable="false" />
+    <Property Name="NM_RFRC_SEQU" Type="String" MaxLength="72" FixedLength="false" Unicode="true" />
+    <Property Name="NU_PHAS_FCGF" Type="Int16" />
+    <Property Name="NM_PHAS" Type="String" MaxLength="241" FixedLength="false" Unicode="true" />
+    <Property Name="NU_SOUS_PHAS_FCGF" Type="Int16" />
+    <Property Name="NM_SOUS_PHAS" Type="String" MaxLength="246" FixedLength="false" Unicode="true" />
+    <Property Name="LB_DCPT_STAT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="V_NC_LIST_NU_INCI_NU_SER">
+    <Key>
+      <PropertyRef Name="NU_SER_SPFE" />
+      <PropertyRef Name="NU_INCI" />
+    </Key>
+    <Property Name="NU_SER_SPFE" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NU_INCI" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="V_NC_LIST_PHAS_FAIL_NU_SER_ID_SEQ">
+    <Key>
+      <PropertyRef Name="NU_SER_SPFE" />
+      <PropertyRef Name="ID_RFRC_SEQU" />
+    </Key>
+    <Property Name="NU_SER_SPFE" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ID_RFRC_SEQU" Type="Int64" Nullable="false" />
+    <Property Name="NU_PHAS_FCGF" Type="Int16" />
+    <Property Name="NM_PHAS" Type="String" MaxLength="241" FixedLength="false" Unicode="true" />
+    <Property Name="NU_SOUS_PHAS_FCGF" Type="Int16" />
+    <Property Name="NM_SOUS_PHAS" Type="String" MaxLength="246" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="V_NC_LIST_PROD_RETO_PDTO">
+    <Key>
+      <PropertyRef Name="NU_SER_SPFE" />
+      <PropertyRef Name="NU_INCI" />
+    </Key>
+    <Property Name="ID_RFRC_SEQU_RETO" Type="Int64" />
+    <Property Name="NU_PHAS_FCGF_RETO" Type="Int16" />
+    <Property Name="NU_SER_SPFE" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MAX_ID_STAT" Type="Byte" />
+    <Property Name="NU_INCI" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="V_NC_LIST_SEQU_FAIL_NU_SER">
+    <Key>
+      <PropertyRef Name="NU_SER_SPFE" />
+      <PropertyRef Name="ID_RFRC_SEQU" />
+      <PropertyRef Name="DT_TEST" />
+    </Key>
+    <Property Name="NU_SER_SPFE" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NM_RFRC_SEQU" Type="String" MaxLength="72" FixedLength="false" Unicode="true" />
+    <Property Name="MAX_NU_TEST" Type="Byte" />
+    <Property Name="ID_RFRC_SEQU" Type="Int64" Nullable="false" />
+    <Property Name="DT_TEST" Type="DateTime" Nullable="false" Precision="0" />
+  </EntityType>
+  <EntityType Name="V_POST_FCGF">
+    <Key>
+      <PropertyRef Name="DT_VLDT" />
+      <PropertyRef Name="NM_TYPE_MTRE" />
+    </Key>
+    <Property Name="ID_POST" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ID_MTRE" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="DT_AFCT" Type="DateTime" Precision="0" />
+    <Property Name="DT_VLDT" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="NM_TYPE_MTRE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="ALMS_PROD_PRDEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="DTM_ADRE_MAC" EntityType="Self.DTM_ADRE_MAC" />
+    <EntitySet Name="DTM_HSQR_STAT_PROD" EntityType="Self.DTM_HSQR_STAT_PROD" />
+    <EntitySet Name="DTM_NC_DETA" EntityType="Self.DTM_NC_DETA" />
+    <EntitySet Name="DTM_NC_LIST" EntityType="Self.DTM_NC_LIST" />
+    <EntitySet Name="DTM_NMCT_PROD" EntityType="Self.DTM_NMCT_PROD" />
+    <EntitySet Name="DTM_NU_SER" EntityType="Self.DTM_NU_SER" />
+    <EntitySet Name="DTM_REF_GAMM" EntityType="Self.DTM_REF_GAMM" />
+    <EntitySet Name="DTM_REF_GAMM_ARTI" EntityType="Self.DTM_REF_GAMM_ARTI" />
+    <EntitySet Name="DTM_REF_ID_TEST" EntityType="Self.DTM_REF_ID_TEST" />
+    <EntitySet Name="DTM_REF_MTRE_LIST" EntityType="Self.DTM_REF_MTRE_LIST" />
+    <EntitySet Name="DTM_REF_OPRT" EntityType="Self.DTM_REF_OPRT" />
+    <EntitySet Name="DTM_REF_STAT" EntityType="Self.DTM_REF_STAT" />
+    <EntitySet Name="DTM_REF_TYPE_NU_SER" EntityType="Self.DTM_REF_TYPE_NU_SER" />
+    <EntitySet Name="DTM_RESU_TEST_DETA" EntityType="Self.DTM_RESU_TEST_DETA" />
+    <EntitySet Name="DTM_RESU_TEST_LIST" EntityType="Self.DTM_RESU_TEST_LIST" />
+    <EntitySet Name="DTM_SEQU_RFRC_DETA" EntityType="Self.DTM_SEQU_RFRC_DETA" />
+    <EntitySet Name="DTM_SEQU_RFRC_LIST" EntityType="Self.DTM_SEQU_RFRC_LIST" />
+    <EntitySet Name="DTM_REF_ID" EntityType="Self.DTM_REF_ID" />
+    <EntitySet Name="V_DHR_ECAR_PDTO" EntityType="Self.V_DHR_ECAR_PDTO" />
+    <EntitySet Name="V_FCGF" EntityType="Self.V_FCGF" />
+    <EntitySet Name="V_FCGF_ANML" EntityType="Self.V_FCGF_ANML" />
+    <EntitySet Name="V_LIST_TCBL_NMCT_PROD" EntityType="Self.V_LIST_TCBL_NMCT_PROD" />
+    <EntitySet Name="V_NC_LIST_CD_ARTI_TCBL_UNIT" EntityType="Self.V_NC_LIST_CD_ARTI_TCBL_UNIT" />
+    <EntitySet Name="V_NC_LIST_INFO_NU_INCI" EntityType="Self.V_NC_LIST_INFO_NU_INCI" />
+    <EntitySet Name="V_NC_LIST_NU_INCI_NU_SER" EntityType="Self.V_NC_LIST_NU_INCI_NU_SER" />
+    <EntitySet Name="V_NC_LIST_PHAS_FAIL_NU_SER_ID_SEQ" EntityType="Self.V_NC_LIST_PHAS_FAIL_NU_SER_ID_SEQ" />
+    <EntitySet Name="V_NC_LIST_PROD_RETO_PDTO" EntityType="Self.V_NC_LIST_PROD_RETO_PDTO" />
+    <EntitySet Name="V_NC_LIST_SEQU_FAIL_NU_SER" EntityType="Self.V_NC_LIST_SEQU_FAIL_NU_SER" />
+    <EntitySet Name="V_POST_FCGF" EntityType="Self.V_POST_FCGF" />
+    <FunctionImport Name="P_ADD_RESU_SEQ_TEST">
+      <Parameter Name="NU_SER_SPFE" Mode="In" Type="String" />
+      <Parameter Name="CD_ARTI_PROD" Mode="In" Type="String" />
+      <Parameter Name="NM_RFRC_SEQU" Mode="In" Type="String" />
+      <Parameter Name="NU_VERS_SEQU" Mode="In" Type="Byte" />
+      <Parameter Name="ID_STAT_PROD" Mode="In" Type="Byte" />
+      <Parameter Name="BL_STAT_PROD" Mode="In" Type="Boolean" />
+      <Parameter Name="NU_OF" Mode="In" Type="Int32" />
+      <Parameter Name="DT_TEST" Mode="In" Type="DateTime" />
+      <Parameter Name="ID_OPRT" Mode="In" Type="Int16" />
+      <Parameter Name="RES" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="P_ADD_RESU_VAL_TEST">
+      <Parameter Name="NU_SER_SPFE" Mode="In" Type="String" />
+      <Parameter Name="NU_ORDR_SEQU" Mode="In" Type="Int16" />
+      <Parameter Name="CD_ARTI_PROD" Mode="In" Type="String" />
+      <Parameter Name="NM_RFRC_SEQU" Mode="In" Type="String" />
+      <Parameter Name="NU_VERS_SEQU" Mode="In" Type="Byte" />
+      <Parameter Name="NU_LIMI_BASS" Mode="In" Type="String" />
+      <Parameter Name="NU_VALE" Mode="In" Type="String" />
+      <Parameter Name="LB_VALE" Mode="In" Type="String" />
+      <Parameter Name="NU_LIMI_HAUT" Mode="In" Type="String" />
+      <Parameter Name="ID_TEST" Mode="In" Type="Int32" />
+      <Parameter Name="ID_STAT_PHAS" Mode="In" Type="Byte" />
+      <Parameter Name="BL_STAT_PHAS" Mode="In" Type="Boolean" />
+      <Parameter Name="ID_POST" Mode="In" Type="String" />
+      <Parameter Name="DT_TEST" Mode="In" Type="DateTime" />
+      <Parameter Name="ID_OPRT" Mode="In" Type="Int16" />
+      <Parameter Name="NB_TT" Mode="In" Type="Int32" />
+      <Parameter Name="NU_TEST_PHAS" Mode="In" Type="Int16" />
+      <Parameter Name="RES" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="P_GET_NEW_NU_INCI">
+      <Parameter Name="NU_INCI" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="P_SAVE_NEW_TYPE_CAUS">
+      <Parameter Name="ID_TYPE_CAUS" Mode="InOut" Type="Byte" />
+      <Parameter Name="ID_TYPE_DEFA" Mode="In" Type="Byte" />
+      <Parameter Name="CD_ARTI_DFTE" Mode="In" Type="String" />
+      <Parameter Name="NM_RSLT" Mode="In" Type="String" />
+      <Parameter Name="ID_RFRC_SEQU_RETO" Mode="In" Type="Int64" />
+      <Parameter Name="NU_PHAS_FCGF_RETO" Mode="In" Type="Int16" />
+      <Parameter Name="RES" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="P_SAVE_NEW_TYPE_NC">
+      <Parameter Name="ID_TYPE_NC" Mode="InOut" Type="Byte" />
+      <Parameter Name="NM_DCPO_NC" Mode="In" Type="String" />
+      <Parameter Name="NU_PHAS_FCGF" Mode="In" Type="Int16" />
+      <Parameter Name="NU_SOUS_PHAS_FCGF" Mode="In" Type="Int16" />
+      <Parameter Name="ID_RFRC_SEQ" Mode="In" Type="Int64" />
+      <Parameter Name="RES" Mode="InOut" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+</Schema>

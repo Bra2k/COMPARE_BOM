@@ -71,30 +71,37 @@
                                 </li>
                             </ul>
                         </LoggedInTemplate>
-                    </asp:LoginView>
+                    </asp:LoginView>                    
                 </div>
             </div>
         </div>
         <%--<div id="cont_NDkxMDN8MXw1fDF8MXwwMDJlNjB8MXxGRkZGRkZ8Y3wx"><div id="spa_NDkxMDN8MXw1fDF8MXwwMDJlNjB8MXxGRkZGRkZ8Y3wx"><a id="a_NDkxMDN8MXw1fDF8MXwwMDJlNjB8MXxGRkZGRkZ8Y3wx" href="http://www.meteocity.com/france/combree_v49103/" target="_blank" style="color:#333;text-decoration:none;"></a></div><script type="text/javascript" src="http://widget.meteocity.com/js/NDkxMDN8MXw1fDF8MXwwMDJlNjB8MXxGRkZGRkZ8Y3wx"></script></div>--%>
         <div class="container body-content">
-            <asp:ContentPlaceHolder ID="MainContent" runat="server">
-                <p style="font-family: Verdana;">
-                    
-                    
-                </p>
-            </asp:ContentPlaceHolder>
+            <asp:MultiView ID="MultiView_Master" runat="server" ActiveViewIndex="0">
+                        <asp:View ID="View_Master" runat="server">
+                            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                                <p style="font-family: Verdana;">
+                                </p>
+                            </asp:ContentPlaceHolder>
+                        </asp:View>
+                        <asp:View ID="View_LOG_SAP" runat="server">
+                            &nbsp;&nbsp;Entrer le matricule :
+                             <asp:TextBox ID="TextBox_LOG_SAP" runat="server" AutoPostBack="True"></asp:TextBox>
+                        </asp:View>
+                    </asp:MultiView>
             
             
             
             <br />
             <asp:UpdatePanel ID="UpdatePanel_PGS_TACH" runat="server" ChildrenAsTriggers="False" UpdateMode="Conditional">
                 <ContentTemplate>
-                    <asp:Label ID="Label_PGS_TACH" runat="server" Text=""></asp:Label>
+                    <Label ID="Label_PGS_TACH" ></Label>
                     
                 </ContentTemplate>
             </asp:UpdatePanel>
             <br />
-            <asp:Label ID="Label_LOG_SAP" runat="server" Text=""></asp:Label>                
+<%--            <asp:Label ID="Label_LOG_SAP" runat="server" Text=""></asp:Label>    --%>
+            <%--<Label ID="Label_LOG_SAP"></Label>--%>       
             <asp:Label ID="Label_ERR_MSG" runat="server" Font-Bold="True" ForeColor="Red"></asp:Label>
             <br />
             <hr />

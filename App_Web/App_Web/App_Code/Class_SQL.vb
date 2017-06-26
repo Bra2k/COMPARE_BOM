@@ -1,6 +1,9 @@
 ﻿Imports App_Web.LOG
 Imports System.Reflection.MethodBase
 Imports System.Data.SqlClient
+Imports System.Data
+Imports System
+
 Public Class Class_SQL
 
     Public Shared Function SQL_SELE_TO_DT(sQuery As String, sChaineConnexion As String) As DataTable
