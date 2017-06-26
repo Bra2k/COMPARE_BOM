@@ -250,17 +250,22 @@ Public Class Class_SQL
     End Sub
 
     Public Shared Function SQL_GET_DT_FROM_STOR_PROC(ByRef cmd As SqlCommand) As DataTable
-        Dim da = New SqlDataAdapter(cmd)
-        Dim dt As New DataTable
+        'Dim da = New SqlDataAdapter(cmd)
+        'Dim dt
 
         Try
-            da.Fill(dt)
-            If dt.Rows.Count = 0 Then Throw New Exception("Aucun résultat retourné dans la procédure stockée")
+            Using dt As New DataTable
+                Using da = New SqlDataAdapter(cmd)
+                    da.Fill(dt)
+                    If dt.Rows.Count = 0 Then Throw New Exception("Aucun résultat retourné dans la procédure stockée")
+                End Using
+                LOG_Msg(GetCurrentMethod, "La datatable a été copiée dans la base")
+                Return dt
+            End Using
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
         End Try
-        LOG_Msg(GetCurrentMethod, "La datatable a été copiée dans la base")
-        Return dt
+
     End Function
 End Class
