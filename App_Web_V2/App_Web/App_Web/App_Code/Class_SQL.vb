@@ -100,26 +100,33 @@ Public Class Class_SQL
     End Sub
 
     Public Shared Function SQL_REQ_ACT_RET_IDTT(sQuery As String, sChaineConnexion As String) As String
-        Dim con As New SqlConnection
-        Dim cmd As New SqlCommand
-        Dim sQuery_2 As String = "SELECT @@IDENTITY"
+
+        'Dim sQuery_2 As String = "SELECT @@IDENTITY"
         Dim ID As Integer
 
         Try
-            con = SQL_CONN(sChaineConnexion)
-            cmd.Connection = con
-            cmd.CommandText = sQuery
-            If cmd.ExecuteNonQuery() = 0 Then Throw New Exception($"la requête {sQuery} n'a retourné aucun résultat.")
-            cmd.CommandText = sQuery_2
-            ID = cmd.ExecuteScalar()
+            Using con As New SqlConnection
+                con.ConnectionString = sChaineConnexion
+                con.Open()
+                Using cmd As New SqlCommand
+                    cmd.Connection = con
+                    cmd.CommandText = sQuery
+                    If cmd.ExecuteNonQuery() = 0 Then Throw New Exception($"la requête {sQuery} n'a retourné aucun résultat.")
+                    cmd.CommandText = "SELECT @@IDENTITY"
+                    ID = cmd.ExecuteScalar()
+                End Using
+                con.Close()
+                LOG_Msg(GetCurrentMethod, $"la requête {sQuery} a été exécutée et a retouné l'ID {ID.ToString}")
+                Return ID
+            End Using
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
-        Finally
-            con = SQL_CLOS(con)
+            'Finally
+            '    con = SQL_CLOS(con)
         End Try
-        LOG_Msg(GetCurrentMethod, $"la requête {sQuery} a été exécutée.")
-        Return ID
+        'LOG_Msg(GetCurrentMethod, $"la requête {sQuery} a été exécutée.")
+
 
     End Function
 
