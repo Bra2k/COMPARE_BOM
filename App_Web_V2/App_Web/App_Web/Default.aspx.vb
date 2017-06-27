@@ -1,11 +1,19 @@
-﻿
-'Imports App_Web.Class_COMM_APP_WEB
-
+﻿Imports App_Web.LOG
+Imports System.Reflection.MethodBase
 Class _Default
     Inherits Page
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Label_PHOT.Text = Session("thumbnailphoto")
+        Try
+            Dim data As Byte() = Session("de_AD").Properties("thumbnailphoto").Value
+            System.Convert.ToBase64String(Session("de_AD").Properties("thumbnailphoto").Value).ToString()
+            'Session("thumbnailphoto") = data
+            LOG_Msg(GetCurrentMethod, $"thumbnailphoto : <img src='data:image/jpeg;base64, {System.Convert.ToBase64String(data)}' alt='photo' />")
+            Label_PHOT.Text = $"<img src='data:image/jpeg;base64, {System.Convert.ToBase64String(data)}' alt='photo' />"
+        Catch ex As Exception
+            LOG_Erreur(GetCurrentMethod, $"thumbnailphoto : {ex.Message}")
+            Exit Sub
+        End Try
     End Sub
 
     'Protected Sub ImageButton1_Click(sender As Object, e As ImageClickEventArgs) Handles ImageButton1.Click

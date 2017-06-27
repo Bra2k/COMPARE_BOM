@@ -119,6 +119,7 @@ Public Class SiteMaster
                 If Session("User_Name") = "" Then Throw New Exception("User nom existant")
                 Using UserAd As UserPrincipal = UserPrincipal.FindByIdentity(ctx, ID_TYPE, ID_VAL)
                     Using DirectoryEntry As DirectoryEntry = UserAd.GetUnderlyingObject()
+                        Session("de_AD") = DirectoryEntry
                         Session("displayname") = _AD_GET_PROP(DirectoryEntry, "displayname")
                         Session("title") = _AD_GET_PROP(DirectoryEntry, "title")
                         Session("mail") = _AD_GET_PROP(DirectoryEntry, "mail")
