@@ -769,29 +769,30 @@ div.WordSection1
     'End Function
 
     Public Shared Function COMM_APP_WEB_ETAT_CTRL(sPARA As String, Optional sNM_PAGE As String = Nothing) As DataTable
-        Dim sQuery As String = "", sChaineConnexion As String = "Data Source=cedb03,1433;Initial Catalog=APP_WEB_ECO;Integrated Security=False;User ID=sa;Password=mdpsa@SQL;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
-        Dim dt, dtret As New DataTable
+        Dim sQuery As String = ""
+        'Dim dt, dtret As New DataTable
         Try
             If sNM_PAGE = Nothing Then sNM_PAGE = HttpContext.Current.CurrentHandler.ToString
             'chercher les param dans la base
-            sQuery = "SELECT [ID_CTRL],[VL_CTRL]
-                        FROM [dbo].[V_DER_MAJ_DTM_REF_PARA_ETAT_CRTL]
-                       WHERE [NM_PAGE] = '" & sNM_PAGE & "' AND REPLACE(REPLACE([PARA],'  ',''),' |','|') = '" & Replace(Replace(Replace(sPARA, "'", "''"), "  ", ""), " |", "|") & "'"
-            dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
-            For Each rdt As DataRow In dt.Rows
-                dtret.Columns.Add(rdt("ID_CTRL").ToString, Type.GetType("System.String"))
-            Next
-            dtret.Rows.Add()
-            For Each rdt As DataRow In dt.Rows
-                dtret.Rows(dtret.Rows.Count - 1)(rdt("ID_CTRL").ToString) = rdt("VL_CTRL").ToString
-            Next
-            Return dtret
-            'If dt Is Nothing Then Throw New Exception("Pas de données pour le contrôle " & sNM_CTRL)
+            sQuery = $"SELECT [ID_CTRL],[VL_CTRL]
+                         FROM [dbo].[V_DER_MAJ_DTM_REF_PARA_ETAT_CRTL]
+                        WHERE [NM_PAGE] = '{sNM_PAGE}' AND REPLACE(REPLACE([PARA],'  ',''),' |','|') = '{Replace(Replace(Replace(sPARA, "'", "''"), "  ", ""), " |", "|")}'"
+            Using dt = SQL_SELE_TO_DT(sQuery, CS_APP_WEB_ECO)
+                Using dtret As New DataTable
+                    For Each rdt As DataRow In dt.Rows
+                        dtret.Columns.Add(rdt("ID_CTRL").ToString, Type.GetType("System.String"))
+                    Next
+                    dtret.Rows.Add()
+                    For Each rdt As DataRow In dt.Rows
+                        dtret.Rows(dtret.Rows.Count - 1)(rdt("ID_CTRL").ToString) = rdt("VL_CTRL").ToString
+                    Next
+                    Return dtret
+                End Using
+            End Using
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
         End Try
-        'LOG_Msg(GetCurrentMethod, "Le paramètre " & sPARA & " a chargé " & dt(0)("VL_CTRL").ToString & " pour le contrôle " & sNM_CTRL & " de la page " & pageHandler)
 
     End Function
 
