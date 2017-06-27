@@ -945,30 +945,29 @@ Public Class Class_SAP_DATA
 
         Try
             dtKNMT = SAP_DATA_READ_TBL("KNMT", "|", "", "KDMAT MATNR KUNNR VKORG VTWEG", sFILT)
-            If dtKNMT Is Nothing Then Throw New Exception("Problème de lecture de la table KNMT avec le filtre : " & sFILT)
+            If dtKNMT Is Nothing Then Throw New Exception($"Problème de lecture de la table KNMT avec le filtre : " & sFILT)
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
         End Try
 
-        LOG_Msg(GetCurrentMethod, "Lecture de la table KNMT effectuée avec le filtre : " & sFILT)
+        LOG_Msg(GetCurrentMethod, $"Lecture de la table KNMT effectuée avec le filtre : " & sFILT)
         Return dtKNMT
     End Function
 
     Public Shared Function SAP_DATA_READ_ZMOYENTYPETEST(Optional sFILT As String = "") As DataTable
-        Dim dtZMOYENTYPETEST As New DataTable
-
+        'Dim dtZMOYENTYPETEST As New DataTable
         Try
-            dtZMOYENTYPETEST = SAP_DATA_READ_TBL("ZMOYENTYPETEST", "|", "", "NO_MOYEN PROCHVERIF", sFILT)
-            '"MANDT BUKRS NO_MOYEN DESIG REFCLIENT NO_TYPE_TEST DEV_PAR DATEMES RESPMES INDMAT VERSLOG LOCA STKG TECHRESP1 TECHRESP2 TECHRESP3 PERIOMAINT PROCHMAINT PROCMAINT PERIOVERIF PROCHVERIF PROCVERIF MODELECONSTAT CREE_PAR DATE_CREATION HEURE_CREATION MODIFIE_PAR DATE_MODIF HEURE_MODIF INACTIF VERIF_N_A INDICE_DMT ARCHIVE TPS_INTERV ACTION_EC LINE_INDEX", sFILT)
-            If dtZMOYENTYPETEST Is Nothing Then Throw New Exception("Problème de lecture de la table ZMOYENTYPETEST avec le filtre : " & sFILT)
+            Using dtZMOYENTYPETEST = SAP_DATA_READ_TBL("ZMOYENTYPETEST", "|", "", "NO_MOYEN PROCHVERIF", sFILT)
+                '"MANDT BUKRS NO_MOYEN DESIG REFCLIENT NO_TYPE_TEST DEV_PAR DATEMES RESPMES INDMAT VERSLOG LOCA STKG TECHRESP1 TECHRESP2 TECHRESP3 PERIOMAINT PROCHMAINT PROCMAINT PERIOVERIF PROCHVERIF PROCVERIF MODELECONSTAT CREE_PAR DATE_CREATION HEURE_CREATION MODIFIE_PAR DATE_MODIF HEURE_MODIF INACTIF VERIF_N_A INDICE_DMT ARCHIVE TPS_INTERV ACTION_EC LINE_INDEX", sFILT)
+                If dtZMOYENTYPETEST Is Nothing Then Throw New Exception($"Problème de lecture de la table ZMOYENTYPETEST avec le filtre : {sFILT}")
+                LOG_Msg(GetCurrentMethod, $"Lecture de la table ZMOYENTYPETEST effectuée avec le filtre : {sFILT}")
+                Return dtZMOYENTYPETEST
+            End Using
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
         End Try
-
-        LOG_Msg(GetCurrentMethod, "Lecture de la table ZMOYENTYPETEST effectuée avec le filtre : " & sFILT)
-        Return dtZMOYENTYPETEST
 
         'V_STATU
     End Function
@@ -983,10 +982,16 @@ Public Class Class_SAP_DATA
             RFC = oSAP.Add("Z_GET_DOC_INFO")
             'V_AUFNR = "1173833"
             'V_VORNR = "100"
-            If V_AUFNR <> "" Then V_AUFNR = StrDup(12 - Microsoft.VisualBasic.Strings.Len(V_AUFNR), "0") & V_AUFNR
-            RFC.exports("V_AUFNR") = V_AUFNR
-            If V_VORNR <> "" Then V_VORNR = Microsoft.VisualBasic.Strings.StrDup(4 - Microsoft.VisualBasic.Strings.Len(V_VORNR), "0") & V_VORNR
-            RFC.exports("V_VORNR") = V_VORNR
+            Dim sb_v_aufnr As New StringBuilder
+            sb_v_aufnr.Append(StrDup(12 - Microsoft.VisualBasic.Strings.Len(V_AUFNR), "0"))
+            sb_v_aufnr.Append(V_AUFNR)
+            'If V_AUFNR <> "" Then V_AUFNR = StrDup(12 - Microsoft.VisualBasic.Strings.Len(V_AUFNR), "0") & V_AUFNR
+            RFC.exports("V_AUFNR") = sb_v_aufnr.ToString
+            Dim sb_v_vornr As New StringBuilder
+            sb_v_vornr.Append(Microsoft.VisualBasic.Strings.StrDup(4 - Microsoft.VisualBasic.Strings.Len(V_VORNR), "0"))
+            sb_v_vornr.Append(V_VORNR)
+            'If V_VORNR <> "" Then V_VORNR = Microsoft.VisualBasic.Strings.StrDup(4 - Microsoft.VisualBasic.Strings.Len(V_VORNR), "0") & V_VORNR
+            RFC.exports("V_VORNR") = sb_v_vornr.ToString
 
             oT_TAB_DOC_SAP = RFC.Tables("T_TAB_DOC_SAP")
 
@@ -1015,7 +1020,7 @@ Public Class Class_SAP_DATA
             oSAP = SAP_DATA_DECO(oSAP)
         End Try
 
-        LOG_Msg(GetCurrentMethod, "Exécution de la fonction Z_GET_DOC_INFO réussie. " & dt_T_TAB_DOC_SAP.Rows.Count & " lignes trouvées")
+        LOG_Msg(GetCurrentMethod, $"Exécution de la fonction Z_GET_DOC_INFO réussie. " & dt_T_TAB_DOC_SAP.Rows.Count & " lignes trouvées")
         Return dt_T_TAB_DOC_SAP
 
     End Function
