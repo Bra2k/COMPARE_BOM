@@ -359,22 +359,20 @@ Public Class Class_COMM_APP_WEB
 
     Public Shared Sub COMM_APP_WEB_PARA_AFFI_SAVE(sNM_PARA As String, sNM_CTRL As String, Optional sVAL_CTRL As String = "vide", Optional spage As String = "vide")
 
-        Dim CRTL_GUEST As New Control, CheckBox_GUEST As New CheckBox, DropDownList_GUEST As New DropDownList
+        'Dim CRTL_GUEST As New Control, CheckBox_GUEST As New CheckBox, DropDownList_GUEST As New DropDownList
 
-        Dim sQuery As String = "", sChaineConnexion As String = "Data Source=cedb03,1433;Initial Catalog=APP_WEB_ECO;Integrated Security=False;User ID=sa;Password=mdpsa@SQL;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
-        Dim dt As New DataTable
+        Dim sQuery As String = ""
         Try
             If spage = "vide" Then spage = HttpContext.Current.CurrentHandler.ToString
             'si sVAL_CTRL est "vide" prendre la valeur qui a été affectée dans l'interface
-            If sVAL_CTRL = "vide" Then
+            'If sVAL_CTRL = "vide" Then
 
-
-            End If
+            'End If
             'chercher les param dans la base
 
-            sQuery = "INSERT INTO [APP_WEB_ECO].[dbo].[DTM_REF_PARA_ETAT_CRTL] ([NM_PAGE], [PARA], [ID_CTRL], [VL_CTRL], [DT_MAJ])
-                           VALUES ('" & spage & "', '" & Replace(sNM_PARA, "'", "''") & "', '" & sNM_CTRL & "', '" & sVAL_CTRL & "', GETDATE())"
-            SQL_REQ_ACT(sQuery, sChaineConnexion)
+            sQuery = $"INSERT INTO [APP_WEB_ECO].[dbo].[DTM_REF_PARA_ETAT_CRTL] ([NM_PAGE], [PARA], [ID_CTRL], [VL_CTRL], [DT_MAJ])
+                            VALUES ('{spage}', '{Replace(sNM_PARA, "'", "''")}', '{sNM_CTRL}', '{sVAL_CTRL}', GETDATE())"
+            SQL_REQ_ACT(sQuery, CS_APP_WEB_ECO)
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Exit Sub
