@@ -215,23 +215,21 @@ Public Class Class_SAP_DATA
     End Function
 
     Public Shared Function SAP_DATA_LIST_ARTI_CLIE(sClient As String, sType_produit As String) As DataTable
-        Dim dtT179T, dtMARA As New DataTable
 
         Try
-            dtT179T = SAP_DATA_READ_T179T("VTEXT EQ '" & sClient & "'")
-            If dtT179T Is Nothing Then Throw New Exception("Le client " & sClient & " n'est pas présent dans la table dtT179T")
-            dtMARA = SAP_DATA_READ_MARA("PRDHA EQ '" & dtT179T(0)("PRODH") & "' and (MATKL EQ '" & sType_produit & "')")
-            If dtMARA Is Nothing Then Throw New Exception("Pas d'article pour le client " & sClient)
+            Using dtT179T = SAP_DATA_READ_T179T($"VTEXT EQ '{sClient}'")
+                If dtT179T Is Nothing Then Throw New Exception($"Le client {sClient} n'est pas présent dans la table dtT179T")
+                Using dtMARA = SAP_DATA_READ_MARA($"PRDHA EQ '{dtT179T(0)("PRODH").ToString}' AND (MATKL EQ '{sType_produit}')")
+                    If dtMARA Is Nothing Then Throw New Exception($"Pas d'article pour le client {sClient}")
+                    LOG_Msg(GetCurrentMethod, $"La liste d'article du client {sClient} a été extraite de SAP.")
+                    Return dtMARA
+                End Using
+            End Using
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
         End Try
 
-        LOG_Msg(GetCurrentMethod, "La liste d'article du client " & sClient & " a été extraite de SAP.")
-        Return dtMARA
-
-        'SEMI-FINI
-        'PRODUIT 
     End Function
 
     Public Shared Function SAP_DATA_CONN(Optional User As String = "RFCUSER",
