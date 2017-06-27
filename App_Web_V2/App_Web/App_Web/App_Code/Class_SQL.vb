@@ -14,7 +14,6 @@ Public Class Class_SQL
         '    _CS_ALMS_PROD_PRD = System.Configuration.ConfigurationManager.ConnectionStrings("ALMS_PROD_PRDConnectionString").ToString
         'End Set
     End Property
-
     Private _CS_ALMS_PROD_DEV As String
     Public Shared ReadOnly Property CS_ALMS_PROD_DEV() As String
         Get
@@ -38,15 +37,15 @@ Public Class Class_SQL
         Get
             Return System.Configuration.ConfigurationManager.ConnectionStrings("MES_Digital_Factory_DEVConnectionString").ToString
         End Get
-        'Set(ByVal value As String)
-        '    _CS_MES_Digital_Factory_DEV = System.Configuration.ConfigurationManager.ConnectionStrings("MES_Digital_Factory_DEVConnectionString").ToString
-        'End Set
+    End Property
+    Private _CS_APP_WEB_ECO As String
+    Public Shared ReadOnly Property CS_APP_WEB_ECO() As String
+        Get
+            Return System.Configuration.ConfigurationManager.ConnectionStrings("APP_WEB_ECOConnectionString").ToString
+        End Get
     End Property
 
     Public Shared Function SQL_SELE_TO_DT(sQuery As String, sChaineConnexion As String) As DataTable
-
-        'Dim dt As New DataTable
-        'Dim con As New SqlConnection
 
         Try
             Using dt As New DataTable
@@ -58,7 +57,6 @@ Public Class Class_SQL
                         dad.Fill(dt)
                     End Using
                     con.Close()
-                    'con = Nothing
                 End Using
                 If dt.Rows.Count = 0 Then Throw New Exception($"la requête {sQuery} n'a retourné aucun résultat.")
                 LOG_Msg(GetCurrentMethod, $"la requête {sQuery} a été exécutée.")
@@ -68,22 +66,17 @@ Public Class Class_SQL
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod(), ex.Message)
             Return Nothing
-            'Finally
-            '    con = SQL_CLOS(con)
         End Try
 
     End Function
 
     Public Shared Sub SQL_REQ_ACT(sQuery As String, sChaineConnexion As String)
-        'Dim con As New SqlConnection
-        'Dim cmd As New SqlCommand
 
         Try
             Using con = New SqlConnection()
                 con.ConnectionString = sChaineConnexion
                 con.Open()
                 Using cmd As New SqlCommand
-                    'con = SQL_CONN(sChaineConnexion)
                     cmd.Connection = con
                     cmd.CommandText = sQuery
                     If cmd.ExecuteNonQuery() = 0 Then Throw New Exception($"la requête {sQuery} n'a retourné aucun résultat.")
@@ -93,15 +86,13 @@ Public Class Class_SQL
             End Using
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
-            'Finally
-            '    con = SQL_CLOS(con)
+            Exit Sub
         End Try
 
     End Sub
 
     Public Shared Function SQL_REQ_ACT_RET_IDTT(sQuery As String, sChaineConnexion As String) As String
 
-        'Dim sQuery_2 As String = "SELECT @@IDENTITY"
         Dim ID As Integer
 
         Try
@@ -122,11 +113,7 @@ Public Class Class_SQL
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
-            'Finally
-            '    con = SQL_CLOS(con)
         End Try
-        'LOG_Msg(GetCurrentMethod, $"la requête {sQuery} a été exécutée.")
-
 
     End Function
 
@@ -143,8 +130,6 @@ Public Class Class_SQL
             Return Nothing
         End Try
 
-        'LOG_Msg(GetCurrentMethod, "La connexion " & sCONN_STR & " a été exécutée.")
-
     End Function
 
     Public Shared Function SQL_CLOS(ByRef cn As SqlConnection) As SqlConnection
@@ -152,19 +137,15 @@ Public Class Class_SQL
         Try
             cn.Close()
             cn = Nothing
+            Return cn
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
         End Try
 
-        'LOG_Msg(GetCurrentMethod, "La connexion a été fermée.")
-        Return cn
-
     End Function
 
     Public Shared Function SQL_CALL_STOR_PROC(ByRef cn As SqlConnection, SqlCommand_String As String) As SqlCommand
-
-        'Dim cmd As SqlCommand
 
         Try
             Using cmd As New SqlCommand(SqlCommand_String, cn)
@@ -229,8 +210,6 @@ Public Class Class_SQL
 
     Public Shared Sub SQL_BULK_COPY_DT(sChaineConnexion As String, sTable As String, dtDonnées As DataTable)
 
-        'Dim bulkCopy As New SqlBulkCopy(sChaineConnexion, SqlBulkCopyOptions.KeepIdentity)
-
         Try
             Using bulkCopy As New SqlBulkCopy(sChaineConnexion, SqlBulkCopyOptions.KeepIdentity)
                 For Each col As DataColumn In dtDonnées.Columns
@@ -250,8 +229,6 @@ Public Class Class_SQL
     End Sub
 
     Public Shared Function SQL_GET_DT_FROM_STOR_PROC(ByRef cmd As SqlCommand) As DataTable
-        'Dim da = New SqlDataAdapter(cmd)
-        'Dim dt
 
         Try
             Using dt As New DataTable
