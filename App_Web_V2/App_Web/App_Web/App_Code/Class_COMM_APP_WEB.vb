@@ -633,13 +633,14 @@ Public Class Class_COMM_APP_WEB
     End Function
 
     Public Shared Function COMM_APP_WEB_GET_DROI_PAGE(sUrl As String, sService As String, sSession As String) As Boolean
-        Dim sChaineConnexion As String = "Data Source=cedb03,1433;Initial Catalog= APP_WEB_ECO;Integrated Security=False;User ID=sa;Password=mdpsa@SQL;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
-        Dim dt As New DataTable
+        'Dim sChaineConnexion As String = "Data Source=cedb03,1433;Initial Catalog= APP_WEB_ECO;Integrated Security=False;User ID=sa;Password=mdpsa@SQL;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
+        'Dim dt As New DataTable
         Try
-            dt = SQL_SELE_TO_DT("SELECT [NM_PAGE]
-                                   FROM [APP_WEB_ECO].[dbo].[DTM_REF_AFCG_PAGE_DEFA]
-                                  WHERE ([ID_SERV_SESS] = '" & sService & "' OR [ID_SERV_SESS] = '" & sSession & "') AND [NM_URL_PAGE] = '" & sUrl & "'", sChaineConnexion)
-            If dt Is Nothing Then Throw New Exception("pas de droit pour " & sService & " d'accéder à l'adresse " & sUrl)
+            Using dt = SQL_SELE_TO_DT($"SELECT [NM_PAGE]
+                                          FROM [dbo].[DTM_REF_AFCG_PAGE_DEFA]
+                                         WHERE ([ID_SERV_SESS] = '{sService}' OR [ID_SERV_SESS] = '{sSession}') AND [NM_URL_PAGE] = '{sUrl}'", CS_APP_WEB_ECO)
+                If dt Is Nothing Then Throw New Exception($"pas de droit pour {sService} d'accéder à l'adresse {sUrl}")
+            End Using
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return False
