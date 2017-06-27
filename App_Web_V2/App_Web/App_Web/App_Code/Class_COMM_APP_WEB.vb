@@ -300,26 +300,24 @@ Public Class Class_COMM_APP_WEB
     End Function
     Public Shared Sub COMM_APP_WEB_PARA_AFFI_LOAD(sNM_PARA As String, sNM_CTRL As String, Optional Ctrl_View As Control = Nothing, Optional sVAL_CTRL As String = "")
 
-        Dim pageHandler As Page
-
-        Dim sTP_CTRL As String, CRTL_GUEST, CTRL_MainContent As New Control, CheckBox_GUEST As New CheckBox, DropDownList_GUEST As New DropDownList, TextBox_GUEST As New TextBox, RadioButtonList_GUEST As New RadioButtonList
-
-        Dim sQuery As String = "", sChaineConnexion As String = "Data Source=cedb03,1433;Initial Catalog=APP_WEB_ECO;Integrated Security=False;User ID=sa;Password=mdpsa@SQL;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
-        Dim dt As New DataTable
+        Dim sTP_CTRL As String, CRTL_GUEST As New Control
+        Dim sQuery As String = ""
         Try
-            pageHandler = HttpContext.Current.CurrentHandler
-            'chercher les param dans la base
-            sQuery = "SELECT [VL_CTRL]
-                        FROM [APP_WEB_ECO].[dbo].[V_DER_MAJ_DTM_REF_PARA_ETAT_CRTL]
-                       WHERE [NM_PAGE] = '" & pageHandler.ToString & "' AND [PARA] = '" & Replace(sNM_PARA, "'", "''") & "' AND [ID_CTRL] = '" & sNM_CTRL & "'"
-            dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
-            If dt Is Nothing Then Throw New Exception("Pas de données pour le contrôle " & sNM_CTRL)
-            sTP_CTRL = Left(sNM_CTRL, sNM_CTRL.IndexOf("_"))
-            sVAL_CTRL = dt(0)("VL_CTRL").ToString
-
+            Using pageHandler As Page = HttpContext.Current.CurrentHandler
+                'chercher les param dans la base
+                sQuery = $"SELECT [VL_CTRL]
+                         FROM [APP_WEB_ECO].[dbo].[V_DER_MAJ_DTM_REF_PARA_ETAT_CRTL]
+                        WHERE [NM_PAGE] = '{pageHandler.ToString}' AND [PARA] = '{Replace(sNM_PARA, "'", "''")}' AND [ID_CTRL] = '{sNM_CTRL}'"
+            End Using
+            Using dt = SQL_SELE_TO_DT(sQuery, CS_APP_WEB_ECO)
+                If dt Is Nothing Then Throw New Exception($"Pas de données pour le contrôle{sNM_CTRL}")
+                sTP_CTRL = Left(sNM_CTRL, sNM_CTRL.IndexOf("_"))
+                sVAL_CTRL = dt(0)("VL_CTRL").ToString
+            End Using
             If Ctrl_View Is Nothing Then
-                Dim MainContent As ContentPlaceHolder = CType(pageHandler.Master.FindControl("MainContent"), ContentPlaceHolder)
-                CRTL_GUEST = MainContent.FindControl(sNM_CTRL)
+                Using MainContent As ContentPlaceHolder = CType(pageHandler.Master.FindControl("MainContent"), ContentPlaceHolder)
+                    CRTL_GUEST = MainContent.FindControl(sNM_CTRL)
+                End Using
             Else
                 CRTL_GUEST = Ctrl_View.FindControl(sNM_CTRL)
             End If
@@ -327,27 +325,32 @@ Public Class Class_COMM_APP_WEB
             If IsDBNull(CRTL_GUEST) Then Throw New Exception("Contrôle " & sNM_CTRL & " non trouvé")
             Select Case sTP_CTRL
                 Case "CheckBox"
-                    CheckBox_GUEST = CType(CRTL_GUEST, CheckBox)
-                    'LOG_Msg(GetCurrentMethod, CheckBox_GUEST.Text)
-                    Select Case sVAL_CTRL
-                        Case "True"
-                            CheckBox_GUEST.Checked = True
-                        Case "False"
-                            CheckBox_GUEST.Checked = False
-                    End Select
+                    Using CheckBox_GUEST = CType(CRTL_GUEST, CheckBox)
+                        'LOG_Msg(GetCurrentMethod, CheckBox_GUEST.Text)
+                        Select Case sVAL_CTRL
+                            Case "True"
+                                CheckBox_GUEST.Checked = True
+                            Case "False"
+                                CheckBox_GUEST.Checked = False
+                        End Select
+                    End Using
                 Case "DropDownList"
-                    DropDownList_GUEST = CType(CRTL_GUEST, DropDownList)
-                    'LOG_Msg(GetCurrentMethod, DropDownList_GUEST.Text)
-                    DropDownList_GUEST.SelectedValue = sVAL_CTRL
+                    Using DropDownList_GUEST = CType(CRTL_GUEST, DropDownList)
+                        'LOG_Msg(GetCurrentMethod, DropDownList_GUEST.Text)
+                        DropDownList_GUEST.SelectedValue = sVAL_CTRL
+                    End Using
                 Case "TextBox"
-                    TextBox_GUEST = CType(CRTL_GUEST, TextBox)
-                    'LOG_Msg(GetCurrentMethod, TextBox_GUEST.Text)
-                    TextBox_GUEST.Text = sVAL_CTRL
+                    Using TextBox_GUEST = CType(CRTL_GUEST, TextBox)
+                        'LOG_Msg(GetCurrentMethod, TextBox_GUEST.Text)
+                        TextBox_GUEST.Text = sVAL_CTRL
+                    End Using
                 Case "RadioButtonList"
-                    RadioButtonList_GUEST = CType(CRTL_GUEST, RadioButtonList)
-                    'LOG_Msg(GetCurrentMethod, RadioButtonList_GUEST.Text)
-                    RadioButtonList_GUEST.SelectedValue = sVAL_CTRL
+                    Using RadioButtonList_GUEST = CType(CRTL_GUEST, RadioButtonList)
+                        'LOG_Msg(GetCurrentMethod, RadioButtonList_GUEST.Text)
+                        RadioButtonList_GUEST.SelectedValue = sVAL_CTRL
+                    End Using
             End Select
+            CRTL_GUEST.Dispose()
         Catch ex As Exception
             'LOG_Erreur(GetCurrentMethod, ex.Message)
             Exit Sub
@@ -370,7 +373,7 @@ Public Class Class_COMM_APP_WEB
             'End If
             'chercher les param dans la base
 
-            sQuery = $"INSERT INTO [APP_WEB_ECO].[dbo].[DTM_REF_PARA_ETAT_CRTL] ([NM_PAGE], [PARA], [ID_CTRL], [VL_CTRL], [DT_MAJ])
+            sQuery = $"INSERT INTO [dbo].[DTM_REF_PARA_ETAT_CRTL] ([NM_PAGE], [PARA], [ID_CTRL], [VL_CTRL], [DT_MAJ])
                             VALUES ('{spage}', '{Replace(sNM_PARA, "'", "''")}', '{sNM_CTRL}', '{sVAL_CTRL}', GETDATE())"
             SQL_REQ_ACT(sQuery, CS_APP_WEB_ECO)
         Catch ex As Exception
