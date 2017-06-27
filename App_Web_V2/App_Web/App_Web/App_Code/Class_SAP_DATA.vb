@@ -925,18 +925,18 @@ Public Class Class_SAP_DATA
 
     Public Shared Function SAP_DATA_READ_ZVERIF(Optional sFILT As String = "") As DataTable
 
-        Dim dtZVERIF As New DataTable
-
         Try
-            dtZVERIF = SAP_DATA_READ_TBL("ZVERIF", "|", "", "MANDT BUKRS NO_MOYEN NO_VERIF DATEVERIF REALPAR COMMENTAIRES CHEMIN_CONSTAT CREE_PAR DATE_CREATION HEURE_CREATION", sFILT)
-            If dtZVERIF Is Nothing Then Throw New Exception("Problème de lecture de la table ZVERIF avec le filtre : " & sFILT)
+            Using dtZVERIF = SAP_DATA_READ_TBL("ZVERIF", "|", "", "MANDT BUKRS NO_MOYEN NO_VERIF DATEVERIF REALPAR COMMENTAIRES CHEMIN_CONSTAT CREE_PAR DATE_CREATION HEURE_CREATION", sFILT)
+                If dtZVERIF Is Nothing Then Throw New Exception($"Problème de lecture de la table ZVERIF avec le filtre : {sFILT}")
+                LOG_Msg(GetCurrentMethod, $"Lecture de la table ZVERIF effectuée avec le filtre : {sFILT}")
+                Return dtZVERIF
+            End Using
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
         End Try
 
-        LOG_Msg(GetCurrentMethod, "Lecture de la table ZVERIF effectuée avec le filtre : " & sFILT)
-        Return dtZVERIF
+
     End Function
 
     Public Shared Function SAP_DATA_READ_KNMT(Optional sFILT As String = "") As DataTable
