@@ -358,8 +358,16 @@ Public Class Class_SAP_DATA
 
     Public Shared Function SAP_DATA_CREA_FILT_TABL(sfiltre As String, sOPERATEUR As String) As String
 
-        sfiltre = "|" & sOPERATEUR & sfiltre
-        Return sfiltre
+        Try
+            Dim sb_filtre As New StringBuilder
+            sb_filtre.Append("|")
+            sb_filtre.Append(sOPERATEUR)
+            sb_filtre.Append(sfiltre)
+            Return sb_filtre.ToString
+        Catch ex As Exception
+            LOG_Erreur(GetCurrentMethod, ex.Message)
+            Return Nothing
+        End Try
 
     End Function
 
