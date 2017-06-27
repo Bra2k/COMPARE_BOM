@@ -941,18 +941,17 @@ Public Class Class_SAP_DATA
 
     Public Shared Function SAP_DATA_READ_KNMT(Optional sFILT As String = "") As DataTable
 
-        Dim dtKNMT As New DataTable
-
         Try
-            dtKNMT = SAP_DATA_READ_TBL("KNMT", "|", "", "KDMAT MATNR KUNNR VKORG VTWEG", sFILT)
-            If dtKNMT Is Nothing Then Throw New Exception($"Problème de lecture de la table KNMT avec le filtre : " & sFILT)
+            Using dtKNMT = SAP_DATA_READ_TBL("KNMT", "|", "", "KDMAT MATNR KUNNR VKORG VTWEG", sFILT)
+                If dtKNMT Is Nothing Then Throw New Exception($"Problème de lecture de la table KNMT avec le filtre : {sFILT}")
+                LOG_Msg(GetCurrentMethod, $"Lecture de la table KNMT effectuée avec le filtre : {sFILT}")
+                Return dtKNMT
+            End Using
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
         End Try
 
-        LOG_Msg(GetCurrentMethod, $"Lecture de la table KNMT effectuée avec le filtre : " & sFILT)
-        Return dtKNMT
     End Function
 
     Public Shared Function SAP_DATA_READ_ZMOYENTYPETEST(Optional sFILT As String = "") As DataTable
@@ -1026,8 +1025,6 @@ Public Class Class_SAP_DATA
     End Function
 
     Public Shared Function SAP_DATA_READ_ZGMO_OUTIL_VER(Optional sFILT As String = "") As DataTable
-
-        'Dim dtZGMO_OUTIL_VER As New DataTable
 
         Try
             Using dtZGMO_OUTIL_VER = SAP_DATA_READ_TBL("ZGMO_OUTIL_VER", "|", "", "ID PROCHVERIF1", sFILT)
