@@ -683,8 +683,8 @@ Public Class Class_COMM_APP_WEB
             If sCHEM_PJ <> "vide" Then
                 Dim asCHEM_PJ As String() = Split(sCHEM_PJ, ";")
                 For Each sELEM As String In asCHEM_PJ
-                    COMM_APP_WEB_COPY_FILE(sELEM, My.Settings.RPTR_TPRR & "\" & Path.GetFileName(sELEM), True)
-                    Dim item As New System.Net.Mail.Attachment(My.Settings.RPTR_TPRR & "\" & Path.GetFileName(sELEM))
+                    COMM_APP_WEB_COPY_FILE(sELEM, $"{My.Settings.RPTR_TPRR}\{Path.GetFileName(sELEM)}", True)
+                    Dim item As New System.Net.Mail.Attachment($"{My.Settings.RPTR_TPRR}\{Path.GetFileName(sELEM)}")
                     message.Attachments.Add(item) 'ajout de la pièce jointe au message
                 Next
             End If
