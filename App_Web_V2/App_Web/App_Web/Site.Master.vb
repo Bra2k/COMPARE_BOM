@@ -55,10 +55,10 @@ Public Class SiteMaster
             Catch ex As Exception
                 LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
                 Exit Sub
-            Finally
-                If Session("matricule") = "" Then MultiView_Master.SetActiveView(View_LOG_SAP)
             End Try
         End If
+        If Session("matricule") = "" Then MultiView_Master.SetActiveView(View_LOG_SAP)
+
     End Sub
 
     Protected Sub Unnamed_LoggingOut(sender As Object, e As LoginCancelEventArgs)
@@ -91,22 +91,23 @@ Public Class SiteMaster
         End Try
     End Sub
 
-    Protected Sub _GET_AD_PROPERTY(de As DirectoryEntry, sproperty As String)
+    Protected Function _AD_GET_PROP(de As DirectoryEntry, sproperty As String) As String
         Try
             If sproperty = "thumbnailphoto" Then
                 Dim data As Byte() = de.Properties(sproperty).Value
                 System.Convert.ToBase64String(de.Properties(sproperty).Value).ToString()
                 'Session("thumbnailphoto") = data
-                Session(sproperty) = $"<img src='data:image/jpeg;base64, {System.Convert.ToBase64String(data)}' alt='photo' />"
+                LOG_Msg(GetCurrentMethod, $"{sproperty} : <img src='data:image/jpeg;base64, {System.Convert.ToBase64String(data)}' alt='photo' />")
+                Return $"<img src='data:image/jpeg;base64, {System.Convert.ToBase64String(data)}' alt='photo' />"
             Else
-                Session(sproperty) = de.Properties(sproperty).Value.ToString
+                LOG_Msg(GetCurrentMethod, $"{sproperty} : {de.Properties(sproperty).Value.ToString}")
+                Return de.Properties(sproperty).Value.ToString
             End If
-            LOG_Msg(GetCurrentMethod, $"{sproperty} : {Session(sproperty)}")
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, $"{sproperty} : {ex.Message}")
-            Exit Sub
+            Return Nothing
         End Try
-    End Sub
+    End Function
 
     Protected Sub _AD_GET_USER(ID_TYPE As IdentityType, ID_VAL As String)
         Const adDomainName As String = "eolane.com"
@@ -118,14 +119,14 @@ Public Class SiteMaster
                 If Session("User_Name") = "" Then Throw New Exception("User nom existant")
                 Using UserAd As UserPrincipal = UserPrincipal.FindByIdentity(ctx, ID_TYPE, ID_VAL)
                     Using DirectoryEntry As DirectoryEntry = UserAd.GetUnderlyingObject()
-                        _GET_AD_PROPERTY(DirectoryEntry, "displayname")
-                        _GET_AD_PROPERTY(DirectoryEntry, "title")
-                        _GET_AD_PROPERTY(DirectoryEntry, "mail")
-                        _GET_AD_PROPERTY(DirectoryEntry, "department")
-                        _GET_AD_PROPERTY(DirectoryEntry, "samaccountname")
-                        _GET_AD_PROPERTY(DirectoryEntry, "sn")
-                        _GET_AD_PROPERTY(DirectoryEntry, "givenname")
-                        _GET_AD_PROPERTY(DirectoryEntry, "thumbnailphoto")
+                        Session("displayname") = _AD_GET_PROP(DirectoryEntry, "displayname")
+                        Session("title") = _AD_GET_PROP(DirectoryEntry, "title")
+                        Session("mail") = _AD_GET_PROP(DirectoryEntry, "mail")
+                        Session("department") = _AD_GET_PROP(DirectoryEntry, "department")
+                        Session("samaccountname") = _AD_GET_PROP(DirectoryEntry, "samaccountname")
+                        Session("sn") = _AD_GET_PROP(DirectoryEntry, "sn")
+                        Session("givenname") = _AD_GET_PROP(DirectoryEntry, "givenname")
+                        Session("thumbnailphoto") = _AD_GET_PROP(DirectoryEntry, "thumbnailphoto")
                     End Using
                 End Using
             End Using

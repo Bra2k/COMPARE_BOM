@@ -563,8 +563,6 @@ Public Class GEST_ANML_NC_DRGT
         Catch ex As Exception
             LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
             Exit Sub
-            'Finally
-            '    SQL_Connexion = SQL_CLOS(SQL_Connexion)
         End Try
     End Sub
 
@@ -576,18 +574,56 @@ Public Class GEST_ANML_NC_DRGT
             Case "Anomalies"
                 MultiView_ANML.SetActiveView(Session("View_state"))
         End Select
+        Label_NU_OF.Text = ""
+        Label_CD_ARTI_ECO.Text = ""
+        Label_NM_DSGT_ECO.Text = ""
+        Label_CD_ARTI_ALMS.Text = ""
+        Label_NU_INCI.Text = ""
+        Label_ID_STAT.Text = "Init"
     End Sub
 
     Protected Sub TextBox_NU_DRGT_TextChanged(sender As Object, e As EventArgs) Handles TextBox_NU_DRGT.TextChanged
         'Dim dt1 As New DataTable
         Try
             Dim sQuery = $"SELECT [NU_SER_SPFE] AS [Numéro de série]
-  From [dbo].[DTM_NC_LIST]
- Where [NU_DRGT] = '{TextBox_NU_DRGT.Text}'"
+                             FROM [dbo].[DTM_NC_LIST]
+                            WHERE [NU_DRGT] = '{TextBox_NU_DRGT.Text}'"
             Using dt1 = SQL_SELE_TO_DT(sQuery, CS_ALMS_PROD_PRD)
                 If dt1 Is Nothing Then
                     '  dt1 = New DataTable
                     dt1.Columns.Add("Numéro de série", Type.GetType("System.String"))
+                Else
+                    'recherche OF
+                    sQuery = $"SELECT [NU_OF]
+                                 FROM [dbo].[V_LIAIS_NU_SER]
+                                WHERE [NU_SER_CLIE] = '{dt1(0)("Numéro de série").Text}'"
+                    Using dt4 = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
+                        If dt4 Is Nothing Then Throw New Exception($"L'OF du numéro de série {dt1(0)("Numéro de série").Text} n'a pas été retrouvé dans la base.")
+                        'recherche code article
+                        Using dt2 = SAP_DATA_LECT_OF(dt4(0)("NU_OF").ToString)
+                            If dt2 Is Nothing Then Throw New Exception($"Pas d'info dans SAP retrouvées sur l'OF {dt4(0)("NU_OF").ToString} n'a pas été retrouvé dans la base.")
+                            'code article ALMS
+                            Using dt3 = SAP_DATA_READ_KNMT($"MATNR LIKE '{Trim(dt2(0)("CD_ARTI_ECO").ToString)}%' AND KUNNR EQ '0000000451' AND VKORG EQ 'ORC3' AND VTWEG EQ 'CD'")
+                                If dt3 Is Nothing Then Throw New Exception($"L'équivalent de {Trim(dt2(0)("CD_ARTI_ECO").ToString)} en code article ALMS n'a pas été retrouvé dans SAP.")
+                                If Label_NU_OF.Text = "" And Label_CD_ARTI_ECO.Text = "" And Label_NM_DSGT_ECO.Text = "" And Label_CD_ARTI_ALMS.Text = "" Then
+                                    Label_NU_OF.Text = dt4(0)("NU_OF").ToString
+                                    Label_CD_ARTI_ECO.Text = Trim(dt2(0)("CD_ARTI_ECO").ToString)
+                                    Label_NM_DSGT_ECO.Text = Trim(dt2(0)("NM_DSGT_ARTI").ToString)
+                                    Label_CD_ARTI_ALMS.Text = Trim(dt3(0)("KDMAT").ToString)
+                                Else
+                                    If Label_NU_OF.Text <> dt4(0)("NU_OF").ToString Then Throw New Exception($"L'of {Label_NU_OF.Text} du numéro de série {TextBox_NU_SER_SPFE.Text} est différent")
+                                End If
+                            End Using
+                        End Using
+                    End Using
+                    sQuery = $"SELECT [NM_DCPO_NC]
+                                 FROM [dbo].[V_NC_DCPO_NU_DRGT]
+                                WHERE [NU_DRGT] = '{TextBox_NU_DRGT.Text}'"
+                    Using dt2 = SQL_SELE_TO_DT(sQuery, CS_ALMS_PROD_PRD)
+                        If Not dt2 Is Nothing Then
+                            TextBox_NM_DCPO_DRGT.Text = dt2(0)("NM_DCPO_NC").ToString
+                        End If
+                    End Using
                 End If
                 Session("NU_SER_DRGT") = dt1
                 GridView_LIST_NU_SER_DRGT.DataSource = dt1
@@ -600,12 +636,12 @@ Public Class GEST_ANML_NC_DRGT
     End Sub
 
     Protected Sub TextBox_NU_SER_DRGT_TextChanged(sender As Object, e As EventArgs) Handles TextBox_NU_SER_DRGT.TextChanged
-        'Dim dt1, dt2, dt3, dt4 As New DataTable
+
         Try
             'recherche OF
-            Dim sQuery = $"Select [NU_OF]
-  From [dbo].[V_LIAIS_NU_SER]
-                       Where [NU_SER_CLIE] = '{TextBox_NU_SER_DRGT.Text}'"
+            Dim sQuery = $"SELECT [NU_OF]
+                             FROM [dbo].[V_LIAIS_NU_SER]
+                            WHERE [NU_SER_CLIE] = '{TextBox_NU_SER_DRGT.Text}'"
             Using dt1 = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
                 If dt1 Is Nothing Then Throw New Exception($"L'OF du numéro de série {TextBox_NU_SER_DRGT.Text} n'a pas été retrouvé dans la base.")
                 'recherche code article
@@ -626,6 +662,9 @@ Public Class GEST_ANML_NC_DRGT
                 End Using
             End Using
             Using dt4 = Session("NU_SER_DRGT")
+                Using rdt4 = dt4.select($"Numéro de série = '{TextBox_NU_SER_DRGT.Text}'").FirstOrDefault
+                    If Not rdt4 Is Nothing Then Throw New Exception($"Le numéro de série {TextBox_NU_SER_DRGT.Text} est déjà présent dands la liste.")
+                End Using
                 dt4.Rows.Add()
                 dt4.Rows(dt4.Rows.Count - 1)("Numéro de série") = TextBox_NU_SER_DRGT.Text
                 Session("NU_SER_DRGT") = dt4
@@ -642,9 +681,6 @@ Public Class GEST_ANML_NC_DRGT
 
     Protected Sub Button_VALI_ENTER3_Click(sender As Object, e As EventArgs) Handles Button_VALI_ENTER3.Click
         'enregistrement + création n° NC et affichage liste des type de nc
-        'Dim SQL_Connexion = New SqlConnection()
-        'Dim cmd As New SqlCommand
-        'Dim dt As New DataTable
         Dim iTYPE_NC As Integer = 0, iINCI As Integer = 0
         Try
             Using SQL_Connexion = SQL_CONN(CS_ALMS_PROD_PRD)
@@ -656,7 +692,6 @@ Public Class GEST_ANML_NC_DRGT
                     SQL_ADD_PARA_STOR_PROC(cmd, "ID_RFRC_SEQ", SqlDbType.BigInt, 4000, "0")
                     SQL_ADD_PARA_STOR_PROC(cmd, "RES", SqlDbType.NVarChar, 4000, "", "Output")
                     SQL_EXEC_STOR_PROC(cmd)
-                    'If SQL_GET_PARA_VAL(cmd, "RES") <> "PASS" Then Throw New Exception(SQL_GET_PARA_VAL(cmd, "RES"))
                     iTYPE_NC = SQL_GET_PARA_VAL(cmd, "ID_TYPE_NC")
                     cmd.Parameters.Clear()
                 End Using
@@ -664,50 +699,18 @@ Public Class GEST_ANML_NC_DRGT
                     For Each rdt As DataRow In dt.Rows
                         Using cmd2 = SQL_CALL_STOR_PROC(SQL_Connexion, "P_GET_NEW_NU_INCI")
                             SQL_ADD_PARA_STOR_PROC(cmd2, "NU_INCI", SqlDbType.TinyInt, 4000, "0", "Output")
-                            'dt = SQL_GET_DT_FROM_STOR_PROC(cmd)
                             SQL_EXEC_STOR_PROC(cmd2)
                             Label_NU_INCI.Text = SQL_GET_PARA_VAL(cmd2, "NU_INCI")
                             cmd2.Parameters.Clear()
                         End Using
-                        Dim sQuery = $"INSERT INTO [dbo].[DTM_NC_LIST]
-           ([ID_TYPE_NC]
-           ,[NU_INCI]
-           ,[NU_SER_SPFE]
-           ,[CD_ARTI_PROD]
-           ,[NU_DRGT])
-     VALUES
-           ({iTYPE_NC.ToString}
-           ,{Label_NU_INCI.Text}
-           ,'{rdt("Numéro de série").ToString}'
-           ,'{Label_CD_ARTI_ALMS.Text}'
-           ,'{TextBox_NU_DRGT.Text}')"
+                        Dim sQuery = $"INSERT INTO [dbo].[DTM_NC_LIST] ([ID_TYPE_NC],[NU_INCI],[NU_SER_SPFE],[CD_ARTI_PROD],[NU_DRGT])
+                                            VALUES({iTYPE_NC.ToString},{Label_NU_INCI.Text},'{rdt("Numéro de série").ToString}','{Label_CD_ARTI_ALMS.Text}','{TextBox_NU_DRGT.Text}')"
                         SQL_REQ_ACT(sQuery, CS_ALMS_PROD_PRD)
-
-                        sQuery = $"INSERT INTO [dbo].[DTM_NC_DETA]
-           ([NU_INCI]
-           ,[DT_ITVT]
-           ,[ID_OPRT]
-           ,[BL_ETAT]
-           ,[ID_STAT])
-     VALUES
-           ({Label_NU_INCI.Text}
-           ,GETDATE()
-           ,{Session("matricule")}
-           ,1
-,1)"
+                        sQuery = $"INSERT INTO [dbo].[DTM_NC_DETA] ([NU_INCI],[DT_ITVT],[ID_OPRT],[BL_ETAT],[ID_STAT])
+                                        VALUES ({Label_NU_INCI.Text},GETDATE(),{Session("matricule")},1,1)"
                         SQL_REQ_ACT(sQuery, CS_ALMS_PROD_PRD)
-                        sQuery = $"INSERT INTO [dbo].[DTM_NC_DETA]
-           ([NU_INCI]
-           ,[DT_ITVT]
-           ,[ID_OPRT]
-           ,[BL_ETAT]
-           ,[ID_STAT])
-     VALUES
-           ({Label_NU_INCI.Text}
-           ,GETDATE()
-           ,{Session("matricule")}
-           ,1
-,4)"
+                        sQuery = $"INSERT INTO [dbo].[DTM_NC_DETA] ([NU_INCI],[DT_ITVT],[ID_OPRT],[BL_ETAT],[ID_STAT])
+                                        VALUES ({Label_NU_INCI.Text},GETDATE(),{Session("matricule")},1,4)"
                         SQL_REQ_ACT(sQuery, CS_ALMS_PROD_PRD)
                     Next
                 End Using
@@ -715,12 +718,9 @@ Public Class GEST_ANML_NC_DRGT
             End Using
             RadioButtonList_TYPE_INCI.SelectedValue = "Anomalies"
             MultiView_ANML.SetActiveView(View_SAIS)
-
         Catch ex As Exception
             LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
             Exit Sub
-            'Finally
-            '    SQL_Connexion = SQL_CLOS(SQL_Connexion)
         End Try
     End Sub
 End Class
