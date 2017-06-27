@@ -615,21 +615,22 @@ Public Class Class_COMM_APP_WEB
     End Sub
 
     Public Shared Function COMM_APP_WEB_GET_CFGR_AFCG_PAGE_DEFA_TO_DT(sService_Session As String) As DataTable
-        Dim sQuery As String = "SELECT [NM_PAGE]
+        Dim sQuery As String = $"SELECT [NM_PAGE]
                                       ,[NM_URL_PAGE]
                                       ,ISNULL([NM_IMAG_URL],'') AS [NM_IMAG_URL]
                                   FROM [APP_WEB_ECO].[dbo].[DTM_REF_AFCG_PAGE_DEFA]
-                                 WHERE [ID_SERV_SESS] = '" & sService_Session & "'", sChaineConnexion As String = "Data Source=cedb03,1433;Initial Catalog=APP_WEB_ECO;Integrated Security=False;User ID=sa;Password=mdpsa@SQL;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
-        Dim dt As New DataTable
+                                 WHERE [ID_SERV_SESS] = '{sService_Session}'"
         Try
-            dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
+            Using dt = SQL_SELE_TO_DT(sQuery, CS_APP_WEB_ECO)
+                Return dt
+            End Using
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
         End Try
 
         'LOG_Msg(GetCurrentMethod, "Les paramètres d'affichage ont été chagés pour le service ou la session " & sService_Session)
-        Return dt
+
     End Function
 
     Public Shared Function COMM_APP_WEB_GET_DROI_PAGE(sUrl As String, sService As String, sSession As String) As Boolean
