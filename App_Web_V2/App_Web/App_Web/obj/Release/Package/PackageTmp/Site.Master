@@ -82,12 +82,12 @@
                     </asp:ContentPlaceHolder>
                 </asp:View>
                 <asp:View ID="View_LOG_SAP" runat="server">
-                    <div style="background-color: #002F60; width: 30%; color: #ffffff; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-radius: 10px;">
+                    <div style="background-color: #002F60; width: 30%; color: #ffffff; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-radius: 10px; text-align:center">
                         <br />
-                        &nbsp;&nbsp;Entrer le matricule :
+                        Entrer le matricule :
                              <asp:TextBox ID="TextBox_LOG_SAP" runat="server" AutoPostBack="True"></asp:TextBox>
                         <br />
-
+                        <br />
                     </div>
                 </asp:View>
             </asp:MultiView>

@@ -51,9 +51,10 @@ Public Class SiteMaster
         If Not IsPostBack And Session("displayname") = "" Then
             Try
                 Session("User_Name") = Replace(Replace(System.Web.HttpContext.Current.User.Identity.Name, Environment.UserDomainName, ""), "\", "")
-                AD_GET_USER(IdentityType.SamAccountName, Session("User_Name"))
+                _AD_GET_USER(IdentityType.SamAccountName, Session("User_Name"))
             Catch ex As Exception
                 LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+                Exit Sub
             Finally
                 If Session("matricule") = "" Then MultiView_Master.SetActiveView(View_LOG_SAP)
             End Try
@@ -68,9 +69,10 @@ Public Class SiteMaster
         Try
             LOG_MESS_UTLS(GetCurrentMethod, $"Session {Session("User_Name")} terminée")
             Session("User_Name") = Replace(Replace(System.Web.HttpContext.Current.User.Identity.Name, Environment.UserDomainName, ""), "\", "")
-            AD_GET_USER(IdentityType.SamAccountName, Session("User_Name"))
+            _AD_GET_USER(IdentityType.SamAccountName, Session("User_Name"))
         Catch ex As Exception
             LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            Exit Sub
         End Try
     End Sub
     Protected Sub TextBox_LOG_SAP_TextChanged(sender As Object, e As EventArgs) Handles TextBox_LOG_SAP.TextChanged
@@ -85,18 +87,28 @@ Public Class SiteMaster
             MultiView_Master.SetActiveView(View_Master)
         Catch ex As Exception
             LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            Exit Sub
         End Try
     End Sub
 
     Protected Sub _GET_AD_PROPERTY(de As DirectoryEntry, sproperty As String)
         Try
-            Session(sproperty) = de.Properties(sproperty).Value.ToString()
+            If sproperty = "thumbnailphoto" Then
+                Dim data As Byte() = de.Properties(sproperty).Value
+                System.Convert.ToBase64String(de.Properties(sproperty).Value).ToString()
+                'Session("thumbnailphoto") = data
+                Session(sproperty) = $"<img src='data:image/jpeg;base64, {System.Convert.ToBase64String(data)}' alt='photo' />"
+            Else
+                Session(sproperty) = de.Properties(sproperty).Value.ToString
+            End If
+            LOG_Msg(GetCurrentMethod, $"{sproperty} : {Session(sproperty)}")
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, $"{sproperty} : {ex.Message}")
+            Exit Sub
         End Try
     End Sub
 
-    Protected Sub AD_GET_USER(ID_TYPE As IdentityType, ID_VAL As String)
+    Protected Sub _AD_GET_USER(ID_TYPE As IdentityType, ID_VAL As String)
         Const adDomainName As String = "eolane.com"
         Const adDefaultOU As String = "DC=eolane,DC=com"
         Const adUserAccount As String = "ee_trombi"
@@ -109,49 +121,36 @@ Public Class SiteMaster
                         _GET_AD_PROPERTY(DirectoryEntry, "displayname")
                         _GET_AD_PROPERTY(DirectoryEntry, "title")
                         _GET_AD_PROPERTY(DirectoryEntry, "mail")
-                        _GET_AD_PROPERTY(DirectoryEntry, "telephonenumber")
-                        _GET_AD_PROPERTY(DirectoryEntry, "facsimiletelephonenumber")
-                        _GET_AD_PROPERTY(DirectoryEntry, "company")
-                        Try
-                            Dim data As Byte() = DirectoryEntry.Properties("thumbnailphoto").Value
-                            System.Convert.ToBase64String(DirectoryEntry.Properties("thumbnailphoto").Value) '.ToString()
-                            Session("thumbnailphoto") = $"<img src='data:image/jpeg;base64, {System.Convert.ToBase64String(data)}' alt='photo' />"
-                        Catch ex As Exception
-                            LOG_Erreur(GetCurrentMethod, ex.Message)
-                        End Try
+                        _GET_AD_PROPERTY(DirectoryEntry, "department")
                         _GET_AD_PROPERTY(DirectoryEntry, "samaccountname")
                         _GET_AD_PROPERTY(DirectoryEntry, "sn")
                         _GET_AD_PROPERTY(DirectoryEntry, "givenname")
-                        _GET_AD_PROPERTY(DirectoryEntry, "Mobile")
-                        _GET_AD_PROPERTY(DirectoryEntry, "l")
-                        _GET_AD_PROPERTY(DirectoryEntry, "st")
-                        _GET_AD_PROPERTY(DirectoryEntry, "postalcode")
-                        _GET_AD_PROPERTY(DirectoryEntry, "streetaddress")
-                        _GET_AD_PROPERTY(DirectoryEntry, "department")
+                        _GET_AD_PROPERTY(DirectoryEntry, "thumbnailphoto")
                     End Using
-                    Dim sb_m, sb_p As New StringBuilder()
-                    Dim som As String = Session("sn")
-                    For ich As Integer = 0 To som.Length - 1
-                        If Asc(som(ich)) < 65 Or Asc(som(ich)) > 122 Then
-                            sb_m.Append("_")
-                        Else
-                            sb_m.Append(som(ich))
-                        End If
-                    Next
-                    Dim sop As String = Session("givenname")
-                    For ich As Integer = 0 To sop.Length - 1
-                        If Asc(sop(ich)) < 65 Or Asc(sop(ich)) > 122 Then
-                            sb_p.Append("_")
-                        Else
-                            sb_p.Append(sop(ich))
-                        End If
-                    Next
-                    Using dt_matr = SAP_DATA_READ_PA0002($"NACHN LIKE '{sb_m.ToString}' AND VORNA LIKE '{sb_p.ToString}'")
-                        If Not dt_matr Is Nothing Then Session("matricule") = Convert.ToDecimal(Trim(dt_matr(0)("PERNR").ToString)).ToString
-                    End Using
-                    Session.Timeout = 240
                 End Using
             End Using
+            Dim sb_m, sb_p As New StringBuilder()
+            Dim som As String = Session("sn")
+            For ich As Integer = 0 To som.Length - 1
+                If Asc(som(ich)) < 65 Or Asc(som(ich)) > 122 Then
+                    sb_m.Append("_")
+                Else
+                    sb_m.Append(som(ich))
+                End If
+            Next
+            Dim sop As String = Session("givenname")
+            For ich As Integer = 0 To sop.Length - 1
+                If Asc(sop(ich)) < 65 Or Asc(sop(ich)) > 122 Then
+                    sb_p.Append("_")
+                Else
+                    sb_p.Append(sop(ich))
+                End If
+            Next
+            Using dt_matr = SAP_DATA_READ_PA0002($"NACHN LIKE '{sb_m.ToString}' AND VORNA LIKE '{sb_p.ToString}'")
+                If Not dt_matr Is Nothing Then Session("matricule") = Convert.ToDecimal(Trim(dt_matr(0)("PERNR").ToString)).ToString
+            End Using
+            Session.Timeout = 240
+
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Exit Sub

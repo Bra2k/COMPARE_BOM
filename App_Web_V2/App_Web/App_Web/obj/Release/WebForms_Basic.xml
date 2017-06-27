@@ -132,9 +132,54 @@ Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web._Default._InBox">
+<member name="F:App_Web._Default._ImageButton4">
 <summary>
-Contrôle InBox.
+Contrôle ImageButton4.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web._Default._ImageButton5">
+<summary>
+Contrôle ImageButton5.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web._Default._ImageButton6">
+<summary>
+Contrôle ImageButton6.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web._Default._Admin">
+<summary>
+Contrôle Admin.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web._Default._INDICE">
+<summary>
+Contrôle INDICE.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web._Default._Eolienne">
+<summary>
+Contrôle Eolienne.
 </summary>
 <remarks>
 Champ généré automatiquement.
@@ -150,18 +195,18 @@ Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web._Default._FoncTest">
+<member name="F:App_Web._Default._Log">
 <summary>
-Contrôle FoncTest.
+Contrôle Log.
 </summary>
 <remarks>
 Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web._Default._StickerPrinter">
+<member name="F:App_Web._Default._InBox">
 <summary>
-Contrôle StickerPrinter.
+Contrôle InBox.
 </summary>
 <remarks>
 Champ généré automatiquement.
@@ -177,27 +222,18 @@ Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web._Default._Bom">
+<member name="F:App_Web._Default._ImageButton3">
 <summary>
-Contrôle Bom.
+Contrôle ImageButton3.
 </summary>
 <remarks>
 Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web._Default._Log">
+<member name="F:App_Web._Default._ImageButton7">
 <summary>
-Contrôle Log.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web._Default._Takaya">
-<summary>
-Contrôle Takaya.
+Contrôle ImageButton7.
 </summary>
 <remarks>
 Champ généré automatiquement.
@@ -213,9 +249,63 @@ Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
+<member name="F:App_Web._Default._StickerPrinter">
+<summary>
+Contrôle StickerPrinter.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web._Default._ImageButton1">
+<summary>
+Contrôle ImageButton1.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web._Default._Composant">
+<summary>
+Contrôle Composant.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
 <member name="F:App_Web._Default._CodeBarre">
 <summary>
 Contrôle CodeBarre.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web._Default._Bom">
+<summary>
+Contrôle Bom.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web._Default._FoncTest">
+<summary>
+Contrôle FoncTest.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web._Default._Takaya">
+<summary>
+Contrôle Takaya.
 </summary>
 <remarks>
 Champ généré automatiquement.
@@ -234,33 +324,6 @@ Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans 
 <member name="F:App_Web._Default._BancTest">
 <summary>
 Contrôle BancTest.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web._Default._Composant">
-<summary>
-Contrôle Composant.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web._Default._Batterie">
-<summary>
-Contrôle Batterie.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web._Default._Eolienne">
-<summary>
-Contrôle Eolienne.
 </summary>
 <remarks>
 Champ généré automatiquement.
@@ -297,42 +360,6 @@ Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans 
 <member name="F:App_Web._Default._SENSING_button">
 <summary>
 Contrôle SENSING_button.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web._Default._INDICE">
-<summary>
-Contrôle INDICE.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web._Default._Admin">
-<summary>
-Contrôle Admin.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web._Default._SAP">
-<summary>
-Contrôle SAP.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web._Default._ImageButton1">
-<summary>
-Contrôle ImageButton1.
 </summary>
 <remarks>
 Champ généré automatiquement.
@@ -5357,33 +5384,6 @@ Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans 
 <member name="F:App_Web.ALMS_IMPORT._GridView_CSV_ALMS">
 <summary>
 Contrôle GridView_CSV_ALMS.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.ALMS_MENU._HyperLinkADD_MAC_ADRE">
-<summary>
-Contrôle HyperLinkADD_MAC_ADRE.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.ALMS_MENU._HyperLinkALMS_IMPORT">
-<summary>
-Contrôle HyperLinkALMS_IMPORT.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.ALMS_MENU._HyperLinkGEST_ANML_NC_DRGT">
-<summary>
-Contrôle HyperLinkGEST_ANML_NC_DRGT.
 </summary>
 <remarks>
 Champ généré automatiquement.
