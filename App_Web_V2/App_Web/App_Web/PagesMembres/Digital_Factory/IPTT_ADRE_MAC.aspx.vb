@@ -9,6 +9,9 @@ Public Class IPTT_ADRE_MAC
     Protected Sub Button_QT_Click(sender As Object, e As EventArgs) Handles Button_QT.Click
         Try
             Dim sadresse_mac As String = ""
+            If TextBox_NM_CRIT.Text = "" Then Throw New Exception("Le critère n'est pas saisi")
+            If Len(TextBox_PREM_MAC_ADRE.Text) <> 12 Then Throw New Exception("Le nombre de caractère de la première adresse MAC est incorrect (12)")
+            If TextBox_QT.Text = "" Then Throw New Exception("Le nombre d'adresse MAC à générer n'est pas saisi.")
             Dim spremiere_mac_adresse As String = TextBox_PREM_MAC_ADRE.Text
             spremiere_mac_adresse = Replace(spremiere_mac_adresse, ":", "")
             spremiere_mac_adresse = Replace(spremiere_mac_adresse, "-", "")
@@ -38,12 +41,15 @@ Public Class IPTT_ADRE_MAC
 
         Try
             Dim sadresse_mac As String = ""
+            If TextBox_NM_CRIT.Text = "" Then Throw New Exception("Le critère n'est pas saisi")
             Dim spremiere_mac_adresse As String = TextBox_PREM_MAC_ADRE_2.Text
+            If Len(TextBox_PREM_MAC_ADRE_2.Text) <> 12 Then Throw New Exception("Le nombre de caractère de la première adresse MAC est incorrect (12)")
             spremiere_mac_adresse = Replace(spremiere_mac_adresse, ":", "")
             spremiere_mac_adresse = Replace(spremiere_mac_adresse, "-", "")
             spremiere_mac_adresse = Replace(spremiere_mac_adresse, " ", "")
             Dim s6premier_caractere_premiere_mac_adresse As String = Left(spremiere_mac_adresse, 6), s6dernier_caractere_premiere_mac_adresse As String = Right(spremiere_mac_adresse, 6)
             Dim sderniere_mac_adresse As String = TextBox_DERN_MAC_ADRE.Text
+            If Len(TextBox_DERN_MAC_ADRE.Text) <> 12 Then Throw New Exception("Le nombre de caractère de la dernière adresse MAC est incorrect (12)")
             sderniere_mac_adresse = Replace(sderniere_mac_adresse, ":", "")
             sderniere_mac_adresse = Replace(sderniere_mac_adresse, "-", "")
             sderniere_mac_adresse = Replace(sderniere_mac_adresse, " ", "")

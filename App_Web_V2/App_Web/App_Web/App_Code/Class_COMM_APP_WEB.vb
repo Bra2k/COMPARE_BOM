@@ -221,16 +221,17 @@ Public Class Class_COMM_APP_WEB
                     iQuot = Math.Floor(iNB_DEC / iBASE_N)
                     irest = iNB_DEC - (iQuot * iBASE_N)
                     'sNB_BASE_N = Mid(BASENUMBERS, irest + 1, 1) & sNB_BASE_N
-                    sbNB_BASE_N.Append(Mid(BASENUMBERS, irest + 1, 1))
+                    sbNB_BASE_N.Insert(0, Mid(BASENUMBERS, irest + 1, 1))
                     iNB_DEC = iQuot
                 End While
                 'sNB_BASE_N = Mid(BASENUMBERS, iQuot + 1, 1) & sNB_BASE_N
-                sbNB_BASE_N.Append(Mid(BASENUMBERS, iQuot + 1, 1))
+                sbNB_BASE_N.Insert(0, Mid(BASENUMBERS, iQuot + 1, 1))
             End If
-            'sNB_BASE_N = StrDup(iNB_CARA - Len(sNB_BASE_N), "0") & sNB_BASE_N
-            sbNB_BASE_N.Append(StrDup(iNB_CARA - Len(sNB_BASE_N), "0"))
-            sNB_BASE_N = sbNB_BASE_N.ToString
-            sNB_BASE_N.Reverse()
+            sNB_BASE_N = $"{StrDup(iNB_CARA - Len(sbNB_BASE_N.ToString), "0")}{sbNB_BASE_N.ToString}"
+            'sbNB_BASE_N.Append(StrDup(iNB_CARA - Len(sbNB_BASE_N.ToString), "0"))
+
+            'sNB_BASE_N = sbNB_BASE_N.ToString
+            'sNB_BASE_N.Reverse()
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
