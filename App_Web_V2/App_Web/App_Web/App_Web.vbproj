@@ -346,6 +346,7 @@
     <Content Include="PagesMembres\Digital_Factory\IDCT_GLOB_LIGN.aspx" />
     <Content Include="PagesMembres\Digital_Factory\IDCT_PASS.aspx" />
     <Content Include="PagesMembres\Digital_Factory\IMPR_ETIQ_PRN.aspx" />
+    <Content Include="PagesMembres\Digital_Factory\IPTT_ADRE_MAC.aspx" />
     <Content Include="PagesMembres\Digital_Factory\TCBL_COMP.aspx" />
     <Content Include="PagesMembres\Digital_Factory\TCBL_ESB_SS_ESB_V2.aspx" />
     <Content Include="PagesMembres\Digital_Factory\TCBL_OPRT.aspx" />
@@ -569,6 +570,13 @@
     </Compile>
     <Compile Include="PagesMembres\Digital_Factory\IMPR_ETIQ_PRN.aspx.vb">
       <DependentUpon>IMPR_ETIQ_PRN.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="PagesMembres\Digital_Factory\IPTT_ADRE_MAC.aspx.designer.vb">
+      <DependentUpon>IPTT_ADRE_MAC.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagesMembres\Digital_Factory\IPTT_ADRE_MAC.aspx.vb">
+      <DependentUpon>IPTT_ADRE_MAC.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="PagesMembres\Digital_Factory\TCBL_COMP.aspx.designer.vb">

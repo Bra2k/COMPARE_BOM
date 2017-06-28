@@ -309,48 +309,48 @@ Public Class Class_COMM_APP_WEB
                 sQuery = $"SELECT [VL_CTRL]
                          From [APP_WEB_ECO].[dbo].[V_DER_MAJ_DTM_REF_PARA_ETAT_CRTL]
                         WHERE [NM_PAGE] = '{pageHandler.ToString}' AND [PARA] = '{Replace(sNM_PARA, "'", "''")}' AND [ID_CTRL] = '{sNM_CTRL}'"
-            End Using
-            Using dt = SQL_SELE_TO_DT(sQuery, CS_APP_WEB_ECO)
-                If dt Is Nothing Then Throw New Exception($"Pas de données pour le contrôle{sNM_CTRL}")
-                sTP_CTRL = Left(sNM_CTRL, sNM_CTRL.IndexOf("_"))
-                sVAL_CTRL = dt(0)("VL_CTRL").ToString
-            End Using
-            If Ctrl_View Is Nothing Then
-                Using MainContent As ContentPlaceHolder = CType(pageHandler.Master.FindControl("MainContent"), ContentPlaceHolder)
-                    CRTL_GUEST = MainContent.FindControl(sNM_CTRL)
+                Using dt = SQL_SELE_TO_DT(sQuery, CS_APP_WEB_ECO)
+                    If dt Is Nothing Then Throw New Exception($"Pas de données pour le contrôle{sNM_CTRL}")
+                    sTP_CTRL = Left(sNM_CTRL, sNM_CTRL.IndexOf("_"))
+                    sVAL_CTRL = dt(0)("VL_CTRL").ToString
                 End Using
-            Else
-                CRTL_GUEST = Ctrl_View.FindControl(sNM_CTRL)
-            End If
-            'LOG_Msg(GetCurrentMethod, CRTL_GUEST.ID)
-            If IsDBNull(CRTL_GUEST) Then Throw New Exception("Contrôle " & sNM_CTRL & " non trouvé")
-            Select Case sTP_CTRL
-                Case "CheckBox"
-                    Using CheckBox_GUEST = CType(CRTL_GUEST, CheckBox)
-                        'LOG_Msg(GetCurrentMethod, CheckBox_GUEST.Text)
-                        Select Case sVAL_CTRL
-                            Case "True"
-                                CheckBox_GUEST.Checked = True
-                            Case "False"
-                                CheckBox_GUEST.Checked = False
-                        End Select
+                If Ctrl_View Is Nothing Then
+                    Using MainContent As ContentPlaceHolder = CType(pageHandler.Master.FindControl("MainContent"), ContentPlaceHolder)
+                        CRTL_GUEST = MainContent.FindControl(sNM_CTRL)
                     End Using
-                Case "DropDownList"
-                    Using DropDownList_GUEST = CType(CRTL_GUEST, DropDownList)
-                        'LOG_Msg(GetCurrentMethod, DropDownList_GUEST.Text)
-                        DropDownList_GUEST.SelectedValue = sVAL_CTRL
-                    End Using
-                Case "TextBox"
-                    Using TextBox_GUEST = CType(CRTL_GUEST, TextBox)
-                        'LOG_Msg(GetCurrentMethod, TextBox_GUEST.Text)
-                        TextBox_GUEST.Text = sVAL_CTRL
-                    End Using
-                Case "RadioButtonList"
-                    Using RadioButtonList_GUEST = CType(CRTL_GUEST, RadioButtonList)
-                        'LOG_Msg(GetCurrentMethod, RadioButtonList_GUEST.Text)
-                        RadioButtonList_GUEST.SelectedValue = sVAL_CTRL
-                    End Using
-            End Select
+                Else
+                    CRTL_GUEST = Ctrl_View.FindControl(sNM_CTRL)
+                End If
+                'LOG_Msg(GetCurrentMethod, CRTL_GUEST.ID)
+                If IsDBNull(CRTL_GUEST) Then Throw New Exception("Contrôle " & sNM_CTRL & " non trouvé")
+                Select Case sTP_CTRL
+                    Case "CheckBox"
+                        Using CheckBox_GUEST = CType(CRTL_GUEST, CheckBox)
+                            'LOG_Msg(GetCurrentMethod, CheckBox_GUEST.Text)
+                            Select Case sVAL_CTRL
+                                Case "True"
+                                    CheckBox_GUEST.Checked = True
+                                Case "False"
+                                    CheckBox_GUEST.Checked = False
+                            End Select
+                        End Using
+                    Case "DropDownList"
+                        Using DropDownList_GUEST = CType(CRTL_GUEST, DropDownList)
+                            'LOG_Msg(GetCurrentMethod, DropDownList_GUEST.Text)
+                            DropDownList_GUEST.SelectedValue = sVAL_CTRL
+                        End Using
+                    Case "TextBox"
+                        Using TextBox_GUEST = CType(CRTL_GUEST, TextBox)
+                            'LOG_Msg(GetCurrentMethod, TextBox_GUEST.Text)
+                            TextBox_GUEST.Text = sVAL_CTRL
+                        End Using
+                    Case "RadioButtonList"
+                        Using RadioButtonList_GUEST = CType(CRTL_GUEST, RadioButtonList)
+                            'LOG_Msg(GetCurrentMethod, RadioButtonList_GUEST.Text)
+                            RadioButtonList_GUEST.SelectedValue = sVAL_CTRL
+                        End Using
+                End Select
+            End Using
             CRTL_GUEST.Dispose()
         Catch ex As Exception
             'LOG_Erreur(GetCurrentMethod, ex.Message)

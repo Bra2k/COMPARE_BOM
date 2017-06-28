@@ -3383,6 +3383,177 @@ Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
+<member name="F:App_Web.IPTT_ADRE_MAC._TextBox1">
+<summary>
+Contrôle TextBox1.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.IPTT_ADRE_MAC._TextBox_QT">
+<summary>
+Contrôle TextBox_QT.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.IPTT_ADRE_MAC._TextBox_PREM_MAC_ADRE">
+<summary>
+Contrôle TextBox_PREM_MAC_ADRE.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.IPTT_ADRE_MAC._Button_QT">
+<summary>
+Contrôle Button_QT.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.IPTT_ADRE_MAC._TextBox_PREM_MAC_ADRE_2">
+<summary>
+Contrôle TextBox_PREM_MAC_ADRE_2.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.IPTT_ADRE_MAC._TextBox_DERN_MAC_ADRE">
+<summary>
+Contrôle TextBox_DERN_MAC_ADRE.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.IPTT_ADRE_MAC._Button_PLAG_ADRE">
+<summary>
+Contrôle Button_PLAG_ADRE.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.IPTT_ADRE_MAC._MultiView_FICH">
+<summary>
+Contrôle MultiView_FICH.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.IPTT_ADRE_MAC._View_UP_FICH">
+<summary>
+Contrôle View_UP_FICH.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.IPTT_ADRE_MAC._FileUpload_FICH">
+<summary>
+Contrôle FileUpload_FICH.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.IPTT_ADRE_MAC._Button_UP_FICH">
+<summary>
+Contrôle Button_UP_FICH.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.IPTT_ADRE_MAC._View_ONGL">
+<summary>
+Contrôle View_ONGL.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.IPTT_ADRE_MAC._DropDownList_ONGL">
+<summary>
+Contrôle DropDownList_ONGL.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.IPTT_ADRE_MAC._Button_ONGL">
+<summary>
+Contrôle Button_ONGL.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.IPTT_ADRE_MAC._View_SEL_DONN">
+<summary>
+Contrôle View_SEL_DONN.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.IPTT_ADRE_MAC._TextBox_NU_COLO">
+<summary>
+Contrôle TextBox_NU_COLO.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.IPTT_ADRE_MAC._Button_SAI_NU_COLO">
+<summary>
+Contrôle Button_SAI_NU_COLO.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.IPTT_ADRE_MAC._GridView_SEL_DONN">
+<summary>
+Contrôle GridView_SEL_DONN.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.IPTT_ADRE_MAC._View_RESU">
+<summary>
+Contrôle View_RESU.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
 <member name="F:App_Web.TCBL_COMP._MultiView_Tracabilité">
 <summary>
 Contrôle MultiView_Tracabilité.
