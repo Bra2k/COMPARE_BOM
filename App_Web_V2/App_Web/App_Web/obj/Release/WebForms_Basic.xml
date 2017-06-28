@@ -2,7 +2,7 @@
 <doc>
 <assembly>
 <name>
-App_Web_DEV
+App_Web
 </name>
 </assembly>
 <members>
@@ -3383,9 +3383,9 @@ Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web.IPTT_ADRE_MAC._TextBox1">
+<member name="F:App_Web.IPTT_ADRE_MAC._TextBox_NM_CRIT">
 <summary>
-Contrôle TextBox1.
+Contrôle TextBox_NM_CRIT.
 </summary>
 <remarks>
 Champ généré automatiquement.

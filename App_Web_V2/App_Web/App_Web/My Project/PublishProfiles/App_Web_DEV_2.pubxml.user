@@ -199,10 +199,10 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>03/16/2017 10:53:35</publishTime>
     </File>
     <File Include="bin/App_Web.dll">
-      <publishTime>06/26/2017 14:40:08</publishTime>
+      <publishTime>06/28/2017 15:08:14</publishTime>
     </File>
     <File Include="bin/App_Web_DEV.dll">
-      <publishTime>06/27/2017 16:36:23</publishTime>
+      <publishTime>06/28/2017 14:56:48</publishTime>
     </File>
     <File Include="bin/AspNet.ScriptManager.bootstrap.dll">
       <publishTime>03/16/2017 10:53:35</publishTime>
@@ -268,10 +268,10 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>03/16/2017 10:53:35</publishTime>
     </File>
     <File Include="bin/itextsharp.dll">
-      <publishTime>10/07/2016 15:33:44</publishTime>
+      <publishTime>07/10/2016 15:33:44</publishTime>
     </File>
     <File Include="bin/itextsharp.pdfa.dll">
-      <publishTime>10/07/2016 15:33:38</publishTime>
+      <publishTime>07/10/2016 15:33:38</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
       <publishTime>03/16/2017 10:53:35</publishTime>
@@ -415,7 +415,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>03/16/2017 10:53:35</publishTime>
     </File>
     <File Include="bin/WebForms_Basic.xml">
-      <publishTime>06/27/2017 16:36:23</publishTime>
+      <publishTime>06/28/2017 15:08:14</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>03/16/2017 10:53:35</publishTime>
@@ -497,6 +497,9 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
     </File>
     <File Include="PagesMembres/Digital_Factory/IMPR_ETIQ_PRN.aspx">
       <publishTime>06/23/2017 12:34:06</publishTime>
+    </File>
+    <File Include="PagesMembres/Digital_Factory/IPTT_ADRE_MAC.aspx">
+      <publishTime>06/28/2017 15:05:39</publishTime>
     </File>
     <File Include="PagesMembres/Digital_Factory/TCBL_COMP.aspx">
       <publishTime>06/23/2017 12:42:52</publishTime>
@@ -676,7 +679,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>03/16/2017 10:53:35</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>06/27/2017 15:36:49</publishTime>
+      <publishTime>06/28/2017 15:08:26</publishTime>
     </File>
   </ItemGroup>
 </Project>

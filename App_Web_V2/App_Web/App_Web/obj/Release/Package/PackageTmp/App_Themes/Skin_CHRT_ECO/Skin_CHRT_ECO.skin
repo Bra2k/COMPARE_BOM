@@ -1,0 +1,47 @@
+﻿<%--
+Modèle d'apparence par défaut. Les apparences sont fournies uniquement à titre d'exemple.
+
+1. Apparence de contrôle nommée. Le SkinId doit être défini de manière unique, car
+ un type de contrôle d’un même thème ne peut pas compter de SkinId dupliqués.
+
+<asp:GridView runat="server" SkinId="gridviewSkin" BackColor="White" >
+   <AlternatingRowStyle BackColor="Blue" />
+</asp:GridView>
+
+2. Apparence par défaut. Le SkinId n'est pas défini. Une seule apparence 
+de contrôle par défaut par type de contrôle est autorisée dans le même thème.
+
+<asp:Image runat="server" ImageUrl="~/images/image1.jpg" />
+--%>
+<asp:Button  runat="server" SkinID="BOUT_VALI" Text="Valider"  Font-Names="Verdana" BorderStyle="Groove" ToolTip="Valider" Style="background-image:url('App_Themes/PIC_CHAR/Valider.ico'); background-repeat:no-repeat"/>
+<asp:Button  runat="server" SkinID="BOUT_SUPP" Text="Supprimer"  Font-Names="Verdana" BorderStyle="Groove" ToolTip="Supprimer" Style="background-image:url('App_Themes/PIC_CHAR/poubelle-icone.thumbnail.jpg'); background-repeat:no-repeat"/>
+
+<asp:DropDownList  runat="server" SkinID="DROPDOWNLIST" Font-Names="Verdana" BorderStyle="Groove"/>
+
+<asp:GridView runat="server" SkinID="GV_AFF_DONN" 
+                BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="4" GridLines="Vertical"
+                Font-Name="Verdana"
+                Font-Size="10pt" 
+                HeaderStyle-BackColor="#002F60"
+                HeaderStyle-Font-Bold="True"
+                HeaderStyle-ForeColor="#989000"
+                AlternatingRowStyle-BackColor="#DCDCDC" />
+
+
+<%--
+ID="GridView_FICH_BOM_CLIE" runat="server"  SkinID="GV_AFF_DONN">
+                            <AlternatingRowStyle BackColor="#DCDCDC" />
+                            <Columns>
+                                <asp:CommandField SelectText="Sélectionner la dernière ligne" ShowSelectButton="True" />
+                            </Columns>
+                            <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
+
+                            <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                            <RowStyle BackColor="#EEEEEE" ForeColor="Black" />
+                            <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
+                            <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                            <SortedAscendingHeaderStyle BackColor="#0000A9" />
+                            <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                            <SortedDescendingHeaderStyle BackColor="#000065" --%>
+
+
