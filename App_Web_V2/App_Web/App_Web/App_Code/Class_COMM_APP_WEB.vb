@@ -281,22 +281,23 @@ Public Class Class_COMM_APP_WEB
     End Function
     Public Shared Function COMM_APP_WEB_GET_PARA(sNM_PARA As String, sNM_CTRL As String, Optional pageHandler As String = Nothing) As String
 
-        Dim sQuery As String = "", sChaineConnexion As String = "Data Source=cedb03,1433;Initial Catalog=APP_WEB_ECO;Integrated Security=False;User ID=sa;Password=mdpsa@SQL;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
-        Dim dt As New DataTable
+        Dim sQuery As String = ""
         Try
             If pageHandler = Nothing Then pageHandler = HttpContext.Current.CurrentHandler.ToString
             'chercher les param dans la base
-            sQuery = "SELECT [VL_CTRL]
-                        FROM [dbo].[V_DER_MAJ_DTM_REF_PARA_ETAT_CRTL]
-                       WHERE [NM_PAGE] = '" & pageHandler & "' AND [PARA] = '" & Replace(sNM_PARA, "'", "''") & "' AND [ID_CTRL] = '" & sNM_CTRL & "'"
-            dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
-            If dt Is Nothing Then Throw New Exception("Pas de données pour le contrôle " & sNM_CTRL)
+            sQuery = $"SELECT [VL_CTRL]
+                         FROM [dbo].[V_DER_MAJ_DTM_REF_PARA_ETAT_CRTL]
+                        WHERE [NM_PAGE] = '{pageHandler}' AND [PARA] = '{Replace(sNM_PARA, "'", "''")}' AND [ID_CTRL] = '{sNM_CTRL}'"
+            Using dt = SQL_SELE_TO_DT(sQuery, CS_APP_WEB_ECO)
+                If dt Is Nothing Then Throw New Exception($"Pas de données pour le contrôle {sNM_CTRL}")
+                LOG_Msg(GetCurrentMethod, $"Le paramètre {sNM_PARA} a chargé {dt(0)("VL_CTRL").ToString} pour le contrôle {sNM_CTRL} de la page {pageHandler}")
+                Return dt(0)("VL_CTRL").ToString
+            End Using
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
         End Try
-        LOG_Msg(GetCurrentMethod, "Le paramètre " & sNM_PARA & " a chargé " & dt(0)("VL_CTRL").ToString & " pour le contrôle " & sNM_CTRL & " de la page " & pageHandler)
-        Return dt(0)("VL_CTRL").ToString
+
     End Function
     Public Shared Sub COMM_APP_WEB_PARA_AFFI_LOAD(sNM_PARA As String, sNM_CTRL As String, Optional Ctrl_View As Control = Nothing, Optional sVAL_CTRL As String = "")
 
@@ -306,7 +307,7 @@ Public Class Class_COMM_APP_WEB
             Using pageHandler As Page = HttpContext.Current.CurrentHandler
                 'chercher les param dans la base
                 sQuery = $"SELECT [VL_CTRL]
-                         FROM [APP_WEB_ECO].[dbo].[V_DER_MAJ_DTM_REF_PARA_ETAT_CRTL]
+                         From [APP_WEB_ECO].[dbo].[V_DER_MAJ_DTM_REF_PARA_ETAT_CRTL]
                         WHERE [NM_PAGE] = '{pageHandler.ToString}' AND [PARA] = '{Replace(sNM_PARA, "'", "''")}' AND [ID_CTRL] = '{sNM_CTRL}'"
             End Using
             Using dt = SQL_SELE_TO_DT(sQuery, CS_APP_WEB_ECO)
