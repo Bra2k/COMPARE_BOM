@@ -237,32 +237,32 @@ Public Class Class_SAP_DATA
                                          Optional Codeclient As String = "600",
                                          Optional Serveur As String = "SAP_PEO",
                                          Optional SystemNumber As String = "00") As Object
-
-        'Dim 
-        'Dim oConn As Object = oSAP.Connection
+        Dim oSAP As Object = CreateObject("SAP.Functions")
+        Dim oConn As Object = oSAP.Connection
 
         Try
-            Using oSAP As Object = CreateObject("SAP.Functions")
-                Using oConn As Object = oSAP.Connection
-                    With oConn
-                        .AutoLogon = True
-                        .Client = Codeclient
-                        .User = User
-                        .Password = Password
-                        .ApplicationServer = Serveur
-                        .SystemNumber = SystemNumber
-                    End With
-                    If oConn.logon(0, True) <> True Then Throw New Exception("ERREUR - connexion à SAP a échoué")
-                    LOG_Msg(GetCurrentMethod, "Connexion réussie")
-                    Return oSAP
-                End Using
-            End Using
+            'Using oSAP As Object = CreateObject("SAP.Functions")
+            '    Using oConn As Object = oSAP.Connection
+            With oConn
+                .AutoLogon = True
+                .Client = Codeclient
+                .User = User
+                .Password = Password
+                .ApplicationServer = Serveur
+                .SystemNumber = SystemNumber
+            End With
+            If oConn.logon(0, True) <> True Then Throw New Exception("ERREUR - connexion à SAP a échoué")
+            '        LOG_Msg(GetCurrentMethod, "Connexion réussie")
+            '        Return oSAP
+            '    End Using
+            'End Using
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
-            'oSAP = SAP_DATA_DECO(oSAP)
+            oSAP = SAP_DATA_DECO(oSAP)
             Return 0
         End Try
-
+        LOG_Msg(GetCurrentMethod, "Connexion réussie")
+        Return oSAP
 
     End Function
 

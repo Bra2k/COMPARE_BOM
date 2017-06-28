@@ -229,7 +229,8 @@ Public Class Class_COMM_APP_WEB
             End If
             'sNB_BASE_N = StrDup(iNB_CARA - Len(sNB_BASE_N), "0") & sNB_BASE_N
             sbNB_BASE_N.Append(StrDup(iNB_CARA - Len(sNB_BASE_N), "0"))
-            sNB_BASE_N = sbNB_BASE_N.ToString.Reverse()
+            sNB_BASE_N = sbNB_BASE_N.ToString
+            sNB_BASE_N.Reverse()
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
