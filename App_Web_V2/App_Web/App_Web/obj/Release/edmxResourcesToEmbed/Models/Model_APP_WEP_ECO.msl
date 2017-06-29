@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="APP_WEB_ECOModelStoreContainer" CdmEntityContainer="APP_WEB_ECOEntities">
+    <EntitySetMapping Name="DTM_LOG_APP_WEB">
+      <EntityTypeMapping TypeName="APP_WEB_ECOModel.DTM_LOG_APP_WEB">
+        <MappingFragment StoreEntitySet="DTM_LOG_APP_WEB">
+          <ScalarProperty Name="NM_CTCT" ColumnName="NM_CTCT" />
+          <ScalarProperty Name="NM_MSG" ColumnName="NM_MSG" />
+          <ScalarProperty Name="NM_FONC" ColumnName="NM_FONC" />
+          <ScalarProperty Name="DT_LOG" ColumnName="DT_LOG" />
+          <ScalarProperty Name="NM_POST" ColumnName="NM_POST" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="APP_WEB_ECOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="APP_WEB_ECOEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="DTM_LOG_APP_WEB" EntityType="APP_WEB_ECOModel.DTM_LOG_APP_WEB" />
+  </EntityContainer>
+  <EntityType Name="DTM_LOG_APP_WEB">
+    <Key>
+      <PropertyRef Name="NM_POST" />
+      <PropertyRef Name="DT_LOG" />
+      <PropertyRef Name="NM_FONC" />
+      <PropertyRef Name="NM_CTCT" />
+    </Key>
+    <Property Name="NM_POST" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DT_LOG" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="NM_FONC" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NM_MSG" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="NM_CTCT" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>
