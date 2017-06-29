@@ -345,6 +345,16 @@
       <DependentUpon>Model_APP_WEP_ECO.edmx</DependentUpon>
       <LastGenOutput>Model_APP_WEP_ECO.vb</LastGenOutput>
     </Content>
+    <Content Include="Models\Model_SENSINGLABS_PRD.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model_SENSINGLABS_PRD.edmx</DependentUpon>
+      <LastGenOutput>Model_SENSINGLABS_PRD.Context.vb</LastGenOutput>
+    </Content>
+    <Content Include="Models\Model_SENSINGLABS_PRD.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model_SENSINGLABS_PRD.edmx</DependentUpon>
+      <LastGenOutput>Model_SENSINGLABS_PRD.vb</LastGenOutput>
+    </Content>
     <Content Include="PagesMembres\Developpement\ADD_VERS_APCT.aspx" />
     <Content Include="PagesMembres\Developpement\AMNS_APP_WEB.aspx" />
     <Content Include="PagesMembres\Developpement\CFGR_POST.aspx" />
@@ -392,9 +402,16 @@
     <Content Include="Models\Model_APP_WEP_ECO.edmx.diagram">
       <DependentUpon>Model_APP_WEP_ECO.edmx</DependentUpon>
     </Content>
-    <None Include="My Project\PublishProfiles\App_Web.pubxml" />
+    <EntityDeploy Include="Models\Model_SENSINGLABS_PRD.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model_SENSINGLABS_PRD.Designer.vb</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model_SENSINGLABS_PRD.edmx.diagram">
+      <DependentUpon>Model_SENSINGLABS_PRD.edmx</DependentUpon>
+    </Content>
+    <None Include="My Project\PublishProfiles\App_Web_Prod.pubxml" />
+    <None Include="My Project\PublishProfiles\App_Web_Qual.pubxml" />
     <None Include="My Project\PublishProfiles\App_Web_Dev.pubxml" />
-    <None Include="My Project\PublishProfiles\App_Web_DEV_2.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
@@ -483,6 +500,27 @@
     <Compile Include="Models\DTM_LOG_APP_WEB.vb">
       <DependentUpon>Model_APP_WEP_ECO.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DWH_DIM_CPT_CRTQ.vb">
+      <DependentUpon>Model_SENSINGLABS_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DWH_DIM_DEVDEUI.vb">
+      <DependentUpon>Model_SENSINGLABS_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DWH_DIM_WRKF.vb">
+      <DependentUpon>Model_SENSINGLABS_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DWH_HIST_LIVR.vb">
+      <DependentUpon>Model_SENSINGLABS_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DWH_REF_ARTI_CLT.vb">
+      <DependentUpon>Model_SENSINGLABS_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DWH_REF_ARTI_PARAM.vb">
+      <DependentUpon>Model_SENSINGLABS_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DWH_REF_ETP_PRCS.vb">
+      <DependentUpon>Model_SENSINGLABS_PRD.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.vb" />
     <Compile Include="Models\Model_APP_WEP_ECO.Context.vb">
       <AutoGen>True</AutoGen>
@@ -498,6 +536,36 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model_APP_WEP_ECO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model_SENSINGLABS_PRD.Context.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model_SENSINGLABS_PRD.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model_SENSINGLABS_PRD.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model_SENSINGLABS_PRD.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model_SENSINGLABS_PRD.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model_SENSINGLABS_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PRC_ETQ_DEVEUI_Result.vb">
+      <DependentUpon>Model_SENSINGLABS_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PRC_LST_TMP_CLSG_PST_Result.vb">
+      <DependentUpon>Model_SENSINGLABS_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PRC_PARAM_ARTI_Result.vb">
+      <DependentUpon>Model_SENSINGLABS_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TMP_PST_CLSG.vb">
+      <DependentUpon>Model_SENSINGLABS_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_TCBL_TOUT.vb">
+      <DependentUpon>Model_SENSINGLABS_PRD.tt</DependentUpon>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">

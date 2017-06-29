@@ -5,7 +5,6 @@ Imports System.Data
 Imports System
 
 Public Class Class_SQL
-    Private _CS_ALMS_PROD_PRD As String
     Public Shared ReadOnly Property CS_ALMS_PROD_PRD() As String
         Get
             Return System.Configuration.ConfigurationManager.ConnectionStrings("ALMS_PROD_PRDConnectionString").ToString
@@ -14,7 +13,6 @@ Public Class Class_SQL
         '    _CS_ALMS_PROD_PRD = System.Configuration.ConfigurationManager.ConnectionStrings("ALMS_PROD_PRDConnectionString").ToString
         'End Set
     End Property
-    Private _CS_ALMS_PROD_DEV As String
     Public Shared ReadOnly Property CS_ALMS_PROD_DEV() As String
         Get
             Return System.Configuration.ConfigurationManager.ConnectionStrings("ALMS_PROD_DEVConnectionString").ToString
@@ -23,7 +21,6 @@ Public Class Class_SQL
         '    _CS_ALMS_PROD_DEV = System.Configuration.ConfigurationManager.ConnectionStrings("ALMS_PROD_DEVConnectionString").ToString
         'End Set
     End Property
-    Private _CS_MES_Digital_Factory As String
     Public Shared ReadOnly Property CS_MES_Digital_Factory() As String
         Get
             Return System.Configuration.ConfigurationManager.ConnectionStrings("MES_Digital_FactoryConnectionString").ToString
@@ -32,19 +29,21 @@ Public Class Class_SQL
         '    _CS_MES_Digital_Factory = System.Configuration.ConfigurationManager.ConnectionStrings("MES_Digital_FactoryConnectionString").ToString
         'End Set
     End Property
-    Private _CS_MES_Digital_Factory_DEV As String
     Public Shared ReadOnly Property CS_MES_Digital_Factory_DEV() As String
         Get
             Return System.Configuration.ConfigurationManager.ConnectionStrings("MES_Digital_Factory_DEVConnectionString").ToString
         End Get
     End Property
-    Private _CS_APP_WEB_ECO As String
     Public Shared ReadOnly Property CS_APP_WEB_ECO() As String
         Get
             Return System.Configuration.ConfigurationManager.ConnectionStrings("APP_WEB_ECOConnectionString").ToString
         End Get
     End Property
-
+    Public Shared ReadOnly Property CS_SENSINGLABS_PRD() As String
+        Get
+            Return System.Configuration.ConfigurationManager.ConnectionStrings("SENSINGLABS_PRDConnectionString").ToString
+        End Get
+    End Property
     Public Shared Function SQL_SELE_TO_DT(sQuery As String, sChaineConnexion As String) As DataTable
 
         Try

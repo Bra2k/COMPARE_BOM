@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b4fd2553980048a381b253e3dcda84ae" Name="Diagram1">
+        <EntityTypeShape EntityType="SENSINGLABS_PRDModel.DWH_DIM_CPT_CRTQ" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENSINGLABS_PRDModel.DWH_DIM_DEVDEUI" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENSINGLABS_PRDModel.DWH_DIM_WRKF" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENSINGLABS_PRDModel.DWH_HIST_LIVR" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENSINGLABS_PRDModel.DWH_REF_ARTI_CLT" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENSINGLABS_PRDModel.DWH_REF_ARTI_PARAM" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENSINGLABS_PRDModel.DWH_REF_ETP_PRCS" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENSINGLABS_PRDModel.TMP_PST_CLSG" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SENSINGLABS_PRDModel.V_TCBL_TOUT" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

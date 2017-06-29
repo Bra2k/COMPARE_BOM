@@ -6,7 +6,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>\\cedb03\sources\App_Web</_PublishTargetUrl>
+    <_PublishTargetUrl>\\cedb03\sources\Dev_app_web</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="About.aspx">
@@ -30,41 +30,20 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
     <File Include="App_Themes/ICON_COMPARE/admin.ico">
       <publishTime>03/16/2017 10:53:35</publishTime>
     </File>
-    <File Include="App_Themes/ICON_COMPARE/aricle.ico">
-      <publishTime>01/01/0001 00:00:00</publishTime>
-    </File>
-    <File Include="App_Themes/ICON_COMPARE/article2.ico">
-      <publishTime>01/01/0001 00:00:00</publishTime>
-    </File>
-    <File Include="App_Themes/ICON_COMPARE/article3.ico">
-      <publishTime>01/01/0001 00:00:00</publishTime>
-    </File>
     <File Include="App_Themes/ICON_COMPARE/article4.ico">
       <publishTime>03/16/2017 10:53:35</publishTime>
     </File>
     <File Include="App_Themes/ICON_COMPARE/banc_test.ico">
       <publishTime>03/16/2017 10:53:35</publishTime>
     </File>
-    <File Include="App_Themes/ICON_COMPARE/barcode.ico">
-      <publishTime>01/01/0001 00:00:00</publishTime>
-    </File>
     <File Include="App_Themes/ICON_COMPARE/barcode3.ico">
       <publishTime>03/16/2017 10:53:35</publishTime>
-    </File>
-    <File Include="App_Themes/ICON_COMPARE/batterie.ico">
-      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="App_Themes/ICON_COMPARE/batterie2.ico">
       <publishTime>03/16/2017 10:53:35</publishTime>
     </File>
-    <File Include="App_Themes/ICON_COMPARE/comparer_fichier.ico">
-      <publishTime>01/01/0001 00:00:00</publishTime>
-    </File>
     <File Include="App_Themes/ICON_COMPARE/comparer_fichier2.ico">
       <publishTime>03/16/2017 10:53:35</publishTime>
-    </File>
-    <File Include="App_Themes/ICON_COMPARE/composant.ico">
-      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="App_Themes/ICON_COMPARE/composant2.ico">
       <publishTime>03/16/2017 10:53:35</publishTime>
@@ -72,14 +51,8 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
     <File Include="App_Themes/ICON_COMPARE/computer.ico">
       <publishTime>03/16/2017 10:53:35</publishTime>
     </File>
-    <File Include="App_Themes/ICON_COMPARE/computer2.ico">
-      <publishTime>01/01/0001 00:00:00</publishTime>
-    </File>
     <File Include="App_Themes/ICON_COMPARE/computer3.ico">
       <publishTime>03/16/2017 10:53:35</publishTime>
-    </File>
-    <File Include="App_Themes/ICON_COMPARE/configuration.ico">
-      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="App_Themes/ICON_COMPARE/configuration2.ico">
       <publishTime>03/16/2017 10:53:35</publishTime>
@@ -90,17 +63,8 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
     <File Include="App_Themes/ICON_COMPARE/ensemble.ico">
       <publishTime>03/16/2017 10:53:35</publishTime>
     </File>
-    <File Include="App_Themes/ICON_COMPARE/eolienne.ico">
-      <publishTime>01/01/0001 00:00:00</publishTime>
-    </File>
     <File Include="App_Themes/ICON_COMPARE/essais.ico">
       <publishTime>03/16/2017 10:53:35</publishTime>
-    </File>
-    <File Include="App_Themes/ICON_COMPARE/etiquette.ico">
-      <publishTime>01/01/0001 00:00:00</publishTime>
-    </File>
-    <File Include="App_Themes/ICON_COMPARE/etiquette2.ico">
-      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="App_Themes/ICON_COMPARE/etiquette3.ico">
       <publishTime>03/16/2017 10:53:35</publishTime>
@@ -111,14 +75,8 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
     <File Include="App_Themes/ICON_COMPARE/importer.ico">
       <publishTime>03/16/2017 10:53:35</publishTime>
     </File>
-    <File Include="App_Themes/ICON_COMPARE/imprimeur.ico">
-      <publishTime>01/01/0001 00:00:00</publishTime>
-    </File>
     <File Include="App_Themes/ICON_COMPARE/imprimeur_stw.ico">
       <publishTime>03/16/2017 10:53:35</publishTime>
-    </File>
-    <File Include="App_Themes/ICON_COMPARE/indicateur.ico">
-      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="App_Themes/ICON_COMPARE/indicateur2.ico">
       <publishTime>03/16/2017 10:53:35</publishTime>
@@ -132,38 +90,17 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
     <File Include="App_Themes/ICON_COMPARE/intranet.ico">
       <publishTime>03/16/2017 10:53:35</publishTime>
     </File>
-    <File Include="App_Themes/ICON_COMPARE/log_diaries.ico">
-      <publishTime>01/01/0001 00:00:00</publishTime>
-    </File>
-    <File Include="App_Themes/ICON_COMPARE/log_diaries2.png">
-      <publishTime>01/01/0001 00:00:00</publishTime>
-    </File>
-    <File Include="App_Themes/ICON_COMPARE/log_diaries3.ico">
-      <publishTime>01/01/0001 00:00:00</publishTime>
-    </File>
     <File Include="App_Themes/ICON_COMPARE/log_diaries4.ico">
       <publishTime>03/16/2017 10:53:35</publishTime>
-    </File>
-    <File Include="App_Themes/ICON_COMPARE/parcel.ico">
-      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="App_Themes/ICON_COMPARE/parcel2.ico">
       <publishTime>03/16/2017 10:53:35</publishTime>
     </File>
-    <File Include="App_Themes/ICON_COMPARE/report.ico">
-      <publishTime>01/01/0001 00:00:00</publishTime>
-    </File>
     <File Include="App_Themes/ICON_COMPARE/sensing.ico">
       <publishTime>03/16/2017 10:53:35</publishTime>
     </File>
-    <File Include="App_Themes/ICON_COMPARE/seringue.ico">
-      <publishTime>01/01/0001 00:00:00</publishTime>
-    </File>
     <File Include="App_Themes/ICON_COMPARE/serveur.ico">
       <publishTime>03/16/2017 10:53:35</publishTime>
-    </File>
-    <File Include="App_Themes/ICON_COMPARE/test.ico">
-      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="App_Themes/ICON_COMPARE/test2.ico">
       <publishTime>03/16/2017 10:53:35</publishTime>
@@ -192,17 +129,11 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
     <File Include="App_Themes/PIC_CHAR/acces-interdit-aux-personnes-non-autorisees-iz-2463.jpg">
       <publishTime>03/16/2017 10:53:35</publishTime>
     </File>
-    <File Include="App_Themes/PIC_CHAR/camion-de-palette-avec-la-palette-et-les-cadres-22203588.jpg">
-      <publishTime>01/01/0001 00:00:00</publishTime>
-    </File>
     <File Include="App_Themes/PIC_CHAR/Comb1.jpg">
       <publishTime>03/16/2017 10:53:35</publishTime>
     </File>
     <File Include="App_Themes/PIC_CHAR/Custom-Icon-Design-Pretty-Office-9-Delete-file.ico">
       <publishTime>03/16/2017 10:53:35</publishTime>
-    </File>
-    <File Include="App_Themes/PIC_CHAR/depositphotos_107060668-stock-illustration-forklift-truck-with-boxes-icon.jpg">
-      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="App_Themes/PIC_CHAR/depositphotos_111867916-stock-illustration-cargo-boxes-pallet-icon.jpg">
       <publishTime>03/16/2017 10:53:35</publishTime>
@@ -227,9 +158,6 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
     </File>
     <File Include="App_Themes/PIC_CHAR/icones_01356.png">
       <publishTime>03/16/2017 10:53:35</publishTime>
-    </File>
-    <File Include="App_Themes/PIC_CHAR/icone_film_palette_coiffe_palette.png">
-      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="App_Themes/PIC_CHAR/image.jpg">
       <publishTime>03/16/2017 10:53:35</publishTime>
@@ -271,10 +199,10 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>03/16/2017 10:53:35</publishTime>
     </File>
     <File Include="bin/App_Web.dll">
-      <publishTime>03/15/2017 16:56:29</publishTime>
+      <publishTime>06/29/2017 11:35:20</publishTime>
     </File>
     <File Include="bin/App_Web_DEV.dll">
-      <publishTime>06/27/2017 15:34:38</publishTime>
+      <publishTime>06/28/2017 14:56:48</publishTime>
     </File>
     <File Include="bin/AspNet.ScriptManager.bootstrap.dll">
       <publishTime>03/16/2017 10:53:35</publishTime>
@@ -286,7 +214,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>01/03/2017 15:49:12</publishTime>
     </File>
     <File Include="bin/de/PdfSharp.resources.dll">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>10/10/2016 11:22:43</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>03/16/2017 10:53:35</publishTime>
@@ -487,7 +415,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>03/16/2017 10:53:35</publishTime>
     </File>
     <File Include="bin/WebForms_Basic.xml">
-      <publishTime>06/27/2017 15:34:38</publishTime>
+      <publishTime>06/29/2017 11:35:20</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>03/16/2017 10:53:35</publishTime>
@@ -507,11 +435,8 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
     <File Include="Content/Site.css">
       <publishTime>03/16/2017 10:53:35</publishTime>
     </File>
-    <File Include="css_mediaquery.css">
-      <publishTime>01/01/0001 00:00:00</publishTime>
-    </File>
     <File Include="Default.aspx">
-      <publishTime>06/27/2017 14:21:37</publishTime>
+      <publishTime>06/28/2017 17:05:36</publishTime>
     </File>
     <File Include="favicon.ico">
       <publishTime>03/16/2017 10:53:35</publishTime>
@@ -529,7 +454,13 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>03/16/2017 10:53:35</publishTime>
     </File>
     <File Include="Global.asax">
-      <publishTime>01/19/2017 15:39:26</publishTime>
+      <publishTime>03/16/2017 10:53:35</publishTime>
+    </File>
+    <File Include="Models/Model_APP_WEP_ECO.edmx.diagram">
+      <publishTime>06/29/2017 08:16:32</publishTime>
+    </File>
+    <File Include="Models/Model_SENSINGLABS_PRD.edmx.diagram">
+      <publishTime>06/29/2017 09:48:48</publishTime>
     </File>
     <File Include="packages.config">
       <publishTime>03/16/2017 10:53:35</publishTime>
@@ -573,6 +504,9 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
     <File Include="PagesMembres/Digital_Factory/IMPR_ETIQ_PRN.aspx">
       <publishTime>06/23/2017 12:34:06</publishTime>
     </File>
+    <File Include="PagesMembres/Digital_Factory/IPTT_ADRE_MAC.aspx">
+      <publishTime>06/28/2017 15:05:39</publishTime>
+    </File>
     <File Include="PagesMembres/Digital_Factory/TCBL_COMP.aspx">
       <publishTime>06/23/2017 12:42:52</publishTime>
     </File>
@@ -594,14 +528,8 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
     <File Include="PagesMembres/Production/ALMS/ALMS_IMPORT.aspx">
       <publishTime>06/23/2017 14:46:22</publishTime>
     </File>
-    <File Include="PagesMembres/Production/ALMS/ALMS_IMPORT.aspx.designer.vb">
-      <publishTime>01/01/0001 00:00:00</publishTime>
-    </File>
-    <File Include="PagesMembres/Production/ALMS/ALMS_IMPORT.aspx.vb">
-      <publishTime>01/01/0001 00:00:00</publishTime>
-    </File>
     <File Include="PagesMembres/Production/ALMS/ALMS_MENU.aspx">
-      <publishTime>06/27/2017 11:50:26</publishTime>
+      <publishTime>06/28/2017 16:53:41</publishTime>
     </File>
     <File Include="PagesMembres/Production/ALMS/GEST_ANML_NC_DRGT.aspx">
       <publishTime>06/26/2017 09:46:02</publishTime>
@@ -624,9 +552,6 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
     <File Include="PagesMembres/Production/Test/CSTT_RESU_TEST_TAKA.aspx">
       <publishTime>06/23/2017 14:58:24</publishTime>
     </File>
-    <File Include="PagesMembres/Provisoire/IMPR_RAPP_TCBL_STW.aspx">
-      <publishTime>01/01/0001 00:00:00</publishTime>
-    </File>
     <File Include="PagesMembres/Provisoire/IMPR_RAPP_TCBL_STW_AFAC_6-2017.aspx">
       <publishTime>03/16/2017 10:53:35</publishTime>
     </File>
@@ -641,6 +566,9 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
     </File>
     <File Include="PagesMembres/RDRC_PAGE_MEMB.aspx">
       <publishTime>03/16/2017 10:53:35</publishTime>
+    </File>
+    <File Include="PrecompiledApp.config">
+      <publishTime>06/26/2017 14:40:09</publishTime>
     </File>
     <File Include="Scripts/ai.0.15.0-build58334.js">
       <publishTime>03/16/2017 10:53:35</publishTime>
@@ -747,6 +675,9 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
     <File Include="Site.Master">
       <publishTime>06/27/2017 10:49:53</publishTime>
     </File>
+    <File Include="Site.Master.vb">
+      <publishTime>06/27/2017 14:30:05</publishTime>
+    </File>
     <File Include="Site.Mobile.Master">
       <publishTime>03/16/2017 10:53:35</publishTime>
     </File>
@@ -754,7 +685,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>03/16/2017 10:53:35</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>06/27/2017 15:35:26</publishTime>
+      <publishTime>06/29/2017 11:35:21</publishTime>
     </File>
   </ItemGroup>
 </Project>

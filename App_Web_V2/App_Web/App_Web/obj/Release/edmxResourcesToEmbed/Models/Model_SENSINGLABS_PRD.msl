@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SENSINGLABS_PRDModelStoreContainer" CdmEntityContainer="SENSINGLABS_PRDEntities">
+    <EntitySetMapping Name="DWH_DIM_CPT_CRTQ">
+      <EntityTypeMapping TypeName="SENSINGLABS_PRDModel.DWH_DIM_CPT_CRTQ">
+        <MappingFragment StoreEntitySet="DWH_DIM_CPT_CRTQ">
+          <ScalarProperty Name="CD_ARTI" ColumnName="CD_ARTI" />
+          <ScalarProperty Name="CD_CPST" ColumnName="CD_CPST" />
+          <ScalarProperty Name="BL_CRT" ColumnName="BL_CRT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DWH_DIM_DEVDEUI">
+      <EntityTypeMapping TypeName="SENSINGLABS_PRDModel.DWH_DIM_DEVDEUI">
+        <MappingFragment StoreEntitySet="DWH_DIM_DEVDEUI">
+          <ScalarProperty Name="NU_OF" ColumnName="NU_OF" />
+          <ScalarProperty Name="CD_DEVDEUI" ColumnName="CD_DEVDEUI" />
+          <ScalarProperty Name="CD_MDP" ColumnName="CD_MDP" />
+          <ScalarProperty Name="NU_NS" ColumnName="NU_NS" />
+          <ScalarProperty Name="LB_STA" ColumnName="LB_STA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DWH_DIM_WRKF">
+      <EntityTypeMapping TypeName="SENSINGLABS_PRDModel.DWH_DIM_WRKF">
+        <MappingFragment StoreEntitySet="DWH_DIM_WRKF">
+          <ScalarProperty Name="ID_PSG" ColumnName="ID_PSG" />
+          <ScalarProperty Name="DT_PSG" ColumnName="DT_PSG" />
+          <ScalarProperty Name="NU_OF" ColumnName="NU_OF" />
+          <ScalarProperty Name="CD_ARTI" ColumnName="CD_ARTI" />
+          <ScalarProperty Name="NU_NS" ColumnName="NU_NS" />
+          <ScalarProperty Name="BL_STA" ColumnName="BL_STA" />
+          <ScalarProperty Name="NU_ETP" ColumnName="NU_ETP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DWH_HIST_LIVR">
+      <EntityTypeMapping TypeName="SENSINGLABS_PRDModel.DWH_HIST_LIVR">
+        <MappingFragment StoreEntitySet="DWH_HIST_LIVR">
+          <ScalarProperty Name="ID_EXPE" ColumnName="ID_EXPE" />
+          <ScalarProperty Name="DT_EXPE" ColumnName="DT_EXPE" />
+          <ScalarProperty Name="NU_BL" ColumnName="NU_BL" />
+          <ScalarProperty Name="NM_OF" ColumnName="NM_OF" />
+          <ScalarProperty Name="CD_ARTI" ColumnName="CD_ARTI" />
+          <ScalarProperty Name="LB_ARTI" ColumnName="LB_ARTI" />
+          <ScalarProperty Name="NM_NS_EOL" ColumnName="NM_NS_EOL" />
+          <ScalarProperty Name="NM_MATR" ColumnName="NM_MATR" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DWH_REF_ARTI_CLT">
+      <EntityTypeMapping TypeName="SENSINGLABS_PRDModel.DWH_REF_ARTI_CLT">
+        <MappingFragment StoreEntitySet="DWH_REF_ARTI_CLT">
+          <ScalarProperty Name="CD_ARTI" ColumnName="CD_ARTI" />
+          <ScalarProperty Name="LB_CMRC" ColumnName="LB_CMRC" />
+          <ScalarProperty Name="LB_EOL" ColumnName="LB_EOL" />
+          <ScalarProperty Name="CD_PN" ColumnName="CD_PN" />
+          <ScalarProperty Name="NU_VRSN" ColumnName="NU_VRSN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DWH_REF_ARTI_PARAM">
+      <EntityTypeMapping TypeName="SENSINGLABS_PRDModel.DWH_REF_ARTI_PARAM">
+        <MappingFragment StoreEntitySet="DWH_REF_ARTI_PARAM">
+          <ScalarProperty Name="CD_ARTI" ColumnName="CD_ARTI" />
+          <ScalarProperty Name="BL_VERIF" ColumnName="BL_VERIF" />
+          <ScalarProperty Name="LB_IMP" ColumnName="LB_IMP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DWH_REF_ETP_PRCS">
+      <EntityTypeMapping TypeName="SENSINGLABS_PRDModel.DWH_REF_ETP_PRCS">
+        <MappingFragment StoreEntitySet="DWH_REF_ETP_PRCS">
+          <ScalarProperty Name="CD_ARTI" ColumnName="CD_ARTI" />
+          <ScalarProperty Name="LB_ETP" ColumnName="LB_ETP" />
+          <ScalarProperty Name="NU_ETP" ColumnName="NU_ETP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TMP_PST_CLSG">
+      <EntityTypeMapping TypeName="SENSINGLABS_PRDModel.TMP_PST_CLSG">
+        <MappingFragment StoreEntitySet="TMP_PST_CLSG">
+          <ScalarProperty Name="LB_PST" ColumnName="LB_PST" />
+          <ScalarProperty Name="DT_SCAN" ColumnName="DT_SCAN" />
+          <ScalarProperty Name="NM_OF" ColumnName="NM_OF" />
+          <ScalarProperty Name="CD_ARTI" ColumnName="CD_ARTI" />
+          <ScalarProperty Name="LB_ARTI" ColumnName="LB_ARTI" />
+          <ScalarProperty Name="NM_NS_EOL" ColumnName="NM_NS_EOL" />
+          <ScalarProperty Name="NM_MATR" ColumnName="NM_MATR" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_TCBL_TOUT">
+      <EntityTypeMapping TypeName="SENSINGLABS_PRDModel.V_TCBL_TOUT">
+        <MappingFragment StoreEntitySet="V_TCBL_TOUT">
+          <ScalarProperty Name="NU_OF" ColumnName="NU_OF" />
+          <ScalarProperty Name="CD_DEVDEUI" ColumnName="CD_DEVDEUI" />
+          <ScalarProperty Name="CD_MDP" ColumnName="CD_MDP" />
+          <ScalarProperty Name="LB_STA" ColumnName="LB_STA" />
+          <ScalarProperty Name="ID_PSG" ColumnName="ID_PSG" />
+          <ScalarProperty Name="DT_PSG" ColumnName="DT_PSG" />
+          <ScalarProperty Name="CD_ARTI" ColumnName="CD_ARTI" />
+          <ScalarProperty Name="BL_STA" ColumnName="BL_STA" />
+          <ScalarProperty Name="NU_ETP" ColumnName="NU_ETP" />
+          <ScalarProperty Name="LB_ETP" ColumnName="LB_ETP" />
+          <ScalarProperty Name="LB_CMRC" ColumnName="LB_CMRC" />
+          <ScalarProperty Name="LB_EOL" ColumnName="LB_EOL" />
+          <ScalarProperty Name="CD_PN" ColumnName="CD_PN" />
+          <ScalarProperty Name="NU_VRSN" ColumnName="NU_VRSN" />
+          <ScalarProperty Name="NU_NS" ColumnName="NU_NS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="PRC_ATTR_DEVEUI" FunctionName="SENSINGLABS_PRDModel.Store.PRC_ATTR_DEVEUI" />
+    <FunctionImportMapping FunctionImportName="PRC_BSCL_CLSG_TMP_HIST" FunctionName="SENSINGLABS_PRDModel.Store.PRC_BSCL_CLSG_TMP_HIST" />
+    <FunctionImportMapping FunctionImportName="PRC_DEL_TMP_PST_CLSG" FunctionName="SENSINGLABS_PRDModel.Store.PRC_DEL_TMP_PST_CLSG" />
+    <FunctionImportMapping FunctionImportName="PRC_DEL_TMP_PST_CLSG_NS" FunctionName="SENSINGLABS_PRDModel.Store.PRC_DEL_TMP_PST_CLSG_NS" />
+    <FunctionImportMapping FunctionImportName="PRC_DEVEUI_TO_NS" FunctionName="SENSINGLABS_PRDModel.Store.PRC_DEVEUI_TO_NS" />
+    <FunctionImportMapping FunctionImportName="PRC_ETQ_DEVEUI" FunctionName="SENSINGLABS_PRDModel.Store.PRC_ETQ_DEVEUI">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SENSINGLABS_PRDModel.PRC_ETQ_DEVEUI_Result">
+          <ScalarProperty Name="LB_CMRC" ColumnName="LB_CMRC" />
+          <ScalarProperty Name="LB_EOL" ColumnName="LB_EOL" />
+          <ScalarProperty Name="CD_PN" ColumnName="CD_PN" />
+          <ScalarProperty Name="NU_VRSN" ColumnName="NU_VRSN" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PRC_EXP_DEVEUI" FunctionName="SENSINGLABS_PRDModel.Store.PRC_EXP_DEVEUI" />
+    <FunctionImportMapping FunctionImportName="PRC_EXP_WK" FunctionName="SENSINGLABS_PRDModel.Store.PRC_EXP_WK" />
+    <FunctionImportMapping FunctionImportName="PRC_GSTN_ERR" FunctionName="SENSINGLABS_PRDModel.Store.PRC_GSTN_ERR" />
+    <FunctionImportMapping FunctionImportName="PRC_HIST_LIVR_DBL" FunctionName="SENSINGLABS_PRDModel.Store.PRC_HIST_LIVR_DBL" />
+    <FunctionImportMapping FunctionImportName="PRC_IMP_RPT_BNC" FunctionName="SENSINGLABS_PRDModel.Store.PRC_IMP_RPT_BNC" />
+    <FunctionImportMapping FunctionImportName="PRC_INS_DEVDEUI" FunctionName="SENSINGLABS_PRDModel.Store.PRC_INS_DEVDEUI" />
+    <FunctionImportMapping FunctionImportName="PRC_INS_ETP_WF" FunctionName="SENSINGLABS_PRDModel.Store.PRC_INS_ETP_WF" />
+    <FunctionImportMapping FunctionImportName="PRC_INS_TMP_CLSG" FunctionName="SENSINGLABS_PRDModel.Store.PRC_INS_TMP_CLSG" />
+    <FunctionImportMapping FunctionImportName="PRC_LST_ARTI" FunctionName="SENSINGLABS_PRDModel.Store.PRC_LST_ARTI" />
+    <FunctionImportMapping FunctionImportName="PRC_LST_OF_NS_ETP" FunctionName="SENSINGLABS_PRDModel.Store.PRC_LST_OF_NS_ETP" />
+    <FunctionImportMapping FunctionImportName="PRC_LST_TMP_CLSG_PST" FunctionName="SENSINGLABS_PRDModel.Store.PRC_LST_TMP_CLSG_PST">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SENSINGLABS_PRDModel.PRC_LST_TMP_CLSG_PST_Result">
+          <ScalarProperty Name="NM_OF" ColumnName="NM_OF" />
+          <ScalarProperty Name="NM_NS_EOL" ColumnName="NM_NS_EOL" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PRC_MAJ_STT_DEVEUI" FunctionName="SENSINGLABS_PRDModel.Store.PRC_MAJ_STT_DEVEUI" />
+    <FunctionImportMapping FunctionImportName="PRC_MDP_IMP" FunctionName="SENSINGLABS_PRDModel.Store.PRC_MDP_IMP" />
+    <FunctionImportMapping FunctionImportName="PRC_NS_TO_ARTI" FunctionName="SENSINGLABS_PRDModel.Store.PRC_NS_TO_ARTI" />
+    <FunctionImportMapping FunctionImportName="PRC_NS_TO_DEVEUI" FunctionName="SENSINGLABS_PRDModel.Store.PRC_NS_TO_DEVEUI" />
+    <FunctionImportMapping FunctionImportName="PRC_NS_TO_OF" FunctionName="SENSINGLABS_PRDModel.Store.PRC_NS_TO_OF" />
+    <FunctionImportMapping FunctionImportName="PRC_PARAM_ARTI" FunctionName="SENSINGLABS_PRDModel.Store.PRC_PARAM_ARTI">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SENSINGLABS_PRDModel.PRC_PARAM_ARTI_Result">
+          <ScalarProperty Name="BL_VERIF" ColumnName="BL_VERIF" />
+          <ScalarProperty Name="LB_IMP" ColumnName="LB_IMP" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PRC_PSG_DBL" FunctionName="SENSINGLABS_PRDModel.Store.PRC_PSG_DBL" />
+    <FunctionImportMapping FunctionImportName="PRC_TMP_CLSG_DBL" FunctionName="SENSINGLABS_PRDModel.Store.PRC_TMP_CLSG_DBL" />
+    <FunctionImportMapping FunctionImportName="PRC_VRFN_WF_ETP_PREC" FunctionName="SENSINGLABS_PRDModel.Store.PRC_VRFN_WF_ETP_PREC" />
+  </EntityContainerMapping>
+</Mapping>

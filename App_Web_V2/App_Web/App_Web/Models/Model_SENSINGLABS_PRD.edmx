@@ -1,0 +1,713 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SENSINGLABS_PRDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DWH_DIM_CPT_CRTQ">
+          <Key>
+            <PropertyRef Name="CD_ARTI" />
+            <PropertyRef Name="CD_CPST" />
+          </Key>
+          <Property Name="CD_ARTI" Type="nvarchar" MaxLength="18" Nullable="false" />
+          <Property Name="CD_CPST" Type="nvarchar" MaxLength="18" Nullable="false" />
+          <Property Name="BL_CRT" Type="bit" />
+        </EntityType>
+        <EntityType Name="DWH_DIM_DEVDEUI">
+          <Key>
+            <PropertyRef Name="NU_OF" />
+            <PropertyRef Name="CD_DEVDEUI" />
+          </Key>
+          <Property Name="NU_OF" Type="int" Nullable="false" />
+          <Property Name="CD_DEVDEUI" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="CD_MDP" Type="nvarchar" MaxLength="10" />
+          <Property Name="NU_NS" Type="nvarchar" MaxLength="13" />
+          <Property Name="LB_STA" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="DWH_DIM_WRKF">
+          <Key>
+            <PropertyRef Name="ID_PSG" />
+          </Key>
+          <Property Name="ID_PSG" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DT_PSG" Type="datetime" />
+          <Property Name="NU_OF" Type="int" />
+          <Property Name="CD_ARTI" Type="nvarchar" MaxLength="18" />
+          <Property Name="NU_NS" Type="nvarchar" MaxLength="13" />
+          <Property Name="BL_STA" Type="bit" />
+          <Property Name="NU_ETP" Type="smallint" />
+        </EntityType>
+        <EntityType Name="DWH_HIST_LIVR">
+          <Key>
+            <PropertyRef Name="ID_EXPE" />
+          </Key>
+          <Property Name="ID_EXPE" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DT_EXPE" Type="datetime" />
+          <Property Name="NU_BL" Type="int" />
+          <Property Name="NM_OF" Type="int" />
+          <Property Name="CD_ARTI" Type="nvarchar" MaxLength="30" />
+          <Property Name="LB_ARTI" Type="nvarchar" MaxLength="100" />
+          <Property Name="NM_NS_EOL" Type="nvarchar" MaxLength="255" />
+          <Property Name="NM_MATR" Type="smallint" />
+        </EntityType>
+        <EntityType Name="DWH_REF_ARTI_CLT">
+          <Key>
+            <PropertyRef Name="CD_ARTI" />
+          </Key>
+          <Property Name="CD_ARTI" Type="nvarchar" MaxLength="18" Nullable="false" />
+          <Property Name="LB_CMRC" Type="nvarchar" MaxLength="25" />
+          <Property Name="LB_EOL" Type="nvarchar" MaxLength="25" />
+          <Property Name="CD_PN" Type="nvarchar" MaxLength="50" />
+          <Property Name="NU_VRSN" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="DWH_REF_ARTI_PARAM">
+          <Key>
+            <PropertyRef Name="CD_ARTI" />
+          </Key>
+          <Property Name="CD_ARTI" Type="nvarchar" MaxLength="18" Nullable="false" />
+          <Property Name="BL_VERIF" Type="bit" />
+          <Property Name="LB_IMP" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="DWH_REF_ETP_PRCS">
+          <Key>
+            <PropertyRef Name="CD_ARTI" />
+            <PropertyRef Name="NU_ETP" />
+          </Key>
+          <Property Name="CD_ARTI" Type="nvarchar" MaxLength="18" Nullable="false" />
+          <Property Name="LB_ETP" Type="nvarchar" MaxLength="50" />
+          <Property Name="NU_ETP" Type="smallint" Nullable="false" />
+        </EntityType>
+        <!--Erreurs détectées durant la génération :
+avertissement 6013: Aucune clé primaire n'est définie pour la table/vue 'SENSINGLABS_PRD.dbo.DWH_REF_MDP' ; en outre, aucune clé primaire valide n'a pu être déduite. Cette table/vue a été exclue. Pour utiliser l'entité, vous devez passer en revue votre schéma, ajouter les clés appropriées et supprimer le commentaire associé.
+        <EntityType Name="DWH_REF_MDP">
+          <Property Name="MDP" Type="nvarchar" MaxLength="50" />
+        </EntityType>-->
+        <EntityType Name="TMP_PST_CLSG">
+          <Key>
+            <PropertyRef Name="LB_PST" />
+            <PropertyRef Name="DT_SCAN" />
+          </Key>
+          <Property Name="LB_PST" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DT_SCAN" Type="datetime" Nullable="false" />
+          <Property Name="NM_OF" Type="int" />
+          <Property Name="CD_ARTI" Type="nvarchar" MaxLength="30" />
+          <Property Name="LB_ARTI" Type="nvarchar" MaxLength="100" />
+          <Property Name="NM_NS_EOL" Type="nvarchar" MaxLength="255" />
+          <Property Name="NM_MATR" Type="smallint" />
+        </EntityType>
+        <!--Erreurs détectées durant la génération :
+avertissement 6013: Aucune clé primaire n'est définie pour la table/vue 'SENSINGLABS_PRD.dbo.REQ_POINT_CLSG' ; en outre, aucune clé primaire valide n'a pu être déduite. Cette table/vue a été exclue. Pour utiliser l'entité, vous devez passer en revue votre schéma, ajouter les clés appropriées et supprimer le commentaire associé.
+        <EntityType Name="REQ_POINT_CLSG">
+          <Property Name="CD_ARTI" Type="nvarchar" MaxLength="18" />
+          <Property Name="LB_CMRC" Type="nvarchar" MaxLength="25" />
+          <Property Name="Nb de N° série à l'étape Colisage" Type="int" />
+        </EntityType>-->
+        <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'SENSINGLABS_PRD.dbo.V_TCBL_TOUT' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+        <EntityType Name="V_TCBL_TOUT">
+          <Key>
+            <PropertyRef Name="ID_PSG" />
+          </Key>
+          <Property Name="NU_OF" Type="int" />
+          <Property Name="CD_DEVDEUI" Type="nvarchar" MaxLength="25" />
+          <Property Name="CD_MDP" Type="nvarchar" MaxLength="10" />
+          <Property Name="LB_STA" Type="nvarchar" MaxLength="10" />
+          <Property Name="ID_PSG" Type="int" Nullable="false" />
+          <Property Name="DT_PSG" Type="datetime" />
+          <Property Name="CD_ARTI" Type="nvarchar" MaxLength="18" />
+          <Property Name="BL_STA" Type="bit" />
+          <Property Name="NU_ETP" Type="smallint" />
+          <Property Name="LB_ETP" Type="nvarchar" MaxLength="50" />
+          <Property Name="LB_CMRC" Type="nvarchar" MaxLength="25" />
+          <Property Name="LB_EOL" Type="nvarchar" MaxLength="25" />
+          <Property Name="CD_PN" Type="nvarchar" MaxLength="50" />
+          <Property Name="NU_VRSN" Type="nvarchar" MaxLength="10" />
+          <Property Name="NU_NS" Type="nvarchar" MaxLength="13" />
+        </EntityType>
+        <Function Name="PRC_ATTR_DEVEUI" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NU_NS" Type="nvarchar" Mode="In" />
+          <Parameter Name="Result" Type="nvarchar" Mode="InOut" />
+          <Parameter Name="DEVEUI" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="PRC_BSCL_CLSG_TMP_HIST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LB_PST" Type="nvarchar" Mode="In" />
+          <Parameter Name="ERROR" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="PRC_DEL_TMP_PST_CLSG" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LB_PST" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="PRC_DEL_TMP_PST_CLSG_NS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LB_PST" Type="nvarchar" Mode="In" />
+          <Parameter Name="NU_NS" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="PRC_DEVEUI_TO_NS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CD_DEVDEUI" Type="nvarchar" Mode="In" />
+          <Parameter Name="NU_NS" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="PRC_ETQ_DEVEUI" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CD_ARTI" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="PRC_EXP_DEVEUI" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RESULTAT" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="PRC_EXP_WK" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RESULTAT" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="PRC_GSTN_ERR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ERROR" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="PRC_HIST_LIVR_DBL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NU_NS" Type="nvarchar" Mode="In" />
+          <Parameter Name="ERROR" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="PRC_IMP_RPT_BNC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RESULTAT" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="PRC_INS_DEVDEUI" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CD_DEVDEUI" Type="nvarchar" Mode="In" />
+          <Parameter Name="NU_OF" Type="int" Mode="In" />
+          <Parameter Name="CD_MDP" Type="nvarchar" Mode="In" />
+          <Parameter Name="ERROR" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="PRC_INS_ETP_WF" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NU_OF" Type="int" Mode="In" />
+          <Parameter Name="CD_ARTI" Type="nvarchar" Mode="In" />
+          <Parameter Name="NU_NS" Type="nvarchar" Mode="In" />
+          <Parameter Name="BL_STA" Type="bit" Mode="In" />
+          <Parameter Name="NU_ETP" Type="smallint" Mode="In" />
+          <Parameter Name="ERROR" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="PRC_INS_TMP_CLSG" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LB_PST" Type="nvarchar" Mode="In" />
+          <Parameter Name="NM_OF" Type="int" Mode="In" />
+          <Parameter Name="CD_ARTI" Type="nvarchar" Mode="In" />
+          <Parameter Name="LB_ARTI" Type="nvarchar" Mode="In" />
+          <Parameter Name="NM_NS_EOL" Type="nvarchar" Mode="In" />
+          <Parameter Name="NM_MATR" Type="smallint" Mode="In" />
+          <Parameter Name="ERROR" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="PRC_LST_ARTI" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="PRC_LST_OF_NS_ETP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NU_OF" Type="int" Mode="In" />
+          <Parameter Name="NU_ETP" Type="smallint" Mode="In" />
+        </Function>
+        <Function Name="PRC_LST_TMP_CLSG_PST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LB_PST" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="PRC_MAJ_STT_DEVEUI" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DEVEUI" Type="nvarchar" Mode="In" />
+          <Parameter Name="NU_NS" Type="nvarchar" Mode="In" />
+          <Parameter Name="LB_STA" Type="nvarchar" Mode="In" />
+          <Parameter Name="Result" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="PRC_MDP_IMP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MDP" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="PRC_NS_TO_ARTI" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NU_NS" Type="nvarchar" Mode="In" />
+          <Parameter Name="CD_ARTI" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="PRC_NS_TO_DEVEUI" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NU_NS" Type="nvarchar" Mode="In" />
+          <Parameter Name="CD_DEVDEUI" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="PRC_NS_TO_OF" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NU_NS" Type="nvarchar" Mode="In" />
+          <Parameter Name="NU_OF" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="PRC_PARAM_ARTI" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CD_ARTI" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="PRC_PSG_DBL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NU_ETP" Type="smallint" Mode="In" />
+          <Parameter Name="NU_NS" Type="nvarchar" Mode="In" />
+          <Parameter Name="NB_PSG" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="PRC_TMP_CLSG_DBL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LB_PST" Type="nvarchar" Mode="In" />
+          <Parameter Name="NU_NS" Type="nvarchar" Mode="In" />
+          <Parameter Name="NB_PSG" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="PRC_VRFN_WF_ETP_PREC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NU_NS" Type="nvarchar" Mode="In" />
+          <Parameter Name="NU_ETP" Type="smallint" Mode="In" />
+          <Parameter Name="DT_WF" Type="datetime" Mode="InOut" />
+          <Parameter Name="BL_WF" Type="bit" Mode="InOut" />
+          <Parameter Name="ERROR" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="SCL_FNC_ETP_FIRST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="smallint">
+          <Parameter Name="NU_NS" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SCL_FNC_ETP_PREC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="smallint">
+          <Parameter Name="NU_NS" Type="nvarchar" Mode="In" />
+          <Parameter Name="NU_ETP" Type="smallint" Mode="In" />
+        </Function>
+        <Function Name="SCL_FNC_NU_ETP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="smallint">
+          <Parameter Name="NU_NS" Type="nvarchar" Mode="In" />
+          <Parameter Name="NU_ETP" Type="smallint" Mode="In" />
+          <Parameter Name="CD_ARTI" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="SENSINGLABS_PRDModelStoreContainer">
+          <EntitySet Name="DWH_DIM_CPT_CRTQ" EntityType="Self.DWH_DIM_CPT_CRTQ" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DWH_DIM_DEVDEUI" EntityType="Self.DWH_DIM_DEVDEUI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DWH_DIM_WRKF" EntityType="Self.DWH_DIM_WRKF" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DWH_HIST_LIVR" EntityType="Self.DWH_HIST_LIVR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DWH_REF_ARTI_CLT" EntityType="Self.DWH_REF_ARTI_CLT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DWH_REF_ARTI_PARAM" EntityType="Self.DWH_REF_ARTI_PARAM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DWH_REF_ETP_PRCS" EntityType="Self.DWH_REF_ETP_PRCS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TMP_PST_CLSG" EntityType="Self.TMP_PST_CLSG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="V_TCBL_TOUT" EntityType="Self.V_TCBL_TOUT" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [V_TCBL_TOUT].[NU_OF] AS [NU_OF], 
+    [V_TCBL_TOUT].[CD_DEVDEUI] AS [CD_DEVDEUI], 
+    [V_TCBL_TOUT].[CD_MDP] AS [CD_MDP], 
+    [V_TCBL_TOUT].[LB_STA] AS [LB_STA], 
+    [V_TCBL_TOUT].[ID_PSG] AS [ID_PSG], 
+    [V_TCBL_TOUT].[DT_PSG] AS [DT_PSG], 
+    [V_TCBL_TOUT].[CD_ARTI] AS [CD_ARTI], 
+    [V_TCBL_TOUT].[BL_STA] AS [BL_STA], 
+    [V_TCBL_TOUT].[NU_ETP] AS [NU_ETP], 
+    [V_TCBL_TOUT].[LB_ETP] AS [LB_ETP], 
+    [V_TCBL_TOUT].[LB_CMRC] AS [LB_CMRC], 
+    [V_TCBL_TOUT].[LB_EOL] AS [LB_EOL], 
+    [V_TCBL_TOUT].[CD_PN] AS [CD_PN], 
+    [V_TCBL_TOUT].[NU_VRSN] AS [NU_VRSN], 
+    [V_TCBL_TOUT].[NU_NS] AS [NU_NS]
+    FROM [dbo].[V_TCBL_TOUT] AS [V_TCBL_TOUT]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SENSINGLABS_PRDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DWH_DIM_CPT_CRTQ">
+          <Key>
+            <PropertyRef Name="CD_ARTI" />
+            <PropertyRef Name="CD_CPST" />
+          </Key>
+          <Property Name="CD_ARTI" Type="String" MaxLength="18" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CD_CPST" Type="String" MaxLength="18" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BL_CRT" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="DWH_DIM_DEVDEUI">
+          <Key>
+            <PropertyRef Name="NU_OF" />
+            <PropertyRef Name="CD_DEVDEUI" />
+          </Key>
+          <Property Name="NU_OF" Type="Int32" Nullable="false" />
+          <Property Name="CD_DEVDEUI" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CD_MDP" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="NU_NS" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
+          <Property Name="LB_STA" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="DWH_DIM_WRKF">
+          <Key>
+            <PropertyRef Name="ID_PSG" />
+          </Key>
+          <Property Name="ID_PSG" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DT_PSG" Type="DateTime" Precision="3" />
+          <Property Name="NU_OF" Type="Int32" />
+          <Property Name="CD_ARTI" Type="String" MaxLength="18" FixedLength="false" Unicode="true" />
+          <Property Name="NU_NS" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
+          <Property Name="BL_STA" Type="Boolean" />
+          <Property Name="NU_ETP" Type="Int16" />
+        </EntityType>
+        <EntityType Name="DWH_HIST_LIVR">
+          <Key>
+            <PropertyRef Name="ID_EXPE" />
+          </Key>
+          <Property Name="ID_EXPE" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DT_EXPE" Type="DateTime" Precision="3" />
+          <Property Name="NU_BL" Type="Int32" />
+          <Property Name="NM_OF" Type="Int32" />
+          <Property Name="CD_ARTI" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="LB_ARTI" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NM_NS_EOL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="NM_MATR" Type="Int16" />
+        </EntityType>
+        <EntityType Name="DWH_REF_ARTI_CLT">
+          <Key>
+            <PropertyRef Name="CD_ARTI" />
+          </Key>
+          <Property Name="CD_ARTI" Type="String" MaxLength="18" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LB_CMRC" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="LB_EOL" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="CD_PN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NU_VRSN" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="DWH_REF_ARTI_PARAM">
+          <Key>
+            <PropertyRef Name="CD_ARTI" />
+          </Key>
+          <Property Name="CD_ARTI" Type="String" MaxLength="18" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BL_VERIF" Type="Boolean" />
+          <Property Name="LB_IMP" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="DWH_REF_ETP_PRCS">
+          <Key>
+            <PropertyRef Name="CD_ARTI" />
+            <PropertyRef Name="NU_ETP" />
+          </Key>
+          <Property Name="CD_ARTI" Type="String" MaxLength="18" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LB_ETP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NU_ETP" Type="Int16" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TMP_PST_CLSG">
+          <Key>
+            <PropertyRef Name="LB_PST" />
+            <PropertyRef Name="DT_SCAN" />
+          </Key>
+          <Property Name="LB_PST" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DT_SCAN" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NM_OF" Type="Int32" />
+          <Property Name="CD_ARTI" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="LB_ARTI" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NM_NS_EOL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="NM_MATR" Type="Int16" />
+        </EntityType>
+        <EntityType Name="V_TCBL_TOUT">
+          <Key>
+            <PropertyRef Name="ID_PSG" />
+          </Key>
+          <Property Name="NU_OF" Type="Int32" />
+          <Property Name="CD_DEVDEUI" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="CD_MDP" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="LB_STA" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ID_PSG" Type="Int32" Nullable="false" />
+          <Property Name="DT_PSG" Type="DateTime" Precision="3" />
+          <Property Name="CD_ARTI" Type="String" MaxLength="18" FixedLength="false" Unicode="true" />
+          <Property Name="BL_STA" Type="Boolean" />
+          <Property Name="NU_ETP" Type="Int16" />
+          <Property Name="LB_ETP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LB_CMRC" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="LB_EOL" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="CD_PN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NU_VRSN" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="NU_NS" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="SENSINGLABS_PRDEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DWH_DIM_CPT_CRTQ" EntityType="Self.DWH_DIM_CPT_CRTQ" />
+          <EntitySet Name="DWH_DIM_DEVDEUI" EntityType="Self.DWH_DIM_DEVDEUI" />
+          <EntitySet Name="DWH_DIM_WRKF" EntityType="Self.DWH_DIM_WRKF" />
+          <EntitySet Name="DWH_HIST_LIVR" EntityType="Self.DWH_HIST_LIVR" />
+          <EntitySet Name="DWH_REF_ARTI_CLT" EntityType="Self.DWH_REF_ARTI_CLT" />
+          <EntitySet Name="DWH_REF_ARTI_PARAM" EntityType="Self.DWH_REF_ARTI_PARAM" />
+          <EntitySet Name="DWH_REF_ETP_PRCS" EntityType="Self.DWH_REF_ETP_PRCS" />
+          <EntitySet Name="TMP_PST_CLSG" EntityType="Self.TMP_PST_CLSG" />
+          <EntitySet Name="V_TCBL_TOUT" EntityType="Self.V_TCBL_TOUT" />
+          <FunctionImport Name="PRC_ATTR_DEVEUI">
+            <Parameter Name="NU_NS" Mode="In" Type="String" />
+            <Parameter Name="Result" Mode="InOut" Type="String" />
+            <Parameter Name="DEVEUI" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PRC_BSCL_CLSG_TMP_HIST">
+            <Parameter Name="LB_PST" Mode="In" Type="String" />
+            <Parameter Name="ERROR" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PRC_DEL_TMP_PST_CLSG">
+            <Parameter Name="LB_PST" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PRC_DEL_TMP_PST_CLSG_NS">
+            <Parameter Name="LB_PST" Mode="In" Type="String" />
+            <Parameter Name="NU_NS" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PRC_DEVEUI_TO_NS">
+            <Parameter Name="CD_DEVDEUI" Mode="In" Type="String" />
+            <Parameter Name="NU_NS" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PRC_ETQ_DEVEUI" ReturnType="Collection(SENSINGLABS_PRDModel.PRC_ETQ_DEVEUI_Result)">
+            <Parameter Name="CD_ARTI" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PRC_EXP_DEVEUI">
+            <Parameter Name="RESULTAT" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PRC_EXP_WK">
+            <Parameter Name="RESULTAT" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PRC_GSTN_ERR">
+            <Parameter Name="ERROR" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PRC_HIST_LIVR_DBL">
+            <Parameter Name="NU_NS" Mode="In" Type="String" />
+            <Parameter Name="ERROR" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PRC_IMP_RPT_BNC">
+            <Parameter Name="RESULTAT" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PRC_INS_DEVDEUI">
+            <Parameter Name="CD_DEVDEUI" Mode="In" Type="String" />
+            <Parameter Name="NU_OF" Mode="In" Type="Int32" />
+            <Parameter Name="CD_MDP" Mode="In" Type="String" />
+            <Parameter Name="ERROR" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PRC_INS_ETP_WF">
+            <Parameter Name="NU_OF" Mode="In" Type="Int32" />
+            <Parameter Name="CD_ARTI" Mode="In" Type="String" />
+            <Parameter Name="NU_NS" Mode="In" Type="String" />
+            <Parameter Name="BL_STA" Mode="In" Type="Boolean" />
+            <Parameter Name="NU_ETP" Mode="In" Type="Int16" />
+            <Parameter Name="ERROR" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PRC_INS_TMP_CLSG">
+            <Parameter Name="LB_PST" Mode="In" Type="String" />
+            <Parameter Name="NM_OF" Mode="In" Type="Int32" />
+            <Parameter Name="CD_ARTI" Mode="In" Type="String" />
+            <Parameter Name="LB_ARTI" Mode="In" Type="String" />
+            <Parameter Name="NM_NS_EOL" Mode="In" Type="String" />
+            <Parameter Name="NM_MATR" Mode="In" Type="Int16" />
+            <Parameter Name="ERROR" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PRC_LST_ARTI" ReturnType="Collection(String)" />
+          <FunctionImport Name="PRC_LST_OF_NS_ETP" ReturnType="Collection(String)">
+            <Parameter Name="NU_OF" Mode="In" Type="Int32" />
+            <Parameter Name="NU_ETP" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="PRC_LST_TMP_CLSG_PST" ReturnType="Collection(SENSINGLABS_PRDModel.PRC_LST_TMP_CLSG_PST_Result)">
+            <Parameter Name="LB_PST" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PRC_MAJ_STT_DEVEUI">
+            <Parameter Name="DEVEUI" Mode="In" Type="String" />
+            <Parameter Name="NU_NS" Mode="In" Type="String" />
+            <Parameter Name="LB_STA" Mode="In" Type="String" />
+            <Parameter Name="Result" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PRC_MDP_IMP">
+            <Parameter Name="MDP" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PRC_NS_TO_ARTI">
+            <Parameter Name="NU_NS" Mode="In" Type="String" />
+            <Parameter Name="CD_ARTI" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PRC_NS_TO_DEVEUI">
+            <Parameter Name="NU_NS" Mode="In" Type="String" />
+            <Parameter Name="CD_DEVDEUI" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PRC_NS_TO_OF">
+            <Parameter Name="NU_NS" Mode="In" Type="String" />
+            <Parameter Name="NU_OF" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PRC_PARAM_ARTI" ReturnType="Collection(SENSINGLABS_PRDModel.PRC_PARAM_ARTI_Result)">
+            <Parameter Name="CD_ARTI" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PRC_PSG_DBL">
+            <Parameter Name="NU_ETP" Mode="In" Type="Int16" />
+            <Parameter Name="NU_NS" Mode="In" Type="String" />
+            <Parameter Name="NB_PSG" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PRC_TMP_CLSG_DBL">
+            <Parameter Name="LB_PST" Mode="In" Type="String" />
+            <Parameter Name="NU_NS" Mode="In" Type="String" />
+            <Parameter Name="NB_PSG" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PRC_VRFN_WF_ETP_PREC">
+            <Parameter Name="NU_NS" Mode="In" Type="String" />
+            <Parameter Name="NU_ETP" Mode="In" Type="Int16" />
+            <Parameter Name="DT_WF" Mode="InOut" Type="DateTime" />
+            <Parameter Name="BL_WF" Mode="InOut" Type="Boolean" />
+            <Parameter Name="ERROR" Mode="InOut" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="PRC_ETQ_DEVEUI_Result">
+          <Property Type="String" Name="LB_CMRC" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="LB_EOL" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="CD_PN" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NU_VRSN" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="PRC_LST_TMP_CLSG_PST_Result">
+          <Property Type="Int32" Name="NM_OF" Nullable="true" />
+          <Property Type="String" Name="NM_NS_EOL" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="PRC_PARAM_ARTI_Result">
+          <Property Type="Boolean" Name="BL_VERIF" Nullable="true" />
+          <Property Type="String" Name="LB_IMP" Nullable="true" MaxLength="255" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SENSINGLABS_PRDModelStoreContainer" CdmEntityContainer="SENSINGLABS_PRDEntities">
+          <EntitySetMapping Name="DWH_DIM_CPT_CRTQ">
+            <EntityTypeMapping TypeName="SENSINGLABS_PRDModel.DWH_DIM_CPT_CRTQ">
+              <MappingFragment StoreEntitySet="DWH_DIM_CPT_CRTQ">
+                <ScalarProperty Name="CD_ARTI" ColumnName="CD_ARTI" />
+                <ScalarProperty Name="CD_CPST" ColumnName="CD_CPST" />
+                <ScalarProperty Name="BL_CRT" ColumnName="BL_CRT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DWH_DIM_DEVDEUI">
+            <EntityTypeMapping TypeName="SENSINGLABS_PRDModel.DWH_DIM_DEVDEUI">
+              <MappingFragment StoreEntitySet="DWH_DIM_DEVDEUI">
+                <ScalarProperty Name="NU_OF" ColumnName="NU_OF" />
+                <ScalarProperty Name="CD_DEVDEUI" ColumnName="CD_DEVDEUI" />
+                <ScalarProperty Name="CD_MDP" ColumnName="CD_MDP" />
+                <ScalarProperty Name="NU_NS" ColumnName="NU_NS" />
+                <ScalarProperty Name="LB_STA" ColumnName="LB_STA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DWH_DIM_WRKF">
+            <EntityTypeMapping TypeName="SENSINGLABS_PRDModel.DWH_DIM_WRKF">
+              <MappingFragment StoreEntitySet="DWH_DIM_WRKF">
+                <ScalarProperty Name="ID_PSG" ColumnName="ID_PSG" />
+                <ScalarProperty Name="DT_PSG" ColumnName="DT_PSG" />
+                <ScalarProperty Name="NU_OF" ColumnName="NU_OF" />
+                <ScalarProperty Name="CD_ARTI" ColumnName="CD_ARTI" />
+                <ScalarProperty Name="NU_NS" ColumnName="NU_NS" />
+                <ScalarProperty Name="BL_STA" ColumnName="BL_STA" />
+                <ScalarProperty Name="NU_ETP" ColumnName="NU_ETP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DWH_HIST_LIVR">
+            <EntityTypeMapping TypeName="SENSINGLABS_PRDModel.DWH_HIST_LIVR">
+              <MappingFragment StoreEntitySet="DWH_HIST_LIVR">
+                <ScalarProperty Name="ID_EXPE" ColumnName="ID_EXPE" />
+                <ScalarProperty Name="DT_EXPE" ColumnName="DT_EXPE" />
+                <ScalarProperty Name="NU_BL" ColumnName="NU_BL" />
+                <ScalarProperty Name="NM_OF" ColumnName="NM_OF" />
+                <ScalarProperty Name="CD_ARTI" ColumnName="CD_ARTI" />
+                <ScalarProperty Name="LB_ARTI" ColumnName="LB_ARTI" />
+                <ScalarProperty Name="NM_NS_EOL" ColumnName="NM_NS_EOL" />
+                <ScalarProperty Name="NM_MATR" ColumnName="NM_MATR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DWH_REF_ARTI_CLT">
+            <EntityTypeMapping TypeName="SENSINGLABS_PRDModel.DWH_REF_ARTI_CLT">
+              <MappingFragment StoreEntitySet="DWH_REF_ARTI_CLT">
+                <ScalarProperty Name="CD_ARTI" ColumnName="CD_ARTI" />
+                <ScalarProperty Name="LB_CMRC" ColumnName="LB_CMRC" />
+                <ScalarProperty Name="LB_EOL" ColumnName="LB_EOL" />
+                <ScalarProperty Name="CD_PN" ColumnName="CD_PN" />
+                <ScalarProperty Name="NU_VRSN" ColumnName="NU_VRSN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DWH_REF_ARTI_PARAM">
+            <EntityTypeMapping TypeName="SENSINGLABS_PRDModel.DWH_REF_ARTI_PARAM">
+              <MappingFragment StoreEntitySet="DWH_REF_ARTI_PARAM">
+                <ScalarProperty Name="CD_ARTI" ColumnName="CD_ARTI" />
+                <ScalarProperty Name="BL_VERIF" ColumnName="BL_VERIF" />
+                <ScalarProperty Name="LB_IMP" ColumnName="LB_IMP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DWH_REF_ETP_PRCS">
+            <EntityTypeMapping TypeName="SENSINGLABS_PRDModel.DWH_REF_ETP_PRCS">
+              <MappingFragment StoreEntitySet="DWH_REF_ETP_PRCS">
+                <ScalarProperty Name="CD_ARTI" ColumnName="CD_ARTI" />
+                <ScalarProperty Name="LB_ETP" ColumnName="LB_ETP" />
+                <ScalarProperty Name="NU_ETP" ColumnName="NU_ETP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TMP_PST_CLSG">
+            <EntityTypeMapping TypeName="SENSINGLABS_PRDModel.TMP_PST_CLSG">
+              <MappingFragment StoreEntitySet="TMP_PST_CLSG">
+                <ScalarProperty Name="LB_PST" ColumnName="LB_PST" />
+                <ScalarProperty Name="DT_SCAN" ColumnName="DT_SCAN" />
+                <ScalarProperty Name="NM_OF" ColumnName="NM_OF" />
+                <ScalarProperty Name="CD_ARTI" ColumnName="CD_ARTI" />
+                <ScalarProperty Name="LB_ARTI" ColumnName="LB_ARTI" />
+                <ScalarProperty Name="NM_NS_EOL" ColumnName="NM_NS_EOL" />
+                <ScalarProperty Name="NM_MATR" ColumnName="NM_MATR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="V_TCBL_TOUT">
+            <EntityTypeMapping TypeName="SENSINGLABS_PRDModel.V_TCBL_TOUT">
+              <MappingFragment StoreEntitySet="V_TCBL_TOUT">
+                <ScalarProperty Name="NU_OF" ColumnName="NU_OF" />
+                <ScalarProperty Name="CD_DEVDEUI" ColumnName="CD_DEVDEUI" />
+                <ScalarProperty Name="CD_MDP" ColumnName="CD_MDP" />
+                <ScalarProperty Name="LB_STA" ColumnName="LB_STA" />
+                <ScalarProperty Name="ID_PSG" ColumnName="ID_PSG" />
+                <ScalarProperty Name="DT_PSG" ColumnName="DT_PSG" />
+                <ScalarProperty Name="CD_ARTI" ColumnName="CD_ARTI" />
+                <ScalarProperty Name="BL_STA" ColumnName="BL_STA" />
+                <ScalarProperty Name="NU_ETP" ColumnName="NU_ETP" />
+                <ScalarProperty Name="LB_ETP" ColumnName="LB_ETP" />
+                <ScalarProperty Name="LB_CMRC" ColumnName="LB_CMRC" />
+                <ScalarProperty Name="LB_EOL" ColumnName="LB_EOL" />
+                <ScalarProperty Name="CD_PN" ColumnName="CD_PN" />
+                <ScalarProperty Name="NU_VRSN" ColumnName="NU_VRSN" />
+                <ScalarProperty Name="NU_NS" ColumnName="NU_NS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="PRC_ATTR_DEVEUI" FunctionName="SENSINGLABS_PRDModel.Store.PRC_ATTR_DEVEUI" />
+          <FunctionImportMapping FunctionImportName="PRC_BSCL_CLSG_TMP_HIST" FunctionName="SENSINGLABS_PRDModel.Store.PRC_BSCL_CLSG_TMP_HIST" />
+          <FunctionImportMapping FunctionImportName="PRC_DEL_TMP_PST_CLSG" FunctionName="SENSINGLABS_PRDModel.Store.PRC_DEL_TMP_PST_CLSG" />
+          <FunctionImportMapping FunctionImportName="PRC_DEL_TMP_PST_CLSG_NS" FunctionName="SENSINGLABS_PRDModel.Store.PRC_DEL_TMP_PST_CLSG_NS" />
+          <FunctionImportMapping FunctionImportName="PRC_DEVEUI_TO_NS" FunctionName="SENSINGLABS_PRDModel.Store.PRC_DEVEUI_TO_NS" />
+          <FunctionImportMapping FunctionImportName="PRC_ETQ_DEVEUI" FunctionName="SENSINGLABS_PRDModel.Store.PRC_ETQ_DEVEUI">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SENSINGLABS_PRDModel.PRC_ETQ_DEVEUI_Result">
+                <ScalarProperty Name="LB_CMRC" ColumnName="LB_CMRC" />
+                <ScalarProperty Name="LB_EOL" ColumnName="LB_EOL" />
+                <ScalarProperty Name="CD_PN" ColumnName="CD_PN" />
+                <ScalarProperty Name="NU_VRSN" ColumnName="NU_VRSN" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PRC_EXP_DEVEUI" FunctionName="SENSINGLABS_PRDModel.Store.PRC_EXP_DEVEUI" />
+          <FunctionImportMapping FunctionImportName="PRC_EXP_WK" FunctionName="SENSINGLABS_PRDModel.Store.PRC_EXP_WK" />
+          <FunctionImportMapping FunctionImportName="PRC_GSTN_ERR" FunctionName="SENSINGLABS_PRDModel.Store.PRC_GSTN_ERR" />
+          <FunctionImportMapping FunctionImportName="PRC_HIST_LIVR_DBL" FunctionName="SENSINGLABS_PRDModel.Store.PRC_HIST_LIVR_DBL" />
+          <FunctionImportMapping FunctionImportName="PRC_IMP_RPT_BNC" FunctionName="SENSINGLABS_PRDModel.Store.PRC_IMP_RPT_BNC" />
+          <FunctionImportMapping FunctionImportName="PRC_INS_DEVDEUI" FunctionName="SENSINGLABS_PRDModel.Store.PRC_INS_DEVDEUI" />
+          <FunctionImportMapping FunctionImportName="PRC_INS_ETP_WF" FunctionName="SENSINGLABS_PRDModel.Store.PRC_INS_ETP_WF" />
+          <FunctionImportMapping FunctionImportName="PRC_INS_TMP_CLSG" FunctionName="SENSINGLABS_PRDModel.Store.PRC_INS_TMP_CLSG" />
+          <FunctionImportMapping FunctionImportName="PRC_LST_ARTI" FunctionName="SENSINGLABS_PRDModel.Store.PRC_LST_ARTI" />
+          <FunctionImportMapping FunctionImportName="PRC_LST_OF_NS_ETP" FunctionName="SENSINGLABS_PRDModel.Store.PRC_LST_OF_NS_ETP" />
+          <FunctionImportMapping FunctionImportName="PRC_LST_TMP_CLSG_PST" FunctionName="SENSINGLABS_PRDModel.Store.PRC_LST_TMP_CLSG_PST">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SENSINGLABS_PRDModel.PRC_LST_TMP_CLSG_PST_Result">
+                <ScalarProperty Name="NM_OF" ColumnName="NM_OF" />
+                <ScalarProperty Name="NM_NS_EOL" ColumnName="NM_NS_EOL" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PRC_MAJ_STT_DEVEUI" FunctionName="SENSINGLABS_PRDModel.Store.PRC_MAJ_STT_DEVEUI" />
+          <FunctionImportMapping FunctionImportName="PRC_MDP_IMP" FunctionName="SENSINGLABS_PRDModel.Store.PRC_MDP_IMP" />
+          <FunctionImportMapping FunctionImportName="PRC_NS_TO_ARTI" FunctionName="SENSINGLABS_PRDModel.Store.PRC_NS_TO_ARTI" />
+          <FunctionImportMapping FunctionImportName="PRC_NS_TO_DEVEUI" FunctionName="SENSINGLABS_PRDModel.Store.PRC_NS_TO_DEVEUI" />
+          <FunctionImportMapping FunctionImportName="PRC_NS_TO_OF" FunctionName="SENSINGLABS_PRDModel.Store.PRC_NS_TO_OF" />
+          <FunctionImportMapping FunctionImportName="PRC_PARAM_ARTI" FunctionName="SENSINGLABS_PRDModel.Store.PRC_PARAM_ARTI">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SENSINGLABS_PRDModel.PRC_PARAM_ARTI_Result">
+                <ScalarProperty Name="BL_VERIF" ColumnName="BL_VERIF" />
+                <ScalarProperty Name="LB_IMP" ColumnName="LB_IMP" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PRC_PSG_DBL" FunctionName="SENSINGLABS_PRDModel.Store.PRC_PSG_DBL" />
+          <FunctionImportMapping FunctionImportName="PRC_TMP_CLSG_DBL" FunctionName="SENSINGLABS_PRDModel.Store.PRC_TMP_CLSG_DBL" />
+          <FunctionImportMapping FunctionImportName="PRC_VRFN_WF_ETP_PREC" FunctionName="SENSINGLABS_PRDModel.Store.PRC_VRFN_WF_ETP_PREC" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
