@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="APP_WEB_ECOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DTM_LOG_APP_WEB">
+          <Key>
+            <PropertyRef Name="NM_POST" />
+            <PropertyRef Name="DT_LOG" />
+            <PropertyRef Name="NM_FONC" />
+            <PropertyRef Name="NM_CTCT" />
+          </Key>
+          <Property Name="NM_POST" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DT_LOG" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="NM_FONC" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NM_MSG" Type="nvarchar" MaxLength="4000" />
+          <Property Name="NM_CTCT" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Function Name="F_LVS_DIST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+          <Parameter Name="s1" Type="nvarchar" Mode="In" />
+          <Parameter Name="s2" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="F_SUPP_CARA_INUT_REPE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+          <Parameter Name="CHAINE" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="ISNUMERIC_2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+          <Parameter Name="VAR" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="APP_WEB_ECOModelStoreContainer">
+          <EntitySet Name="DTM_LOG_APP_WEB" EntityType="Self.DTM_LOG_APP_WEB" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="APP_WEB_ECOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="APP_WEB_ECOEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="DTM_LOG_APP_WEB" EntityType="APP_WEB_ECOModel.DTM_LOG_APP_WEB" />
+        </EntityContainer>
+        <EntityType Name="DTM_LOG_APP_WEB">
+          <Key>
+            <PropertyRef Name="NM_POST" />
+            <PropertyRef Name="DT_LOG" />
+            <PropertyRef Name="NM_FONC" />
+            <PropertyRef Name="NM_CTCT" />
+          </Key>
+          <Property Name="NM_POST" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DT_LOG" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="NM_FONC" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NM_MSG" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="NM_CTCT" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="APP_WEB_ECOModelStoreContainer" CdmEntityContainer="APP_WEB_ECOEntities" >
+          <EntitySetMapping Name="DTM_LOG_APP_WEB">
+            <EntityTypeMapping TypeName="APP_WEB_ECOModel.DTM_LOG_APP_WEB">
+              <MappingFragment StoreEntitySet="DTM_LOG_APP_WEB">
+                <ScalarProperty Name="NM_CTCT" ColumnName="NM_CTCT" />
+                <ScalarProperty Name="NM_MSG" ColumnName="NM_MSG" />
+                <ScalarProperty Name="NM_FONC" ColumnName="NM_FONC" />
+                <ScalarProperty Name="DT_LOG" ColumnName="DT_LOG" />
+                <ScalarProperty Name="NM_POST" ColumnName="NM_POST" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

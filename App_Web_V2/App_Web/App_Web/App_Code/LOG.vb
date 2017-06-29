@@ -18,6 +18,7 @@ Public Class LOG
     '        _Fonction.Name = value
     '    End Set
     'End Property
+
     Public Shared Sub LOG_Msg(mbFunction As MethodBase, sMessage As String)
 
         Dim ip As String = System.Web.HttpContext.Current.Request.UserHostAddress
@@ -25,6 +26,20 @@ Public Class LOG
         Dim sQuery As String = $"INSERT INTO [dbo].[DTM_LOG_APP_WEB]([NM_POST], [DT_LOG], [NM_FONC], [NM_MSG], [NM_CTCT]) VALUES ('{sPoste_User}', GETDATE(), '{mbFunction.Name}', '{Replace(sMessage, "'", "''")}', 'Information')"
 
         Try
+            Using db As New APP_WEB_ECOEntities()
+                Dim log As New DTM_LOG_APP_WEB
+                log.NM_FONC = sPoste_User
+                log.DT_LOG = Now
+                log.NM_MSG = Replace(sMessage, "'", "''")
+                log.NM_FONC = sPoste_User
+
+                'Dim a As NM_POST
+                'db.Shippers.Add(NM_POST)
+                '
+                db.DTM_LOG_APP_WEB.Add(log)
+                db.SaveChanges()
+            End Using
+
             Using con As New SqlConnection
                 con.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings("APP_WEB_ECOConnectionString").ToString
                 con.Open()

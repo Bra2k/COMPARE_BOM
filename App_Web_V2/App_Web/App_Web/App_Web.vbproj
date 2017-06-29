@@ -117,6 +117,8 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions">
       <Private>True</Private>
@@ -333,6 +335,16 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Models\Model_APP_WEP_ECO.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model_APP_WEP_ECO.edmx</DependentUpon>
+      <LastGenOutput>Model_APP_WEP_ECO.Context.vb</LastGenOutput>
+    </Content>
+    <Content Include="Models\Model_APP_WEP_ECO.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model_APP_WEP_ECO.edmx</DependentUpon>
+      <LastGenOutput>Model_APP_WEP_ECO.vb</LastGenOutput>
+    </Content>
     <Content Include="PagesMembres\Developpement\ADD_VERS_APCT.aspx" />
     <Content Include="PagesMembres\Developpement\AMNS_APP_WEB.aspx" />
     <Content Include="PagesMembres\Developpement\CFGR_POST.aspx" />
@@ -373,6 +385,13 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="App_Themes\Skin_CHRT_ECO\Skin_CHRT_ECO.skin" />
+    <EntityDeploy Include="Models\Model_APP_WEP_ECO.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model_APP_WEP_ECO.Designer.vb</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model_APP_WEP_ECO.edmx.diagram">
+      <DependentUpon>Model_APP_WEP_ECO.edmx</DependentUpon>
+    </Content>
     <None Include="My Project\PublishProfiles\App_Web.pubxml" />
     <None Include="My Project\PublishProfiles\App_Web_Dev.pubxml" />
     <None Include="My Project\PublishProfiles\App_Web_DEV_2.pubxml" />
@@ -461,7 +480,25 @@
     <Compile Include="App_Code\Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DTM_LOG_APP_WEB.vb">
+      <DependentUpon>Model_APP_WEP_ECO.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.vb" />
+    <Compile Include="Models\Model_APP_WEP_ECO.Context.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model_APP_WEP_ECO.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model_APP_WEP_ECO.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model_APP_WEP_ECO.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model_APP_WEP_ECO.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model_APP_WEP_ECO.tt</DependentUpon>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -853,6 +890,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -159,10 +159,16 @@
                                 <a class="info" href="#">
                                     <asp:ImageButton ID="Composant" ImageUrl="~\App_Themes\ICON_COMPARE\composant2.ico" runat="server" Height="100px" Width="100px" PostBackUrl="~/PagesMembres/Digital_Factory/TCBL_COMP.aspx" /><span>Vers page composants</span></a>
                             </div>
-
                             <div class="col-md-3">
                                 <a class="info" href="#">
                                     <asp:ImageButton ID="CodeBarre" ImageUrl="~\App_Themes\ICON_COMPARE\ensemble.ico" runat="server" Height="100px" Width="100px" PostBackUrl="~/PagesMembres/Digital_Factory/TCBL_ESB_SS_ESB_V2.aspx" /><span>Vers page ensembles</span></a>
+                            </div>
+                            <div class="col-md-3">
+                                <a class="info btn btn-default" href="/PagesMembres/Digital_Factory/IPTT_ADRE_MAC.aspx">
+                                    <img src="/App_Themes/ICON_COMPARE/computer3.ico" />
+                                    <br />Importation des adresses MAC
+                                    <span>Vers page importation des adresses MAC</span>
+                                </a>
                             </div>
                         </div>
                     </div>
