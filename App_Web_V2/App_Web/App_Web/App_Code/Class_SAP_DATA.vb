@@ -53,23 +53,23 @@ Public Class Class_SAP_DATA
             End With
 
             'Extraction de N° de Nomenclature de la table AFKO
-            dtMAST = SAP_DATA_READ_TBL("MAST", "|", "", "STLNR STLAL", "MATNR EQ '" & sArticle & "' and WERKS EQ 'DI31'", 1)
-            If dtMAST Is Nothing Then Throw New Exception("Pas de résultats dans la table MAST pour l'article " & sArticle)
-            'dtAFKO = SAP_DATA_READ_AFKO("PLNBEZ EQ '" & sArticle & "'")
+            dtMAST = SAP_DATA_READ_TBL("MAST", "|", "", "STLNR STLAL", "MATNR EQ '{sArticle}' and WERKS EQ 'DI31'", 1)
+            If dtMAST Is Nothing Then Throw New Exception($"Pas de résultats dans la table MAST pour l'article {sArticle}")
+            'dtAFKO = SAP_DATA_READ_AFKO($"PLNBEZ EQ '{sArticle}'")
             'MaxOF = dtAFKO.Compute("MAX(AUFNR)", "")
-            'rAFKO = dtAFKO.Select("AUFNR = '" & MaxOF.ToString() & "'").FirstOrDefault
+            'rAFKO = dtAFKO.Select("AUFNR = '{MaxOF.ToString()}'").FirstOrDefault
 
             'Extraction des données des postes de la gamme
-            dtSTAS_LKENZ_NE_X = SAP_DATA_READ_TBL("STAS", "|", "", "STLNR STLKN STVKN", "STLNR EQ '" & dtMAST.Rows(0)("STLNR") & "' and STLAL EQ '" & dtMAST.Rows(0)("STLAL") & "' and  LKENZ NE 'X'", 1)
-            'dtSTAS_LKENZ_NE_X = SAP_DATA_READ_TBL("STAS", "|", "", "STLNR STLKN STVKN", "STLNR EQ '" & rAFKO("STLNR") & "' and STLAL EQ '" & rAFKO("STLAL") & "' and  LKENZ NE 'X'", 1)
-            If dtSTAS_LKENZ_NE_X Is Nothing Then Throw New Exception("Pas de résultats dans la table STAS pour l'article " & sArticle)
+            dtSTAS_LKENZ_NE_X = SAP_DATA_READ_TBL("STAS", "|", "", "STLNR STLKN STVKN", $"STLNR EQ '{dtMAST.Rows(0)("STLNR")}' and STLAL EQ '{dtMAST.Rows(0)("STLAL")}' and  LKENZ NE 'X'", 1)
+            'dtSTAS_LKENZ_NE_X = SAP_DATA_READ_TBL("STAS", "|", "", "STLNR STLKN STVKN", "STLNR EQ '{rAFKO("STLNR")}' and STLAL EQ '{rAFKO("STLAL")}' and  LKENZ NE 'X'", 1)
+            If dtSTAS_LKENZ_NE_X Is Nothing Then Throw New Exception($"Pas de résultats dans la table STAS pour l'article {sArticle}")
 
-            dtSTAS_LKENZ_EQ_X = SAP_DATA_READ_TBL("STAS", "|", "", "STLNR STLKN STVKN", "STLNR EQ '" & dtMAST.Rows(0)("STLNR") & "' and STLAL EQ '" & dtMAST.Rows(0)("STLAL") & "' and  LKENZ EQ 'X'", 1)
-            'dtSTAS_LKENZ_EQ_X = SAP_DATA_READ_TBL("STAS", "|", "", "STLNR STLKN STVKN", "STLNR EQ '" & rAFKO("STLNR") & "' and STLAL EQ '" & rAFKO("STLAL") & "' and  LKENZ EQ 'X'", 1)
-            If dtSTAS_LKENZ_EQ_X Is Nothing Then Throw New Exception("Pas de résultats dans la table STAS pour l'article " & sArticle)
+            dtSTAS_LKENZ_EQ_X = SAP_DATA_READ_TBL("STAS", "|", "", "STLNR STLKN STVKN", $"STLNR EQ '{dtMAST.Rows(0)("STLNR")}' and STLAL EQ '{dtMAST.Rows(0)("STLAL")}' and  LKENZ EQ 'X'", 1)
+            'dtSTAS_LKENZ_EQ_X = SAP_DATA_READ_TBL("STAS", "|", "", "STLNR STLKN STVKN", "STLNR EQ '{rAFKO("STLNR")}' and STLAL EQ '{rAFKO("STLAL")}' and  LKENZ EQ 'X'", 1)
+            If dtSTAS_LKENZ_EQ_X Is Nothing Then Throw New Exception($"Pas de résultats dans la table STAS pour l'article {sArticle}")
 
             For Each rSTAS_LKENZ_NE_X As DataRow In dtSTAS_LKENZ_NE_X.Rows
-                Dim rdtSTAS_LKENZ_EQ_X As DataRow = dtSTAS_LKENZ_EQ_X.Select("STLKN = '" & rSTAS_LKENZ_NE_X("STLKN").ToString & "'").FirstOrDefault()
+                Dim rdtSTAS_LKENZ_EQ_X As DataRow = dtSTAS_LKENZ_EQ_X.Select($"STLKN = '{rSTAS_LKENZ_NE_X("STLKN").ToString}'").FirstOrDefault()
                 If rdtSTAS_LKENZ_EQ_X Is Nothing Then
                     dtNMCT_ARTI.Rows.Add()
                     dtNMCT_ARTI.Rows(dtNMCT_ARTI.Rows.Count - 1)("N° Nomenclature") = rSTAS_LKENZ_NE_X("STLNR").ToString
@@ -78,13 +78,13 @@ Public Class Class_SAP_DATA
             Next
             Dim sQuery As String = ""
             For Each rNMCT_ARTI As DataRow In dtNMCT_ARTI.Rows
-                sQuery = sQuery & SAP_DATA_CREA_FILT_TABL("(STLNR EQ '" & rNMCT_ARTI("N° Nomenclature").ToString & "' and STLKN EQ '" & rNMCT_ARTI("N° Noeud").ToString & "')", " Or ")
+                sQuery = sQuery & SAP_DATA_CREA_FILT_TABL($"(STLNR EQ '{rNMCT_ARTI("N° Nomenclature").ToString}' and STLKN EQ '{rNMCT_ARTI("N° Noeud").ToString}')", " Or ")
             Next
             sQuery = Right(sQuery, Len(sQuery) - 5)
             dtSTPO = SAP_DATA_READ_TBL("STPO", "|", "", "STLNR STLKN STPOZ IDNRK MENGE", sQuery, 1)
 
             For Each rNMCT_ARTI As DataRow In dtNMCT_ARTI.Rows
-                Dim rdtSTPO As DataRow = dtSTPO.Select("STLNR = '" & rNMCT_ARTI("N° Nomenclature").ToString & "' AND STLKN = '" & rNMCT_ARTI("N° Noeud").ToString & "'").FirstOrDefault()
+                Dim rdtSTPO As DataRow = dtSTPO.Select($"STLNR = '{rNMCT_ARTI("N° Nomenclature").ToString}' AND STLKN = '{rNMCT_ARTI("N° Noeud").ToString}'").FirstOrDefault()
                 If Not rdtSTPO Is Nothing Then
                     rNMCT_ARTI("Compteur") = rdtSTPO("STPOZ").ToString
                     rNMCT_ARTI("Composant") = rdtSTPO("IDNRK").ToString
@@ -94,23 +94,23 @@ Public Class Class_SAP_DATA
 
             sQuery = ""
             For Each rNMCT_ARTI As DataRow In dtNMCT_ARTI.Rows
-                If Not IsDBNull(rNMCT_ARTI("Composant")) Then sQuery = sQuery & SAP_DATA_CREA_FILT_TABL("(MATNR EQ '" & rNMCT_ARTI("Composant").ToString & "' and SPRAS EQ 'F')", " Or ")
+                If Not IsDBNull(rNMCT_ARTI("Composant")) Then sQuery = sQuery & SAP_DATA_CREA_FILT_TABL($"(MATNR EQ '{rNMCT_ARTI("Composant").ToString}' and SPRAS EQ 'F')", " Or ")
             Next
             sQuery = Right(sQuery, Len(sQuery) - 5)
             dtMAKT = SAP_DATA_READ_TBL("MAKT", "|", "", "MATNR MAKTX", sQuery, 1)
 
             sQuery = ""
             For Each rNMCT_ARTI As DataRow In dtNMCT_ARTI.Rows
-                If Not IsDBNull(rNMCT_ARTI("Composant")) Then sQuery = sQuery & SAP_DATA_CREA_FILT_TABL("(MATNR EQ '" & rNMCT_ARTI("Composant").ToString & "' and WERKS EQ 'DI31')", " Or ")
+                If Not IsDBNull(rNMCT_ARTI("Composant")) Then sQuery = sQuery & SAP_DATA_CREA_FILT_TABL($"(MATNR EQ '{rNMCT_ARTI("Composant").ToString}' and WERKS EQ 'DI31')", " Or ")
             Next
             sQuery = Right(sQuery, Len(sQuery) - 5)
             dtMARC = SAP_DATA_READ_TBL("MARC", "|", "", "MATNR BESKZ", sQuery, 1)  ';Extraction Fabircation Interne ou externe
 
             For Each rNMCT_ARTI As DataRow In dtNMCT_ARTI.Rows
                 If Not IsDBNull(rNMCT_ARTI("Composant")) Then
-                    Dim rdtMAKT As DataRow = dtMAKT.Select("MATNR = '" & rNMCT_ARTI("Composant").ToString & "'").FirstOrDefault()
+                    Dim rdtMAKT As DataRow = dtMAKT.Select($"MATNR = '{rNMCT_ARTI("Composant").ToString}'").FirstOrDefault()
                     If Not rdtMAKT Is Nothing Then rNMCT_ARTI("Désignation") = rdtMAKT("MAKTX").ToString
-                    Dim rdtMARC As DataRow = dtMARC.Select("MATNR = '" & rNMCT_ARTI("Composant").ToString & "'").FirstOrDefault()
+                    Dim rdtMARC As DataRow = dtMARC.Select($"MATNR = '{rNMCT_ARTI("Composant").ToString}'").FirstOrDefault()
                     If Not rdtMARC Is Nothing Then rNMCT_ARTI("Fab. Interne/Externe") = rdtMARC("BESKZ").ToString
                 Else
                     rNMCT_ARTI("Composant") = ""
@@ -134,7 +134,7 @@ Public Class Class_SAP_DATA
 
             'sQuery = ""
             'For Each rNMCT_ARTI In qNMCT_ARTI_GROUP
-            '    If Not IsDBNull(rNMCT_ARTI.N_NMCT) Then sQuery = sQuery & SAP_DATA_CREA_FILT_TABL("(STLNR EQ '" & rNMCT_ARTI.N_NMCT.ToString & "')", " Or ")
+            '    If Not IsDBNull(rNMCT_ARTI.N_NMCT) Then sQuery = sQuery & SAP_DATA_CREA_FILT_TABL("(STLNR EQ '{rNMCT_ARTI.N_NMCT.ToString}')", " Or ")
             'Next
             'sQuery = Right(sQuery, Len(sQuery) - 5)
             'LOG_Msg(GetCurrentMethod, sQuery)
@@ -142,10 +142,10 @@ Public Class Class_SAP_DATA
 
 
             For Each rNMCT_ARTI As DataRow In dtNMCT_ARTI.Rows
-                dtSTPU = SAP_DATA_READ_TBL("STPU", "|", "", "STLNR STLKN STPOZ UPOSZ EBORT UPMNG", "STLNR EQ '" & rNMCT_ARTI("N° Nomenclature").ToString & "' and STLKN EQ '" & rNMCT_ARTI("N° Noeud").ToString & "' and STPOZ EQ '" & rNMCT_ARTI("Compteur").ToString & "'", 1)
+                dtSTPU = SAP_DATA_READ_TBL("STPU", "|", "", "STLNR STLKN STPOZ UPOSZ EBORT UPMNG", $"STLNR EQ '{rNMCT_ARTI("N° Nomenclature").ToString}' and STLKN EQ '{rNMCT_ARTI("N° Noeud").ToString}' and STPOZ EQ '{rNMCT_ARTI("Compteur").ToString}'", 1)
                 If Not dtSTPU Is Nothing Then
                     For Each rSTPU As DataRow In dtSTPU.Rows
-                        'LOG_Msg(GetCurrentMethod, "STLNR = " & rSTPU("STLNR").ToString)
+                        'LOG_Msg(GetCurrentMethod, "STLNR = {rSTPU("STLNR").ToString)
                         dtNMCT_ARTI_2.Rows.Add()
                         dtNMCT_ARTI_2(dtNMCT_ARTI_2.Rows.Count - 1)("N° Nomenclature") = rSTPU("STLNR").ToString
                         dtNMCT_ARTI_2(dtNMCT_ARTI_2.Rows.Count - 1)("N° Noeud") = rSTPU("STLKN").ToString
@@ -159,7 +159,7 @@ Public Class Class_SAP_DATA
             Next
 
             For Each rNMCT_ARTI_2 As DataRow In dtNMCT_ARTI_2.Rows
-                Dim rNMCT_ARTI As DataRow = dtNMCT_ARTI.Select("[N° Nomenclature] = '" & rNMCT_ARTI_2("N° Nomenclature").ToString & "' AND [N° Noeud] = '" & rNMCT_ARTI_2("N° Noeud") & "' AND [Compteur] = '" & rNMCT_ARTI_2("Compteur Poste") & "'").FirstOrDefault()
+                Dim rNMCT_ARTI As DataRow = dtNMCT_ARTI.Select($"[N° Nomenclature] = '{rNMCT_ARTI_2("N° Nomenclature").ToString}' AND [N° Noeud] = '{rNMCT_ARTI_2("N° Noeud")}' AND [Compteur] = '{rNMCT_ARTI_2("Compteur Poste")}'").FirstOrDefault()
                 If Not rNMCT_ARTI Is Nothing Then
                     'For Each rNMCT_ARTI As DataRow In dtNMCT_ARTI.Rows
                     'If rNMCT_ARTI_2("N° Nomenclature") = rNMCT_ARTI("N° Nomenclature") And rNMCT_ARTI_2("N° Noeud") = rNMCT_ARTI("N° Noeud") And rNMCT_ARTI_2("Compteur Poste") = rNMCT_ARTI("Compteur") Then
@@ -209,7 +209,7 @@ Public Class Class_SAP_DATA
             Return Nothing
         End Try
 
-        LOG_Msg(GetCurrentMethod, "La nomenclature de l'article " & sArticle & " a été extraite de SAP.")
+        LOG_Msg(GetCurrentMethod, $"La nomenclature de l'article {sArticle} a été extraite de SAP.")
         Return dtNMCT_ARTI_3
 
     End Function
@@ -261,7 +261,7 @@ Public Class Class_SAP_DATA
             oSAP = SAP_DATA_DECO(oSAP)
             Return 0
         End Try
-        LOG_Msg(GetCurrentMethod, "Connexion réussie")
+        'LOG_Msg(GetCurrentMethod, "Connexion réussie")
         Return oSAP
 
     End Function
@@ -289,7 +289,6 @@ Public Class Class_SAP_DATA
                                              Optional ligneskip As Integer = 0,
                                              Optional nbrlignes As Integer = 0) As DataTable
 
-        Dim dt As New DataTable
         Dim oSAP, RFC, olinedata, olinefield As New Object
         Dim FIELDS As Object
         Dim array_champ() As String
@@ -330,29 +329,27 @@ Public Class Class_SAP_DATA
             If olinedata.rowcount = 0 Then Throw New Exception("0 ligne trouvée.")
             olinefield = RFC.tables.Item("FIELDS")
             If olinefield.rowcount = 0 Then Throw New Exception("0 champ trouvé.")
-
-            For z As Integer = 1 To olinefield.rowcount
-                dt.Columns.Add(olinefield.value(z, 1), Type.GetType("System.String"))
-            Next
-
-            Dim ligne() As String
-            For i As Integer = 1 To olinedata.rowcount
-                dt.Rows.Add()
-                ligne = Split(olinedata.value(i, 1), Delimiter)
-                For p As Integer = 0 To UBound(ligne)
-                    dt.Rows(dt.Rows.Count - 1)(olinefield.value(p + 1, 1)) = ligne(p)
+            Using dt As New DataTable
+                For z As Integer = 1 To olinefield.rowcount
+                    dt.Columns.Add(olinefield.value(z, 1), Type.GetType("System.String"))
                 Next
-            Next
-            If dt Is Nothing Then Throw New Exception("Aucune donnée dans la table " & Table)
+                Dim ligne() As String
+                For i As Integer = 1 To olinedata.rowcount
+                    dt.Rows.Add()
+                    ligne = Split(olinedata.value(i, 1), Delimiter)
+                    For p As Integer = 0 To UBound(ligne)
+                        dt.Rows(dt.Rows.Count - 1)(olinefield.value(p + 1, 1)) = ligne(p)
+                    Next
+                Next
+                If dt Is Nothing Then Throw New Exception($"Aucune donnée dans la table {Table}")
+                Return dt
+            End Using
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
         Finally
             oSAP = SAP_DATA_DECO(oSAP)
         End Try
-
-        'LOG_Msg(GetCurrentMethod, "Lecture de la table " & Table & " réussie. " & olinedata.rowcount & " lignes trouvées.")
-        Return dt
 
     End Function
 
@@ -407,7 +404,7 @@ Public Class Class_SAP_DATA
             oSAP = SAP_DATA_DECO(oSAP)
         End Try
 
-        LOG_Msg(GetCurrentMethod, "Exécution de la fonction Z_LOG_CONF_GET réussie. " & oT_LOG_CONF.RowCount & " lignes trouvées.")
+        LOG_Msg(GetCurrentMethod, $"Exécution de la fonction Z_LOG_CONF_GET réussie. {oT_LOG_CONF.RowCount} lignes trouvées.")
         Return dt_T_LOG_CONF
 
     End Function
@@ -444,263 +441,238 @@ Public Class Class_SAP_DATA
             oSAP = SAP_DATA_DECO(oSAP)
         End Try
 
-        LOG_Msg(GetCurrentMethod, "Exécution de la fonction Z_LOG_ACT_GET réussie. " & dt_T_LOG_ACT.Rows.Count & " lignes trouvées.")
+        LOG_Msg(GetCurrentMethod, $"Exécution de la fonction Z_LOG_ACT_GET réussie. {dt_T_LOG_ACT.Rows.Count} lignes trouvées.")
         Return dt_T_LOG_ACT
     End Function
 
     Public Shared Function SAP_DATA_READ_MAKT(Optional sFILT As String = "") As DataTable
-        Dim dtMAKT As New DataTable
 
         Try
-            dtMAKT = SAP_DATA_READ_TBL("MAKT", "|", "", "MANDT MATNR SPRAS MAKTX MAKTG", sFILT)
-            If dtMAKT Is Nothing Then Throw New Exception("Problème de lecture de la table MAKT avec le filtre : " & sFILT)
+            Using dtMAKT = SAP_DATA_READ_TBL("MAKT", "|", "", "MANDT MATNR SPRAS MAKTX MAKTG", sFILT)
+                If dtMAKT Is Nothing Then Throw New Exception($"Problème de lecture de la table MAKT avec le filtre :   {sFILT}")
+                LOG_Msg(GetCurrentMethod, $"Lecture de la table MAKT effectuée avec le filtre  {sFILT}")
+                Return dtMAKT
+            End Using
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
         End Try
 
-        LOG_Msg(GetCurrentMethod, "Lecture de la table MAKT effectuée avec le filtre : " & sFILT)
-        Return dtMAKT
+
     End Function
 
     Public Shared Function SAP_DATA_READ_AFKO(Optional sFILT As String = "") As DataTable
-        Dim dtAFKO As New DataTable
-
         Try
-            dtAFKO = SAP_DATA_READ_TBL("AFKO", "|", "", "RSNUM GAMNG PLNBEZ AUFNR AUFPL REVLV STLNR STLAL GSTRS", sFILT)
-            If dtAFKO Is Nothing Then Throw New Exception("Problème de lecture de la table AFKO avec le filtre : " & sFILT)
+            Using dtAFKO = SAP_DATA_READ_TBL_V2("AFKO", "|", "", "RSNUM GAMNG PLNBEZ AUFNR AUFPL REVLV STLNR STLAL GSTRS", sFILT)
+                If dtAFKO Is Nothing Then Throw New Exception($"Problème de lecture de la table AFKO avec le filtre  {sFILT}")
+                LOG_Msg(GetCurrentMethod, $"Lecture de la table AFKO effectuée avec le filtre  {sFILT}")
+                Return dtAFKO
+            End Using
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
         End Try
-
-        LOG_Msg(GetCurrentMethod, "Lecture de la table AFKO effectuée avec le filtre : " & sFILT)
-        Return dtAFKO
     End Function
 
     Public Shared Function SAP_DATA_READ_AFPO(Optional sFILT As String = "") As DataTable
-        Dim dtAFPO As New DataTable
-
         Try
-            dtAFPO = SAP_DATA_READ_TBL("AFPO", "|", "", "AUFNR MATNR MATNR MATNR PSMNG WEMNG PWERK DAUAT DNREL DGLTP ELIKZ LTRMI", sFILT)
-            If dtAFPO Is Nothing Then Throw New Exception("Problème de lecture de la table AFPO avec le filtre : " & sFILT)
+            Using dtAFPO = SAP_DATA_READ_TBL("AFPO", "|", "", "AUFNR MATNR MATNR MATNR PSMNG WEMNG PWERK DAUAT DNREL DGLTP ELIKZ LTRMI", sFILT)
+                If dtAFPO Is Nothing Then Throw New Exception($"Problème de lecture de la table AFPO avec le filtre  {sFILT}")
+                LOG_Msg(GetCurrentMethod, $"Lecture de la table AFPO effectuée avec le filtre  {sFILT}")
+                Return dtAFPO
+            End Using
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
         End Try
-
-        LOG_Msg(GetCurrentMethod, "Lecture de la table AFPO effectuée avec le filtre : " & sFILT)
-        Return dtAFPO
     End Function
 
     Public Shared Function SAP_DATA_READ_VRESB(Optional sFILT As String = "") As DataTable
-        Dim dtVRESB As New DataTable
-
         Try
-            dtVRESB = SAP_DATA_READ_TBL("VRESB", "|", "", "STLNR STLKN STPOZ MTART RSPOS MATNR BDMNG MAKTX MATKL POTX1 VORNR XLOEK", sFILT)
-            If dtVRESB Is Nothing Then Throw New Exception("Problème de lecture de la table VRESB avec le filtre : " & sFILT)
+            Using dtVRESB = SAP_DATA_READ_TBL("VRESB", "|", "", "STLNR STLKN STPOZ MTART RSPOS MATNR BDMNG MAKTX MATKL POTX1 VORNR XLOEK", sFILT)
+                If dtVRESB Is Nothing Then Throw New Exception($"Problème de lecture de la table VRESB avec le filtre  {sFILT}")
+                LOG_Msg(GetCurrentMethod, $"Lecture de la table VRESB effectuée avec le filtre  {sFILT}")
+                Return dtVRESB
+            End Using
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
         End Try
-
-        LOG_Msg(GetCurrentMethod, "Lecture de la table VRESB effectuée avec le filtre : " & sFILT)
-        Return dtVRESB
     End Function
 
     Public Shared Function SAP_DATA_READ_T179T(Optional sFILT As String = "") As DataTable
-        Dim dtT179T As New DataTable
-
         Try
-            dtT179T = SAP_DATA_READ_TBL("T179T", "|", "", "PRODH VTEXT", sFILT)
-            If dtT179T Is Nothing Then Throw New Exception("Problème de lecture de la table T179T avec le filtre : " & sFILT)
+            Using dtT179T = SAP_DATA_READ_TBL("T179T", "|", "", "PRODH VTEXT", sFILT)
+                If dtT179T Is Nothing Then Throw New Exception($"Problème de lecture de la table T179T avec le filtre  {sFILT}")
+                LOG_Msg(GetCurrentMethod, $"Lecture de la table T179T effectuée avec le filtre  {sFILT}")
+                Return dtT179T
+            End Using
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
         End Try
-
-        LOG_Msg(GetCurrentMethod, "Lecture de la table T179T effectuée avec le filtre : " & sFILT)
-        Return dtT179T
     End Function
 
     Public Shared Function SAP_DATA_READ_MARA(Optional sFILT As String = "") As DataTable
-        Dim dtMARA As New DataTable
-
         Try
-            dtMARA = SAP_DATA_READ_TBL("MARA", "|", "", "MATNR PRDHA MATKL MTART", sFILT)
-            If dtMARA Is Nothing Then Throw New Exception("Problème de lecture de la table MARA avec le filtre : " & sFILT)
+            Using dtMARA = SAP_DATA_READ_TBL("MARA", "|", "", "MATNR PRDHA MATKL MTART", sFILT)
+                If dtMARA Is Nothing Then Throw New Exception($"Problème de lecture de la table MARA avec le filtre  {sFILT}")
+                LOG_Msg(GetCurrentMethod, $"Lecture de la table MARA effectuée avec le filtre  {sFILT}")
+                Return dtMARA
+            End Using
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
         End Try
-
-        LOG_Msg(GetCurrentMethod, "Lecture de la table MARA effectuée avec le filtre : " & sFILT)
-        Return dtMARA
     End Function
 
     Public Shared Function SAP_DATA_READ_AFVC(Optional sFILT As String = "") As DataTable
-        Dim dtAFVC As New DataTable
-
         Try
-            dtAFVC = SAP_DATA_READ_TBL("AFVC", "|", "", "AUFPL PLNNR ZAEHL VORNR LTXA1 STEUS ARBID BEDZL PLNFL", sFILT)
-            If dtAFVC Is Nothing Then Throw New Exception("Problème de lecture de la table AFVC avec le filtre : " & sFILT)
+            Using dtAFVC = SAP_DATA_READ_TBL("AFVC", "|", "", "AUFPL PLNNR ZAEHL VORNR LTXA1 STEUS ARBID BEDZL PLNFL", sFILT)
+                If dtAFVC Is Nothing Then Throw New Exception($"Problème de lecture de la table AFVC avec le filtre  {sFILT}")
+                LOG_Msg(GetCurrentMethod, $"Lecture de la table AFVC effectuée avec le filtre  {sFILT}")
+                Return dtAFVC
+            End Using
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
         End Try
-
-        LOG_Msg(GetCurrentMethod, "Lecture de la table AFVC effectuée avec le filtre : " & sFILT)
-        Return dtAFVC
     End Function
 
     Public Shared Function SAP_DATA_READ_STPU(Optional sFILT As String = "") As DataTable
-        Dim dtSTPU As New DataTable
-
         Try
-            dtSTPU = SAP_DATA_READ_TBL("STPU", "|", "", "STLNR STLKN STPOZ UPOSZ EBORT UPMNG", sFILT)
-            If dtSTPU Is Nothing Then Throw New Exception("Problème de lecture de la table STPU avec le filtre : " & sFILT)
+            Using dtSTPU = SAP_DATA_READ_TBL("STPU", "|", "", "STLNR STLKN STPOZ UPOSZ EBORT UPMNG", sFILT)
+                If dtSTPU Is Nothing Then Throw New Exception($"Problème de lecture de la table STPU avec le filtre  {sFILT}")
+                LOG_Msg(GetCurrentMethod, $"Lecture de la table STPU effectuée avec le filtre  {sFILT}")
+                Return dtSTPU
+            End Using
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
         End Try
-
-        LOG_Msg(GetCurrentMethod, "Lecture de la table STPU effectuée avec le filtre : " & sFILT)
-        Return dtSTPU
     End Function
 
     Public Shared Function SAP_DATA_READ_PA0002(Optional sFILT As String = "") As DataTable
-        Dim dtPA0002 As New DataTable
-
         Try
-            dtPA0002 = SAP_DATA_READ_TBL("PA0002", "|", "", "PERNR NACHN VORNA", sFILT)
-            If dtPA0002 Is Nothing Then Throw New Exception("Problème de lecture de la table PA0002 avec le filtre : " & sFILT)
+            Using dtPA0002 = SAP_DATA_READ_TBL("PA0002", "|", "", "PERNR NACHN VORNA", sFILT)
+                If dtPA0002 Is Nothing Then Throw New Exception($"Problème de lecture de la table PA0002 avec le filtre  {sFILT}")
+                LOG_Msg(GetCurrentMethod, $"Lecture de la table PA0002 effectuée avec le filtre  {sFILT}")
+                Return dtPA0002
+            End Using
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
         End Try
-
-        LOG_Msg(GetCurrentMethod, "Lecture de la table PA0002 effectuée avec le filtre : " & sFILT)
-        Return dtPA0002
     End Function
 
     Public Shared Function SAP_DATA_READ_LIFNR(Optional sFILT As String = "") As DataTable
-        Dim dtLIFNR As New DataTable
-
         Try
-            dtLIFNR = SAP_DATA_READ_TBL("LIFNR", "|", "", "LIFNR NAME1 LAND1 STRAS PSTLZ ORT01 NAME2 TELF1 TELF2 TELFX", sFILT)
-            If dtLIFNR Is Nothing Then Throw New Exception("Problème de lecture de la table LIFNR avec le filtre : " & sFILT)
+            Using dtLIFNR = SAP_DATA_READ_TBL("LIFNR", "|", "", "LIFNR NAME1 LAND1 STRAS PSTLZ ORT01 NAME2 TELF1 TELF2 TELFX", sFILT)
+                If dtLIFNR Is Nothing Then Throw New Exception($"Problème de lecture de la table LIFNR avec le filtre  {sFILT}")
+                LOG_Msg(GetCurrentMethod, $"Lecture de la table LIFNR effectuée avec le filtre  {sFILT}")
+                Return dtLIFNR
+            End Using
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
         End Try
-
-        LOG_Msg(GetCurrentMethod, "Lecture de la table LIFNR effectuée avec le filtre : " & sFILT)
-        Return dtLIFNR
     End Function
 
     Public Shared Function SAP_DATA_GET_CLIE_FROM_CD_ARTI(sCodeArticle As String) As String
-        Dim dtMARA, dtT179T As New DataTable
-
         Try
-            dtMARA = SAP_DATA_READ_MARA("MATNR EQ '" & sCodeArticle & "'")
-            If dtMARA Is Nothing Then Throw New Exception("Le code article " & sCodeArticle & " n'est pas connu dans SAP.")
-            dtT179T = SAP_DATA_READ_T179T("PRODH EQ '" & dtMARA(0)("PRDHA").ToString & "'")
-            If dtMARA Is Nothing Then Throw New Exception("Le code article " & sCodeArticle & " n'est pas connu dans SAP.")
+            Using dtMARA = SAP_DATA_READ_MARA($"MATNR EQ '{sCodeArticle}'")
+                If dtMARA Is Nothing Then Throw New Exception($"Le code article {sCodeArticle} n'est pas connu dans SAP.")
+                Using dtT179T = SAP_DATA_READ_T179T($"PRODH EQ '{dtMARA(0)("PRDHA").ToString}'")
+                    If dtMARA Is Nothing Then Throw New Exception($"Le code article {sCodeArticle} n'est pas connu dans SAP.")
+                    LOG_Msg(GetCurrentMethod, $"Le client pour le code article {sCodeArticle} est {dtT179T(0)("VTEXT").ToString()}")
+                    Return dtT179T(0)("VTEXT").ToString()
+                End Using
+            End Using
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
         End Try
-        LOG_Msg(GetCurrentMethod, "Le client pour le code article " & sCodeArticle & " est " & dtT179T(0)("VTEXT").ToString())
-        Return dtT179T(0)("VTEXT").ToString()
     End Function
 
     Public Shared Function SAP_DATA_READ_S034(Optional sFILT As String = "") As DataTable
-        Dim dtS034 As New DataTable
-
         Try
-            dtS034 = SAP_DATA_READ_TBL("S034", "|", "", "MANDT SSOUR VRSIO SPMON SPTAG SPWOC SPBUP WERKS LGORT MATNR CHARG PERIV VWDAT BASME HWAER CMZUBB CWZUBB CAZUBB CMZUKB CAZUKB CMAGBB", sFILT)
-            If dtS034 Is Nothing Then Throw New Exception("Problème de lecture de la table S034 avec le filtre : " & sFILT)
+            Using dtS034 = SAP_DATA_READ_TBL("S034", "|", "", "MANDT SSOUR VRSIO SPMON SPTAG SPWOC SPBUP WERKS LGORT MATNR CHARG PERIV VWDAT BASME HWAER CMZUBB CWZUBB CAZUBB CMZUKB CAZUKB CMAGBB", sFILT)
+                If dtS034 Is Nothing Then Throw New Exception($"Problème de lecture de la table S034 avec le filtre : {sFILT}")
+                LOG_Msg(GetCurrentMethod, $"Lecture de la table S034 effectuée avec le filtre : {sFILT}")
+                Return dtS034
+            End Using
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
         End Try
-
-        LOG_Msg(GetCurrentMethod, "Lecture de la table S034 effectuée avec le filtre : " & sFILT)
-        Return dtS034
     End Function
 
     Public Shared Function SAP_DATA_READ_LIPS(Optional sFILT As String = "") As DataTable
-        Dim dtLIPS As New DataTable
-
         Try
-            dtLIPS = SAP_DATA_READ_TBL("LIPS", "|", "", "VBELN POSNR VGBEL VGPOS", sFILT)
-            If dtLIPS Is Nothing Then Throw New Exception("Problème de lecture de la table LIPS avec le filtre : " & sFILT)
+            Using dtLIPS = SAP_DATA_READ_TBL("LIPS", "|", "", "VBELN POSNR VGBEL VGPOS", sFILT)
+                If dtLIPS Is Nothing Then Throw New Exception($"Problème de lecture de la table LIPS avec le filtre : {sFILT}")
+                LOG_Msg(GetCurrentMethod, $"Lecture de la table LIPS effectuée avec le filtre : {sFILT}")
+                Return dtLIPS
+            End Using
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
         End Try
-
-        LOG_Msg(GetCurrentMethod, "Lecture de la table LIPS effectuée avec le filtre : " & sFILT)
-        Return dtLIPS
     End Function
     Public Shared Function SAP_DATA_READ_LIPSUP(Optional sFILT As String = "") As DataTable
-        Dim dtLIPSUP As New DataTable
-
         Try
-            dtLIPSUP = SAP_DATA_READ_TBL("LIPSUP", "|", "", "VBELN POSNR MATNR ARKTX", sFILT)
-            If dtLIPSUP Is Nothing Then Throw New Exception("Problème de lecture de la table LIPSUP avec le filtre : " & sFILT)
+            Using dtLIPSUP = SAP_DATA_READ_TBL("LIPSUP", "|", "", "VBELN POSNR MATNR ARKTX", sFILT)
+                If dtLIPSUP Is Nothing Then Throw New Exception($"Problème de lecture de la table LIPSUP avec le filtre : {sFILT}")
+                LOG_Msg(GetCurrentMethod, $"Lecture de la table LIPSUP effectuée avec le filtre : {sFILT}")
+                Return dtLIPSUP
+            End Using
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
         End Try
-
-        LOG_Msg(GetCurrentMethod, "Lecture de la table LIPSUP effectuée avec le filtre : " & sFILT)
-        Return dtLIPSUP
     End Function
 
     Public Shared Function SAP_DATA_READ_CRHD(Optional sFILT As String = "") As DataTable
-        Dim dtCRHD As New DataTable
-
         Try
-            dtCRHD = SAP_DATA_READ_TBL("CRHD", "|", "", "ARBPL OBJID", sFILT)
-            If dtCRHD Is Nothing Then Throw New Exception("Problème de lecture de la table CRHD avec le filtre : " & sFILT)
+            Using dtCRHD = SAP_DATA_READ_TBL("CRHD", "|", "", "ARBPL OBJID", sFILT)
+                If dtCRHD Is Nothing Then Throw New Exception($"Problème de lecture de la table CRHD avec le filtre : {sFILT}")
+                LOG_Msg(GetCurrentMethod, $"Lecture de la table CRHD effectuée avec le filtre : {sFILT}")
+                Return dtCRHD
+            End Using
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
         End Try
-
-        LOG_Msg(GetCurrentMethod, "Lecture de la table CRHD effectuée avec le filtre : " & sFILT)
-        Return dtCRHD
     End Function
 
     Public Shared Function SAP_DATA_LECT_OF(sOF As String) As DataTable
-        Dim dtAFKO, dtMARA, dtVRESB, dtT179T, dtMAKT, dt As New DataTable
-
         Try
-            With dt.Columns
-                .Add("NU_OF", Type.GetType("System.String"))
-                .Add("CD_ARTI_ECO", Type.GetType("System.String"))
-                .Add("NM_CLIE", Type.GetType("System.String"))
-                .Add("NM_DSGT_ARTI", Type.GetType("System.String"))
-                .Add("QT_OF", Type.GetType("System.String"))
-            End With
-
-            dtAFKO = SAP_DATA_READ_AFKO("AUFNR LIKE '%" & sOF & "'")
-            If dtAFKO Is Nothing Then Throw New Exception("L'OF n°" & sOF & " n'a pas été trouvé dans SAP.")
-            dtMARA = SAP_DATA_READ_MARA("MATNR EQ '" & dtAFKO(0)("PLNBEZ").ToString & "'")
-            If dtMARA Is Nothing Then Throw New Exception("Larticle de l'OF " & sOF & " n'a pas été trouvé dans SAP.")
-            dtT179T = SAP_DATA_READ_T179T("PRODH EQ '" & dtMARA(0)("PRDHA").ToString & "'")
-            If dtT179T Is Nothing Then Throw New Exception("Le client de l'OF " & sOF & " n'a pas été trouvé dans SAP.")
-            dtMAKT = SAP_DATA_READ_MAKT("MATNR EQ '" & dtAFKO(0)("PLNBEZ").ToString & "'")
-            If dtMAKT Is Nothing Then Throw New Exception("La désignation d'aticle de l'OF " & sOF & " n'a pas été trouvé dans SAP.")
-
-            dt.Rows.Add()
-            dt.Rows(dt.Rows.Count - 1)("NU_OF") = sOF
-            dt.Rows(dt.Rows.Count - 1)("CD_ARTI_ECO") = dtAFKO(0)("PLNBEZ").ToString
-            dt.Rows(dt.Rows.Count - 1)("NM_CLIE") = Trim(dtT179T(0)("VTEXT").ToString)
-            dt.Rows(dt.Rows.Count - 1)("NM_DSGT_ARTI") = Trim(dtMAKT(0)("MAKTX").ToString)
-            dt.Rows(dt.Rows.Count - 1)("QT_OF") = Trim(dtAFKO(0)("GAMNG").ToString)
-            Return dt
+            Using dt As New DataTable
+                dt.Columns.Add("NU_OF", Type.GetType("System.String"))
+                dt.Columns.Add("CD_ARTI_ECO", Type.GetType("System.String"))
+                dt.Columns.Add("NM_CLIE", Type.GetType("System.String"))
+                dt.Columns.Add("NM_DSGT_ARTI", Type.GetType("System.String"))
+                dt.Columns.Add("QT_OF", Type.GetType("System.String"))
+                Using dtAFKO = SAP_DATA_READ_AFKO($"AUFNR LIKE '%{sOF}'")
+                    If dtAFKO Is Nothing Then Throw New Exception($"L'OF n°{sOF} n'a pas été trouvé dans SAP.")
+                    Using dtMARA = SAP_DATA_READ_MARA($"MATNR EQ '{dtAFKO(0)("PLNBEZ").ToString}'")
+                        If dtMARA Is Nothing Then Throw New Exception($"L'article de l'OF {sOF} n'a pas été trouvé dans SAP.")
+                        Using dtT179T = SAP_DATA_READ_T179T($"PRODH EQ '{dtMARA(0)("PRDHA").ToString}'")
+                            If dtT179T Is Nothing Then Throw New Exception($"Le client de l'OF {sOF} n'a pas été trouvé dans SAP.")
+                            Using dtMAKT = SAP_DATA_READ_MAKT($"MATNR EQ '{dtAFKO(0)("PLNBEZ").ToString}'")
+                                If dtMAKT Is Nothing Then Throw New Exception($"La désignation d'aticle de l'OF {sOF} n'a pas été trouvé dans SAP.")
+                                dt.Rows.Add()
+                                dt.Rows(dt.Rows.Count - 1)("NU_OF") = sOF
+                                dt.Rows(dt.Rows.Count - 1)("CD_ARTI_ECO") = dtAFKO(0)("PLNBEZ").ToString
+                                dt.Rows(dt.Rows.Count - 1)("NM_CLIE") = Trim(dtT179T(0)("VTEXT").ToString)
+                                dt.Rows(dt.Rows.Count - 1)("NM_DSGT_ARTI") = Trim(dtMAKT(0)("MAKTX").ToString)
+                                dt.Rows(dt.Rows.Count - 1)("QT_OF") = Trim(dtAFKO(0)("GAMNG").ToString)
+                                Return dt
+                            End Using
+                        End Using
+                    End Using
+                End Using
+            End Using
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
@@ -708,33 +680,29 @@ Public Class Class_SAP_DATA
 
     End Function
     Public Shared Function SAP_DATA_READ_MSEG(Optional sFILT As String = "") As DataTable
-        Dim dtMSEG As New DataTable
-
         Try
-            dtMSEG = SAP_DATA_READ_TBL("MSEG", "|", "", "MBLNR MJAHR ZEILE MATNR CHARG MENGE ELIKZ", sFILT)
-            If dtMSEG Is Nothing Then Throw New Exception("Problème de lecture de la table MSEG avec le filtre : " & sFILT)
+            Using dtMSEG = SAP_DATA_READ_TBL("MSEG", "|", "", "MBLNR MJAHR ZEILE MATNR CHARG MENGE ELIKZ", sFILT)
+                If dtMSEG Is Nothing Then Throw New Exception($"Problème de lecture de la table MSEG avec le filtre : {sFILT}")
+                LOG_Msg(GetCurrentMethod, $"Lecture de la table MSEG effectuée avec le filtre : {sFILT}")
+                Return dtMSEG
+            End Using
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
         End Try
-
-        LOG_Msg(GetCurrentMethod, "Lecture de la table MSEG effectuée avec le filtre : " & sFILT)
-        Return dtMSEG
     End Function
 
     Public Shared Function SAP_DATA_READ_STPO(Optional sFILT As String = "") As DataTable
-        Dim dtSTPO As New DataTable
-
         Try
-            dtSTPO = SAP_DATA_READ_TBL("STPO", "|", "", "STLNR STLKN STPOZ IDNRK MENGE", sFILT)
-            If dtSTPO Is Nothing Then Throw New Exception("Problème de lecture de la table STPO avec le filtre : " & sFILT)
+            Using dtSTPO = SAP_DATA_READ_TBL("STPO", "|", "", "STLNR STLKN STPOZ IDNRK MENGE", sFILT)
+                If dtSTPO Is Nothing Then Throw New Exception($"Problème de lecture de la table STPO avec le filtre : {sFILT}")
+                LOG_Msg(GetCurrentMethod, $"Lecture de la table STPO effectuée avec le filtre : {sFILT}")
+                Return dtSTPO
+            End Using
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
         End Try
-
-        LOG_Msg(GetCurrentMethod, "Lecture de la table STPO effectuée avec le filtre : " & sFILT)
-        Return dtSTPO
     End Function
     'Private Const ABAP_APP_SERVER As String = "NCO_TESTS"
     Public Shared Function SAP_DATA_Z_ORDOPEINFO_GET(V_AUFNR As String, Optional V_VORNR As String = "", Optional LOG_SAP As String = "") As DataTable
@@ -748,7 +716,7 @@ Public Class Class_SAP_DATA
             '    RFC = destination.Repository.CreateFunction("Z_ORDOPEINFO_GET")
             '    'RFC = oSAP.Add("Z_ORDOPEINFO_GET")
             '    For Each parameter As IRfcParameter In RFC
-            '        LOG_Msg(GetCurrentMethod, parameter.Metadata.Name & "|" & parameter.GetString())
+            '        LOG_Msg(GetCurrentMethod, parameter.Metadata.Name}|{parameter.GetString())
             '    Next
             'RFC.exports("V_AUFNR") = V_AUFNR
             'RFC.exports("V_VORNR") = V_VORNR
@@ -823,11 +791,10 @@ Public Class Class_SAP_DATA
             oSAP = SAP_DATA_DECO(oSAP)
         End Try
 
-        LOG_Msg(GetCurrentMethod, "Exécution de la fonction Z_ORDOPEINFO_GET réussie. " & dt_ORDOPEINFO_GET.Rows.Count & " lignes trouvées.")
+        LOG_Msg(GetCurrentMethod, $"Exécution de la fonction Z_ORDOPEINFO_GET réussie. {dt_ORDOPEINFO_GET.Rows.Count} lignes trouvées.")
         Return dt_ORDOPEINFO_GET
 
     End Function
-    'http://10.100.8.98:40000/PagesMembres/Production/ALMS/ALMS_IMPORT
 
     Public Shared Function SAP_DATA_Z_GAMM_ARTI(V_MATNR As String, Optional sFilt As String = "") As DataTable
         'Dim oSAP, RFC, oT_Z_GAMME_ARTI As New Object
@@ -874,72 +841,63 @@ Public Class Class_SAP_DATA
 
         Try
             dt_T_Z_GAMME_ARTI = SAP_DATA_READ_TBL("Z_GAMME_ARTICLE", "|", "", "V_MATNR WERKS V_PLNTY V_STATU", sFilt)
-            If dt_T_Z_GAMME_ARTI Is Nothing Then Throw New Exception("Problème de lecture de la table Z_GAMME_ARTICLE avec le filtre : " & sFilt)
+            If dt_T_Z_GAMME_ARTI Is Nothing Then Throw New Exception($"Problème de lecture de la table Z_GAMME_ARTICLE avec le filtre :  {sFilt}")
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
         End Try
 
-        LOG_Msg(GetCurrentMethod, "Lecture de la table Z_GAMME_ARTICLE effectuée avec le filtre : " & sFilt)
+        LOG_Msg(GetCurrentMethod, $"Lecture de la table Z_GAMME_ARTICLE effectuée avec le filtre  {sFilt}")
         Return dt_T_Z_GAMME_ARTI
 
 
     End Function
 
     Public Shared Function SAP_DATA_READ_MAPL(Optional sFILT As String = "") As DataTable
-
-        Dim dtMAPL As New DataTable
-
         Try
-            dtMAPL = SAP_DATA_READ_TBL("MAPL", "|", "", "MATNR PLNNR PLNAL WERKS LOEKZ", sFILT)
-            If dtMAPL Is Nothing Then Throw New Exception("Problème de lecture de la table MAPL avec le filtre : " & sFILT)
+            Using dtMAPL = SAP_DATA_READ_TBL("MAPL", "|", "", "MATNR PLNNR PLNAL WERKS LOEKZ", sFILT)
+                If dtMAPL Is Nothing Then Throw New Exception($"Problème de lecture de la table MAPL avec le filtre  {sFILT}")
+                LOG_Msg(GetCurrentMethod, $"Lecture de la table MAPL effectuée avec le filtre  {sFILT}")
+                Return dtMAPL
+            End Using
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
         End Try
-
-        LOG_Msg(GetCurrentMethod, "Lecture de la table MAPL effectuée avec le filtre : " & sFILT)
-        Return dtMAPL
     End Function
 
     Public Shared Function SAP_DATA_READ_PLAS(Optional sFILT As String = "") As DataTable
-
-        Dim dtPLAS As New DataTable
-
         Try
-            dtPLAS = SAP_DATA_READ_TBL("PLAS", "|", "", "PLNAL PLNNR ZAEHL LOEKZ", sFILT)
-            If dtPLAS Is Nothing Then Throw New Exception("Problème de lecture de la table PLAS avec le filtre : " & sFILT)
+            Using dtPLAS = SAP_DATA_READ_TBL("PLAS", "|", "", "PLNAL PLNNR ZAEHL LOEKZ", sFILT)
+                If dtPLAS Is Nothing Then Throw New Exception($"Problème de lecture de la table PLAS avec le filtre  {sFILT}")
+                LOG_Msg(GetCurrentMethod, $"Lecture de la table PLAS effectuée avec le filtre  {sFILT}")
+                Return dtPLAS
+            End Using
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
         End Try
-
-        LOG_Msg(GetCurrentMethod, "Lecture de la table PLAS effectuée avec le filtre : " & sFILT)
-        Return dtPLAS
     End Function
 
     Public Shared Function SAP_DATA_READ_PLPO(Optional sFILT As String = "") As DataTable
-
-        Dim dtPLPO As New DataTable
-
         Try
-            dtPLPO = SAP_DATA_READ_TBL("PLPO", "|", "", "VORNR LTXA1 STEUS ARBID PLNNR PLNKN", sFILT)
-            If dtPLPO Is Nothing Then Throw New Exception("Problème de lecture de la table PLPO avec le filtre : " & sFILT)
+            Using dtPLPO = SAP_DATA_READ_TBL("PLPO", "|", "", "VORNR LTXA1 STEUS ARBID PLNNR PLNKN", sFILT)
+                If dtPLPO Is Nothing Then Throw New Exception($"Problème de lecture de la table PLPO avec le filtre  {sFILT}")
+                LOG_Msg(GetCurrentMethod, $"Lecture de la table PLPO effectuée avec le filtre  {sFILT}")
+                Return dtPLPO
+            End Using
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
         End Try
-
-        LOG_Msg(GetCurrentMethod, "Lecture de la table PLPO effectuée avec le filtre : " & sFILT)
-        Return dtPLPO
     End Function
 
     Public Shared Function SAP_DATA_READ_ZVERIF(Optional sFILT As String = "") As DataTable
 
         Try
             Using dtZVERIF = SAP_DATA_READ_TBL("ZVERIF", "|", "", "MANDT BUKRS NO_MOYEN NO_VERIF DATEVERIF REALPAR COMMENTAIRES CHEMIN_CONSTAT CREE_PAR DATE_CREATION HEURE_CREATION", sFILT)
-                If dtZVERIF Is Nothing Then Throw New Exception($"Problème de lecture de la table ZVERIF avec le filtre : {sFILT}")
-                LOG_Msg(GetCurrentMethod, $"Lecture de la table ZVERIF effectuée avec le filtre : {sFILT}")
+                If dtZVERIF Is Nothing Then Throw New Exception($"Problème de lecture de la table ZVERIF avec le filtre  {sFILT}")
+                LOG_Msg(GetCurrentMethod, $"Lecture de la table ZVERIF effectuée avec le filtre  {sFILT}")
                 Return dtZVERIF
             End Using
         Catch ex As Exception
@@ -954,8 +912,8 @@ Public Class Class_SAP_DATA
 
         Try
             Using dtKNMT = SAP_DATA_READ_TBL("KNMT", "|", "", "KDMAT MATNR KUNNR VKORG VTWEG", sFILT)
-                If dtKNMT Is Nothing Then Throw New Exception($"Problème de lecture de la table KNMT avec le filtre : {sFILT}")
-                LOG_Msg(GetCurrentMethod, $"Lecture de la table KNMT effectuée avec le filtre : {sFILT}")
+                If dtKNMT Is Nothing Then Throw New Exception($"Problème de lecture de la table KNMT avec le filtre  {sFILT}")
+                LOG_Msg(GetCurrentMethod, $"Lecture de la table KNMT effectuée avec le filtre  {sFILT}")
                 Return dtKNMT
             End Using
         Catch ex As Exception
@@ -970,8 +928,8 @@ Public Class Class_SAP_DATA
         Try
             Using dtZMOYENTYPETEST = SAP_DATA_READ_TBL("ZMOYENTYPETEST", "|", "", "NO_MOYEN PROCHVERIF", sFILT)
                 '"MANDT BUKRS NO_MOYEN DESIG REFCLIENT NO_TYPE_TEST DEV_PAR DATEMES RESPMES INDMAT VERSLOG LOCA STKG TECHRESP1 TECHRESP2 TECHRESP3 PERIOMAINT PROCHMAINT PROCMAINT PERIOVERIF PROCHVERIF PROCVERIF MODELECONSTAT CREE_PAR DATE_CREATION HEURE_CREATION MODIFIE_PAR DATE_MODIF HEURE_MODIF INACTIF VERIF_N_A INDICE_DMT ARCHIVE TPS_INTERV ACTION_EC LINE_INDEX", sFILT)
-                If dtZMOYENTYPETEST Is Nothing Then Throw New Exception($"Problème de lecture de la table ZMOYENTYPETEST avec le filtre : {sFILT}")
-                LOG_Msg(GetCurrentMethod, $"Lecture de la table ZMOYENTYPETEST effectuée avec le filtre : {sFILT}")
+                If dtZMOYENTYPETEST Is Nothing Then Throw New Exception($"Problème de lecture de la table ZMOYENTYPETEST avec le filtre  {sFILT}")
+                LOG_Msg(GetCurrentMethod, $"Lecture de la table ZMOYENTYPETEST effectuée avec le filtre  {sFILT}")
                 Return dtZMOYENTYPETEST
             End Using
         Catch ex As Exception
@@ -1021,7 +979,7 @@ Public Class Class_SAP_DATA
                     'LOG_Msg(GetCurrentMethod, o_LIGN_T_TAB_DOC_SAP(o_COL_T_TAB_DOC_SAP.Name))
                     dt_T_TAB_DOC_SAP.Rows(dt_T_TAB_DOC_SAP.Rows.Count - 1)(o_COL_T_TAB_DOC_SAP.Name) = o_LIGN_T_TAB_DOC_SAP(o_COL_T_TAB_DOC_SAP.Name)
                 Next
-                'LOG_Msg(GetCurrentMethod, "DKTXT" & o_LIGN_T_TAB_DOC_SAP("DKTXT").ToString)
+                'LOG_Msg(GetCurrentMethod, "DKTXT{o_LIGN_T_TAB_DOC_SAP("DKTXT").ToString)
             Next
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
@@ -1030,7 +988,7 @@ Public Class Class_SAP_DATA
             oSAP = SAP_DATA_DECO(oSAP)
         End Try
 
-        LOG_Msg(GetCurrentMethod, $"Exécution de la fonction Z_GET_DOC_INFO réussie. " & dt_T_TAB_DOC_SAP.Rows.Count & " lignes trouvées")
+        LOG_Msg(GetCurrentMethod, $"Exécution de la fonction Z_GET_DOC_INFO réussie. {dt_T_TAB_DOC_SAP.Rows.Count} lignes trouvées")
         Return dt_T_TAB_DOC_SAP
 
     End Function

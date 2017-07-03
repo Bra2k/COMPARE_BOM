@@ -170,7 +170,7 @@
                             <div class="col-md-3">
                                 <a class="info btn btn-default" href="/PagesMembres/Digital_Factory/IPTT_ADRE_MAC.aspx">
                                     <img src="/App_Themes/ICON_COMPARE/computer3.ico" style="max-width : 80%;"/>
-                                    <br />Importation des adresses MAC
+                                    <br /><label>Importation des adresses MAC</label/>
                                     <%--<span>Vers page importation des adresses MAC</span>--%>
                                 </a>
                             </div>
