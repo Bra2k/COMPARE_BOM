@@ -47,16 +47,14 @@ Public Class Class_SQL
     Public Shared Function SQL_SELE_TO_DT(sQuery As String, sChaineConnexion As String) As DataTable
 
         Try
-            Using dt As New DataTable
-                Using con = New SqlConnection()
-                    con.ConnectionString = sChaineConnexion
-                    con.Open()
-                    Using dad As New SqlDataAdapter(sQuery, con)
-                        dad.SelectCommand.CommandTimeout = 7200
-                        dad.Fill(dt)
-                    End Using
-                    con.Close()
+            Using dt As New DataTable, con = New SqlConnection()
+                con.ConnectionString = sChaineConnexion
+                con.Open()
+                Using dad As New SqlDataAdapter(sQuery, con)
+                    dad.SelectCommand.CommandTimeout = 7200
+                    dad.Fill(dt)
                 End Using
+                con.Close()
                 If dt.Rows.Count = 0 Then Throw New Exception($"la requête {sQuery} n'a retourné aucun résultat.")
                 LOG_Msg(GetCurrentMethod, $"la requête {sQuery} a été exécutée.")
                 Return dt
@@ -72,14 +70,12 @@ Public Class Class_SQL
     Public Shared Sub SQL_REQ_ACT(sQuery As String, sChaineConnexion As String)
 
         Try
-            Using con = New SqlConnection()
+            Using con = New SqlConnection(), cmd As New SqlCommand
                 con.ConnectionString = sChaineConnexion
                 con.Open()
-                Using cmd As New SqlCommand
-                    cmd.Connection = con
-                    cmd.CommandText = sQuery
-                    If cmd.ExecuteNonQuery() = 0 Then Throw New Exception($"la requête {sQuery} n'a retourné aucun résultat.")
-                End Using
+                cmd.Connection = con
+                cmd.CommandText = sQuery
+                If cmd.ExecuteNonQuery() = 0 Then Throw New Exception($"la requête {sQuery} n'a retourné aucun résultat.")
                 con.Close()
                 LOG_Msg(GetCurrentMethod, $"la requête {sQuery} a été exécutée.")
             End Using
@@ -95,16 +91,14 @@ Public Class Class_SQL
         Dim ID As Integer
 
         Try
-            Using con As New SqlConnection
+            Using con As New SqlConnection, cmd As New SqlCommand
                 con.ConnectionString = sChaineConnexion
                 con.Open()
-                Using cmd As New SqlCommand
-                    cmd.Connection = con
-                    cmd.CommandText = sQuery
-                    If cmd.ExecuteNonQuery() = 0 Then Throw New Exception($"la requête {sQuery} n'a retourné aucun résultat.")
-                    cmd.CommandText = "SELECT @@IDENTITY"
-                    ID = cmd.ExecuteScalar()
-                End Using
+                cmd.Connection = con
+                cmd.CommandText = sQuery
+                If cmd.ExecuteNonQuery() = 0 Then Throw New Exception($"la requête {sQuery} n'a retourné aucun résultat.")
+                cmd.CommandText = "SELECT @@IDENTITY"
+                ID = cmd.ExecuteScalar()
                 con.Close()
                 LOG_Msg(GetCurrentMethod, $"la requête {sQuery} a été exécutée et a retouné l'ID {ID.ToString}")
                 Return ID
@@ -230,11 +224,9 @@ Public Class Class_SQL
     Public Shared Function SQL_GET_DT_FROM_STOR_PROC(ByRef cmd As SqlCommand) As DataTable
 
         Try
-            Using dt As New DataTable
-                Using da = New SqlDataAdapter(cmd)
-                    da.Fill(dt)
-                    If dt.Rows.Count = 0 Then Throw New Exception("Aucun résultat retourné dans la procédure stockée")
-                End Using
+            Using dt As New DataTable, da = New SqlDataAdapter(cmd)
+                da.Fill(dt)
+                If dt.Rows.Count = 0 Then Throw New Exception("Aucun résultat retourné dans la procédure stockée")
                 LOG_Msg(GetCurrentMethod, "La datatable a été copiée dans la base")
                 Return dt
             End Using
