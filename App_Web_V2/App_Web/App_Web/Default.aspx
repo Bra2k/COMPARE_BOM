@@ -17,7 +17,7 @@
     <div id="tableau" class="row">
         <div class="col-md-3">
             <div id="info" class="row">
-                <div class="img-thumbnail col-xs-12 img-circle centered-text">
+                <div class="img-thumbnail col-xs-12 centered-text">
                     <asp:Label ID="Label_PHOT" runat="server" Text=""></asp:Label>
                 </div>
                 <div class="bg-info col-xs-4">
@@ -160,14 +160,18 @@
                                     <asp:ImageButton ID="Composant" ImageUrl="~\App_Themes\ICON_COMPARE\composant2.ico" runat="server" Height="100px" Width="100px" PostBackUrl="~/PagesMembres/Digital_Factory/TCBL_COMP.aspx" /><span>Vers page composants</span></a>
                             </div>
                             <div class="col-md-3">
-                                <a class="info" href="#">
-                                    <asp:ImageButton ID="CodeBarre" ImageUrl="~\App_Themes\ICON_COMPARE\ensemble.ico" runat="server" Height="100px" Width="100px" PostBackUrl="~/PagesMembres/Digital_Factory/TCBL_ESB_SS_ESB_V2.aspx" /><span>Vers page ensembles</span></a>
+                                <a class="info btn btn-default"  href="/PagesMembres/Digital_Factory/TCBL_ESB_SS_ESB_V2.aspx">
+                                    <img src="/App_Themes/ICON_COMPARE/ensemble.ico"  style="max-width : 80%;"/>
+                                    <br />Saisie ensemble / sous-ensemble
+<%--                                    <span>Vers page ensembles</span>--%>
+                                </a>
+<%--                                    <asp:ImageButton ID="CodeBarre" ImageUrl="~\App_Themes\ICON_COMPARE\ensemble.ico" runat="server" Height="100px" Width="100px" PostBackUrl="~/PagesMembres/Digital_Factory/TCBL_ESB_SS_ESB_V2.aspx" /><span>Vers page ensembles</span></a>--%>
                             </div>
                             <div class="col-md-3">
                                 <a class="info btn btn-default" href="/PagesMembres/Digital_Factory/IPTT_ADRE_MAC.aspx">
-                                    <img src="/App_Themes/ICON_COMPARE/computer3.ico" />
-                                    <br />Importation des adresses MAC
-                                    <span>Vers page importation des adresses MAC</span>
+                                    <img src="/App_Themes/ICON_COMPARE/computer3.ico" style="max-width : 80%;"/>
+                                    <br /><label>Importation des adresses MAC</label/>
+                                    <%--<span>Vers page importation des adresses MAC</span>--%>
                                 </a>
                             </div>
                         </div>

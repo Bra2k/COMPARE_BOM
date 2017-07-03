@@ -1,0 +1,735 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ALMS_PROD_PRDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Erreurs détectées durant la génération :
+avertissement 6013: Aucune clé primaire n'est définie pour la table/vue 'ALMS_PROD_PRD.dbo._old_DTM_REF_LIAI_ARTI_@supp_5-2017' ; en outre, aucune clé primaire valide n'a pu être déduite. Cette table/vue a été exclue. Pour utiliser l'entité, vous devez passer en revue votre schéma, ajouter les clés appropriées et supprimer le commentaire associé.
+        <EntityType Name="_old_DTM_REF_LIAI_ARTI_@supp_5-2017">
+          <Property Name="CD_ARTI_PROD_ALMS" Type="nvarchar" MaxLength="40" />
+          <Property Name="CD_ARTI_PROD_ECO" Type="nvarchar" MaxLength="40" />
+          <Property Name="DT_INSE" Type="datetime2" Precision="7" />
+        </EntityType>-->
+  <EntityType Name="DTM_ADRE_MAC">
+    <Key>
+      <PropertyRef Name="NU_ADRE_MAC" />
+    </Key>
+    <Property Name="NU_ADRE_MAC" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="CD_ARTI_CART" Type="nvarchar" MaxLength="50" />
+    <Property Name="CD_ARTI_PROD" Type="nvarchar" MaxLength="50" />
+    <Property Name="NU_BANC" Type="nvarchar" MaxLength="10" />
+    <Property Name="BL_RSVT" Type="bit" />
+  </EntityType>
+  <!--Erreurs détectées durant la génération :
+avertissement 6013: Aucune clé primaire n'est définie pour la table/vue 'ALMS_PROD_PRD.dbo.DTM_CSTA_POST' ; en outre, aucune clé primaire valide n'a pu être déduite. Cette table/vue a été exclue. Pour utiliser l'entité, vous devez passer en revue votre schéma, ajouter les clés appropriées et supprimer le commentaire associé.
+        <EntityType Name="DTM_CSTA_POST">
+          <Property Name="ID_POST" Type="nvarchar" MaxLength="20" />
+          <Property Name="ID_MTRE" Type="nvarchar" MaxLength="20" />
+          <Property Name="DT_AFCT" Type="datetime2" Precision="0" />
+          <Property Name="BL_STAT" Type="bit" />
+          <Property Name="BL_SORT_FCGF" Type="bit" />
+        </EntityType>-->
+  <EntityType Name="DTM_HSQR_STAT_PROD">
+    <Key>
+      <PropertyRef Name="NU_SER_SPFE" />
+      <PropertyRef Name="NU_TEST" />
+      <PropertyRef Name="ID_RFRC_SEQU" />
+      <PropertyRef Name="NU_PHAS" />
+    </Key>
+    <Property Name="NU_SER_SPFE" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="NU_TEST" Type="tinyint" Nullable="false" />
+    <Property Name="ID_RFRC_SEQU" Type="bigint" Nullable="false" />
+    <Property Name="NU_PHAS" Type="smallint" Nullable="false" />
+    <Property Name="ID_STAT_PROD" Type="tinyint" />
+    <Property Name="DT_STAT_PROD" Type="datetime2" Precision="0" Nullable="false" />
+    <Property Name="ID_OPRT" Type="smallint" />
+    <Property Name="ID_POST" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="DTM_NC_DETA">
+    <Key>
+      <PropertyRef Name="NU_INCI" />
+      <PropertyRef Name="ID_STAT" />
+    </Key>
+    <Property Name="NU_INCI" Type="int" Nullable="false" />
+    <Property Name="DT_ITVT" Type="datetime2" Precision="0" />
+    <Property Name="ID_OPRT" Type="smallint" />
+    <Property Name="BL_ETAT" Type="bit" />
+    <Property Name="ID_STAT" Type="tinyint" Nullable="false" />
+    <Property Name="ID_TYPE_CAUS" Type="tinyint" />
+  </EntityType>
+  <EntityType Name="DTM_NC_LIST">
+    <Key>
+      <PropertyRef Name="NU_INCI" />
+    </Key>
+    <Property Name="ID_TYPE_NC" Type="tinyint" />
+    <Property Name="NU_INCI" Type="int" Nullable="false" />
+    <Property Name="NU_SER_SPFE" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="CD_ARTI_PROD" Type="nvarchar" MaxLength="8" Nullable="false" />
+    <Property Name="NU_DRGT" Type="nvarchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="DTM_NMCT_PROD">
+    <Key>
+      <PropertyRef Name="NU_SER_SPFE" />
+      <PropertyRef Name="NU_SER_COMP" />
+      <PropertyRef Name="CD_ARTI_COMP" />
+    </Key>
+    <Property Name="NU_SER_SPFE" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="CD_ARTI_PROD" Type="nvarchar" MaxLength="8" Nullable="false" />
+    <Property Name="NU_SER_COMP" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CD_ARTI_COMP" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="BL_TYPE_TCBL" Type="bit" />
+    <Property Name="BL_APVS_ECO" Type="bit" />
+    <Property Name="NU_VERS_COMP" Type="smallint" />
+    <Property Name="DT_AFCT" Type="datetime2" Precision="0" />
+    <Property Name="NM_DSGT_COMP" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="DTM_NU_SER">
+    <Key>
+      <PropertyRef Name="NU_SER_SPFE" />
+    </Key>
+    <Property Name="NU_SER_SPFE" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="CD_ARTI_PROD" Type="nvarchar" MaxLength="8" Nullable="false" />
+    <Property Name="NU_OF" Type="int" />
+    <Property Name="ID_TYPE_NU_SER" Type="tinyint" />
+    <Property Name="NU_SER" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="DTM_REF_GAMM">
+    <Key>
+      <PropertyRef Name="ID_GAMM_PROD" />
+    </Key>
+    <Property Name="ID_GAMM_PROD" Type="tinyint" Nullable="false" />
+    <Property Name="NM_DSGT_GAMM_PROD" Type="nvarchar" MaxLength="50" />
+    <Property Name="ID_GAMM_PROD_ALMS" Type="nvarchar" MaxLength="3" />
+  </EntityType>
+  <EntityType Name="DTM_REF_GAMM_ARTI">
+    <Key>
+      <PropertyRef Name="ID_GAMM_PROD" />
+      <PropertyRef Name="CD_ARTI_PROD" />
+    </Key>
+    <Property Name="ID_GAMM_PROD" Type="tinyint" Nullable="false" />
+    <Property Name="CD_ARTI_PROD" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="NM_DSGT_ARTI" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'ALMS_PROD_PRD.dbo.DTM_REF_ID' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+  <EntityType Name="DTM_REF_ID">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NM_CHAM" Type="bit" />
+  </EntityType>
+  <EntityType Name="DTM_REF_ID_TEST">
+    <Key>
+      <PropertyRef Name="ID_TEST" />
+      <PropertyRef Name="ID_GAMM_PROD" />
+    </Key>
+    <Property Name="ID_TEST" Type="int" Nullable="false" />
+    <Property Name="NM_DSGT_TEST" Type="nvarchar" MaxLength="200" />
+    <Property Name="ID_GAMM_PROD" Type="tinyint" Nullable="false" />
+    <Property Name="BL_ATVT" Type="bit" />
+    <Property Name="DT_CREA" Type="datetime2" Precision="0" />
+  </EntityType>
+  <EntityType Name="DTM_REF_MTRE_LIST">
+    <Key>
+      <PropertyRef Name="ID_MTRE" />
+      <PropertyRef Name="DT_ATVT" />
+    </Key>
+    <Property Name="ID_MTRE" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="BL_NATU" Type="bit" />
+    <Property Name="LB_DCPT" Type="nvarchar" MaxLength="100" />
+    <Property Name="BL_ATVT" Type="bit" />
+    <Property Name="DT_ATVT" Type="datetime2" Precision="0" Nullable="false" />
+    <Property Name="BL_SORT_FCGF" Type="bit" />
+  </EntityType>
+  <EntityType Name="DTM_REF_OPRT">
+    <Key>
+      <PropertyRef Name="ID_OPRT" />
+    </Key>
+    <Property Name="ID_OPRT" Type="smallint" Nullable="false" />
+    <Property Name="LB_INIT" Type="nvarchar" MaxLength="5" />
+    <Property Name="ID_HBLT_ALMS" Type="tinyint" />
+    <Property Name="BL_ATVT" Type="bit" />
+    <Property Name="DT_ATVT" Type="datetime2" Precision="0" />
+    <Property Name="ID_MTCL_ECO" Type="smallint" />
+  </EntityType>
+  <EntityType Name="DTM_REF_STAT">
+    <Key>
+      <PropertyRef Name="ID_STAT" />
+    </Key>
+    <Property Name="ID_STAT" Type="tinyint" Nullable="false" />
+    <Property Name="LB_DCPT_STAT" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Erreurs détectées durant la génération :
+avertissement 6013: Aucune clé primaire n'est définie pour la table/vue 'ALMS_PROD_PRD.dbo.DTM_REF_TYPE_CAUS' ; en outre, aucune clé primaire valide n'a pu être déduite. Cette table/vue a été exclue. Pour utiliser l'entité, vous devez passer en revue votre schéma, ajouter les clés appropriées et supprimer le commentaire associé.
+        <EntityType Name="DTM_REF_TYPE_CAUS">
+          <Property Name="ID_TYPE_CAUS" Type="tinyint" />
+          <Property Name="ID_TYPE_DEFA" Type="tinyint" />
+          <Property Name="CD_ARTI_DFTE" Type="nvarchar" MaxLength="8" />
+          <Property Name="NM_RSLT" Type="nvarchar" MaxLength="4000" />
+          <Property Name="ID_RFRC_SEQU_RETO" Type="bigint" />
+          <Property Name="NU_PHAS_FCGF_RETO" Type="smallint" />
+        </EntityType>-->
+  <!--Erreurs détectées durant la génération :
+avertissement 6013: Aucune clé primaire n'est définie pour la table/vue 'ALMS_PROD_PRD.dbo.DTM_REF_TYPE_DEFA' ; en outre, aucune clé primaire valide n'a pu être déduite. Cette table/vue a été exclue. Pour utiliser l'entité, vous devez passer en revue votre schéma, ajouter les clés appropriées et supprimer le commentaire associé.
+        <EntityType Name="DTM_REF_TYPE_DEFA">
+          <Property Name="ID_TYPE_DEFA" Type="tinyint" />
+          <Property Name="NM_DSGT_DEFA" Type="nvarchar" MaxLength="4000" />
+        </EntityType>-->
+  <!--Erreurs détectées durant la génération :
+avertissement 6013: Aucune clé primaire n'est définie pour la table/vue 'ALMS_PROD_PRD.dbo.DTM_REF_TYPE_NC' ; en outre, aucune clé primaire valide n'a pu être déduite. Cette table/vue a été exclue. Pour utiliser l'entité, vous devez passer en revue votre schéma, ajouter les clés appropriées et supprimer le commentaire associé.
+        <EntityType Name="DTM_REF_TYPE_NC">
+          <Property Name="ID_TYPE_NC" Type="tinyint" />
+          <Property Name="NM_DCPO_NC" Type="nvarchar" MaxLength="4000" />
+          <Property Name="NU_PHAS_FCGF" Type="smallint" />
+          <Property Name="NU_SOUS_PHAS_FCGF" Type="smallint" />
+          <Property Name="ID_RFRC_SEQU" Type="bigint" />
+        </EntityType>-->
+  <EntityType Name="DTM_REF_TYPE_NU_SER">
+    <Key>
+      <PropertyRef Name="ID_TYPE_NU_SER" />
+    </Key>
+    <Property Name="ID_TYPE_NU_SER" Type="tinyint" Nullable="false" />
+    <Property Name="NM_TYPE_NU_SER" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="DTM_RESU_TEST_DETA">
+    <Key>
+      <PropertyRef Name="NU_SER_SPFE" />
+      <PropertyRef Name="NU_TEST" />
+      <PropertyRef Name="NU_ORDR_SEQU" />
+      <PropertyRef Name="NU_TEST_PHAS" />
+      <PropertyRef Name="ID_RFRC_SEQU" />
+    </Key>
+    <Property Name="NU_SER_SPFE" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="NU_TEST" Type="tinyint" Nullable="false" />
+    <Property Name="NU_ORDR_SEQU" Type="smallint" Nullable="false" />
+    <Property Name="NU_TEST_PHAS" Type="smallint" Nullable="false" />
+    <Property Name="CD_ARTI_PROD" Type="nvarchar" MaxLength="8" />
+    <Property Name="ID_RFRC_SEQU" Type="bigint" Nullable="false" />
+    <Property Name="NU_PHAS_FCGF" Type="smallint" />
+    <Property Name="NU_SOUS_PHAS_FCGF" Type="smallint" />
+    <Property Name="BL_SORT_FCGF" Type="bit" />
+    <Property Name="NU_LIMI_BASS" Type="float" />
+    <Property Name="NU_VALE" Type="float" />
+    <Property Name="LB_VALE" Type="nvarchar" MaxLength="50" />
+    <Property Name="NU_LIMI_HAUT" Type="float" />
+    <Property Name="ID_TEST" Type="int" />
+    <Property Name="NU_UNIT" Type="nvarchar" MaxLength="20" />
+    <Property Name="ID_STAT_PHAS" Type="tinyint" />
+    <Property Name="BL_STAT_PHAS" Type="bit" />
+    <Property Name="ID_POST" Type="nvarchar" MaxLength="20" />
+    <Property Name="ID_OPRT" Type="smallint" />
+    <Property Name="DT_TEST_PHAS" Type="datetime2" Precision="0" />
+    <Property Name="NB_TT" Type="bigint" />
+  </EntityType>
+  <EntityType Name="DTM_RESU_TEST_LIST">
+    <Key>
+      <PropertyRef Name="NU_SER_SPFE" />
+      <PropertyRef Name="NU_TEST" />
+      <PropertyRef Name="ID_RFRC_SEQU" />
+    </Key>
+    <Property Name="NU_SER_SPFE" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="NU_TEST" Type="tinyint" Nullable="false" />
+    <Property Name="CD_ARTI_PROD" Type="nvarchar" MaxLength="8" />
+    <Property Name="NM_RFRC_SEQU" Type="nvarchar" MaxLength="40" />
+    <Property Name="NU_VERS_SEQU" Type="tinyint" />
+    <Property Name="ID_RFRC_SEQU" Type="bigint" Nullable="false" />
+    <Property Name="NM_RFRC_FDV" Type="nvarchar" MaxLength="20" />
+    <Property Name="NU_VERS_FDV" Type="tinyint" />
+    <Property Name="ID_STAT_PROD" Type="tinyint" />
+    <Property Name="BL_STAT_PROD" Type="bit" />
+    <Property Name="NU_OF" Type="int" />
+    <Property Name="DT_TEST" Type="datetime2" Precision="0" />
+    <Property Name="ID_OPRT" Type="smallint" />
+  </EntityType>
+  <EntityType Name="DTM_SEQU_RFRC_DETA">
+    <Key>
+      <PropertyRef Name="ID_RFRC_SEQU" />
+      <PropertyRef Name="NU_ORDR_SEQU" />
+    </Key>
+    <Property Name="ID_RFRC_SEQU" Type="bigint" Nullable="false" />
+    <Property Name="NU_PHAS_FCGF" Type="smallint" />
+    <Property Name="NU_SOUS_PHAS_FCGF" Type="smallint" />
+    <Property Name="NU_ORDR_SEQU" Type="smallint" Nullable="false" />
+    <Property Name="ID_TEST" Type="int" />
+    <Property Name="LB_MESS_ERRE" Type="nvarchar" MaxLength="200" />
+    <Property Name="NM_DRIV" Type="nvarchar" MaxLength="200" />
+    <Property Name="LB_PARA_DRIV" Type="nvarchar" MaxLength="200" />
+    <Property Name="ID_SAUT_PASS" Type="smallint" />
+    <Property Name="ID_SAUT_FAIL" Type="smallint" />
+    <Property Name="BL_EXCT" Type="bit" />
+    <Property Name="NU_LIMI_BASS" Type="float" />
+    <Property Name="NU_LIMI_HAUT" Type="float" />
+    <Property Name="BL_COMP_LIMI" Type="bit" />
+    <Property Name="BL_ERRE" Type="bit" />
+    <Property Name="BL_AFFI_FACE_AVAN_LABV" Type="bit" />
+    <Property Name="BL_RAPP_FCGF" Type="bit" />
+    <Property Name="BL_SORT_FCGF" Type="bit" />
+    <Property Name="NM_UNIT" Type="nvarchar" MaxLength="10" />
+    <Property Name="NM_PHAS_FCGF" Type="nvarchar" MaxLength="200" />
+    <Property Name="NM_SOUS_PHAS_FCGF" Type="nvarchar" MaxLength="200" />
+    <Property Name="BL_RAPP_ACTI" Type="bit" />
+    <Property Name="BL_CH_VAL" Type="bit" />
+  </EntityType>
+  <EntityType Name="DTM_SEQU_RFRC_LIST">
+    <Key>
+      <PropertyRef Name="NM_RFRC_SEQU" />
+      <PropertyRef Name="NU_VERS_SEQU" />
+      <PropertyRef Name="ID_RFRC_SEQU" />
+    </Key>
+    <Property Name="NM_RFRC_SEQU" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="NU_VERS_SEQU" Type="tinyint" Nullable="false" />
+    <Property Name="ID_RFRC_SEQU" Type="bigint" Nullable="false" />
+    <Property Name="DT_APCT" Type="datetime2" Precision="0" />
+    <Property Name="DT_VLDT" Type="datetime2" Precision="0" />
+    <Property Name="BL_VLDT" Type="bit" />
+    <Property Name="NM_VALI_ALMS" Type="nvarchar" MaxLength="200" />
+    <Property Name="NM_VALI_ECO" Type="nvarchar" MaxLength="200" />
+    <Property Name="NM_RFRC_GAMM_ECO" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'ALMS_PROD_PRD.dbo.V_DHR_ECAR_PDTO' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+  <EntityType Name="V_DHR_ECAR_PDTO">
+    <Key>
+      <PropertyRef Name="NU_SER_SPFE" />
+      <PropertyRef Name="ID_STAT" />
+    </Key>
+    <Property Name="NM_DCPO_ANML" Type="nvarchar" MaxLength="4000" />
+    <Property Name="NM_ACTI_REAL" Type="nvarchar" MaxLength="4000" />
+    <Property Name="NU_SER_SPFE" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="ID_OPRT_REAL" Type="smallint" />
+    <Property Name="ID_OPRT_CONT" Type="smallint" />
+    <Property Name="ID_STAT" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="DT_ACTI_CONT" Type="datetime2" Precision="0" />
+    <Property Name="DT_ACTI_REAL" Type="datetime2" Precision="0" />
+  </EntityType>
+  <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'ALMS_PROD_PRD.dbo.V_FCGF' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+  <EntityType Name="V_FCGF">
+    <Key>
+      <PropertyRef Name="NU_SER_SPFE" />
+      <PropertyRef Name="LB_STAT_PROD" />
+      <PropertyRef Name="NM_STAT_PROD" />
+      <PropertyRef Name="LB_DCPT_STAT" />
+      <PropertyRef Name="LB_STAT_PHAS" />
+      <PropertyRef Name="NU_ORDR_SEQU" />
+    </Key>
+    <Property Name="NU_SER_SPFE" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="NM_RFRC_SEQU" Type="nvarchar" MaxLength="40" />
+    <Property Name="NU_VERS_SEQU" Type="tinyint" />
+    <Property Name="NM_RFRC_FDV" Type="nvarchar" MaxLength="20" />
+    <Property Name="NU_VERS_FDV" Type="tinyint" />
+    <Property Name="LB_STAT_PROD" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="NM_STAT_PROD" Type="varchar" MaxLength="12" Nullable="false" />
+    <Property Name="NU_OF" Type="int" />
+    <Property Name="DT_TEST" Type="datetime2" Precision="0" />
+    <Property Name="NM_PHAS" Type="nvarchar" MaxLength="200" />
+    <Property Name="NM_SOUS_PHAS" Type="nvarchar" MaxLength="200" />
+    <Property Name="NU_LIMI_BASS" Type="nvarchar" MaxLength="30" />
+    <Property Name="NU_VALE" Type="nvarchar" MaxLength="30" />
+    <Property Name="LB_VALE" Type="nvarchar" MaxLength="50" />
+    <Property Name="NU_LIMI_HAUT" Type="nvarchar" MaxLength="30" />
+    <Property Name="NU_UNIT" Type="nvarchar" MaxLength="20" />
+    <Property Name="LB_DCPT_STAT" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LB_STAT_PHAS" Type="varchar" MaxLength="12" Nullable="false" />
+    <Property Name="ID_POST" Type="nvarchar" MaxLength="20" />
+    <Property Name="ID_OPRT" Type="smallint" />
+    <Property Name="NU_OP" Type="int" />
+    <Property Name="NU_ORDR_SEQU" Type="smallint" Nullable="false" />
+    <Property Name="NU_PHAS_FCGF" Type="smallint" />
+    <Property Name="NU_SOUS_PHAS_FCGF" Type="smallint" />
+    <Property Name="BL_STAT_PHAS" Type="bit" />
+  </EntityType>
+  <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'ALMS_PROD_PRD.dbo.V_FCGF_ANML' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+  <EntityType Name="V_FCGF_ANML">
+    <Key>
+      <PropertyRef Name="NU_INCI" />
+      <PropertyRef Name="NU_SER_SPFE" />
+      <PropertyRef Name="LB_DCPT_STAT" />
+      <PropertyRef Name="NM_RFRC_SEQU" />
+      <PropertyRef Name="NU_VERS_SEQU" />
+      <PropertyRef Name="NM_RFRC_SEQU_RETO" />
+      <PropertyRef Name="NU_VERS_SEQU_RETO" />
+    </Key>
+    <Property Name="NU_INCI" Type="int" Nullable="false" />
+    <Property Name="NU_DRGT" Type="nvarchar" MaxLength="30" />
+    <Property Name="NU_SER_SPFE" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="DT_ITVT" Type="datetime2" Precision="0" />
+    <Property Name="LB_INIT" Type="nvarchar" MaxLength="5" />
+    <Property Name="ID_MTCL_ECO" Type="smallint" />
+    <Property Name="BL_ETAT" Type="bit" />
+    <Property Name="LB_DCPT_STAT" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="NM_DCPO_NC" Type="nvarchar" MaxLength="4000" />
+    <Property Name="NM_TYPE_NC" Type="nvarchar" MaxLength="105" />
+    <Property Name="NM_RFRC_SEQU" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="NU_VERS_SEQU" Type="tinyint" Nullable="false" />
+    <Property Name="NM_PHAS" Type="nvarchar" MaxLength="241" />
+    <Property Name="NM_SOUS_PHAS" Type="nvarchar" MaxLength="246" />
+    <Property Name="CD_ARTI_DFTE" Type="nvarchar" MaxLength="8" />
+    <Property Name="NM_DSGT_DEFA" Type="nvarchar" MaxLength="4000" />
+    <Property Name="NM_RSLT" Type="nvarchar" MaxLength="4000" />
+    <Property Name="NM_RFRC_SEQU_RETO" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="NU_VERS_SEQU_RETO" Type="tinyint" Nullable="false" />
+    <Property Name="NM_PHAS_RETO" Type="nvarchar" MaxLength="241" />
+  </EntityType>
+  <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'ALMS_PROD_PRD.dbo.V_LIST_TCBL_NMCT_PROD' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+  <EntityType Name="V_LIST_TCBL_NMCT_PROD">
+    <Key>
+      <PropertyRef Name="NU_SER_SPFE" />
+      <PropertyRef Name="NU_SER_COMP" />
+      <PropertyRef Name="CD_ARTI_COMP" />
+      <PropertyRef Name="NM_TYPE_TCBL" />
+    </Key>
+    <Property Name="NU_SER_SPFE" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="CD_ARTI_PROD" Type="nvarchar" MaxLength="8" />
+    <Property Name="NU_SER_COMP" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CD_ARTI_COMP" Type="nvarchar" MaxLength="8" Nullable="false" />
+    <Property Name="NM_DSGT_COMP" Type="nvarchar" MaxLength="500" />
+    <Property Name="NM_TYPE_TCBL" Type="varchar" MaxLength="8" Nullable="false" />
+    <Property Name="DT_AFCT" Type="datetime2" Precision="0" />
+  </EntityType>
+  <!--Erreurs détectées durant la génération :
+avertissement 6013: Aucune clé primaire n'est définie pour la table/vue 'ALMS_PROD_PRD.dbo.V_NC_DCPO_NU_DRGT' ; en outre, aucune clé primaire valide n'a pu être déduite. Cette table/vue a été exclue. Pour utiliser l'entité, vous devez passer en revue votre schéma, ajouter les clés appropriées et supprimer le commentaire associé.
+        <EntityType Name="V_NC_DCPO_NU_DRGT">
+          <Property Name="NU_DRGT" Type="nvarchar" MaxLength="30" />
+          <Property Name="NM_DCPO_NC" Type="nvarchar" MaxLength="4000" />
+        </EntityType>-->
+  <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'ALMS_PROD_PRD.dbo.V_NC_LIST_CD_ARTI_TCBL_UNIT' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+  <EntityType Name="V_NC_LIST_CD_ARTI_TCBL_UNIT">
+    <Key>
+      <PropertyRef Name="CD_ARTI_COMP" />
+      <PropertyRef Name="CD_ARTI_PROD" />
+    </Key>
+    <Property Name="CD_ARTI_COMP" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="CD_ARTI_PROD" Type="nvarchar" MaxLength="8" Nullable="false" />
+    <Property Name="BL_TYPE_TCBL" Type="bit" />
+    <Property Name="ID_TYPE_CAUS" Type="tinyint" />
+  </EntityType>
+  <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'ALMS_PROD_PRD.dbo.V_NC_LIST_INFO_NU_INCI' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+  <EntityType Name="V_NC_LIST_INFO_NU_INCI">
+    <Key>
+      <PropertyRef Name="NU_INCI" />
+      <PropertyRef Name="NU_SER_SPFE" />
+      <PropertyRef Name="ID_RFRC_SEQU" />
+      <PropertyRef Name="LB_DCPT_STAT" />
+    </Key>
+    <Property Name="NU_INCI" Type="int" Nullable="false" />
+    <Property Name="NU_SER_SPFE" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="ID_TYPE_NC" Type="tinyint" />
+    <Property Name="NM_TYPE_NC" Type="nvarchar" MaxLength="105" />
+    <Property Name="NM_DCPO_NC" Type="nvarchar" MaxLength="4000" />
+    <Property Name="ID_RFRC_SEQU" Type="bigint" Nullable="false" />
+    <Property Name="NM_RFRC_SEQU" Type="nvarchar" MaxLength="72" />
+    <Property Name="NU_PHAS_FCGF" Type="smallint" />
+    <Property Name="NM_PHAS" Type="nvarchar" MaxLength="241" />
+    <Property Name="NU_SOUS_PHAS_FCGF" Type="smallint" />
+    <Property Name="NM_SOUS_PHAS" Type="nvarchar" MaxLength="246" />
+    <Property Name="LB_DCPT_STAT" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Erreurs détectées durant la génération :
+avertissement 6013: Aucune clé primaire n'est définie pour la table/vue 'ALMS_PROD_PRD.dbo.V_NC_LIST_INFO_TYPE_CAUS' ; en outre, aucune clé primaire valide n'a pu être déduite. Cette table/vue a été exclue. Pour utiliser l'entité, vous devez passer en revue votre schéma, ajouter les clés appropriées et supprimer le commentaire associé.
+        <EntityType Name="V_NC_LIST_INFO_TYPE_CAUS">
+          <Property Name="ID_TYPE_CAUS" Type="tinyint" />
+          <Property Name="NM_DSGT_DEFA" Type="nvarchar" MaxLength="4000" />
+          <Property Name="CD_ARTI_DFTE" Type="nvarchar" MaxLength="8" />
+          <Property Name="NM_RSLT" Type="nvarchar" MaxLength="4000" />
+          <Property Name="ID_RFRC_SEQU_RETO" Type="bigint" />
+          <Property Name="NM_RFRC_SEQU" Type="nvarchar" MaxLength="72" />
+          <Property Name="NU_PHAS_FCGF_RETO" Type="smallint" />
+          <Property Name="NM_PHAS_RETO" Type="nvarchar" MaxLength="241" />
+        </EntityType>-->
+  <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'ALMS_PROD_PRD.dbo.V_NC_LIST_NU_INCI_NU_SER' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+  <EntityType Name="V_NC_LIST_NU_INCI_NU_SER">
+    <Key>
+      <PropertyRef Name="NU_SER_SPFE" />
+      <PropertyRef Name="NU_INCI" />
+    </Key>
+    <Property Name="NU_SER_SPFE" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="NU_INCI" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'ALMS_PROD_PRD.dbo.V_NC_LIST_PHAS_FAIL_NU_SER_ID_SEQ' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+  <EntityType Name="V_NC_LIST_PHAS_FAIL_NU_SER_ID_SEQ">
+    <Key>
+      <PropertyRef Name="NU_SER_SPFE" />
+      <PropertyRef Name="ID_RFRC_SEQU" />
+    </Key>
+    <Property Name="NU_SER_SPFE" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="ID_RFRC_SEQU" Type="bigint" Nullable="false" />
+    <Property Name="NU_PHAS_FCGF" Type="smallint" />
+    <Property Name="NM_PHAS" Type="nvarchar" MaxLength="241" />
+    <Property Name="NU_SOUS_PHAS_FCGF" Type="smallint" />
+    <Property Name="NM_SOUS_PHAS" Type="nvarchar" MaxLength="246" />
+  </EntityType>
+  <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'ALMS_PROD_PRD.dbo.V_NC_LIST_PROD_RETO_PDTO' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+  <EntityType Name="V_NC_LIST_PROD_RETO_PDTO">
+    <Key>
+      <PropertyRef Name="NU_SER_SPFE" />
+      <PropertyRef Name="NU_INCI" />
+    </Key>
+    <Property Name="ID_RFRC_SEQU_RETO" Type="bigint" />
+    <Property Name="NU_PHAS_FCGF_RETO" Type="smallint" />
+    <Property Name="NU_SER_SPFE" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="MAX_ID_STAT" Type="tinyint" />
+    <Property Name="NU_INCI" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'ALMS_PROD_PRD.dbo.V_NC_LIST_SEQU_FAIL_NU_SER' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+  <EntityType Name="V_NC_LIST_SEQU_FAIL_NU_SER">
+    <Key>
+      <PropertyRef Name="NU_SER_SPFE" />
+      <PropertyRef Name="ID_RFRC_SEQU" />
+      <PropertyRef Name="DT_TEST" />
+    </Key>
+    <Property Name="NU_SER_SPFE" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="NM_RFRC_SEQU" Type="nvarchar" MaxLength="72" />
+    <Property Name="MAX_NU_TEST" Type="tinyint" />
+    <Property Name="ID_RFRC_SEQU" Type="bigint" Nullable="false" />
+    <Property Name="DT_TEST" Type="datetime2" Precision="0" Nullable="false" />
+  </EntityType>
+  <!--Erreurs détectées durant la génération :
+avertissement 6013: Aucune clé primaire n'est définie pour la table/vue 'ALMS_PROD_PRD.dbo.V_NC_LIST_TYPE_NC_ID_SEQ' ; en outre, aucune clé primaire valide n'a pu être déduite. Cette table/vue a été exclue. Pour utiliser l'entité, vous devez passer en revue votre schéma, ajouter les clés appropriées et supprimer le commentaire associé.
+        <EntityType Name="V_NC_LIST_TYPE_NC_ID_SEQ">
+          <Property Name="ID_TYPE_NC" Type="tinyint" />
+          <Property Name="NM_TYPE_NC" Type="nvarchar" MaxLength="104" />
+          <Property Name="NU_PHAS_FCGF" Type="smallint" />
+          <Property Name="NU_SOUS_PHAS_FCGF" Type="smallint" />
+          <Property Name="ID_RFRC_SEQU" Type="bigint" />
+        </EntityType>-->
+  <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'ALMS_PROD_PRD.dbo.V_POST_FCGF' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+  <EntityType Name="V_POST_FCGF">
+    <Key>
+      <PropertyRef Name="DT_VLDT" />
+      <PropertyRef Name="NM_TYPE_MTRE" />
+    </Key>
+    <Property Name="ID_POST" Type="nvarchar" MaxLength="20" />
+    <Property Name="ID_MTRE" Type="nvarchar" MaxLength="20" />
+    <Property Name="DT_AFCT" Type="datetime2" Precision="0" />
+    <Property Name="DT_VLDT" Type="datetime" Nullable="false" />
+    <Property Name="NM_TYPE_MTRE" Type="nvarchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <Function Name="P_ADD_RESU_SEQ_TEST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NU_SER_SPFE" Type="nvarchar" Mode="In" />
+    <Parameter Name="CD_ARTI_PROD" Type="nvarchar" Mode="In" />
+    <Parameter Name="NM_RFRC_SEQU" Type="nvarchar" Mode="In" />
+    <Parameter Name="NU_VERS_SEQU" Type="tinyint" Mode="In" />
+    <Parameter Name="ID_STAT_PROD" Type="tinyint" Mode="In" />
+    <Parameter Name="BL_STAT_PROD" Type="bit" Mode="In" />
+    <Parameter Name="NU_OF" Type="int" Mode="In" />
+    <Parameter Name="DT_TEST" Type="datetime2" Mode="In" />
+    <Parameter Name="ID_OPRT" Type="smallint" Mode="In" />
+    <Parameter Name="RES" Type="nvarchar" Mode="InOut" />
+  </Function>
+  <Function Name="P_ADD_RESU_VAL_TEST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NU_SER_SPFE" Type="nvarchar" Mode="In" />
+    <Parameter Name="NU_ORDR_SEQU" Type="smallint" Mode="In" />
+    <Parameter Name="CD_ARTI_PROD" Type="nvarchar" Mode="In" />
+    <Parameter Name="NM_RFRC_SEQU" Type="nvarchar" Mode="In" />
+    <Parameter Name="NU_VERS_SEQU" Type="tinyint" Mode="In" />
+    <Parameter Name="NU_LIMI_BASS" Type="nvarchar" Mode="In" />
+    <Parameter Name="NU_VALE" Type="nvarchar" Mode="In" />
+    <Parameter Name="LB_VALE" Type="nvarchar" Mode="In" />
+    <Parameter Name="NU_LIMI_HAUT" Type="nvarchar" Mode="In" />
+    <Parameter Name="ID_TEST" Type="int" Mode="In" />
+    <Parameter Name="ID_STAT_PHAS" Type="tinyint" Mode="In" />
+    <Parameter Name="BL_STAT_PHAS" Type="bit" Mode="In" />
+    <Parameter Name="ID_POST" Type="nvarchar" Mode="In" />
+    <Parameter Name="DT_TEST" Type="datetime2" Mode="In" />
+    <Parameter Name="ID_OPRT" Type="smallint" Mode="In" />
+    <Parameter Name="NB_TT" Type="int" Mode="In" />
+    <Parameter Name="NU_TEST_PHAS" Type="smallint" Mode="In" />
+    <Parameter Name="RES" Type="nvarchar" Mode="InOut" />
+  </Function>
+  <Function Name="P_GET_NEW_NU_INCI" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NU_INCI" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="P_SAVE_NEW_TYPE_CAUS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID_TYPE_CAUS" Type="tinyint" Mode="InOut" />
+    <Parameter Name="ID_TYPE_DEFA" Type="tinyint" Mode="In" />
+    <Parameter Name="CD_ARTI_DFTE" Type="nvarchar" Mode="In" />
+    <Parameter Name="NM_RSLT" Type="nvarchar" Mode="In" />
+    <Parameter Name="ID_RFRC_SEQU_RETO" Type="bigint" Mode="In" />
+    <Parameter Name="NU_PHAS_FCGF_RETO" Type="smallint" Mode="In" />
+    <Parameter Name="RES" Type="nvarchar" Mode="InOut" />
+  </Function>
+  <Function Name="P_SAVE_NEW_TYPE_NC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID_TYPE_NC" Type="tinyint" Mode="InOut" />
+    <Parameter Name="NM_DCPO_NC" Type="nvarchar" Mode="In" />
+    <Parameter Name="NU_PHAS_FCGF" Type="smallint" Mode="In" />
+    <Parameter Name="NU_SOUS_PHAS_FCGF" Type="smallint" Mode="In" />
+    <Parameter Name="ID_RFRC_SEQ" Type="bigint" Mode="In" />
+    <Parameter Name="RES" Type="nvarchar" Mode="InOut" />
+  </Function>
+  <EntityContainer Name="ALMS_PROD_PRDModelStoreContainer">
+    <EntitySet Name="DTM_ADRE_MAC" EntityType="Self.DTM_ADRE_MAC" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DTM_HSQR_STAT_PROD" EntityType="Self.DTM_HSQR_STAT_PROD" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DTM_NC_DETA" EntityType="Self.DTM_NC_DETA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DTM_NC_LIST" EntityType="Self.DTM_NC_LIST" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DTM_NMCT_PROD" EntityType="Self.DTM_NMCT_PROD" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DTM_NU_SER" EntityType="Self.DTM_NU_SER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DTM_REF_GAMM" EntityType="Self.DTM_REF_GAMM" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DTM_REF_GAMM_ARTI" EntityType="Self.DTM_REF_GAMM_ARTI" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DTM_REF_ID_TEST" EntityType="Self.DTM_REF_ID_TEST" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DTM_REF_MTRE_LIST" EntityType="Self.DTM_REF_MTRE_LIST" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DTM_REF_OPRT" EntityType="Self.DTM_REF_OPRT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DTM_REF_STAT" EntityType="Self.DTM_REF_STAT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DTM_REF_TYPE_NU_SER" EntityType="Self.DTM_REF_TYPE_NU_SER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DTM_RESU_TEST_DETA" EntityType="Self.DTM_RESU_TEST_DETA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DTM_RESU_TEST_LIST" EntityType="Self.DTM_RESU_TEST_LIST" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DTM_SEQU_RFRC_DETA" EntityType="Self.DTM_SEQU_RFRC_DETA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DTM_SEQU_RFRC_LIST" EntityType="Self.DTM_SEQU_RFRC_LIST" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DTM_REF_ID" EntityType="Self.DTM_REF_ID" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [DTM_REF_ID].[ID] AS [ID], 
+    [DTM_REF_ID].[NM_CHAM] AS [NM_CHAM]
+    FROM [dbo].[DTM_REF_ID] AS [DTM_REF_ID]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="V_DHR_ECAR_PDTO" EntityType="Self.V_DHR_ECAR_PDTO" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [V_DHR_ECAR_PDTO].[NM_DCPO_ANML] AS [NM_DCPO_ANML], 
+    [V_DHR_ECAR_PDTO].[NM_ACTI_REAL] AS [NM_ACTI_REAL], 
+    [V_DHR_ECAR_PDTO].[NU_SER_SPFE] AS [NU_SER_SPFE], 
+    [V_DHR_ECAR_PDTO].[ID_OPRT_REAL] AS [ID_OPRT_REAL], 
+    [V_DHR_ECAR_PDTO].[ID_OPRT_CONT] AS [ID_OPRT_CONT], 
+    [V_DHR_ECAR_PDTO].[ID_STAT] AS [ID_STAT], 
+    [V_DHR_ECAR_PDTO].[DT_ACTI_CONT] AS [DT_ACTI_CONT], 
+    [V_DHR_ECAR_PDTO].[DT_ACTI_REAL] AS [DT_ACTI_REAL]
+    FROM [dbo].[V_DHR_ECAR_PDTO] AS [V_DHR_ECAR_PDTO]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="V_FCGF" EntityType="Self.V_FCGF" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [V_FCGF].[NU_SER_SPFE] AS [NU_SER_SPFE], 
+    [V_FCGF].[NM_RFRC_SEQU] AS [NM_RFRC_SEQU], 
+    [V_FCGF].[NU_VERS_SEQU] AS [NU_VERS_SEQU], 
+    [V_FCGF].[NM_RFRC_FDV] AS [NM_RFRC_FDV], 
+    [V_FCGF].[NU_VERS_FDV] AS [NU_VERS_FDV], 
+    [V_FCGF].[LB_STAT_PROD] AS [LB_STAT_PROD], 
+    [V_FCGF].[NM_STAT_PROD] AS [NM_STAT_PROD], 
+    [V_FCGF].[NU_OF] AS [NU_OF], 
+    [V_FCGF].[DT_TEST] AS [DT_TEST], 
+    [V_FCGF].[NM_PHAS] AS [NM_PHAS], 
+    [V_FCGF].[NM_SOUS_PHAS] AS [NM_SOUS_PHAS], 
+    [V_FCGF].[NU_LIMI_BASS] AS [NU_LIMI_BASS], 
+    [V_FCGF].[NU_VALE] AS [NU_VALE], 
+    [V_FCGF].[LB_VALE] AS [LB_VALE], 
+    [V_FCGF].[NU_LIMI_HAUT] AS [NU_LIMI_HAUT], 
+    [V_FCGF].[NU_UNIT] AS [NU_UNIT], 
+    [V_FCGF].[LB_DCPT_STAT] AS [LB_DCPT_STAT], 
+    [V_FCGF].[LB_STAT_PHAS] AS [LB_STAT_PHAS], 
+    [V_FCGF].[ID_POST] AS [ID_POST], 
+    [V_FCGF].[ID_OPRT] AS [ID_OPRT], 
+    [V_FCGF].[NU_OP] AS [NU_OP], 
+    [V_FCGF].[NU_ORDR_SEQU] AS [NU_ORDR_SEQU], 
+    [V_FCGF].[NU_PHAS_FCGF] AS [NU_PHAS_FCGF], 
+    [V_FCGF].[NU_SOUS_PHAS_FCGF] AS [NU_SOUS_PHAS_FCGF], 
+    [V_FCGF].[BL_STAT_PHAS] AS [BL_STAT_PHAS]
+    FROM [dbo].[V_FCGF] AS [V_FCGF]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="V_FCGF_ANML" EntityType="Self.V_FCGF_ANML" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [V_FCGF_ANML].[NU_INCI] AS [NU_INCI], 
+    [V_FCGF_ANML].[NU_DRGT] AS [NU_DRGT], 
+    [V_FCGF_ANML].[NU_SER_SPFE] AS [NU_SER_SPFE], 
+    [V_FCGF_ANML].[DT_ITVT] AS [DT_ITVT], 
+    [V_FCGF_ANML].[LB_INIT] AS [LB_INIT], 
+    [V_FCGF_ANML].[ID_MTCL_ECO] AS [ID_MTCL_ECO], 
+    [V_FCGF_ANML].[BL_ETAT] AS [BL_ETAT], 
+    [V_FCGF_ANML].[LB_DCPT_STAT] AS [LB_DCPT_STAT], 
+    [V_FCGF_ANML].[NM_DCPO_NC] AS [NM_DCPO_NC], 
+    [V_FCGF_ANML].[NM_TYPE_NC] AS [NM_TYPE_NC], 
+    [V_FCGF_ANML].[NM_RFRC_SEQU] AS [NM_RFRC_SEQU], 
+    [V_FCGF_ANML].[NU_VERS_SEQU] AS [NU_VERS_SEQU], 
+    [V_FCGF_ANML].[NM_PHAS] AS [NM_PHAS], 
+    [V_FCGF_ANML].[NM_SOUS_PHAS] AS [NM_SOUS_PHAS], 
+    [V_FCGF_ANML].[CD_ARTI_DFTE] AS [CD_ARTI_DFTE], 
+    [V_FCGF_ANML].[NM_DSGT_DEFA] AS [NM_DSGT_DEFA], 
+    [V_FCGF_ANML].[NM_RSLT] AS [NM_RSLT], 
+    [V_FCGF_ANML].[NM_RFRC_SEQU_RETO] AS [NM_RFRC_SEQU_RETO], 
+    [V_FCGF_ANML].[NU_VERS_SEQU_RETO] AS [NU_VERS_SEQU_RETO], 
+    [V_FCGF_ANML].[NM_PHAS_RETO] AS [NM_PHAS_RETO]
+    FROM [dbo].[V_FCGF_ANML] AS [V_FCGF_ANML]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="V_LIST_TCBL_NMCT_PROD" EntityType="Self.V_LIST_TCBL_NMCT_PROD" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [V_LIST_TCBL_NMCT_PROD].[NU_SER_SPFE] AS [NU_SER_SPFE], 
+    [V_LIST_TCBL_NMCT_PROD].[CD_ARTI_PROD] AS [CD_ARTI_PROD], 
+    [V_LIST_TCBL_NMCT_PROD].[NU_SER_COMP] AS [NU_SER_COMP], 
+    [V_LIST_TCBL_NMCT_PROD].[CD_ARTI_COMP] AS [CD_ARTI_COMP], 
+    [V_LIST_TCBL_NMCT_PROD].[NM_DSGT_COMP] AS [NM_DSGT_COMP], 
+    [V_LIST_TCBL_NMCT_PROD].[NM_TYPE_TCBL] AS [NM_TYPE_TCBL], 
+    [V_LIST_TCBL_NMCT_PROD].[DT_AFCT] AS [DT_AFCT]
+    FROM [dbo].[V_LIST_TCBL_NMCT_PROD] AS [V_LIST_TCBL_NMCT_PROD]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="V_NC_LIST_CD_ARTI_TCBL_UNIT" EntityType="Self.V_NC_LIST_CD_ARTI_TCBL_UNIT" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [V_NC_LIST_CD_ARTI_TCBL_UNIT].[CD_ARTI_COMP] AS [CD_ARTI_COMP], 
+    [V_NC_LIST_CD_ARTI_TCBL_UNIT].[CD_ARTI_PROD] AS [CD_ARTI_PROD], 
+    [V_NC_LIST_CD_ARTI_TCBL_UNIT].[BL_TYPE_TCBL] AS [BL_TYPE_TCBL], 
+    [V_NC_LIST_CD_ARTI_TCBL_UNIT].[ID_TYPE_CAUS] AS [ID_TYPE_CAUS]
+    FROM [dbo].[V_NC_LIST_CD_ARTI_TCBL_UNIT] AS [V_NC_LIST_CD_ARTI_TCBL_UNIT]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="V_NC_LIST_INFO_NU_INCI" EntityType="Self.V_NC_LIST_INFO_NU_INCI" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [V_NC_LIST_INFO_NU_INCI].[NU_INCI] AS [NU_INCI], 
+    [V_NC_LIST_INFO_NU_INCI].[NU_SER_SPFE] AS [NU_SER_SPFE], 
+    [V_NC_LIST_INFO_NU_INCI].[ID_TYPE_NC] AS [ID_TYPE_NC], 
+    [V_NC_LIST_INFO_NU_INCI].[NM_TYPE_NC] AS [NM_TYPE_NC], 
+    [V_NC_LIST_INFO_NU_INCI].[NM_DCPO_NC] AS [NM_DCPO_NC], 
+    [V_NC_LIST_INFO_NU_INCI].[ID_RFRC_SEQU] AS [ID_RFRC_SEQU], 
+    [V_NC_LIST_INFO_NU_INCI].[NM_RFRC_SEQU] AS [NM_RFRC_SEQU], 
+    [V_NC_LIST_INFO_NU_INCI].[NU_PHAS_FCGF] AS [NU_PHAS_FCGF], 
+    [V_NC_LIST_INFO_NU_INCI].[NM_PHAS] AS [NM_PHAS], 
+    [V_NC_LIST_INFO_NU_INCI].[NU_SOUS_PHAS_FCGF] AS [NU_SOUS_PHAS_FCGF], 
+    [V_NC_LIST_INFO_NU_INCI].[NM_SOUS_PHAS] AS [NM_SOUS_PHAS], 
+    [V_NC_LIST_INFO_NU_INCI].[LB_DCPT_STAT] AS [LB_DCPT_STAT]
+    FROM [dbo].[V_NC_LIST_INFO_NU_INCI] AS [V_NC_LIST_INFO_NU_INCI]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="V_NC_LIST_NU_INCI_NU_SER" EntityType="Self.V_NC_LIST_NU_INCI_NU_SER" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [V_NC_LIST_NU_INCI_NU_SER].[NU_SER_SPFE] AS [NU_SER_SPFE], 
+    [V_NC_LIST_NU_INCI_NU_SER].[NU_INCI] AS [NU_INCI]
+    FROM [dbo].[V_NC_LIST_NU_INCI_NU_SER] AS [V_NC_LIST_NU_INCI_NU_SER]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="V_NC_LIST_PHAS_FAIL_NU_SER_ID_SEQ" EntityType="Self.V_NC_LIST_PHAS_FAIL_NU_SER_ID_SEQ" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [V_NC_LIST_PHAS_FAIL_NU_SER_ID_SEQ].[NU_SER_SPFE] AS [NU_SER_SPFE], 
+    [V_NC_LIST_PHAS_FAIL_NU_SER_ID_SEQ].[ID_RFRC_SEQU] AS [ID_RFRC_SEQU], 
+    [V_NC_LIST_PHAS_FAIL_NU_SER_ID_SEQ].[NU_PHAS_FCGF] AS [NU_PHAS_FCGF], 
+    [V_NC_LIST_PHAS_FAIL_NU_SER_ID_SEQ].[NM_PHAS] AS [NM_PHAS], 
+    [V_NC_LIST_PHAS_FAIL_NU_SER_ID_SEQ].[NU_SOUS_PHAS_FCGF] AS [NU_SOUS_PHAS_FCGF], 
+    [V_NC_LIST_PHAS_FAIL_NU_SER_ID_SEQ].[NM_SOUS_PHAS] AS [NM_SOUS_PHAS]
+    FROM [dbo].[V_NC_LIST_PHAS_FAIL_NU_SER_ID_SEQ] AS [V_NC_LIST_PHAS_FAIL_NU_SER_ID_SEQ]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="V_NC_LIST_PROD_RETO_PDTO" EntityType="Self.V_NC_LIST_PROD_RETO_PDTO" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [V_NC_LIST_PROD_RETO_PDTO].[ID_RFRC_SEQU_RETO] AS [ID_RFRC_SEQU_RETO], 
+    [V_NC_LIST_PROD_RETO_PDTO].[NU_PHAS_FCGF_RETO] AS [NU_PHAS_FCGF_RETO], 
+    [V_NC_LIST_PROD_RETO_PDTO].[NU_SER_SPFE] AS [NU_SER_SPFE], 
+    [V_NC_LIST_PROD_RETO_PDTO].[MAX_ID_STAT] AS [MAX_ID_STAT], 
+    [V_NC_LIST_PROD_RETO_PDTO].[NU_INCI] AS [NU_INCI]
+    FROM [dbo].[V_NC_LIST_PROD_RETO_PDTO] AS [V_NC_LIST_PROD_RETO_PDTO]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="V_NC_LIST_SEQU_FAIL_NU_SER" EntityType="Self.V_NC_LIST_SEQU_FAIL_NU_SER" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [V_NC_LIST_SEQU_FAIL_NU_SER].[NU_SER_SPFE] AS [NU_SER_SPFE], 
+    [V_NC_LIST_SEQU_FAIL_NU_SER].[NM_RFRC_SEQU] AS [NM_RFRC_SEQU], 
+    [V_NC_LIST_SEQU_FAIL_NU_SER].[MAX_NU_TEST] AS [MAX_NU_TEST], 
+    [V_NC_LIST_SEQU_FAIL_NU_SER].[ID_RFRC_SEQU] AS [ID_RFRC_SEQU], 
+    [V_NC_LIST_SEQU_FAIL_NU_SER].[DT_TEST] AS [DT_TEST]
+    FROM [dbo].[V_NC_LIST_SEQU_FAIL_NU_SER] AS [V_NC_LIST_SEQU_FAIL_NU_SER]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="V_POST_FCGF" EntityType="Self.V_POST_FCGF" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [V_POST_FCGF].[ID_POST] AS [ID_POST], 
+    [V_POST_FCGF].[ID_MTRE] AS [ID_MTRE], 
+    [V_POST_FCGF].[DT_AFCT] AS [DT_AFCT], 
+    [V_POST_FCGF].[DT_VLDT] AS [DT_VLDT], 
+    [V_POST_FCGF].[NM_TYPE_MTRE] AS [NM_TYPE_MTRE]
+    FROM [dbo].[V_POST_FCGF] AS [V_POST_FCGF]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

@@ -14,13 +14,22 @@ Option Explicit On
 Partial Public Class GEST_ANML_NC_DRGT
     
     '''<summary>
-    '''Contrôle RadioButtonList_TYPE_INCI.
+    '''Contrôle accordion.
     '''</summary>
     '''<remarks>
     '''Champ généré automatiquement.
     '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
     '''</remarks>
-    Protected WithEvents RadioButtonList_TYPE_INCI As Global.System.Web.UI.WebControls.RadioButtonList
+    Protected WithEvents accordion As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    
+    '''<summary>
+    '''Contrôle collapseOne.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents collapseOne As Global.System.Web.UI.HtmlControls.HtmlGenericControl
     
     '''<summary>
     '''Contrôle MultiView_ANML.
@@ -329,13 +338,13 @@ Partial Public Class GEST_ANML_NC_DRGT
     Protected WithEvents Button_VALI_ENTER1 As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
-    '''Contrôle View_DRGT.
+    '''Contrôle collapseTwo.
     '''</summary>
     '''<remarks>
     '''Champ généré automatiquement.
     '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
     '''</remarks>
-    Protected WithEvents View_DRGT As Global.System.Web.UI.WebControls.View
+    Protected WithEvents collapseTwo As Global.System.Web.UI.HtmlControls.HtmlGenericControl
     
     '''<summary>
     '''Contrôle TextBox_NU_DRGT.

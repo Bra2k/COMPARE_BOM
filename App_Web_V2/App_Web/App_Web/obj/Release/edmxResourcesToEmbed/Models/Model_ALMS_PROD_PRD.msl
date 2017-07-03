@@ -1,0 +1,416 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ALMS_PROD_PRDModelStoreContainer" CdmEntityContainer="ALMS_PROD_PRDEntities">
+    <EntitySetMapping Name="DTM_ADRE_MAC">
+      <EntityTypeMapping TypeName="ALMS_PROD_PRDModel.DTM_ADRE_MAC">
+        <MappingFragment StoreEntitySet="DTM_ADRE_MAC">
+          <ScalarProperty Name="NU_ADRE_MAC" ColumnName="NU_ADRE_MAC" />
+          <ScalarProperty Name="CD_ARTI_CART" ColumnName="CD_ARTI_CART" />
+          <ScalarProperty Name="CD_ARTI_PROD" ColumnName="CD_ARTI_PROD" />
+          <ScalarProperty Name="NU_BANC" ColumnName="NU_BANC" />
+          <ScalarProperty Name="BL_RSVT" ColumnName="BL_RSVT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DTM_HSQR_STAT_PROD">
+      <EntityTypeMapping TypeName="ALMS_PROD_PRDModel.DTM_HSQR_STAT_PROD">
+        <MappingFragment StoreEntitySet="DTM_HSQR_STAT_PROD">
+          <ScalarProperty Name="NU_SER_SPFE" ColumnName="NU_SER_SPFE" />
+          <ScalarProperty Name="NU_TEST" ColumnName="NU_TEST" />
+          <ScalarProperty Name="ID_RFRC_SEQU" ColumnName="ID_RFRC_SEQU" />
+          <ScalarProperty Name="NU_PHAS" ColumnName="NU_PHAS" />
+          <ScalarProperty Name="ID_STAT_PROD" ColumnName="ID_STAT_PROD" />
+          <ScalarProperty Name="DT_STAT_PROD" ColumnName="DT_STAT_PROD" />
+          <ScalarProperty Name="ID_OPRT" ColumnName="ID_OPRT" />
+          <ScalarProperty Name="ID_POST" ColumnName="ID_POST" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DTM_NC_DETA">
+      <EntityTypeMapping TypeName="ALMS_PROD_PRDModel.DTM_NC_DETA">
+        <MappingFragment StoreEntitySet="DTM_NC_DETA">
+          <ScalarProperty Name="NU_INCI" ColumnName="NU_INCI" />
+          <ScalarProperty Name="DT_ITVT" ColumnName="DT_ITVT" />
+          <ScalarProperty Name="ID_OPRT" ColumnName="ID_OPRT" />
+          <ScalarProperty Name="BL_ETAT" ColumnName="BL_ETAT" />
+          <ScalarProperty Name="ID_STAT" ColumnName="ID_STAT" />
+          <ScalarProperty Name="ID_TYPE_CAUS" ColumnName="ID_TYPE_CAUS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DTM_NC_LIST">
+      <EntityTypeMapping TypeName="ALMS_PROD_PRDModel.DTM_NC_LIST">
+        <MappingFragment StoreEntitySet="DTM_NC_LIST">
+          <ScalarProperty Name="ID_TYPE_NC" ColumnName="ID_TYPE_NC" />
+          <ScalarProperty Name="NU_INCI" ColumnName="NU_INCI" />
+          <ScalarProperty Name="NU_SER_SPFE" ColumnName="NU_SER_SPFE" />
+          <ScalarProperty Name="CD_ARTI_PROD" ColumnName="CD_ARTI_PROD" />
+          <ScalarProperty Name="NU_DRGT" ColumnName="NU_DRGT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DTM_NMCT_PROD">
+      <EntityTypeMapping TypeName="ALMS_PROD_PRDModel.DTM_NMCT_PROD">
+        <MappingFragment StoreEntitySet="DTM_NMCT_PROD">
+          <ScalarProperty Name="NU_SER_SPFE" ColumnName="NU_SER_SPFE" />
+          <ScalarProperty Name="CD_ARTI_PROD" ColumnName="CD_ARTI_PROD" />
+          <ScalarProperty Name="NU_SER_COMP" ColumnName="NU_SER_COMP" />
+          <ScalarProperty Name="CD_ARTI_COMP" ColumnName="CD_ARTI_COMP" />
+          <ScalarProperty Name="BL_TYPE_TCBL" ColumnName="BL_TYPE_TCBL" />
+          <ScalarProperty Name="BL_APVS_ECO" ColumnName="BL_APVS_ECO" />
+          <ScalarProperty Name="NU_VERS_COMP" ColumnName="NU_VERS_COMP" />
+          <ScalarProperty Name="DT_AFCT" ColumnName="DT_AFCT" />
+          <ScalarProperty Name="NM_DSGT_COMP" ColumnName="NM_DSGT_COMP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DTM_NU_SER">
+      <EntityTypeMapping TypeName="ALMS_PROD_PRDModel.DTM_NU_SER">
+        <MappingFragment StoreEntitySet="DTM_NU_SER">
+          <ScalarProperty Name="NU_SER_SPFE" ColumnName="NU_SER_SPFE" />
+          <ScalarProperty Name="CD_ARTI_PROD" ColumnName="CD_ARTI_PROD" />
+          <ScalarProperty Name="NU_OF" ColumnName="NU_OF" />
+          <ScalarProperty Name="ID_TYPE_NU_SER" ColumnName="ID_TYPE_NU_SER" />
+          <ScalarProperty Name="NU_SER" ColumnName="NU_SER" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DTM_REF_GAMM">
+      <EntityTypeMapping TypeName="ALMS_PROD_PRDModel.DTM_REF_GAMM">
+        <MappingFragment StoreEntitySet="DTM_REF_GAMM">
+          <ScalarProperty Name="ID_GAMM_PROD" ColumnName="ID_GAMM_PROD" />
+          <ScalarProperty Name="NM_DSGT_GAMM_PROD" ColumnName="NM_DSGT_GAMM_PROD" />
+          <ScalarProperty Name="ID_GAMM_PROD_ALMS" ColumnName="ID_GAMM_PROD_ALMS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DTM_REF_GAMM_ARTI">
+      <EntityTypeMapping TypeName="ALMS_PROD_PRDModel.DTM_REF_GAMM_ARTI">
+        <MappingFragment StoreEntitySet="DTM_REF_GAMM_ARTI">
+          <ScalarProperty Name="ID_GAMM_PROD" ColumnName="ID_GAMM_PROD" />
+          <ScalarProperty Name="CD_ARTI_PROD" ColumnName="CD_ARTI_PROD" />
+          <ScalarProperty Name="NM_DSGT_ARTI" ColumnName="NM_DSGT_ARTI" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DTM_REF_ID_TEST">
+      <EntityTypeMapping TypeName="ALMS_PROD_PRDModel.DTM_REF_ID_TEST">
+        <MappingFragment StoreEntitySet="DTM_REF_ID_TEST">
+          <ScalarProperty Name="ID_TEST" ColumnName="ID_TEST" />
+          <ScalarProperty Name="NM_DSGT_TEST" ColumnName="NM_DSGT_TEST" />
+          <ScalarProperty Name="ID_GAMM_PROD" ColumnName="ID_GAMM_PROD" />
+          <ScalarProperty Name="BL_ATVT" ColumnName="BL_ATVT" />
+          <ScalarProperty Name="DT_CREA" ColumnName="DT_CREA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DTM_REF_MTRE_LIST">
+      <EntityTypeMapping TypeName="ALMS_PROD_PRDModel.DTM_REF_MTRE_LIST">
+        <MappingFragment StoreEntitySet="DTM_REF_MTRE_LIST">
+          <ScalarProperty Name="ID_MTRE" ColumnName="ID_MTRE" />
+          <ScalarProperty Name="BL_NATU" ColumnName="BL_NATU" />
+          <ScalarProperty Name="LB_DCPT" ColumnName="LB_DCPT" />
+          <ScalarProperty Name="BL_ATVT" ColumnName="BL_ATVT" />
+          <ScalarProperty Name="DT_ATVT" ColumnName="DT_ATVT" />
+          <ScalarProperty Name="BL_SORT_FCGF" ColumnName="BL_SORT_FCGF" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DTM_REF_OPRT">
+      <EntityTypeMapping TypeName="ALMS_PROD_PRDModel.DTM_REF_OPRT">
+        <MappingFragment StoreEntitySet="DTM_REF_OPRT">
+          <ScalarProperty Name="ID_OPRT" ColumnName="ID_OPRT" />
+          <ScalarProperty Name="LB_INIT" ColumnName="LB_INIT" />
+          <ScalarProperty Name="ID_HBLT_ALMS" ColumnName="ID_HBLT_ALMS" />
+          <ScalarProperty Name="BL_ATVT" ColumnName="BL_ATVT" />
+          <ScalarProperty Name="DT_ATVT" ColumnName="DT_ATVT" />
+          <ScalarProperty Name="ID_MTCL_ECO" ColumnName="ID_MTCL_ECO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DTM_REF_STAT">
+      <EntityTypeMapping TypeName="ALMS_PROD_PRDModel.DTM_REF_STAT">
+        <MappingFragment StoreEntitySet="DTM_REF_STAT">
+          <ScalarProperty Name="ID_STAT" ColumnName="ID_STAT" />
+          <ScalarProperty Name="LB_DCPT_STAT" ColumnName="LB_DCPT_STAT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DTM_REF_TYPE_NU_SER">
+      <EntityTypeMapping TypeName="ALMS_PROD_PRDModel.DTM_REF_TYPE_NU_SER">
+        <MappingFragment StoreEntitySet="DTM_REF_TYPE_NU_SER">
+          <ScalarProperty Name="ID_TYPE_NU_SER" ColumnName="ID_TYPE_NU_SER" />
+          <ScalarProperty Name="NM_TYPE_NU_SER" ColumnName="NM_TYPE_NU_SER" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DTM_RESU_TEST_DETA">
+      <EntityTypeMapping TypeName="ALMS_PROD_PRDModel.DTM_RESU_TEST_DETA">
+        <MappingFragment StoreEntitySet="DTM_RESU_TEST_DETA">
+          <ScalarProperty Name="NU_SER_SPFE" ColumnName="NU_SER_SPFE" />
+          <ScalarProperty Name="NU_TEST" ColumnName="NU_TEST" />
+          <ScalarProperty Name="NU_ORDR_SEQU" ColumnName="NU_ORDR_SEQU" />
+          <ScalarProperty Name="NU_TEST_PHAS" ColumnName="NU_TEST_PHAS" />
+          <ScalarProperty Name="CD_ARTI_PROD" ColumnName="CD_ARTI_PROD" />
+          <ScalarProperty Name="ID_RFRC_SEQU" ColumnName="ID_RFRC_SEQU" />
+          <ScalarProperty Name="NU_PHAS_FCGF" ColumnName="NU_PHAS_FCGF" />
+          <ScalarProperty Name="NU_SOUS_PHAS_FCGF" ColumnName="NU_SOUS_PHAS_FCGF" />
+          <ScalarProperty Name="BL_SORT_FCGF" ColumnName="BL_SORT_FCGF" />
+          <ScalarProperty Name="NU_LIMI_BASS" ColumnName="NU_LIMI_BASS" />
+          <ScalarProperty Name="NU_VALE" ColumnName="NU_VALE" />
+          <ScalarProperty Name="LB_VALE" ColumnName="LB_VALE" />
+          <ScalarProperty Name="NU_LIMI_HAUT" ColumnName="NU_LIMI_HAUT" />
+          <ScalarProperty Name="ID_TEST" ColumnName="ID_TEST" />
+          <ScalarProperty Name="NU_UNIT" ColumnName="NU_UNIT" />
+          <ScalarProperty Name="ID_STAT_PHAS" ColumnName="ID_STAT_PHAS" />
+          <ScalarProperty Name="BL_STAT_PHAS" ColumnName="BL_STAT_PHAS" />
+          <ScalarProperty Name="ID_POST" ColumnName="ID_POST" />
+          <ScalarProperty Name="ID_OPRT" ColumnName="ID_OPRT" />
+          <ScalarProperty Name="DT_TEST_PHAS" ColumnName="DT_TEST_PHAS" />
+          <ScalarProperty Name="NB_TT" ColumnName="NB_TT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DTM_RESU_TEST_LIST">
+      <EntityTypeMapping TypeName="ALMS_PROD_PRDModel.DTM_RESU_TEST_LIST">
+        <MappingFragment StoreEntitySet="DTM_RESU_TEST_LIST">
+          <ScalarProperty Name="NU_SER_SPFE" ColumnName="NU_SER_SPFE" />
+          <ScalarProperty Name="NU_TEST" ColumnName="NU_TEST" />
+          <ScalarProperty Name="CD_ARTI_PROD" ColumnName="CD_ARTI_PROD" />
+          <ScalarProperty Name="NM_RFRC_SEQU" ColumnName="NM_RFRC_SEQU" />
+          <ScalarProperty Name="NU_VERS_SEQU" ColumnName="NU_VERS_SEQU" />
+          <ScalarProperty Name="ID_RFRC_SEQU" ColumnName="ID_RFRC_SEQU" />
+          <ScalarProperty Name="NM_RFRC_FDV" ColumnName="NM_RFRC_FDV" />
+          <ScalarProperty Name="NU_VERS_FDV" ColumnName="NU_VERS_FDV" />
+          <ScalarProperty Name="ID_STAT_PROD" ColumnName="ID_STAT_PROD" />
+          <ScalarProperty Name="BL_STAT_PROD" ColumnName="BL_STAT_PROD" />
+          <ScalarProperty Name="NU_OF" ColumnName="NU_OF" />
+          <ScalarProperty Name="DT_TEST" ColumnName="DT_TEST" />
+          <ScalarProperty Name="ID_OPRT" ColumnName="ID_OPRT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DTM_SEQU_RFRC_DETA">
+      <EntityTypeMapping TypeName="ALMS_PROD_PRDModel.DTM_SEQU_RFRC_DETA">
+        <MappingFragment StoreEntitySet="DTM_SEQU_RFRC_DETA">
+          <ScalarProperty Name="ID_RFRC_SEQU" ColumnName="ID_RFRC_SEQU" />
+          <ScalarProperty Name="NU_PHAS_FCGF" ColumnName="NU_PHAS_FCGF" />
+          <ScalarProperty Name="NU_SOUS_PHAS_FCGF" ColumnName="NU_SOUS_PHAS_FCGF" />
+          <ScalarProperty Name="NU_ORDR_SEQU" ColumnName="NU_ORDR_SEQU" />
+          <ScalarProperty Name="ID_TEST" ColumnName="ID_TEST" />
+          <ScalarProperty Name="LB_MESS_ERRE" ColumnName="LB_MESS_ERRE" />
+          <ScalarProperty Name="NM_DRIV" ColumnName="NM_DRIV" />
+          <ScalarProperty Name="LB_PARA_DRIV" ColumnName="LB_PARA_DRIV" />
+          <ScalarProperty Name="ID_SAUT_PASS" ColumnName="ID_SAUT_PASS" />
+          <ScalarProperty Name="ID_SAUT_FAIL" ColumnName="ID_SAUT_FAIL" />
+          <ScalarProperty Name="BL_EXCT" ColumnName="BL_EXCT" />
+          <ScalarProperty Name="NU_LIMI_BASS" ColumnName="NU_LIMI_BASS" />
+          <ScalarProperty Name="NU_LIMI_HAUT" ColumnName="NU_LIMI_HAUT" />
+          <ScalarProperty Name="BL_COMP_LIMI" ColumnName="BL_COMP_LIMI" />
+          <ScalarProperty Name="BL_ERRE" ColumnName="BL_ERRE" />
+          <ScalarProperty Name="BL_AFFI_FACE_AVAN_LABV" ColumnName="BL_AFFI_FACE_AVAN_LABV" />
+          <ScalarProperty Name="BL_RAPP_FCGF" ColumnName="BL_RAPP_FCGF" />
+          <ScalarProperty Name="BL_SORT_FCGF" ColumnName="BL_SORT_FCGF" />
+          <ScalarProperty Name="NM_UNIT" ColumnName="NM_UNIT" />
+          <ScalarProperty Name="NM_PHAS_FCGF" ColumnName="NM_PHAS_FCGF" />
+          <ScalarProperty Name="NM_SOUS_PHAS_FCGF" ColumnName="NM_SOUS_PHAS_FCGF" />
+          <ScalarProperty Name="BL_RAPP_ACTI" ColumnName="BL_RAPP_ACTI" />
+          <ScalarProperty Name="BL_CH_VAL" ColumnName="BL_CH_VAL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DTM_SEQU_RFRC_LIST">
+      <EntityTypeMapping TypeName="ALMS_PROD_PRDModel.DTM_SEQU_RFRC_LIST">
+        <MappingFragment StoreEntitySet="DTM_SEQU_RFRC_LIST">
+          <ScalarProperty Name="NM_RFRC_SEQU" ColumnName="NM_RFRC_SEQU" />
+          <ScalarProperty Name="NU_VERS_SEQU" ColumnName="NU_VERS_SEQU" />
+          <ScalarProperty Name="ID_RFRC_SEQU" ColumnName="ID_RFRC_SEQU" />
+          <ScalarProperty Name="DT_APCT" ColumnName="DT_APCT" />
+          <ScalarProperty Name="DT_VLDT" ColumnName="DT_VLDT" />
+          <ScalarProperty Name="BL_VLDT" ColumnName="BL_VLDT" />
+          <ScalarProperty Name="NM_VALI_ALMS" ColumnName="NM_VALI_ALMS" />
+          <ScalarProperty Name="NM_VALI_ECO" ColumnName="NM_VALI_ECO" />
+          <ScalarProperty Name="NM_RFRC_GAMM_ECO" ColumnName="NM_RFRC_GAMM_ECO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DTM_REF_ID">
+      <EntityTypeMapping TypeName="ALMS_PROD_PRDModel.DTM_REF_ID">
+        <MappingFragment StoreEntitySet="DTM_REF_ID">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NM_CHAM" ColumnName="NM_CHAM" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_DHR_ECAR_PDTO">
+      <EntityTypeMapping TypeName="ALMS_PROD_PRDModel.V_DHR_ECAR_PDTO">
+        <MappingFragment StoreEntitySet="V_DHR_ECAR_PDTO">
+          <ScalarProperty Name="NM_DCPO_ANML" ColumnName="NM_DCPO_ANML" />
+          <ScalarProperty Name="NM_ACTI_REAL" ColumnName="NM_ACTI_REAL" />
+          <ScalarProperty Name="NU_SER_SPFE" ColumnName="NU_SER_SPFE" />
+          <ScalarProperty Name="ID_OPRT_REAL" ColumnName="ID_OPRT_REAL" />
+          <ScalarProperty Name="ID_OPRT_CONT" ColumnName="ID_OPRT_CONT" />
+          <ScalarProperty Name="ID_STAT" ColumnName="ID_STAT" />
+          <ScalarProperty Name="DT_ACTI_CONT" ColumnName="DT_ACTI_CONT" />
+          <ScalarProperty Name="DT_ACTI_REAL" ColumnName="DT_ACTI_REAL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_FCGF">
+      <EntityTypeMapping TypeName="ALMS_PROD_PRDModel.V_FCGF">
+        <MappingFragment StoreEntitySet="V_FCGF">
+          <ScalarProperty Name="NU_SER_SPFE" ColumnName="NU_SER_SPFE" />
+          <ScalarProperty Name="NM_RFRC_SEQU" ColumnName="NM_RFRC_SEQU" />
+          <ScalarProperty Name="NU_VERS_SEQU" ColumnName="NU_VERS_SEQU" />
+          <ScalarProperty Name="NM_RFRC_FDV" ColumnName="NM_RFRC_FDV" />
+          <ScalarProperty Name="NU_VERS_FDV" ColumnName="NU_VERS_FDV" />
+          <ScalarProperty Name="LB_STAT_PROD" ColumnName="LB_STAT_PROD" />
+          <ScalarProperty Name="NM_STAT_PROD" ColumnName="NM_STAT_PROD" />
+          <ScalarProperty Name="NU_OF" ColumnName="NU_OF" />
+          <ScalarProperty Name="DT_TEST" ColumnName="DT_TEST" />
+          <ScalarProperty Name="NM_PHAS" ColumnName="NM_PHAS" />
+          <ScalarProperty Name="NM_SOUS_PHAS" ColumnName="NM_SOUS_PHAS" />
+          <ScalarProperty Name="NU_LIMI_BASS" ColumnName="NU_LIMI_BASS" />
+          <ScalarProperty Name="NU_VALE" ColumnName="NU_VALE" />
+          <ScalarProperty Name="LB_VALE" ColumnName="LB_VALE" />
+          <ScalarProperty Name="NU_LIMI_HAUT" ColumnName="NU_LIMI_HAUT" />
+          <ScalarProperty Name="NU_UNIT" ColumnName="NU_UNIT" />
+          <ScalarProperty Name="LB_DCPT_STAT" ColumnName="LB_DCPT_STAT" />
+          <ScalarProperty Name="LB_STAT_PHAS" ColumnName="LB_STAT_PHAS" />
+          <ScalarProperty Name="ID_POST" ColumnName="ID_POST" />
+          <ScalarProperty Name="ID_OPRT" ColumnName="ID_OPRT" />
+          <ScalarProperty Name="NU_OP" ColumnName="NU_OP" />
+          <ScalarProperty Name="NU_ORDR_SEQU" ColumnName="NU_ORDR_SEQU" />
+          <ScalarProperty Name="NU_PHAS_FCGF" ColumnName="NU_PHAS_FCGF" />
+          <ScalarProperty Name="NU_SOUS_PHAS_FCGF" ColumnName="NU_SOUS_PHAS_FCGF" />
+          <ScalarProperty Name="BL_STAT_PHAS" ColumnName="BL_STAT_PHAS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_FCGF_ANML">
+      <EntityTypeMapping TypeName="ALMS_PROD_PRDModel.V_FCGF_ANML">
+        <MappingFragment StoreEntitySet="V_FCGF_ANML">
+          <ScalarProperty Name="NU_INCI" ColumnName="NU_INCI" />
+          <ScalarProperty Name="NU_DRGT" ColumnName="NU_DRGT" />
+          <ScalarProperty Name="NU_SER_SPFE" ColumnName="NU_SER_SPFE" />
+          <ScalarProperty Name="DT_ITVT" ColumnName="DT_ITVT" />
+          <ScalarProperty Name="LB_INIT" ColumnName="LB_INIT" />
+          <ScalarProperty Name="ID_MTCL_ECO" ColumnName="ID_MTCL_ECO" />
+          <ScalarProperty Name="BL_ETAT" ColumnName="BL_ETAT" />
+          <ScalarProperty Name="LB_DCPT_STAT" ColumnName="LB_DCPT_STAT" />
+          <ScalarProperty Name="NM_DCPO_NC" ColumnName="NM_DCPO_NC" />
+          <ScalarProperty Name="NM_TYPE_NC" ColumnName="NM_TYPE_NC" />
+          <ScalarProperty Name="NM_RFRC_SEQU" ColumnName="NM_RFRC_SEQU" />
+          <ScalarProperty Name="NU_VERS_SEQU" ColumnName="NU_VERS_SEQU" />
+          <ScalarProperty Name="NM_PHAS" ColumnName="NM_PHAS" />
+          <ScalarProperty Name="NM_SOUS_PHAS" ColumnName="NM_SOUS_PHAS" />
+          <ScalarProperty Name="CD_ARTI_DFTE" ColumnName="CD_ARTI_DFTE" />
+          <ScalarProperty Name="NM_DSGT_DEFA" ColumnName="NM_DSGT_DEFA" />
+          <ScalarProperty Name="NM_RSLT" ColumnName="NM_RSLT" />
+          <ScalarProperty Name="NM_RFRC_SEQU_RETO" ColumnName="NM_RFRC_SEQU_RETO" />
+          <ScalarProperty Name="NU_VERS_SEQU_RETO" ColumnName="NU_VERS_SEQU_RETO" />
+          <ScalarProperty Name="NM_PHAS_RETO" ColumnName="NM_PHAS_RETO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_LIST_TCBL_NMCT_PROD">
+      <EntityTypeMapping TypeName="ALMS_PROD_PRDModel.V_LIST_TCBL_NMCT_PROD">
+        <MappingFragment StoreEntitySet="V_LIST_TCBL_NMCT_PROD">
+          <ScalarProperty Name="NU_SER_SPFE" ColumnName="NU_SER_SPFE" />
+          <ScalarProperty Name="CD_ARTI_PROD" ColumnName="CD_ARTI_PROD" />
+          <ScalarProperty Name="NU_SER_COMP" ColumnName="NU_SER_COMP" />
+          <ScalarProperty Name="CD_ARTI_COMP" ColumnName="CD_ARTI_COMP" />
+          <ScalarProperty Name="NM_DSGT_COMP" ColumnName="NM_DSGT_COMP" />
+          <ScalarProperty Name="NM_TYPE_TCBL" ColumnName="NM_TYPE_TCBL" />
+          <ScalarProperty Name="DT_AFCT" ColumnName="DT_AFCT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_NC_LIST_CD_ARTI_TCBL_UNIT">
+      <EntityTypeMapping TypeName="ALMS_PROD_PRDModel.V_NC_LIST_CD_ARTI_TCBL_UNIT">
+        <MappingFragment StoreEntitySet="V_NC_LIST_CD_ARTI_TCBL_UNIT">
+          <ScalarProperty Name="CD_ARTI_COMP" ColumnName="CD_ARTI_COMP" />
+          <ScalarProperty Name="CD_ARTI_PROD" ColumnName="CD_ARTI_PROD" />
+          <ScalarProperty Name="BL_TYPE_TCBL" ColumnName="BL_TYPE_TCBL" />
+          <ScalarProperty Name="ID_TYPE_CAUS" ColumnName="ID_TYPE_CAUS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_NC_LIST_INFO_NU_INCI">
+      <EntityTypeMapping TypeName="ALMS_PROD_PRDModel.V_NC_LIST_INFO_NU_INCI">
+        <MappingFragment StoreEntitySet="V_NC_LIST_INFO_NU_INCI">
+          <ScalarProperty Name="NU_INCI" ColumnName="NU_INCI" />
+          <ScalarProperty Name="NU_SER_SPFE" ColumnName="NU_SER_SPFE" />
+          <ScalarProperty Name="ID_TYPE_NC" ColumnName="ID_TYPE_NC" />
+          <ScalarProperty Name="NM_TYPE_NC" ColumnName="NM_TYPE_NC" />
+          <ScalarProperty Name="NM_DCPO_NC" ColumnName="NM_DCPO_NC" />
+          <ScalarProperty Name="ID_RFRC_SEQU" ColumnName="ID_RFRC_SEQU" />
+          <ScalarProperty Name="NM_RFRC_SEQU" ColumnName="NM_RFRC_SEQU" />
+          <ScalarProperty Name="NU_PHAS_FCGF" ColumnName="NU_PHAS_FCGF" />
+          <ScalarProperty Name="NM_PHAS" ColumnName="NM_PHAS" />
+          <ScalarProperty Name="NU_SOUS_PHAS_FCGF" ColumnName="NU_SOUS_PHAS_FCGF" />
+          <ScalarProperty Name="NM_SOUS_PHAS" ColumnName="NM_SOUS_PHAS" />
+          <ScalarProperty Name="LB_DCPT_STAT" ColumnName="LB_DCPT_STAT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_NC_LIST_NU_INCI_NU_SER">
+      <EntityTypeMapping TypeName="ALMS_PROD_PRDModel.V_NC_LIST_NU_INCI_NU_SER">
+        <MappingFragment StoreEntitySet="V_NC_LIST_NU_INCI_NU_SER">
+          <ScalarProperty Name="NU_SER_SPFE" ColumnName="NU_SER_SPFE" />
+          <ScalarProperty Name="NU_INCI" ColumnName="NU_INCI" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_NC_LIST_PHAS_FAIL_NU_SER_ID_SEQ">
+      <EntityTypeMapping TypeName="ALMS_PROD_PRDModel.V_NC_LIST_PHAS_FAIL_NU_SER_ID_SEQ">
+        <MappingFragment StoreEntitySet="V_NC_LIST_PHAS_FAIL_NU_SER_ID_SEQ">
+          <ScalarProperty Name="NU_SER_SPFE" ColumnName="NU_SER_SPFE" />
+          <ScalarProperty Name="ID_RFRC_SEQU" ColumnName="ID_RFRC_SEQU" />
+          <ScalarProperty Name="NU_PHAS_FCGF" ColumnName="NU_PHAS_FCGF" />
+          <ScalarProperty Name="NM_PHAS" ColumnName="NM_PHAS" />
+          <ScalarProperty Name="NU_SOUS_PHAS_FCGF" ColumnName="NU_SOUS_PHAS_FCGF" />
+          <ScalarProperty Name="NM_SOUS_PHAS" ColumnName="NM_SOUS_PHAS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_NC_LIST_PROD_RETO_PDTO">
+      <EntityTypeMapping TypeName="ALMS_PROD_PRDModel.V_NC_LIST_PROD_RETO_PDTO">
+        <MappingFragment StoreEntitySet="V_NC_LIST_PROD_RETO_PDTO">
+          <ScalarProperty Name="ID_RFRC_SEQU_RETO" ColumnName="ID_RFRC_SEQU_RETO" />
+          <ScalarProperty Name="NU_PHAS_FCGF_RETO" ColumnName="NU_PHAS_FCGF_RETO" />
+          <ScalarProperty Name="NU_SER_SPFE" ColumnName="NU_SER_SPFE" />
+          <ScalarProperty Name="MAX_ID_STAT" ColumnName="MAX_ID_STAT" />
+          <ScalarProperty Name="NU_INCI" ColumnName="NU_INCI" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_NC_LIST_SEQU_FAIL_NU_SER">
+      <EntityTypeMapping TypeName="ALMS_PROD_PRDModel.V_NC_LIST_SEQU_FAIL_NU_SER">
+        <MappingFragment StoreEntitySet="V_NC_LIST_SEQU_FAIL_NU_SER">
+          <ScalarProperty Name="NU_SER_SPFE" ColumnName="NU_SER_SPFE" />
+          <ScalarProperty Name="NM_RFRC_SEQU" ColumnName="NM_RFRC_SEQU" />
+          <ScalarProperty Name="MAX_NU_TEST" ColumnName="MAX_NU_TEST" />
+          <ScalarProperty Name="ID_RFRC_SEQU" ColumnName="ID_RFRC_SEQU" />
+          <ScalarProperty Name="DT_TEST" ColumnName="DT_TEST" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_POST_FCGF">
+      <EntityTypeMapping TypeName="ALMS_PROD_PRDModel.V_POST_FCGF">
+        <MappingFragment StoreEntitySet="V_POST_FCGF">
+          <ScalarProperty Name="ID_POST" ColumnName="ID_POST" />
+          <ScalarProperty Name="ID_MTRE" ColumnName="ID_MTRE" />
+          <ScalarProperty Name="DT_AFCT" ColumnName="DT_AFCT" />
+          <ScalarProperty Name="DT_VLDT" ColumnName="DT_VLDT" />
+          <ScalarProperty Name="NM_TYPE_MTRE" ColumnName="NM_TYPE_MTRE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="P_ADD_RESU_SEQ_TEST" FunctionName="ALMS_PROD_PRDModel.Store.P_ADD_RESU_SEQ_TEST" />
+    <FunctionImportMapping FunctionImportName="P_ADD_RESU_VAL_TEST" FunctionName="ALMS_PROD_PRDModel.Store.P_ADD_RESU_VAL_TEST" />
+    <FunctionImportMapping FunctionImportName="P_GET_NEW_NU_INCI" FunctionName="ALMS_PROD_PRDModel.Store.P_GET_NEW_NU_INCI" />
+    <FunctionImportMapping FunctionImportName="P_SAVE_NEW_TYPE_CAUS" FunctionName="ALMS_PROD_PRDModel.Store.P_SAVE_NEW_TYPE_CAUS" />
+    <FunctionImportMapping FunctionImportName="P_SAVE_NEW_TYPE_NC" FunctionName="ALMS_PROD_PRDModel.Store.P_SAVE_NEW_TYPE_NC" />
+  </EntityContainerMapping>
+</Mapping>

@@ -91,4 +91,8 @@ Class _Default
     '    Next
     'End If
     'End Sub
+
+    'Dim path = Server.MapPath($"~/content/photos/{nomdudossier}")
+    'Dim listedesdossiers = info.GetDirectories()
+
 End Class

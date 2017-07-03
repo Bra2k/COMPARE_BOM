@@ -335,6 +335,16 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Models\Model_ALMS_PROD_PRD.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model_ALMS_PROD_PRD.edmx</DependentUpon>
+      <LastGenOutput>Model_ALMS_PROD_PRD.Context.vb</LastGenOutput>
+    </Content>
+    <Content Include="Models\Model_ALMS_PROD_PRD.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model_ALMS_PROD_PRD.edmx</DependentUpon>
+      <LastGenOutput>Model_ALMS_PROD_PRD.vb</LastGenOutput>
+    </Content>
     <Content Include="Models\Model_APP_WEP_ECO.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model_APP_WEP_ECO.edmx</DependentUpon>
@@ -344,6 +354,16 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model_APP_WEP_ECO.edmx</DependentUpon>
       <LastGenOutput>Model_APP_WEP_ECO.vb</LastGenOutput>
+    </Content>
+    <Content Include="Models\Model_MES_Digital_Factory.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model_MES_Digital_Factory.edmx</DependentUpon>
+      <LastGenOutput>Model_MES_Digital_Factory.Context.vb</LastGenOutput>
+    </Content>
+    <Content Include="Models\Model_MES_Digital_Factory.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model_MES_Digital_Factory.edmx</DependentUpon>
+      <LastGenOutput>Model_MES_Digital_Factory.vb</LastGenOutput>
     </Content>
     <Content Include="Models\Model_SENSINGLABS_PRD.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -408,6 +428,20 @@
     </EntityDeploy>
     <Content Include="Models\Model_SENSINGLABS_PRD.edmx.diagram">
       <DependentUpon>Model_SENSINGLABS_PRD.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\Model_ALMS_PROD_PRD.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model_ALMS_PROD_PRD.Designer.vb</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model_ALMS_PROD_PRD.edmx.diagram">
+      <DependentUpon>Model_ALMS_PROD_PRD.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\Model_MES_Digital_Factory.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model_MES_Digital_Factory.Designer.vb</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model_MES_Digital_Factory.edmx.diagram">
+      <DependentUpon>Model_MES_Digital_Factory.edmx</DependentUpon>
     </Content>
     <None Include="My Project\PublishProfiles\App_Web_Prod.pubxml" />
     <None Include="My Project\PublishProfiles\App_Web_Qual.pubxml" />
@@ -497,8 +531,113 @@
     <Compile Include="App_Code\Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\C_old_V_CLSG_RAPP_TCBL.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Donnees_Conteneur_Result.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_ADRE_MAC.vb">
+      <DependentUpon>Model_ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_ETP_WKF_OLD.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_GST_CNTR.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_GST_MOY_OLD.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_GST_OUTI.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_HIST_MTRE.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_HSQR_STAT_PROD.vb">
+      <DependentUpon>Model_ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DTM_LOG_APP_WEB.vb">
       <DependentUpon>Model_APP_WEP_ECO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_LST_CNTR.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_NC_DETA.vb">
+      <DependentUpon>Model_ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_NC_LIST.vb">
+      <DependentUpon>Model_ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_NMCT_PROD.vb">
+      <DependentUpon>Model_ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_NM_SN_ENS.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_NU_SER.vb">
+      <DependentUpon>Model_ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_OLD_TCBL_COMP.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_PSG.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_PSG_OUTI.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_REF_ENS.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_REF_GAMM.vb">
+      <DependentUpon>Model_ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_REF_GAMM_ARTI.vb">
+      <DependentUpon>Model_ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_REF_ID.vb">
+      <DependentUpon>Model_ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_REF_ID_TEST.vb">
+      <DependentUpon>Model_ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_REF_MTRE_LIST.vb">
+      <DependentUpon>Model_ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_REF_OPRT.vb">
+      <DependentUpon>Model_ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_REF_PST_IMPR_OLD.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_REF_STAT.vb">
+      <DependentUpon>Model_ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_REF_TYPE_NU_SER.vb">
+      <DependentUpon>Model_ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_RESU_TEST_DETA.vb">
+      <DependentUpon>Model_ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_RESU_TEST_LIST.vb">
+      <DependentUpon>Model_ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_SEQU_RFRC_DETA.vb">
+      <DependentUpon>Model_ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_SEQU_RFRC_LIST.vb">
+      <DependentUpon>Model_ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_TR_CPT.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_TST_RPRT.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DTM_TST_VAL.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DWH_DIM_CPT_CRTQ.vb">
       <DependentUpon>Model_SENSINGLABS_PRD.tt</DependentUpon>
@@ -521,7 +660,58 @@
     <Compile Include="Models\DWH_REF_ETP_PRCS.vb">
       <DependentUpon>Model_SENSINGLABS_PRD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ENS_INFO_Result.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Extraction_Traca_Matiere_NS_Result.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Extraction_Traca_Matiere_OF_OP_Result.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Extraction_Traca_Matiere_OF_Result.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\F_IDCT_PASS_Result.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.vb" />
+    <Compile Include="Models\ID_Conteneur_View.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Liste_Conteneurs_Servis_OF_Result.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Liste_Outillage_Attendu_Result.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LST_PST_ETP_MOY_Result.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LST_SENS_Pour_ENS_Result.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LST_TAMP_OUTI_Result.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LST_TMP_NMCL_Result.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model_ALMS_PROD_PRD.Context.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model_ALMS_PROD_PRD.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model_ALMS_PROD_PRD.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model_ALMS_PROD_PRD.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model_ALMS_PROD_PRD.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model_ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Model_APP_WEP_ECO.Context.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -536,6 +726,21 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model_APP_WEP_ECO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model_MES_Digital_Factory.Context.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model_MES_Digital_Factory.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model_MES_Digital_Factory.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model_MES_Digital_Factory.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model_MES_Digital_Factory.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Model_SENSINGLABS_PRD.Context.vb">
       <AutoGen>True</AutoGen>
@@ -552,8 +757,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model_SENSINGLABS_PRD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PRC_DNN_CNTR_Result.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\PRC_ETQ_DEVEUI_Result.vb">
       <DependentUpon>Model_SENSINGLABS_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PRC_EXTR_APPR_SERAP_Result.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PRC_LST_PCB_OF_Result.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PRC_LST_SENS_TO_ENS_Result.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PRC_LST_TMP_CLSG_PST_Result.vb">
       <DependentUpon>Model_SENSINGLABS_PRD.tt</DependentUpon>
@@ -561,11 +778,143 @@
     <Compile Include="Models\PRC_PARAM_ARTI_Result.vb">
       <DependentUpon>Model_SENSINGLABS_PRD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PRC_VERIF_DBL_PCB_NS_Result.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\P_MAJ_RAPP_TEST_Result.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TMP_PST_CLSG.vb">
       <DependentUpon>Model_SENSINGLABS_PRD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TMP_PST_FLAN.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TMP_PST_NMCL.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TMP_PST_OUTI.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_CFGR_ARTI_ECO.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_CFGR_CLIE.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_CLSG_PRD_DTM_HIST_LIVR.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_CLSG_PRD_DTM_REF_ARTI_FT.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_CLSG_PRD_DTM_REF_OPTN_CLI.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_CLSG_PRD_DTM_REF_PST.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_DER_DTM_PSG_PAR_LB_ETP.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_DHR_ECAR_PDTO.vb">
+      <DependentUpon>Model_ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_DTM_LST_CNTR.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_DTM_REF_ENS.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_DTM_TAKA.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_DTM_TEST_FONC_NOM_TEST.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_DTM_TEST_FONC_RAPP.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_DTM_TEST_FONC_VAL.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_FCGF.vb">
+      <DependentUpon>Model_ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_FCGF_ANML.vb">
+      <DependentUpon>Model_ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_LIST_CONT_NON_VIDE.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_LIST_LIAI_NU_SER_ECO_NU_SER_CLIE.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_LIST_TCBL_NMCT_PROD.vb">
+      <DependentUpon>Model_ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_LIST_TEST_ODS_TEST_FONC_VAL.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_NC_LIST_CD_ARTI_TCBL_UNIT.vb">
+      <DependentUpon>Model_ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_NC_LIST_INFO_NU_INCI.vb">
+      <DependentUpon>Model_ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_NC_LIST_NU_INCI_NU_SER.vb">
+      <DependentUpon>Model_ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_NC_LIST_PHAS_FAIL_NU_SER_ID_SEQ.vb">
+      <DependentUpon>Model_ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_NC_LIST_PROD_RETO_PDTO.vb">
+      <DependentUpon>Model_ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_NC_LIST_SEQU_FAIL_NU_SER.vb">
+      <DependentUpon>Model_ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_NEOE_NU_SER_ECO_NU_SER_SS_ENS.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_NEOE_TRAC_ENS_SS_ENSE.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_NEW_PSG_ODS_TEST_FONC_RAPP.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_NEW_RAPP_ODS_TEST_FONC_RAPP.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_NEW_TEST_ODS_TEST_FONC_VAL.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_NEW_VALE_ODS_TEST_FONC_VAL.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_POST_FCGF.vb">
+      <DependentUpon>Model_ALMS_PROD_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_RSLT_POIN_ARRE_TCBL_OPRT.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_SERE_ARTI.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_TAE_TCBL_HSRQ_STAT_PROD.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_TAE_TCBL_NMCT_UNIT_PROD.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\V_TCBL_TOUT.vb">
       <DependentUpon>Model_SENSINGLABS_PRD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WorkFlow_NS_EOL_Result.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WorkFlow_PDT_Result.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">

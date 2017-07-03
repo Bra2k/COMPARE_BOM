@@ -276,15 +276,6 @@ Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web._Default._CodeBarre">
-<summary>
-Contrôle CodeBarre.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
 <member name="F:App_Web._Default._Bom">
 <summary>
 Contrôle Bom.
@@ -5561,9 +5552,18 @@ Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web.GEST_ANML_NC_DRGT._RadioButtonList_TYPE_INCI">
+<member name="F:App_Web.GEST_ANML_NC_DRGT._accordion">
 <summary>
-Contrôle RadioButtonList_TYPE_INCI.
+Contrôle accordion.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.GEST_ANML_NC_DRGT._collapseOne">
+<summary>
+Contrôle collapseOne.
 </summary>
 <remarks>
 Champ généré automatiquement.
@@ -5876,9 +5876,9 @@ Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web.GEST_ANML_NC_DRGT._View_DRGT">
+<member name="F:App_Web.GEST_ANML_NC_DRGT._collapseTwo">
 <summary>
-Contrôle View_DRGT.
+Contrôle collapseTwo.
 </summary>
 <remarks>
 Champ généré automatiquement.

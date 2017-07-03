@@ -11,7 +11,8 @@ Imports PdfSharp.Drawing
 Imports PdfSharp.Drawing.Layout
 Imports PdfSharp.Pdf
 Imports System.IO
-
+Imports System
+Imports Microsoft.VisualBasic.Strings
 Public Class Class_DIG_FACT
     Public Shared Function DIG_FACT_VERI_FORM_NU_SER(sCD_ARTI As String, sNM_PARA As String, sNU_SER As String) As Boolean
 

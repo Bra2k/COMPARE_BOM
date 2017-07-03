@@ -167,15 +167,6 @@ Partial Public Class _Default
     Protected WithEvents Composant As Global.System.Web.UI.WebControls.ImageButton
     
     '''<summary>
-    '''Contrôle CodeBarre.
-    '''</summary>
-    '''<remarks>
-    '''Champ généré automatiquement.
-    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-    '''</remarks>
-    Protected WithEvents CodeBarre As Global.System.Web.UI.WebControls.ImageButton
-    
-    '''<summary>
     '''Contrôle Bom.
     '''</summary>
     '''<remarks>
