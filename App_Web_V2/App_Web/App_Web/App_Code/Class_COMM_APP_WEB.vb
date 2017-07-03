@@ -155,16 +155,17 @@ Public Class Class_COMM_APP_WEB
 
     Public Shared Sub COMM_APP_WEB_IMPR_ETIQ_PRN(sFichier As String, sImprimante As String)
 
-        Dim p As Process
+        'Dim p As Process
         Try
-            p = Process.Start("cmd", $"/c COPY ""{sFichier}"" ""{sImprimante}""")
-            p.WaitForExit()
+            Using p = Process.Start("cmd", $"/c COPY ""{sFichier}"" ""{sImprimante}""")
+                p.WaitForExit()
+                LOG_Msg(GetCurrentMethod, $"Le fichier {sFichier} a été imprimé sur l'imprimante {sImprimante}.")
+            End Using
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Exit Sub
         End Try
 
-        LOG_Msg(GetCurrentMethod, $"Le fichier {sFichier} a été imprimé sur l'imprimante {sImprimante}.")
     End Sub
 
     Public Shared Function COMM_APP_WEB_CONV_FORM_DATE(sDT As String, sFORM As String) As String
@@ -196,7 +197,7 @@ Public Class Class_COMM_APP_WEB
         Try
             For iChar As Integer = Len(sNB_BASE_N) To 1 Step -1
                 iEXTR_BASE_N = BASENUMBERS.IndexOf(Mid(sNB_BASE_N, iChar, 1))
-                If iEXTR_BASE_N >= iBASE_N Then Throw New Exception("Le caractère " & Mid(sNB_BASE_N, iChar, 1) & " ne peut exister dans un nombre en base " & iBASE_N.ToString)
+                If iEXTR_BASE_N >= iBASE_N Then Throw New Exception($"Le caractère {Mid(sNB_BASE_N, iChar, 1)} ne peut exister dans un nombre en base {iBASE_N.ToString}")
                 iNB_DEC = iNB_DEC + (iEXTR_BASE_N * (iBASE_N ^ (Len(sNB_BASE_N) - iChar)))
             Next
         Catch ex As Exception
@@ -312,7 +313,7 @@ Public Class Class_COMM_APP_WEB
                          From [APP_WEB_ECO].[dbo].[V_DER_MAJ_DTM_REF_PARA_ETAT_CRTL]
                         WHERE [NM_PAGE] = '{pageHandler.ToString}' AND [PARA] = '{Replace(sNM_PARA, "'", "''")}' AND [ID_CTRL] = '{sNM_CTRL}'"
                 Using dt = SQL_SELE_TO_DT(sQuery, CS_APP_WEB_ECO)
-                    If dt Is Nothing Then Throw New Exception($"Pas de données pour le contrôle{sNM_CTRL}")
+                    If dt Is Nothing Then Throw New Exception($"Pas de données pour le contrôle {sNM_CTRL}")
                     sTP_CTRL = Left(sNM_CTRL, sNM_CTRL.IndexOf("_"))
                     sVAL_CTRL = dt(0)("VL_CTRL").ToString
                 End Using

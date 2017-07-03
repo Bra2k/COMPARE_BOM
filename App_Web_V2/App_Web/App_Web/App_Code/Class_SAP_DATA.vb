@@ -369,18 +369,14 @@ Public Class Class_SAP_DATA
     End Function
 
     Public Shared Function SAP_DATA_Z_LOG_CONF_GET(V_AUFNR As String, V_VORNR As String, V_PERNR As String, DATE_DEBUT As String, DATE_FIN As String) As DataTable
-        Dim dt_T_LOG_CONF As New DataTable
         Dim oSAP, RFC, oRFC_RET, oRFC_MSG, oT_LOG_CONF As New Object
 
         Try
             oSAP = SAP_DATA_CONN()
             RFC = oSAP.Add("Z_LOG_CONF_GET")
-            If V_AUFNR <> "" Then V_AUFNR = StrDup(12 - Len(V_AUFNR), "0") & V_AUFNR
-            RFC.exports("V_AUFNR") = V_AUFNR
-            If V_VORNR <> "" Then V_VORNR = StrDup(4 - Len(V_VORNR), "0") & V_VORNR
-            RFC.exports("V_VORNR") = V_VORNR
-            If V_PERNR <> "" Then V_PERNR = StrDup(8 - Len(V_PERNR), "0") & V_PERNR
-            RFC.exports("V_PERNR") = V_PERNR
+            RFC.exports("V_AUFNR") = SAP_DATA_CONV_CHAM(V_AUFNR, "OF")
+            RFC.exports("V_VORNR") = SAP_DATA_CONV_CHAM(V_VORNR, "Numéro opération")
+            RFC.exports("V_PERNR") = SAP_DATA_CONV_CHAM(V_PERNR, "Code opérateur")
             RFC.exports("DATE_DEBUT") = COMM_APP_WEB_CONV_FORM_DATE(DATE_DEBUT, "yyyyMMdd")
             RFC.exports("DATE_FIN") = COMM_APP_WEB_CONV_FORM_DATE(DATE_FIN, "yyyyMMdd")
 
@@ -388,15 +384,19 @@ Public Class Class_SAP_DATA
 
             If RFC.Call <> -1 Then Throw New Exception(RFC.exception)
 
-            For Each o_COL_T_LOG_CONF As Object In oT_LOG_CONF.Columns
-                dt_T_LOG_CONF.Columns.Add(o_COL_T_LOG_CONF.Name, Type.GetType("System.String"))
-            Next
-            For iRowIndex = 1 To oT_LOG_CONF.RowCount
-                dt_T_LOG_CONF.Rows.Add()
-                For iIndex = 1 To oT_LOG_CONF.ColumnCount - 1
-                    dt_T_LOG_CONF.Rows(dt_T_LOG_CONF.Rows.Count - 1)(iIndex - 1) = oT_LOG_CONF.Value(iRowIndex, iIndex)
+            Using dt_T_LOG_CONF As New DataTable
+                For Each o_COL_T_LOG_CONF As Object In oT_LOG_CONF.Columns
+                    dt_T_LOG_CONF.Columns.Add(o_COL_T_LOG_CONF.Name, Type.GetType("System.String"))
                 Next
-            Next
+                For iRowIndex = 1 To oT_LOG_CONF.RowCount
+                    dt_T_LOG_CONF.Rows.Add()
+                    For iIndex = 1 To oT_LOG_CONF.ColumnCount - 1
+                        dt_T_LOG_CONF.Rows(dt_T_LOG_CONF.Rows.Count - 1)(iIndex - 1) = oT_LOG_CONF.Value(iRowIndex, iIndex)
+                    Next
+                Next
+                LOG_Msg(GetCurrentMethod, $"Exécution de la fonction Z_LOG_CONF_GET réussie. {oT_LOG_CONF.RowCount} lignes trouvées.")
+                Return dt_T_LOG_CONF
+            End Using
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
@@ -404,20 +404,15 @@ Public Class Class_SAP_DATA
             oSAP = SAP_DATA_DECO(oSAP)
         End Try
 
-        LOG_Msg(GetCurrentMethod, $"Exécution de la fonction Z_LOG_CONF_GET réussie. {oT_LOG_CONF.RowCount} lignes trouvées.")
-        Return dt_T_LOG_CONF
-
     End Function
 
     Public Shared Function SAP_DATA_Z_LOG_ACT_GET(V_PERNR As String, DATE_DEBUT As String, DATE_FIN As String) As DataTable
-        Dim dt_T_LOG_ACT As New DataTable
         Dim oSAP, RFC, oRFC_RET, oRFC_MSG, oT_LOG_ACT As New Object
 
         Try
             oSAP = SAP_DATA_CONN()
             RFC = oSAP.Add("Z_LOG_ACT_GET")
-            If V_PERNR <> "" Then V_PERNR = StrDup(8 - Len(V_PERNR), "0") & V_PERNR
-            RFC.exports("V_PERNR") = V_PERNR
+            RFC.exports("V_PERNR") = SAP_DATA_CONV_CHAM(V_PERNR, "Code opérateur")
             RFC.exports("DATE_DEBUT") = COMM_APP_WEB_CONV_FORM_DATE(DATE_DEBUT, "yyyyMMdd")
             RFC.exports("DATE_FIN") = COMM_APP_WEB_CONV_FORM_DATE(DATE_FIN, "yyyyMMdd")
 
@@ -425,15 +420,19 @@ Public Class Class_SAP_DATA
 
             If RFC.Call <> -1 Then Throw New Exception(RFC.exception)
 
-            For Each o_COL_T_LOG_ACT As Object In oT_LOG_ACT.Columns
-                dt_T_LOG_ACT.Columns.Add(o_COL_T_LOG_ACT.Name, Type.GetType("System.String"))
-            Next
-            For iRowIndex = 1 To oT_LOG_ACT.RowCount
-                dt_T_LOG_ACT.Rows.Add()
-                For iIndex = 1 To oT_LOG_ACT.ColumnCount - 1
-                    dt_T_LOG_ACT.Rows(dt_T_LOG_ACT.Rows.Count - 1)(iIndex - 1) = oT_LOG_ACT.Value(iRowIndex, iIndex)
+            Using dt_T_LOG_ACT As New DataTable
+                For Each o_COL_T_LOG_ACT As Object In oT_LOG_ACT.Columns
+                    dt_T_LOG_ACT.Columns.Add(o_COL_T_LOG_ACT.Name, Type.GetType("System.String"))
                 Next
-            Next
+                For iRowIndex = 1 To oT_LOG_ACT.RowCount
+                    dt_T_LOG_ACT.Rows.Add()
+                    For iIndex = 1 To oT_LOG_ACT.ColumnCount - 1
+                        dt_T_LOG_ACT.Rows(dt_T_LOG_ACT.Rows.Count - 1)(iIndex - 1) = oT_LOG_ACT.Value(iRowIndex, iIndex)
+                    Next
+                Next
+                LOG_Msg(GetCurrentMethod, $"Exécution de la fonction Z_LOG_ACT_GET réussie. {dt_T_LOG_ACT.Rows.Count} lignes trouvées.")
+                Return dt_T_LOG_ACT
+            End Using
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
@@ -441,8 +440,6 @@ Public Class Class_SAP_DATA
             oSAP = SAP_DATA_DECO(oSAP)
         End Try
 
-        LOG_Msg(GetCurrentMethod, $"Exécution de la fonction Z_LOG_ACT_GET réussie. {dt_T_LOG_ACT.Rows.Count} lignes trouvées.")
-        Return dt_T_LOG_ACT
     End Function
 
     Public Shared Function SAP_DATA_READ_MAKT(Optional sFILT As String = "") As DataTable
@@ -463,7 +460,7 @@ Public Class Class_SAP_DATA
 
     Public Shared Function SAP_DATA_READ_AFKO(Optional sFILT As String = "") As DataTable
         Try
-            Using dtAFKO = SAP_DATA_READ_TBL_V2("AFKO", "|", "", "RSNUM GAMNG PLNBEZ AUFNR AUFPL REVLV STLNR STLAL GSTRS", sFILT)
+            Using dtAFKO = SAP_DATA_READ_TBL("AFKO", "|", "", "RSNUM GAMNG PLNBEZ AUFNR AUFPL REVLV STLNR STLAL GSTRS", sFILT)
                 If dtAFKO Is Nothing Then Throw New Exception($"Problème de lecture de la table AFKO avec le filtre  {sFILT}")
                 LOG_Msg(GetCurrentMethod, $"Lecture de la table AFKO effectuée avec le filtre  {sFILT}")
                 Return dtAFKO
@@ -706,84 +703,89 @@ Public Class Class_SAP_DATA
     End Function
     'Private Const ABAP_APP_SERVER As String = "NCO_TESTS"
     Public Shared Function SAP_DATA_Z_ORDOPEINFO_GET(V_AUFNR As String, Optional V_VORNR As String = "", Optional LOG_SAP As String = "") As DataTable
-        Dim dt_ORDOPEINFO_GET As New DataTable
+
         Dim oSAP, oRFC_MSG, oT_ORDOPEINFO_GET As New Object
         'Dim oRFC_RET As IRfcStructure
         'Dim RFC As IRfcFunction
         Try
-            '    oSAP = SAP_DATA_CONN()
-            '    Dim destination As RfcDestination = RfcDestinationManager.GetDestination(ABAP_APP_SERVER)
-            '    RFC = destination.Repository.CreateFunction("Z_ORDOPEINFO_GET")
-            '    'RFC = oSAP.Add("Z_ORDOPEINFO_GET")
-            '    For Each parameter As IRfcParameter In RFC
-            '        LOG_Msg(GetCurrentMethod, parameter.Metadata.Name}|{parameter.GetString())
-            '    Next
-            'RFC.exports("V_AUFNR") = V_AUFNR
-            'RFC.exports("V_VORNR") = V_VORNR
-            'RFC.exports("LOG_SAP") = LOG_SAP
-            With dt_ORDOPEINFO_GET.Columns
-                .Add("PLNBEZ", Type.GetType("System.String"))
-                .Add("KTEXT", Type.GetType("System.String"))
-                .Add("VTEXT", Type.GetType("System.String"))
-                .Add("LTXA1", Type.GetType("System.String"))
-                .Add("ARBPL", Type.GetType("System.String"))
-                .Add("OPRZ1", Type.GetType("System.String"))
-                .Add("MSG_ERROR", Type.GetType("System.String"))
-                .Add("PLNFL", Type.GetType("System.String"))
-                .Add("OPRZ2", Type.GetType("System.String"))
-                .Add("BMSCH", Type.GetType("System.String"))
-                .Add("VGE01", Type.GetType("System.String"))
-                .Add("VGW01", Type.GetType("System.String"))
-                .Add("VGE02", Type.GetType("System.String"))
-                .Add("VGW02", Type.GetType("System.String"))
-                .Add("VGE03", Type.GetType("System.String"))
-                .Add("VGW03", Type.GetType("System.String"))
-                .Add("VGE04", Type.GetType("System.String"))
-                .Add("VGW04", Type.GetType("System.String"))
-                .Add("VGE05", Type.GetType("System.String"))
-                .Add("VGW05", Type.GetType("System.String"))
-                .Add("WERKS", Type.GetType("System.String"))
-                .Add("QTE_OF", Type.GetType("System.String"))
-                .Add("ERDAT", Type.GetType("System.String"))
-                .Add("QTE_SUCCES", Type.GetType("System.String"))
-                .Add("QTE_ENCOURS", Type.GetType("System.String"))
-                .Add("QTE_ECHEC", Type.GetType("System.String"))
-                .Add("QTE_CONFIRMEE", Type.GetType("System.String"))
-            End With
-            '  If RFC.Call <> -1 Then Throw New Exception(RFC.exception)
+            Using dt_ORDOPEINFO_GET As New DataTable
+                '    oSAP = SAP_DATA_CONN()
+                '    Dim destination As RfcDestination = RfcDestinationManager.GetDestination(ABAP_APP_SERVER)
+                '    RFC = destination.Repository.CreateFunction("Z_ORDOPEINFO_GET")
+                '    'RFC = oSAP.Add("Z_ORDOPEINFO_GET")
+                '    For Each parameter As IRfcParameter In RFC
+                '        LOG_Msg(GetCurrentMethod, parameter.Metadata.Name}|{parameter.GetString())
+                '    Next
+                'RFC.exports("V_AUFNR") = V_AUFNR
+                'RFC.exports("V_VORNR") = V_VORNR
+                'RFC.exports("LOG_SAP") = LOG_SAP
+                With dt_ORDOPEINFO_GET.Columns
+                    .Add("PLNBEZ", Type.GetType("System.String"))
+                    .Add("KTEXT", Type.GetType("System.String"))
+                    .Add("VTEXT", Type.GetType("System.String"))
+                    .Add("LTXA1", Type.GetType("System.String"))
+                    .Add("ARBPL", Type.GetType("System.String"))
+                    .Add("OPRZ1", Type.GetType("System.String"))
+                    .Add("MSG_ERROR", Type.GetType("System.String"))
+                    .Add("PLNFL", Type.GetType("System.String"))
+                    .Add("OPRZ2", Type.GetType("System.String"))
+                    .Add("BMSCH", Type.GetType("System.String"))
+                    .Add("VGE01", Type.GetType("System.String"))
+                    .Add("VGW01", Type.GetType("System.String"))
+                    .Add("VGE02", Type.GetType("System.String"))
+                    .Add("VGW02", Type.GetType("System.String"))
+                    .Add("VGE03", Type.GetType("System.String"))
+                    .Add("VGW03", Type.GetType("System.String"))
+                    .Add("VGE04", Type.GetType("System.String"))
+                    .Add("VGW04", Type.GetType("System.String"))
+                    .Add("VGE05", Type.GetType("System.String"))
+                    .Add("VGW05", Type.GetType("System.String"))
+                    .Add("WERKS", Type.GetType("System.String"))
+                    .Add("QTE_OF", Type.GetType("System.String"))
+                    .Add("ERDAT", Type.GetType("System.String"))
+                    .Add("QTE_SUCCES", Type.GetType("System.String"))
+                    .Add("QTE_ENCOURS", Type.GetType("System.String"))
+                    .Add("QTE_ECHEC", Type.GetType("System.String"))
+                    .Add("QTE_CONFIRMEE", Type.GetType("System.String"))
+                End With
+                '  If RFC.Call <> -1 Then Throw New Exception(RFC.exception)
 
-            'oRFC_RET = RFC.getStructure("RETURN")
-            ''If RFC.Call <> -1 Then Throw New Exception(RFC.exception)
-            'dt_ORDOPEINFO_GET.Rows.Add()
-            'dt_ORDOPEINFO_GET(0)("PLNBEZ") = oRFC_RET.getstring(1)
-            'dt_ORDOPEINFO_GET(0)("KTEXT") = oRFC_RET.getstring(2)
-            'dt_ORDOPEINFO_GET(0)("VTEXT") = oRFC_RET.getstring(3)
-            'dt_ORDOPEINFO_GET(0)("LTXA1") = oRFC_RET.value("LTXA1")
-            'dt_ORDOPEINFO_GET(0)("ARBPL") = oRFC_RET.value("ARBPL")
-            'dt_ORDOPEINFO_GET(0)("OPRZ1") = oRFC_RET.value("OPRZ1")
-            'dt_ORDOPEINFO_GET(0)("MSG_ERROR") = oRFC_RET.value("MSG_ERROR")
-            'dt_ORDOPEINFO_GET(0)("PLNFL") = oRFC_RET.value("PLNFL")
-            'dt_ORDOPEINFO_GET(0)("OPRZ2") = oRFC_RET.value("OPRZ2")
-            'dt_ORDOPEINFO_GET(0)("BMSCH") = oRFC_RET.value("BMSCH")
-            'dt_ORDOPEINFO_GET(0)("VGE01") = oRFC_RET.value("VGE01")
-            'dt_ORDOPEINFO_GET(0)("VGW01") = oRFC_RET.value("VGW01")
-            'dt_ORDOPEINFO_GET(0)("VGE02") = oRFC_RET.value("VGE02")
-            'dt_ORDOPEINFO_GET(0)("VGW02") = oRFC_RET.value("VGW02")
-            'dt_ORDOPEINFO_GET(0)("VGE03") = oRFC_RET.value("VGE03")
-            'dt_ORDOPEINFO_GET(0)("VGW03") = oRFC_RET.value("VGW03")
-            'dt_ORDOPEINFO_GET(0)("VGE04") = oRFC_RET.value("VGE04")
-            'dt_ORDOPEINFO_GET(0)("VGW04") = oRFC_RET.value("VGW04")
-            'dt_ORDOPEINFO_GET(0)("VGE05") = oRFC_RET.value("VGE05")
-            'dt_ORDOPEINFO_GET(0)("VGW05") = oRFC_RET.value("VGW05")
-            'dt_ORDOPEINFO_GET(0)("WERKS") = oRFC_RET.value("WERKS")
-            'dt_ORDOPEINFO_GET(0)("QTE_OF") = oRFC_RET.value("QTE_OF")
-            'dt_ORDOPEINFO_GET(0)("ERDAT") = oRFC_RET.value("ERDAT")
-            'dt_ORDOPEINFO_GET(0)("QTE_SUCCES") = oRFC_RET.value("QTE_SUCCES")
-            'dt_ORDOPEINFO_GET(0)("QTE_ENCOURS") = oRFC_RET.value("QTE_ENCOURS")
-            'dt_ORDOPEINFO_GET(0)("QTE_ENCOURS") = oRFC_RET.value("QTE_ENCOURS")
-            'dt_ORDOPEINFO_GET(0)("QTE_ECHEC") = oRFC_RET.value("QTE_ECHEC")
-            'dt_ORDOPEINFO_GET(0)("QTE_CONFIRMEE") = oRFC_RET.value("QTE_CONFIRMEE")
+                'oRFC_RET = RFC.getStructure("RETURN")
+                ''If RFC.Call <> -1 Then Throw New Exception(RFC.exception)
+                'dt_ORDOPEINFO_GET.Rows.Add()
+                'dt_ORDOPEINFO_GET(0)("PLNBEZ") = oRFC_RET.getstring(1)
+                'dt_ORDOPEINFO_GET(0)("KTEXT") = oRFC_RET.getstring(2)
+                'dt_ORDOPEINFO_GET(0)("VTEXT") = oRFC_RET.getstring(3)
+                'dt_ORDOPEINFO_GET(0)("LTXA1") = oRFC_RET.value("LTXA1")
+                'dt_ORDOPEINFO_GET(0)("ARBPL") = oRFC_RET.value("ARBPL")
+                'dt_ORDOPEINFO_GET(0)("OPRZ1") = oRFC_RET.value("OPRZ1")
+                'dt_ORDOPEINFO_GET(0)("MSG_ERROR") = oRFC_RET.value("MSG_ERROR")
+                'dt_ORDOPEINFO_GET(0)("PLNFL") = oRFC_RET.value("PLNFL")
+                'dt_ORDOPEINFO_GET(0)("OPRZ2") = oRFC_RET.value("OPRZ2")
+                'dt_ORDOPEINFO_GET(0)("BMSCH") = oRFC_RET.value("BMSCH")
+                'dt_ORDOPEINFO_GET(0)("VGE01") = oRFC_RET.value("VGE01")
+                'dt_ORDOPEINFO_GET(0)("VGW01") = oRFC_RET.value("VGW01")
+                'dt_ORDOPEINFO_GET(0)("VGE02") = oRFC_RET.value("VGE02")
+                'dt_ORDOPEINFO_GET(0)("VGW02") = oRFC_RET.value("VGW02")
+                'dt_ORDOPEINFO_GET(0)("VGE03") = oRFC_RET.value("VGE03")
+                'dt_ORDOPEINFO_GET(0)("VGW03") = oRFC_RET.value("VGW03")
+                'dt_ORDOPEINFO_GET(0)("VGE04") = oRFC_RET.value("VGE04")
+                'dt_ORDOPEINFO_GET(0)("VGW04") = oRFC_RET.value("VGW04")
+                'dt_ORDOPEINFO_GET(0)("VGE05") = oRFC_RET.value("VGE05")
+                'dt_ORDOPEINFO_GET(0)("VGW05") = oRFC_RET.value("VGW05")
+                'dt_ORDOPEINFO_GET(0)("WERKS") = oRFC_RET.value("WERKS")
+                'dt_ORDOPEINFO_GET(0)("QTE_OF") = oRFC_RET.value("QTE_OF")
+                'dt_ORDOPEINFO_GET(0)("ERDAT") = oRFC_RET.value("ERDAT")
+                'dt_ORDOPEINFO_GET(0)("QTE_SUCCES") = oRFC_RET.value("QTE_SUCCES")
+                'dt_ORDOPEINFO_GET(0)("QTE_ENCOURS") = oRFC_RET.value("QTE_ENCOURS")
+                'dt_ORDOPEINFO_GET(0)("QTE_ENCOURS") = oRFC_RET.value("QTE_ENCOURS")
+                'dt_ORDOPEINFO_GET(0)("QTE_ECHEC") = oRFC_RET.value("QTE_ECHEC")
+                'dt_ORDOPEINFO_GET(0)("QTE_CONFIRMEE") = oRFC_RET.value("QTE_CONFIRMEE")
 
+
+                LOG_Msg(GetCurrentMethod, $"Exécution de la fonction Z_ORDOPEINFO_GET réussie. {dt_ORDOPEINFO_GET.Rows.Count} lignes trouvées.")
+                Return dt_ORDOPEINFO_GET
+            End Using
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
@@ -791,14 +793,12 @@ Public Class Class_SAP_DATA
             oSAP = SAP_DATA_DECO(oSAP)
         End Try
 
-        LOG_Msg(GetCurrentMethod, $"Exécution de la fonction Z_ORDOPEINFO_GET réussie. {dt_ORDOPEINFO_GET.Rows.Count} lignes trouvées.")
-        Return dt_ORDOPEINFO_GET
 
     End Function
 
     Public Shared Function SAP_DATA_Z_GAMM_ARTI(V_MATNR As String, Optional sFilt As String = "") As DataTable
         'Dim oSAP, RFC, oT_Z_GAMME_ARTI As New Object
-        Dim dt_T_Z_GAMME_ARTI As New DataTable
+
 
         'LOG_Msg(GetCurrentMethod, V_MATNR)
 
@@ -840,16 +840,15 @@ Public Class Class_SAP_DATA
         'Dim dtZMOYENTYPETEST As New DataTable
 
         Try
-            dt_T_Z_GAMME_ARTI = SAP_DATA_READ_TBL("Z_GAMME_ARTICLE", "|", "", "V_MATNR WERKS V_PLNTY V_STATU", sFilt)
-            If dt_T_Z_GAMME_ARTI Is Nothing Then Throw New Exception($"Problème de lecture de la table Z_GAMME_ARTICLE avec le filtre :  {sFilt}")
+            Using dt_T_Z_GAMME_ARTI = SAP_DATA_READ_TBL("Z_GAMME_ARTICLE", "|", "", "V_MATNR WERKS V_PLNTY V_STATU", sFilt)
+                If dt_T_Z_GAMME_ARTI Is Nothing Then Throw New Exception($"Problème de lecture de la table Z_GAMME_ARTICLE avec le filtre :  {sFilt}")
+                LOG_Msg(GetCurrentMethod, $"Lecture de la table Z_GAMME_ARTICLE effectuée avec le filtre  {sFilt}")
+                Return dt_T_Z_GAMME_ARTI
+            End Using
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
         End Try
-
-        LOG_Msg(GetCurrentMethod, $"Lecture de la table Z_GAMME_ARTICLE effectuée avec le filtre  {sFilt}")
-        Return dt_T_Z_GAMME_ARTI
-
 
     End Function
 
@@ -942,45 +941,36 @@ Public Class Class_SAP_DATA
 
     Public Shared Function SAP_DATA_Z_GET_DOC_INFO(V_AUFNR As String, V_VORNR As String) As DataTable
 
-        Dim dt_T_TAB_DOC_SAP As New DataTable
         Dim oSAP, RFC, oRFC_RET, oRFC_MSG, oT_TAB_DOC_SAP As New Object
 
         Try
             oSAP = SAP_DATA_CONN()
             RFC = oSAP.Add("Z_GET_DOC_INFO")
-            'V_AUFNR = "1173833"
-            'V_VORNR = "100"
-            Dim sb_v_aufnr As New StringBuilder
-            sb_v_aufnr.Append(StrDup(12 - Microsoft.VisualBasic.Strings.Len(V_AUFNR), "0"))
-            sb_v_aufnr.Append(V_AUFNR)
-            'If V_AUFNR <> "" Then V_AUFNR = StrDup(12 - Microsoft.VisualBasic.Strings.Len(V_AUFNR), "0") & V_AUFNR
-            RFC.exports("V_AUFNR") = sb_v_aufnr.ToString
-            Dim sb_v_vornr As New StringBuilder
-            sb_v_vornr.Append(Microsoft.VisualBasic.Strings.StrDup(4 - Microsoft.VisualBasic.Strings.Len(V_VORNR), "0"))
-            sb_v_vornr.Append(V_VORNR)
-            'If V_VORNR <> "" Then V_VORNR = Microsoft.VisualBasic.Strings.StrDup(4 - Microsoft.VisualBasic.Strings.Len(V_VORNR), "0") & V_VORNR
-            RFC.exports("V_VORNR") = sb_v_vornr.ToString
-
+            RFC.exports("V_AUFNR") = SAP_DATA_CONV_CHAM(V_AUFNR, "OF")
+            RFC.exports("V_VORNR") = SAP_DATA_CONV_CHAM(V_VORNR, "Numéro opération")
             oT_TAB_DOC_SAP = RFC.Tables("T_TAB_DOC_SAP")
 
             If RFC.Call <> -1 Then Throw New Exception(RFC.exception)
-
-            If oT_TAB_DOC_SAP.ColumnCount = 0 Then Throw New Exception("Aucune colonne trouvée")
-            For Each o_COL_T_TAB_DOC_SAP As Object In oT_TAB_DOC_SAP.Columns
-                'LOG_Msg(GetCurrentMethod, o_COL_T_TAB_DOC_SAP.Name)
-                dt_T_TAB_DOC_SAP.Columns.Add(o_COL_T_TAB_DOC_SAP.Name, Type.GetType("System.String", 2000))
-            Next
-
-            If oT_TAB_DOC_SAP.RowCount = 0 Then Throw New Exception("Aucune ligne trouvée")
-
-            For Each o_LIGN_T_TAB_DOC_SAP As Object In oT_TAB_DOC_SAP.rows
-                dt_T_TAB_DOC_SAP.Rows.Add()
+            Using dt_T_TAB_DOC_SAP As New DataTable
+                If oT_TAB_DOC_SAP.ColumnCount = 0 Then Throw New Exception("Aucune colonne trouvée")
                 For Each o_COL_T_TAB_DOC_SAP As Object In oT_TAB_DOC_SAP.Columns
-                    'LOG_Msg(GetCurrentMethod, o_LIGN_T_TAB_DOC_SAP(o_COL_T_TAB_DOC_SAP.Name))
-                    dt_T_TAB_DOC_SAP.Rows(dt_T_TAB_DOC_SAP.Rows.Count - 1)(o_COL_T_TAB_DOC_SAP.Name) = o_LIGN_T_TAB_DOC_SAP(o_COL_T_TAB_DOC_SAP.Name)
+                    'LOG_Msg(GetCurrentMethod, o_COL_T_TAB_DOC_SAP.Name)
+                    dt_T_TAB_DOC_SAP.Columns.Add(o_COL_T_TAB_DOC_SAP.Name, Type.GetType("System.String", 2000))
                 Next
-                'LOG_Msg(GetCurrentMethod, "DKTXT{o_LIGN_T_TAB_DOC_SAP("DKTXT").ToString)
-            Next
+
+                If oT_TAB_DOC_SAP.RowCount = 0 Then Throw New Exception("Aucune ligne trouvée")
+
+                For Each o_LIGN_T_TAB_DOC_SAP As Object In oT_TAB_DOC_SAP.rows
+                    dt_T_TAB_DOC_SAP.Rows.Add()
+                    For Each o_COL_T_TAB_DOC_SAP As Object In oT_TAB_DOC_SAP.Columns
+                        'LOG_Msg(GetCurrentMethod, o_LIGN_T_TAB_DOC_SAP(o_COL_T_TAB_DOC_SAP.Name))
+                        dt_T_TAB_DOC_SAP.Rows(dt_T_TAB_DOC_SAP.Rows.Count - 1)(o_COL_T_TAB_DOC_SAP.Name) = o_LIGN_T_TAB_DOC_SAP(o_COL_T_TAB_DOC_SAP.Name)
+                    Next
+                    'LOG_Msg(GetCurrentMethod, "DKTXT{o_LIGN_T_TAB_DOC_SAP("DKTXT").ToString)
+                Next
+                LOG_Msg(GetCurrentMethod, $"Exécution de la fonction Z_GET_DOC_INFO réussie. {dt_T_TAB_DOC_SAP.Rows.Count} lignes trouvées")
+                Return dt_T_TAB_DOC_SAP
+            End Using
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
@@ -988,13 +978,9 @@ Public Class Class_SAP_DATA
             oSAP = SAP_DATA_DECO(oSAP)
         End Try
 
-        LOG_Msg(GetCurrentMethod, $"Exécution de la fonction Z_GET_DOC_INFO réussie. {dt_T_TAB_DOC_SAP.Rows.Count} lignes trouvées")
-        Return dt_T_TAB_DOC_SAP
-
     End Function
 
     Public Shared Function SAP_DATA_READ_ZGMO_OUTIL_VER(Optional sFILT As String = "") As DataTable
-
         Try
             Using dtZGMO_OUTIL_VER = SAP_DATA_READ_TBL("ZGMO_OUTIL_VER", "|", "", "ID PROCHVERIF1", sFILT)
                 If dtZGMO_OUTIL_VER Is Nothing Then Throw New Exception($"Problème de lecture de la table ZGMO_OUTIL_VER avec le filtre : {sFILT}")
@@ -1005,7 +991,34 @@ Public Class Class_SAP_DATA
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
         End Try
+    End Function
 
-
+    Public Shared Function SAP_DATA_CONV_CHAM(sdata As String, stype As String, Optional scar As String = "0", Optional sposition As String = "avant") As String
+        Try
+            Dim sb As New StringBuilder
+            Dim i_nb_car As Integer = 0
+            Select Case stype
+                Case "OF"
+                    i_nb_car = 12
+                Case "Numéro opération"
+                    i_nb_car = 4
+                Case "Code opérateur"
+                    i_nb_car = 8
+                Case "Code article"
+                    i_nb_car = 18
+            End Select
+            Select Case sposition
+                Case "avant"
+                    sb.Append(StrDup(i_nb_car - Microsoft.VisualBasic.Strings.Len(sdata), scar))
+                    sb.Append(sdata)
+                Case "après"
+                    sb.Append(sdata)
+                    sb.Append(StrDup(i_nb_car - Microsoft.VisualBasic.Strings.Len(sdata), scar))
+            End Select
+            Return sb.ToString
+        Catch ex As Exception
+            LOG_Erreur(GetCurrentMethod, ex.Message)
+            Return Nothing
+        End Try
     End Function
 End Class
