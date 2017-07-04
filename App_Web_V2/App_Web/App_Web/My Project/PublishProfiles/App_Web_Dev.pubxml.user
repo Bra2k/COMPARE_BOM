@@ -199,7 +199,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>03/16/2017 10:53:35</publishTime>
     </File>
     <File Include="bin/App_Web.dll">
-      <publishTime>07/03/2017 12:37:19</publishTime>
+      <publishTime>04/07/2017 13:03:07</publishTime>
     </File>
     <File Include="bin/App_Web_DEV.dll">
       <publishTime>06/28/2017 14:56:48</publishTime>
@@ -268,10 +268,10 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>03/16/2017 10:53:35</publishTime>
     </File>
     <File Include="bin/itextsharp.dll">
-      <publishTime>10/07/2016 15:33:44</publishTime>
+      <publishTime>07/10/2016 15:33:44</publishTime>
     </File>
     <File Include="bin/itextsharp.pdfa.dll">
-      <publishTime>10/07/2016 15:33:38</publishTime>
+      <publishTime>07/10/2016 15:33:38</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
       <publishTime>03/16/2017 10:53:35</publishTime>
@@ -415,7 +415,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>03/16/2017 10:53:35</publishTime>
     </File>
     <File Include="bin/WebForms_Basic.xml">
-      <publishTime>07/03/2017 12:37:18</publishTime>
+      <publishTime>04/07/2017 13:03:07</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>03/16/2017 10:53:35</publishTime>
@@ -436,7 +436,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>03/16/2017 10:53:35</publishTime>
     </File>
     <File Include="Default.aspx">
-      <publishTime>07/03/2017 08:04:39</publishTime>
+      <publishTime>03/07/2017 08:04:39</publishTime>
     </File>
     <File Include="favicon.ico">
       <publishTime>03/16/2017 10:53:35</publishTime>
@@ -691,7 +691,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>03/16/2017 10:53:35</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>06/29/2017 12:59:22</publishTime>
+      <publishTime>04/07/2017 12:23:33</publishTime>
     </File>
   </ItemGroup>
 </Project>

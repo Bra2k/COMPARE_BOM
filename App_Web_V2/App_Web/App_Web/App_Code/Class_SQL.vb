@@ -113,11 +113,11 @@ Public Class Class_SQL
     Public Shared Function SQL_CONN(Optional sCONN_STR As String = "Data Source=cedb03,1433;Initial Catalog=SERCEL;Persist Security Info=True;User ID=sa;Password=mdpsa@SQL") As SqlConnection
 
         Try
-            Using SQL_Connexion = New SqlConnection()
-                SQL_Connexion.ConnectionString = sCONN_STR
-                SQL_Connexion.Open()
-                Return SQL_Connexion
-            End Using
+            Dim SQL_Connexion = New SqlConnection()
+            SQL_Connexion.ConnectionString = sCONN_STR
+            SQL_Connexion.Open()
+            Return SQL_Connexion
+            'End Using
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
@@ -141,11 +141,11 @@ Public Class Class_SQL
     Public Shared Function SQL_CALL_STOR_PROC(ByRef cn As SqlConnection, SqlCommand_String As String) As SqlCommand
 
         Try
-            Using cmd As New SqlCommand(SqlCommand_String, cn)
-                cmd.CommandType = CommandType.StoredProcedure
-                LOG_Msg(GetCurrentMethod, $"La procédure stockée {SqlCommand_String} a été appelée.")
-                Return cmd
-            End Using
+            Dim cmd As New SqlCommand(SqlCommand_String, cn)
+            cmd.CommandType = CommandType.StoredProcedure
+            LOG_Msg(GetCurrentMethod, $"La procédure stockée {SqlCommand_String} a été appelée.")
+            Return cmd
+            'End Using
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing

@@ -3,15 +3,10 @@ Imports System.Reflection.MethodBase
 Imports System.IO
 Imports App_Web.Class_SQL
 Imports System.Runtime.InteropServices
-Imports System.Security.Permissions
 Imports System
 Imports System.Security.Principal
 Imports System.DirectoryServices
-Imports PdfSharp
-Imports PdfSharp.Drawing
-Imports PdfSharp.Drawing.Layout
 Imports PdfSharp.Pdf
-Imports App_Web.Class_PDF
 
 Public Class Class_COMM_APP_WEB
 
