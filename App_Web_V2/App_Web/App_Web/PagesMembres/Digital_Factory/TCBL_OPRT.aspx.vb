@@ -16,11 +16,9 @@ Imports System
 
 Public Class TCBL_OPRT
     Inherits System.Web.UI.Page
-    'Dim sChaineConnexion As String = "Data Source=cedb03,1433;Initial Catalog=" & Replace(Replace(My.Computer.Name, "CEDB03", "MES_Digital_Factory_DEV"), "CEAPP03", "MES_Digital_Factory") & ";Integrated Security=False;User ID=sa;Password=mdpsa@SQL;Connect Timeout=7200;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
-    Dim sChaineConnexion As String = "Data Source=cedb03,1433;Initial Catalog=MES_Digital_Factory;Integrated Security=False;User ID=sa;Password=mdpsa@SQL;Connect Timeout=7200;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
+    'Dim CS_MES_Digital_Factory As String = "Data Source=cedb03,1433;Initial Catalog=" & Replace(Replace(My.Computer.Name, "CEDB03", "MES_Digital_Factory_DEV"), "CEAPP03", "MES_Digital_Factory") & ";Integrated Security=False;User ID=sa;Password=mdpsa@SQL;Connect Timeout=7200;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
+    'Dim CS_MES_Digital_Factory As String = "Data Source=cedb03,1433;Initial Catalog=MES_Digital_Factory;Integrated Security=False;User ID=sa;Password=mdpsa@SQL;Connect Timeout=7200;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
     Dim sQuery_Test As String = "INSERT INTO [dbo].[DTM_TEST_FONC_VAL]([ID_EXEC],[ID_TEST],[NB_VAL]) VALUES "
-    Dim sChaineConnexion_ALMS As String = "Data Source=cedb03,1433;Initial Catalog=ALMS_PROD_PRD;Integrated Security=False;User ID=sa;Password=mdpsa@SQL;Connect Timeout=7200;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
-
 
     Protected Sub TextBox_OF_TextChanged(sender As Object, e As EventArgs) Handles TextBox_OF.TextChanged
         Dim sQuery As String = ""
@@ -29,31 +27,31 @@ Public Class TCBL_OPRT
             Using dtAFKO = SAP_DATA_READ_AFKO($"AUFNR LIKE '%{TextBox_OF.Text}'")
                 If dtAFKO Is Nothing Then Throw New Exception($"L'OF n°{TextBox_OF.Text} n'a pas été trouvé dans SAP.")
                 sQuery = $"SELECT CONVERT(INTEGER,[AUFNR]) AS AUFNR
-                            FROM [SAP].[dbo].[AFKO]
-                           WHERE CONVERT(INTEGER,[AUFNR]) = {TextBox_OF.Text}"
-                Using dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion_ALMS)
+                             FROM [SAP].[dbo].[AFKO]
+                            WHERE CONVERT(INTEGER,[AUFNR]) = {TextBox_OF.Text}"
+                Using dt = SQL_SELE_TO_DT(sQuery, CS_ALMS_PROD_PRD)
                     If dt Is Nothing Then
                         sQuery = $"INSERT INTO [SAP].[dbo].[AFKO]
-                                   ([RSNUM]
-                                   ,[GAMNG]
-                                   ,[PLNBEZ]
-                                   ,[AUFNR]
-                                   ,[AUFPL]
-                                   ,[REVLV]
-                                   ,[STLNR]
-                                   ,[STLAL]
-                                   ,[GSTRS])
-                             VALUES
-                                   ('{dtAFKO(0)("RSNUM").ToString}'
-                                   ,'{dtAFKO(0)("GAMNG").ToString}'
-                                   ,'{dtAFKO(0)("PLNBEZ").ToString}'
-                                   ,'{dtAFKO(0)("AUFNR").ToString}'
-                                   ,'{dtAFKO(0)("AUFPL").ToString}'
-                                   ,'{dtAFKO(0)("REVLV").ToString}'
-                                   ,'{dtAFKO(0)("STLNR").ToString}'
-                                   ,'{dtAFKO(0)("STLAL").ToString}'
-                                   ,'{dtAFKO(0)("GSTRS").ToString}')"
-                        SQL_REQ_ACT(sQuery, sChaineConnexion)
+                                               ([RSNUM]
+                                               ,[GAMNG]
+                                               ,[PLNBEZ]
+                                               ,[AUFNR]
+                                               ,[AUFPL]
+                                               ,[REVLV]
+                                               ,[STLNR]
+                                               ,[STLAL]
+                                               ,[GSTRS])
+                                         VALUES
+                                               ('{dtAFKO(0)("RSNUM").ToString}'
+                                               ,'{dtAFKO(0)("GAMNG").ToString}'
+                                               ,'{dtAFKO(0)("PLNBEZ").ToString}'
+                                               ,'{dtAFKO(0)("AUFNR").ToString}'
+                                               ,'{dtAFKO(0)("AUFPL").ToString}'
+                                               ,'{dtAFKO(0)("REVLV").ToString}'
+                                               ,'{dtAFKO(0)("STLNR").ToString}'
+                                               ,'{dtAFKO(0)("STLAL").ToString}'
+                                               ,'{dtAFKO(0)("GSTRS").ToString}')"
+                        SQL_REQ_ACT(sQuery, CS_MES_Digital_Factory)
                     End If
                 End Using
                 Using dt = SAP_DATA_LECT_OF(TextBox_OF.Text)
@@ -178,31 +176,18 @@ Public Class TCBL_OPRT
     End Sub
 
     Protected Sub Button_VALI_ENTER_OTLG_Click(sender As Object, e As EventArgs) Handles Button_VALI_ENTER_OTLG.Click
-
         Dim sQuery As String = ""
-        Dim dt As New DataTable
         Try
-            With TextBox_MTRE_GNRQ
-                'vérification qu'il existe (FER-M-0551)
-                sQuery = "SELECT [CD_ARTI]
-                                ,[NM_PARA]
-                                ,[VAL_PARA]
-                                ,[DT_PARA]
-                            FROM [dbo].[V_DER_DTM_REF_PARA]
-                           WHERE CD_ARTI = '" & .Text & "' AND [NM_PARA] = 'Type matériel' AND [VAL_PARA] = '" & HttpUtility.HtmlDecode(Label_TYPE_MTRE.Text) & "'"
-                dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
-                If dt Is Nothing Then Throw New Exception("Le matériel n°" & .Text & " n'est pas déclaré dans la base de données. Prévenir un méthode.")
-
-                'Dissociation si attribué --> @modifier, si n'a jamais été attribué, première déclaration, fait planter
-                'sQuery = "INSERT INTO [dbo].[DTM_REF_PARA]([NM_CRIT],[NM_PARA],[VAL_PARA],[DT_PARA])
-                '        SELECT [CD_ARTI],'" & .Text & "','0',GETDATE()
-                '          FROM [dbo].[V_DER_DTM_REF_PARA] 
-                '            INNER JOIN (SELECT MAX([DT_PARA]) AS MAX_DT_PARA
-                '              FROM [dbo].[V_DER_DTM_REF_PARA]
-                '             WHERE [NM_PARA] = '" & .Text & "') AS A ON [DT_PARA] = A.MAX_DT_PARA
-                '         WHERE [NM_PARA] = '" & .Text & "' AND [VAL_PARA] = '1'"
-                'SQL_REQ_ACT(sQuery, sChaineConnexion)
-            End With
+            'vérification qu'il existe (FER-M-0551)
+            sQuery = $"SELECT [CD_ARTI]
+                                 ,[NM_PARA]
+                                 ,[VAL_PARA]
+                                 ,[DT_PARA]
+                             FROM [dbo].[V_DER_DTM_REF_PARA]
+                            WHERE CD_ARTI = '{TextBox_MTRE_GNRQ.Text}' AND [NM_PARA] = 'Type matériel' AND [VAL_PARA] = '{HttpUtility.HtmlDecode(Label_TYPE_MTRE.Text)}'"
+            Using dt = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
+                If dt Is Nothing Then Throw New Exception($"Le matériel n°{TextBox_MTRE_GNRQ.Text} n'est pas déclaré dans la base de données. Prévenir un méthode.")
+            End Using
             'enregistrement dans table
             For Each rGridView_LIST_MTRE As GridViewRow In GridView_LIST_MTRE.Rows
                 With rGridView_LIST_MTRE
@@ -216,22 +201,10 @@ Public Class TCBL_OPRT
                 End With
             Next
 
-            'enregistrer
-            'For Each rGridView_LIST_MTRE As GridViewRow In GridView_LIST_MTRE.Rows
-            '    With rGridView_LIST_MTRE
-            '        If HttpUtility.HtmlDecode(.Cells(2).Text) = "Générique" Then
-            '            sQuery = "INSERT INTO [dbo].[DTM_REF_PARA]([NM_CRIT],[NM_PARA],[VAL_PARA],[DT_PARA])
-            '                           VALUES ('" & Label_POST.Text & "','" & HttpUtility.HtmlDecode(.Cells(1).Text) & "','1',GETDATE())"
-            '            SQL_REQ_ACT(sQuery, sChaineConnexion)
-            '        End If
-            '    End With
-            'Next
-
             'Extraire la liste des étapes de l'opération
             Session("dt_ETAP") = _ETCT_ETAP_OPRT()
 
             MultiView_SAIS_OPRT.SetActiveView(View_SAIS_NU_SER_CHEC)
-            'Label_RES.Text = ""
 
             'Impression étiquette
             _IPRO_ETQT()
@@ -250,102 +223,104 @@ Public Class TCBL_OPRT
 
     Protected Sub TextBox_NU_SER_TextChanged(sender As Object, e As EventArgs) Handles TextBox_NU_SER.TextChanged
 
-        Dim dt_ETAP As DataTable = Session("dt_ETAP")
+        'Dim dt_ETAP As DataTable = Session("dt_ETAP")
         Session("i_NU_ETAP") = 0
         Session("sQuery_Etap_Test") = ""
-        Dim dt, dt_WF, dtAFVC, dtAFKO, dtCRHD As New DataTable, sQuery As String = "", sQuery_WF As String = "", sMessage_WF As String = ""
+        'Dim dt, dt_WF, dtAFVC, dtAFKO, dtCRHD As New DataTable,
+        Dim sQuery As String = "" ', sQuery_WF As String = "", sMessage_WF As String = ""
 
         Dim sNU_SER_ECO As String = "", sNU_SER_CLIE As String = ""
-        Dim dt_PARA, dt_CFGR_ARTI_ECO, dt_ETAT_CTRL As New DataTable
+        'Dim dt_PARA, dt_CFGR_ARTI_ECO, dt_ETAT_CTRL As New DataTable
         With TextBox_NU_SER
             ' PDF_CREA_FCGF(.Text)
             Try
-                dt_CFGR_ARTI_ECO = DIG_FACT_SQL_CFGR_ARTI_ECO(Trim(Label_CD_ARTI.Text))
-                'Si la TextBox de génération des étiquettes est cochée
-                If dt_CFGR_ARTI_ECO(0)("Génération impression numéro de série").ToString = Label_OP.Text Then
-                    Select Case .Text
-                        Case "Réimprime-moi le dernier numéro de série" 'Réimprimer le dernier numéro de série
-                            _IPRO_ETQT(Session("sNU_SER_IMPR"))
-                            .Enabled = True
-                            .Text = ""
-                            .Focus()
-                            Exit Sub
-                        Case "Imprime-moi un nouveau numéro de série"
-                            'imprimer une étiquette
-                            _IPRO_ETQT()
-                            .Enabled = True
-                            .Text = ""
-                            .Focus()
-                            Exit Sub
+                Using dt_CFGR_ARTI_ECO = DIG_FACT_SQL_CFGR_ARTI_ECO(Trim(Label_CD_ARTI.Text))
+                    'Si la TextBox de génération des étiquettes est cochée
+                    If dt_CFGR_ARTI_ECO(0)("Génération impression numéro de série").ToString = Label_OP.Text Then
+                        Select Case .Text
+                            Case "Réimprime-moi le dernier numéro de série" 'Réimprimer le dernier numéro de série
+                                _IPRO_ETQT(Session("sNU_SER_IMPR"))
+                                .Enabled = True
+                                .Text = ""
+                                .Focus()
+                                Exit Sub
+                            Case "Imprime-moi un nouveau numéro de série"
+                                'imprimer une étiquette
+                                _IPRO_ETQT()
+                                .Enabled = True
+                                .Text = ""
+                                .Focus()
+                                Exit Sub
+                        End Select
+                        If .Text.Contains(Session("sNU_SER_IMPR").ToString) = False Then Throw New Exception($"Le numéro de série { .Text} n'est pas identique au dernier numéro de série imprimé {Session("sNU_SER_IMPR")}.")
+                    End If
+
+                    Select Case "1"
+                        Case dt_CFGR_ARTI_ECO(0)("Numéro de série Eolane").ToString
+                            sNU_SER_ECO = .Text
+                            'vérifier par rapport à un format
+                            If DIG_FACT_VERI_FORM_NU_SER(Trim(Label_CD_ARTI.Text), "Format Numéro de série Eolane", .Text) = False Then Throw New Exception($"Le numéro de série { .Text} ne correspond au format défini dans la base.")
+                        Case dt_CFGR_ARTI_ECO(0)("Numéro de série client").ToString
+                            sNU_SER_CLIE = .Text
+                            'vérifier par rapport à un format
+                            If DIG_FACT_VERI_FORM_NU_SER(Trim(Label_CD_ARTI.Text), "Format Numéro de série client", .Text) = False Then Throw New Exception($"Le numéro de série { .Text} ne correspond au format défini dans la base.")
                     End Select
-                    If .Text.Contains(Session("sNU_SER_IMPR").ToString) = False Then Throw New Exception("Le numéro de série " & .Text & " n'est pas identique au dernier numéro de série imprimé " & Session("sNU_SER_IMPR") & ".")
-                End If
 
-                Select Case "1"
-                    Case dt_CFGR_ARTI_ECO(0)("Numéro de série Eolane").ToString
-                        sNU_SER_ECO = .Text
-                        'vérifier par rapport à un format
-                        If DIG_FACT_VERI_FORM_NU_SER(Trim(Label_CD_ARTI.Text), "Format Numéro de série Eolane", .Text) = False Then Throw New Exception("Le numéro de série " & .Text & " ne correspond au format défini dans la base.")
-                    Case dt_CFGR_ARTI_ECO(0)("Numéro de série client").ToString
-                        sNU_SER_CLIE = .Text
-                        'vérifier par rapport à un format
-                        If DIG_FACT_VERI_FORM_NU_SER(Trim(Label_CD_ARTI.Text), "Format Numéro de série client", .Text) = False Then Throw New Exception("Le numéro de série " & .Text & " ne correspond au format défini dans la base.")
-                End Select
-
-                'vérification de l'appartenance à un OF
-                If dt_CFGR_ARTI_ECO(0)("Vérification cohérence OF par numéro de série").ToString = "1" Then
-                    sQuery = "SELECT [NU_SER_ECO],[NU_SER_CLIE],[NU_OF]
-                                FROM [dbo].[V_LIAIS_NU_SER]
-                               WHERE NU_OF = '" & TextBox_OF.Text & "' AND ([NU_SER_ECO] LIKE '%" & sNU_SER_ECO & "%' OR [NU_SER_CLIE] LIKE '%" & sNU_SER_CLIE & "%')"
-                    dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
-                    If dt Is Nothing Then Throw New Exception("Le numéro de série " & sNU_SER_ECO & sNU_SER_CLIE & " n'appartient pas à l'OF " & TextBox_OF.Text)
-                End If
+                    'vérification de l'appartenance à un OF
+                    If dt_CFGR_ARTI_ECO(0)("Vérification cohérence OF par numéro de série").ToString = "1" Then
+                        sQuery = $"SELECT [NU_SER_ECO],[NU_SER_CLIE],[NU_OF]
+                                     FROM [dbo].[V_LIAIS_NU_SER]
+                                    WHERE NU_OF = '{TextBox_OF.Text}' AND ([NU_SER_ECO] LIKE '%{sNU_SER_ECO}%' OR [NU_SER_CLIE] LIKE '%{sNU_SER_CLIE}%')"
+                        Using dt = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
+                            If dt Is Nothing Then Throw New Exception($"Le numéro de série {sNU_SER_ECO}{sNU_SER_CLIE} n'appartient pas à l'OF {TextBox_OF.Text}")
+                        End Using
+                    End If
+                End Using
 
                 'vérification que le ns n'est pas déjà associé ou passé !!! ATTENTION !!!
-                sQuery = "SELECT [NM_NS_EOL]
+                sQuery = $"SELECT [NM_NS_EOL]
                             FROM [dbo].[ID_PF_View]
-                           WHERE (NM_NS_EOL LIKE '%" & sNU_SER_ECO & "%' AND [NM_NS_CLT] LIKE '%" & sNU_SER_CLIE & "%') AND ([LB_ETP] = '" & Label_DES_OP.Text & " (OP:" & Label_OP.Text & ")' AND [LB_SCTN] = 'P')"
-                dt_PARA = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
-                If Not dt_PARA Is Nothing Then Throw New Exception("Le numéro de série " & .Text & " est déjà passé à l'opération " & Label_DES_OP.Text & " (OP:" & Label_OP.Text & ").")
-
+                           WHERE (NM_NS_EOL LIKE '%{sNU_SER_ECO}%' AND [NM_NS_CLT] LIKE '%{sNU_SER_CLIE}%') AND ([LB_ETP] = '{Label_DES_OP.Text} (OP:{Label_OP.Text})' AND [LB_SCTN] = 'P')"
+                Using dt_PARA = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
+                    If Not dt_PARA Is Nothing Then Throw New Exception($"Le numéro de série { .Text} est déjà passé à l'opération {Label_DES_OP.Text} (OP:{Label_OP.Text}).")
+                End Using
                 'Création de l'ID_PSG
                 sQuery = "SELECT [NEW_ID_PSG], GETDATE() AS DT_DEB
                             FROM [dbo].[V_NEW_ID_PSG_DTM_PSG]"
-                dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
-                Session("ID_PSG") = dt(0)("NEW_ID_PSG").ToString
-                Session("DT_DEB") = dt(0)("DT_DEB").ToString
-                'future nouvelle version à mettre en place quand changement de serveur SQL
-                'Session("ID_PSG") = SQL_REQ_ACT_RET_IDTT("INSERT INTO [dbo].[DTM_REF_ID] ([NM_CHAM]) VALUES (1), sChaineConnexion As String)
-                'dt = SQL_SELE_TO_DT("SELECT GETDATE() AS DT_DEB", sChaineConnexion)
+                Using dt = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
+                    Session("ID_PSG") = dt(0)("NEW_ID_PSG").ToString
+                    Session("DT_DEB") = dt(0)("DT_DEB").ToString
+                End Using
+                'todo future nouvelle version à mettre en place quand changement de serveur SQL
+                'Session("ID_PSG") = SQL_REQ_ACT_RET_IDTT("INSERT INTO [dbo].[DTM_REF_ID] ([NM_CHAM]) VALUES (1), CS_MES_Digital_Factory)
+                'dt = SQL_SELE_TO_DT("SELECT GETDATE() AS DT_DEB", CS_MES_Digital_Factory)
                 'Session("DT_DEB") = dt(0)("DT_DEB").ToString
 
                 'vérification workflow
-                If DIG_FACT_SQL_VRFC_WF(sNU_SER_ECO, sNU_SER_CLIE, TextBox_OF.Text, Label_DES_OP.Text & " (OP:" & Label_OP.Text & ")", sChaineConnexion) = False Then
+                If DIG_FACT_SQL_VRFC_WF(sNU_SER_ECO, sNU_SER_CLIE, TextBox_OF.Text, $"{Label_DES_OP.Text} (OP:{Label_OP.Text})", CS_MES_Digital_Factory) = False Then
                     _ERGT_OPRT_PASS("F")
                     Throw New Exception("Problème détecté dans le Workflow.")
                 End If
 
                 .Enabled = False
-                If Not dt_ETAP Is Nothing Then 'étape n° 1
-                    _AFCG_ETAP(0)
-                    MultiView_ETAP.SetActiveView(View_CHEC_ETAP)
-                    Exit Sub
-                Else ' ou passer à la saisie des numéros de série des sous-ensemble
-                    MultiView_ETAP.SetActiveView(View_VOID)
-                    For Each rGridView_REPE As GridViewRow In GridView_REPE.Rows
-                        With rGridView_REPE
-                            If HttpUtility.HtmlDecode(.Cells(3).Text) = "PRODUIT" Or HttpUtility.HtmlDecode(.Cells(3).Text) = "PRODUIT SEMI-FINI" Then
-                                Label_CD_SS_ENS.Text = .Cells(1).Text
-                                'MultiView_SAIS_OPRT.SetActiveView(View_SAIS_TCBL_COMP)
-                                'MultiView_Tracabilité.SetActiveView(View_SAI_SOUS_ENSE)
+                Using dt_ETAP As DataTable = Session("dt_ETAP")
+                    If Not dt_ETAP Is Nothing Then 'étape n° 1
+                        _AFCG_ETAP(0)
+                        MultiView_ETAP.SetActiveView(View_CHEC_ETAP)
+                        Exit Sub
+                    Else ' ou passer à la saisie des numéros de série des sous-ensemble
+                        MultiView_ETAP.SetActiveView(View_VOID)
+                        For Each rGridView_REPE As GridViewRow In GridView_REPE.Rows
+                            If HttpUtility.HtmlDecode(rGridView_REPE.Cells(3).Text) = "PRODUIT" Or HttpUtility.HtmlDecode(rGridView_REPE.Cells(3).Text) = "PRODUIT SEMI-FINI" Then
+                                Label_CD_SS_ENS.Text = rGridView_REPE.Cells(1).Text
                                 MultiView_ETAP.SetActiveView(View_SAI_SOUS_ENSE)
                                 TextBox_SS_ENS.Text = ""
                                 TextBox_SS_ENS.Focus()
                                 Exit Sub
                             End If
-                        End With
-                    Next
-                End If
+                        Next
+                    End If
+                End Using
                 'si pas de sous-ensemble
 
                 'Vérification documentaire (FCGF, DHR)
@@ -358,8 +333,6 @@ Public Class TCBL_OPRT
                 End Select
 
                 If DIG_FACT_SQL_GET_PARA(Trim(Label_CD_ARTI.Text), "Scan numéro de série fin opération") = "1" Then
-                    'MultiView_VLDT.SetActiveView(View_VLDT_OPRT)
-                    'MultiView_SAIS_OPRT.SetActiveView(View_VLDT_OPRT)
                     MultiView_ETAP.SetActiveView(View_VLDT_OPRT)
                     TextBox_NU_SER_VLDT_OPRT.Text = ""
                     TextBox_NU_SER_VLDT_OPRT.Focus()
@@ -539,7 +512,7 @@ Public Class TCBL_OPRT
 
             sQuery = "INSERT INTO [dbo].[DTM_TR_CPT] ([NM_NS_EOL],[NM_NS_CLT],[ID_CPT],[ID_PSG],[DT_PSG])
                                    VALUES ('" & sNU_SER_ECO & "', '" & sNU_SER_CLIE & "', '-', " & Session("ID_PSG") & ", GETDATE())"
-            iIDTT = SQL_REQ_ACT_RET_IDTT(sQuery, sChaineConnexion)
+            iIDTT = SQL_REQ_ACT_RET_IDTT(sQuery, CS_MES_Digital_Factory)
             'If Session("matricule") = "" Then
             '    LOG_MESS_UTLS(GetCurrentMethod, "Le login a été perdu. Vous allez être redirigé vers la page de login SAP. La saisie en cours sera perdue, il faudra la resaissir.", "Erreur")
             '    Session("UrlReferrer") = HttpContext.Current.Request.Url.AbsolutePath.ToString()
@@ -550,7 +523,7 @@ Public Class TCBL_OPRT
             For Each rGridView_LIST_MTRE As GridViewRow In GridView_LIST_MTRE.Rows
                 sQuery = "INSERT INTO [dbo].[DTM_HIST_MTRE] ([ID_PSG],[ID_MTRE])
                                VALUES (" & Session("ID_PSG") & ",'" & HttpUtility.HtmlDecode(rGridView_LIST_MTRE.Cells(1).Text) & "')"
-                SQL_REQ_ACT(sQuery, sChaineConnexion)
+                SQL_REQ_ACT(sQuery, CS_MES_Digital_Factory)
                 If HttpUtility.HtmlDecode(rGridView_LIST_MTRE.Cells(0).Text) = "Poste de travail" Then sPOST_TRAV = HttpUtility.HtmlDecode(rGridView_LIST_MTRE.Cells(1).Text)
                 If HttpUtility.HtmlDecode(rGridView_LIST_MTRE.Cells(0).Text) = "Imprimante étiquette" Then sIPMT_ETQT = HttpUtility.HtmlDecode(rGridView_LIST_MTRE.Cells(1).Text)
             Next
@@ -558,10 +531,10 @@ Public Class TCBL_OPRT
             'Enregistrement passage
             sQuery = "INSERT INTO [dbo].[DTM_PSG] ([ID_PSG], [LB_ETP], [DT_DEB], [DT_FIN], [LB_MOYN], [LB_PROG], [NM_MATR], [NM_NS_EOL], [LB_SCTN], [NM_OF], [ID_NU_SER])
                            VALUES (" & Session("ID_PSG") & ", '" & Label_DES_OP.Text & " (OP:" & Label_OP.Text & ")', '" & Session("DT_DEB") & "', GETDATE(), '" & sPOST_TRAV & "', '" & HttpContext.Current.CurrentHandler.ToString & "', '" & Session("matricule") & "', '" & sNU_SER_ECO & "', '" & sSANC & "', '" & Label_OF.Text & "', " & sID_NU_SER & ")"
-            SQL_REQ_ACT(sQuery, sChaineConnexion)
+            SQL_REQ_ACT(sQuery, CS_MES_Digital_Factory)
 
             'Enregitrement test
-            If Session("sQuery_Etap_Test") <> "" Then SQL_REQ_ACT(sQuery_Test & COMM_APP_WEB_STRI_TRIM_RIGHT(Session("sQuery_Etap_Test"), 2), sChaineConnexion)
+            If Session("sQuery_Etap_Test") <> "" Then SQL_REQ_ACT(sQuery_Test & COMM_APP_WEB_STRI_TRIM_RIGHT(Session("sQuery_Etap_Test"), 2), CS_MES_Digital_Factory)
 
             'enregistrer dans la base les associations composant
             For Each rGridView_REPE As GridViewRow In GridView_REPE.Rows
@@ -574,16 +547,16 @@ Public Class TCBL_OPRT
                         sQuery = "INSERT INTO [dbo].[DTM_TR_CPT] ([NM_NS_EOL],[NM_NS_CLT],[ID_CPT],[ID_PSG],[DT_PSG],[NM_SAP_CPT],[NM_NS_SENS])
                                    VALUES ('" & sNU_SER_ECO & "', '" & sNU_SER_CLIE & "', '" & HttpUtility.HtmlDecode(.Cells(6).Text) & "', " & Session("ID_PSG") & ", GETDATE(), '" & HttpUtility.HtmlDecode(.Cells(1).Text) & "', '" & HttpUtility.HtmlDecode(.Cells(7).Text) & "')"
                     End If
-                    iIDTT = SQL_REQ_ACT_RET_IDTT(sQuery, sChaineConnexion)
+                    iIDTT = SQL_REQ_ACT_RET_IDTT(sQuery, CS_MES_Digital_Factory)
                     If .Cells(5).Text <> "&nbsp;" Then
                         sQuery = "Select [ID_GST_CNTR]
                                     FROM [dbo].[V_LIST_CONT_NON_VIDE]
                                    WHERE [NM_CNTR] = '" & HttpUtility.HtmlDecode(.Cells(5).Text) & "' AND [NM_OF] = '" & TextBox_OF.Text & "'"
-                        dt2 = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
+                        dt2 = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
                         If dt2 Is Nothing Then Throw New Exception("Le bac n°" & HttpUtility.HtmlDecode(.Cells(5).Text) & " n'existe pas ou est vide")
                         sQuery = "INSERT INTO [dbo].[DTM_TCBL_CONT_COMP] ([ID_GST_CNTR],[ID_TR])
                                    VALUES ('" & dt2(0)("ID_GST_CNTR").ToString & "', '" & iIDTT.ToString & "')"
-                        SQL_REQ_ACT(sQuery, sChaineConnexion)
+                        SQL_REQ_ACT(sQuery, CS_MES_Digital_Factory)
                     End If
                 End With
             Next
@@ -599,7 +572,7 @@ Public Class TCBL_OPRT
                                     FROM [dbo].[V_LIST_CONT_NON_VIDE]
                                    WHERE [NM_CNTR] = '" & HttpUtility.HtmlDecode(.Cells(5).Text) & "' 
                                      AND [NM_OF] = '" & TextBox_OF.Text & "'"
-                        dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
+                        dt = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
                         If dt Is Nothing Then
                             .Cells(8).Text = dt(0)("NM_QTE_INIT").ToString
                         Else
@@ -612,7 +585,7 @@ Public Class TCBL_OPRT
                                     FROM [dbo].[DTM_TR_CPT]
                                    WHERE [ID_CPT] LIKE '" & .Cells(6).Text & "%'
                                   GROUP BY [ID_CPT]"
-                        dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
+                        dt = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
                         If dt Is Nothing Then
                             .Cells(8).Text = Convert.ToDecimal(Replace(dtMSEG(0)("MENGE").ToString, ".", ","))
                         Else
@@ -650,7 +623,7 @@ Public Class TCBL_OPRT
                         FROM [dbo].[V_DER_PASS_BON]
                        WHERE [NM_OF] = '" & Label_OF.Text & "'
                          AND [LB_ETP] = '" & Label_DES_OP.Text & " (OP:" & Label_OP.Text & ")'"
-            dt_LIST_NU_SER_TRAC = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
+            dt_LIST_NU_SER_TRAC = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
             If Not dt_LIST_NU_SER_TRAC Is Nothing Then
                 'décrément quantité totale 
                 Label_QT_REST_OF.Text = (Convert.ToDecimal(Replace(Label_QT_OF.Text, ".", ",")) - dt_LIST_NU_SER_TRAC.Rows.Count).ToString
@@ -660,7 +633,7 @@ Public Class TCBL_OPRT
                             If HttpUtility.HtmlDecode(.Cells(2).Text) = "Générique" Then
                                 sQuery = "INSERT INTO [dbo].[DTM_REF_PARA]([NM_CRIT],[NM_PARA],[VAL_PARA],[DT_PARA])
                                            VALUES ('" & Label_POST.Text & "','" & HttpUtility.HtmlDecode(.Cells(1).Text) & "','0',GETDATE())"
-                                SQL_REQ_ACT(sQuery, sChaineConnexion)
+                                SQL_REQ_ACT(sQuery, CS_MES_Digital_Factory)
                             End If
                         End With
                     Next
@@ -777,7 +750,7 @@ Public Class TCBL_OPRT
                         FROM [dbo].[V_LIST_ETAP_OPRT]
                        WHERE [CD_ARTI] = '" & Label_CD_ARTI.Text & "' AND [NM_OPRT] = '" & Label_DES_OP.Text & " (OP:" & Label_OP.Text & ")'
                       ORDER BY [ID_INDE]"
-            dt_ETAP = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
+            dt_ETAP = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
             If dt_ETAP Is Nothing Then Throw New Exception("Pas de config étape")
             Return dt_ETAP
         Catch ex As Exception
@@ -822,25 +795,25 @@ Public Class TCBL_OPRT
                              FROM [dbo].[V_POST_NMCT_TPLG]
                             WHERE [CD_ARTI_ECO_POST] = '" & Label_CD_ARTI.Text & "' AND [NU_OP_POST] = '" & Label_OP.Text & "'"
 
-            dt_POST_NMCT_TPLG = SQL_SELE_TO_DT(sQuery_MTRE, sChaineConnexion)
+            dt_POST_NMCT_TPLG = SQL_SELE_TO_DT(sQuery_MTRE, CS_MES_Digital_Factory)
             If dt_POST_NMCT_TPLG Is Nothing Then Throw New Exception("Pas de poste type configuré dans la base, prévenir un méthode")
             'Dissociation du matériel générique
             For Each rdt_POST_NMCT_TPLG As DataRow In dt_POST_NMCT_TPLG.Rows
                 'If rdt_POST_NMCT_TPLG("Catégorie").ToString = "Générique" Then
                 '    sQuery = "INSERT INTO [dbo].[DTM_REF_PARA]([NM_CRIT],[NM_PARA],[VAL_PARA],[DT_PARA])
                 '                   VALUES ('" & Label_POST.Text & "','" & rdt_POST_NMCT_TPLG("ID du matériel").ToString & "','0',GETDATE())"
-                '    SQL_REQ_ACT(sQuery, sChaineConnexion)
+                '    SQL_REQ_ACT(sQuery, CS_MES_Digital_Factory)
                 'pc
                 If rdt_POST_NMCT_TPLG("Type de matériel").ToString = "PC" Then
                     'sQuery = "INSERT INTO [dbo].[DTM_REF_PARA]([NM_CRIT],[NM_PARA],[VAL_PARA],[DT_PARA])
                     '           VALUES ('" & Label_POST.Text & "','" & System.Net.Dns.GetHostEntry(System.Web.HttpContext.Current.Request.UserHostAddress).HostName() & "','1',GETDATE())"
-                    'SQL_REQ_ACT(sQuery, sChaineConnexion)
+                    'SQL_REQ_ACT(sQuery, CS_MES_Digital_Factory)
                     rdt_POST_NMCT_TPLG("ID du matériel") = System.Net.Dns.GetHostEntry(System.Web.HttpContext.Current.Request.UserHostAddress).HostName()
                 End If
                 'End If
             Next
 
-            'dt_POST_NMCT_TPLG = SQL_SELE_TO_DT(sQuery_MTRE, sChaineConnexion)
+            'dt_POST_NMCT_TPLG = SQL_SELE_TO_DT(sQuery_MTRE, CS_MES_Digital_Factory)
             GridView_LIST_MTRE.DataSource = dt_POST_NMCT_TPLG
             GridView_LIST_MTRE.DataBind()
 
@@ -881,7 +854,7 @@ Public Class TCBL_OPRT
                 sQuerySql = "SELECT   NM_NS_SENS
                                FROM   dbo.DTM_TR_CPT
                               WHERE   NM_NS_SENS = '" & .Text & "'"
-                dt_TR_CPT = SQL_SELE_TO_DT(sQuerySql, sChaineConnexion)
+                dt_TR_CPT = SQL_SELE_TO_DT(sQuerySql, CS_MES_Digital_Factory)
                 If Not dt_TR_CPT Is Nothing Then Throw New Exception("Le numéro de série " & .Text & " est déjà attribué dans la base.")
 
                 'Extraction code article d'un numéro de série Eolane de SAP
@@ -997,7 +970,7 @@ Public Class TCBL_OPRT
                             ,ISNULL([NB_UTLS],0) AS NB_UTLS
                         FROM [dbo].[V_LIST_CONT_NON_VIDE]
                        WHERE [NM_CNTR] = '" & TextBox_NU_BAC.Text & "' AND [NM_OF] = '" & TextBox_OF.Text & "'"
-            dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
+            dt = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
             If dt Is Nothing Then Throw New Exception("Le bac n°" & TextBox_NU_BAC.Text & " n'existe pas ou est vide")
             dtMSEG = SAP_DATA_READ_MSEG("MBLNR EQ '" & Left(dt(0)("ID_CPT").ToString, 10) & "' AND ZEILE EQ '" & Mid(dt(0)("ID_CPT").ToString, 11, 4) & "' AND MJAHR EQ '" & Mid(dt(0)("ID_CPT").ToString, 15, 4) & "'")
             If dtMSEG Is Nothing Then Throw New Exception("Pas de données trouvés pour l'ID composant")
@@ -1067,7 +1040,7 @@ Public Class TCBL_OPRT
                                    FROM [dbo].[DTM_TR_CPT]
                                   WHERE [ID_CPT] LIKE '" & TextBox_ID_COMP.Text & "%'
                                  GROUP BY [ID_CPT]"
-                        dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
+                        dt = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
                         If dt Is Nothing Then
                             .Cells(8).Text = Convert.ToDecimal(Replace(dtMSEG(0)("MENGE").ToString, ".", ","))
                         Else
@@ -1130,7 +1103,7 @@ Public Class TCBL_OPRT
                                         FROM [dbo].[DTM_TR_CPT]
                                        WHERE [ID_CPT] LIKE '" & rdtMSEG("MBLNR").ToString & rdtMSEG("ZEILE").ToString & rdtMSEG("MJAHR").ToString & "%'
                                       GROUP BY [ID_CPT]"
-                            dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
+                            dt = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
                             If dt Is Nothing Then
                                 .Cells(8).Text = Convert.ToDecimal(Replace(rdtMSEG("MENGE").ToString, ".", ","))
                                 .Cells(6).Text = rdtMSEG("MBLNR").ToString & rdtMSEG("ZEILE").ToString & rdtMSEG("MJAHR").ToString
@@ -1215,7 +1188,7 @@ Public Class TCBL_OPRT
 	                            FROM [dbo].[V_LIAIS_NU_SER]
 	                           WHERE [NU_SER_ECO] LIKE '%" & sNS & "%'	                    
 	                             AND [NU_OF] = '" & Label_OF.Text & "'"
-                        dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
+                        dt = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
 
                         If dt_ETAT_CTRL.Columns.Contains("TextBox_FICH_MODE") Then
                             DIG_FACT_IMPR_ETIQ_V2(dt_ETAT_CTRL(0)("TextBox_FICH_MODE").ToString,
@@ -1250,7 +1223,7 @@ Public Class TCBL_OPRT
 	                            FROM [dbo].[V_LIAIS_NU_SER]
 	                           WHERE [NU_SER_CLIE] = '" & sNS & "'
 	                             AND [NU_OF] = '" & Label_OF.Text & "'"
-                        dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
+                        dt = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
 
                         If dt_ETAT_CTRL.Columns.Contains("TextBox_FICH_MODE") Then
                             DIG_FACT_IMPR_ETIQ_V2(dt_ETAT_CTRL(0)("TextBox_FICH_MODE").ToString,
@@ -1409,7 +1382,7 @@ Public Class TCBL_OPRT
  WHERE [NU_SER_SPFE] = '" & sNU_SER & "'
 GROUP BY [NM_RFRC_FDV]
       ,[NU_VERS_FDV]"
-                dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion_ALMS)
+                dt = SQL_SELE_TO_DT(sQuery, CS_ALMS_PROD_PRD)
                 Session("sFDV") = dt(0)("NM_RFRC_FDV").ToString
                 Session("sVers_FDV") = dt(0)("NU_VERS_FDV").ToString
                 dtKNMT = SAP_DATA_READ_KNMT("MATNR LIKE '" & Label_CD_ARTI.Text & "%' AND KUNNR EQ '0000000451' AND VKORG EQ 'ORC3' AND VTWEG EQ 'CD'")
@@ -1417,7 +1390,7 @@ GROUP BY [NM_RFRC_FDV]
                 sQuery = "SELECT [NM_DSGT_ARTI]
   FROM [dbo].[DTM_REF_GAMM_ARTI]
  WHERE [CD_ARTI_PROD] = '" & Trim(dtKNMT(0)("KDMAT").ToString) & "'"
-                dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion_ALMS)
+                dt = SQL_SELE_TO_DT(sQuery, CS_ALMS_PROD_PRD)
                 Session("sDSGT_ARTI") = dt(0)("NM_DSGT_ARTI").ToString
                 dPDF.Open()
 
@@ -1435,7 +1408,7 @@ GROUP BY [NM_RFRC_FDV]
  GROUP BY [NU_SER_SPFE]
       ,[NM_STAT_PROD]
 ORDER BY [NM_STAT_PROD] DESC"
-                dt_RESU = SQL_SELE_TO_DT(sQuery, sChaineConnexion_ALMS)
+                dt_RESU = SQL_SELE_TO_DT(sQuery, CS_ALMS_PROD_PRD)
                 para = New Paragraph(New Chunk("Statut global : " & dt_RESU(0)("NM_STAT_PROD").ToString, FontFactory.GetFont("ARIAL", 14, Font.BOLD)))
                 c_ENTE = New PdfPCell(para)
                 c_ENTE.Border = 0
@@ -1464,7 +1437,7 @@ SELECT TOP 100 PERCENT [NM_RFRC_SEQU]
                               ,[NU_OP] 
                       ORDER BY [NU_OP]) AS A INNER JOIN [dbo].[DTM_SEQU_RFRC_LIST] ON 
 								A.[NM_RFRC_SEQU] = [dbo].[DTM_SEQU_RFRC_LIST].[NM_RFRC_SEQU] AND A.[NU_VERS_SEQU] = [dbo].[DTM_SEQU_RFRC_LIST].[NU_VERS_SEQU]"
-                dt_SEQU = SQL_SELE_TO_DT(sQuery, sChaineConnexion_ALMS)
+                dt_SEQU = SQL_SELE_TO_DT(sQuery, CS_ALMS_PROD_PRD)
                 pt = New PdfPTable(3)
                 pt.TotalWidth = dPDF.PageSize.Width - 80
                 pt.LockedWidth = True
@@ -1525,7 +1498,7 @@ FROM         (SELECT     ID_POST, ID_MTRE, MAX(DT_AFCT) AS MAX_DT_AFCT, ISNULL(B
 					  INNER JOIN [dbo].[DTM_REF_MTRE_LIST] ON [dbo].[DTM_REF_MTRE_LIST].[ID_MTRE] = DTM_CSTA_POST_1.ID_MTRE
 WHERE     (DTM_CSTA_POST_1.BL_STAT = 1) AND (DTM_CSTA_POST_1.BL_SORT_FCGF = 1)
 GROUP BY      DTM_CSTA_POST_1.ID_POST, DTM_CSTA_POST_1.ID_MTRE, ISNULL(MES_Digital_Factory.dbo.V_POST_MTLG_MTRE.DT_VLDT, N''), ISNULL([LB_DCPT],MES_Digital_Factory.dbo.V_POST_MTLG_MTRE.NM_TYPE_MTRE)"
-                dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion_ALMS)
+                dt = SQL_SELE_TO_DT(sQuery, CS_ALMS_PROD_PRD)
                 para = New Paragraph(New Chunk("Poste", FontFactory.GetFont("ARIAL", 10, Font.BOLD)))
                 c_ENTE = New PdfPCell(para)
                 c_ENTE.HorizontalAlignment = Element.ALIGN_CENTER
@@ -1580,7 +1553,7 @@ GROUP BY      DTM_CSTA_POST_1.ID_POST, DTM_CSTA_POST_1.ID_MTRE, ISNULL(MES_Digit
   FROM [dbo].[V_FCGF]
  WHERE [NU_SER_SPFE] = '" & sNU_SER & "'
 GROUP BY [NU_SER_SPFE], [ID_OPRT]"
-                dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion_ALMS)
+                dt = SQL_SELE_TO_DT(sQuery, CS_ALMS_PROD_PRD)
                 para = New Paragraph(New Chunk("Opérateur", FontFactory.GetFont("ARIAL", 10, Font.BOLD)))
                 c_ENTE = New PdfPCell(para)
                 c_ENTE.HorizontalAlignment = Element.ALIGN_CENTER
@@ -1616,7 +1589,7 @@ FROM         (SELECT     NU_INCI, MAX(DT_ITVT) AS MAX_DT_ITVT, MAX(ID_STAT) AS D
                       dbo.DTM_NC_LIST ON DT_MAX_ITVT.NU_INCI = dbo.DTM_NC_LIST.NU_INCI
 WHERE    [NU_SER_SPFE] = '" & sNU_SER & "'
               AND  (DT_MAX_ITVT.DERN_ETAT >= 4)"
-                dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion_ALMS)
+                dt = SQL_SELE_TO_DT(sQuery, CS_ALMS_PROD_PRD)
                 If Not dt Is Nothing Then
                     For Each rdt As DataRow In dt.Rows
                         sList_inci &= rdt("NU_INCI").ToString & ", "
@@ -1666,7 +1639,7 @@ WHERE    [NU_SER_SPFE] = '" & sNU_SER & "'
       ,[NU_PHAS_FCGF]
   ORDER BY       [NU_OP]
       ,[NU_PHAS_FCGF]"
-                    dt_PHAS = SQL_SELE_TO_DT(sQuery, sChaineConnexion_ALMS)
+                    dt_PHAS = SQL_SELE_TO_DT(sQuery, CS_ALMS_PROD_PRD)
                     para = New Paragraph(New Chunk("Date de test : " & dt_PHAS(0)("DT_TEST").ToString, FontFactory.GetFont("ARIAL", 10)))
                     c_ENTE = New PdfPCell(para)
                     c_ENTE.HorizontalAlignment = Element.ALIGN_RIGHT
@@ -1745,7 +1718,7 @@ GROUP BY [NU_SER_SPFE]
 ORDER BY [NU_OP]
       ,[NU_PHAS_FCGF]
       ,[NU_SOUS_PHAS_FCGF]"
-                        dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion_ALMS)
+                        dt = SQL_SELE_TO_DT(sQuery, CS_ALMS_PROD_PRD)
                         para = New Paragraph(New Chunk("Index", FontFactory.GetFont("ARIAL", 10, Font.BOLD)))
                         c_ENTE = New PdfPCell(para)
                         c_ENTE.HorizontalAlignment = Element.ALIGN_CENTER
@@ -2090,7 +2063,7 @@ FROM         dbo.DTM_PSG INNER JOIN
                             WHERE      (dbo.V_LIAIS_NU_SER.NU_SER_CLIE = N'" & sNU_SER & "')) AS DT_WF ON DT_DERN_PASS.LB_ETP = DT_WF.VAL_PARA AND 
                       dbo.DTM_PSG.ID_NU_SER = DT_WF.ID_NU_SER
 ORDER BY CONVERT(integer, DT_WF.NU_ETAP)"
-                dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
+                dt = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
                 For Each rdt As DataRow In dt.Rows
                     If Trim(rdt("NM_OPRT").ToString) = "ACCEPTATION QUALITE" Then Continue For
                     If Trim(rdt("NM_OPRT").ToString) = "PALETTISATION" Then Continue For
@@ -2105,7 +2078,7 @@ ORDER BY CONVERT(integer, DT_WF.NU_ETAP)"
   FROM [dbo].[V_RSLT_POIN_ARRE_TCBL_OPRT]
  WHERE NU_SER_CLIE = '" & sNU_SER & "' AND [DT_DEB] = '" & rdt("DT_PASS").ToString & "' AND [LB_ETP] = '" & rdt("LB_ETP").ToString & "'
  ORDER BY [ID_INDE]"
-                    dt_ETAP = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
+                    dt_ETAP = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
 
                     para = New Paragraph(New Chunk(rdt("NM_OPRT").ToString, FontFactory.GetFont("CALIBRI", 10, Font.BOLD)))
                     c_ENTE = New PdfPCell(para)
@@ -2230,7 +2203,7 @@ FROM         dbo.DTM_HIST_MTRE INNER JOIN
 GROUP BY dbo.V_LIAIS_NU_SER.NU_SER_ECO, dbo.V_LIAIS_NU_SER.NU_SER_CLIE, dbo.DTM_HIST_MTRE.ID_MTRE, dbo.V_POST_LIST_MTRE.NM_TYPE_MTRE, 
                       dbo.V_POST_MTLG_MTRE.DT_VLDT, dbo.DTM_PSG.LB_MOYN
 ORDER BY dbo.DTM_PSG.LB_MOYN"
-                dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
+                dt = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
                 For Each rdt As DataRow In dt.Rows
                     rdt("ID_MTRE") = Replace(Replace(Replace(LCase(rdt("ID_MTRE").ToString), ".eolane.com", ""), "\\so2k8vm07\", ""), "\\so2k3vm05\", "")
                     If rdt("NM_TYPE_MTRE").ToString = "Poste de travail" Then Continue For
@@ -2313,7 +2286,7 @@ FROM         dbo.DTM_NC_DETA INNER JOIN
                       dbo.DTM_REF_TYPE_NC ON dbo.DTM_NC_LIST.ID_TYPE_NC = dbo.DTM_REF_TYPE_NC.ID_TYPE_NC
 WHERE     (NOT (dbo.DTM_NC_LIST.NU_DRGT IS NULL)) AND (dbo.DTM_NC_LIST.NU_SER_SPFE = N'" & sNU_SER & "') AND (dbo.DTM_NC_DETA.ID_STAT = 4)"
 
-                dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion_ALMS)
+                dt = SQL_SELE_TO_DT(sQuery, CS_ALMS_PROD_PRD)
                 If Not dt Is Nothing Then
                     For Each rdt As DataRow In dt.Rows
                         para = New Paragraph(New Chunk(rdt("NU_DRGT").ToString, FontFactory.GetFont("CALIBRI", 10)))
@@ -2398,7 +2371,7 @@ WHERE     (NOT (dbo.DTM_NC_LIST.NU_DRGT IS NULL)) AND (dbo.DTM_NC_LIST.NU_SER_SP
   FROM [dbo].[V_DHR_ECAR_PDTO]
  WHERE [NU_SER_SPFE] = '" & sNU_SER & "'"
 
-                dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion_ALMS)
+                dt = SQL_SELE_TO_DT(sQuery, CS_ALMS_PROD_PRD)
                 If Not dt Is Nothing Then
                     For Each rdt As DataRow In dt.Rows
                         para = New Paragraph(New Chunk(rdt("NM_DCPO_ANML").ToString, FontFactory.GetFont("CALIBRI", 10, Font.BOLD)))
@@ -2487,7 +2460,7 @@ WHERE     (NOT (dbo.DTM_NC_LIST.NU_DRGT IS NULL)) AND (dbo.DTM_NC_LIST.NU_SER_SP
             GROUP BY [OF]
                   ,[N°_série]   
                   ,[Rapport_Contrôle]"
-                dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
+                dt = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
                 If dt Is Nothing Then Throw New Exception("Pas de rapport de contrôle trouvé")
                 para = New Paragraph(New Chunk("Annexe 2 - Rapport de contrôle n°" & dt(0)("Rapport_Contrôle").ToString, FontFactory.GetFont("CALIBRI", 11)))
 
@@ -2645,7 +2618,7 @@ FROM         dbo.DTM_NMCT_PROD INNER JOIN
                             GROUP BY NU_SER_SPFE, CD_ARTI_COMP) AS dt_DERN_AFCT ON dt_DERN_AFCT.NU_SER_SPFE = dbo.DTM_NMCT_PROD.NU_SER_SPFE AND 
                       dt_DERN_AFCT.CD_ARTI_COMP = dbo.DTM_NMCT_PROD.CD_ARTI_COMP AND dt_DERN_AFCT.MAX_DT_AFCT = dbo.DTM_NMCT_PROD.DT_AFCT
 WHERE     (dbo.DTM_NMCT_PROD.NU_SER_SPFE = '{sNU_SER}') AND [BL_TYPE_TCBL] = 1"
-                        Using dt1 = SQL_SELE_TO_DT(sQuery, sChaineConnexion_ALMS)
+                        Using dt1 = SQL_SELE_TO_DT(sQuery, CS_ALMS_PROD_PRD)
 
                             For Each rdtMSEG As DataRow In dt_MSEG_CLEAN.Select("MENGE <> '0'")
                                 Using dtMAKT = SAP_DATA_READ_MAKT($"MATNR LIKE '{rdtMSEG("MATNR").ToString}%'")
@@ -2693,7 +2666,7 @@ WHERE     (dbo.DTM_NMCT_PROD.NU_SER_SPFE = '{sNU_SER}') AND [BL_TYPE_TCBL] = 1"
                                         End If
                                         Dim nmct_prod As New DTM_NMCT_PROD With {.NU_SER_SPFE = sNU_SER, .CD_ARTI_PROD = sCD_ARTI_PROD, .NU_SER_COMP = Trim(rdtMSEG("CHARG").ToString), .CD_ARTI_COMP = scd_arti_cmop, .BL_TYPE_TCBL = False, .DT_AFCT = Now, .NM_DSGT_COMP = Trim(dtMAKT(0)("MAKTX").ToString)}
                                         db.DTM_NMCT_PROD.Add(nmct_prod)
-                                        'SQL_REQ_ACT(sQuery, sChaineConnexion_ALMS)
+                                        'SQL_REQ_ACT(sQuery, CS_ALMS_PROD_PRD)
                                     End Using
                                 End Using
                             Next
@@ -2708,7 +2681,7 @@ FROM         dbo.DTM_NMCT_PROD INNER JOIN
                       dt_DERN_AFCT.CD_ARTI_COMP = dbo.DTM_NMCT_PROD.CD_ARTI_COMP AND dt_DERN_AFCT.MAX_DT_AFCT = dbo.DTM_NMCT_PROD.DT_AFCT
 WHERE     (dbo.DTM_NMCT_PROD.NU_SER_SPFE = '{sNU_SER}' AND dbo.DTM_NMCT_PROD.NU_SER_COMP <> '')
 ORDER BY [BL_TYPE_TCBL] DESC, [CD_ARTI_COMP], NU_SER_COMP"
-                        Using dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion_ALMS)
+                        Using dt = SQL_SELE_TO_DT(sQuery, CS_ALMS_PROD_PRD)
                             For Each rdt As DataRow In dt.Rows
                                 para = New Paragraph(New Chunk(rdt("CD_ARTI_COMP").ToString, FontFactory.GetFont("CALIBRI", 11)))
                                 c_ENTE = New PdfPCell(para)
