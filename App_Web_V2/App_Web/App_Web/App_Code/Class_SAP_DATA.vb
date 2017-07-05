@@ -678,7 +678,7 @@ Public Class Class_SAP_DATA
     End Function
     Public Shared Function SAP_DATA_READ_MSEG(Optional sFILT As String = "") As DataTable
         Try
-            Using dtMSEG = SAP_DATA_READ_TBL("MSEG", "|", "", "MBLNR MJAHR ZEILE MATNR CHARG MENGE ELIKZ", sFILT)
+            Using dtMSEG = SAP_DATA_READ_TBL("MSEG", "|", "", "MBLNR MJAHR ZEILE MATNR CHARG MENGE ELIKZ BWART", sFILT)
                 If dtMSEG Is Nothing Then Throw New Exception($"Problème de lecture de la table MSEG avec le filtre : {sFILT}")
                 LOG_Msg(GetCurrentMethod, $"Lecture de la table MSEG effectuée avec le filtre : {sFILT}")
                 Return dtMSEG

@@ -160,17 +160,18 @@
                                     <asp:ImageButton ID="Composant" ImageUrl="~\App_Themes\ICON_COMPARE\composant2.ico" runat="server" Height="100px" Width="100px" PostBackUrl="~/PagesMembres/Digital_Factory/TCBL_COMP.aspx" /><span>Vers page composants</span></a>
                             </div>
                             <div class="col-md-3">
-                                <a class="info btn btn-default"  href="/PagesMembres/Digital_Factory/TCBL_ESB_SS_ESB_V2.aspx">
-                                    <img src="/App_Themes/ICON_COMPARE/ensemble.ico"  style="max-width : 80%;"/>
+                                <a class="info btn btn-default"  href="/PagesMembres/Digital_Factory/TCBL_ESB_SS_ESB_V2.aspx" style="max-width:100%;" aria-multiline="true">
+                                    <img src="/App_Themes/ICON_COMPARE/ensemble.ico" style="max-width:100%;"/>
                                     <br />Saisie ensemble / sous-ensemble
 <%--                                    <span>Vers page ensembles</span>--%>
                                 </a>
 <%--                                    <asp:ImageButton ID="CodeBarre" ImageUrl="~\App_Themes\ICON_COMPARE\ensemble.ico" runat="server" Height="100px" Width="100px" PostBackUrl="~/PagesMembres/Digital_Factory/TCBL_ESB_SS_ESB_V2.aspx" /><span>Vers page ensembles</span></a>--%>
                             </div>
                             <div class="col-md-3">
-                                <a class="info btn btn-default" href="/PagesMembres/Digital_Factory/IPTT_ADRE_MAC.aspx">
-                                    <img src="/App_Themes/ICON_COMPARE/computer3.ico" style="max-width : 80%;"/>
-                                    <br /><label>Importation des adresses MAC</label/>
+                                <a class="info btn btn-default" href="/PagesMembres/Digital_Factory/IPTT_ADRE_MAC.aspx" style="max-width:100%;">
+                                    <img src="/App_Themes/ICON_COMPARE/computer3.ico" style="max-width:100%;"/>
+                                    <br />
+                                    <label style="max-width:80%;" aria-multiline="true">Importation des adresses MAC</label>
                                     <%--<span>Vers page importation des adresses MAC</span>--%>
                                 </a>
                             </div>

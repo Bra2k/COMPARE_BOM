@@ -2,8 +2,6 @@
 Imports App_Web.LOG
 Imports System.Reflection.MethodBase
 Imports App_Web.Class_SQL
-Imports System
-Imports System.IO
 Imports App_Web.Class_COMM_APP_WEB
 
 Public Class WebForm1
@@ -17,10 +15,14 @@ Public Class WebForm1
                 Label_NU_ARTI.Text = Trim(dtAFKO(0)("PLNBEZ").ToString)
             End Using
             'Using db As New SENSINGLABS_PRDEntities
-            '    Dim ETP As DWH_REF_ETP_PRCS = db.DWH_REF_ETP_PRCS.Find(ID)
-            'End Using
-            Dim ope_query = $"SELECT DISTINCT [NU_ETP], [LB_ETP]
-                                FROM [dbo].[DWH_REF_ETP_PRCS] 
+            'Dim ETP As DWH_REF_ETP_PRCS = db.DWH_REF_ETP_PRCS.Find(ID)
+            'Dim query = From a In db.DWH_REF_ETP_PRCS
+            '                Where a.CD_ARTI = Label_NU_ARTI.Text And a.LB_ETP <> "Colisage" And a.LB_ETP <> "Carte_Nue" And a.LB_ETP <> "Integration"
+            '                Order By a.NU_ETP
+            '                Select a
+
+            Dim ope_query = $"Select DISTINCT [NU_ETP], [LB_ETP]
+                From [dbo].[DWH_REF_ETP_PRCS] 
                                WHERE [CD_ARTI] = '{Label_NU_ARTI.Text}' 
                                  AND [LB_ETP] <> 'Colisage'
                                  AND [LB_ETP] <> 'Carte_Nue' 
@@ -28,14 +30,15 @@ Public Class WebForm1
                               ORDER BY [NU_ETP] ASC"
             Using dtOP = SQL_SELE_TO_DT(ope_query, CS_SENSINGLABS_PRD)
                 DropDownList_OP.DataSource = dtOP
+                'DropDownList_OP.DataSource = Query
                 DropDownList_OP.DataTextField = "LB_ETP"
                 DropDownList_OP.DataValueField = "NU_ETP"
                 DropDownList_OP.DataBind()
             End Using
         Catch ex As Exception
             LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
-                Exit Sub
-            End Try
+            Exit Sub
+        End Try
     End Sub
 
     Protected Sub TextBox_NU_SER_TextChanged(sender As Object, e As EventArgs) Handles TextBox_NU_SER.TextChanged
@@ -97,13 +100,7 @@ Public Class WebForm1
 
         Try
             Using db As New SENSINGLABS_PRDEntities
-                Dim wrkf As New DWH_DIM_WRKF
-                wrkf.DT_PSG = Now
-                wrkf.NU_OF = Label_OF.Text
-                wrkf.CD_ARTI = Label_ART.Text
-                wrkf.NU_NS = Label_NU_SER.Text
-                wrkf.BL_STA = "1"
-                wrkf.NU_ETP = Label_OP.Text
+                Dim wrkf As New DWH_DIM_WRKF With {.DT_PSG = Now, .NU_OF = Convert.ToInt32(Label_OF.Text), .CD_ARTI = Label_ART.Text, .NU_NS = Label_NU_SER.Text, .BL_STA = True, .NU_ETP = Convert.ToInt16(Label_OP.Text)}
                 db.DWH_DIM_WRKF.Add(wrkf)
                 db.SaveChanges()
             End Using
@@ -124,13 +121,7 @@ Public Class WebForm1
 
         Try
             Using db As New SENSINGLABS_PRDEntities
-                Dim wrkf As New DWH_DIM_WRKF
-                wrkf.DT_PSG = Now
-                wrkf.NU_OF = Label_OF.Text
-                wrkf.CD_ARTI = Label_ART.Text
-                wrkf.NU_NS = Label_NU_SER.Text
-                wrkf.BL_STA = "0"
-                wrkf.NU_ETP = Label_OP.Text
+                Dim wrkf As New DWH_DIM_WRKF With {.DT_PSG = Now, .NU_OF = Convert.ToInt32(Label_OF.Text), .CD_ARTI = Label_ART.Text, .NU_NS = Label_NU_SER.Text, .BL_STA = False, .NU_ETP = Convert.ToInt16(Label_OP.Text)}
                 db.DWH_DIM_WRKF.Add(wrkf)
                 db.SaveChanges()
             End Using
@@ -147,7 +138,4 @@ Public Class WebForm1
 
     End Sub
 
-    Protected Sub Button_RAZ_Click(sender As Object, e As EventArgs) Handles Button_RAZ.Click
-
-    End Sub
 End Class
