@@ -95,10 +95,11 @@ Public Class SiteMaster
         Try
             If sproperty = "thumbnailphoto" Then
                 Dim data As Byte() = de.Properties(sproperty).Value
-                System.Convert.ToBase64String(de.Properties(sproperty).Value).ToString()
+                'System.Convert.ToBase64String(de.Properties(sproperty).Value).ToString()
                 'Session("thumbnailphoto") = data
                 LOG_Msg(GetCurrentMethod, $"{sproperty} : <img src='data:image/jpeg;base64, {System.Convert.ToBase64String(data)}' alt='photo' />")
-                Return $"<img src='data:image/jpeg;base64, {System.Convert.ToBase64String(data)}' alt='photo' />"
+                Return $"data:image/jpeg;base64, {System.Convert.ToBase64String(data)}"
+                '$"<img src='data:image/jpeg;base64, {System.Convert.ToBase64String(data)}' alt='photo' />"
             Else
                 LOG_Msg(GetCurrentMethod, $"{sproperty} : {de.Properties(sproperty).Value.ToString}")
                 Return de.Properties(sproperty).Value.ToString
@@ -119,7 +120,6 @@ Public Class SiteMaster
                 If Session("User_Name") = "" Then Throw New Exception("User nom existant")
                 Using UserAd As UserPrincipal = UserPrincipal.FindByIdentity(ctx, ID_TYPE, ID_VAL)
                     Using DirectoryEntry As DirectoryEntry = UserAd.GetUnderlyingObject()
-                        Session("de_AD") = DirectoryEntry
                         Session("displayname") = _AD_GET_PROP(DirectoryEntry, "displayname")
                         Session("title") = _AD_GET_PROP(DirectoryEntry, "title")
                         Session("mail") = _AD_GET_PROP(DirectoryEntry, "mail")

@@ -674,3 +674,5 @@ D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\obj\R
 D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\obj\Release\WebForms_Basic.xml
 D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\obj\Release\App_Web.pdb
 D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\obj\Release\App_Web.vbprojResolveAssemblyReference.cache
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Scripts\metro.js
+D:\Mes_Donnees_so_spevi\Travail\Projets\App_Web\App_Web_V2\App_Web\App_Web\bin\Scripts\jquery-1.10.2.js

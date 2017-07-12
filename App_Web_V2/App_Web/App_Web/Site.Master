@@ -13,7 +13,11 @@
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
     <webopt:BundleReference runat="server" Path="~/Content/css" />
+    <webopt:BundleReference runat="server" Path="~/Content/metro.css" />
+
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <%--    <link href="App_Themes/CSS/CSS_MediaQuery.css" rel="stylesheet" type="text/css" />--%>
+<%--    <link href="Content/metro.css" rel="stylesheet" />--%>
 </head>
 <body>
     <form runat="server">
@@ -35,45 +39,80 @@
                 <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
                 <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
                 <asp:ScriptReference Name="WebFormsBundle" />
+
+                <asp:ScriptReference Path="~/Scripts/metro.js" />
+<%--                <asp:ScriptReference Path="~/Scripts/jquery-1.10.2.js" />--%>
                 <%--Scripts de site--%>
             </Scripts>
         </asp:ScriptManager>
-        <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: #002F60">
-            <div class="container" style="background-color: #002F60">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" runat="server" href="~/">
-                        <img src="/App_Themes/PIC_CHAR/DFEC_V2.png" alt="Applications Eolane Combrée" height="24" width="47"></a>
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/">Accueil</a></li>
-                        <li><a runat="server" href="~/About">À propos de</a></li>
-                        <li><a runat="server" href="~/Contact">Contact</a></li>
-                    </ul>
-                    <asp:LoginView runat="server" ViewStateMode="Disabled">
-                        <AnonymousTemplate>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a runat="server" href="~/Account/Login">Se connecter</a></li>
+
+
+        <div>
+            <header>
+                <div class="navbar navbar-inverse navbar-fixed-top app-bar fixed-top navy" data-role="appbar" style="background-color: #002F60">
+                    <div class="container" style="background-color: #002F60">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" runat="server" href="~/">
+                                <img src="/App_Themes/PIC_CHAR/DFEC_V2.png" alt="Applications Eolane Combrée" height="24" width="47"></a>
+                        </div>
+                        <div class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a runat="server" href="~/">Accueil</a></li>
+                                <li><a runat="server" href="~/About">À propos de</a></li>
+                                <li><a runat="server" href="~/Contact">Contact</a></li>
                             </ul>
-                        </AnonymousTemplate>
-                        <LoggedInTemplate>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a runat="server" title="Manage your account">Bonjour, <%: Session("displayname")  %> !</a></li>
-                                <li>
-                                    <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Se déconnecter" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" OnLoggedOut="APP_WEB_LoggedOut" />
-                                </li>
-                            </ul>
-                        </LoggedInTemplate>
-                    </asp:LoginView>
+                            <asp:LoginView runat="server" ViewStateMode="Disabled">
+                                <AnonymousTemplate>
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <li><a runat="server" href="~/Account/Login">Se connecter</a></li>
+                                    </ul>
+                                </AnonymousTemplate>
+                                <LoggedInTemplate>
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <li><a title="Manage your account" onmouseout="metroDialog.close('#dialog9')" onmouseover="metroDialog.open('#dialog9', 'top-right')">Bonjour, <%: Session("displayname")  %> !</a></li>
+                                        <div data-role="dialog" id="dialog9" class="padding20 dialog info" data-type="info" data-place="top-right" style="width: auto; height: auto; visibility: visible; background-color: #002F60; font-family: verdana; color: #FFFFFF;">
+                                            <div class="img-thumbnail">
+                                                <span id="photo">
+                                                    <img src="<%: Session("thumbnailphoto") %>" alt='photo' />
+                                                </span>
+                                            </div>
+                                            <ol class="simple-list dark-bullet" style="background-color: #002F60; font-family: verdana; color: #FFFFFF;">
+                                                <li>
+                                                    <label>Bienvenue</label></li>
+                                                <%: Session("displayname") %>
+                                                <li>
+                                                    <label>Titre :</label></li>
+                                                <%: Session("title") %>
+                                                <li>
+                                                    <label>Matricule SAP :</label></li>
+                                                <%: Session("matricule") %>
+                                                <li>
+                                                    <label>Service :</label></li>
+                                                <%: Session("department") %>
+                                            </ol>
+                                        </div>
+                                        <span class="dialog-close-button"></span>
+                                        <li>
+                                            <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Se déconnecter" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" OnLoggedOut="APP_WEB_LoggedOut" />
+                                        </li>
+                                    </ul>
+                                </LoggedInTemplate>
+                            </asp:LoginView>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </header>
         </div>
-        <div class="container body-content">
+        <br />
+        <br />
+        <br />
+        <br />
+        <div class="container page-content">
             <asp:MultiView ID="MultiView_Master" runat="server" ActiveViewIndex="0">
                 <asp:View ID="View_Master" runat="server">
                     <asp:ContentPlaceHolder ID="MainContent" runat="server">
@@ -82,7 +121,7 @@
                     </asp:ContentPlaceHolder>
                 </asp:View>
                 <asp:View ID="View_LOG_SAP" runat="server">
-                    <div style="background-color: #002F60; width: 30%; color: #ffffff; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-radius: 10px; text-align:center">
+                    <div style="background-color: #002F60; width: 30%; color: #ffffff; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-radius: 10px; text-align: center">
                         <br />
                         Entrer le matricule :
                              <asp:TextBox ID="TextBox_LOG_SAP" runat="server" AutoPostBack="True"></asp:TextBox>
@@ -92,11 +131,6 @@
                 </asp:View>
             </asp:MultiView>
             <br />
-            <%--<asp:UpdatePanel ID="UpdatePanel_PGS_TACH" runat="server" ChildrenAsTriggers="False" UpdateMode="Conditional">
-                <ContentTemplate>
-                    
-                </ContentTemplate>
-            </asp:UpdatePanel>--%>
 
             <asp:Label ID="Label_PGS_TACH" runat="server" Text=""></asp:Label>
             <br />
@@ -106,10 +140,11 @@
             <footer>
                 <div style="position: fixed; bottom: 0; left: 0; right: 0;">
                     <asp:Image ID="Image_LOGO_ECO" runat="server" ImageUrl="~/App_Themes/PIC_CHAR/Comb1.jpg" Height="55px" Width="134px" />
-                    <%--Pour plus d'informations sur les scripts de regroupement dans ScriptManager, consultez http://go.microsoft.com/fwlink/?LinkID=301884 --%>
                 </div>
                 <div style="position: relative; bottom: 0; right: 0;">Copyright © Selco/Eolane 1986-<%: Year(Now()) %> - Asp.NET Application</div>
             </footer>
+        </div>
+        <div class="notify-container">
         </div>
     </form>
 </body>

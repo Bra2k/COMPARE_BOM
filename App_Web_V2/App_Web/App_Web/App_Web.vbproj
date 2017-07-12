@@ -297,6 +297,34 @@
     <Content Include="App_Themes\ICON_COMPARE\test2.ico" />
     <Content Include="App_Themes\ICON_COMPARE\tester_fonc.ico" />
     <Content Include="App_Themes\ICON_COMPARE\tracabilite_ope.ico" />
+    <Content Include="App_Themes\Menu_Defaut\63a.jpg" />
+    <Content Include="App_Themes\Menu_Defaut\Antenna-WF.png" />
+    <Content Include="App_Themes\Menu_Defaut\Assign.png" />
+    <Content Include="App_Themes\Menu_Defaut\Barcode.png" />
+    <Content Include="App_Themes\Menu_Defaut\Binary-Code.png" />
+    <Content Include="App_Themes\Menu_Defaut\Bio-Hazard.png" />
+    <Content Include="App_Themes\Menu_Defaut\Box - 03-WF.png" />
+    <Content Include="App_Themes\Menu_Defaut\box-palette-2.png" />
+    <Content Include="App_Themes\Menu_Defaut\colis.jpg" />
+    <Content Include="App_Themes\Menu_Defaut\Computer-IT-01-WF.png" />
+    <Content Include="App_Themes\Menu_Defaut\CPU_1-WF.png" />
+    <Content Include="App_Themes\Menu_Defaut\electronique-02-1.jpg" />
+    <Content Include="App_Themes\Menu_Defaut\Graph-03.png" />
+    <Content Include="App_Themes\Menu_Defaut\Heart-04.png" />
+    <Content Include="App_Themes\Menu_Defaut\Log_file_icon_2.png" />
+    <Content Include="App_Themes\Menu_Defaut\News-Add.png" />
+    <Content Include="App_Themes\Menu_Defaut\Operation-WF.png" />
+    <Content Include="App_Themes\Menu_Defaut\Product_Box-03-WF.png" />
+    <Content Include="App_Themes\Menu_Defaut\proto-process-success-story.jpg" />
+    <Content Include="App_Themes\Menu_Defaut\QR Code1-WF.png" />
+    <Content Include="App_Themes\Menu_Defaut\QR-Code - 01.png" />
+    <Content Include="App_Themes\Menu_Defaut\Reference-WF.png" />
+    <Content Include="App_Themes\Menu_Defaut\Setting_2-WF.png" />
+    <Content Include="App_Themes\Menu_Defaut\Software-SAP.png" />
+    <Content Include="App_Themes\Menu_Defaut\Student-Laptop.png" />
+    <Content Include="App_Themes\Menu_Defaut\Tag-WF.png" />
+    <Content Include="App_Themes\Menu_Defaut\Windmill-01.png" />
+    <Content Include="App_Themes\Menu_Defaut\Wireless-03.png" />
     <Content Include="App_Themes\PIC_CHAR\14740.png" />
     <Content Include="App_Themes\PIC_CHAR\21257.png" />
     <Content Include="App_Themes\PIC_CHAR\2699117232_small_1.png" />
@@ -323,6 +351,7 @@
     <Content Include="App_Themes\PIC_CHAR\tracabilite_ope.ico" />
     <Content Include="App_Themes\PIC_CHAR\Valider.ico" />
     <Content Include="App_Themes\Skin_CHRT_ECO\Default.css" />
+    <Content Include="Content\metro.css" />
     <Content Include="Default.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
@@ -410,6 +439,9 @@
     <Content Include="PagesMembres\Provisoire\TEST_BATT_TUCK.aspx" />
     <Content Include="PagesMembres\RDRC_PAGE_MEMB.aspx" />
     <Content Include="Scripts\LoginSAP.js" />
+    <Content Include="Scripts\metro.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts\snow.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -451,7 +483,9 @@
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />

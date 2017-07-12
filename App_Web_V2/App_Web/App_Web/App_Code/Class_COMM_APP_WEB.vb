@@ -250,16 +250,41 @@ Public Class Class_COMM_APP_WEB
             wic = wid_admin.Impersonate()
             Directory.CreateDirectory(Path.GetDirectoryName(sdestination))
             System.IO.File.Copy(sfichier_or, sdestination, boverwrite)
-            If Not System.IO.File.Exists(sdestination) Then Throw New Exception("Le fichier " & sdestination & " n'existe pas")
+            If Not System.IO.File.Exists(sdestination) Then Throw New Exception($"Le fichier {sdestination} n'existe pas")
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Exit Sub
         Finally
             If wic IsNot Nothing Then wic.Undo()
         End Try
-        LOG_Msg(GetCurrentMethod, "Le fichier " & sfichier_or & " a été copié à l'endroit " & sdestination & ".")
+        LOG_Msg(GetCurrentMethod, $"Le fichier {sfichier_or} a été copié à l'endroit {sdestination}.")
     End Sub
-
+    Public Shared Sub COMM_APP_WEB_MOVE_FILE(sfichier_or As String, sdestination As String)
+        Dim admin_token As IntPtr
+        'Dim wid_current As WindowsIdentity = WindowsIdentity.GetCurrent()
+        'wid_current.di
+        'Dim wid_admin As WindowsIdentity = Nothing
+        'Dim wic As WindowsImpersonationContext = Nothing
+        Try
+            Using wid_current As WindowsIdentity = WindowsIdentity.GetCurrent()
+                If LogonUser("ce_adminsv", "eolane", "Eol@ne14", 9, 0, admin_token) = 0 Then Throw New Exception("Log as n'a pas fonctionné")
+                Using wid_admin = New WindowsIdentity(admin_token)
+                    Using wic = wid_admin.Impersonate()
+                        Directory.CreateDirectory(Path.GetDirectoryName(sdestination))
+                        System.IO.File.Move(sfichier_or, sdestination)
+                        If Not System.IO.File.Exists(sdestination) Then Throw New Exception($"Le fichier {sdestination} n'existe pas")
+                        wic.Undo()
+                        LOG_Msg(GetCurrentMethod, $"Le fichier {sfichier_or} a été déplacé à l'endroit {sdestination}.")
+                    End Using
+                End Using
+            End Using
+        Catch ex As Exception
+            LOG_Erreur(GetCurrentMethod, ex.Message)
+            Exit Sub
+            'Finally
+            '    If wic IsNot Nothing Then wic.Undo()
+        End Try
+    End Sub
     Public Shared Function COMM_APP_WEB_GET_FILE(spath As String, sssearchpattern As String) As String()
         Dim admin_token As IntPtr
         Dim wid_current As WindowsIdentity = WindowsIdentity.GetCurrent()

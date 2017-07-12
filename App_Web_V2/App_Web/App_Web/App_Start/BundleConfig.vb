@@ -32,5 +32,9 @@ Public Class BundleConfig
                 .Path = "~/Scripts/respond.min.js",
                 .DebugPath = "~/Scripts/respond.js"})
 
+        ScriptManager.ScriptResourceMapping.AddDefinition("respond", New ScriptResourceDefinition() With {
+                .Path = "~/Scripts/respond.min.js",
+                .DebugPath = "~/Scripts/respond.js"})
+
     End Sub
 End Class

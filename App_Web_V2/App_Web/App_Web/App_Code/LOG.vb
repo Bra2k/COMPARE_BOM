@@ -116,7 +116,8 @@ Public Class LOG
 
     End Sub
 
-    Public Shared Sub LOG_MESS_UTLS(mbFunction As MethodBase, sMessage As String, Optional sType As String = "Information", Optional bAFCG_FENE As Boolean = True)
+    Public Shared Sub LOG_MESS_UTLS(mbFunction As MethodBase, sMessage As String, Optional sType As String = "info", Optional bAFCG_FENE As Boolean = True)
+        'success, info, warning, alert
 
         Dim ip As String = System.Web.HttpContext.Current.Request.UserHostAddress
         Dim sPoste_User As String = $"{System.Net.Dns.GetHostEntry(ip).HostName()} - {Replace(Replace(System.Web.HttpContext.Current.User.Identity.Name, Environment.UserDomainName, ""), "\", "")}"
@@ -133,6 +134,8 @@ Public Class LOG
             '    End Using
             '    con.Close()
             'End Using
+
+
             Using db As New APP_WEB_ECOEntities
                 Dim log As New DTM_LOG_APP_WEB
                 log.NM_POST = sPoste_User
@@ -144,13 +147,24 @@ Public Class LOG
                 db.SaveChanges()
             End Using
             If bAFCG_FENE = True Then HttpContext.Current.Response.Write($"<body><script type=""text/javascript""> alert('{Replace(sMessage, "'", "\'")}');</script></body>")
+            'If bAFCG_FENE = True Then
+            '    Dim sb As New StringBuilder
+            '    sb.Append("<script>(function({$.Notify({")
+            '    sb.Append($"caption: '{mbFunction.Name}',")
+            '    sb.Append($"content: '{Replace(sMessage, "'", "\'")}',")
+            '    sb.Append($"type: '{Replace(sType, "Erreur", "alert")}',")
+            '    sb.Append("keepOpen: true});};))</script>")
+            '    Using pageHandler As Page = HttpContext.Current.CurrentHandler
+            '        pageHandler.RegisterStartupScript("alert_app", sb.ToString) 'HttpContext.Current.Response.Write(sb.ToString)
+            '    End Using
+            'End If
         Catch ex As Exception
-            Using sw As New StreamWriter($"C:\sources\App_Web_LOG\{sPoste_User}.log", True)
+            Using sw As New StreamWriter($"C: \sources\App_Web_LOG\{sPoste_User}.log", True)
                 sw.WriteLine($"{DateTime.Now.ToString} - {ex.Message}")
                 sw.WriteLine($"{DateTime.Now.ToString} - Fonction : {mbFunction.Name} - Message : {sMessage}")
                 sw.Close()
             End Using
-            If sType = "Erreur" Then
+            If sType = "alert" Then
                 Using swLOG_ERR As New StreamWriter($"C:\sources\App_Web_LOG\{sPoste_User}_erreur.log", True)
                     swLOG_ERR.WriteLine($"{DateTime.Now.ToString} - {ex.Message}")
                     swLOG_ERR.WriteLine($"{DateTime.Now.ToString} - Fonction : {mbFunction.Name} - Message : {sMessage}")
@@ -160,7 +174,7 @@ Public Class LOG
         End Try
         If My.Computer.Name = "CEDB03" Then
             Using pageHandler As Page = HttpContext.Current.CurrentHandler
-                If sType = "Erreur" Then
+                If sType = "alert" Then
                     Using MP_Label_ERR_MSG As WebControls.Label = CType(pageHandler.Master.FindControl("Label_ERR_MSG"), WebControls.Label)
                         MP_Label_ERR_MSG.Text = $"Erreur à la fonction : {mbFunction.Name} - Message d'erreur : {sMessage}"
                     End Using

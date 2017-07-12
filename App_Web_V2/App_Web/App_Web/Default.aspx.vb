@@ -14,7 +14,7 @@ Class _Default
         '    LOG_Erreur(GetCurrentMethod, $"thumbnailphoto : {ex.Message}")
         '    Exit Sub
         'End Try
-        Label_PHOT.Text = Session("thumbnailphoto")
+        'Label_PHOT.Text = Session("thumbnailphoto")
     End Sub
 
     'Protected Sub ImageButton1_Click(sender As Object, e As ImageClickEventArgs) Handles ImageButton1.Click
