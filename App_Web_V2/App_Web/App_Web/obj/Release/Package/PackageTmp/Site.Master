@@ -12,6 +12,7 @@
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
+    
     <webopt:BundleReference runat="server" Path="~/Content/css" />
     <webopt:BundleReference runat="server" Path="~/Content/metro.css" />
 
@@ -74,8 +75,8 @@
                                 </AnonymousTemplate>
                                 <LoggedInTemplate>
                                     <ul class="nav navbar-nav navbar-right">
-                                        <li><a title="Manage your account" onmouseout="metroDialog.close('#dialog9')" onmouseover="metroDialog.open('#dialog9', 'top-right')">Bonjour, <%: Session("displayname")  %> !</a></li>
-                                        <div data-role="dialog" id="dialog9" class="padding20 dialog info" data-type="info" data-place="top-right" style="width: auto; height: auto; visibility: visible; background-color: #002F60; font-family: verdana; color: #FFFFFF;">
+                                        <li><a title="Manage your account" onmouseout="metroDialog.close('#ctl15_dialog9')" onmouseover="metroDialog.open('#ctl15_dialog9', 'top-right')" runat="server" >Bonjour, <%: Session("displayname")  %> !</a></li>
+                                        <div data-role="dialog" id="dialog9" class="padding20 dialog info" data-type="info" data-place="top-right" style="width: auto; height: auto; visibility: visible; background-color: #002F60; font-family: verdana; color: #FFFFFF;" runat="server">
                                             <div class="img-thumbnail">
                                                 <span id="photo">
                                                     <img src="<%: Session("thumbnailphoto") %>" alt='photo' />

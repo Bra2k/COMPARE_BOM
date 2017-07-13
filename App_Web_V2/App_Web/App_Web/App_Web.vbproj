@@ -426,6 +426,7 @@
     <Content Include="PagesMembres\Production\ALMS\ADD_MAC_ADRE.aspx" />
     <Content Include="PagesMembres\Production\ALMS\ALMS_IMPORT.aspx" />
     <Content Include="PagesMembres\Production\ALMS\ALMS_MENU.aspx" />
+    <Content Include="PagesMembres\Production\ALMS\AMNS_DROI_ALMS.aspx" />
     <Content Include="PagesMembres\Production\ALMS\GEST_ANML_NC_DRGT.aspx" />
     <Content Include="PagesMembres\Production\ALMS\IPSO_ETQT_NU_SER.aspx" />
     <Content Include="PagesMembres\Production\Controle_Reception\AJOU_FNS_CTRL_RCP.aspx" />
@@ -1122,6 +1123,13 @@
     </Compile>
     <Compile Include="PagesMembres\Production\ALMS\ALMS_MENU.aspx.vb">
       <DependentUpon>ALMS_MENU.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="PagesMembres\Production\ALMS\AMNS_DROI_ALMS.aspx.designer.vb">
+      <DependentUpon>AMNS_DROI_ALMS.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagesMembres\Production\ALMS\AMNS_DROI_ALMS.aspx.vb">
+      <DependentUpon>AMNS_DROI_ALMS.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="PagesMembres\Production\ALMS\GEST_ANML_NC_DRGT.aspx.designer.vb">

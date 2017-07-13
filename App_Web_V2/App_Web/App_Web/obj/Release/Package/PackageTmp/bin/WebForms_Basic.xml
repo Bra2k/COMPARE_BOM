@@ -5210,6 +5210,114 @@ Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
+<member name="F:App_Web.AMNS_DROI_ALMS._DropDownList_OPRT">
+<summary>
+Contrôle DropDownList_OPRT.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.AMNS_DROI_ALMS._SqlDataSource_OPRT">
+<summary>
+Contrôle SqlDataSource_OPRT.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.AMNS_DROI_ALMS._Label_NM_OPRT">
+<summary>
+Contrôle Label_NM_OPRT.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.AMNS_DROI_ALMS._Button_AJOU_OPRT">
+<summary>
+Contrôle Button_AJOU_OPRT.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.AMNS_DROI_ALMS._MultiView_AMNS_DROI_ALMS">
+<summary>
+Contrôle MultiView_AMNS_DROI_ALMS.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.AMNS_DROI_ALMS._View_MDFC_DROI">
+<summary>
+Contrôle View_MDFC_DROI.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.AMNS_DROI_ALMS._Label_INIT">
+<summary>
+Contrôle Label_INIT.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.AMNS_DROI_ALMS._TextBox_HBLT">
+<summary>
+Contrôle TextBox_HBLT.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.AMNS_DROI_ALMS._CheckBox_ATVT">
+<summary>
+Contrôle CheckBox_ATVT.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.AMNS_DROI_ALMS._Button_VALI">
+<summary>
+Contrôle Button_VALI.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.AMNS_DROI_ALMS._View_AJOU_OPRT">
+<summary>
+Contrôle View_AJOU_OPRT.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.AMNS_DROI_ALMS._TextBox_MTCL">
+<summary>
+Contrôle TextBox_MTCL.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
 <member name="F:App_Web.GEST_ANML_NC_DRGT._accordion">
 <summary>
 Contrôle accordion.
