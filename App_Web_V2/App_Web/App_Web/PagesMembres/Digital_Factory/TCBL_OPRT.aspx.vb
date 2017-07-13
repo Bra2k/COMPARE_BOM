@@ -513,7 +513,7 @@ Public Class TCBL_OPRT
     Public Sub _ERGT_OPRT_PASS(sSANC As String)
 
         Dim sQuery As String = "", sNU_SER_ECO As String = "", sNU_SER_CLIE As String = "", sNS As String = "", sID_NU_SER As String = ""
-        Dim dt_PARA, dt, dt_CFGR_ARTI_ECO, dt2, dt_LIST_NU_SER_TRAC, dt_ETAT_CTRL, dtMSEG, dtAFVC, dtAFKO, dtCRHD As New DataTable
+        'Dim dt_PARA, dt, dt_CFGR_ARTI_ECO, dt2, dt_LIST_NU_SER_TRAC, dt_ETAT_CTRL, dtMSEG, dtAFVC, dtAFKO, dtCRHD As New DataTable
         Dim iIDTT As Integer
         Dim sPOST_TRAV As String = ""
         Dim sIPMT_ETQT As String = ""
@@ -524,19 +524,19 @@ Public Class TCBL_OPRT
             '    db.SaveChanges()
             'End Using
 
-
-            dt_CFGR_ARTI_ECO = DIG_FACT_SQL_CFGR_ARTI_ECO(Trim(Label_CD_ARTI.Text))
-            Select Case "1"
-                Case dt_CFGR_ARTI_ECO(0)("Numéro de série Eolane").ToString
-                    sNU_SER_ECO = TextBox_NU_SER.Text
-                Case dt_CFGR_ARTI_ECO(0)("Numéro de série client").ToString
-                    sNU_SER_CLIE = TextBox_NU_SER.Text
-            End Select
+            Using dt_CFGR_ARTI_ECO = DIG_FACT_SQL_CFGR_ARTI_ECO(Trim(Label_CD_ARTI.Text))
+                Select Case "1"
+                    Case dt_CFGR_ARTI_ECO(0)("Numéro de série Eolane").ToString
+                        sNU_SER_ECO = TextBox_NU_SER.Text
+                    Case dt_CFGR_ARTI_ECO(0)("Numéro de série client").ToString
+                        sNU_SER_CLIE = TextBox_NU_SER.Text
+                End Select
+            End Using
             sID_NU_SER = DIG_FACT_SQL_ERGT_LIAI_ID_NU_SER(Label_OF.Text, TextBox_NU_SER.Text)
             If sID_NU_SER Is Nothing Then Throw New Exception("Pas d'ID numéro de série trouvé")
 
-            sQuery = "INSERT INTO [dbo].[DTM_TR_CPT] ([NM_NS_EOL],[NM_NS_CLT],[ID_CPT],[ID_PSG],[DT_PSG])
-                                   VALUES ('" & sNU_SER_ECO & "', '" & sNU_SER_CLIE & "', '-', " & Session("ID_PSG") & ", GETDATE())"
+            sQuery = $"INSERT INTO [dbo].[DTM_TR_CPT] ([NM_NS_EOL],[NM_NS_CLT],[ID_CPT],[ID_PSG],[DT_PSG])
+                            VALUES ('{sNU_SER_ECO}', '{sNU_SER_CLIE}', '-', {Session("ID_PSG")}, GETDATE())"
             iIDTT = SQL_REQ_ACT_RET_IDTT(sQuery, CS_MES_Digital_Factory)
             'If Session("matricule") = "" Then
             '    LOG_MESS_UTLS(GetCurrentMethod, "Le login a été perdu. Vous allez être redirigé vers la page de login SAP. La saisie en cours sera perdue, il faudra la resaissir.", "Erreur")
@@ -546,22 +546,22 @@ Public Class TCBL_OPRT
 
             'Enregistrement matériel
             For Each rGridView_LIST_MTRE As GridViewRow In GridView_LIST_MTRE.Rows
-                sQuery = "INSERT INTO [dbo].[DTM_HIST_MTRE] ([ID_PSG],[ID_MTRE])
-                               VALUES (" & Session("ID_PSG") & ",'" & HttpUtility.HtmlDecode(rGridView_LIST_MTRE.Cells(1).Text) & "')"
+                sQuery = $"INSERT INTO [dbo].[DTM_HIST_MTRE] ([ID_PSG],[ID_MTRE])
+                                VALUES ({Session("ID_PSG")},'{HttpUtility.HtmlDecode(rGridView_LIST_MTRE.Cells(1).Text)}')"
                 SQL_REQ_ACT(sQuery, CS_MES_Digital_Factory)
                 If HttpUtility.HtmlDecode(rGridView_LIST_MTRE.Cells(0).Text) = "Poste de travail" Then sPOST_TRAV = HttpUtility.HtmlDecode(rGridView_LIST_MTRE.Cells(1).Text)
                 If HttpUtility.HtmlDecode(rGridView_LIST_MTRE.Cells(0).Text) = "Imprimante étiquette" Then sIPMT_ETQT = HttpUtility.HtmlDecode(rGridView_LIST_MTRE.Cells(1).Text)
             Next
 
             'Enregistrement passage
-            sQuery = "INSERT INTO [dbo].[DTM_PSG] ([ID_PSG], [LB_ETP], [DT_DEB], [DT_FIN], [LB_MOYN], [LB_PROG], [NM_MATR], [NM_NS_EOL], [LB_SCTN], [NM_OF], [ID_NU_SER])
-                           VALUES (" & Session("ID_PSG") & ", '" & Label_DES_OP.Text & " (OP:" & Label_OP.Text & ")', '" & Session("DT_DEB") & "', GETDATE(), '" & sPOST_TRAV & "', '" & HttpContext.Current.CurrentHandler.ToString & "', '" & Session("matricule") & "', '" & sNU_SER_ECO & "', '" & sSANC & "', '" & Label_OF.Text & "', " & sID_NU_SER & ")"
+            sQuery = $"INSERT INTO [dbo].[DTM_PSG] ([ID_PSG], [LB_ETP], [DT_DEB], [DT_FIN], [LB_MOYN], [LB_PROG], [NM_MATR], [NM_NS_EOL], [LB_SCTN], [NM_OF], [ID_NU_SER])
+                            VALUES ({Session("ID_PSG")}, '{Label_DES_OP.Text} (OP:{Label_OP.Text})', '{Session("DT_DEB")}', GETDATE(), '{sPOST_TRAV}', '{HttpContext.Current.CurrentHandler.ToString}', '{Session("matricule")}', '{sNU_SER_ECO}', '{sSANC}', '{Label_OF.Text}', {sID_NU_SER})"
             SQL_REQ_ACT(sQuery, CS_MES_Digital_Factory)
 
             'Enregitrement test
 
             Dim sb As StringBuilder = Session("sQuery_Etap_Test")
-            If Not sb Is Nothing Then
+            If Not sb Is Nothing And sb.Length > 2 Then
                 sb.Remove(sb.Length - 2, 2)
                 sb.Insert(0, "INSERT INTO [dbo].[DTM_TEST_FONC_VAL]([ID_EXEC], [ID_TEST], [NB_VAL]) VALUES ")
                 SQL_REQ_ACT(sb.ToString, CS_MES_Digital_Factory)
@@ -573,23 +573,25 @@ Public Class TCBL_OPRT
                 With rGridView_REPE
                     iIDTT = 0
                     If HttpUtility.HtmlDecode(.Cells(3).Text) = "PRODUIT" Or HttpUtility.HtmlDecode(.Cells(3).Text) = "PRODUIT SEMI-FINI" Then
-                        sQuery = "INSERT INTO [dbo].[DTM_TR_CPT] ([NM_NS_EOL],[NM_NS_CLT],[ID_CPT],[ID_PSG],[DT_PSG],[NM_SAP_CPT],[NM_NS_SENS])
-                                   VALUES ('" & sNU_SER_ECO & "', '" & sNU_SER_CLIE & "', '-', " & Session("ID_PSG") & ", GETDATE(), '" & HttpUtility.HtmlDecode(.Cells(1).Text) & "','" & HttpUtility.HtmlDecode(.Cells(6).Text) & "')"
+                        sQuery = $"INSERT INTO [dbo].[DTM_TR_CPT] ([NM_NS_EOL],[NM_NS_CLT],[ID_CPT],[ID_PSG],[DT_PSG],[NM_SAP_CPT],[NM_NS_SENS])
+                                   VALUES ('{sNU_SER_ECO}', '{sNU_SER_CLIE}', '-', {Session("ID_PSG")}, GETDATE(), '{HttpUtility.HtmlDecode(.Cells(1).Text)}','{HttpUtility.HtmlDecode(.Cells(6).Text)}')"
                     Else
-                        sQuery = "INSERT INTO [dbo].[DTM_TR_CPT] ([NM_NS_EOL],[NM_NS_CLT],[ID_CPT],[ID_PSG],[DT_PSG],[NM_SAP_CPT],[NM_NS_SENS])
-                                   VALUES ('" & sNU_SER_ECO & "', '" & sNU_SER_CLIE & "', '" & HttpUtility.HtmlDecode(.Cells(6).Text) & "', " & Session("ID_PSG") & ", GETDATE(), '" & HttpUtility.HtmlDecode(.Cells(1).Text) & "', '" & HttpUtility.HtmlDecode(.Cells(7).Text) & "')"
+                        sQuery = $"INSERT INTO [dbo].[DTM_TR_CPT] ([NM_NS_EOL],[NM_NS_CLT],[ID_CPT],[ID_PSG],[DT_PSG],[NM_SAP_CPT],[NM_NS_SENS])
+                                   VALUES ('{sNU_SER_ECO}', '{sNU_SER_CLIE}', '{HttpUtility.HtmlDecode(.Cells(6).Text)}', {Session("ID_PSG")}, GETDATE(), '{HttpUtility.HtmlDecode(.Cells(1).Text)}', '{Trim(HttpUtility.HtmlDecode(.Cells(7).Text))}')"
                     End If
                     iIDTT = SQL_REQ_ACT_RET_IDTT(sQuery, CS_MES_Digital_Factory)
                     If .Cells(5).Text <> "&nbsp;" Then
-                        sQuery = "Select [ID_GST_CNTR]
-                                    FROM [dbo].[V_LIST_CONT_NON_VIDE]
-                                   WHERE [NM_CNTR] = '" & HttpUtility.HtmlDecode(.Cells(5).Text) & "' AND [NM_OF] = '" & TextBox_OF.Text & "'"
-                        dt2 = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
-                        If dt2 Is Nothing Then Throw New Exception("Le bac n°" & HttpUtility.HtmlDecode(.Cells(5).Text) & " n'existe pas ou est vide")
-                        sQuery = "INSERT INTO [dbo].[DTM_TCBL_CONT_COMP] ([ID_GST_CNTR],[ID_TR])
-                                   VALUES ('" & dt2(0)("ID_GST_CNTR").ToString & "', '" & iIDTT.ToString & "')"
-                        SQL_REQ_ACT(sQuery, CS_MES_Digital_Factory)
+                        sQuery = $"Select [ID_GST_CNTR]
+                                     FROM [dbo].[V_LIST_CONT_NON_VIDE]
+                                    WHERE [NM_CNTR] = '{HttpUtility.HtmlDecode(.Cells(5).Text)}' AND [NM_OF] = '{TextBox_OF.Text}'"
+                        Using dt2 = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
+                            If dt2 Is Nothing Then Throw New Exception($"Le bac n°{HttpUtility.HtmlDecode(.Cells(5).Text)} n'existe pas ou est vide")
+                            sQuery = $"INSERT INTO [dbo].[DTM_TCBL_CONT_COMP] ([ID_GST_CNTR],[ID_TR])
+                                            VALUES ('{dt2(0)("ID_GST_CNTR").ToString}', '{iIDTT.ToString}')"
+                            SQL_REQ_ACT(sQuery, CS_MES_Digital_Factory)
+                        End Using
                     End If
+
                 End With
             Next
 
@@ -599,30 +601,33 @@ Public Class TCBL_OPRT
             For Each rGridView_REPE As GridViewRow In GridView_REPE.Rows
                 With rGridView_REPE
                     If .Cells(5).Text <> "&nbsp;" Then
-                        sQuery = "SELECT [NM_QTE_INIT]
+                        sQuery = $"SELECT [NM_QTE_INIT]
                                         ,ISNULL([NB_UTLS],0) AS NB_UTLS
                                     FROM [dbo].[V_LIST_CONT_NON_VIDE]
-                                   WHERE [NM_CNTR] = '" & HttpUtility.HtmlDecode(.Cells(5).Text) & "' 
-                                     AND [NM_OF] = '" & TextBox_OF.Text & "'"
-                        dt = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
-                        If dt Is Nothing Then
-                            .Cells(8).Text = dt(0)("NM_QTE_INIT").ToString
-                        Else
-                            .Cells(8).Text = Convert.ToDecimal(dt(0)("NM_QTE_INIT").ToString) - (Convert.ToDecimal(dt(0)("NB_UTLS").ToString) * Convert.ToDecimal(.Cells(4).Text))
-                        End If
+                                   WHERE [NM_CNTR] = '{HttpUtility.HtmlDecode(.Cells(5).Text)}' 
+                                     AND [NM_OF] = '{TextBox_OF.Text}'"
+                        Using dt = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
+                            If dt Is Nothing Then
+                                .Cells(8).Text = dt(0)("NM_QTE_INIT").ToString
+                            Else
+                                .Cells(8).Text = Convert.ToDecimal(dt(0)("NM_QTE_INIT").ToString) - (Convert.ToDecimal(dt(0)("NB_UTLS").ToString) * Convert.ToDecimal(.Cells(4).Text))
+                            End If
+                        End Using
                     Else
-                        dtMSEG = SAP_DATA_READ_MSEG("MBLNR EQ '" & Left(.Cells(6).Text, 10) & "' AND ZEILE EQ '" & Mid(.Cells(6).Text, 11, 4) & "' AND MJAHR EQ '" & Mid(.Cells(6).Text, 15, 4) & "'")
-                        If dtMSEG Is Nothing Then Continue For
-                        sQuery = "SELECT COUNT([DT_PSG]) AS NB_ID_COMP
-                                    FROM [dbo].[DTM_TR_CPT]
-                                   WHERE [ID_CPT] LIKE '" & .Cells(6).Text & "%'
-                                  GROUP BY [ID_CPT]"
-                        dt = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
-                        If dt Is Nothing Then
-                            .Cells(8).Text = Convert.ToDecimal(Replace(dtMSEG(0)("MENGE").ToString, ".", ","))
-                        Else
-                            .Cells(8).Text = Convert.ToDecimal(Replace(dtMSEG(0)("MENGE").ToString, ".", ",")) - Convert.ToDecimal(dt(0)("NB_ID_COMP").ToString) * Convert.ToDecimal(.Cells(4).Text)
-                        End If
+                        Using dtMSEG = SAP_DATA_READ_MSEG($"MBLNR EQ '{Left(.Cells(6).Text, 10)}' AND ZEILE EQ '{Mid(.Cells(6).Text, 11, 4)}' AND MJAHR EQ '{Mid(.Cells(6).Text, 15, 4)}'")
+                            If dtMSEG Is Nothing Then Continue For
+                            sQuery = $"SELECT COUNT([DT_PSG]) AS NB_ID_COMP
+                                         FROM [dbo].[DTM_TR_CPT]
+                                        WHERE [ID_CPT] LIKE '{ .Cells(6).Text}%'
+                                       GROUP BY [ID_CPT]"
+                            Using dt = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
+                                If dt Is Nothing Then
+                                    .Cells(8).Text = Convert.ToDecimal(Replace(dtMSEG(0)("MENGE").ToString, ".", ","))
+                                Else
+                                    .Cells(8).Text = Convert.ToDecimal(Replace(dtMSEG(0)("MENGE").ToString, ".", ",")) - Convert.ToDecimal(dt(0)("NB_ID_COMP").ToString) * Convert.ToDecimal(.Cells(4).Text)
+                                End If
+                            End Using
+                        End Using
                     End If
                 End With
             Next
@@ -650,41 +655,41 @@ Public Class TCBL_OPRT
                 End With
             Next
 
-            sQuery = "SELECT [NU_SER_CLIE] AS [Numéro de série client]
+            sQuery = $"SELECT [NU_SER_CLIE] AS [Numéro de série client]
                             ,[NU_SER_ECO] AS [Numéro de série Eolane]
                         FROM [dbo].[V_DER_PASS_BON]
-                       WHERE [NM_OF] = '" & Label_OF.Text & "'
-                         AND [LB_ETP] = '" & Label_DES_OP.Text & " (OP:" & Label_OP.Text & ")'"
-            dt_LIST_NU_SER_TRAC = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
-            If Not dt_LIST_NU_SER_TRAC Is Nothing Then
-                'décrément quantité totale 
-                Label_QT_REST_OF.Text = (Convert.ToDecimal(Replace(Label_QT_OF.Text, ".", ",")) - dt_LIST_NU_SER_TRAC.Rows.Count).ToString
-                If Convert.ToDecimal(Replace(Label_QT_OF.Text, ".", ",")) - dt_LIST_NU_SER_TRAC.Rows.Count = 0 Then 'OF terminé
-                    For Each rGridView_LIST_MTRE As GridViewRow In GridView_LIST_MTRE.Rows 'Dissociation du matériel générique
-                        With rGridView_LIST_MTRE
-                            If HttpUtility.HtmlDecode(.Cells(2).Text) = "Générique" Then
-                                sQuery = "INSERT INTO [dbo].[DTM_REF_PARA]([NM_CRIT],[NM_PARA],[VAL_PARA],[DT_PARA])
-                                           VALUES ('" & Label_POST.Text & "','" & HttpUtility.HtmlDecode(.Cells(1).Text) & "','0',GETDATE())"
-                                SQL_REQ_ACT(sQuery, CS_MES_Digital_Factory)
-                            End If
-                        End With
-                    Next
-                    TextBox_OF.Text = ""
-                    Label_OF.Text = ""
-                    Label_CD_ARTI.Text = ""
-                    Label_CLIE.Text = ""
-                    Label_DES_ARTI.Text = ""
-                    Label_QT_OF.Text = ""
-                    Label_DES_OP.Text = ""
-                    Label_OP.Text = ""
-                    Throw New Exception("L'OF est terminé.")
-                    'Exit Sub
+                       WHERE [NM_OF] = '{Label_OF.Text}'
+                         AND [LB_ETP] = '{Label_DES_OP.Text} (OP:" & Label_OP.Text & ")'"
+            Using dt_LIST_NU_SER_TRAC = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
+                If Not dt_LIST_NU_SER_TRAC Is Nothing Then
+                    'décrément quantité totale 
+                    Label_QT_REST_OF.Text = (Convert.ToDecimal(Replace(Label_QT_OF.Text, ".", ",")) - dt_LIST_NU_SER_TRAC.Rows.Count).ToString
+                    If Convert.ToDecimal(Replace(Label_QT_OF.Text, ".", ",")) - dt_LIST_NU_SER_TRAC.Rows.Count = 0 Then 'OF terminé
+                        For Each rGridView_LIST_MTRE As GridViewRow In GridView_LIST_MTRE.Rows 'Dissociation du matériel générique
+                            With rGridView_LIST_MTRE
+                                If HttpUtility.HtmlDecode(.Cells(2).Text) = "Générique" Then
+                                    sQuery = $"INSERT INTO [dbo].[DTM_REF_PARA]([NM_CRIT],[NM_PARA],[VAL_PARA],[DT_PARA])
+                                                    VALUES ('{Label_POST.Text}','{HttpUtility.HtmlDecode(.Cells(1).Text)}','0',GETDATE())"
+                                    SQL_REQ_ACT(sQuery, CS_MES_Digital_Factory)
+                                End If
+                            End With
+                        Next
+                        TextBox_OF.Text = ""
+                        Label_OF.Text = ""
+                        Label_CD_ARTI.Text = ""
+                        Label_CLIE.Text = ""
+                        Label_DES_ARTI.Text = ""
+                        Label_QT_OF.Text = ""
+                        Label_DES_OP.Text = ""
+                        Label_OP.Text = ""
+                        Throw New Exception("L'OF est terminé.")
+                        'Exit Sub
+                    End If
+                    'affichage de la liste des NS tracés
+                    GridView_SN_TRAC.DataSource = dt_LIST_NU_SER_TRAC
+                    GridView_SN_TRAC.DataBind()
                 End If
-                'affichage de la liste des NS tracés
-                GridView_SN_TRAC.DataSource = dt_LIST_NU_SER_TRAC
-                GridView_SN_TRAC.DataBind()
-            End If
-
+            End Using
             MultiView_SAIS_OPRT.SetActiveView(View_SAIS_NU_SER_CHEC)
             MultiView_ETAP.SetActiveView(View_VOID)
 
@@ -695,27 +700,22 @@ Public Class TCBL_OPRT
                 Button_PASS.Visible = False
                 Button_FAIL.Visible = False
                 TextBox_VALE.Visible = False
-                Throw New Exception("Le numéro de série " & TextBox_NU_SER.Text & " est passé mauvais.")
+                Throw New Exception($"Le numéro de série {TextBox_NU_SER.Text} est passé mauvais.")
             Else
                 'si opération d'emballage
-                dtAFKO = SAP_DATA_READ_AFKO("AUFNR LIKE '%" & TextBox_OF.Text & "'")
-                'Extraction de la gamme
-                dtAFVC = SAP_DATA_READ_AFVC("AUFPL EQ '" & dtAFKO(0)("AUFPL").ToString & "' AND VORNR EQ '" & DropDownList_OP.SelectedValue & "'")
-                dtCRHD = SAP_DATA_READ_CRHD("OBJID EQ '" & dtAFVC(0)("ARBID").ToString & "' AND ARBPL LIKE 'EMB%'")
-                If Not dtCRHD Is Nothing Then
-                    dt_ETAT_CTRL = COMM_APP_WEB_ETAT_CTRL(Trim(Label_CD_ARTI.Text) & "|Carton", "ASP.pagesmembres_digital_factory_impr_etiq_prn_aspx")
-                    DIG_FACT_IMPR_ETIQ_V2(dt_ETAT_CTRL(0)("TextBox_FICH_MODE").ToString,
-                                          sIPMT_ETQT,
-                                          TextBox_OF.Text,
-                                          "",
-                                          "Carton",
-                                          sID_NU_SER,
-                                          "",
-                                          "",
-                                          "",
-                                          Nothing)
-                End If
-                LOG_MESS_UTLS(GetCurrentMethod, "Le numéro de série " & TextBox_NU_SER.Text & " est passé bon.")
+                Using dtAFKO = SAP_DATA_READ_AFKO($"AUFNR LIKE '%{TextBox_OF.Text}'")
+                    'Extraction de la gamme
+                    Using dtAFVC = SAP_DATA_READ_AFVC($"AUFPL EQ '{dtAFKO(0)("AUFPL").ToString}' AND VORNR EQ '{DropDownList_OP.SelectedValue}'")
+                        Using dtCRHD = SAP_DATA_READ_CRHD($"OBJID EQ '{dtAFVC(0)("ARBID").ToString}' AND ARBPL LIKE 'EMB%'")
+                            If Not dtCRHD Is Nothing Then
+                                Using dt_ETAT_CTRL = COMM_APP_WEB_ETAT_CTRL($"{Trim(Label_CD_ARTI.Text)}|Carton", "ASP.pagesmembres_digital_factory_impr_etiq_prn_aspx")
+                                    DIG_FACT_IMPR_ETIQ_V2(dt_ETAT_CTRL(0)("TextBox_FICH_MODE").ToString, sIPMT_ETQT, TextBox_OF.Text, "", "Carton", sID_NU_SER, "", "", "", Nothing)
+                                End Using
+                            End If
+                        End Using
+                    End Using
+                End Using
+                LOG_MESS_UTLS(GetCurrentMethod, $"Le numéro de série {TextBox_NU_SER.Text} est passé bon.")
                 With TextBox_NU_SER
                     .Enabled = True
                     .Text = ""
@@ -738,7 +738,6 @@ Public Class TCBL_OPRT
     End Sub
 
     Public Sub _AFCG_ETAP(i_NU_ETAP As Integer)
-        'Dim dt_ETAP As DataTable = Session("dt_ETAP")
         Dim sfich As String
         Try
             Image_PHOT_ILST.Visible = False
@@ -760,7 +759,6 @@ Public Class TCBL_OPRT
                     Image_PHOT_ILST.Visible = True
                     Randomize()
                     sfich = Server.MapPath($"~/PagesMembres/Digital_Factory/photo_{CInt(Int((1000 * Rnd()) + 1))}{System.IO.Path.GetExtension(dt_ETAP(i_NU_ETAP)("NM_CHEM_PHOT_ETAP").ToString)}")
-                    'sfich = "c:\sources\app_web\PagesMembres\Digital_Factory\photo_" & CInt(Int((1000 * Rnd()) + 1)) & System.IO.Path.GetExtension(dt_ETAP(i_NU_ETAP)("NM_CHEM_PHOT_ETAP").ToString)
                     COMM_APP_WEB_COPY_FILE(dt_ETAP(i_NU_ETAP)("NM_CHEM_PHOT_ETAP").ToString, sfich, True)
                     Image_PHOT_ILST.ImageUrl = System.IO.Path.GetFileName(sfich)
                 End If
@@ -1299,7 +1297,6 @@ Public Class TCBL_OPRT
                     With rGridView_REPE
                         If Not (HttpUtility.HtmlDecode(.Cells(3).Text) = "PRODUIT" Or HttpUtility.HtmlDecode(.Cells(3).Text) = "PRODUIT SEMI-FINI") Then
                             MultiView_SAIS_OPRT.SetActiveView(View_SAIS_TCBL_COMP)
-                            ' MultiView_Tracabilité.SetActiveView(View_VOID_2)
                             Exit Sub
                         End If
                     End With

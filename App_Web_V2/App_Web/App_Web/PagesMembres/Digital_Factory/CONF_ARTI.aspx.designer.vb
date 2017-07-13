@@ -23,24 +23,6 @@ Partial Public Class CONF_ARTI
     Protected WithEvents TextBox_CD_ARTI_ECO As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
-    '''Contrôle TextBox_CD_ARTI_CLIE.
-    '''</summary>
-    '''<remarks>
-    '''Champ généré automatiquement.
-    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-    '''</remarks>
-    Protected WithEvents TextBox_CD_ARTI_CLIE As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''Contrôle TextBox_NM_ARTI_CLIE.
-    '''</summary>
-    '''<remarks>
-    '''Champ généré automatiquement.
-    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-    '''</remarks>
-    Protected WithEvents TextBox_NM_ARTI_CLIE As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
     '''Contrôle CheckBox_SAI_OF.
     '''</summary>
     '''<remarks>
@@ -185,15 +167,6 @@ Partial Public Class CONF_ARTI
     Protected WithEvents TextBox_QT_FLAN As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
-    '''Contrôle TextBox_INC_NU_SER.
-    '''</summary>
-    '''<remarks>
-    '''Champ généré automatiquement.
-    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-    '''</remarks>
-    Protected WithEvents TextBox_INC_NU_SER As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
     '''Contrôle CheckBox_SAI_OF_CART_TERM.
     '''</summary>
     '''<remarks>
@@ -210,15 +183,6 @@ Partial Public Class CONF_ARTI
     '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
     '''</remarks>
     Protected WithEvents TextBox_FORM_ETIQ_CART As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''Contrôle TextBox_ENCO_NU_SER_CLIE.
-    '''</summary>
-    '''<remarks>
-    '''Champ généré automatiquement.
-    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-    '''</remarks>
-    Protected WithEvents TextBox_ENCO_NU_SER_CLIE As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
     '''Contrôle TextBox_FORM_NU_SER_FNS.
@@ -705,6 +669,69 @@ Partial Public Class CONF_ARTI
     '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
     '''</remarks>
     Protected WithEvents CheckBox_MISE_DPST_DOCU As Global.System.Web.UI.WebControls.CheckBox
+    
+    '''<summary>
+    '''Contrôle TextBox_CD_ARTI_CLIE.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents TextBox_CD_ARTI_CLIE As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''Contrôle TextBox_NM_ARTI_CLIE.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents TextBox_NM_ARTI_CLIE As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''Contrôle TextBox_ENCO_NU_SER_CLIE.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents TextBox_ENCO_NU_SER_CLIE As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''Contrôle TextBox_INC_NU_SER.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents TextBox_INC_NU_SER As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''Contrôle TextBox_FORM_NU_SER_GNRT.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents TextBox_FORM_NU_SER_GNRT As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''Contrôle DropDownList_CRIT_GENE_NU_SER.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents DropDownList_CRIT_GENE_NU_SER As Global.System.Web.UI.WebControls.DropDownList
+    
+    '''<summary>
+    '''Contrôle SqlDataSource_CRIT_GENE_NU_SER.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents SqlDataSource_CRIT_GENE_NU_SER As Global.System.Web.UI.WebControls.SqlDataSource
     
     '''<summary>
     '''Contrôle Button_VALI.

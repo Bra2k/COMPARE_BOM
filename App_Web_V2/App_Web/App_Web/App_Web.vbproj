@@ -427,6 +427,7 @@
     <Content Include="PagesMembres\Production\ALMS\ALMS_IMPORT.aspx" />
     <Content Include="PagesMembres\Production\ALMS\ALMS_MENU.aspx" />
     <Content Include="PagesMembres\Production\ALMS\GEST_ANML_NC_DRGT.aspx" />
+    <Content Include="PagesMembres\Production\ALMS\IPSO_ETQT_NU_SER.aspx" />
     <Content Include="PagesMembres\Production\Controle_Reception\AJOU_FNS_CTRL_RCP.aspx" />
     <Content Include="PagesMembres\Production\CST_HEUR_SAI_BW.aspx" />
     <Content Include="PagesMembres\Production\Saisie_des_defauts\CHX_REPE_SIMI.aspx" />
@@ -1129,6 +1130,13 @@
     <Compile Include="PagesMembres\Production\ALMS\GEST_ANML_NC_DRGT.aspx.vb">
       <DependentUpon>GEST_ANML_NC_DRGT.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PagesMembres\Production\ALMS\IPSO_ETQT_NU_SER.aspx.designer.vb">
+      <DependentUpon>IPSO_ETQT_NU_SER.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagesMembres\Production\ALMS\IPSO_ETQT_NU_SER.aspx.vb">
+      <DependentUpon>IPSO_ETQT_NU_SER.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="PagesMembres\Production\Controle_Reception\AJOU_FNS_CTRL_RCP.aspx.designer.vb">
       <DependentUpon>AJOU_FNS_CTRL_RCP.aspx</DependentUpon>

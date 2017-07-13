@@ -954,19 +954,20 @@ Public Class Class_SAP_DATA
             Using dt_T_TAB_DOC_SAP As New DataTable
                 If oT_TAB_DOC_SAP.ColumnCount = 0 Then Throw New Exception("Aucune colonne trouvée")
                 For Each o_COL_T_TAB_DOC_SAP As Object In oT_TAB_DOC_SAP.Columns
-                    'LOG_Msg(GetCurrentMethod, o_COL_T_TAB_DOC_SAP.Name)
-                    dt_T_TAB_DOC_SAP.Columns.Add(o_COL_T_TAB_DOC_SAP.Name, Type.GetType("System.String", 2000))
+                    LOG_Msg(GetCurrentMethod, $"colonne : {o_COL_T_TAB_DOC_SAP.Name}")
+                    dt_T_TAB_DOC_SAP.Columns.Add(o_COL_T_TAB_DOC_SAP.Name, Type.GetType("System.String"))
                 Next
 
                 If oT_TAB_DOC_SAP.RowCount = 0 Then Throw New Exception("Aucune ligne trouvée")
 
                 For Each o_LIGN_T_TAB_DOC_SAP As Object In oT_TAB_DOC_SAP.rows
                     dt_T_TAB_DOC_SAP.Rows.Add()
+                    'For i = 1 To oT_TAB_DOC_SAP.ColumnCount
                     For Each o_COL_T_TAB_DOC_SAP As Object In oT_TAB_DOC_SAP.Columns
-                        'LOG_Msg(GetCurrentMethod, o_LIGN_T_TAB_DOC_SAP(o_COL_T_TAB_DOC_SAP.Name))
-                        dt_T_TAB_DOC_SAP.Rows(dt_T_TAB_DOC_SAP.Rows.Count - 1)(o_COL_T_TAB_DOC_SAP.Name) = o_LIGN_T_TAB_DOC_SAP(o_COL_T_TAB_DOC_SAP.Name)
+                        dt_T_TAB_DOC_SAP.Rows(dt_T_TAB_DOC_SAP.Rows.Count - 1)(o_COL_T_TAB_DOC_SAP.Name) = o_LIGN_T_TAB_DOC_SAP(o_COL_T_TAB_DOC_SAP.Name).ToString
+                        LOG_Msg(GetCurrentMethod, o_COL_T_TAB_DOC_SAP.Name & " " & o_LIGN_T_TAB_DOC_SAP(o_COL_T_TAB_DOC_SAP.Name).ToString)
+                        'LOG_Msg(GetCurrentMethod, i.ToString & " " & o_LIGN_T_TAB_DOC_SAP(i).ToString)
                     Next
-                    'LOG_Msg(GetCurrentMethod, "DKTXT{o_LIGN_T_TAB_DOC_SAP("DKTXT").ToString)
                 Next
                 LOG_Msg(GetCurrentMethod, $"Exécution de la fonction Z_GET_DOC_INFO réussie. {dt_T_TAB_DOC_SAP.Rows.Count} lignes trouvées")
                 Return dt_T_TAB_DOC_SAP

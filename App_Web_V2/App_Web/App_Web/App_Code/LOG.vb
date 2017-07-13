@@ -23,30 +23,30 @@ Public Class LOG
 
         Dim ip As String = System.Web.HttpContext.Current.Request.UserHostAddress
         Dim sPoste_User As String = $"{System.Net.Dns.GetHostEntry(ip).HostName()} - {Replace(Replace(System.Web.HttpContext.Current.User.Identity.Name, Environment.UserDomainName, ""), "\", "")}"
-        'Dim sQuery As String = $"INSERT INTO [dbo].[DTM_LOG_APP_WEB]([NM_POST], [DT_LOG], [NM_FONC], [NM_MSG], [NM_CTCT]) VALUES ('{sPoste_User}', GETDATE(), '{mbFunction.Name}', '{Replace(sMessage, "'", "''")}', 'Information')"
+        Dim sQuery As String = $"INSERT INTO [dbo].[DTM_LOG_APP_WEB]([NM_POST], [DT_LOG], [NM_FONC], [NM_MSG], [NM_CTCT]) VALUES ('{sPoste_User}', GETDATE(), '{mbFunction.Name}', '{Replace(sMessage, "'", "''")}', 'Information')"
 
         Try
-            Using db As New APP_WEB_ECOEntities
-                Dim log As New DTM_LOG_APP_WEB
-                log.NM_POST = sPoste_User
-                log.DT_LOG = Now
-                log.NM_MSG = sMessage
-                log.NM_FONC = mbFunction.Name
-                log.NM_CTCT = "Information"
-                db.DTM_LOG_APP_WEB.Add(log)
-                db.SaveChanges()
-            End Using
-
-            'Using con As New SqlConnection
-            '    con.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings("APP_WEB_ECOConnectionString").ToString
-            '    con.Open()
-            '    Using cmd As New SqlCommand
-            '        cmd.Connection = con
-            '        cmd.CommandText = sQuery
-            '        cmd.ExecuteNonQuery()
-            '    End Using
-            '    con.Close()
+            'Using db As New APP_WEB_ECOEntities
+            '    Dim log As New DTM_LOG_APP_WEB
+            '    log.NM_POST = sPoste_User
+            '    log.DT_LOG = Now
+            '    log.NM_MSG = sMessage
+            '    log.NM_FONC = mbFunction.Name
+            '    log.NM_CTCT = "Information"
+            '    db.DTM_LOG_APP_WEB.Add(log)
+            '    db.SaveChanges()
             'End Using
+
+            Using con As New SqlConnection
+                con.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings("APP_WEB_ECOConnectionString").ToString
+                con.Open()
+                Using cmd As New SqlCommand
+                    cmd.Connection = con
+                    cmd.CommandText = sQuery
+                    cmd.ExecuteNonQuery()
+                End Using
+                con.Close()
+            End Using
         Catch ex As Exception
             Using sw As New StreamWriter($"C:\sources\App_Web_LOG\{sPoste_User}.log", True)
                 sw.WriteLine($"{DateTime.Now.ToString} - {ex.Message}")
@@ -70,30 +70,30 @@ Public Class LOG
 
         Dim ip As String = System.Web.HttpContext.Current.Request.UserHostAddress
         Dim sPoste_User As String = $"{System.Net.Dns.GetHostEntry(ip).HostName()} - {Replace(Replace(System.Web.HttpContext.Current.User.Identity.Name, Environment.UserDomainName, ""), "\", "")}"
-        'Dim sQuery As String = $"INSERT INTO [dbo].[DTM_LOG_APP_WEB]([NM_POST], [DT_LOG], [NM_FONC], [NM_MSG], [NM_CTCT]) VALUES ('{sPoste_User}', GETDATE(), '{mbFunction.Name}', '{Replace(sMessage, "'", "''")}', 'Erreur')"
+        Dim sQuery As String = $"INSERT INTO [dbo].[DTM_LOG_APP_WEB]([NM_POST], [DT_LOG], [NM_FONC], [NM_MSG], [NM_CTCT]) VALUES ('{sPoste_User}', GETDATE(), '{mbFunction.Name}', '{Replace(sMessage, "'", "''")}', 'Erreur')"
 
         Try
-            'Using con As New SqlConnection
-            '    con.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings("APP_WEB_ECOConnectionString").ToString
-            '    con.Open()
-            '    Using cmd As New SqlCommand
-            '        cmd.Connection = con
-            '        cmd.CommandText = sQuery
-            '        cmd.ExecuteNonQuery()
-            '    End Using
-            '    con.Close()
-            'End Using
-
-            Using db As New APP_WEB_ECOEntities
-                Dim log As New DTM_LOG_APP_WEB
-                log.NM_POST = sPoste_User
-                log.DT_LOG = Now
-                log.NM_MSG = sMessage
-                log.NM_FONC = mbFunction.Name
-                log.NM_CTCT = "Erreur"
-                db.DTM_LOG_APP_WEB.Add(log)
-                db.SaveChanges()
+            Using con As New SqlConnection
+                con.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings("APP_WEB_ECOConnectionString").ToString
+                con.Open()
+                Using cmd As New SqlCommand
+                    cmd.Connection = con
+                    cmd.CommandText = sQuery
+                    cmd.ExecuteNonQuery()
+                End Using
+                con.Close()
             End Using
+
+            'Using db As New APP_WEB_ECOEntities
+            '    Dim log As New DTM_LOG_APP_WEB
+            '    log.NM_POST = sPoste_User
+            '    log.DT_LOG = Now
+            '    log.NM_MSG = sMessage
+            '    log.NM_FONC = mbFunction.Name
+            '    log.NM_CTCT = "Erreur"
+            '    db.DTM_LOG_APP_WEB.Add(log)
+            '    db.SaveChanges()
+            'End Using
         Catch ex As Exception
             Using swLOG As New StreamWriter($"C:\sources\App_Web_LOG\{sPoste_User}.log", True)
                 swLOG.WriteLine($"{DateTime.Now.ToString} - {ex.Message}")
@@ -121,31 +121,31 @@ Public Class LOG
 
         Dim ip As String = System.Web.HttpContext.Current.Request.UserHostAddress
         Dim sPoste_User As String = $"{System.Net.Dns.GetHostEntry(ip).HostName()} - {Replace(Replace(System.Web.HttpContext.Current.User.Identity.Name, Environment.UserDomainName, ""), "\", "")}"
-        'Dim sQuery As String = $"INSERT INTO [dbo].[DTM_LOG_APP_WEB]([NM_POST], [DT_LOG], [NM_FONC], [NM_MSG], [NM_CTCT]) VALUES ('{sPoste_User}', GETDATE(), '{mbFunction.Name}', '{Replace(sMessage, "'", "''")}', '{sType}')"
+        Dim sQuery As String = $"INSERT INTO [dbo].[DTM_LOG_APP_WEB]([NM_POST], [DT_LOG], [NM_FONC], [NM_MSG], [NM_CTCT]) VALUES ('{sPoste_User}', GETDATE(), '{mbFunction.Name}', '{Replace(sMessage, "'", "''")}', '{sType}')"
 
         Try
-            'Using con As New SqlConnection
-            '    con.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings("APP_WEB_ECOConnectionString").ToString
-            '    con.Open()
-            '    Using cmd As New SqlCommand
-            '        cmd.Connection = con
-            '        cmd.CommandText = sQuery
-            '        cmd.ExecuteNonQuery()
-            '    End Using
-            '    con.Close()
-            'End Using
-
-
-            Using db As New APP_WEB_ECOEntities
-                Dim log As New DTM_LOG_APP_WEB
-                log.NM_POST = sPoste_User
-                log.DT_LOG = Now
-                log.NM_MSG = sMessage
-                log.NM_FONC = mbFunction.Name
-                log.NM_CTCT = sType
-                db.DTM_LOG_APP_WEB.Add(log)
-                db.SaveChanges()
+            Using con As New SqlConnection
+                con.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings("APP_WEB_ECOConnectionString").ToString
+                con.Open()
+                Using cmd As New SqlCommand
+                    cmd.Connection = con
+                    cmd.CommandText = sQuery
+                    cmd.ExecuteNonQuery()
+                End Using
+                con.Close()
             End Using
+
+
+            'Using db As New APP_WEB_ECOEntities
+            '    Dim log As New DTM_LOG_APP_WEB
+            '    log.NM_POST = sPoste_User
+            '    log.DT_LOG = Now
+            '    log.NM_MSG = sMessage
+            '    log.NM_FONC = mbFunction.Name
+            '    log.NM_CTCT = sType
+            '    db.DTM_LOG_APP_WEB.Add(log)
+            '    db.SaveChanges()
+            'End Using
             If bAFCG_FENE = True Then HttpContext.Current.Response.Write($"<body><script type=""text/javascript""> alert('{Replace(sMessage, "'", "\'")}');</script></body>")
             'If bAFCG_FENE = True Then
             '    Dim sb As New StringBuilder

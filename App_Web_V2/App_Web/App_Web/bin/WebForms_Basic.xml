@@ -1214,24 +1214,6 @@ Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web.CONF_ARTI._TextBox_CD_ARTI_CLIE">
-<summary>
-Contrôle TextBox_CD_ARTI_CLIE.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.CONF_ARTI._TextBox_NM_ARTI_CLIE">
-<summary>
-Contrôle TextBox_NM_ARTI_CLIE.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
 <member name="F:App_Web.CONF_ARTI._CheckBox_SAI_OF">
 <summary>
 Contrôle CheckBox_SAI_OF.
@@ -1376,15 +1358,6 @@ Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web.CONF_ARTI._TextBox_INC_NU_SER">
-<summary>
-Contrôle TextBox_INC_NU_SER.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
 <member name="F:App_Web.CONF_ARTI._CheckBox_SAI_OF_CART_TERM">
 <summary>
 Contrôle CheckBox_SAI_OF_CART_TERM.
@@ -1397,15 +1370,6 @@ Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans 
 <member name="F:App_Web.CONF_ARTI._TextBox_FORM_ETIQ_CART">
 <summary>
 Contrôle TextBox_FORM_ETIQ_CART.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.CONF_ARTI._TextBox_ENCO_NU_SER_CLIE">
-<summary>
-Contrôle TextBox_ENCO_NU_SER_CLIE.
 </summary>
 <remarks>
 Champ généré automatiquement.
@@ -1892,6 +1856,69 @@ Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans 
 <member name="F:App_Web.CONF_ARTI._CheckBox_MISE_DPST_DOCU">
 <summary>
 Contrôle CheckBox_MISE_DPST_DOCU.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.CONF_ARTI._TextBox_CD_ARTI_CLIE">
+<summary>
+Contrôle TextBox_CD_ARTI_CLIE.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.CONF_ARTI._TextBox_NM_ARTI_CLIE">
+<summary>
+Contrôle TextBox_NM_ARTI_CLIE.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.CONF_ARTI._TextBox_ENCO_NU_SER_CLIE">
+<summary>
+Contrôle TextBox_ENCO_NU_SER_CLIE.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.CONF_ARTI._TextBox_INC_NU_SER">
+<summary>
+Contrôle TextBox_INC_NU_SER.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.CONF_ARTI._TextBox_FORM_NU_SER_GNRT">
+<summary>
+Contrôle TextBox_FORM_NU_SER_GNRT.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.CONF_ARTI._DropDownList_CRIT_GENE_NU_SER">
+<summary>
+Contrôle DropDownList_CRIT_GENE_NU_SER.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.CONF_ARTI._SqlDataSource_CRIT_GENE_NU_SER">
+<summary>
+Contrôle SqlDataSource_CRIT_GENE_NU_SER.
 </summary>
 <remarks>
 Champ généré automatiquement.
@@ -5609,6 +5636,42 @@ Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans 
 <member name="F:App_Web.GEST_ANML_NC_DRGT._Label_ID_STAT">
 <summary>
 Contrôle Label_ID_STAT.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.IPSO_ETQT_NU_SER._TextBox_OF">
+<summary>
+Contrôle TextBox_OF.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.IPSO_ETQT_NU_SER._Label_CD_ARTI">
+<summary>
+Contrôle Label_CD_ARTI.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.IPSO_ETQT_NU_SER._Label_QT_OF">
+<summary>
+Contrôle Label_QT_OF.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.IPSO_ETQT_NU_SER._Button_IPSO">
+<summary>
+Contrôle Button_IPSO.
 </summary>
 <remarks>
 Champ généré automatiquement.
