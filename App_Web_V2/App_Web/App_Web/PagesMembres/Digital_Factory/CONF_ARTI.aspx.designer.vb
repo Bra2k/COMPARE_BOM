@@ -338,24 +338,6 @@ Partial Public Class CONF_ARTI
     Protected WithEvents TextBox_CHEM_FICH_IMPR_PALE As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
-    '''Contrôle CheckBox_ETIQ_PACK_NU_SER_ECO.
-    '''</summary>
-    '''<remarks>
-    '''Champ généré automatiquement.
-    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-    '''</remarks>
-    Protected WithEvents CheckBox_ETIQ_PACK_NU_SER_ECO As Global.System.Web.UI.WebControls.CheckBox
-    
-    '''<summary>
-    '''Contrôle CheckBox_ETIQ_PACK_NU_SER_CLIE.
-    '''</summary>
-    '''<remarks>
-    '''Champ généré automatiquement.
-    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-    '''</remarks>
-    Protected WithEvents CheckBox_ETIQ_PACK_NU_SER_CLIE As Global.System.Web.UI.WebControls.CheckBox
-    
-    '''<summary>
     '''Contrôle TextBox_PCTG_RECE_CLIE.
     '''</summary>
     '''<remarks>
@@ -462,96 +444,6 @@ Partial Public Class CONF_ARTI
     '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
     '''</remarks>
     Protected WithEvents TextBox_VUE_NU_SER_ENSE_SOUS_ENSE As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''Contrôle TextBox_WF_ETAP_1.
-    '''</summary>
-    '''<remarks>
-    '''Champ généré automatiquement.
-    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-    '''</remarks>
-    Protected WithEvents TextBox_WF_ETAP_1 As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''Contrôle TextBox_WF_ETAP_2.
-    '''</summary>
-    '''<remarks>
-    '''Champ généré automatiquement.
-    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-    '''</remarks>
-    Protected WithEvents TextBox_WF_ETAP_2 As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''Contrôle TextBox_WF_ETAP_3.
-    '''</summary>
-    '''<remarks>
-    '''Champ généré automatiquement.
-    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-    '''</remarks>
-    Protected WithEvents TextBox_WF_ETAP_3 As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''Contrôle TextBox_WF_ETAP_4.
-    '''</summary>
-    '''<remarks>
-    '''Champ généré automatiquement.
-    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-    '''</remarks>
-    Protected WithEvents TextBox_WF_ETAP_4 As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''Contrôle TextBox_WF_ETAP_5.
-    '''</summary>
-    '''<remarks>
-    '''Champ généré automatiquement.
-    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-    '''</remarks>
-    Protected WithEvents TextBox_WF_ETAP_5 As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''Contrôle TextBox_WF_ETAP_6.
-    '''</summary>
-    '''<remarks>
-    '''Champ généré automatiquement.
-    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-    '''</remarks>
-    Protected WithEvents TextBox_WF_ETAP_6 As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''Contrôle TextBox_WF_ETAP_7.
-    '''</summary>
-    '''<remarks>
-    '''Champ généré automatiquement.
-    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-    '''</remarks>
-    Protected WithEvents TextBox_WF_ETAP_7 As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''Contrôle TextBox_WF_ETAP_8.
-    '''</summary>
-    '''<remarks>
-    '''Champ généré automatiquement.
-    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-    '''</remarks>
-    Protected WithEvents TextBox_WF_ETAP_8 As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''Contrôle TextBox_WF_ETAP_9.
-    '''</summary>
-    '''<remarks>
-    '''Champ généré automatiquement.
-    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-    '''</remarks>
-    Protected WithEvents TextBox_WF_ETAP_9 As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''Contrôle TextBox_WF_ETAP_10.
-    '''</summary>
-    '''<remarks>
-    '''Champ généré automatiquement.
-    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-    '''</remarks>
-    Protected WithEvents TextBox_WF_ETAP_10 As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
     '''Contrôle TextBox_GNRT_IPSO_NU_SER.
@@ -662,15 +554,6 @@ Partial Public Class CONF_ARTI
     Protected WithEvents TextBox_CONT_CAB_DF As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
-    '''Contrôle CheckBox_MISE_DPST_DOCU.
-    '''</summary>
-    '''<remarks>
-    '''Champ généré automatiquement.
-    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-    '''</remarks>
-    Protected WithEvents CheckBox_MISE_DPST_DOCU As Global.System.Web.UI.WebControls.CheckBox
-    
-    '''<summary>
     '''Contrôle TextBox_CD_ARTI_CLIE.
     '''</summary>
     '''<remarks>
@@ -732,6 +615,123 @@ Partial Public Class CONF_ARTI
     '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
     '''</remarks>
     Protected WithEvents SqlDataSource_CRIT_GENE_NU_SER As Global.System.Web.UI.WebControls.SqlDataSource
+    
+    '''<summary>
+    '''Contrôle CheckBox_ETIQ_PACK_NU_SER_ECO.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents CheckBox_ETIQ_PACK_NU_SER_ECO As Global.System.Web.UI.WebControls.CheckBox
+    
+    '''<summary>
+    '''Contrôle CheckBox_ETIQ_PACK_NU_SER_CLIE.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents CheckBox_ETIQ_PACK_NU_SER_CLIE As Global.System.Web.UI.WebControls.CheckBox
+    
+    '''<summary>
+    '''Contrôle CheckBox_MISE_DPST_DOCU.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents CheckBox_MISE_DPST_DOCU As Global.System.Web.UI.WebControls.CheckBox
+    
+    '''<summary>
+    '''Contrôle TextBox_WF_ETAP_1.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents TextBox_WF_ETAP_1 As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''Contrôle TextBox_WF_ETAP_2.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents TextBox_WF_ETAP_2 As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''Contrôle TextBox_WF_ETAP_3.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents TextBox_WF_ETAP_3 As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''Contrôle TextBox_WF_ETAP_4.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents TextBox_WF_ETAP_4 As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''Contrôle TextBox_WF_ETAP_5.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents TextBox_WF_ETAP_5 As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''Contrôle TextBox_WF_ETAP_6.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents TextBox_WF_ETAP_6 As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''Contrôle TextBox_WF_ETAP_7.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents TextBox_WF_ETAP_7 As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''Contrôle TextBox_WF_ETAP_8.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents TextBox_WF_ETAP_8 As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''Contrôle TextBox_WF_ETAP_9.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents TextBox_WF_ETAP_9 As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''Contrôle TextBox_WF_ETAP_10.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents TextBox_WF_ETAP_10 As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
     '''Contrôle Button_VALI.

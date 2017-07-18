@@ -588,4 +588,13 @@ Partial Public Class TCBL_OPRT
     '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
     '''</remarks>
     Protected WithEvents GridView_SN_TRAC As Global.System.Web.UI.WebControls.GridView
+    
+    '''<summary>
+    '''Contrôle Button_ANNU_SAIS.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents Button_ANNU_SAIS As Global.System.Web.UI.WebControls.Button
 End Class

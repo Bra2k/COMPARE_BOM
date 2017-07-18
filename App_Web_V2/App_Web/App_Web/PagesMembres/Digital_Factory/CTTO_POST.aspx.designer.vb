@@ -203,6 +203,33 @@ Partial Public Class CTTO_POST
     Protected WithEvents TextBox_RFRC_MTRE As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
+    '''Contrôle TextBox_POST_PHYS_DEDI.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents TextBox_POST_PHYS_DEDI As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''Contrôle TextBox_CD_ARTI_DEDI.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents TextBox_CD_ARTI_DEDI As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''Contrôle TextBox_OPRT_DEDI.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents TextBox_OPRT_DEDI As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
     '''Contrôle Button_VALI_MTRE.
     '''</summary>
     '''<remarks>

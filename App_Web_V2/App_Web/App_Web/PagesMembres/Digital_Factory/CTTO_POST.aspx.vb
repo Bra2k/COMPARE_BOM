@@ -21,6 +21,18 @@ Public Class CTTO_POST
             sQuery = "INSERT INTO [dbo].[DTM_REF_PARA]([NM_CRIT],[NM_PARA],[VAL_PARA],[DT_PARA])
                            VALUES ('" & TextBox_ID_MTRE.Text & "','Référence matériel','" & TextBox_RFRC_MTRE.Text & "',GETDATE())"
             SQL_REQ_ACT(sQuery, sChaineConnexion)
+            'poste dédié
+            sQuery = $"INSERT INTO [dbo].[DTM_REF_PARA]([NM_CRIT],[NM_PARA],[VAL_PARA],[DT_PARA])
+                           VALUES ('{TextBox_ID_MTRE.Text}','Poste physique dédié','{TextBox_POST_PHYS_DEDI.Text}',GETDATE())"
+            SQL_REQ_ACT(sQuery, sChaineConnexion)
+            'code article dédié
+            sQuery = $"INSERT INTO [dbo].[DTM_REF_PARA]([NM_CRIT],[NM_PARA],[VAL_PARA],[DT_PARA])
+                           VALUES ('{TextBox_ID_MTRE.Text}','Code article dédié','{TextBox_CD_ARTI_DEDI.Text}',GETDATE())"
+            SQL_REQ_ACT(sQuery, sChaineConnexion)
+            'l'opération dédiée
+            sQuery = $"INSERT INTO [dbo].[DTM_REF_PARA]([NM_CRIT],[NM_PARA],[VAL_PARA],[DT_PARA])
+                           VALUES ('{TextBox_ID_MTRE.Text}','Opération dédiée','{TextBox_OPRT_DEDI.Text}',GETDATE())"
+            SQL_REQ_ACT(sQuery, sChaineConnexion)
         Catch ex As Exception
             LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
             Exit Sub
@@ -30,17 +42,23 @@ Public Class CTTO_POST
 
     Protected Sub TextBox_ID_MTRE_TextChanged(sender As Object, e As EventArgs) Handles TextBox_ID_MTRE.TextChanged
         Dim sQuery As String = ""
-        Dim dt As New DataTable
+        'Dim dt As New DataTable
         Try
-            sQuery = "SELECT [NM_TYPE_MTRE]
+            sQuery = $"SELECT [NM_TYPE_MTRE]
                             ,[NM_RFRC_MTRE]
+,[NM_POST_PHYS_DEDI]
+,[CD_ARTI_DEDI]
+,[NM_OPRT_DEDI]
                         FROM [dbo].[V_POST_LIST_MTRE]
-                       WHERE ID_MTRE = '" & TextBox_ID_MTRE.Text & "'"
-            dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
-            If Not dt Is Nothing Then
-                DropDownList_TYPE_MTRE.SelectedValue = dt(0)("NM_TYPE_MTRE").ToString
-                TextBox_RFRC_MTRE.Text = dt(0)("NM_RFRC_MTRE").ToString
-            End If
+                       WHERE ID_MTRE = '{TextBox_ID_MTRE.Text}'"
+            Using dt = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
+                If Not dt Is Nothing Then
+                    DropDownList_TYPE_MTRE.SelectedValue = dt(0)("NM_TYPE_MTRE").ToString
+                    TextBox_POST_PHYS_DEDI.Text = dt(0)("NM_POST_PHYS_DEDI").ToString
+                    TextBox_CD_ARTI_DEDI.Text = dt(0)("CD_ARTI_DEDI").ToString
+                    TextBox_OPRT_DEDI.Text = dt(0)("NM_OPRT_DEDI").ToString
+                End If
+            End Using
         Catch ex As Exception
             LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
             Exit Sub
@@ -158,4 +176,5 @@ Public Class CTTO_POST
     Protected Sub Button_SAIS_MTRE_Click(sender As Object, e As EventArgs) Handles Button_SAIS_MTRE.Click
         MultiView_SAIS_CTTO.SetActiveView(View_SAIS_NEW_MTRE)
     End Sub
+
 End Class

@@ -111,6 +111,24 @@
                     <td>
                         <asp:TextBox ID="TextBox_RFRC_MTRE" runat="server"></asp:TextBox></td>
                 </tr>
+                <tr>
+                    <td>Saisir le poste dédié (facultatif) :</td>
+                    <td>
+                        <asp:TextBox ID="TextBox_POST_PHYS_DEDI" runat="server"></asp:TextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Saisir le code article dédié (facultatif) :</td>
+                    <td>
+                        <asp:TextBox ID="TextBox_CD_ARTI_DEDI" runat="server"></asp:TextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Saisir l&#39;opération dédiée (facultatif) :</td>
+                    <td>
+                        <asp:TextBox ID="TextBox_OPRT_DEDI" runat="server"></asp:TextBox>
+                    </td>
+                </tr>
             </table>
             <br />
             <asp:Button ID="Button_VALI_MTRE" runat="server" BackColor="#002F60" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" Font-Bold="True" ForeColor="White" Height="40px" Text="Valider" Width="180px" />

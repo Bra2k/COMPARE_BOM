@@ -12,13 +12,14 @@
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
-    
+
     <webopt:BundleReference runat="server" Path="~/Content/css" />
     <webopt:BundleReference runat="server" Path="~/Content/metro.css" />
 
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <%--    <link href="App_Themes/CSS/CSS_MediaQuery.css" rel="stylesheet" type="text/css" />--%>
-<%--    <link href="Content/metro.css" rel="stylesheet" />--%>
+    <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/Scripts/jquery-1.10.2.js") %>"></script>
+    <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/Scripts/metro.js") %>"></script>
+
 </head>
 <body>
     <form runat="server">
@@ -41,8 +42,6 @@
                 <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
                 <asp:ScriptReference Name="WebFormsBundle" />
 
-                <asp:ScriptReference Path="~/Scripts/metro.js" />
-<%--                <asp:ScriptReference Path="~/Scripts/jquery-1.10.2.js" />--%>
                 <%--Scripts de site--%>
             </Scripts>
         </asp:ScriptManager>
@@ -75,7 +74,7 @@
                                 </AnonymousTemplate>
                                 <LoggedInTemplate>
                                     <ul class="nav navbar-nav navbar-right">
-                                        <li><a title="Manage your account" onmouseout="metroDialog.close('#ctl15_dialog9')" onmouseover="metroDialog.open('#ctl15_dialog9', 'top-right')" runat="server" >Bonjour, <%: Session("displayname")  %> !</a></li>
+                                        <li><a title="Manage your account" onmouseout="metroDialog.close('#ctl15_dialog9')" onmouseover="metroDialog.open('#ctl15_dialog9', 'top-right')" runat="server">Bonjour, <%: Session("displayname")  %> !</a></li>
                                         <div data-role="dialog" id="dialog9" class="padding20 dialog info" data-type="info" data-place="top-right" style="width: auto; height: auto; visibility: visible; background-color: #002F60; font-family: verdana; color: #FFFFFF;" runat="server">
                                             <div class="img-thumbnail">
                                                 <span id="photo">

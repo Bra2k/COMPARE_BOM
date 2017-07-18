@@ -12,8 +12,6 @@ Imports System.IO
 Imports iTextSharp
 Imports System
 
-
-
 Public Class TCBL_OPRT
     Inherits System.Web.UI.Page
     'Dim CS_MES_Digital_Factory As String = "Data Source=cedb03,1433;Initial Catalog=" & Replace(Replace(My.Computer.Name, "CEDB03", "MES_Digital_Factory_DEV"), "CEAPP03", "MES_Digital_Factory") & ";Integrated Security=False;User ID=sa;Password=mdpsa@SQL;Connect Timeout=7200;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
@@ -566,7 +564,6 @@ Public Class TCBL_OPRT
                 sb.Insert(0, "INSERT INTO [dbo].[DTM_TEST_FONC_VAL]([ID_EXEC], [ID_TEST], [NB_VAL]) VALUES ")
                 SQL_REQ_ACT(sb.ToString, CS_MES_Digital_Factory)
             End If
-            'If Not sb Is Nothing Then SQL_REQ_ACT($"INSERT INTO [dbo].[DTM_TEST_FONC_VAL]([ID_EXEC], [ID_TEST], [NB_VAL]) VALUES {COMM_APP_WEB_STRI_TRIM_RIGHT(sb.ToString, 2)}", CS_MES_Digital_Factory)
 
             'enregistrer dans la base les associations composant
             For Each rGridView_REPE As GridViewRow In GridView_REPE.Rows
@@ -581,7 +578,7 @@ Public Class TCBL_OPRT
                     End If
                     iIDTT = SQL_REQ_ACT_RET_IDTT(sQuery, CS_MES_Digital_Factory)
                     If .Cells(5).Text <> "&nbsp;" Then
-                        sQuery = $"Select [ID_GST_CNTR]
+                        sQuery = $"SELECT [ID_GST_CNTR]
                                      FROM [dbo].[V_LIST_CONT_NON_VIDE]
                                     WHERE [NM_CNTR] = '{HttpUtility.HtmlDecode(.Cells(5).Text)}' AND [NM_OF] = '{TextBox_OF.Text}'"
                         Using dt2 = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
@@ -656,10 +653,10 @@ Public Class TCBL_OPRT
             Next
 
             sQuery = $"SELECT [NU_SER_CLIE] AS [Numéro de série client]
-                            ,[NU_SER_ECO] AS [Numéro de série Eolane]
-                        FROM [dbo].[V_DER_PASS_BON]
-                       WHERE [NM_OF] = '{Label_OF.Text}'
-                         AND [LB_ETP] = '{Label_DES_OP.Text} (OP:" & Label_OP.Text & ")'"
+                             ,[NU_SER_ECO] AS [Numéro de série Eolane]
+                         FROM [dbo].[V_DER_PASS_BON]
+                        WHERE [NM_OF] = '{Label_OF.Text}'
+                          AND [LB_ETP] = '{Label_DES_OP.Text} (OP:" & Label_OP.Text & ")'"
             Using dt_LIST_NU_SER_TRAC = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
                 If Not dt_LIST_NU_SER_TRAC Is Nothing Then
                     'décrément quantité totale 
@@ -721,6 +718,7 @@ Public Class TCBL_OPRT
                     .Text = ""
                     .Focus()
                 End With
+                MultiView_ETAP.SetActiveView(View_VOID)
             End If
         Catch ex As Exception
             With TextBox_NU_SER
@@ -728,11 +726,9 @@ Public Class TCBL_OPRT
                 .Text = ""
                 .Focus()
             End With
+            MultiView_ETAP.SetActiveView(View_VOID)
             LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
             Exit Sub
-            'Finally
-            '    GridView_REPE0.DataSource = GridView_REPE.DataSource
-            '    GridView_REPE0.DataBind()
         End Try
 
     End Sub
@@ -1466,21 +1462,41 @@ SELECT TOP 100 PERCENT [NM_RFRC_SEQU]
                 c_ENTE.Border = 0
                 c_ENTE.Colspan = 4
                 pt.AddCell(c_ENTE)
-                sQuery = "SELECT     DTM_CSTA_POST_1.ID_POST, DTM_CSTA_POST_1.ID_MTRE, ISNULL(MES_Digital_Factory.dbo.V_POST_MTLG_MTRE.DT_VLDT, N'') 
-                      AS DT_VLDT, ISNULL([LB_DCPT],MES_Digital_Factory.dbo.V_POST_MTLG_MTRE.NM_TYPE_MTRE) AS NM_TYPE_MTRE
-FROM         (SELECT     ID_POST, ID_MTRE, MAX(DT_AFCT) AS MAX_DT_AFCT, ISNULL(BL_SORT_FCGF,0) AS BL_SORT_FCGF
+                sQuery = $"SELECT     DTM_CSTA_POST_1.ID_POST, DTM_CSTA_POST_1.ID_MTRE, ISNULL(MES_Digital_Factory.dbo.V_POST_MTLG_MTRE.DT_VLDT, N'') AS DT_VLDT, 
+                      ISNULL(dt_DCPO_MTRE.LB_DCPT, MES_Digital_Factory.dbo.V_POST_MTLG_MTRE.NM_TYPE_MTRE) AS NM_TYPE_MTRE
+FROM         (SELECT     ID_POST, ID_MTRE, MAX(DT_AFCT) AS MAX_DT_AFCT, ISNULL(BL_SORT_FCGF, 0) AS BL_SORT_FCGF
                        FROM          dbo.DTM_CSTA_POST
                        GROUP BY ID_POST, ID_MTRE, BL_SORT_FCGF) AS DT_DERN_AFCT INNER JOIN
                       dbo.DTM_CSTA_POST AS DTM_CSTA_POST_1 ON DT_DERN_AFCT.ID_POST = DTM_CSTA_POST_1.ID_POST AND 
                       DT_DERN_AFCT.ID_MTRE = DTM_CSTA_POST_1.ID_MTRE AND DT_DERN_AFCT.MAX_DT_AFCT = DTM_CSTA_POST_1.DT_AFCT INNER JOIN
                           (SELECT     CASE WHEN ID_POST LIKE 'P-%' THEN ID_POST ELSE 'POSTE_' + ID_POST END AS ID_POST
                             FROM          dbo.V_FCGF
-                            WHERE      (NU_SER_SPFE = '" & sNU_SER & "')
-                            GROUP BY NU_SER_SPFE, ID_POST) AS DT_LIST_POST ON DT_DERN_AFCT.ID_POST = DT_LIST_POST.ID_POST LEFT OUTER JOIN
+                            WHERE      (NU_SER_SPFE = '{sNU_SER}')
+                            GROUP BY NU_SER_SPFE, ID_POST) AS DT_LIST_POST ON DT_DERN_AFCT.ID_POST = DT_LIST_POST.ID_POST INNER JOIN
+                          (SELECT     ID_MTRE, LB_DCPT
+                            FROM          dbo.DTM_REF_MTRE_LIST
+                            GROUP BY ID_MTRE, LB_DCPT) AS dt_DCPO_MTRE ON DTM_CSTA_POST_1.ID_MTRE = dt_DCPO_MTRE.ID_MTRE LEFT OUTER JOIN
                       MES_Digital_Factory.dbo.V_POST_MTLG_MTRE ON DTM_CSTA_POST_1.ID_MTRE = MES_Digital_Factory.dbo.V_POST_MTLG_MTRE.ID_MTRE
-					  INNER JOIN [dbo].[DTM_REF_MTRE_LIST] ON [dbo].[DTM_REF_MTRE_LIST].[ID_MTRE] = DTM_CSTA_POST_1.ID_MTRE
-WHERE     (DTM_CSTA_POST_1.BL_STAT = 1) AND (DTM_CSTA_POST_1.BL_SORT_FCGF = 1)
-GROUP BY      DTM_CSTA_POST_1.ID_POST, DTM_CSTA_POST_1.ID_MTRE, ISNULL(MES_Digital_Factory.dbo.V_POST_MTLG_MTRE.DT_VLDT, N''), ISNULL([LB_DCPT],MES_Digital_Factory.dbo.V_POST_MTLG_MTRE.NM_TYPE_MTRE)"
+WHERE     (DTM_CSTA_POST_1.BL_STAT = 1) AND (DTM_CSTA_POST_1.BL_SORT_FCGF = 1)"
+
+
+
+
+                '                "SELECT     DTM_CSTA_POST_1.ID_POST, DTM_CSTA_POST_1.ID_MTRE, ISNULL(MES_Digital_Factory.dbo.V_POST_MTLG_MTRE.DT_VLDT, N'') 
+                '                      AS DT_VLDT, ISNULL([LB_DCPT],MES_Digital_Factory.dbo.V_POST_MTLG_MTRE.NM_TYPE_MTRE) AS NM_TYPE_MTRE
+                'FROM         (SELECT     ID_POST, ID_MTRE, MAX(DT_AFCT) AS MAX_DT_AFCT, ISNULL(BL_SORT_FCGF,0) AS BL_SORT_FCGF
+                '                       FROM          dbo.DTM_CSTA_POST
+                '                       GROUP BY ID_POST, ID_MTRE, BL_SORT_FCGF) AS DT_DERN_AFCT INNER JOIN
+                '                      dbo.DTM_CSTA_POST AS DTM_CSTA_POST_1 ON DT_DERN_AFCT.ID_POST = DTM_CSTA_POST_1.ID_POST AND 
+                '                      DT_DERN_AFCT.ID_MTRE = DTM_CSTA_POST_1.ID_MTRE AND DT_DERN_AFCT.MAX_DT_AFCT = DTM_CSTA_POST_1.DT_AFCT INNER JOIN
+                '                          (SELECT     CASE WHEN ID_POST LIKE 'P-%' THEN ID_POST ELSE 'POSTE_' + ID_POST END AS ID_POST
+                '                            FROM          dbo.V_FCGF
+                '                            WHERE      (NU_SER_SPFE = '" & sNU_SER & "')
+                '                            GROUP BY NU_SER_SPFE, ID_POST) AS DT_LIST_POST ON DT_DERN_AFCT.ID_POST = DT_LIST_POST.ID_POST LEFT OUTER JOIN
+                '                      MES_Digital_Factory.dbo.V_POST_MTLG_MTRE ON DTM_CSTA_POST_1.ID_MTRE = MES_Digital_Factory.dbo.V_POST_MTLG_MTRE.ID_MTRE
+                '					  INNER JOIN [dbo].[DTM_REF_MTRE_LIST] ON [dbo].[DTM_REF_MTRE_LIST].[ID_MTRE] = DTM_CSTA_POST_1.ID_MTRE
+                'WHERE     (DTM_CSTA_POST_1.BL_STAT = 1) AND (DTM_CSTA_POST_1.BL_SORT_FCGF = 1)
+                'GROUP BY      DTM_CSTA_POST_1.ID_POST, DTM_CSTA_POST_1.ID_MTRE, ISNULL(MES_Digital_Factory.dbo.V_POST_MTLG_MTRE.DT_VLDT, N''), ISNULL([LB_DCPT],MES_Digital_Factory.dbo.V_POST_MTLG_MTRE.NM_TYPE_MTRE)"
                 dt = SQL_SELE_TO_DT(sQuery, CS_ALMS_PROD_PRD)
                 para = New Paragraph(New Chunk("Poste", FontFactory.GetFont("ARIAL", 10, Font.BOLD)))
                 c_ENTE = New PdfPCell(para)
@@ -1895,7 +1911,6 @@ ORDER BY [NU_OP]
                     c_ENTE.Border = 0
                     c_ENTE.HorizontalAlignment = Element.ALIGN_RIGHT
                     pt.AddCell(c_ENTE)
-
                     Using dtKNMT = SAP_DATA_READ_KNMT($"MATNR LIKE '{Label_CD_ARTI.Text}%' AND KUNNR EQ '0000000451' AND VKORG EQ 'ORC3' AND VTWEG EQ 'CD'")
                         If dtKNMT Is Nothing Then Throw New Exception("Code article client introuvable sous SAP")
                         para = New Paragraph(New Chunk(Trim(dtKNMT(0)("KDMAT").ToString), FontFactory.GetFont("CALIBRI", 14)))
@@ -2061,13 +2076,23 @@ ORDER BY CONVERT(integer, DT_WF.NU_ETAP)"
                             c_ENTE.VerticalAlignment = Element.ALIGN_MIDDLE
                             pt.AddCell(c_ENTE)
 
+                            Dim sdoc As String = "vide", snu_doc As String = ""
                             Using dt_T_TAB_DOC_SAP = SAP_DATA_Z_GET_DOC_INFO(sOF, rdt("NU_OP").ToString)
-                                If dt_T_TAB_DOC_SAP Is Nothing Then
-                                    para = New Paragraph(New Chunk("vide", FontFactory.GetFont("CALIBRI", 10)))
-                                Else
-                                    para = New Paragraph(New Chunk(Trim(dt_T_TAB_DOC_SAP(0)("DKTXT").ToString), FontFactory.GetFont("CALIBRI", 10)))
+                                If Not dt_T_TAB_DOC_SAP Is Nothing Then
+                                    snu_doc = Trim(dt_T_TAB_DOC_SAP(0)("DOKNR").ToString)
+                                    sdoc = Trim(dt_T_TAB_DOC_SAP(0)("DKTXT").ToString)
                                 End If
                             End Using
+                            If (sdoc = "" Or sdoc = "vide") And snu_doc <> "" Then
+                                Using dt2 = SAP_DATA_READ_DRAT($"DOKNR LIKE '%{snu_doc}'")
+                                    If dt2 Is Nothing Then
+                                        sdoc = "vide"
+                                    Else
+                                        sdoc = dt2(0)("DKTXT").ToString
+                                    End If
+                                End Using
+                            End If
+                            para = New Paragraph(New Chunk(sdoc, FontFactory.GetFont("CALIBRI", 10)))
                             c_ENTE = New PdfPCell(para)
                             If Not dt_ETAP Is Nothing Then c_ENTE.Rowspan = dt_ETAP.Rows.Count + 1
                             c_ENTE.HorizontalAlignment = Element.ALIGN_CENTER
@@ -2262,7 +2287,6 @@ FROM         dbo.DTM_NC_DETA INNER JOIN
                       dbo.DTM_NC_LIST ON dbo.DTM_NC_DETA.NU_INCI = dbo.DTM_NC_LIST.NU_INCI INNER JOIN
                       dbo.DTM_REF_TYPE_NC ON dbo.DTM_NC_LIST.ID_TYPE_NC = dbo.DTM_REF_TYPE_NC.ID_TYPE_NC
 WHERE     (NOT (dbo.DTM_NC_LIST.NU_DRGT IS NULL)) AND (dbo.DTM_NC_LIST.NU_SER_SPFE = N'{sNU_SER}') AND (dbo.DTM_NC_DETA.ID_STAT = 4)"
-
                 Using dt = SQL_SELE_TO_DT(sQuery, CS_ALMS_PROD_PRD)
                     If Not dt Is Nothing Then
                         For Each rdt As DataRow In dt.Rows
@@ -2349,7 +2373,6 @@ WHERE     (NOT (dbo.DTM_NC_LIST.NU_DRGT IS NULL)) AND (dbo.DTM_NC_LIST.NU_SER_SP
       ,[DT_ACTI_REAL]
   FROM [dbo].[V_DHR_ECAR_PDTO]
  WHERE [NU_SER_SPFE] = '{sNU_SER}'"
-
                 Using dt = SQL_SELE_TO_DT(sQuery, CS_ALMS_PROD_PRD)
                     If Not dt Is Nothing Then
                         For Each rdt As DataRow In dt.Rows
@@ -2415,8 +2438,6 @@ WHERE     (NOT (dbo.DTM_NC_LIST.NU_DRGT IS NULL)) AND (dbo.DTM_NC_LIST.NU_SER_SP
                 c_ENTE.VerticalAlignment = Element.ALIGN_MIDDLE
                 c_ENTE.BackgroundColor = New BaseColor(222, 234, 246)
                 pt.AddCell(c_ENTE)
-                'sdatefcgf = COMM_APP_WEB_CONV_FORM_DATE(sdatefcgf, "ddMMyyyy_HHmmss")
-
 
                 Dim PdfReader As PdfReader
                 Dim sfihcsauv As String = DIG_FACT_SQL_GET_PARA(Trim(Label_CD_ARTI.Text), "Chemin de sauvegarde du fichier PDF")
@@ -2431,8 +2452,6 @@ WHERE     (NOT (dbo.DTM_NC_LIST.NU_DRGT IS NULL)) AND (dbo.DTM_NC_LIST.NU_SER_SP
                 para = New Paragraph(New Chunk(numberOfPages.ToString, FontFactory.GetFont("CALIBRI", 11)))
                 c_ENTE = New PdfPCell(para)
                 pt.AddCell(c_ENTE)
-
-                'COMM_APP_WEB_COPY_FILE(Session("listetracabilite"), sfihcsauv & "\OF " & Label_OF.Text & "\" & sNU_SER & " – NM.pdf", True)
 
                 '???
                 sQuery = $"SELECT MAX(CONVERT(NVARCHAR,[Date_Saisie])) AS A
@@ -2604,7 +2623,7 @@ WHERE     (dbo.DTM_NMCT_PROD.NU_SER_SPFE = '{sNU_SER}') AND [BL_TYPE_TCBL] = 1"
                             Using dtMAKT = SAP_DATA_READ_MAKT($"MATNR LIKE '{rdtMSEG("MATNR").ToString}%'")
                                 If dtMAKT Is Nothing Then Throw New Exception("Désignation article introuvable")
                                 If Not dt1 Is Nothing Then
-                                    If Not dt1.Select($"NM_DSGT_COMP = '{dtMAKT(0)("MAKTX").ToString}'").FirstOrDefault Is Nothing Then Continue For
+                                    If Not dt1.Select($"NM_DSGT_COMP = '{Replace(Trim(dtMAKT(0)("MAKTX").ToString), "'", "''")}'").FirstOrDefault Is Nothing Then Continue For
                                 End If
                                 If Trim(rdtMSEG("MATNR").ToString) = "TAEKC042100$" Then Continue For
                                 Using dtKNMT = SAP_DATA_READ_KNMT($"MATNR LIKE '{Trim(rdtMSEG("MATNR").ToString)}%'")
@@ -2646,6 +2665,7 @@ WHERE     (dbo.DTM_NMCT_PROD.NU_SER_SPFE = '{sNU_SER}') AND [BL_TYPE_TCBL] = 1"
                                     End If
                                     'Dim nmct_prod As New DTM_NMCT_PROD With {.NU_SER_SPFE = sNU_SER, .CD_ARTI_PROD = sCD_ARTI_PROD, .NU_SER_COMP = Trim(rdtMSEG("CHARG").ToString), .CD_ARTI_COMP = scd_arti_cmop, .BL_TYPE_TCBL = False, .DT_AFCT = Now, .NM_DSGT_COMP = Trim(dtMAKT(0)("MAKTX").ToString)}
                                     'db.DTM_NMCT_PROD.Add(nmct_prod)
+
                                     SQL_REQ_ACT($"INSERT INTO [dbo].[DTM_NMCT_PROD]
                                                    ([NU_SER_SPFE]
                                                    ,[CD_ARTI_PROD]
@@ -2660,14 +2680,14 @@ WHERE     (dbo.DTM_NMCT_PROD.NU_SER_SPFE = '{sNU_SER}') AND [BL_TYPE_TCBL] = 1"
                                                ,'{scd_arti_cmop}'
                                                ,0
                                                ,'{Session("DT_DEB")}'
-                                               ,'{Trim(dtMAKT(0)("MAKTX").ToString)}')", CS_ALMS_PROD_PRD)
+                                               ,'{Replace(Trim(dtMAKT(0)("MAKTX").ToString), "'", "''")}')", CS_ALMS_PROD_PRD)
                                 End Using
                             End Using
                         Next
                         'db.SaveChanges()
                     End Using
                     'ajout traça unitaire
-                    sQuery = $"Select     dbo.DTM_NMCT_PROD.NU_SER_COMP, dbo.DTM_NMCT_PROD.CD_ARTI_COMP, dbo.DTM_NMCT_PROD.NM_DSGT_COMP
+                    sQuery = $"SELECT     dbo.DTM_NMCT_PROD.NU_SER_COMP, dbo.DTM_NMCT_PROD.CD_ARTI_COMP, dbo.DTM_NMCT_PROD.NM_DSGT_COMP
 FROM         dbo.DTM_NMCT_PROD INNER JOIN
                           (SELECT     NU_SER_SPFE, CD_ARTI_COMP, MAX(DT_AFCT) AS MAX_DT_AFCT
                             FROM          dbo.DTM_NMCT_PROD AS DTM_NMCT_PROD_1
@@ -2705,7 +2725,10 @@ ORDER BY [BL_TYPE_TCBL] DESC, [CD_ARTI_COMP], NU_SER_COMP"
         Return sfich
     End Function
 
-
+    Protected Sub Button_ANNU_SAIS_Click(sender As Object, e As EventArgs) Handles Button_ANNU_SAIS.Click
+        'MultiView_SAIS_OPRT.SetActiveView(View_SAIS_OF_OP)
+        Response.Redirect(Request.RawUrl)
+    End Sub
 End Class
 Public Class HeaderFooter_FCGF
     Inherits PdfPageEventHelper

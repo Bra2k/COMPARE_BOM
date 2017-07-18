@@ -264,7 +264,9 @@
 
 
 <tr>       
-          <td style="height: 22px; vertical-align: top;">&nbsp;</td>
+          <td style="height: 22px; vertical-align: top;">
+              <asp:Button ID="Button_ANNU_SAIS" runat="server" CssClass="btn-danger" Text="Annuler la saisie" />
+          </td>
 </tr>        
         
         

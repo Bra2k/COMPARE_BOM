@@ -941,37 +941,70 @@ Public Class Class_SAP_DATA
 
     Public Shared Function SAP_DATA_Z_GET_DOC_INFO(V_AUFNR As String, V_VORNR As String) As DataTable
 
+        'Dim oSAP, RFC, oRFC_RET, oRFC_MSG, oT_TAB_DOC_SAP As New Object
+        'Try
+        '    oSAP = SAP_DATA_CONN()
+        '    RFC = oSAP.Add("Z_GET_DOC_INFO")
+        '    RFC.exports("V_AUFNR") = SAP_DATA_CONV_CHAM(V_AUFNR, "OF")
+        '    RFC.exports("V_VORNR") = SAP_DATA_CONV_CHAM(V_VORNR, "Numéro opération")
+        '    oT_TAB_DOC_SAP = RFC.Tables("T_TAB_DOC_SAP")
+
+        '    If RFC.Call <> -1 Then Throw New Exception(RFC.exception)
+        '    Using dt_T_TAB_DOC_SAP As New DataTable
+        '        If oT_TAB_DOC_SAP.ColumnCount = 0 Then Throw New Exception("Aucune colonne trouvée")
+        '        For Each o_COL_T_TAB_DOC_SAP As Object In oT_TAB_DOC_SAP.Columns
+        '            'LOG_Msg(GetCurrentMethod, $"colonne : {o_COL_T_TAB_DOC_SAP.Name}")
+        '            dt_T_TAB_DOC_SAP.Columns.Add(o_COL_T_TAB_DOC_SAP.Name, Type.GetType("System.String"))
+        '        Next
+
+        '        If oT_TAB_DOC_SAP.RowCount = 0 Then Throw New Exception("Aucune ligne trouvée")
+
+        '        For Each o_LIGN_T_TAB_DOC_SAP As Object In oT_TAB_DOC_SAP.rows
+        '            dt_T_TAB_DOC_SAP.Rows.Add()
+        '            For Each o_COL_T_TAB_DOC_SAP As Object In oT_TAB_DOC_SAP.Columns
+        '                dt_T_TAB_DOC_SAP.Rows(dt_T_TAB_DOC_SAP.Rows.Count - 1)(o_COL_T_TAB_DOC_SAP.Name) = o_LIGN_T_TAB_DOC_SAP(o_COL_T_TAB_DOC_SAP.Name).ToString
+        '            Next
+        '        Next
+        '        LOG_Msg(GetCurrentMethod, $"Exécution de la fonction Z_GET_DOC_INFO réussie. {dt_T_TAB_DOC_SAP.Rows.Count} lignes trouvées")
+        '        Return dt_T_TAB_DOC_SAP
+        '    End Using
+        'Catch ex As Exception
+        '    LOG_Erreur(GetCurrentMethod, ex.Message)
+        '    Return Nothing
+        'Finally
+        '    oSAP = SAP_DATA_DECO(oSAP)
+        'End Try
+
+
+        Dim dt_T_TAB_DOC_SAP As New DataTable
         Dim oSAP, RFC, oRFC_RET, oRFC_MSG, oT_TAB_DOC_SAP As New Object
 
         Try
             oSAP = SAP_DATA_CONN()
             RFC = oSAP.Add("Z_GET_DOC_INFO")
+            'If V_AUFNR <> "" Then V_AUFNR = Microsoft.VisualBasic.Strings.StrDup(12 - Microsoft.VisualBasic.Strings.Len(V_AUFNR), "0") & V_AUFNR
+            'RFC.exports("V_AUFNR") = V_AUFNR
+            'If V_VORNR <> "" Then V_VORNR = Microsoft.VisualBasic.Strings.StrDup(4 - Microsoft.VisualBasic.Strings.Len(V_VORNR), "0") & V_VORNR
+            'RFC.exports("V_VORNR") = V_VORNR
             RFC.exports("V_AUFNR") = SAP_DATA_CONV_CHAM(V_AUFNR, "OF")
             RFC.exports("V_VORNR") = SAP_DATA_CONV_CHAM(V_VORNR, "Numéro opération")
             oT_TAB_DOC_SAP = RFC.Tables("T_TAB_DOC_SAP")
 
             If RFC.Call <> -1 Then Throw New Exception(RFC.exception)
-            Using dt_T_TAB_DOC_SAP As New DataTable
-                If oT_TAB_DOC_SAP.ColumnCount = 0 Then Throw New Exception("Aucune colonne trouvée")
+
+            If oT_TAB_DOC_SAP.ColumnCount = 0 Then Throw New Exception("Aucune colonne trouvée")
+            For Each o_COL_T_TAB_DOC_SAP As Object In oT_TAB_DOC_SAP.Columns
+                dt_T_TAB_DOC_SAP.Columns.Add(o_COL_T_TAB_DOC_SAP.Name, Type.GetType("System.String"))
+            Next
+
+            If oT_TAB_DOC_SAP.RowCount = 0 Then Throw New Exception("Aucune ligne trouvée")
+
+            For Each o_LIGN_T_TAB_DOC_SAP As Object In oT_TAB_DOC_SAP.rows
+                dt_T_TAB_DOC_SAP.Rows.Add()
                 For Each o_COL_T_TAB_DOC_SAP As Object In oT_TAB_DOC_SAP.Columns
-                    LOG_Msg(GetCurrentMethod, $"colonne : {o_COL_T_TAB_DOC_SAP.Name}")
-                    dt_T_TAB_DOC_SAP.Columns.Add(o_COL_T_TAB_DOC_SAP.Name, Type.GetType("System.String"))
+                    dt_T_TAB_DOC_SAP.Rows(dt_T_TAB_DOC_SAP.Rows.Count - 1)(o_COL_T_TAB_DOC_SAP.Name) = o_LIGN_T_TAB_DOC_SAP(o_COL_T_TAB_DOC_SAP.Name)
                 Next
-
-                If oT_TAB_DOC_SAP.RowCount = 0 Then Throw New Exception("Aucune ligne trouvée")
-
-                For Each o_LIGN_T_TAB_DOC_SAP As Object In oT_TAB_DOC_SAP.rows
-                    dt_T_TAB_DOC_SAP.Rows.Add()
-                    'For i = 1 To oT_TAB_DOC_SAP.ColumnCount
-                    For Each o_COL_T_TAB_DOC_SAP As Object In oT_TAB_DOC_SAP.Columns
-                        dt_T_TAB_DOC_SAP.Rows(dt_T_TAB_DOC_SAP.Rows.Count - 1)(o_COL_T_TAB_DOC_SAP.Name) = o_LIGN_T_TAB_DOC_SAP(o_COL_T_TAB_DOC_SAP.Name).ToString
-                        LOG_Msg(GetCurrentMethod, o_COL_T_TAB_DOC_SAP.Name & " " & o_LIGN_T_TAB_DOC_SAP(o_COL_T_TAB_DOC_SAP.Name).ToString)
-                        'LOG_Msg(GetCurrentMethod, i.ToString & " " & o_LIGN_T_TAB_DOC_SAP(i).ToString)
-                    Next
-                Next
-                LOG_Msg(GetCurrentMethod, $"Exécution de la fonction Z_GET_DOC_INFO réussie. {dt_T_TAB_DOC_SAP.Rows.Count} lignes trouvées")
-                Return dt_T_TAB_DOC_SAP
-            End Using
+            Next
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
@@ -979,6 +1012,8 @@ Public Class Class_SAP_DATA
             oSAP = SAP_DATA_DECO(oSAP)
         End Try
 
+        LOG_Msg(GetCurrentMethod, "Exécution de la fonction Z_GET_DOC_INFO réussie. " & dt_T_TAB_DOC_SAP.Rows.Count & " lignes trouvées")
+        Return dt_T_TAB_DOC_SAP
     End Function
 
     Public Shared Function SAP_DATA_READ_ZGMO_OUTIL_VER(Optional sFILT As String = "") As DataTable
@@ -1021,5 +1056,19 @@ Public Class Class_SAP_DATA
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
         End Try
+    End Function
+    Public Shared Function SAP_DATA_READ_DRAT(Optional sFILT As String = "") As DataTable
+
+        Try
+            Using dt = SAP_DATA_READ_TBL("DRAT", "|", "", "MANDT DOKAR DOKNR DOKVR DOKTL LANGU DKTXT LTXIN", sFILT)
+                If dt Is Nothing Then Throw New Exception($"Problème de lecture de la table DRAT avec le filtre  {sFILT}")
+                LOG_Msg(GetCurrentMethod, $"Lecture de la table DRAT effectuée avec le filtre  {sFILT}")
+                Return dt
+            End Using
+        Catch ex As Exception
+            LOG_Erreur(GetCurrentMethod, ex.Message)
+            Return Nothing
+        End Try
+
     End Function
 End Class

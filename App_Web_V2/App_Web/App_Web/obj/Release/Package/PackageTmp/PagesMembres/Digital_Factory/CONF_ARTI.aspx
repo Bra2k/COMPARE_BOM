@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="Configurer un nouvel article pour le colisage" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="CONF_ARTI.aspx.vb" Inherits="App_Web.CONF_ARTI" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <link href="App_Themes/CSS/CSS_MediaQuery.css" rel="stylesheet" type="text/css" />
     <br />
     <div class="titre_page">
         <h2>Digital Factory : Article</h2>
@@ -12,7 +11,7 @@
             <td>
                 <label>Entrer le code article :</label></td>
             <td>
-                <asp:TextBox ID="TextBox_CD_ARTI_ECO" runat="server" Width="900px" ToolTip="Code article Eolane" AutoPostBack="True"></asp:TextBox></td>
+                <asp:TextBox ID="TextBox_CD_ARTI_ECO" runat="server" Width="900px" ToolTip="Code article Eolane" AutoPostBack="True" CausesValidation="True"></asp:TextBox></td>
         </tr>
 
     </table>
@@ -227,9 +226,7 @@
                 <asp:TextBox ID="TextBox_CHEM_FICH_IMPR_PALE" runat="server" Width="350px" TextMode="MultiLine"></asp:TextBox></td>
         </tr>
     </table>
-    <asp:CheckBox ID="CheckBox_ETIQ_PACK_NU_SER_ECO" runat="server" Text="&nbsp;Impression d'une étiquette packaging avec numéro de série Eolane" />
-    <br />
-    <asp:CheckBox ID="CheckBox_ETIQ_PACK_NU_SER_CLIE" runat="server" Text="&nbsp;Impression d'une étiquette packaging avec numéro de série client" />
+
     <br />
     <label>Pourcentage de la quantité de l&#39;OF requis pour le présentation en recette client :</label>
     <asp:TextBox ID="TextBox_PCTG_RECE_CLIE" runat="server" Height="22px" Width="545px"></asp:TextBox>
@@ -293,66 +290,7 @@
             <td style="width: 584px">
                 <asp:TextBox ID="TextBox_VUE_NU_SER_ENSE_SOUS_ENSE" runat="server" Width="790px"></asp:TextBox></td>
         </tr>
-        <tr>
-            <td>
-                <label>WORKFLOW étape 1</label></td>
-            <td style="width: 584px">
-                <asp:TextBox ID="TextBox_WF_ETAP_1" runat="server" Width="790px"></asp:TextBox></td>
-        </tr>
-        <tr>
-            <td>
-                <label>WORKFLOW étape 2</label></td>
-            <td style="width: 584px">
-                <asp:TextBox ID="TextBox_WF_ETAP_2" runat="server" Width="790px"></asp:TextBox></td>
-        </tr>
-        <tr>
-            <td>
-                <label>WORKFLOW étape 3</label></td>
-            <td style="width: 584px">
-                <asp:TextBox ID="TextBox_WF_ETAP_3" runat="server" Width="790px"></asp:TextBox></td>
-        </tr>
-        <tr>
-            <td>
-                <label>WORKFLOW étape 4</label></td>
-            <td style="width: 584px">
-                <asp:TextBox ID="TextBox_WF_ETAP_4" runat="server" Width="790px"></asp:TextBox></td>
-        </tr>
-        <tr>
-            <td>
-                <label>WORKFLOW étape 5</label></td>
-            <td style="width: 584px">
-                <asp:TextBox ID="TextBox_WF_ETAP_5" runat="server" Width="790px"></asp:TextBox></td>
-        </tr>
-        <tr>
-            <td>
-                <label>WORKFLOW étape 6</label></td>
-            <td style="width: 584px">
-                <asp:TextBox ID="TextBox_WF_ETAP_6" runat="server" Width="790px"></asp:TextBox></td>
-        </tr>
-        <tr>
-            <td>
-                <label>WORKFLOW étape 7</label></td>
-            <td style="width: 584px">
-                <asp:TextBox ID="TextBox_WF_ETAP_7" runat="server" Width="790px"></asp:TextBox></td>
-        </tr>
-        <tr>
-            <td>
-                <label>WORKFLOW étape 8</label></td>
-            <td style="width: 584px">
-                <asp:TextBox ID="TextBox_WF_ETAP_8" runat="server" Width="790px"></asp:TextBox></td>
-        </tr>
-        <tr>
-            <td>
-                <label>WORKFLOW étape 9</label></td>
-            <td style="width: 584px">
-                <asp:TextBox ID="TextBox_WF_ETAP_9" runat="server" Width="790px"></asp:TextBox></td>
-        </tr>
-        <tr>
-            <td>
-                <label>WORKFLOW étape 10</label></td>
-            <td style="width: 584px">
-                <asp:TextBox ID="TextBox_WF_ETAP_10" runat="server" Width="790px"></asp:TextBox></td>
-        </tr>
+
         <tr>
             <td>
                 <label>Opération de la gamme à laquelle on génére impression numéro de série</label></td>
@@ -441,7 +379,6 @@
         <tr>
             <td>&nbsp;</td>
             <td colspan="2">
-                <asp:CheckBox ID="CheckBox_MISE_DPST_DOCU" runat="server" Text="Mise à disposition des documents à la fin de la saisie BL/Palette (FCGF, DHR, etc...)" />
             </td>
         </tr>
         <tr>
@@ -459,22 +396,20 @@
                 </h4>
             </div>
             <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                <div class="panel-body tile-container">
-                    <div class="row">
-                        <div class="col-md-5">
-                            <label>Code article client :</label>
-                        </div>
-                        <div class="col-md-7">
-                            <asp:TextBox ID="TextBox_CD_ARTI_CLIE" runat="server" Width="900px" ToolTip="Dénomination du code article client"></asp:TextBox><br />
-                        </div>
-                        <div class="col-md-5">
-                            <label>Désignation client de l&#39;article :</label>
-                        </div>
-                        <div class="col-md-7">
-                            <asp:TextBox ID="TextBox_NM_ARTI_CLIE" runat="server" ToolTip="Désignation client de l'article" Width="900px"></asp:TextBox>
-                        </div>
-
+                <div class="row">
+                    <div class="col-md-5">
+                        <label>Code article client :</label>
                     </div>
+                    <div class="col-md-7">
+                        <asp:TextBox ID="TextBox_CD_ARTI_CLIE" runat="server" Width="900px" ToolTip="Dénomination du code article client"></asp:TextBox><br />
+                    </div>
+                    <div class="col-md-5">
+                        <label>Désignation client de l&#39;article :</label>
+                    </div>
+                    <div class="col-md-7">
+                        <asp:TextBox ID="TextBox_NM_ARTI_CLIE" runat="server" ToolTip="Désignation client de l'article" Width="900px"></asp:TextBox>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -486,65 +421,129 @@
             </div>
             <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                 <div class="panel-body tile-container">
-                    <div class="panel-body tile-container">
-                        <div class="row">
-                            <div class="col-md-5">
-                                <label>Encodage du numéro de série :</label>
-                            </div>
-                            <div class="col-md-7">
-                                <asp:TextBox ID="TextBox_ENCO_NU_SER_CLIE" runat="server" Width="850px">10</asp:TextBox>
-                            </div>
-                            <div class="col-md-5">
-                                <label>Incrémentation des numéros de série : </label>
-                            </div>
-                            <div class="col-md-7" style="max-width:100%">
-                                <asp:TextBox ID="TextBox_INC_NU_SER" runat="server" >1</asp:TextBox>
-                            </div>
-                            <div class="col-md-5">
-                                <label>Format des numéros de série : </label>
-                            </div>
-                            <div class="col-md-7">
-                                <asp:TextBox ID="TextBox_FORM_NU_SER_GNRT" runat="server" Width="842px"></asp:TextBox>
-                            </div>
-                            <div class="col-md-5">
-                                <label>Critère de génération :</label>
-                            </div>
-                            <div class="col-md-7">
-                                <asp:DropDownList ID="DropDownList_CRIT_GENE_NU_SER" runat="server" DataSourceID="SqlDataSource_CRIT_GENE_NU_SER" DataTextField="NM_CRIT" DataValueField="NM_CRIT">
-                                </asp:DropDownList>
-                                <asp:SqlDataSource ID="SqlDataSource_CRIT_GENE_NU_SER" runat="server" ConnectionString="<%$ ConnectionStrings:APP_WEB_ECOConnectionString %>"
-                                    SelectCommand="SELECT [NM_CRIT]
-                                         FROM [dbo].[DTM_REF_LIST_CRIT_GENE_NUM]"></asp:SqlDataSource>
-                            </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <label>Encodage du numéro de série :</label>
                         </div>
-                    </div>
-                </div>
-            </div>
+                        <div class="col-md-7">
+                            <asp:TextBox ID="TextBox_ENCO_NU_SER_CLIE" runat="server" Width="850px">10</asp:TextBox>
+                        </div>
+                        <div class="col-md-5">
+                            <label>Incrémentation des numéros de série : </label>
+                        </div>
+                        <div class="col-md-7" style="max-width: 100%">
+                            <asp:TextBox ID="TextBox_INC_NU_SER" runat="server">1</asp:TextBox>
+                        </div>
+                        <div class="col-md-5">
+                            <label>Format des numéros de série : </label>
+                        </div>
+                        <div class="col-md-7">
+                            <asp:TextBox ID="TextBox_FORM_NU_SER_GNRT" runat="server" Width="842px"></asp:TextBox>
+                        </div>
+                        <div class="col-md-5">
+                            <label>Critère de génération :</label>
+                        </div>
+                        <div class="col-md-7">
+                            <asp:DropDownList ID="DropDownList_CRIT_GENE_NU_SER" runat="server" DataSourceID="SqlDataSource_CRIT_GENE_NU_SER" DataTextField="NM_CRIT" DataValueField="NM_CRIT">
+                            </asp:DropDownList>
+                            <asp:SqlDataSource ID="SqlDataSource_CRIT_GENE_NU_SER" runat="server" ConnectionString="<%$ ConnectionStrings:APP_WEB_ECOConnectionString %>"
+                                SelectCommand="SELECT [NM_CRIT]
+                                         FROM [dbo].[DTM_REF_LIST_CRIT_GENE_NUM]"></asp:SqlDataSource>
+                        </div>
 
-            <div class="panel panel-default">
-                <div class="panel-heading" role="tab" id="headingThree">
-                    <h4 class="panel-title">
-                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Colisage</a>
-                    </h4>
-                </div>
-                <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                    <div class="panel-body tile-container">
-                    </div>
-                </div>
-            </div>
-
-            <div class="panel panel-default">
-                <div class="panel-heading" role="tab" id="headingFour">
-                    <h4 class="panel-title">
-                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseThree">Opération</a>
-                    </h4>
-                </div>
-                <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
-                    <div class="panel-body tile-container">
                     </div>
                 </div>
             </div>
         </div>
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingThree">
+                <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Colisage</a>
+                </h4>
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                <asp:CheckBox ID="CheckBox_ETIQ_PACK_NU_SER_ECO" runat="server" Text="&nbsp;Impression d'une étiquette packaging avec numéro de série Eolane" />
+                <br />
+                <asp:CheckBox ID="CheckBox_ETIQ_PACK_NU_SER_CLIE" runat="server" Text="&nbsp;Impression d'une étiquette packaging avec numéro de série client" />
+                                <asp:CheckBox ID="CheckBox_MISE_DPST_DOCU" runat="server" Text="Mise à disposition des documents à la fin de la saisie BL/Palette (FCGF, DHR, etc...)" />
+
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingFour">
+                <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">Opération</a>
+                </h4>
+            </div>
+            <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                <div class="row">
+                    <div class="col-md-5">
+                        <label>WORKFLOW étape 1</label>
+                    </div>
+                    <div class="col-md-7">
+                        <asp:TextBox ID="TextBox_WF_ETAP_1" runat="server" Width="790px"></asp:TextBox>
+                    </div>
+                    <div class="col-md-5">
+                        <label>WORKFLOW étape 2</label>
+                    </div>
+                    <div class="col-md-7">
+                        <asp:TextBox ID="TextBox_WF_ETAP_2" runat="server" Width="790px"></asp:TextBox>
+                    </div>
+                    <div class="col-md-5">
+                        <label>WORKFLOW étape 3</label>
+                    </div>
+                    <div class="col-md-7">
+                        <asp:TextBox ID="TextBox_WF_ETAP_3" runat="server" Width="790px"></asp:TextBox>
+                    </div>
+                    <div class="col-md-5">
+                        <label>WORKFLOW étape 4</label>
+                    </div>
+                    <div class="col-md-7">
+                        <asp:TextBox ID="TextBox_WF_ETAP_4" runat="server" Width="790px"></asp:TextBox>
+                    </div>
+                    <div class="col-md-5">
+                        <label>WORKFLOW étape 5</label>
+                    </div>
+                    <div class="col-md-7">
+                        <asp:TextBox ID="TextBox_WF_ETAP_5" runat="server" Width="790px"></asp:TextBox>
+                    </div>
+                    <div class="col-md-5">
+                        <label>WORKFLOW étape 6</label>
+                    </div>
+                    <div class="col-md-7">
+                        <asp:TextBox ID="TextBox_WF_ETAP_6" runat="server" Width="790px"></asp:TextBox>
+                    </div>
+                    <div class="col-md-5">
+                        <label>WORKFLOW étape 7</label>
+                    </div>
+                    <div class="col-md-7">
+                        <asp:TextBox ID="TextBox_WF_ETAP_7" runat="server" Width="790px"></asp:TextBox>
+                    </div>
+                    <div class="col-md-5">
+                        <label>WORKFLOW étape 8</label>
+                    </div>
+                    <div class="col-md-7">
+                        <asp:TextBox ID="TextBox_WF_ETAP_8" runat="server" Width="790px"></asp:TextBox>
+                    </div>
+                    <div class="col-md-5">
+                        <label>WORKFLOW étape 9</label>
+                    </div>
+                    <div class="col-md-7">
+                        <asp:TextBox ID="TextBox_WF_ETAP_9" runat="server" Width="790px"></asp:TextBox>
+                    </div>
+                    <div class="col-md-5">
+                        <label>WORKFLOW étape 10</label>
+                    </div>
+                    <div class="col-md-7">
+                        <asp:TextBox ID="TextBox_WF_ETAP_10" runat="server" Width="790px"></asp:TextBox>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
     <br />
     <br />
     <asp:Button ID="Button_VALI" runat="server" Text="Valider" BackColor="#002F60" Font-Bold="True" ForeColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" Height="40px" Width="180px" />
