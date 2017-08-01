@@ -116,6 +116,15 @@
                                 <span class="tile-label bold text-bold" style="color: #FFFFFF;">Configuration Application</span>
                             </div>
                         </a>
+                        <a class="tile" data-role="tile" data-effect="slideUpDown" href="https://barcode.tec-it.com/en" style="background-color: #002F60;">
+                            <div class="tile-content slide-up-2">
+                                <div class="slide-over text-small" style="background-color: #002F60; text-align: center; color: #FFFFFF;">
+                                    Générer un code à barre, datamatrix, QR code, etc... en image<br />
+                                    <br />
+                                </div>
+                                <span class="tile-label bold text-bold" style="color: #FFFFFF;">Générer Code à barre</span>
+                            </div>
+                        </a> 
                     </div>
                 </div>
             </div>
@@ -376,6 +385,7 @@
                                 <span class="tile-label bold text-bold" style="color: #FFFFFF;">EASY</span>
                             </div>
                         </a>
+                                               
                     </div>
                 </div>
             </div>

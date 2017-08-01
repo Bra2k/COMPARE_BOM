@@ -617,6 +617,15 @@ Partial Public Class CONF_ARTI
     Protected WithEvents SqlDataSource_CRIT_GENE_NU_SER As Global.System.Web.UI.WebControls.SqlDataSource
     
     '''<summary>
+    '''Contrôle TextBox_NB_ETQT_LARG.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents TextBox_NB_ETQT_LARG As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
     '''Contrôle CheckBox_ETIQ_PACK_NU_SER_ECO.
     '''</summary>
     '''<remarks>

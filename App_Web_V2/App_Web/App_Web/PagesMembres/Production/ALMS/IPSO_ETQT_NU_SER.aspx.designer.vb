@@ -48,4 +48,13 @@ Partial Public Class IPSO_ETQT_NU_SER
     '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
     '''</remarks>
     Protected WithEvents Button_IPSO As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''Contrôle TextBox_IPMT.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents TextBox_IPMT As Global.System.Web.UI.WebControls.TextBox
 End Class

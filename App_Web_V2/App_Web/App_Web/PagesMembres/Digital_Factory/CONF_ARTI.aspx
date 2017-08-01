@@ -419,7 +419,7 @@
                     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Génération des numéros de série</a>
                 </h4>
             </div>
-            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
                 <div class="panel-body tile-container">
                     <div class="row">
                         <div class="col-md-5">
@@ -450,7 +450,12 @@
                                 SelectCommand="SELECT [NM_CRIT]
                                          FROM [dbo].[DTM_REF_LIST_CRIT_GENE_NUM]"></asp:SqlDataSource>
                         </div>
-
+                        <div class="col-md-5">
+                            <label>Nombre d'étiquettes sur la lergeur :</label>
+                        </div>
+                        <div class="col-md-7">
+                            <asp:TextBox ID="TextBox_NB_ETQT_LARG" runat="server"></asp:TextBox>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -461,7 +466,7 @@
                     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Colisage</a>
                 </h4>
             </div>
-            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+            <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
                 <asp:CheckBox ID="CheckBox_ETIQ_PACK_NU_SER_ECO" runat="server" Text="&nbsp;Impression d'une étiquette packaging avec numéro de série Eolane" />
                 <br />
                 <asp:CheckBox ID="CheckBox_ETIQ_PACK_NU_SER_CLIE" runat="server" Text="&nbsp;Impression d'une étiquette packaging avec numéro de série client" />
@@ -476,7 +481,7 @@
                     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">Opération</a>
                 </h4>
             </div>
-            <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+            <div id="collapseFour" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFour">
                 <div class="row">
                     <div class="col-md-5">
                         <label>WORKFLOW étape 1</label>

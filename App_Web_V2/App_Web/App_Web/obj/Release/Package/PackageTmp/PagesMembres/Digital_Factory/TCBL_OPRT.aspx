@@ -139,22 +139,6 @@
 
                         <br />
 
-                        <asp:MultiView ID="MultiView_Tracabilité" runat="server" ActiveViewIndex="0">
-                            <asp:View ID="View_VOID_2" runat="server">
-                            </asp:View>
-                        </asp:MultiView>
-
-                        <br />
-                        <asp:MultiView ID="MultiView_DCMT" runat="server">
-                            <asp:View ID="View_VOID_3" runat="server">
-                            </asp:View>
-                        </asp:MultiView>
-                        <asp:MultiView ID="MultiView_VLDT" runat="server">
-
-                            <asp:View ID="View_VOID_4" runat="server">
-                            </asp:View>
-
-                        </asp:MultiView>
                     </asp:View>
                     
                     <asp:View ID="View_SAIS_TCBL_COMP" runat="server">
@@ -167,13 +151,13 @@
                                     <asp:View ID="View_BAC" runat="server">
                                         <label>
                                         Scanner un n° de BAC :</label>
-                                        <asp:TextBox ID="TextBox_NU_BAC" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="TextBox_NU_BAC" runat="server" AutoPostBack="True"></asp:TextBox>
                                         <br />
                                     </asp:View>
                                     <asp:View ID="View_ID_COMP" runat="server">
                                         <label>
                                         Scanner un ID composant :</label>
-                                        <asp:TextBox ID="TextBox_ID_COMP" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="TextBox_ID_COMP" runat="server" AutoPostBack="True"></asp:TextBox>
                                         <br />
                                     </asp:View>
                                     <asp:View ID="View_CD_LOT" runat="server">

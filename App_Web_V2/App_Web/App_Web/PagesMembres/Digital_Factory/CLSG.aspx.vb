@@ -7,36 +7,18 @@ Imports App_Web.Class_DIG_FACT
 Imports App_Web.Class_DIG_FACT_SQL
 Imports App_Web.Class_COMM_APP_WEB
 Imports App_Web.Class_PDF
+Imports App_Web.Class_DOC_ITEXT_SHARP
 Imports iTextSharp.text.pdf
 Imports iTextSharp.text
 Imports iTextSharp
 Imports System
-'Imports PdfSharp
-'Imports PdfSharp.Drawing
-'Imports PdfSharp.Drawing.Layout
-'Imports PdfSharp.Pdf
+
 Public Class CLSG
     Inherits System.Web.UI.Page
-    'Dim sChaineConnexion As String = "Data Source=cedb03,1433;Initial Catalog=" & Replace(Replace(My.Computer.Name, "CEDB03", "MES_Digital_Factory_DEV"), "CEAPP03", "MES_Digital_Factory") & ";Integrated Security=False;User ID=sa;Password=mdpsa@SQL;Connect Timeout=7200;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
-    'Dim sChaineConnexion As String = "Data Source=cedb03,1433;Initial Catalog=" & Replace(Replace(My.Computer.Name, "CEDB03", "MES_Digital_Factory"), "CEAPP03", "MES_Digital_Factory") & ";Integrated Security=False;User ID=sa;Password=mdpsa@SQL;Connect Timeout=7200;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
 
-    'Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-    '    If Not IsPostBack Then
+    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
-    '        '    If Session("displayname") = "" Then
-    '        '        Context.GetOwinContext().Authentication.SignOut(Microsoft.AspNet.Identity.DefaultAuthenticationTypes.ApplicationCookie)
-    '        '    Else
-    '        '        If App_Web.Class_COMM_APP_WEB.COMM_APP_WEB_GET_DROI_PAGE(Replace(HttpContext.Current.Request.Url.AbsoluteUri, "http://" & LCase(My.Computer.Name) & "/PagesMembres/", "~/PagesMembres/") & ".aspx", Session("department"), Session("User_Name")) = False Then Response.Redirect("~/PagesMembres/RDRC_PAGE_MEMB.aspx")
-    '        '    End If
-    '        If Session("OF_TO_CLSG") <> "" Then
-    '            TextBox_NU_OF.Text = Session("OF_TO_CLSG")
-    '            Session("OF_TO_CLSG") = ""
-    '            TextBox_OF_TextChanged(sender, e)
-    '        End If
-
-    '    End If
-
-    'End Sub
+    End Sub
 
     Protected Sub TextBox_OF_TextChanged(sender As Object, e As EventArgs) Handles TextBox_NU_OF.TextChanged
         Dim sQuery As String = ""
@@ -549,160 +531,172 @@ Public Class CLSG
 
     Protected Sub Button_CLOR_CART_Click(sender As Object, e As EventArgs) Handles Button_CLOR_CART.Click
         Dim sQuery As String = "", sFichier_Modele As String = "", sFichier_PDF As String = ""
-        Dim dt, dtVar, dt_CFGR_ARTI_ECO, dtLIST_DATA As New DataTable
+        'Dim dt As New DataTable
+        'Dim sscritp2 = "document.getElementById(""pdf"").onload = function() {window.frames[""pdf""].focus();
+        '                                                                      window.frames[""pdf""].print();};"
+        'Dim sbjs As New StringBuilder
         Try
-            dt_CFGR_ARTI_ECO = DIG_FACT_SQL_CFGR_ARTI_ECO(Trim(Label_CD_ARTI_ECO.Text))
+            Using dt_CFGR_ARTI_ECO = DIG_FACT_SQL_CFGR_ARTI_ECO(Trim(Label_CD_ARTI_ECO.Text))
 
-            'Enregistrement des données
-            sQuery = "UPDATE [dbo].[DTM_CLSG_CART]
-                         SET [QT_CRTN] = '" & Label_NB_CART.Text & "'
-                       WHERE [NU_CART] = '" & Label_NU_CART.Text & "'"
-            SQL_REQ_ACT(sQuery, CS_MES_Digital_Factory)
-            'impression 
-            For Each cell As TableCell In GridView_NU_SER_SCAN.HeaderRow.Cells
-                dtVar.Columns.Add(cell.Text)
-            Next
-            For Each row As GridViewRow In GridView_NU_SER_SCAN.Rows
-                dtVar.Rows.Add()
-                For i As Integer = 0 To row.Cells.Count - 1
-                    dtVar.Rows(row.RowIndex)(i) = row.Cells(i).Text
-                Next
-            Next
-            sFichier_Modele = COMM_APP_WEB_GET_PARA(Label_CD_ARTI_ECO.Text & "|Carton", "TextBox_FICH_MODE", "ASP.pagesmembres_digital_factory_impr_etiq_prn_aspx")
-            Select Case Right(sFichier_Modele, 3)
-                Case "PDF", "pdf" 'Impression PDF
-                    'vue pdf carton
-                    sQuery = "SELECT *
-                                FROM [dbo].[" & dt_CFGR_ARTI_ECO(0)("Vue fichier PDF").ToString & "]
-                               WHERE [NU_CART] = '" & Label_NU_CART.Text & "'"
-                    dtLIST_DATA = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
-                    If dtLIST_DATA Is Nothing Then
-                        Dim sFichier As String = DIG_FACT_IMPR_PDF(sFichier_Modele,
-                                                               TextBox_NU_OF.Text, "", "Carton", TextBox_NU_SER_CLIE.Text, TextBox_NU_SER_ECO.Text,
-                                                               Label_NU_CART.Text, Label_NB_CART.Text, "", "", dtVar, dtLIST_DATA)
-                        COMM_APP_WEB_COPY_FILE(sFichier, "c:\sources\App_Web\PagesMembres\Digital_Factory\2.pdf", True)
-                        ClientScript.RegisterStartupScript([GetType](), "printPdf", "document.getElementById(""pdf"").src = """ & Path.GetFileName(sFichier) & """;
-                                                                                     document.getElementById(""pdf"").onload = function() {window.frames[""pdf""].focus();
-                                                                                                                                           window.frames[""pdf""].print();};", True)
-                        sFichier_PDF = sFichier
-                    Else
-                        sFichier_PDF = "c:\sources\App_Web\PagesMembres\Digital_Factory\delivery_form_" & CInt(Int((10000000 * Rnd()) + 1)) & "_merge.pdf"
-                        For iPDF = 0 To dtLIST_DATA.Rows.Count - 1 Step Convert.ToDecimal(dt_CFGR_ARTI_ECO(0)("Nombre de ligne dans le fichier PDF").ToString)
-                            Dim sFichier As String = DIG_FACT_IMPR_PDF(sFichier_Modele,
-                                                                       TextBox_NU_OF.Text, "", "Carton", TextBox_NU_SER_CLIE.Text, TextBox_NU_SER_ECO.Text,
-                                                                       Label_NU_CART.Text, Label_NB_CART.Text, "", "", dtVar,
-                            dtLIST_DATA, iPDF)
-                            sFichier_PDF = PDF_CCTN_FICH(sFichier_PDF, sFichier)
+                'Enregistrement des données
+                sQuery = $"UPDATE [dbo].[DTM_CLSG_CART]
+                              SET [QT_CRTN] = '{Label_NB_CART.Text}'
+                            WHERE [NU_CART] = '{Label_NU_CART.Text}'"
+                SQL_REQ_ACT(sQuery, CS_MES_Digital_Factory)
+                'impression 
+                Using dtVar As New DataTable
+                    For Each cell As TableCell In GridView_NU_SER_SCAN.HeaderRow.Cells
+                        dtVar.Columns.Add(cell.Text)
+                    Next
+                    For Each row As GridViewRow In GridView_NU_SER_SCAN.Rows
+                        dtVar.Rows.Add()
+                        For i As Integer = 0 To row.Cells.Count - 1
+                            dtVar.Rows(row.RowIndex)(i) = row.Cells(i).Text
                         Next
-                        COMM_APP_WEB_COPY_FILE(sFichier_PDF, "c:\sources\App_Web\PagesMembres\Digital_Factory\2.pdf", True)
-                        ClientScript.RegisterStartupScript([GetType](), "printPdf", "document.getElementById(""pdf"").src = """ & Path.GetFileName(sFichier_PDF) & """;
-                                                                                     document.getElementById(""pdf"").onload = function() {window.frames[""pdf""].focus();
-                                                                                                                                           window.frames[""pdf""].print();};", True)
+                    Next
+                    sFichier_Modele = COMM_APP_WEB_GET_PARA($"{Label_CD_ARTI_ECO.Text}|Carton", "TextBox_FICH_MODE", "ASP.pagesmembres_digital_factory_impr_etiq_prn_aspx")
+                    Select Case Right(sFichier_Modele, 3)
+                        Case "PDF", "pdf" 'Impression PDF
+                            'vue pdf carton
+                            sQuery = $"SELECT *
+                                         FROM [dbo].[{dt_CFGR_ARTI_ECO(0)("Vue fichier PDF").ToString}]
+                                        WHERE [NU_CART] = '{Label_NU_CART.Text}'"
+                            Using dtLIST_DATA = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
+                                If dtLIST_DATA Is Nothing Then
+                                    Dim sFichier As String = DIG_FACT_IMPR_PDF(sFichier_Modele,
+                                                                       TextBox_NU_OF.Text, "", "Carton", TextBox_NU_SER_CLIE.Text, TextBox_NU_SER_ECO.Text,
+                                                                       Label_NU_CART.Text, Label_NB_CART.Text, "", "", dtVar, dtLIST_DATA)
+                                    COMM_APP_WEB_COPY_FILE(sFichier, Server.MapPath($"~/PagesMembres/Digital_Factory/{Path.GetFileName(sFichier)}"), True) 'todo possible ne sert à rien
+                                    ClientScript.RegisterStartupScript([GetType](), "printPdf", COMM_APP_WEB_JS_IPSO_FICH_PDF(sFichier), True)
+                                    sFichier_PDF = sFichier
+                                Else
+                                    sFichier_PDF = Server.MapPath($"~/PagesMembres/Digital_Factory/delivery_form_{CInt(Int((10000000 * Rnd()) + 1))}_merge.pdf")
+                                    For iPDF = 0 To dtLIST_DATA.Rows.Count - 1 Step Convert.ToDecimal(dt_CFGR_ARTI_ECO(0)("Nombre de ligne dans le fichier PDF").ToString)
+                                        Dim sFichier As String = DIG_FACT_IMPR_PDF(sFichier_Modele,
+                                                                               TextBox_NU_OF.Text, "", "Carton", TextBox_NU_SER_CLIE.Text, TextBox_NU_SER_ECO.Text,
+                                                                               Label_NU_CART.Text, Label_NB_CART.Text, "", "", dtVar, dtLIST_DATA, iPDF)
+                                        sFichier_PDF = PDF_CCTN_FICH(sFichier_PDF, sFichier)
+                                    Next
+                                    'COMM_APP_WEB_COPY_FILE(sFichier_PDF, Server.MapPath($"~/PagesMembres/Digital_Factory/{Path.GetFileName(sFichier_PDF)}"), True) 'todo possible ne sert à rien
+                                    ClientScript.RegisterStartupScript([GetType](), "printPdf", COMM_APP_WEB_JS_IPSO_FICH_PDF(sFichier_PDF), True)
+                                    'sbjs.Append(sscritp2)
+                                    'ClientScript.RegisterStartupScript([GetType](), "printPdf", sbjs.ToString, True)
+                                End If
+                                'sbjs.Append(sscritp2)
+                                'ClientScript.RegisterStartupScript([GetType](), "printPdf", sbjs.ToString, True)
+                            End Using
+                        Case "PRN", "prn" 'impression étiquette PRN
+                            DIG_FACT_IMPR_ETIQ(sFichier_Modele,
+                                               TextBox_NU_OF.Text, "", "Carton", TextBox_NU_SER_CLIE.Text, TextBox_NU_SER_ECO.Text,
+                                               Label_NU_CART.Text, Label_NB_CART.Text, "", dtVar)
+                    End Select
+                End Using
+                If dt_CFGR_ARTI_ECO(0)("Document carton DF").ToString = "1" Then
+                    sQuery = $"{dt_CFGR_ARTI_ECO(0)("Requête liste produits dans le carton\palette document DF").ToString} WHERE NU_CART = '{Label_NU_CART.Text}'"
+                    Dim sfich_cart_df As String = ""
+                    Select Case 1
+                        Case Label_NM_CLIE.Text = "SENSING LABS"
+                            Using dt_list_clsg = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
+                                If dt_list_clsg Is Nothing Then Throw New Exception($"Le carton n°{Label_NU_CART.Text} ne contient aucun numéros de série dans la base.")
+                                sfich_cart_df = DOC_ITEXT_SHARP_LIST_CLSG_SENS_LABS(dt_list_clsg, Label_CD_ARTI_ECO.Text)
+                            End Using
+                        Case Else
+                            sfich_cart_df = _CREA_FICH_LIVR_DF(sQuery, "carton", dt_CFGR_ARTI_ECO(0)("Contenu du code à barre document DF").ToString)
+                    End Select
+
+                    Dim sfihcsauv As String = DIG_FACT_SQL_GET_PARA(Trim(Label_CD_ARTI_ECO.Text), "Chemin de sauvegarde du fichier PDF")
+                    COMM_APP_WEB_COPY_FILE(sfich_cart_df, $"{sfihcsauv}\OF {Label_NU_OF.Text}\{Label_NU_CART.Text}_{COMM_APP_WEB_CONV_FORM_DATE(Now, "ddMMyyyy_HHmmss")}.pdf", True)
+                    COMM_APP_WEB_COPY_FILE(sfich_cart_df, Server.MapPath($"~/PagesMembres/Digital_Factory/" & Path.GetFileName(sfich_cart_df)), True)
+                    'sbjs.Clear()
+                    'sbjs.Append($"document.getElementById(""pdf"").src = ""{Path.GetFileName(sfich_cart_df)}"";{vbCrLf}")
+                    'sbjs.Append(sscritp2)
+                    'ClientScript.RegisterStartupScript([GetType](), "printPdf", sbjs.ToString, True)
+                    ClientScript.RegisterStartupScript([GetType](), "printPdf", COMM_APP_WEB_JS_IPSO_FICH_PDF(sfich_cart_df), True)
+                End If
+
+                'Rechercher le n° de palette
+                'si quantité carton dans palette plein nouveau numéro de palette
+                sQuery = $"SELECT MAX_NU_PALE, NU_OF
+                            FROM (
+                                 SELECT MAX(CONVERT(INTEGER, NU_PALE)) AS MAX_NU_PALE, NU_OF, COUNT(NU_CART) AS NB_NU_CART
+                                   FROM (
+                                        SELECT NU_PALE, NU_OF, NU_CART
+                                          FROM dbo.V_CLSG_PRD_DTM_HIST_LIVR 
+                                        GROUP BY NU_OF, NU_PALE, NU_BL, NU_CART
+					                    HAVING NU_OF = '{TextBox_NU_OF.Text}' AND NU_BL IS NULL
+                                        ) AS A
+                                 GROUP BY NU_OF
+                                ) AS DT_MAX_NU_CART INNER JOIN 
+						        (
+                                 SELECT CONVERT(INTEGER,VAL_PARA) AS VAL_PARA
+						           FROM [dbo].[V_DER_DTM_REF_PARA]
+						          WHERE CD_ARTI = '{Trim(Label_CD_ARTI_ECO.Text)}' AND NM_PARA = 'Quantité de carton dans la palette'
+						        ) AS DT_QT_PALE ON VAL_PARA > NB_NU_CART
+                          WHERE NOT MAX_NU_PALE IS NULL"
+                Using dt = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
+                    If dt Is Nothing Then
+                        'sQuery = "SELECT ISNULL(MAX([NU_PALE])," & TextBox_NU_OF.Text & "00) + 1 AS NEW_NU_PALE
+                        '            FROM (
+                        '                    SELECT [NU_PALE], [NU_OF]
+                        '                      FROM [dbo].[V_CLSG_PRD_DTM_HIST_LIVR]
+                        '                     WHERE NU_OF = '" & TextBox_NU_OF.Text & "'
+                        '                 ) AS A"
+                        'dt = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
+                        'Label_NU_PALE_NU_V_NU_SER.Text = dt(0)("NEW_NU_PALE").ToString
+                        ImageButton_CLOT_PALE_Click(sender, e)
+                    Else
+                        Label_NU_PALE_NU_V_NU_SER.Text = dt(0)("MAX_NU_PALE").ToString
+                        'Liste de cartons présents dans la palette
+                        sQuery = $"SELECT [NU_CART] AS [Numéro de carton] , [QT_CRTN] AS [Quantité] 
+                                     FROM (
+		                                   SELECT [NU_CART],[QT_CRTN]
+		                                     FROM [dbo].[V_CLSG_PRD_DTM_HIST_LIVR]
+		                                    WHERE [NU_PALE] = '{Label_NU_PALE_NU_V_NU_SER.Text}'
+		                                   GROUP BY [NU_PALE],[NU_CART],[QT_CRTN]
+		                                  ) AS A"
+                        Using dt2 = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
+                            GridView_LIST_CART.DataSource = dt2
+                            GridView_LIST_CART.DataBind()
+                            Label_NB_CART_PALE.Text = dt2.Rows.Count.ToString
+                        End Using
                     End If
-                Case "PRN", "prn" 'impression étiquette PRN
-                    'truc pourri pour ALMS, retirer le code article court au début du SN
-                    'If Label_NM_CLIE.Text = "AIR LIQUIDE MEDICAL" Then
-
-                    'TextBox_NU_SER_CLIE.Text = COMM_APP_WEB_STRI_TRIM_LEFT(TextBox_NU_SER_CLIE.Text, TextBox_NU_SER_CLIE.Text.IndexOf("-"))
-                    'LOG_Msg(GetCurrentMethod, TextBox_NU_SER_CLIE.Text)
-                    'End If
-                    'LOG_Msg(GetCurrentMethod, "123")
-                    DIG_FACT_IMPR_ETIQ(sFichier_Modele,
-                                       TextBox_NU_OF.Text, "", "Carton", TextBox_NU_SER_CLIE.Text, TextBox_NU_SER_ECO.Text,
-                                       Label_NU_CART.Text, Label_NB_CART.Text, "", dtVar)
-            End Select
-            If dt_CFGR_ARTI_ECO(0)("Document carton DF").ToString = "1" Then
-                sQuery = dt_CFGR_ARTI_ECO(0)("Requête liste produits dans le carton\palette document DF").ToString & " WHERE NU_CART = '" & Label_NU_CART.Text & "'"
-                Dim sfich_cart_df As String = _CREA_FICH_LIVR_DF(sQuery, "carton", dt_CFGR_ARTI_ECO(0)("Contenu du code à barre document DF").ToString)
-                Dim sfihcsauv As String = DIG_FACT_SQL_GET_PARA(Trim(Label_CD_ARTI_ECO.Text), "Chemin de sauvegarde du fichier PDF")
-                COMM_APP_WEB_COPY_FILE(sfich_cart_df, sfihcsauv & "\OF " & Label_NU_OF.Text & "\" & Label_NU_CART.Text & "_" & COMM_APP_WEB_CONV_FORM_DATE(Now, "ddMMyyyy_HHmmss") & ".pdf", True)
-                COMM_APP_WEB_COPY_FILE(sfich_cart_df, "c:\sources\App_Web\PagesMembres\Digital_Factory\" & Path.GetFileName(sfich_cart_df), True)
-                ClientScript.RegisterStartupScript([GetType](), "printPdf", "document.getElementById(""pdf"").src = """ & Path.GetFileName(sfich_cart_df) & """;
-                                                                                         document.getElementById(""pdf"").onload = function() {window.frames[""pdf""].focus();
-                                                                                                                                               window.frames[""pdf""].print();};", True)
-            End If
-
-            'Rechercher le n° de palette
-            'si quantité carton dans palette plein nouveau numéro de palette
-            sQuery = "SELECT MAX_NU_PALE, NU_OF
-                       FROM (
-                             SELECT MAX(CONVERT(INTEGER, NU_PALE)) AS MAX_NU_PALE, NU_OF, COUNT(NU_CART) AS NB_NU_CART
-                               FROM (
-                                    SELECT NU_PALE, NU_OF, NU_CART
-                                      FROM dbo.V_CLSG_PRD_DTM_HIST_LIVR 
-                                    GROUP BY NU_OF, NU_PALE, NU_BL, NU_CART
-					                HAVING NU_OF = '" & TextBox_NU_OF.Text & "' AND NU_BL IS NULL
-                                    ) AS A
-                             GROUP BY NU_OF
-                            ) AS DT_MAX_NU_CART INNER JOIN 
-						    (
-                             SELECT CONVERT(INTEGER,VAL_PARA) AS VAL_PARA
-						       FROM [dbo].[V_DER_DTM_REF_PARA]
-						      WHERE CD_ARTI = '" & Trim(Label_CD_ARTI_ECO.Text) & "' AND NM_PARA = 'Quantité de carton dans la palette'
-						    ) AS DT_QT_PALE ON VAL_PARA > NB_NU_CART
-                      WHERE NOT MAX_NU_PALE IS NULL"
-
-            dt = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
-            If dt Is Nothing Then
-                'sQuery = "SELECT ISNULL(MAX([NU_PALE])," & TextBox_NU_OF.Text & "00) + 1 AS NEW_NU_PALE
-                '            FROM (
-                '                    SELECT [NU_PALE], [NU_OF]
-                '                      FROM [dbo].[V_CLSG_PRD_DTM_HIST_LIVR]
-                '                     WHERE NU_OF = '" & TextBox_NU_OF.Text & "'
-                '                 ) AS A"
-                'dt = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
-                'Label_NU_PALE_NU_V_NU_SER.Text = dt(0)("NEW_NU_PALE").ToString
-                ImageButton_CLOT_PALE_Click(sender, e)
-            Else
-                Label_NU_PALE_NU_V_NU_SER.Text = dt(0)("MAX_NU_PALE").ToString
-                'Liste de cartons présents dans la palette
-                sQuery = "SELECT [NU_CART] AS [Numéro de carton] , [QT_CRTN] AS [Quantité] 
-                            FROM (
-		                           SELECT [NU_CART],[QT_CRTN]
-		                             FROM [dbo].[V_CLSG_PRD_DTM_HIST_LIVR]
-		                            WHERE [NU_PALE] = '" & Label_NU_PALE_NU_V_NU_SER.Text & "'
-		                           GROUP BY [NU_PALE],[NU_CART],[QT_CRTN]
-		                          ) AS A"
-                dt = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
-                GridView_LIST_CART.DataSource = dt
-                GridView_LIST_CART.DataBind()
-                Label_NB_CART_PALE.Text = dt.Rows.Count.ToString
-            End If
-
-            'si param saisie OF activé retour sur vue OF et tout vider
-            If dt_CFGR_ARTI_ECO(0)("Retour saisie Of pour colisage").ToString = "1" Then
-                MultiView_SAIS.SetActiveView(View_OF)
-                TextBox_NU_OF.Text = ""
-                TextBox_NU_OF.Focus()
-                Label_NU_CART.Text = ""
-                'Label_QT_REST_OF.Text = "0"
-                Label_NU_OF.Text = ""
-                Label_NM_CLIE.Text = ""
-                Label_CD_ARTI_ECO.Text = ""
-                Label_NM_DSGT_ARTI.Text = ""
-                Label_QT_OF.Text = ""
-                GridView_REPE.DataSource = ""
-                GridView_REPE.DataBind()
-            Else
-                sQuery = "SELECT ISNULL(MAX(CONVERT(INTEGER,[NU_CART]))," & TextBox_NU_OF.Text & "000) + 1 As NEW_NU_CART
-                            FROM (
-                                    SELECT [NU_CART], [NU_OF]
-                                      FROM [dbo].[V_CLSG_PRD_DTM_HIST_LIVR]
-                                     WHERE NU_OF = '" & TextBox_NU_OF.Text & "'
-                                 ) AS A"
-                dt = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
-                Label_NU_CART.Text = dt(0)("NEW_NU_CART").ToString
-            End If
-            'TextBox_NU_CART_SCFQ.Enabled = False
-            'TextBox_NU_CART_SCFQ.Text = ""
-            'TextBox_NU_SER_ECO.Enabled = False
-            'TextBox_NU_SER_ECO.Text = ""
-            'TextBox_NU_SER_CLIE.Enabled = False
-            'TextBox_NU_SER_CLIE.Text = ""
-            Label_NB_CART.Text = ""
-            GridView_NU_SER_SCAN.DataSource = ""
-            GridView_NU_SER_SCAN.DataBind()
-            Button_CLOR_CART.Enabled = False
+                End Using
+                'si param saisie OF activé retour sur vue OF et tout vider
+                If dt_CFGR_ARTI_ECO(0)("Retour saisie Of pour colisage").ToString = "1" Then
+                    MultiView_SAIS.SetActiveView(View_OF)
+                    TextBox_NU_OF.Text = ""
+                    TextBox_NU_OF.Focus()
+                    Label_NU_CART.Text = ""
+                    'Label_QT_REST_OF.Text = "0"
+                    Label_NU_OF.Text = ""
+                    Label_NM_CLIE.Text = ""
+                    Label_CD_ARTI_ECO.Text = ""
+                    Label_NM_DSGT_ARTI.Text = ""
+                    Label_QT_OF.Text = ""
+                    GridView_REPE.DataSource = ""
+                    GridView_REPE.DataBind()
+                Else
+                    sQuery = $"SELECT ISNULL(MAX(CONVERT(INTEGER,[NU_CART])),{TextBox_NU_OF.Text}000) + 1 As NEW_NU_CART
+                                 FROM (
+                                        SELECT [NU_CART], [NU_OF]
+                                          FROM [dbo].[V_CLSG_PRD_DTM_HIST_LIVR]
+                                         WHERE NU_OF = '{TextBox_NU_OF.Text}'
+                                     ) AS A"
+                    Using dt = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
+                        Label_NU_CART.Text = dt(0)("NEW_NU_CART").ToString
+                    End Using
+                End If
+                'TextBox_NU_CART_SCFQ.Enabled = False
+                'TextBox_NU_CART_SCFQ.Text = ""
+                'TextBox_NU_SER_ECO.Enabled = False
+                'TextBox_NU_SER_ECO.Text = ""
+                'TextBox_NU_SER_CLIE.Enabled = False
+                'TextBox_NU_SER_CLIE.Text = ""
+                Label_NB_CART.Text = ""
+                GridView_NU_SER_SCAN.DataSource = ""
+                GridView_NU_SER_SCAN.DataBind()
+                Button_CLOR_CART.Enabled = False
+            End Using
         Catch ex As Exception
             LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
         End Try
@@ -817,7 +811,7 @@ Public Class CLSG
                 Label_CD_ARTI_ECO.Text = ""
                 Label_NM_DSGT_ARTI.Text = ""
                 Label_QT_OF.Text = ""
-                ImageButton_CLOT_PALE_Click(sender, e) 'If dt_CFGR_ARTI_ECO(0)("BL").ToString = "1" Then Button_SAI_PALE_BL_Click(sender, e) 'Button_SAI_CART_BL_Click(sender, e)
+                ImageButton_CLOT_PALE_Click(sender, e)
             End If
 
             'RAZ Affichage
@@ -1009,6 +1003,11 @@ Public Class CLSG
         End Try
     End Sub
 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Protected Sub TextBox_NU_CART_TextChanged(sender As Object, e As EventArgs) Handles TextBox_NU_CART.TextChanged
         Dim sQuery As String = "", dt, dtVar, dtLIST_DATA, dtAFKO, dt_CFGR_ARTI_ECO As New DataTable, sFichier_PDF As String
 
@@ -1093,13 +1092,16 @@ Public Class CLSG
                                                                        "", TextBox_NU_BL.Text, "Palette",
                                                                        "", "", "", Label_NB_CART_SCAN.Text,
                                                                        Label_NB_CART_SCAN.Text, Label_NU_PALE.Text, dtVar, dtLIST_DATA)
-                            COMM_APP_WEB_COPY_FILE(sFichier, "c:\sources\App_Web\PagesMembres\Digital_Factory\2.pdf", True)
-                            ClientScript.RegisterStartupScript([GetType](), "printPdf", "document.getElementById(""pdf"").src = """ & Path.GetFileName(sFichier) & """;
-                                                                                     document.getElementById(""pdf"").onload = function() {window.frames[""pdf""].focus();
-                                                                                                                                           window.frames[""pdf""].print();};", True)
+                            COMM_APP_WEB_COPY_FILE(sFichier, Server.MapPath($"~/PagesMembres/Digital_Factory/{Path.GetFileName(sFichier)}"), True) 'todo possible ne sert à rien
+                            ClientScript.RegisterStartupScript([GetType](), "printPdf", COMM_APP_WEB_JS_IPSO_FICH_PDF(sFichier), True)
+
+                            'COMM_APP_WEB_COPY_FILE(sFichier, "c:\sources\App_Web\PagesMembres\Digital_Factory\2.pdf", True)
+                            'ClientScript.RegisterStartupScript([GetType](), "printPdf", "document.getElementById(""pdf"").src = """ & Path.GetFileName(sFichier) & """;
+                            '                                                         document.getElementById(""pdf"").onload = function() {window.frames[""pdf""].focus();
+                            '                                                                                                               window.frames[""pdf""].print();};", True)
                             sFichier_PDF = sFichier
                         Else
-                            sFichier_PDF = "c:\sources\App_Web\PagesMembres\Digital_Factory\delivery_form_" & CInt(Int((10000000 * Rnd()) + 1)) & "_merge.pdf"
+                            sFichier_PDF = Server.MapPath($"~/PagesMembres/Digital_Factory/delivery_form_{CInt(Int((10000000 * Rnd()) + 1))}_merge.pdf")
                             For iPDF = 0 To dtLIST_DATA.Rows.Count - 1 Step Convert.ToDecimal(dt_CFGR_ARTI_ECO(0)("Nombre de ligne dans le fichier PDF").ToString)
                                 Dim sFichier As String = DIG_FACT_IMPR_PDF(sFichier_Modele,
                                           "", TextBox_NU_BL.Text, "Palette",
@@ -1108,10 +1110,11 @@ Public Class CLSG
                                             dtLIST_DATA, iPDF)
                                 sFichier_PDF = PDF_CCTN_FICH(sFichier_PDF, sFichier)
                             Next
-                            COMM_APP_WEB_COPY_FILE(sFichier_PDF, "c:\sources\App_Web\PagesMembres\Digital_Factory\2.pdf", True)
-                            ClientScript.RegisterStartupScript([GetType](), "printPdf", "document.getElementById(""pdf"").src = """ & Path.GetFileName(sFichier_PDF) & """;
-                                                                                     document.getElementById(""pdf"").onload = function() {window.frames[""pdf""].focus();
-                                                                                                                                           window.frames[""pdf""].print();};", True)
+                            ClientScript.RegisterStartupScript([GetType](), "printPdf", COMM_APP_WEB_JS_IPSO_FICH_PDF(sFichier_PDF), True)
+                            'COMM_APP_WEB_COPY_FILE(sFichier_PDF, "c:\sources\App_Web\PagesMembres\Digital_Factory\2.pdf", True)
+                            'ClientScript.RegisterStartupScript([GetType](), "printPdf", "document.getElementById(""pdf"").src = """ & Path.GetFileName(sFichier_PDF) & """;
+                            '                                                         document.getElementById(""pdf"").onload = function() {window.frames[""pdf""].focus();
+                            '                                                                                                               window.frames[""pdf""].print();};", True)
                             'File.Delete(sFichier_PDF)
                         End If
                         'Envoi de fichier par mail (e-takes care, forsee power, C43)
@@ -1197,13 +1200,16 @@ Public Class CLSG
                                                                        "", TextBox_NU_BL.Text, "Palette",
                                                                        "", "", "", Label_NB_CART_SCAN.Text,
                                                                        Label_NB_CART_SCAN.Text, Label_NU_PALE.Text, dtVar)
-                        COMM_APP_WEB_COPY_FILE(sFichier, "c:\sources\App_Web\PagesMembres\Digital_Factory\2.pdf", True)
-                        ClientScript.RegisterStartupScript([GetType](), "printPdf", "document.getElementById(""pdf"").src = """ & Path.GetFileName(sFichier) & """;
-                                                                                     document.getElementById(""pdf"").onload = function() {window.frames[""pdf""].focus();
-                                                                                                                                           window.frames[""pdf""].print();};", True)
+                        COMM_APP_WEB_COPY_FILE(sFichier, Server.MapPath($"~/PagesMembres/Digital_Factory/{Path.GetFileName(sFichier)}"), True) 'todo possible ne sert à rien
+                        ClientScript.RegisterStartupScript([GetType](), "printPdf", COMM_APP_WEB_JS_IPSO_FICH_PDF(sFichier), True)
+                        'COMM_APP_WEB_COPY_FILE(sFichier, "c:\sources\App_Web\PagesMembres\Digital_Factory\2.pdf", True)
+                        'ClientScript.RegisterStartupScript([GetType](), "printPdf", "document.getElementById(""pdf"").src = """ & Path.GetFileName(sFichier) & """;
+                        '                                                             document.getElementById(""pdf"").onload = function() {window.frames[""pdf""].focus();
+                        '                                                                                                                   window.frames[""pdf""].print();};", True)
                         sFichier_PDF = sFichier
                     Else
-                        sFichier_PDF = "c:\sources\App_Web\PagesMembres\Digital_Factory\delivery_form_" & CInt(Int((10000000 * Rnd()) + 1)) & "_merge.pdf"
+                        sFichier_PDF = Server.MapPath($"~/PagesMembres/Digital_Factory/delivery_form_{CInt(Int((10000000 * Rnd()) + 1))}_merge.pdf")
+                        'sFichier_PDF = "c:\sources\App_Web\PagesMembres\Digital_Factory\delivery_form_" & CInt(Int((10000000 * Rnd()) + 1)) & "_merge.pdf"
                         For iPDF = 0 To dtLIST_DATA.Rows.Count - 1 Step Convert.ToDecimal(dt_CFGR_ARTI_ECO(0)("Nombre de ligne dans le fichier PDF").ToString)
                             Dim sFichier As String = DIG_FACT_IMPR_PDF(sFichier_Modele,
                                           "", TextBox_NU_BL.Text, "Palette",
@@ -1212,10 +1218,11 @@ Public Class CLSG
                                             dtLIST_DATA, iPDF)
                             sFichier_PDF = PDF_CCTN_FICH(sFichier_PDF, sFichier)
                         Next
-                        COMM_APP_WEB_COPY_FILE(sFichier_PDF, "c:\sources\App_Web\PagesMembres\Digital_Factory\2.pdf", True)
-                        ClientScript.RegisterStartupScript([GetType](), "printPdf", "document.getElementById(""pdf"").src = """ & Path.GetFileName(sFichier_PDF) & """;
-                                                                                     document.getElementById(""pdf"").onload = function() {window.frames[""pdf""].focus();
-                                                                                                                                           window.frames[""pdf""].print();};", True)
+                        ClientScript.RegisterStartupScript([GetType](), "printPdf", COMM_APP_WEB_JS_IPSO_FICH_PDF(sFichier_PDF), True)
+                        'COMM_APP_WEB_COPY_FILE(sFichier_PDF, "c:\sources\App_Web\PagesMembres\Digital_Factory\2.pdf", True)
+                        'ClientScript.RegisterStartupScript([GetType](), "printPdf", "document.getElementById(""pdf"").src = """ & Path.GetFileName(sFichier_PDF) & """;
+                        '                                                             document.getElementById(""pdf"").onload = function() {window.frames[""pdf""].focus();
+                        '                                                                                                                   window.frames[""pdf""].print();};", True)
                         'File.Delete(sFichier_PDF)
                     End If
                     'Envoi de fichier par mail (e-takes care, forsee power, C43)
@@ -1436,10 +1443,13 @@ Public Class CLSG
                 dtNU_SSENS = SQL_SELE_TO_DT(sQuerySql, CS_MES_Digital_Factory)
                 If dtNU_SSENS Is Nothing Then Throw New Exception("Pas de résultat dans la base de données")
                 sFichier_PDF = DIG_FACT_IMPR_PDF(dt_CFGR_ARTI_ECO(0)("Chemin fichier rapport de tracabilite").ToString, sOF, "0", "Carton", sNU_CLIE, sNU_ECO, "", "", "", "", dtNU_SSENS)
-                COMM_APP_WEB_COPY_FILE(sFichier_PDF, "c:\sources\App_Web\PagesMembres\Digital_Factory\2.pdf", True)
-                ClientScript.RegisterStartupScript([GetType](), "printPdf", "document.getElementById(""pdf"").src = """ & Path.GetFileName(sFichier_PDF) & """;
-                                                                             document.getElementById(""pdf"").onload = function() {window.frames[""pdf""].focus();
-                                                                                                                                   window.frames[""pdf""].print();};", True)
+                'COMM_APP_WEB_COPY_FILE(sFichier_PDF, "c:\sources\App_Web\PagesMembres\Digital_Factory\2.pdf", True)
+                COMM_APP_WEB_COPY_FILE(sFichier_PDF, Server.MapPath($"~/PagesMembres/Digital_Factory/{Path.GetFileName(sFichier_PDF)}"), True) 'todo possible ne sert à rien
+                ClientScript.RegisterStartupScript([GetType](), "printPdf", COMM_APP_WEB_JS_IPSO_FICH_PDF(sFichier_PDF), True)
+
+                'ClientScript.RegisterStartupScript([GetType](), "printPdf", "document.getElementById(""pdf"").src = """ & Path.GetFileName(sFichier_PDF) & """;
+                '                                                             document.getElementById(""pdf"").onload = function() {window.frames[""pdf""].focus();
+                '                                                                                                                   window.frames[""pdf""].print();};", True)
             End If
             'vider la gridview
             For Each rGridView_REPE As GridViewRow In GridView_REPE.Rows
@@ -1560,13 +1570,17 @@ Public Class CLSG
                                                                        "", TextBox_NU_BL_V_PALE.Text, "Palette",
                                                                        "", "", "", Label_NB_CART_SCAN.Text,
                                                                        Label_NB_CART_SCAN.Text, TextBox_NU_PALE.Text, dtVar)
-                        COMM_APP_WEB_COPY_FILE(sFichier, "c:\sources\App_Web\PagesMembres\Digital_Factory\2.pdf", True)
-                        ClientScript.RegisterStartupScript([GetType](), "printPdf", "document.getElementById(""pdf"").src = """ & Path.GetFileName(sFichier) & """;
-                                                                                     document.getElementById(""pdf"").onload = function() {window.frames[""pdf""].focus();
-                                                                                                                                           window.frames[""pdf""].print();};", True)
+                        COMM_APP_WEB_COPY_FILE(sFichier, Server.MapPath($"~/PagesMembres/Digital_Factory/{Path.GetFileName(sFichier)}"), True) 'todo possible ne sert à rien
+                        ClientScript.RegisterStartupScript([GetType](), "printPdf", COMM_APP_WEB_JS_IPSO_FICH_PDF(sFichier), True)
+
+                        'COMM_APP_WEB_COPY_FILE(sFichier, "c:\sources\App_Web\PagesMembres\Digital_Factory\2.pdf", True)
+                        'ClientScript.RegisterStartupScript([GetType](), "printPdf", "document.getElementById(""pdf"").src = """ & Path.GetFileName(sFichier) & """;
+                        '                                                             document.getElementById(""pdf"").onload = function() {window.frames[""pdf""].focus();
+                        '                                                                                                                   window.frames[""pdf""].print();};", True)
                         sFichier_PDF = sFichier
                     Else
-                        sFichier_PDF = "c:\sources\App_Web\PagesMembres\Digital_Factory\delivery_form_" & CInt(Int((10000000 * Rnd()) + 1)) & "_merge.pdf"
+                        sFichier_PDF = Server.MapPath($"~/PagesMembres/Digital_Factory/delivery_form_{CInt(Int((10000000 * Rnd()) + 1))}_merge.pdf")
+                        'sFichier_PDF = "c:\sources\App_Web\PagesMembres\Digital_Factory\delivery_form_" & CInt(Int((10000000 * Rnd()) + 1)) & "_merge.pdf"
                         For iPDF = 0 To dtLIST_DATA.Rows.Count - 1 Step Convert.ToDecimal(dt_CFGR_ARTI_ECO(0)("Nombre de ligne dans le fichier PDF").ToString)
                             Dim sFichier As String = DIG_FACT_IMPR_PDF(sFichier_Modele,
                                           "", TextBox_NU_BL_V_PALE.Text, "Palette",
@@ -1575,10 +1589,12 @@ Public Class CLSG
                                             dtLIST_DATA, iPDF)
                             sFichier_PDF = PDF_CCTN_FICH(sFichier_PDF, sFichier)
                         Next
-                        COMM_APP_WEB_COPY_FILE(sFichier_PDF, "c:\sources\App_Web\PagesMembres\Digital_Factory\2.pdf", True)
-                        ClientScript.RegisterStartupScript([GetType](), "printPdf", "document.getElementById(""pdf"").src = """ & Path.GetFileName(sFichier_PDF) & """;
-                                                                                     document.getElementById(""pdf"").onload = function() {window.frames[""pdf""].focus();
-                                                                                                                                           window.frames[""pdf""].print();};", True)
+                        ClientScript.RegisterStartupScript([GetType](), "printPdf", COMM_APP_WEB_JS_IPSO_FICH_PDF(sFichier_PDF), True)
+
+                        'COMM_APP_WEB_COPY_FILE(sFichier_PDF, "c:\sources\App_Web\PagesMembres\Digital_Factory\2.pdf", True)
+                        'ClientScript.RegisterStartupScript([GetType](), "printPdf", "document.getElementById(""pdf"").src = """ & Path.GetFileName(sFichier_PDF) & """;
+                        '                                                             document.getElementById(""pdf"").onload = function() {window.frames[""pdf""].focus();
+                        '                                                                                                                   window.frames[""pdf""].print();};", True)
                         'File.Delete(sFichier_PDF)
                     End If
                     'Envoi de fichier par mail (e-takes care, forsee power, C43)
@@ -1651,13 +1667,14 @@ Public Class CLSG
                     sfihcsauv = DIG_FACT_SQL_GET_PARA(Trim(Label_CD_ARTI_ECO_V_PALE.Text), "Chemin de sauvegarde du fichier PDF")
                     COMM_APP_WEB_COPY_FILE(sfich_cart_df, $"{sfihcsauv}\BL\BL {TextBox_NU_BL_V_PALE.Text}\Liste_produits_{COMM_APP_WEB_CONV_FORM_DATE(Now, "ddMMyyyy_HHmmss")}.pdf", True)
                     COMM_APP_WEB_COPY_FILE(sfich_cart_df, Server.MapPath($"~/PagesMembres/Digital_Factory/{Path.GetFileName(sfich_cart_df)}"), True)
-                    Dim sb_script As New StringBuilder
-                    sb_script.Append("document.getElementById(""pdf"").src = """)
-                    sb_script.Append(Path.GetFileName(sfich_cart_df))
-                    sb_script.Append(""";
-                                     document.getElementById(""pdf"").onload = function() {window.frames[""pdf""].focus();
-                                                                                           window.frames[""pdf""].print();};")
-                    ClientScript.RegisterStartupScript([GetType](), "printPdf", sb_script.ToString, True)
+                    ClientScript.RegisterStartupScript([GetType](), "printPdf", COMM_APP_WEB_JS_IPSO_FICH_PDF(sfich_cart_df), True)
+                    'Dim sb_script As New StringBuilder
+                    'sb_script.Append("document.getElementById(""pdf"").src = """)
+                    'sb_script.Append(Path.GetFileName(sfich_cart_df))
+                    'sb_script.Append(""";
+                    '                 document.getElementById(""pdf"").onload = function() {window.frames[""pdf""].focus();
+                    '                                                                       window.frames[""pdf""].print();};")
+                    'ClientScript.RegisterStartupScript([GetType](), "printPdf", sb_script.ToString, True)
                     'ClientScript.RegisterStartupScript([GetType](), "printPdf", "document.getElementById(""pdf"").src = """ & Path.GetFileName(sfich_cart_df) & """;
                     '                                                                     document.getElementById(""pdf"").onload = function() {window.frames[""pdf""].focus();
                     '                                                                                                                           window.frames[""pdf""].print();};", True)
@@ -1710,15 +1727,18 @@ Public Class CLSG
                     sQuery = $"{dt_CFGR_ARTI_ECO(0)("Requête liste produits dans le carton\palette document DF").ToString} WHERE NU_PALE = '{Label_NU_PALE_NU_V_NU_SER.Text}'"
                     Dim sfich_cart_df As String = _CREA_FICH_LIVR_DF(sQuery, "palette", dt_CFGR_ARTI_ECO(0)("Contenu du code à barre document DF").ToString)
                     Dim sfihcsauv As String = DIG_FACT_SQL_GET_PARA(Trim(Label_CD_ARTI_ECO.Text), "Chemin de sauvegarde du fichier PDF")
-                    COMM_APP_WEB_COPY_FILE(sfich_cart_df, $"[{sfihcsauv}\OF {Label_NU_OF.Text}\{Label_NU_CART.Text}_{COMM_APP_WEB_CONV_FORM_DATE(Now, "ddMMyyyy_HHmmss")}.pdf", True)
+                    COMM_APP_WEB_COPY_FILE(sfich_cart_df, $"{sfihcsauv}\OF {Label_NU_OF.Text}\{Label_NU_CART.Text}_{COMM_APP_WEB_CONV_FORM_DATE(Now, "ddMMyyyy_HHmmss")}.pdf", True)
+
                     COMM_APP_WEB_COPY_FILE(sfich_cart_df, Server.MapPath($"~/PagesMembres/Digital_Factory/{Path.GetFileName(sfich_cart_df)}"), True)
-                    Dim sb_script As New StringBuilder
-                    sb_script.Append("document.getElementById(""pdf"").src = """)
-                    sb_script.Append(Path.GetFileName(sfich_cart_df))
-                    sb_script.Append(""";
-                                     document.getElementById(""pdf"").onload = function() {window.frames[""pdf""].focus();
-                                                                                           window.frames[""pdf""].print();};")
-                    ClientScript.RegisterStartupScript([GetType](), "printPdf", sb_script.ToString, True)
+                    'COMM_APP_WEB_COPY_FILE(sFichier, Server.MapPath($"~/PagesMembres/Digital_Factory/{Path.GetFileName(sFichier)}"), True) 'todo possible ne sert à rien
+                    ClientScript.RegisterStartupScript([GetType](), "printPdf", COMM_APP_WEB_JS_IPSO_FICH_PDF(sfich_cart_df), True)
+                    'Dim sb_script As New StringBuilder
+                    'sb_script.Append("document.getElementById(""pdf"").src = """)
+                    'sb_script.Append(Path.GetFileName(sfich_cart_df))
+                    'sb_script.Append(""";
+                    '                 document.getElementById(""pdf"").onload = function() {window.frames[""pdf""].focus();
+                    '                                                                       window.frames[""pdf""].print();};")
+                    'ClientScript.RegisterStartupScript([GetType](), "printPdf", sb_script.ToString, True)
                     'ClientScript.RegisterStartupScript([GetType](), "printPdf", "document.getElementById(""pdf"").src = """ & Path.GetFileName(sfich_cart_df) & """;
                     '                                                                     document.getElementById(""pdf"").onload = function() {window.frames[""pdf""].focus();
                     '                                                                                                                           window.frames[""pdf""].print();};", True)

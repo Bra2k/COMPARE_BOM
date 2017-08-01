@@ -41,7 +41,7 @@
         <a class="tile" data-role="tile" data-effect="slideUpDown" href="/PagesMembres/Production/ALMS/IPSO_ETQT_NU_SER.aspx" style="background-color: #002F60;">
             <div class="tile-content slide-up-2">
                 <div class="slide-over text-small" style="background-color: #002F60; text-align: center; color: #FFFFFF;">
-                    Entrer des adresses MAC dans la base de données<br />
+                    Imprimer des étiquettes numéros de série<br />
                     <br />
                 </div>
                 <span class="tile-label bold text-bold" style="color: #FFFFFF;">Imprimer des étiquettes numéros de série</span>

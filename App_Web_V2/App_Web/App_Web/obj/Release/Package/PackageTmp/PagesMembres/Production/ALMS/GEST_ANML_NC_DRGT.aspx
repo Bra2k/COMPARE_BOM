@@ -232,7 +232,7 @@
                                 <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Dérogations, NQI ou n° de rapport de contrôle</a>
                             </h4>
                         </div>
-                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo"  runat="server">
+                        <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo"  runat="server">
                             <div class="panel-body row">
 
                                 <table style="width: 100%;">

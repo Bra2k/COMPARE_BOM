@@ -329,60 +329,6 @@ Partial Public Class TCBL_OPRT
     Protected WithEvents TextBox_NU_SER_VLDT_OPRT As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
-    '''Contrôle MultiView_Tracabilité.
-    '''</summary>
-    '''<remarks>
-    '''Champ généré automatiquement.
-    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-    '''</remarks>
-    Protected WithEvents MultiView_Tracabilité As Global.System.Web.UI.WebControls.MultiView
-    
-    '''<summary>
-    '''Contrôle View_VOID_2.
-    '''</summary>
-    '''<remarks>
-    '''Champ généré automatiquement.
-    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-    '''</remarks>
-    Protected WithEvents View_VOID_2 As Global.System.Web.UI.WebControls.View
-    
-    '''<summary>
-    '''Contrôle MultiView_DCMT.
-    '''</summary>
-    '''<remarks>
-    '''Champ généré automatiquement.
-    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-    '''</remarks>
-    Protected WithEvents MultiView_DCMT As Global.System.Web.UI.WebControls.MultiView
-    
-    '''<summary>
-    '''Contrôle View_VOID_3.
-    '''</summary>
-    '''<remarks>
-    '''Champ généré automatiquement.
-    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-    '''</remarks>
-    Protected WithEvents View_VOID_3 As Global.System.Web.UI.WebControls.View
-    
-    '''<summary>
-    '''Contrôle MultiView_VLDT.
-    '''</summary>
-    '''<remarks>
-    '''Champ généré automatiquement.
-    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-    '''</remarks>
-    Protected WithEvents MultiView_VLDT As Global.System.Web.UI.WebControls.MultiView
-    
-    '''<summary>
-    '''Contrôle View_VOID_4.
-    '''</summary>
-    '''<remarks>
-    '''Champ généré automatiquement.
-    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-    '''</remarks>
-    Protected WithEvents View_VOID_4 As Global.System.Web.UI.WebControls.View
-    
-    '''<summary>
     '''Contrôle View_SAIS_TCBL_COMP.
     '''</summary>
     '''<remarks>

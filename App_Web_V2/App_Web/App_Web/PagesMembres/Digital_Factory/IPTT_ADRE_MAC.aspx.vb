@@ -24,13 +24,13 @@ Public Class IPTT_ADRE_MAC
                 sadresse_mac = $"{s6premier_caractere}{COMM_APP_WEB_CONV_DEC_2_BASE_N(ipremiere_mac_adresse + i, 16, 6)}"
                 Using dt = SQL_SELE_TO_DT($"SELECT [NU_ADRE_MAC]
                                               FROM [dbo].[V_LIAIS_NU_SER]
-                                             WHERE [NU_ADRE_MAC] = '{sadresse_mac}'", CS_MES_Digital_Factory_DEV)
+                                             WHERE [NU_ADRE_MAC] = '{sadresse_mac}'", CS_MES_Digital_Factory)
                     If Not dt Is Nothing Then Throw New Exception($"L'adresse MAC {sadresse_mac} existe déjà dans la base.")
                 End Using
                 sbQuery.Append($"('{TextBox_NM_CRIT.Text}', '{sadresse_mac}', 'Adresse MAC', GETDATE()), ")
             Next
             sbQuery.Append(";")
-            SQL_REQ_ACT(Replace(sbQuery.ToString, "), ;", ")"), CS_MES_Digital_Factory_DEV)
+            SQL_REQ_ACT(Replace(sbQuery.ToString, "), ;", ")"), CS_MES_Digital_Factory)
         Catch ex As Exception
             LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
             Exit Sub
@@ -60,13 +60,13 @@ Public Class IPTT_ADRE_MAC
                 sadresse_mac = $"{s6premier_caractere_premiere_mac_adresse}{COMM_APP_WEB_CONV_DEC_2_BASE_N(i, 16, 6)}"
                 Using dt = SQL_SELE_TO_DT($"SELECT [NU_ADRE_MAC]
                                               FROM [dbo].[V_LIAIS_NU_SER]
-                                             WHERE [NU_ADRE_MAC] = '{sadresse_mac}'", CS_MES_Digital_Factory_DEV)
+                                             WHERE [NU_ADRE_MAC] = '{sadresse_mac}'", CS_MES_Digital_Factory)
                     If Not dt Is Nothing Then Throw New Exception($"L'adresse MAC {sadresse_mac} existe déjà dans la base.")
                 End Using
                 sbQuery.Append($"('{TextBox_NM_CRIT.Text}', '{sadresse_mac}', 'Adresse MAC', GETDATE()), ")
             Next
             sbQuery.Append(";")
-            SQL_REQ_ACT(Replace(sbQuery.ToString, "), ;", ")"), CS_MES_Digital_Factory_DEV)
+            SQL_REQ_ACT(Replace(sbQuery.ToString, "), ;", ")"), CS_MES_Digital_Factory)
         Catch ex As Exception
             LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
             Exit Sub
@@ -75,7 +75,7 @@ Public Class IPTT_ADRE_MAC
 
     Protected Sub Button_UP_FICH_Click(sender As Object, e As EventArgs) Handles Button_UP_FICH.Click
         Try
-            Dim savePath As String = "c:\sources\temp_App_Web\"
+            Dim savePath As String = $"{My.Settings.RPTR_TPRR}\"
 
             Using FileUpload_FICH
                 If Not (FileUpload_FICH.HasFile) Then Throw New Exception("pas de fichier sélectionné")
@@ -83,7 +83,7 @@ Public Class IPTT_ADRE_MAC
                 FileUpload_FICH.SaveAs(savePath)
             End Using
             Select Case Path.GetExtension(savePath)
-                Case "xls", "xlsx" 'récupération des onglets du fichier excel
+                Case ".xls", ".xlsx" 'récupération des onglets du fichier excel
                     Using dt_ONGL_EXCE As DataTable = EXCE_LIST_ONGL(savePath)
                         If dt_ONGL_EXCE Is Nothing Then Throw New Exception("Aucun onglet trouvé")
                         For Each r_ONGL_EXCE As DataRow In dt_ONGL_EXCE.Rows
@@ -91,13 +91,13 @@ Public Class IPTT_ADRE_MAC
                         Next
                     End Using
                     MultiView_FICH.SetActiveView(View_ONGL) 'naviguer vers la vue suivante (View_ONGL)
-                Case "csv" 'récupération des données d'un fichier csv
+                Case ".csv" 'récupération des données d'un fichier csv
                     Session("dtMac_adresse") = COMM_APP_WEB_IMP_CSV_DT(savePath)
                     GridView_SEL_DONN.DataSource = Session("dtMac_adresse")
                     GridView_SEL_DONN.DataBind()
                     MultiView_FICH.SetActiveView(View_SEL_DONN)
                 Case Else
-                    Throw New Exception("Le fichier sélectionné n'a pas les extensions suivantes : xls, xlsx, csv")
+                    Throw New Exception($"Le fichier ({Path.GetExtension(savePath)}) sélectionné n'a pas les extensions suivantes : xls, xlsx, csv")
             End Select
         Catch ex As Exception
             LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
@@ -134,13 +134,13 @@ Public Class IPTT_ADRE_MAC
                         sadresse_mac = Replace(sadresse_mac, " ", "")
                         Using dt = SQL_SELE_TO_DT($"SELECT [NU_ADRE_MAC]
                                                       FROM [dbo].[V_LIAIS_NU_SER]
-                                                     WHERE [NU_ADRE_MAC] = '{sadresse_mac}'", CS_MES_Digital_Factory_DEV)
+                                                     WHERE [NU_ADRE_MAC] = '{sadresse_mac}'", CS_MES_Digital_Factory)
                             If Not dt Is Nothing Then Throw New Exception($"L'adresse MAC {sadresse_mac} existe déjà dans la base.")
                         End Using
                         If Char.IsDigit(COMM_APP_WEB_CONV_BASE_N_2_DEC(Right(sadresse_mac, 6), "16").ToString) Then sbQuery.Append($"('{TextBox_NM_CRIT.Text}', '{sadresse_mac}', 'Adresse MAC', GETDATE()), ")
                     Next
                     sbQuery.Append(";")
-                    SQL_REQ_ACT(Replace(sbQuery.ToString, "), ;", ")"), CS_MES_Digital_Factory_DEV)
+                    SQL_REQ_ACT(Replace(sbQuery.ToString, "), ;", ")"), CS_MES_Digital_Factory)
                 End Using
             End Using
         Catch ex As Exception

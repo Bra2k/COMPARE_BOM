@@ -222,8 +222,9 @@ Public Class Class_COMM_APP_WEB
                 End While
                 'sNB_BASE_N = Mid(BASENUMBERS, iQuot + 1, 1) & sNB_BASE_N
                 sbNB_BASE_N.Insert(0, Mid(BASENUMBERS, iQuot + 1, 1))
+                sNB_BASE_N = sbNB_BASE_N.ToString
             End If
-            sNB_BASE_N = $"{StrDup(iNB_CARA - Len(sbNB_BASE_N.ToString), "0")}{sbNB_BASE_N.ToString}"
+            sNB_BASE_N = $"{StrDup(iNB_CARA - Len(sNB_BASE_N), "0")}{sNB_BASE_N}"
             'sbNB_BASE_N.Append(StrDup(iNB_CARA - Len(sbNB_BASE_N.ToString), "0"))
 
             'sNB_BASE_N = sbNB_BASE_N.ToString
@@ -330,8 +331,8 @@ Public Class Class_COMM_APP_WEB
             Using pageHandler As Page = HttpContext.Current.CurrentHandler
                 'chercher les param dans la base
                 sQuery = $"SELECT [VL_CTRL]
-                         From [APP_WEB_ECO].[dbo].[V_DER_MAJ_DTM_REF_PARA_ETAT_CRTL]
-                        WHERE [NM_PAGE] = '{pageHandler.ToString}' AND [PARA] = '{Replace(sNM_PARA, "'", "''")}' AND [ID_CTRL] = '{sNM_CTRL}'"
+                             FROM [dbo].[V_DER_MAJ_DTM_REF_PARA_ETAT_CRTL]
+                            WHERE [NM_PAGE] = '{pageHandler.ToString}' AND [PARA] = '{Replace(sNM_PARA, "'", "''")}' AND [ID_CTRL] = '{sNM_CTRL}'"
                 Using dt = SQL_SELE_TO_DT(sQuery, CS_APP_WEB_ECO)
                     If dt Is Nothing Then Throw New Exception($"Pas de données pour le contrôle {sNM_CTRL}")
                     sTP_CTRL = Left(sNM_CTRL, sNM_CTRL.IndexOf("_"))
@@ -345,7 +346,7 @@ Public Class Class_COMM_APP_WEB
                     CRTL_GUEST = Ctrl_View.FindControl(sNM_CTRL)
                 End If
                 'LOG_Msg(GetCurrentMethod, CRTL_GUEST.ID)
-                If IsDBNull(CRTL_GUEST) Then Throw New Exception("Contrôle " & sNM_CTRL & " non trouvé")
+                If IsDBNull(CRTL_GUEST) Then Throw New Exception($"Contrôle {sNM_CTRL} non trouvé")
                 Select Case sTP_CTRL
                     Case "CheckBox"
                         Using CheckBox_GUEST = CType(CRTL_GUEST, CheckBox)
@@ -791,10 +792,6 @@ div.WordSection1
         End Try
     End Sub
 
-    'Public Shared Function COMM_APP_WEB_ENCO_CB128() As String
-
-    'End Function
-
     Public Shared Function COMM_APP_WEB_ETAT_CTRL(sPARA As String, Optional sNM_PAGE As String = Nothing) As DataTable
         Dim sQuery As String = ""
         'Dim dt, dtret As New DataTable
@@ -858,5 +855,20 @@ div.WordSection1
             COMM_APP_WEB_ENCO_2OF5_ITLV = Chr(201) & COMM_APP_WEB_ENCO_2OF5_ITLV$ & Chr(202)
         End If
         LOG_Msg(GetCurrentMethod, COMM_APP_WEB_ENCO_2OF5_ITLV)
+    End Function
+
+    Public Shared Function COMM_APP_WEB_JS_IPSO_FICH_PDF(sfichier As String) As String
+        Try
+            Dim sscritp2 = "document.getElementById(""pdf"").onload = function() {window.frames[""pdf""].focus();
+                                                                              window.frames[""pdf""].print();};"
+            Dim sbjs As New StringBuilder
+            sbjs.Append($"document.getElementById(""pdf"").src = ""{Path.GetFileName(sfichier)}"";{vbCrLf}")
+            sbjs.Append(sscritp2)
+            Return sbjs.ToString
+        Catch ex As Exception
+            LOG_Erreur(GetCurrentMethod, ex.Message)
+            Return Nothing
+        End Try
+
     End Function
 End Class

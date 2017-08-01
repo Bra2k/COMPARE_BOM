@@ -206,6 +206,8 @@ Public Class CONF_ARTI
 
                 TextBox_FORM_NU_SER_GNRT.Text = COMM_APP_WEB_GET_PARA($"{sARTI_ECO}|Numéro de série client", "TextBox_FORM_NU_CLIE", "ASP.pagesmembres_digital_factory_impr_etiq_prn_aspx")
                 DropDownList_CRIT_GENE_NU_SER.SelectedValue = COMM_APP_WEB_GET_PARA($"{sARTI_ECO}|Numéro de série client", "DropDownList_CRIT_GENE_NU_SER", "ASP.pagesmembres_digital_factory_impr_etiq_prn_aspx")
+
+                TextBox_NB_ETQT_LARG.Text = dt(0)("Nombre étiquette largeur").ToString
             End Using
 
         Catch ex As Exception
@@ -297,7 +299,9 @@ Public Class CONF_ARTI
             APPL_CONF_CB("Mise à disposition des documents par BL", CheckBox_MISE_DPST_DOCU, False, True)
 
             If TextBox_FORM_NU_SER_GNRT.Text <> COMM_APP_WEB_GET_PARA($"{sARTI_ECO}|Numéro de série client", "TextBox_FORM_NU_CLIE", "ASP.pagesmembres_digital_factory_impr_etiq_prn_aspx") Then COMM_APP_WEB_PARA_AFFI_SAVE($"{sARTI_ECO}|Numéro de série client", "TextBox_FORM_NU_CLIE", TextBox_FORM_NU_SER_GNRT.Text, "ASP.pagesmembres_digital_factory_impr_etiq_prn_aspx")
-            If DropDownList_CRIT_GENE_NU_SER.SelectedValue <> COMM_APP_WEB_GET_PARA($"{sARTI_ECO}|Numéro de série client", "DropDownList_CRIT_GENE_NU_SER", "ASP.pagesmembres_digital_factory_impr_etiq_prn_aspx") Then COMM_APP_WEB_PARA_AFFI_SAVE($"{sARTI_ECO}|Numéro de série client", "TextBox_FICH_MODE", DropDownList_CRIT_GENE_NU_SER.Text, "ASP.pagesmembres_digital_factory_impr_etiq_prn_aspx")
+            If DropDownList_CRIT_GENE_NU_SER.SelectedValue <> COMM_APP_WEB_GET_PARA($"{sARTI_ECO}|Numéro de série client", "DropDownList_CRIT_GENE_NU_SER", "ASP.pagesmembres_digital_factory_impr_etiq_prn_aspx") Then COMM_APP_WEB_PARA_AFFI_SAVE($"{sARTI_ECO}|Numéro de série client", "DropDownList_CRIT_GENE_NU_SER", DropDownList_CRIT_GENE_NU_SER.Text, "ASP.pagesmembres_digital_factory_impr_etiq_prn_aspx")
+
+            APPL_CONF_TB("Nombre étiquette largeur", TextBox_NB_ETQT_LARG, False)
 
         Catch ex As Exception
             LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")

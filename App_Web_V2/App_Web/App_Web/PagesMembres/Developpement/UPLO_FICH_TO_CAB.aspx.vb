@@ -1,6 +1,5 @@
 ﻿Imports App_Web.LOG
 Imports System.Reflection.MethodBase
-Imports App_Web.Class_COMM_APP_WEB
 Imports System.IO
 Public Class UPLO_FICH_TO_CAB
     Inherits System.Web.UI.Page
@@ -31,10 +30,15 @@ Public Class UPLO_FICH_TO_CAB
                         sAdresseConnection = $"ftp://root:0000@{TextBox_IP.Text}"
                         My.Computer.Network.UploadFile($"{My.Settings.RPTR_TPRR}\{flfile.FileName}", $"{sAdresseConnection}/card/{flfile.FileName}")
                         'LOG_Msg(GetCurrentMethod, System.IO.File.Exists(sAdresseConnection & "/card/" & sFichier))
+                    Case "A4+"
+                        sAdresseConnection = $"ftp://root:0000@{TextBox_IP.Text}"
+                        My.Computer.Network.UploadFile($"{My.Settings.RPTR_TPRR}\{flfile.FileName}", $"{sAdresseConnection}/iffs/{flfile.FileName}")
+                        'LOG_Msg(GetCurrentMethod, System.IO.File.Exists(sAdresseConnection & "/card/" & sFichier))
                 End Select
             Next
         Catch ex As Exception
-
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            Exit Sub
         End Try
 
 

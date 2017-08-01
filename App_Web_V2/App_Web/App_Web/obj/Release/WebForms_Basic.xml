@@ -1205,6 +1205,13 @@ Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
+<member name="M:App_Web.CLSG.TextBox_NU_CART_TextChanged(System.Object,System.EventArgs)">
+ <summary>
+ 
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
 <member name="F:App_Web.CONF_ARTI._TextBox_CD_ARTI_ECO">
 <summary>
 Contrôle TextBox_CD_ARTI_ECO.
@@ -1802,6 +1809,15 @@ Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans 
 <member name="F:App_Web.CONF_ARTI._SqlDataSource_CRIT_GENE_NU_SER">
 <summary>
 Contrôle SqlDataSource_CRIT_GENE_NU_SER.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.CONF_ARTI._TextBox_NB_ETQT_LARG">
+<summary>
+Contrôle TextBox_NB_ETQT_LARG.
 </summary>
 <remarks>
 Champ généré automatiquement.
@@ -4139,60 +4155,6 @@ Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web.TCBL_OPRT._MultiView_Tracabilité">
-<summary>
-Contrôle MultiView_Tracabilité.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.TCBL_OPRT._View_VOID_2">
-<summary>
-Contrôle View_VOID_2.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.TCBL_OPRT._MultiView_DCMT">
-<summary>
-Contrôle MultiView_DCMT.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.TCBL_OPRT._View_VOID_3">
-<summary>
-Contrôle View_VOID_3.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.TCBL_OPRT._MultiView_VLDT">
-<summary>
-Contrôle MultiView_VLDT.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.TCBL_OPRT._View_VOID_4">
-<summary>
-Contrôle View_VOID_4.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
 <member name="F:App_Web.TCBL_OPRT._View_SAIS_TCBL_COMP">
 <summary>
 Contrôle View_SAIS_TCBL_COMP.
@@ -5816,6 +5778,15 @@ Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans 
 <member name="F:App_Web.IPSO_ETQT_NU_SER._Button_IPSO">
 <summary>
 Contrôle Button_IPSO.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.IPSO_ETQT_NU_SER._TextBox_IPMT">
+<summary>
+Contrôle TextBox_IPMT.
 </summary>
 <remarks>
 Champ généré automatiquement.

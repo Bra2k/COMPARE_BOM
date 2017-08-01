@@ -17,6 +17,14 @@ Imports System.Drawing.Imaging
 Imports System.IO
 Imports System.Windows.Forms
 Imports App_Web.Class_DIG_FACT_SQL
+Imports App_Web.Class_SQL
+Imports App_Web.Class_SAP_DATA
+Imports App_Web.Class_DIG_FACT
+Imports App_Web.Class_DOC_ITEXT_SHARP
+Imports iTextSharp.text.pdf
+Imports iTextSharp.text
+Imports iTextSharp
+Imports System
 
 'Imports System.Drawing.Printing
 'Imports System.Printing
@@ -25,13 +33,19 @@ Public Class Page_ESSAI
     Inherits System.Web.UI.Page
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        'If Not IsPostBack Then
-        '    If Session("displayname") = "" Then
-        '        Context.GetOwinContext().Authentication.SignOut(Microsoft.AspNet.Identity.DefaultAuthenticationTypes.ApplicationCookie)
-        '    Else
-        '        If App_Web.Class_COMM_APP_WEB.COMM_APP_WEB_GET_DROI_PAGE(Replace(HttpContext.Current.Request.Url.AbsoluteUri, "http://" & LCase(My.Computer.Name) & "/PagesMembres/", "~/PagesMembres/") & ".aspx", Session("department"), Session("User_Name")) = False Then Response.Redirect("~/PagesMembres/RDRC_PAGE_MEMB.aspx")
-        '    End If
-        'End If
+        'Dim sQuery = "SELECT top 100 [CD_DEVDEUI]    as DEV_EUI
+        'FROM [dbo].[DWH_DIM_DEVDEUI]" 'todo order by date
+        'Dim sFichier = ""
+        'Using dt = SQL_SELE_TO_DT(sQuery, CS_SENSINGLABS_PRD)
+        '    sFichier = DOC_ITEXT_SHARP_LIST_CLSG_SENS_LABS(dt, "SENED959700$")
+        'End Using
+        'sQuery = "SELECT top 50 [CD_DEVDEUI]    as DEV_EUI
+        'From [dbo].[DWH_DIM_DEVDEUI]" 'todo order by date
+        'Using dt = SQL_SELE_TO_DT(sQuery, CS_SENSINGLABS_PRD)
+        '    sFichier = DOC_ITEXT_SHARP_LIST_CLSG_SENS_LABS(dt, "SENED959700$")
+        'End Using
+        'ClientScript.RegisterStartupScript([GetType](), "printPdf", "document.getElementById(""pdf"").src = """ & Path.GetFileName(sFichier) & """;
+        '                                                                             document.getElementById(""pdf"").onload = function() {window.frames[""pdf""].focus();};", True)
     End Sub
     <DllImport("advapi32.DLL", SetLastError:=True)> Public Shared Function LogonUser(ByVal lpszUsername As String, ByVal lpszDomain As String, ByVal lpszPassword As String, ByVal dwLogonType As Integer, ByVal dwLogonProvider As Integer, ByRef phToken As IntPtr) As Integer
     End Function
@@ -222,339 +236,25 @@ Public Class Page_ESSAI
 
     Protected Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
 
-        Using dt4 As New DataTable
-            dt4.Columns.Add("#2", Type.GetType("System.String"))
-            dt4.Columns.Add("#5", Type.GetType("System.String"))
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A01026F7"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000003"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A010271E"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000004"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A0102727"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000008"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A010272B"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000010"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A01026E8"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000015"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A010275E"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000017"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A0102729"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000019"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A010271D"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000024"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A010272F"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000027"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A01026E9"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000029"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A0102741"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000448"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A0102740"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000457"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A0102742"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000471"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A0102746"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000506"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A0102745"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000507"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A0102743"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000510"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A0102717"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000652"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A01026F4"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000653"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A01026D5"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000654"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A010270B"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000655"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A01026D8"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000658"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A01026FB"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000659"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A0102701"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000660"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A0102708"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000661"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A01026F2"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000663"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A01026CF"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000665"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A01026FF"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000669"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A01026ED"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000670"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A01026CA"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000672"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A01026C9"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000673"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A01026CE"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000674"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A01026D2"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000675"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A01026EA"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000676"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A0102714"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000677"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A0102705"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000680"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A0102702"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000684"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A0102712"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000686"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A0102700"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000687"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A01026D7"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000689"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A01026F1"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000690"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A010274D"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000692"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A010273B"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000694"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A0102754"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000695"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A010274A"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000700"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A010274C"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000701"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A010273D"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000703"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A0102748"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000704"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A0102715"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000713"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A010273C"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000716"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A01026DA"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000717"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A0102758"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000719"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A010274E"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000722"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A01026DB"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000723"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A0102749"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000725"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A010270C"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000727"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A01026F9"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000728"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A0102752"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000729"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A01026EE"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000730"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A0102755"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000731"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A010273F"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000732"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A0102747"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000733"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A01026DF"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000735"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A0102716"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000736"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A010274B"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000737"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A0102757"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000739"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A0102739"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000744"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A01026DC"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000759"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A010275F"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000762"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A01026E0"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000763"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A0102736"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000764"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A010271C"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000769"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A0102733"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000771"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A0102738"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000778"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A0102759"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000786"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A01026FC"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000788"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A0102762"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000791"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A010273A"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000793"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A0102722"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000794"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A010272A"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000796"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A0102737"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000797"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A0102734"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000799"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A0102725"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000800"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A0102732"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000806"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A0102764"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000808"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A010275D"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000809"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A01026E2"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000810"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A01026D9"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000811"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A01026FA"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000812"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A0102711"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000813"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A010270F"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000814"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A01026D1"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000816"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A01026D0"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000817"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A010272C"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000818"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A0102760"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000819"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A010272E"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000820"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A0102735"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000939"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A0102718"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000941"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A0102703"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000942"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A0102709"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000944"
-            dt4.Rows.Add()
-            dt4.Rows(dt4.Rows.Count - 1)("#2") = "70B3D580A010271A"
-            dt4.Rows(dt4.Rows.Count - 1)("#5") = "1178583000945"
-            Dim sData As String = ""
-            Using sr_AVA = New StreamReader("\\cedb03\sources\Digital Factory\Etiquettes\Sensing Labs\Etiquette_Modele.prn", Encoding.UTF8)
-                sData = sr_AVA.ReadToEnd()
-                sr_AVA.Close()
-            End Using
-            Dim sdata_to_print As String = ""
-            For Each rdt In dt4.Rows
-                sdata_to_print = Replace(Replace(sData, "#2", rdt("#2").ToString), "#5", rdt("#5").ToString)
-                Dim sfich As String = $"{My.Settings.RPTR_TPRR}\{CInt(Int((1000 * Rnd()) + 1))}_Etiquette_Modele.prn"
-                Using sw = New StreamWriter(sfich, False, System.Text.Encoding.UTF8)
-                    sw.WriteLine(sdata_to_print)
-                    sw.Close()
-                End Using
-                COMM_APP_WEB_IMPR_ETIQ_PRN(sfich, "\\SO2K8VM07\CEIMP16")
-            Next
-
-
+        Dim sQuery = "SELECT top 100 [CD_DEVDEUI]    as DEV_EUI
+        FROM [dbo].[DWH_DIM_DEVDEUI]" 'todo order by date
+        Dim sFichier = ""
+        Using dt = SQL_SELE_TO_DT(sQuery, CS_SENSINGLABS_PRD)
+            sFichier = DOC_ITEXT_SHARP_LIST_CLSG_SENS_LABS(dt, "SENED959700$")
         End Using
-        'My.Computer.Network.UploadFile("\\cedb03\sources\Digital Factory\Etiquettes\C43\ARIALN.TTF", "ftp://ftpcard:card@10.100.14.70/fonts/ARIALN.TTF")
-        'COMM_APP_WEB_COPY_FICH_TO_CAB("\\SO2K8VM07\CEIMP22", "\\cedb03\sources\Digital Factory\Etiquettes\C43\ARIALN.TTF")
+        COMM_APP_WEB_COPY_FILE(sFichier, Server.MapPath($"~/PagesMembres/Developpement/{Path.GetFileName(sFichier)}"), True) 'todo possible ne sert à rien
+        ClientScript.RegisterStartupScript([GetType](), "printPdf", COMM_APP_WEB_JS_IPSO_FICH_PDF(sFichier), True)
     End Sub
 
     Protected Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-        ' TextBox1.Text =
-        Dim sFichier As String = Class_DIG_FACT.DIG_FACT_IMPR_PDF(TextBox1.Text,
-                                                                       "1165128", "", "Carton",
-                                                                       "", "(01)03760012570010(11)170109(21)17020002", "", "1",
-                                                                       "1", "1", Nothing, Nothing, 0, "c:\Sources\App_Web\PagesMembres\Developpement\")
-        ClientScript.RegisterStartupScript([GetType](), "printPdf", "document.getElementById(""pdf"").src = """ & Path.GetFileName(sFichier) & """;
-                                                                                     document.getElementById(""pdf"").onload = function() {window.frames[""pdf""].focus();};", True)
+        Dim sQuery = "SELECT top 50 [CD_DEVDEUI]    as DEV_EUI
+        From [dbo].[DWH_DIM_DEVDEUI]" 'todo order by date
+        Dim sFichier = ""
+        Using dt = SQL_SELE_TO_DT(sQuery, CS_SENSINGLABS_PRD)
+            sFichier = DOC_ITEXT_SHARP_LIST_CLSG_SENS_LABS(dt, "SENED959700$")
+        End Using
+        COMM_APP_WEB_COPY_FILE(sFichier, Server.MapPath($"~/PagesMembres/Developpement/{Path.GetFileName(sFichier)}"), True) 'todo possible ne sert à rien
+        ClientScript.RegisterStartupScript([GetType](), "printPdf", COMM_APP_WEB_JS_IPSO_FICH_PDF(sFichier), True)
     End Sub
 
     'Private WithEvents p_Document As PrintDocument = Nothing
