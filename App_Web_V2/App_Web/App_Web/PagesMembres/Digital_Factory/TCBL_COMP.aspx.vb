@@ -491,79 +491,87 @@ Public Class TCBL_COMP
 
     Protected Sub _RAZ_AFCG()
         Dim sQuery As String = ""
-        Dim dt_NS_TRAC, dtMSEG, dt As New DataTable
+        'Dim dt_NS_TRAC, dtMSEG, dt As New DataTable
         'Dim fQT_UTLS As Decimal
         Try
             MultiView_BASC_SAI_SEL.SetActiveView(View_VOID)
             Label_CD_SS_ENS.Text = ""
-            sQuery = "SELECT ISNULL(CASE [NM_NS_CLT] WHEN '' THEN [NM_NS_EOL] ELSE [NM_NS_CLT] END,[NM_NS_EOL]) AS [Numéros de série tracés]
-                        FROM [dbo].[ID_PF_View]
-                       WHERE [LB_ETP] = '" & Label_DES_OP.Text & " (OP:" & Label_OP.Text & ")' AND [NM_OF] = '" & Label_OF.Text & "'
-                      GROUP BY ISNULL(CASE [NM_NS_CLT] WHEN '' THEN [NM_NS_EOL] ELSE [NM_NS_CLT] END,[NM_NS_EOL]), [LB_ETP], [NM_OF]
-                      ORDER BY ISNULL(CASE [NM_NS_CLT] WHEN '' THEN [NM_NS_EOL] ELSE [NM_NS_CLT] END,[NM_NS_EOL]) DESC"
+            sQuery = $"SELECT ISNULL(CASE [NM_NS_CLT] WHEN '' THEN [NM_NS_EOL] ELSE [NM_NS_CLT] END,[NM_NS_EOL]) AS [Numéros de série tracés]
+                         FROM [dbo].[ID_PF_View]
+                        WHERE [LB_ETP] = '{Label_DES_OP.Text} (OP:{Label_OP.Text})' AND [NM_OF] = '{Label_OF.Text}'
+                       GROUP BY ISNULL(CASE [NM_NS_CLT] WHEN '' THEN [NM_NS_EOL] ELSE [NM_NS_CLT] END,[NM_NS_EOL]), [LB_ETP], [NM_OF]
+                       ORDER BY ISNULL(CASE [NM_NS_CLT] WHEN '' THEN [NM_NS_EOL] ELSE [NM_NS_CLT] END,[NM_NS_EOL]) DESC"
             TextBox_SS_ENS.Text = ""
-            dt_NS_TRAC = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
-            Session("DT_NS_TRAC") = dt_NS_TRAC
-            GridView_SN_TRAC.DataSource = Session("DT_NS_TRAC")
-            GridView_SN_TRAC.DataBind()
-            MultiView_Tracabilité.SetActiveView(View_SAIS_ENS)
+            Using dt_NS_TRAC = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
+                Session("DT_NS_TRAC") = dt_NS_TRAC
+                GridView_SN_TRAC.DataSource = Session("DT_NS_TRAC")
+                GridView_SN_TRAC.DataBind()
+                MultiView_Tracabilité.SetActiveView(View_SAIS_ENS)
 
-            'mise à jour des quantité restante
-            For Each rGridView_REPE As GridViewRow In GridView_REPE.Rows
-                If rGridView_REPE.Cells(5).Text <> "&nbsp;" Then
-                    sQuery = "SELECT [NM_QTE_INIT]
-                                    ,ISNULL([NB_UTLS],0) AS NB_UTLS
-                                FROM [dbo].[V_LIST_CONT_NON_VIDE]
-                               WHERE [NM_CNTR] = '" & rGridView_REPE.Cells(5).Text & "' AND [NM_OF] = '" & TextBox_OF.Text & "'"
-                    dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
-                    If dt Is Nothing Then
-                        rGridView_REPE.Cells(8).Text = dt(0)("NM_QTE_INIT").ToString
+                'mise à jour des quantité restante
+                For Each rGridView_REPE As GridViewRow In GridView_REPE.Rows
+                    If rGridView_REPE.Cells(5).Text <> "&nbsp;" Then
+                        sQuery = $"SELECT [NM_QTE_INIT], ISNULL([NB_UTLS],0) AS NB_UTLS
+                                     FROM [dbo].[V_LIST_CONT_NON_VIDE]
+                                    WHERE [NM_CNTR] = '{rGridView_REPE.Cells(5).Text}' AND [NM_OF] = '{TextBox_OF.Text}'"
+                        Using dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
+                            If dt Is Nothing Then
+                                rGridView_REPE.Cells(8).Text = dt(0)("NM_QTE_INIT").ToString
+                            Else
+                                rGridView_REPE.Cells(8).Text = Convert.ToDecimal(dt(0)("NM_QTE_INIT").ToString) - (Convert.ToDecimal(dt(0)("NB_UTLS").ToString) * Convert.ToDecimal(rGridView_REPE.Cells(4).Text))
+                            End If
+                        End Using
                     Else
-                        rGridView_REPE.Cells(8).Text = Convert.ToDecimal(dt(0)("NM_QTE_INIT").ToString) - (Convert.ToDecimal(dt(0)("NB_UTLS").ToString) * Convert.ToDecimal(rGridView_REPE.Cells(4).Text))
+                        Using dtMSEG = SAP_DATA_READ_MSEG($"MBLNR EQ '{Left(rGridView_REPE.Cells(6).Text, 10)}' AND ZEILE EQ '{Mid(rGridView_REPE.Cells(6).Text, 11, 4)}' AND MJAHR EQ '{Mid(rGridView_REPE.Cells(6).Text, 15, 4)}'")
+                            If dtMSEG Is Nothing Then Continue For
+                            sQuery = $"SELECT COUNT([DT_PSG]) AS NB_ID_COMP
+                                         FROM [dbo].[DTM_TR_CPT]
+                                        WHERE [ID_CPT] LIKE '{rGridView_REPE.Cells(6).Text}%'
+                                       GROUP BY [ID_CPT]"
+                            Using dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
+                                If dt Is Nothing Then
+                                    rGridView_REPE.Cells(8).Text = Convert.ToDecimal(Replace(dtMSEG(0)("MENGE").ToString, ".", ","))
+                                Else
+                                    rGridView_REPE.Cells(8).Text = Convert.ToDecimal(Replace(dtMSEG(0)("MENGE").ToString, ".", ",")) - Convert.ToDecimal(dt(0)("NB_ID_COMP").ToString) * Convert.ToDecimal(rGridView_REPE.Cells(4).Text)
+                                End If
+                            End Using
+                        End Using
                     End If
-                Else
-                    dtMSEG = SAP_DATA_READ_MSEG("MBLNR EQ '" & Left(rGridView_REPE.Cells(6).Text, 10) & "' AND ZEILE EQ '" & Mid(rGridView_REPE.Cells(6).Text, 11, 4) & "' AND MJAHR EQ '" & Mid(rGridView_REPE.Cells(6).Text, 15, 4) & "'")
-                    If dtMSEG Is Nothing Then Continue For
-                    sQuery = "SELECT COUNT([DT_PSG]) AS NB_ID_COMP
-                                FROM [dbo].[DTM_TR_CPT]
-                               WHERE [ID_CPT] LIKE '" & rGridView_REPE.Cells(6).Text & "%'
-                              GROUP BY [ID_CPT]"
-                    dt = SQL_SELE_TO_DT(sQuery, sChaineConnexion)
-                    If dt Is Nothing Then
-                        rGridView_REPE.Cells(8).Text = Convert.ToDecimal(Replace(dtMSEG(0)("MENGE").ToString, ".", ","))
+
+                Next
+
+                'vider la gridview
+                For Each rGridView_REPE As GridViewRow In GridView_REPE.Rows
+                    If rGridView_REPE.Cells(3).Text = "PRODUIT" Or rGridView_REPE.Cells(3).Text = "PRODUIT SEMI-FINI" Then
+                        rGridView_REPE.Cells(6).Text = "&nbsp;"
                     Else
-                        rGridView_REPE.Cells(8).Text = Convert.ToDecimal(Replace(dtMSEG(0)("MENGE").ToString, ".", ",")) - Convert.ToDecimal(dt(0)("NB_ID_COMP").ToString) * Convert.ToDecimal(rGridView_REPE.Cells(4).Text)
+                        If Convert.ToDecimal(rGridView_REPE.Cells(8).Text) = 0 Then
+                            MultiView_Tracabilité.SetActiveView(View_CONT_LOT_ID_COMP)
+                            Label_CD_COMP.Text = rGridView_REPE.Cells(1).Text
+                        End If
                     End If
-                End If
-            Next
+                Next
 
-            'vider la gridview
-            For Each rGridView_REPE As GridViewRow In GridView_REPE.Rows
-                If rGridView_REPE.Cells(3).Text = "PRODUIT" Or rGridView_REPE.Cells(3).Text = "PRODUIT SEMI-FINI" Then
-                    rGridView_REPE.Cells(6).Text = "&nbsp;"
-                Else
-                    If Convert.ToDecimal(rGridView_REPE.Cells(8).Text) = 0 Then
-                        MultiView_Tracabilité.SetActiveView(View_CONT_LOT_ID_COMP)
-                        Label_CD_COMP.Text = rGridView_REPE.Cells(1).Text
-                    End If
-                End If
-            Next
-            LOG_Msg(GetCurrentMethod, "Le numéro de série " & TextBox_ENS.Text & " est tracé.")
-            Label_RES.Text = "Le numéro de série " & TextBox_ENS.Text & " est tracé."
-            TextBox_ENS.Text = ""
-            TextBox_ENS.Focus()
+                LOG_MESS_UTLS(GetCurrentMethod, $"Le numéro de série {TextBox_ENS.Text} est tracé.")
+                'Label_RES.Text = "Le numéro de série " & TextBox_ENS.Text & " est tracé."
+                TextBox_ENS.Text = ""
+                TextBox_ENS.Focus()
 
-            'vérifier la quantité de l'of  
-            If dt_NS_TRAC.Rows.Count = Convert.ToDecimal(Replace(Label_QT_OF.Text, ".", ",")) Then
-                TextBox_OF.Text = ""
-                DropDownList_OP.SelectedValue = ""
-                MultiView_Tracabilité.SetActiveView(View_DATA_ENTR)
-                LOG_Msg(GetCurrentMethod, "L'OF " & Label_OF.Text & " est entièrement tracé.")
-                Label_RES.Text = "L'OF " & Label_OF.Text & " est entièrement tracé."
-                Exit Sub
-            End If
+                'vérifier la quantité de l'of  
+                If dt_NS_TRAC.Rows.Count = Convert.ToDecimal(Replace(Label_QT_OF.Text, ".", ",")) Then
+                    TextBox_OF.Text = ""
+                    DropDownList_OP.DataSource = ""
+                    DropDownList_OP.DataBind()
+                    'DropDownList_OP.SelectedValue = ""
+                    MultiView_Tracabilité.SetActiveView(View_DATA_ENTR)
+                    LOG_MESS_UTLS(GetCurrentMethod, $"L'OF {Label_OF.Text} est entièrement tracé.")
+                    'Label_RES.Text = "L'OF " & Label_OF.Text & " est entièrement tracé."
+                    Exit Sub
+                End If
+            End Using
         Catch ex As Exception
             LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            Exit Sub
         End Try
     End Sub
 End Class

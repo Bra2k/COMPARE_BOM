@@ -594,21 +594,20 @@ Public Class CLSG
                 If dt_CFGR_ARTI_ECO(0)("Document carton DF").ToString = "1" Then
                     sQuery = $"{dt_CFGR_ARTI_ECO(0)("Requête liste produits dans le carton\palette document DF").ToString} WHERE NU_CART = '{Label_NU_CART.Text}'"
                     Dim sfich_cart_df As String = ""
-                    Select Case 1
-                        Case Label_NM_CLIE.Text = "SENSING LABS"
-                            Using dt_list_clsg = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
-                                If dt_list_clsg Is Nothing Then Throw New Exception($"Le carton n°{Label_NU_CART.Text} ne contient aucun numéros de série dans la base.")
-                                sfich_cart_df = DOC_ITEXT_SHARP_LIST_CLSG_SENS_LABS(dt_list_clsg, Label_CD_ARTI_ECO.Text)
-                            End Using
-                        Case Else
-                            sfich_cart_df = _CREA_FICH_LIVR_DF(sQuery, "carton", dt_CFGR_ARTI_ECO(0)("Contenu du code à barre document DF").ToString)
-                    End Select
+                    If Label_NM_CLIE.Text = "Sensing Labs" Then
+                        Using dt_list_clsg = SQL_SELE_TO_DT($"{sQuery} ORDER BY [DT_SCAN]", CS_MES_Digital_Factory)
+                            If dt_list_clsg Is Nothing Then Throw New Exception($"Le carton n°{Label_NU_CART.Text} ne contient aucun numéros de série dans la base.")
+                            sfich_cart_df = DOC_ITEXT_SHARP_LIST_CLSG_SENS_LABS(dt_list_clsg, Label_CD_ARTI_ECO.Text)
+                        End Using
+                    Else
+                        sfich_cart_df = _CREA_FICH_LIVR_DF(sQuery, "carton", dt_CFGR_ARTI_ECO(0)("Contenu du code à barre document DF").ToString)
+                    End If
 
                     Dim sfihcsauv As String = DIG_FACT_SQL_GET_PARA(Trim(Label_CD_ARTI_ECO.Text), "Chemin de sauvegarde du fichier PDF")
                     COMM_APP_WEB_COPY_FILE(sfich_cart_df, $"{sfihcsauv}\OF {Label_NU_OF.Text}\{Label_NU_CART.Text}_{COMM_APP_WEB_CONV_FORM_DATE(Now, "ddMMyyyy_HHmmss")}.pdf", True)
                     COMM_APP_WEB_COPY_FILE(sfich_cart_df, Server.MapPath($"~/PagesMembres/Digital_Factory/" & Path.GetFileName(sfich_cart_df)), True)
                     'sbjs.Clear()
-                    'sbjs.Append($"document.getElementById(""pdf"").src = ""{Path.GetFileName(sfich_cart_df)}"";{vbCrLf}")
+                    ''sbjs.Append($"document.getElementById(""pdf"").src = ""{Path.GetFileName(sfich_cart_df)}"";{vbCrLf}")
                     'sbjs.Append(sscritp2)
                     'ClientScript.RegisterStartupScript([GetType](), "printPdf", sbjs.ToString, True)
                     ClientScript.RegisterStartupScript([GetType](), "printPdf", COMM_APP_WEB_JS_IPSO_FICH_PDF(sfich_cart_df), True)

@@ -1109,14 +1109,20 @@ Public Class Class_DOC_ITEXT_SHARP
         ' Dim ipagenumber As Integer
         Try
             Using dPDF As New Document(PageSize.A4, 10, 10, 10, 10)
-                'Using dtKNMT = SAP_DATA_READ_KNMT($"MATNR LIKE '{scd_arti}%' AND KUNNR EQ '0000000451' AND VKORG EQ 'ORC3' AND VTWEG EQ 'CD'")
-                '    If dtKNMT Is Nothing Then Throw New Exception("Code article client introuvable sous SAP")
-                Dim writer = PdfAWriter.GetInstance(dPDF, New FileStream(sfich, FileMode.Create))
-                'Dim PageEventHandler As New HeaderFooter_LIST_CLSG_SENS_LABS(Trim(dtKNMT(0)("KDMAT").ToString), dt_list_clsg.Rows.Count)
-                Dim PageEventHandler As New HeaderFooter_LIST_CLSG_SENS_LABS(scd_arti, dt_list_clsg.Rows.Count)
+                Using dtKNMT = SAP_DATA_READ_KNMT($"MATNR LIKE '{scd_arti}%' AND KUNNR EQ '0000000451' AND VKORG EQ 'ORC3' AND VTWEG EQ 'CD'")
+                    Dim scd_arti_clie As String = ""
+                    If dtKNMT Is Nothing Then
+                        scd_arti_clie = DIG_FACT_SQL_GET_PARA(scd_arti, "Code article client")
+                        If scd_arti_clie Is Nothing Then Throw New Exception("Code article client introuvable sous SAP")
+                    Else
+                        scd_arti_clie = Trim(dtKNMT(0)("KDMAT").ToString)
+                    End If
+                    Dim writer = PdfAWriter.GetInstance(dPDF, New FileStream(sfich, FileMode.Create))
+                    Dim PageEventHandler As New HeaderFooter_LIST_CLSG_SENS_LABS(scd_arti_clie, dt_list_clsg.Rows.Count)
+                    'Dim PageEventHandler As New HeaderFooter_LIST_CLSG_SENS_LABS(scd_arti, dt_list_clsg.Rows.Count)
 
-                writer.PageEvent = PageEventHandler
-                'End Using
+                    writer.PageEvent = PageEventHandler
+                End Using
                 dPDF.Open()
 
                 'entête

@@ -644,9 +644,7 @@ Public Class Class_DIG_FACT_SQL
     Public Shared Sub DIG_FACT_SQL_SET_PARA(sCRIT As String, sNM_PARA As String, sVAL_PARA As String)
 
         Dim sQuerySql As String = $"INSERT INTO [dbo].[DTM_REF_PARA]([NM_CRIT],[NM_PARA],[VAL_PARA],[DT_PARA])
-                                         VALUES ('{sCRIT}', '{sNM_PARA}','{sVAL_PARA}' ,GETDATE())"
-        'Dim sChaineConnexion As String = "Data Source=cedb03,1433;Initial Catalog=MES_Digital_Factory;Integrated Security=False;User ID=sa;Password=mdpsa@SQL;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
-
+                                         VALUES ('{Replace(sCRIT, "'", "''")}', '{Replace(sNM_PARA, "'", "''")}','{Replace(sVAL_PARA, "'", "''")}' ,GETDATE())"
         Try
             SQL_REQ_ACT(sQuerySql, CS_MES_Digital_Factory)
         Catch ex As Exception
