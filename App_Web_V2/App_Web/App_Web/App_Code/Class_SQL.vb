@@ -56,12 +56,12 @@ Public Class Class_SQL
                 End Using
                 con.Close()
                 If dt.Rows.Count = 0 Then Throw New Exception($"la requête {sQuery} n'a retourné aucun résultat.")
-                LOG_Msg(GetCurrentMethod, $"la requête {sQuery} a été exécutée.")
+                LOG_MESS_UTLS(GetCurrentMethod, $"la requête {sQuery} a été exécutée.", "success", False)
                 Return dt
             End Using
 
         Catch ex As Exception
-            LOG_Erreur(GetCurrentMethod(), ex.Message)
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "warning", False)
             Return Nothing
         End Try
 
@@ -77,10 +77,10 @@ Public Class Class_SQL
                 cmd.CommandText = sQuery
                 If cmd.ExecuteNonQuery() = 0 Then Throw New Exception($"la requête {sQuery} n'a retourné aucun résultat.")
                 con.Close()
-                LOG_Msg(GetCurrentMethod, $"la requête {sQuery} a été exécutée.")
+                LOG_MESS_UTLS(GetCurrentMethod, $"la requête {sQuery} a été exécutée.", "success", False)
             End Using
         Catch ex As Exception
-            LOG_Erreur(GetCurrentMethod, ex.Message)
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "warning", False)
             Exit Sub
         End Try
 
@@ -100,11 +100,11 @@ Public Class Class_SQL
                 cmd.CommandText = "SELECT @@IDENTITY"
                 ID = cmd.ExecuteScalar()
                 con.Close()
-                LOG_Msg(GetCurrentMethod, $"la requête {sQuery} a été exécutée et a retouné l'ID {ID.ToString}")
+                LOG_MESS_UTLS(GetCurrentMethod, $"la requête {sQuery} a été exécutée et a retouné l'ID {ID.ToString}", "success", False)
                 Return ID
             End Using
         Catch ex As Exception
-            LOG_Erreur(GetCurrentMethod, ex.Message)
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "warning", False)
             Return Nothing
         End Try
 
@@ -119,7 +119,7 @@ Public Class Class_SQL
             Return SQL_Connexion
             'End Using
         Catch ex As Exception
-            LOG_Erreur(GetCurrentMethod, ex.Message)
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "warning", False)
             Return Nothing
         End Try
 
@@ -132,7 +132,7 @@ Public Class Class_SQL
             cn = Nothing
             Return cn
         Catch ex As Exception
-            LOG_Erreur(GetCurrentMethod, ex.Message)
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "warning", False)
             Return Nothing
         End Try
 
@@ -143,11 +143,11 @@ Public Class Class_SQL
         Try
             Dim cmd As New SqlCommand(SqlCommand_String, cn)
             cmd.CommandType = CommandType.StoredProcedure
-            LOG_Msg(GetCurrentMethod, $"La procédure stockée {SqlCommand_String} a été appelée.")
+            LOG_MESS_UTLS(GetCurrentMethod, $"La procédure stockée {SqlCommand_String} a été appelée.", "success", False)
             Return cmd
             'End Using
         Catch ex As Exception
-            LOG_Erreur(GetCurrentMethod, ex.Message)
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "warning", False)
             Return Nothing
         End Try
 
@@ -158,7 +158,7 @@ Public Class Class_SQL
         Try
             cmd.ExecuteNonQuery()
         Catch ex As Exception
-            LOG_Erreur(GetCurrentMethod, ex.Message)
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "warning", False)
             Exit Sub
         End Try
 
@@ -172,12 +172,11 @@ Public Class Class_SQL
             cmd.Parameters.Add(New SqlParameter(paramètre, type, taille))
             cmd.Parameters(paramètre).Value = valeur
             If direction = "Output" Then cmd.Parameters(paramètre).Direction = ParameterDirection.InputOutput
+            LOG_MESS_UTLS(GetCurrentMethod, $"La valeur {valeur} a été appliquée sur le paramètre {paramètre}.", "success", False)
         Catch ex As Exception
-            LOG_Erreur(GetCurrentMethod, ex.Message)
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "warning", False)
             Exit Sub
         End Try
-
-        LOG_Msg(GetCurrentMethod, $"La valeur {valeur} a été appliquée sur le paramètre {paramètre}.")
 
     End Sub
 
@@ -191,13 +190,12 @@ Public Class Class_SQL
             Else
                 resultat = cmd.Parameters(paramètre).Value
             End If
+            LOG_MESS_UTLS(GetCurrentMethod, $"Le paramètre {paramètre} est égal à {resultat}", "success", False)
+            Return resultat
         Catch ex As Exception
-            LOG_Erreur(GetCurrentMethod, ex.Message)
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "warning", False)
             Return Nothing
         End Try
-
-        LOG_Msg(GetCurrentMethod, $"Le paramètre {paramètre} est égal à {resultat}")
-        Return resultat
 
     End Function
 
@@ -212,12 +210,11 @@ Public Class Class_SQL
                 bulkCopy.DestinationTableName = sTable
                 bulkCopy.WriteToServer(dtDonnées)
             End Using
+            LOG_MESS_UTLS(GetCurrentMethod, "La datatable a été copiée dans la base", "success", False)
         Catch ex As Exception
-            LOG_Erreur(GetCurrentMethod, ex.Message)
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "warning", False)
             Exit Sub
         End Try
-
-        LOG_Msg(GetCurrentMethod, "La datatable a été copiée dans la base")
 
     End Sub
 
@@ -227,11 +224,11 @@ Public Class Class_SQL
             Using dt As New DataTable, da = New SqlDataAdapter(cmd)
                 da.Fill(dt)
                 If dt.Rows.Count = 0 Then Throw New Exception("Aucun résultat retourné dans la procédure stockée")
-                LOG_Msg(GetCurrentMethod, "La datatable a été copiée dans la base")
+                LOG_MESS_UTLS(GetCurrentMethod, "La procédure stockée a retourné un résultat transmis dans une datatable", "success", False)
                 Return dt
             End Using
         Catch ex As Exception
-            LOG_Erreur(GetCurrentMethod, ex.Message)
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "warning", False)
             Return Nothing
         End Try
 
