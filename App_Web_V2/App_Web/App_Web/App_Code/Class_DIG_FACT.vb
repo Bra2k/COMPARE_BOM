@@ -799,7 +799,6 @@ Public Class Class_DIG_FACT_SQL
                               AND VAL_PARA = '{sLB_NU_OPRT}'"
                 Using dt = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
                     If dt Is Nothing Then Throw New Exception("Pas de Workflow configuré dans la base. Prévenir un Méthode")
-
                     If dt(0)("NU_ETAP").ToString <> "1" Then 'Première opération dans le workflow --> pas de vérification
                         sQuery_WF = $"SELECT [NM_ETAP_PCDT]      
                                         FROM [dbo].[V_WORK_PASS]

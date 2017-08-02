@@ -135,7 +135,6 @@ Public Class LOG
                 con.Close()
             End Using
 
-
             'Using db As New APP_WEB_ECOEntities
             '    Dim log As New DTM_LOG_APP_WEB
             '    log.NM_POST = sPoste_User
@@ -146,20 +145,36 @@ Public Class LOG
             '    db.DTM_LOG_APP_WEB.Add(log)
             '    db.SaveChanges()
             'End Using
-            If bAFCG_FENE = True Then HttpContext.Current.Response.Write($"<body><script type=""text/javascript""> alert('{Replace(sMessage, "'", "\'")}');</script></body>")
-            'If bAFCG_FENE = True Then
-            '    Dim sb As New StringBuilder
-            '    sb.Append("<script>(function({$.Notify({")
-            '    sb.Append($"caption: '{mbFunction.Name}',")
-            '    sb.Append($"content: '{Replace(sMessage, "'", "\'")}',")
-            '    sb.Append($"type: '{Replace(sType, "Erreur", "alert")}',")
-            '    sb.Append("keepOpen: true});};))</script>")
-            '    Using pageHandler As Page = HttpContext.Current.CurrentHandler
-            '        pageHandler.RegisterStartupScript("alert_app", sb.ToString) 'HttpContext.Current.Response.Write(sb.ToString)
-            '    End Using
-            'End If
+            'If bAFCG_FENE = True Then HttpContext.Current.Response.Write($"<body><script type=""text/javascript""> alert('{Replace(sMessage, "'", "\'")}');</script></body>")
+            If bAFCG_FENE = True Then
+                Dim sb As New StringBuilder
+                sb.Append("<script>$.Dialog({")
+                sb.Append($"    title: ""{mbFunction.Name}"",")
+                sb.Append($"    content: ""{Replace(sMessage, "'", "\'")}"",")
+                sb.Append("     actions: [")
+                sb.Append("        {")
+                sb.Append("            title: ""Ok"",")
+                sb.Append("            onclick: function(el){")
+                sb.Append("                $(el).data('dialog').close();")
+                sb.Append("            }")
+                sb.Append("        }")
+                sb.Append("    ],")
+                sb.Append("     options: {class: ""padding20 dialog"",")
+                sb.Append($"     type: ""{Replace(sType, "Erreur", "alert")}"", closebutton: ""true"", place: ""default"", style: ""width: auto; height: auto; visibility: visible; font-family: verdana;"", overlay: ""true"", overlaycolor: ""op-dark"", overlayclickclose:""true""")
+                sb.Append("}    ")
+                sb.Append("});</script>")
+
+                'sb.Append("<script>$.Notify({")
+                'sb.Append($"caption '{mbFunction.Name}',")
+                'sb.Append($"content: '{Replace(sMessage, "'", "\'")}',")
+                'sb.Append($"type: '{Replace(sType, "Erreur", "alert")}',")
+                'sb.Append("keepOpen: true});</script>")
+                Using pageHandler As Page = HttpContext.Current.CurrentHandler
+                    pageHandler.RegisterStartupScript("alert_app", sb.ToString) 'HttpContext.Current.Response.Write(sb.ToString)
+                End Using
+            End If
         Catch ex As Exception
-            Using sw As New StreamWriter($"C: \sources\App_Web_LOG\{sPoste_User}.log", True)
+            Using sw As New StreamWriter($"C:\sources\App_Web_LOG\{sPoste_User}.log", True)
                 sw.WriteLine($"{DateTime.Now.ToString} - {ex.Message}")
                 sw.WriteLine($"{DateTime.Now.ToString} - Fonction : {mbFunction.Name} - Message : {sMessage}")
                 sw.Close()

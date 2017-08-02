@@ -236,14 +236,10 @@ Public Class Page_ESSAI
 
     Protected Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
 
-        Dim sQuery = "SELECT top 100 [CD_DEVDEUI]    as DEV_EUI
-        FROM [dbo].[DWH_DIM_DEVDEUI]" 'todo order by date
-        Dim sFichier = ""
-        Using dt = SQL_SELE_TO_DT(sQuery, CS_SENSINGLABS_PRD)
-            sFichier = DOC_ITEXT_SHARP_LIST_CLSG_SENS_LABS(dt, "SENED959700$")
-        End Using
-        COMM_APP_WEB_COPY_FILE(sFichier, Server.MapPath($"~/PagesMembres/Developpement/{Path.GetFileName(sFichier)}"), True) 'todo possible ne sert à rien
-        ClientScript.RegisterStartupScript([GetType](), "printPdf", COMM_APP_WEB_JS_IPSO_FICH_PDF(sFichier), True)
+        LOG_MESS_UTLS(GetCurrentMethod, "1", "success")
+        LOG_MESS_UTLS(GetCurrentMethod, "2", "info")
+        LOG_MESS_UTLS(GetCurrentMethod, "3", "warning")
+        LOG_MESS_UTLS(GetCurrentMethod, "4", "alert")
     End Sub
 
     Protected Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click

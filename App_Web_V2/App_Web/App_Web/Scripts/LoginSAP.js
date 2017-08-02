@@ -21,3 +21,4 @@
 
 
 }
+$.Notify({caption: 'Button2_Click',content: '1',type: 'success',keepOpen: true});

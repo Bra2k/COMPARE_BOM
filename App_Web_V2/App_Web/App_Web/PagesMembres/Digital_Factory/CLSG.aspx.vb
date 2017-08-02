@@ -698,6 +698,7 @@ Public Class CLSG
             End Using
         Catch ex As Exception
             LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            Exit Sub
         End Try
 
     End Sub
