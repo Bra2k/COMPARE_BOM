@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="ALMS_MENU.aspx.vb" Inherits="App_Web._ALMS_MENU" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="panel-body tile-container">
+    <div class="tile-container">
         <a class="tile" data-role="tile" data-effect="slideUpDown" href="/PagesMembres/Production/ALMS/ADD_MAC_ADRE.aspx" style="background-color: #002F60;">
             <div class="tile-content slide-up-2">
                 <div class="slide-over text-small" style="background-color: #002F60; text-align: center; color: #FFFFFF;">
@@ -48,5 +48,5 @@
             </div>
         </a>
     </div>
-    
+
 </asp:Content>

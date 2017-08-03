@@ -224,6 +224,33 @@ Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
+<member name="F:App_Web.AMNS_APP_WEB._TextBox_LOG">
+<summary>
+Contrôle TextBox_LOG.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.AMNS_APP_WEB._CheckBoxList_PAGE">
+<summary>
+Contrôle CheckBoxList_PAGE.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.AMNS_APP_WEB._Button_VALI">
+<summary>
+Contrôle Button_VALI.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
 <member name="F:App_Web.CFGR_POST._TextBox_POST">
 <summary>
 Contrôle TextBox_POST.
@@ -2196,69 +2223,6 @@ Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans 
 <member name="F:App_Web.CTTO_POST._Label_NU_OPRT">
 <summary>
 Contrôle Label_NU_OPRT.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.IDCT_GLOB_LIGN._Calendar_DEB">
-<summary>
-Contrôle Calendar_DEB.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.IDCT_GLOB_LIGN._Calendar_FIN">
-<summary>
-Contrôle Calendar_FIN.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.IDCT_GLOB_LIGN._TextBox_OF">
-<summary>
-Contrôle TextBox_OF.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.IDCT_GLOB_LIGN._TextBox_CD_ARTI_ECO">
-<summary>
-Contrôle TextBox_CD_ARTI_ECO.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.IDCT_GLOB_LIGN._Button_FILT">
-<summary>
-Contrôle Button_FILT.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.IDCT_GLOB_LIGN._Label_DEB">
-<summary>
-Contrôle Label_DEB.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.IDCT_GLOB_LIGN._Label_FIN">
-<summary>
-Contrôle Label_FIN.
 </summary>
 <remarks>
 Champ généré automatiquement.
@@ -5787,60 +5751,6 @@ Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans 
 <member name="F:App_Web.IPSO_ETQT_NU_SER._TextBox_IPMT">
 <summary>
 Contrôle TextBox_IPMT.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.CST_HEUR_SAI_BW._MultiView1">
-<summary>
-Contrôle MultiView1.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.CST_HEUR_SAI_BW._View_SAI_CHEF_EQUI">
-<summary>
-Contrôle View_SAI_CHEF_EQUI.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.CST_HEUR_SAI_BW._TextBox_Matricule">
-<summary>
-Contrôle TextBox_Matricule.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.CST_HEUR_SAI_BW._View_HEUR">
-<summary>
-Contrôle View_HEUR.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.CST_HEUR_SAI_BW._CheckBoxList_LIST_OP">
-<summary>
-Contrôle CheckBoxList_LIST_OP.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.CST_HEUR_SAI_BW._GridView_HEUR">
-<summary>
-Contrôle GridView_HEUR.
 </summary>
 <remarks>
 Champ généré automatiquement.

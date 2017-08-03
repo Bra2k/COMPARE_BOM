@@ -113,7 +113,7 @@
         <div class="frame active">
             <div class="heading">Général Digital Factory</div>
             <div class="content">
-                <div class="row" dir="rtl">
+                <div class="row">
                     <div class="col-md-5">
                         <label>Code article client :</label>
                     </div>
@@ -147,7 +147,7 @@
                     <div class="col-md-5">
                         <label>Format du numéro de série Eolane :</label>
                     </div>
-                    <div class="col-md-7">
+                    <div class="col-md-7" style="left: 0px; top: 0px">
                         <asp:TextBox ID="TextBox_FORM_NU_SER_ECO" runat="server" TextMode="MultiLine"></asp:TextBox>
                     </div>
                     <div class="col-md-5">
