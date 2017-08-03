@@ -1221,51 +1221,6 @@ Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web.CONF_ARTI._CheckBox_SAI_OF">
-<summary>
-Contrôle CheckBox_SAI_OF.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.CONF_ARTI._CheckBox_SAI_BL">
-<summary>
-Contrôle CheckBox_SAI_BL.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.CONF_ARTI._CheckBox_SAI_NU_CART">
-<summary>
-Contrôle CheckBox_SAI_NU_CART.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.CONF_ARTI._CheckBox_SAI_NU_SER_ECO">
-<summary>
-Contrôle CheckBox_SAI_NU_SER_ECO.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.CONF_ARTI._CheckBox_SAI_NU_SER_CLIE">
-<summary>
-Contrôle CheckBox_SAI_NU_SER_CLIE.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
 <member name="F:App_Web.CONF_ARTI._CheckBox_SAI_NU_CART_SPEC">
 <summary>
 Contrôle CheckBox_SAI_NU_CART_SPEC.
@@ -1278,15 +1233,6 @@ Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans 
 <member name="F:App_Web.CONF_ARTI._CheckBox_SAI_CD_FNS">
 <summary>
 Contrôle CheckBox_SAI_CD_FNS.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.CONF_ARTI._CheckBox_SUIV_NU_SER_ORDR_CROIS">
-<summary>
-Contrôle CheckBox_SUIV_NU_SER_ORDR_CROIS.
 </summary>
 <remarks>
 Champ généré automatiquement.
@@ -1320,42 +1266,6 @@ Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web.CONF_ARTI._TextBox_FORM_CD_FNS">
-<summary>
-Contrôle TextBox_FORM_CD_FNS.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.CONF_ARTI._TextBox_FORM_NU_SER_CLIE">
-<summary>
-Contrôle TextBox_FORM_NU_SER_CLIE.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.CONF_ARTI._TextBox_FORM_NU_SER_ECO">
-<summary>
-Contrôle TextBox_FORM_NU_SER_ECO.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.CONF_ARTI._TextBox_QT_CART">
-<summary>
-Contrôle TextBox_QT_CART.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
 <member name="F:App_Web.CONF_ARTI._TextBox_QT_FLAN">
 <summary>
 Contrôle TextBox_QT_FLAN.
@@ -1365,117 +1275,9 @@ Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web.CONF_ARTI._CheckBox_SAI_OF_CART_TERM">
-<summary>
-Contrôle CheckBox_SAI_OF_CART_TERM.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
 <member name="F:App_Web.CONF_ARTI._TextBox_FORM_ETIQ_CART">
 <summary>
 Contrôle TextBox_FORM_ETIQ_CART.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.CONF_ARTI._TextBox_FORM_NU_SER_FNS">
-<summary>
-Contrôle TextBox_FORM_NU_SER_FNS.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.CONF_ARTI._TextBox_INDI_CLIE">
-<summary>
-Contrôle TextBox_INDI_CLIE.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.CONF_ARTI._TextBox_NM_DDM">
-<summary>
-Contrôle TextBox_NM_DDM.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.CONF_ARTI._TextBox_SS_ENS_ASS_1">
-<summary>
-Contrôle TextBox_SS_ENS_ASS_1.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.CONF_ARTI._TextBox_SS_ENS_ASS_2">
-<summary>
-Contrôle TextBox_SS_ENS_ASS_2.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.CONF_ARTI._TextBox_SS_ENS_ASS_3">
-<summary>
-Contrôle TextBox_SS_ENS_ASS_3.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.CONF_ARTI._TextBox_SS_ENS_ASS_4">
-<summary>
-Contrôle TextBox_SS_ENS_ASS_4.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.CONF_ARTI._TextBox_SS_ENS_ASS_5">
-<summary>
-Contrôle TextBox_SS_ENS_ASS_5.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.CONF_ARTI._TextBox_SS_ENS_ASS_6">
-<summary>
-Contrôle TextBox_SS_ENS_ASS_6.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.CONF_ARTI._TextBox_FORM_NU_LOT">
-<summary>
-Contrôle TextBox_FORM_NU_LOT.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.CONF_ARTI._TextBox_QT_CART_PALE">
-<summary>
-Contrôle TextBox_QT_CART_PALE.
 </summary>
 <remarks>
 Champ généré automatiquement.
@@ -1494,123 +1296,6 @@ Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans 
 <member name="F:App_Web.CONF_ARTI._TextBox_NM_CHEM_FICH_PDF">
 <summary>
 Contrôle TextBox_NM_CHEM_FICH_PDF.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.CONF_ARTI._TextBox_CHEM_FICH_IMPR_NU_SER_ECO">
-<summary>
-Contrôle TextBox_CHEM_FICH_IMPR_NU_SER_ECO.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.CONF_ARTI._TextBox_CHEM_FICH_IMPR_NU_SER_CLIE">
-<summary>
-Contrôle TextBox_CHEM_FICH_IMPR_NU_SER_CLIE.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.CONF_ARTI._TextBox_CHEM_FICH_IMPR_CART">
-<summary>
-Contrôle TextBox_CHEM_FICH_IMPR_CART.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.CONF_ARTI._TextBox_CHEM_FICH_IMPR_PALE">
-<summary>
-Contrôle TextBox_CHEM_FICH_IMPR_PALE.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.CONF_ARTI._TextBox_PCTG_RECE_CLIE">
-<summary>
-Contrôle TextBox_PCTG_RECE_CLIE.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.CONF_ARTI._CheckBox_SRLS_ARTI">
-<summary>
-Contrôle CheckBox_SRLS_ARTI.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.CONF_ARTI._TextBox_MAIL_SMTP">
-<summary>
-Contrôle TextBox_MAIL_SMTP.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.CONF_ARTI._TextBox_DEST_MAIL">
-<summary>
-Contrôle TextBox_DEST_MAIL.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.CONF_ARTI._TextBox_DEST_COPY_MAIL">
-<summary>
-Contrôle TextBox_DEST_COPY_MAIL.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.CONF_ARTI._TextBox_DEST_BLIND_COPY_MAIL">
-<summary>
-Contrôle TextBox_DEST_BLIND_COPY_MAIL.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.CONF_ARTI._TextBox_SUJE_MAIL">
-<summary>
-Contrôle TextBox_SUJE_MAIL.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.CONF_ARTI._TextBox_CONT_MAIL">
-<summary>
-Contrôle TextBox_CONT_MAIL.
-</summary>
-<remarks>
-Champ généré automatiquement.
-Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-</remarks>
-</member>
-<member name="F:App_Web.CONF_ARTI._CheckBox_MAIL_PJ">
-<summary>
-Contrôle CheckBox_MAIL_PJ.
 </summary>
 <remarks>
 Champ généré automatiquement.
@@ -1644,45 +1329,63 @@ Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web.CONF_ARTI._TextBox_GNRT_IPSO_NU_SER">
+<member name="F:App_Web.CONF_ARTI._TextBox_CD_ARTI_CLIE">
 <summary>
-Contrôle TextBox_GNRT_IPSO_NU_SER.
+Contrôle TextBox_CD_ARTI_CLIE.
 </summary>
 <remarks>
 Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web.CONF_ARTI._CheckBox_FORM_NU_SER_ECO_OF6INC">
+<member name="F:App_Web.CONF_ARTI._TextBox_NM_ARTI_CLIE">
 <summary>
-Contrôle CheckBox_FORM_NU_SER_ECO_OF6INC.
+Contrôle TextBox_NM_ARTI_CLIE.
 </summary>
 <remarks>
 Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web.CONF_ARTI._CheckBox_VRFC_CHRC_OF_NU_SER_ECO">
+<member name="F:App_Web.CONF_ARTI._CheckBox_SAI_NU_SER_ECO">
 <summary>
-Contrôle CheckBox_VRFC_CHRC_OF_NU_SER_ECO.
+Contrôle CheckBox_SAI_NU_SER_ECO.
 </summary>
 <remarks>
 Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web.CONF_ARTI._CheckBox_VRFC_CHRC_OF_NU_SER_CLIE">
+<member name="F:App_Web.CONF_ARTI._CheckBox_SAI_NU_SER_CLIE">
 <summary>
-Contrôle CheckBox_VRFC_CHRC_OF_NU_SER_CLIE.
+Contrôle CheckBox_SAI_NU_SER_CLIE.
 </summary>
 <remarks>
 Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web.CONF_ARTI._CheckBox_SCAN_NU_SER_FIN_OPRT">
+<member name="F:App_Web.CONF_ARTI._TextBox_FORM_CD_FNS">
 <summary>
-Contrôle CheckBox_SCAN_NU_SER_FIN_OPRT.
+Contrôle TextBox_FORM_CD_FNS.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.CONF_ARTI._TextBox_FORM_NU_SER_CLIE">
+<summary>
+Contrôle TextBox_FORM_NU_SER_CLIE.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.CONF_ARTI._TextBox_FORM_NU_SER_ECO">
+<summary>
+Contrôle TextBox_FORM_NU_SER_ECO.
 </summary>
 <remarks>
 Champ généré automatiquement.
@@ -1707,63 +1410,63 @@ Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web.CONF_ARTI._CheckBox_DOCU_CART_DF">
+<member name="F:App_Web.CONF_ARTI._CheckBox_FORM_NU_SER_ECO_OF6INC">
 <summary>
-Contrôle CheckBox_DOCU_CART_DF.
+Contrôle CheckBox_FORM_NU_SER_ECO_OF6INC.
 </summary>
 <remarks>
 Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web.CONF_ARTI._CheckBox_DOCU_PALE_DF">
+<member name="F:App_Web.CONF_ARTI._TextBox_INDI_CLIE">
 <summary>
-Contrôle CheckBox_DOCU_PALE_DF.
+Contrôle TextBox_INDI_CLIE.
 </summary>
 <remarks>
 Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web.CONF_ARTI._CheckBox_DOCU_BL_DF">
+<member name="F:App_Web.CONF_ARTI._TextBox_NM_DDM">
 <summary>
-Contrôle CheckBox_DOCU_BL_DF.
+Contrôle TextBox_NM_DDM.
 </summary>
 <remarks>
 Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web.CONF_ARTI._TextBox_REQU_PROD_DOCU_DF">
+<member name="F:App_Web.CONF_ARTI._TextBox_FORM_NU_SER_FNS">
 <summary>
-Contrôle TextBox_REQU_PROD_DOCU_DF.
+Contrôle TextBox_FORM_NU_SER_FNS.
 </summary>
 <remarks>
 Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web.CONF_ARTI._TextBox_CONT_CAB_DF">
+<member name="F:App_Web.CONF_ARTI._TextBox_FORM_NU_LOT">
 <summary>
-Contrôle TextBox_CONT_CAB_DF.
+Contrôle TextBox_FORM_NU_LOT.
 </summary>
 <remarks>
 Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web.CONF_ARTI._TextBox_CD_ARTI_CLIE">
+<member name="F:App_Web.CONF_ARTI._CheckBox_SRLS_ARTI">
 <summary>
-Contrôle TextBox_CD_ARTI_CLIE.
+Contrôle CheckBox_SRLS_ARTI.
 </summary>
 <remarks>
 Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
-<member name="F:App_Web.CONF_ARTI._TextBox_NM_ARTI_CLIE">
+<member name="F:App_Web.CONF_ARTI._TextBox_PCTG_RECE_CLIE">
 <summary>
-Contrôle TextBox_NM_ARTI_CLIE.
+Contrôle TextBox_PCTG_RECE_CLIE.
 </summary>
 <remarks>
 Champ généré automatiquement.
@@ -1824,6 +1527,42 @@ Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
+<member name="F:App_Web.CONF_ARTI._TextBox_GNRT_IPSO_NU_SER">
+<summary>
+Contrôle TextBox_GNRT_IPSO_NU_SER.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.CONF_ARTI._CheckBox_SAI_OF">
+<summary>
+Contrôle CheckBox_SAI_OF.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.CONF_ARTI._CheckBox_SAI_BL">
+<summary>
+Contrôle CheckBox_SAI_BL.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.CONF_ARTI._CheckBox_SAI_NU_CART">
+<summary>
+Contrôle CheckBox_SAI_NU_CART.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
 <member name="F:App_Web.CONF_ARTI._CheckBox_ETIQ_PACK_NU_SER_ECO">
 <summary>
 Contrôle CheckBox_ETIQ_PACK_NU_SER_ECO.
@@ -1842,9 +1581,117 @@ Champ généré automatiquement.
 Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
 </remarks>
 </member>
+<member name="F:App_Web.CONF_ARTI._CheckBox_SAI_OF_CART_TERM">
+<summary>
+Contrôle CheckBox_SAI_OF_CART_TERM.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
 <member name="F:App_Web.CONF_ARTI._CheckBox_MISE_DPST_DOCU">
 <summary>
 Contrôle CheckBox_MISE_DPST_DOCU.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.CONF_ARTI._CheckBox_SUIV_NU_SER_ORDR_CROIS">
+<summary>
+Contrôle CheckBox_SUIV_NU_SER_ORDR_CROIS.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.CONF_ARTI._TextBox_QT_CART">
+<summary>
+Contrôle TextBox_QT_CART.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.CONF_ARTI._TextBox_QT_CART_PALE">
+<summary>
+Contrôle TextBox_QT_CART_PALE.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.CONF_ARTI._CheckBox_DOCU_CART_DF">
+<summary>
+Contrôle CheckBox_DOCU_CART_DF.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.CONF_ARTI._CheckBox_DOCU_PALE_DF">
+<summary>
+Contrôle CheckBox_DOCU_PALE_DF.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.CONF_ARTI._CheckBox_DOCU_BL_DF">
+<summary>
+Contrôle CheckBox_DOCU_BL_DF.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.CONF_ARTI._TextBox_REQU_PROD_DOCU_DF">
+<summary>
+Contrôle TextBox_REQU_PROD_DOCU_DF.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.CONF_ARTI._TextBox_CONT_CAB_DF">
+<summary>
+Contrôle TextBox_CONT_CAB_DF.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.CONF_ARTI._CheckBox_SCAN_NU_SER_FIN_OPRT">
+<summary>
+Contrôle CheckBox_SCAN_NU_SER_FIN_OPRT.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.CONF_ARTI._CheckBox_VRFC_CHRC_OF_NU_SER_CLIE">
+<summary>
+Contrôle CheckBox_VRFC_CHRC_OF_NU_SER_CLIE.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.CONF_ARTI._CheckBox_VRFC_CHRC_OF_NU_SER_ECO">
+<summary>
+Contrôle CheckBox_VRFC_CHRC_OF_NU_SER_ECO.
 </summary>
 <remarks>
 Champ généré automatiquement.
@@ -1935,6 +1782,159 @@ Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans 
 <member name="F:App_Web.CONF_ARTI._TextBox_WF_ETAP_10">
 <summary>
 Contrôle TextBox_WF_ETAP_10.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.CONF_ARTI._TextBox_SS_ENS_ASS_1">
+<summary>
+Contrôle TextBox_SS_ENS_ASS_1.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.CONF_ARTI._TextBox_SS_ENS_ASS_2">
+<summary>
+Contrôle TextBox_SS_ENS_ASS_2.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.CONF_ARTI._TextBox_SS_ENS_ASS_3">
+<summary>
+Contrôle TextBox_SS_ENS_ASS_3.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.CONF_ARTI._TextBox_SS_ENS_ASS_4">
+<summary>
+Contrôle TextBox_SS_ENS_ASS_4.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.CONF_ARTI._TextBox_SS_ENS_ASS_5">
+<summary>
+Contrôle TextBox_SS_ENS_ASS_5.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.CONF_ARTI._TextBox_SS_ENS_ASS_6">
+<summary>
+Contrôle TextBox_SS_ENS_ASS_6.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.CONF_ARTI._TextBox_MAIL_SMTP">
+<summary>
+Contrôle TextBox_MAIL_SMTP.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.CONF_ARTI._TextBox_DEST_MAIL">
+<summary>
+Contrôle TextBox_DEST_MAIL.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.CONF_ARTI._TextBox_DEST_COPY_MAIL">
+<summary>
+Contrôle TextBox_DEST_COPY_MAIL.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.CONF_ARTI._TextBox_DEST_BLIND_COPY_MAIL">
+<summary>
+Contrôle TextBox_DEST_BLIND_COPY_MAIL.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.CONF_ARTI._TextBox_SUJE_MAIL">
+<summary>
+Contrôle TextBox_SUJE_MAIL.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.CONF_ARTI._TextBox_CONT_MAIL">
+<summary>
+Contrôle TextBox_CONT_MAIL.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.CONF_ARTI._CheckBox_MAIL_PJ">
+<summary>
+Contrôle CheckBox_MAIL_PJ.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.CONF_ARTI._TextBox_CHEM_FICH_IMPR_NU_SER_ECO">
+<summary>
+Contrôle TextBox_CHEM_FICH_IMPR_NU_SER_ECO.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.CONF_ARTI._TextBox_CHEM_FICH_IMPR_NU_SER_CLIE">
+<summary>
+Contrôle TextBox_CHEM_FICH_IMPR_NU_SER_CLIE.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.CONF_ARTI._TextBox_CHEM_FICH_IMPR_CART">
+<summary>
+Contrôle TextBox_CHEM_FICH_IMPR_CART.
+</summary>
+<remarks>
+Champ généré automatiquement.
+Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+</remarks>
+</member>
+<member name="F:App_Web.CONF_ARTI._TextBox_CHEM_FICH_IMPR_PALE">
+<summary>
+Contrôle TextBox_CHEM_FICH_IMPR_PALE.
 </summary>
 <remarks>
 Champ généré automatiquement.
