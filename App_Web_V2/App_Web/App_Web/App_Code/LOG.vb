@@ -5,7 +5,7 @@ Imports System
 Imports System.Web
 Imports System.Web.UI
 Imports Microsoft.VisualBasic.Strings
-
+Imports System.Text
 
 Public Class LOG
     ' Inherits MasterPage

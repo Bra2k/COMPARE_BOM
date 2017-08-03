@@ -415,14 +415,12 @@
     <Content Include="PagesMembres\Digital_Factory\CLSG.aspx" />
     <Content Include="PagesMembres\Digital_Factory\CONF_ARTI.aspx" />
     <Content Include="PagesMembres\Digital_Factory\CTTO_POST.aspx" />
-    <Content Include="PagesMembres\Digital_Factory\IDCT_GLOB_LIGN.aspx" />
     <Content Include="PagesMembres\Digital_Factory\IDCT_PASS.aspx" />
     <Content Include="PagesMembres\Digital_Factory\IMPR_ETIQ_PRN.aspx" />
     <Content Include="PagesMembres\Digital_Factory\IPTT_ADRE_MAC.aspx" />
     <Content Include="PagesMembres\Digital_Factory\TCBL_COMP.aspx" />
     <Content Include="PagesMembres\Digital_Factory\TCBL_ESB_SS_ESB_V2.aspx" />
     <Content Include="PagesMembres\Digital_Factory\TCBL_OPRT.aspx" />
-    <Content Include="PagesMembres\Members.aspx" />
     <Content Include="PagesMembres\Methodes\Comparaison_BOM.aspx" />
     <Content Include="PagesMembres\Production\ALMS\ADD_MAC_ADRE.aspx" />
     <Content Include="PagesMembres\Production\ALMS\ALMS_IMPORT.aspx" />
@@ -430,8 +428,6 @@
     <Content Include="PagesMembres\Production\ALMS\AMNS_DROI_ALMS.aspx" />
     <Content Include="PagesMembres\Production\ALMS\GEST_ANML_NC_DRGT.aspx" />
     <Content Include="PagesMembres\Production\ALMS\IPSO_ETQT_NU_SER.aspx" />
-    <Content Include="PagesMembres\Production\Controle_Reception\AJOU_FNS_CTRL_RCP.aspx" />
-    <Content Include="PagesMembres\Production\CST_HEUR_SAI_BW.aspx" />
     <Content Include="PagesMembres\Production\Saisie_des_defauts\CHX_REPE_SIMI.aspx" />
     <Content Include="PagesMembres\Production\Test\AJOU_EMPL_MAJ_FICH_BANC_TEST.aspx" />
     <Content Include="PagesMembres\Production\Test\CSTT_RESU_TEST_FONC.aspx" />
@@ -1043,13 +1039,6 @@
       <DependentUpon>CTTO_POST.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="PagesMembres\Digital_Factory\IDCT_GLOB_LIGN.aspx.designer.vb">
-      <DependentUpon>IDCT_GLOB_LIGN.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="PagesMembres\Digital_Factory\IDCT_GLOB_LIGN.aspx.vb">
-      <DependentUpon>IDCT_GLOB_LIGN.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="PagesMembres\Digital_Factory\IDCT_PASS.aspx.designer.vb">
       <DependentUpon>IDCT_PASS.aspx</DependentUpon>
     </Compile>
@@ -1091,13 +1080,6 @@
     <Compile Include="PagesMembres\Digital_Factory\TCBL_OPRT.aspx.vb">
       <DependentUpon>TCBL_OPRT.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="PagesMembres\Members.aspx.designer.vb">
-      <DependentUpon>Members.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="PagesMembres\Members.aspx.vb">
-      <DependentUpon>Members.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="PagesMembres\Methodes\Comparaison_BOM.aspx.designer.vb">
       <DependentUpon>Comparaison_BOM.aspx</DependentUpon>
@@ -1146,20 +1128,6 @@
     </Compile>
     <Compile Include="PagesMembres\Production\ALMS\IPSO_ETQT_NU_SER.aspx.vb">
       <DependentUpon>IPSO_ETQT_NU_SER.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
-    <Compile Include="PagesMembres\Production\Controle_Reception\AJOU_FNS_CTRL_RCP.aspx.designer.vb">
-      <DependentUpon>AJOU_FNS_CTRL_RCP.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="PagesMembres\Production\Controle_Reception\AJOU_FNS_CTRL_RCP.aspx.vb">
-      <DependentUpon>AJOU_FNS_CTRL_RCP.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
-    <Compile Include="PagesMembres\Production\CST_HEUR_SAI_BW.aspx.designer.vb">
-      <DependentUpon>CST_HEUR_SAI_BW.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="PagesMembres\Production\CST_HEUR_SAI_BW.aspx.vb">
-      <DependentUpon>CST_HEUR_SAI_BW.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="PagesMembres\Production\Saisie_des_defauts\CHX_REPE_SIMI.aspx.designer.vb">
@@ -1272,6 +1240,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="PagesMembres\Production\Controle_Reception\" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">

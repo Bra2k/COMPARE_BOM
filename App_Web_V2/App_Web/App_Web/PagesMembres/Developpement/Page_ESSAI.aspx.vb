@@ -33,19 +33,13 @@ Public Class Page_ESSAI
     Inherits System.Web.UI.Page
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        'Dim sQuery = "SELECT top 100 [CD_DEVDEUI]    as DEV_EUI
-        'FROM [dbo].[DWH_DIM_DEVDEUI]" 'todo order by date
-        'Dim sFichier = ""
-        'Using dt = SQL_SELE_TO_DT(sQuery, CS_SENSINGLABS_PRD)
-        '    sFichier = DOC_ITEXT_SHARP_LIST_CLSG_SENS_LABS(dt, "SENED959700$")
-        'End Using
-        'sQuery = "SELECT top 50 [CD_DEVDEUI]    as DEV_EUI
-        'From [dbo].[DWH_DIM_DEVDEUI]" 'todo order by date
-        'Using dt = SQL_SELE_TO_DT(sQuery, CS_SENSINGLABS_PRD)
-        '    sFichier = DOC_ITEXT_SHARP_LIST_CLSG_SENS_LABS(dt, "SENED959700$")
-        'End Using
-        'ClientScript.RegisterStartupScript([GetType](), "printPdf", "document.getElementById(""pdf"").src = """ & Path.GetFileName(sFichier) & """;
-        '                                                                             document.getElementById(""pdf"").onload = function() {window.frames[""pdf""].focus();};", True)
+        If Not IsPostBack Then
+            If Session("displayname") = "" Then
+                Context.GetOwinContext().Authentication.SignOut(Microsoft.AspNet.Identity.DefaultAuthenticationTypes.ApplicationCookie)
+            Else
+                If App_Web.Class_COMM_APP_WEB.COMM_APP_WEB_GET_DROI_PAGE(HttpContext.Current.CurrentHandler.ToString, Session("department"), Session("User_Name")) = False Then Response.Redirect("~/PagesMembres/RDRC_PAGE_MEMB.aspx")
+            End If
+        End If
     End Sub
     <DllImport("advapi32.DLL", SetLastError:=True)> Public Shared Function LogonUser(ByVal lpszUsername As String, ByVal lpszDomain As String, ByVal lpszPassword As String, ByVal dwLogonType As Integer, ByVal dwLogonProvider As Integer, ByRef phToken As IntPtr) As Integer
     End Function

@@ -288,9 +288,61 @@
                 </a>
             </div>
         </div>
+
+        <div class="frame">
+            <div class="heading">Utilitaire externe</div>
+            <div class="content tile-container">
+                <a class="tile" data-role="tile" data-effect="slideUpDown" href="http://groupe-eolane.mailinblack.com" style="background-color: #002F60;">
+                    <div class="tile-content slide-up-2">
+                        <div class="slide-over text-small" style="background-color: #002F60; text-align: center; color: #FFFFFF;">
+                            Accéder à MailInBlack<br />
+                            <br />
+                        </div>
+                        <span class="tile-label bold text-bold" style="color: #FFFFFF;">MailInBlack</span>
+                    </div>
+                </a>
+                <a class="tile" data-role="tile" data-effect="slideUpDown" href="http://10.100.13.17/Intranet/accueil.html" style="background-color: #002F60;">
+                    <div class="tile-content slide-up-2">
+                        <div class="slide-over text-small" style="background-color: #002F60; text-align: center; color: #FFFFFF;">
+                            Accéder à l'intranet Eolane Combrée<br />
+                            <br />
+                        </div>
+                        <span class="tile-label bold text-bold" style="color: #FFFFFF;">Intranet Eolane Combrée</span>
+                    </div>
+                </a>
+                <a class="tile" data-role="tile" data-effect="slideUpDown" href="http://hello.eolane.com" style="background-color: #002F60;">
+                    <div class="tile-content slide-up-2">
+                        <div class="slide-over text-small" style="background-color: #002F60; text-align: center; color: #FFFFFF;">
+                            Accéder à Hello<br />
+                            <br />
+                        </div>
+                        <span class="tile-label bold text-bold" style="color: #FFFFFF;">Hello</span>
+                    </div>
+                </a>
+                <a class="tile" data-role="tile" data-effect="slideUpDown" href="http://nqi/cpms/" style="background-color: #002F60;">
+                    <div class="tile-content slide-up-2">
+                        <div class="slide-over text-small" style="background-color: #002F60; text-align: center; color: #FFFFFF;">
+                            Accéder à NQI<br />
+                            <br />
+                        </div>
+                        <span class="tile-label bold text-bold" style="color: #FFFFFF;">NQI</span>
+                    </div>
+                </a>
+                <a class="tile" data-role="tile" data-effect="slideUpDown" href="http://10.100.13.22" style="background-color: #002F60;">
+                    <div class="tile-content slide-up-2">
+                        <div class="slide-over text-small" style="background-color: #002F60; text-align: center; color: #FFFFFF;">
+                            Accéder à l'interface EASY<br />
+                            <br />
+                        </div>
+                        <span class="tile-label bold text-bold" style="color: #FFFFFF;">EASY</span>
+                    </div>
+                </a>
+
+            </div>
+        </div>
     </div>
 
-  <%--  <div id="menu" class="container-fluid centered-text">
+    <%--  <div id="menu" class="container-fluid centered-text">
         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" style="font-family: verdana">
             <div class="panel panel-default">
                 <div class="panel-heading" role="tab" id="headingOne">

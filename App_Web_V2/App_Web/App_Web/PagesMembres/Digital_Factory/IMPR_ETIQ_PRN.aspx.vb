@@ -11,6 +11,13 @@ Public Class IMPR_ETIQ_PRN
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Label_DT_EXP.Text = Now
+        If Not IsPostBack Then
+            If Session("displayname") = "" Then
+                Context.GetOwinContext().Authentication.SignOut(Microsoft.AspNet.Identity.DefaultAuthenticationTypes.ApplicationCookie)
+            Else
+                If App_Web.Class_COMM_APP_WEB.COMM_APP_WEB_GET_DROI_PAGE(HttpContext.Current.CurrentHandler.ToString, Session("department"), Session("User_Name")) = False Then Response.Redirect("~/PagesMembres/RDRC_PAGE_MEMB.aspx")
+            End If
+        End If
     End Sub
 
     Protected Sub CheckBox_NU_SER_ECO_GENE_AUTO_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox_NU_SER_ECO_GENE_AUTO.CheckedChanged

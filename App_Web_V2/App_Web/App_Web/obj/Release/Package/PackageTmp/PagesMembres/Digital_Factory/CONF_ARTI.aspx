@@ -83,9 +83,7 @@
             <td>
                 <asp:TextBox ID="TextBox_NM_CHEM_FICH_PDF" runat="server" Width="350px" ToolTip="Chemin réseau de la sauvegarde du fichier PDF surtout utilisé pour le colisage" TextMode="MultiLine"></asp:TextBox></td>
         </tr>
-        <tr>
-        </tr>
-    </table>
+        </table>
 
     <br />
     <table class="tab_02">
@@ -115,18 +113,18 @@
         <div class="frame active">
             <div class="heading">Général Digital Factory</div>
             <div class="content">
-                <div class="row">
+                <div class="row" dir="rtl">
                     <div class="col-md-5">
                         <label>Code article client :</label>
                     </div>
                     <div class="col-md-7">
-                        <asp:TextBox ID="TextBox_CD_ARTI_CLIE" runat="server" Width="900px" ToolTip="Dénomination du code article client"></asp:TextBox><br />
+                        <asp:TextBox ID="TextBox_CD_ARTI_CLIE" runat="server" ToolTip="Dénomination du code article client"></asp:TextBox><br />
                     </div>
                     <div class="col-md-5">
                         <label>Désignation client de l&#39;article :</label>
                     </div>
                     <div class="col-md-7">
-                        <asp:TextBox ID="TextBox_NM_ARTI_CLIE" runat="server" ToolTip="Désignation client de l'article" Width="900px"></asp:TextBox>
+                        <asp:TextBox ID="TextBox_NM_ARTI_CLIE" runat="server" ToolTip="Désignation client de l'article" ></asp:TextBox>
                     </div>
                     <div class="col-md-12">
                         <asp:CheckBox ID="CheckBox_SAI_NU_SER_ECO" runat="server" Text="&nbsp;Saisie du numéro de série Eolane" ToolTip="Saisir le numéro de série Eolane au colisage" />
@@ -138,31 +136,31 @@
                         <label>Format du code fournisseur :</label>
                     </div>
                     <div class="col-md-7">
-                        <asp:TextBox ID="TextBox_FORM_CD_FNS" runat="server" Width="842px"></asp:TextBox>
+                        <asp:TextBox ID="TextBox_FORM_CD_FNS" runat="server"></asp:TextBox>
                     </div>
                     <div class="col-md-5">
                         <label>Format du numéro de série Client :</label>
                     </div>
                     <div class="col-md-7">
-                        <asp:TextBox ID="TextBox_FORM_NU_SER_CLIE" runat="server" Width="350px" TextMode="MultiLine"></asp:TextBox>
+                        <asp:TextBox ID="TextBox_FORM_NU_SER_CLIE" runat="server"  TextMode="MultiLine"></asp:TextBox>
                     </div>
                     <div class="col-md-5">
                         <label>Format du numéro de série Eolane :</label>
                     </div>
                     <div class="col-md-7">
-                        <asp:TextBox ID="TextBox_FORM_NU_SER_ECO" runat="server" Width="350px" TextMode="MultiLine"></asp:TextBox>
+                        <asp:TextBox ID="TextBox_FORM_NU_SER_ECO" runat="server" TextMode="MultiLine"></asp:TextBox>
                     </div>
                     <div class="col-md-5">
                         <label>Format du numéro d'UDI</label>
                     </div>
                     <div class="col-md-7">
-                        <asp:TextBox ID="TextBox_FORM_UDI" runat="server" Width="790px"></asp:TextBox>
+                        <asp:TextBox ID="TextBox_FORM_UDI" runat="server" ></asp:TextBox>
                     </div>
                     <div class="col-md-5">
                         <label>GTIN</label>
                     </div>
                     <div class="col-md-7">
-                        <asp:TextBox ID="TextBox_GTIN" runat="server" Width="790px"></asp:TextBox>
+                        <asp:TextBox ID="TextBox_GTIN" runat="server" ></asp:TextBox>
                     </div>
                     <div class="col-md-12">
                         <asp:CheckBox ID="CheckBox_FORM_NU_SER_ECO_OF6INC" runat="server" Text="Format numéro de série Eolane OF6INC" />
@@ -171,25 +169,25 @@
                         <label>Indice Client :</label>
                     </div>
                     <div class="col-md-7">
-                        <asp:TextBox ID="TextBox_INDI_CLIE" runat="server" Width="909px"></asp:TextBox>
+                        <asp:TextBox ID="TextBox_INDI_CLIE" runat="server"></asp:TextBox>
                     </div>
                     <div class="col-md-5">
                         <label>Nom du DDM :</label>
                     </div>
                     <div class="col-md-7">
-                        <asp:TextBox ID="TextBox_NM_DDM" runat="server" Width="909px"></asp:TextBox>
+                        <asp:TextBox ID="TextBox_NM_DDM" runat="server"></asp:TextBox>
                     </div>
                     <div class="col-md-5">
                         <label>Format du numéro de série fournisseur (sous-ensemble spécifique par exemple pipette STW) :</label>
                     </div>
                     <div class="col-md-7">
-                        <asp:TextBox ID="TextBox_FORM_NU_SER_FNS" runat="server" Width="449px"></asp:TextBox>
+                        <asp:TextBox ID="TextBox_FORM_NU_SER_FNS" runat="server"></asp:TextBox>
                     </div>
                     <div class="col-md-5">
                         <label>Format du numéro de lot :</label>
                     </div>
                     <div class="col-md-7">
-                        <asp:TextBox ID="TextBox_FORM_NU_LOT" runat="server" Width="797px"></asp:TextBox>
+                        <asp:TextBox ID="TextBox_FORM_NU_LOT" runat="server" ></asp:TextBox>
                     </div>
                     <div class="col-md-12">
                         <asp:CheckBox ID="CheckBox_SRLS_ARTI" runat="server" Checked="True" Text="&nbsp;Sérialisation de l'article" />
@@ -198,7 +196,7 @@
                         <label>Pourcentage de la quantité de l&#39;OF requis pour le présentation en recette client :</label>
                     </div>
                     <div class="col-md-7">
-                        <asp:TextBox ID="TextBox_PCTG_RECE_CLIE" runat="server" Height="22px" Width="545px"></asp:TextBox>
+                        <asp:TextBox ID="TextBox_PCTG_RECE_CLIE" runat="server"></asp:TextBox>
                     </div>
                 </div>
             </div>

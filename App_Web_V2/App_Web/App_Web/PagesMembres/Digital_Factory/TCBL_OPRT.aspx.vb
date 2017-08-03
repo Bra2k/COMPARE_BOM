@@ -2671,6 +2671,16 @@ ORDER BY [BL_TYPE_TCBL] DESC, [CD_ARTI_COMP], NU_SER_COMP"
         MultiView_SELE_COMP.SetActiveView(View_SAIS_CD_LOT_SAIS)
         TextBox_CD_LOT_COMP.Focus()
     End Sub
+
+    Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
+        If Not IsPostBack Then
+            If Session("displayname") = "" Then
+                Context.GetOwinContext().Authentication.SignOut(Microsoft.AspNet.Identity.DefaultAuthenticationTypes.ApplicationCookie)
+            Else
+                If App_Web.Class_COMM_APP_WEB.COMM_APP_WEB_GET_DROI_PAGE(HttpContext.Current.CurrentHandler.ToString, Session("department"), Session("User_Name")) = False Then Response.Redirect("~/PagesMembres/RDRC_PAGE_MEMB.aspx")
+            End If
+        End If
+    End Sub
 End Class
 Public Class HeaderFooter_FCGF
     Inherits PdfPageEventHelper

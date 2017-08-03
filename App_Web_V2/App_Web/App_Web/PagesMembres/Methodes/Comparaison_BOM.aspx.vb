@@ -13,6 +13,11 @@ Public Class Comparaison_BOM
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
 
         If Not Page.IsPostBack Then
+            If Session("displayname") = "" Then
+                Context.GetOwinContext().Authentication.SignOut(Microsoft.AspNet.Identity.DefaultAuthenticationTypes.ApplicationCookie)
+            Else
+                If App_Web.Class_COMM_APP_WEB.COMM_APP_WEB_GET_DROI_PAGE(HttpContext.Current.CurrentHandler.ToString, Session("department"), Session("User_Name")) = False Then Response.Redirect("~/PagesMembres/RDRC_PAGE_MEMB.aspx")
+            End If
             Dim dtListe_Client As DataTable = SAP_DATA_LIST_CLIE("SPRAS EQ 'F'")
             Dim qNMCT_ARTI_GROUP = From rVTEXT In dtListe_Client
                                    Where Len(rVTEXT.Field(Of String)("VTEXT")) > 1
@@ -22,9 +27,6 @@ Public Class Comparaison_BOM
             DropDownList_Client.DataTextField = "N_VTEXT"
             DropDownList_Client.DataValueField = "N_VTEXT"
             DropDownList_Client.DataBind()
-
-            'Session("ID_COMP")
-
         End If
 
         AFF_LOAD("cacher")
