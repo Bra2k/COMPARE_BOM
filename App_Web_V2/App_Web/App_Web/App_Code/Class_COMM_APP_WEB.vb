@@ -7,6 +7,8 @@ Imports System
 Imports System.Security.Principal
 Imports System.DirectoryServices
 Imports PdfSharp.Pdf
+Imports System.Data
+Imports System.Diagnostics
 
 Public Class Class_COMM_APP_WEB
 
@@ -152,7 +154,7 @@ Public Class Class_COMM_APP_WEB
 
         'Dim p As Process
         Try
-            Using p = Process.Start("cmd", $"/c COPY ""{sFichier}"" ""{sImprimante}""")
+            Using p = System.Diagnostics.Process.Start("cmd", $"/c COPY ""{sFichier}"" ""{sImprimante}""")
                 p.WaitForExit()
                 LOG_Msg(GetCurrentMethod, $"Le fichier {sFichier} a été imprimé sur l'imprimante {sImprimante}.")
             End Using
@@ -410,235 +412,235 @@ Public Class Class_COMM_APP_WEB
 
     End Sub
 
-    Public Shared Function COMM_APP_WEB_GET_NETW_PRIN_INFO(Optional sPrinter As String = "noprinterdeclared") As DataTable
-        'Variable declaration
-        Dim prtTable As New DataTable("NetworkPrinters")
-        Dim dirEntry As DirectoryEntry = Nothing
-        Dim dirSearcher As DirectorySearcher = Nothing
-        Dim resultCollection As SearchResultCollection = Nothing
+    'Public Shared Function COMM_APP_WEB_GET_NETW_PRIN_INFO(Optional sPrinter As String = "noprinterdeclared") As DataTable
+    '    'Variable declaration
+    '    Dim prtTable As New DataTable("NetworkPrinters")
+    '    Dim dirEntry As System.DirectoryServices.DirectoryEntry = Nothing
+    '    Dim dirSearcher As DirectorySearcher = Nothing
+    '    Dim resultCollection As SearchResultCollection = Nothing
 
-        'Prepare the printer datatable
-        With prtTable.Columns
-            .Add("DirectoryServiceName", GetType(String))   'cn
-            .Add("ServerName", GetType(String))             'serverName
-            .Add("Name", GetType(String))                   'printerName
-            .Add("NetworkName", GetType(String))            'uNCName
-            .Add("ShareName", GetType(String))              'printShareName
-            .Add("Comments", GetType(String))               'description
-            .Add("Model", GetType(String))                  'driverName
-            .Add("Location", GetType(String))               'location
-            .Add("Port", GetType(String))                   'portName
-            .Add("PrinterLanguage", GetType(String))        'printLanguage
-            .Add("InstalledMemory", GetType(Integer))       'printMemory
-            .Add("PagesPerMinute", GetType(Integer))        'printPagesPerMinute
-            .Add("MaxResolution", GetType(Integer))         'printMaxResolutionSupported      
-            .Add("SupportsCollation", GetType(Boolean))     'printCollate
-            .Add("SupportsColor", GetType(Boolean))         'printColor
-            .Add("SupportsDuplex", GetType(Boolean))        'printDuplexSupported
-            .Add("SupportsStapling", GetType(Boolean))      'printStaplingSupported
-        End With
-        Try
-            'search for printers
-            dirEntry = New DirectoryEntry("")
-            dirSearcher = New DirectorySearcher(dirEntry)
-            With dirSearcher
-                .PageSize = 50
-                .Filter = "objectCategory=printQueue" ' search filter
-                .PropertyNamesOnly = True
-                .PropertiesToLoad.Add("Name")
-                .SearchScope = SearchScope.Subtree
-            End With
-            resultCollection = dirSearcher.FindAll()
-            'Get results
-            Dim entry As DirectoryEntry = Nothing
-            Dim row As DataRow = Nothing
-            Dim obj As Object = Nothing
-            For Each result As SearchResult In resultCollection
-                entry = result.GetDirectoryEntry
-                row = prtTable.NewRow()
+    '    'Prepare the printer datatable
+    '    With prtTable.Columns
+    '        .Add("DirectoryServiceName", GetType(String))   'cn
+    '        .Add("ServerName", GetType(String))             'serverName
+    '        .Add("Name", GetType(String))                   'printerName
+    '        .Add("NetworkName", GetType(String))            'uNCName
+    '        .Add("ShareName", GetType(String))              'printShareName
+    '        .Add("Comments", GetType(String))               'description
+    '        .Add("Model", GetType(String))                  'driverName
+    '        .Add("Location", GetType(String))               'location
+    '        .Add("Port", GetType(String))                   'portName
+    '        .Add("PrinterLanguage", GetType(String))        'printLanguage
+    '        .Add("InstalledMemory", GetType(Integer))       'printMemory
+    '        .Add("PagesPerMinute", GetType(Integer))        'printPagesPerMinute
+    '        .Add("MaxResolution", GetType(Integer))         'printMaxResolutionSupported      
+    '        .Add("SupportsCollation", GetType(Boolean))     'printCollate
+    '        .Add("SupportsColor", GetType(Boolean))         'printColor
+    '        .Add("SupportsDuplex", GetType(Boolean))        'printDuplexSupported
+    '        .Add("SupportsStapling", GetType(Boolean))      'printStaplingSupported
+    '    End With
+    '    Try
+    '        'search for printers
+    '        dirEntry = New System.DirectoryServices.DirectoryEntry("")
+    '        dirSearcher = New DirectorySearcher(dirEntry)
+    '        With dirSearcher
+    '            .PageSize = 50
+    '            .Filter = "objectCategory=printQueue" ' search filter
+    '            .PropertyNamesOnly = True
+    '            .PropertiesToLoad.Add("Name")
+    '            .SearchScope = SearchScope.Subtree
+    '        End With
+    '        resultCollection = dirSearcher.FindAll()
+    '        'Get results
+    '        Dim entry As DirectoryEntry = Nothing
+    '        Dim row As DataRow = Nothing
+    '        Dim obj As Object = Nothing
+    '        For Each result As SearchResult In resultCollection
+    '            entry = result.GetDirectoryEntry
+    '            row = prtTable.NewRow()
 
-                obj = entry.Properties("cn").Value
-                If obj IsNot Nothing Then
-                    row("DirectoryServiceName") = obj.ToString
-                Else
-                    row("DirectoryServiceName") = String.Empty
-                End If
+    '            obj = entry.Properties("cn").Value
+    '            If obj IsNot Nothing Then
+    '                row("DirectoryServiceName") = obj.ToString
+    '            Else
+    '                row("DirectoryServiceName") = String.Empty
+    '            End If
 
-                obj = entry.Properties("serverName").Value
-                If obj IsNot Nothing Then
-                    row("ServerName") = obj.ToString
-                Else
-                    row("ServerName") = String.Empty
-                End If
+    '            obj = entry.Properties("serverName").Value
+    '            If obj IsNot Nothing Then
+    '                row("ServerName") = obj.ToString
+    '            Else
+    '                row("ServerName") = String.Empty
+    '            End If
 
-                obj = entry.Properties("printerName").Value
-                If obj IsNot Nothing Then
-                    row("Name") = obj.ToString
-                Else
-                    row("Name") = String.Empty
-                End If
+    '            obj = entry.Properties("printerName").Value
+    '            If obj IsNot Nothing Then
+    '                row("Name") = obj.ToString
+    '            Else
+    '                row("Name") = String.Empty
+    '            End If
 
-                obj = entry.Properties("uNCName").Value
-                If obj IsNot Nothing Then
-                    row("NetworkName") = obj.ToString
-                Else
-                    row("NetworkName") = String.Empty
-                End If
+    '            obj = entry.Properties("uNCName").Value
+    '            If obj IsNot Nothing Then
+    '                row("NetworkName") = obj.ToString
+    '            Else
+    '                row("NetworkName") = String.Empty
+    '            End If
 
-                obj = entry.Properties("printShareName").Value
-                If obj IsNot Nothing Then
-                    row("ShareName") = obj.ToString
-                Else
-                    row("ShareName") = String.Empty
-                End If
+    '            obj = entry.Properties("printShareName").Value
+    '            If obj IsNot Nothing Then
+    '                row("ShareName") = obj.ToString
+    '            Else
+    '                row("ShareName") = String.Empty
+    '            End If
 
-                obj = entry.Properties("description").Value
-                If obj IsNot Nothing Then
-                    row("Comments") = obj.ToString
-                Else
-                    row("Comments") = String.Empty
-                End If
+    '            obj = entry.Properties("description").Value
+    '            If obj IsNot Nothing Then
+    '                row("Comments") = obj.ToString
+    '            Else
+    '                row("Comments") = String.Empty
+    '            End If
 
-                obj = entry.Properties("driverName").Value
-                If obj IsNot Nothing Then
-                    row("Model") = obj.ToString
-                Else
-                    row("Model") = String.Empty
-                End If
+    '            obj = entry.Properties("driverName").Value
+    '            If obj IsNot Nothing Then
+    '                row("Model") = obj.ToString
+    '            Else
+    '                row("Model") = String.Empty
+    '            End If
 
-                obj = entry.Properties("location").Value
-                If obj IsNot Nothing Then
-                    row("Location") = obj.ToString
-                Else
-                    row("Location") = String.Empty
-                End If
+    '            obj = entry.Properties("location").Value
+    '            If obj IsNot Nothing Then
+    '                row("Location") = obj.ToString
+    '            Else
+    '                row("Location") = String.Empty
+    '            End If
 
-                obj = entry.Properties("portName").Value
-                If obj IsNot Nothing Then
-                    row("Port") = obj.ToString
-                Else
-                    row("Port") = String.Empty
-                End If
+    '            obj = entry.Properties("portName").Value
+    '            If obj IsNot Nothing Then
+    '                row("Port") = obj.ToString
+    '            Else
+    '                row("Port") = String.Empty
+    '            End If
 
-                obj = entry.Properties("printLanguage").Value
-                If obj IsNot Nothing Then
-                    row("PrinterLanguage") = obj.ToString
-                Else
-                    row("PrinterLanguage") = String.Empty
-                End If
+    '            obj = entry.Properties("printLanguage").Value
+    '            If obj IsNot Nothing Then
+    '                row("PrinterLanguage") = obj.ToString
+    '            Else
+    '                row("PrinterLanguage") = String.Empty
+    '            End If
 
-                obj = entry.Properties("printMemory").Value
-                If obj IsNot Nothing Then
-                    row("InstalledMemory") = CInt(obj)
-                Else
-                    row("InstalledMemory") = 0
-                End If
+    '            obj = entry.Properties("printMemory").Value
+    '            If obj IsNot Nothing Then
+    '                row("InstalledMemory") = CInt(obj)
+    '            Else
+    '                row("InstalledMemory") = 0
+    '            End If
 
-                obj = entry.Properties("printPagesPerMinute").Value
-                If obj IsNot Nothing Then
-                    row("PagesPerMinute") = CInt(obj)
-                Else
-                    row("PagesPerMinute") = 0
-                End If
+    '            obj = entry.Properties("printPagesPerMinute").Value
+    '            If obj IsNot Nothing Then
+    '                row("PagesPerMinute") = CInt(obj)
+    '            Else
+    '                row("PagesPerMinute") = 0
+    '            End If
 
-                obj = entry.Properties("printMaxResolutionSupported").Value
-                If obj IsNot Nothing Then
-                    row("MaxResolution") = CInt(obj)
-                Else
-                    row("MaxResolution") = 0
-                End If
+    '            obj = entry.Properties("printMaxResolutionSupported").Value
+    '            If obj IsNot Nothing Then
+    '                row("MaxResolution") = CInt(obj)
+    '            Else
+    '                row("MaxResolution") = 0
+    '            End If
 
-                obj = entry.Properties("printCollate").Value
-                If obj IsNot Nothing Then
-                    row("SupportsCollation") = CBool(obj)
-                Else
-                    row("SupportsCollation") = False
-                End If
+    '            obj = entry.Properties("printCollate").Value
+    '            If obj IsNot Nothing Then
+    '                row("SupportsCollation") = CBool(obj)
+    '            Else
+    '                row("SupportsCollation") = False
+    '            End If
 
-                obj = entry.Properties("printColor").Value
-                If obj IsNot Nothing Then
-                    row("SupportsColor") = CBool(obj)
-                Else
-                    row("SupportsColor") = False
-                End If
+    '            obj = entry.Properties("printColor").Value
+    '            If obj IsNot Nothing Then
+    '                row("SupportsColor") = CBool(obj)
+    '            Else
+    '                row("SupportsColor") = False
+    '            End If
 
-                obj = entry.Properties("printDuplexSupported").Value
-                If obj IsNot Nothing Then
-                    row("SupportsDuplex") = CBool(obj)
-                Else
-                    row("SupportsDuplex") = False
-                End If
+    '            obj = entry.Properties("printDuplexSupported").Value
+    '            If obj IsNot Nothing Then
+    '                row("SupportsDuplex") = CBool(obj)
+    '            Else
+    '                row("SupportsDuplex") = False
+    '            End If
 
-                obj = entry.Properties("printStaplingSupported").Value
-                If obj IsNot Nothing Then
-                    row("SupportsStapling") = CBool(obj)
-                Else
-                    row("SupportsStapling") = False
-                End If
+    '            obj = entry.Properties("printStaplingSupported").Value
+    '            If obj IsNot Nothing Then
+    '                row("SupportsStapling") = CBool(obj)
+    '            Else
+    '                row("SupportsStapling") = False
+    '            End If
 
-                prtTable.Rows.Add(row)
-                obj = Nothing
-                entry.Dispose()
-                entry = Nothing
-            Next
-            dirEntry.Dispose()
-            dirSearcher.Dispose()
-            resultCollection.Dispose()
+    '            prtTable.Rows.Add(row)
+    '            obj = Nothing
+    '            entry.Dispose()
+    '            entry = Nothing
+    '        Next
+    '        dirEntry.Dispose()
+    '        dirSearcher.Dispose()
+    '        resultCollection.Dispose()
 
-        Catch ex As Exception
-            LOG_Erreur(GetCurrentMethod, ex.Message)
-            Return Nothing
-        End Try
-        If sPrinter <> "noprinterdeclared" Then
-            Return prtTable.Select("NetworkName = '" & sPrinter.Insert(sPrinter.IndexOf("\", 3), ".eolane.com") & "'").CopyToDataTable
-        Else
-            Return prtTable
-        End If
+    '    Catch ex As Exception
+    '        LOG_Erreur(GetCurrentMethod, ex.Message)
+    '        Return Nothing
+    '    End Try
+    '    If sPrinter <> "noprinterdeclared" Then
+    '        Return prtTable.Select("NetworkName = '" & sPrinter.Insert(sPrinter.IndexOf("\", 3), ".eolane.com") & "'").CopyToDataTable
+    '    Else
+    '        Return prtTable
+    '    End If
 
-    End Function
+    'End Function
 
-    Public Shared Sub COMM_APP_WEB_COPY_FICH_TO_CAB(sPrinter As String, sFichier As String)
-        Dim admin_token As IntPtr
-        Dim wid_current As WindowsIdentity = WindowsIdentity.GetCurrent()
-        Dim wid_admin As WindowsIdentity = Nothing
-        Dim wic As WindowsImpersonationContext = Nothing
-        Try
-            If LogonUser("ce_adminsv", "eolane", "Eol@ne14", 9, 0, admin_token) = 0 Then Throw New Exception("Log as n'a pas fonctionné")
-            wid_admin = New WindowsIdentity(admin_token)
-            wic = wid_admin.Impersonate()
-            Dim dtPrinters As DataTable = COMM_APP_WEB_GET_NETW_PRIN_INFO(sPrinter)
-            Dim sIP As String = Replace(dtPrinters(0)("Port").ToString, "IP_", "")
-            Dim sAdresseConnection As String = ""
-            COMM_APP_WEB_COPY_FILE(sFichier, My.Settings.RPTR_TPRR & "\" & Path.GetFileName(sFichier), True)
-            sFichier = Path.GetFileName(sFichier)
-            Select Case dtPrinters(0)("Model").ToString
-                Case "CAB EOS1/300"
-                    sAdresseConnection = "ftp://ftpcard:card@" & sIP
-                    If Path.GetExtension(sFichier) = ".ttf" Or Path.GetExtension(sFichier) = ".TTF" Then
-                        My.Computer.Network.UploadFile(My.Settings.RPTR_TPRR & "\" & sFichier, sAdresseConnection & "/fonts/" & sFichier)
-                        'LOG_Msg(GetCurrentMethod, System.IO.File.Exists(sAdresseConnection & "/fonts/" & sFichier))
-                    Else
-                        My.Computer.Network.UploadFile(My.Settings.RPTR_TPRR & "\" & sFichier, sAdresseConnection & "/images/" & sFichier)
-                        'LOG_Msg(GetCurrentMethod, System.IO.File.Exists(sAdresseConnection & "/images/" & sFichier))
-                    End If
-                Case "CAB A4 +/ 600K" Or "CAB MACH4/300"
-                    sAdresseConnection = "ftp://root:0000@" & sIP
-                    My.Computer.Network.UploadFile(My.Settings.RPTR_TPRR & "\" & sFichier, sAdresseConnection & "/card/" & sFichier)
-                    'LOG_Msg(GetCurrentMethod, System.IO.File.Exists(sAdresseConnection & "/card/" & sFichier))
-                Case Else
-                    Throw New Exception("L'imprimante " & sPrinter & " n'est pas une imprimante CAB")
-            End Select
-        Catch ex_uriform As UriFormatException
-            LOG_Erreur(GetCurrentMethod, ex_uriform.Message)
-            Exit Sub
-        Catch ex_IO As IOException
-            LOG_Erreur(GetCurrentMethod, ex_IO.Message)
-            Exit Sub
-        Catch ex As Exception
-            LOG_Erreur(GetCurrentMethod, ex.Message)
-            Exit Sub
-        End Try
-    End Sub
+    'Public Shared Sub COMM_APP_WEB_COPY_FICH_TO_CAB(sPrinter As String, sFichier As String)
+    '    Dim admin_token As IntPtr
+    '    Dim wid_current As WindowsIdentity = WindowsIdentity.GetCurrent()
+    '    Dim wid_admin As WindowsIdentity = Nothing
+    '    Dim wic As WindowsImpersonationContext = Nothing
+    '    Try
+    '        If LogonUser("ce_adminsv", "eolane", "Eol@ne14", 9, 0, admin_token) = 0 Then Throw New Exception("Log as n'a pas fonctionné")
+    '        wid_admin = New WindowsIdentity(admin_token)
+    '        wic = wid_admin.Impersonate()
+    '        Dim dtPrinters As DataTable = COMM_APP_WEB_GET_NETW_PRIN_INFO(sPrinter)
+    '        Dim sIP As String = Replace(dtPrinters(0)("Port").ToString, "IP_", "")
+    '        Dim sAdresseConnection As String = ""
+    '        COMM_APP_WEB_COPY_FILE(sFichier, My.Settings.RPTR_TPRR & "\" & Path.GetFileName(sFichier), True)
+    '        sFichier = Path.GetFileName(sFichier)
+    '        Select Case dtPrinters(0)("Model").ToString
+    '            Case "CAB EOS1/300"
+    '                sAdresseConnection = "ftp://ftpcard:card@" & sIP
+    '                If Path.GetExtension(sFichier) = ".ttf" Or Path.GetExtension(sFichier) = ".TTF" Then
+    '                    My.Computer.Network.UploadFile(My.Settings.RPTR_TPRR & "\" & sFichier, sAdresseConnection & "/fonts/" & sFichier)
+    '                    'LOG_Msg(GetCurrentMethod, System.IO.File.Exists(sAdresseConnection & "/fonts/" & sFichier))
+    '                Else
+    '                    My.Computer.Network.UploadFile(My.Settings.RPTR_TPRR & "\" & sFichier, sAdresseConnection & "/images/" & sFichier)
+    '                    'LOG_Msg(GetCurrentMethod, System.IO.File.Exists(sAdresseConnection & "/images/" & sFichier))
+    '                End If
+    '            Case "CAB A4 +/ 600K" Or "CAB MACH4/300"
+    '                sAdresseConnection = "ftp://root:0000@" & sIP
+    '                My.Computer.Network.UploadFile(My.Settings.RPTR_TPRR & "\" & sFichier, sAdresseConnection & "/card/" & sFichier)
+    '                'LOG_Msg(GetCurrentMethod, System.IO.File.Exists(sAdresseConnection & "/card/" & sFichier))
+    '            Case Else
+    '                Throw New Exception("L'imprimante " & sPrinter & " n'est pas une imprimante CAB")
+    '        End Select
+    '    Catch ex_uriform As UriFormatException
+    '        LOG_Erreur(GetCurrentMethod, ex_uriform.Message)
+    '        Exit Sub
+    '    Catch ex_IO As IOException
+    '        LOG_Erreur(GetCurrentMethod, ex_IO.Message)
+    '        Exit Sub
+    '    Catch ex As Exception
+    '        LOG_Erreur(GetCurrentMethod, ex.Message)
+    '        Exit Sub
+    '    End Try
+    'End Sub
 
     Public Shared Function COMM_APP_WEB_GET_CFGR_AFCG_PAGE_DEFA_TO_DT(sService_Session As String) As DataTable
         Dim sQuery As String = $"SELECT [NM_PAGE]
@@ -711,8 +713,8 @@ Public Class Class_COMM_APP_WEB
             If sCHEM_PJ <> "vide" Then
                 Dim asCHEM_PJ As String() = Split(sCHEM_PJ, ";")
                 For Each sELEM As String In asCHEM_PJ
-                    COMM_APP_WEB_COPY_FILE(sELEM, $"{My.Settings.RPTR_TPRR}\{Path.GetFileName(sELEM)}", True)
-                    Dim item As New System.Net.Mail.Attachment($"{My.Settings.RPTR_TPRR}\{Path.GetFileName(sELEM)}")
+                    COMM_APP_WEB_COPY_FILE(sELEM, $"c:\sources\temp_App_Web\{Path.GetFileName(sELEM)}", True)
+                    Dim item As New System.Net.Mail.Attachment($"c:\sources\temp_App_Web\{Path.GetFileName(sELEM)}")
                     message.Attachments.Add(item) 'ajout de la pièce jointe au message
                 Next
             End If

@@ -44,7 +44,6 @@ Public Class Class_DIG_FACT
         Return True
 
     End Function
-
     Public Shared Sub DIG_FACT_IMPR_ETIQ(sFichier As String, sNU_OF As String, sNU_BL As String, sTYPE_ETIQ As String,
                                          sNU_CLIE As String, sNU_ECO As String, sNU_CART As String, sNB_QT As String,
                                          sNB_CART As String, dtVar As DataTable, Optional sMTCL As String = "")
@@ -53,13 +52,13 @@ Public Class Class_DIG_FACT
         Dim dtAFKO, dtMARA, dtT179T, dtMAKT, dtLIPS, dtLIPSUP, dt_CFGR_ARTI_ECO, dt_ETAT_CTRL As New DataTable
         Dim sr As StreamReader
         Randomize()
-        Dim sfich As String = $"{My.Settings.RPTR_TPRR}\{CInt(Int((1000 * Rnd()) + 1))}_{Path.GetFileName(sFichier)}"
+        Dim sfich As String = $"c:\sources\temp_App_Web\{CInt(Int((1000 * Rnd()) + 1))}_{Path.GetFileName(sFichier)}"
         Dim sw As StreamWriter
 
         'Génération des étiquettes AVALUN
         dtAFKO = SAP_DATA_READ_AFKO($"AUFNR LIKE '%{sNU_OF}'")
         If Not dtAFKO Is Nothing And Trim(dtAFKO(0)("PLNBEZ").ToString) = "AVAE947700$" And sFichier = "\\ceapp03\Sources\Digital Factory\Etiquettes\AVALUN\AVALUN.prn" Then
-            Dim sfich_AVA As String = $"{My.Settings.RPTR_TPRR}\{CInt(Int((1000 * Rnd()) + 1))}_{Path.GetFileName("\\ceapp03\Sources\Digital Factory\Etiquettes\AVALUN\AVALUN.prn")}"
+            Dim sfich_AVA As String = $"c:\sources\temp_App_Web\{CInt(Int((1000 * Rnd()) + 1))}_{Path.GetFileName("\\ceapp03\Sources\Digital Factory\Etiquettes\AVALUN\AVALUN.prn")}"
             COMM_APP_WEB_COPY_FILE("\\ceapp03\Sources\Digital Factory\Etiquettes\AVALUN\AVALUN.prn", sfich_AVA, True)
             Dim sr_AVA = New StreamReader(sfich_AVA, Encoding.UTF8)
             sData = sr_AVA.ReadToEnd()
@@ -216,7 +215,7 @@ Public Class Class_DIG_FACT
 
         Try
             Randomize()
-            Dim sfich As String = $"{My.Settings.RPTR_TPRR}\{CInt(Int((1000 * Rnd()) + 1))}_{Path.GetFileName(sFichier)}"
+            Dim sfich As String = $"c:\sources\temp_App_Web\{CInt(Int((1000 * Rnd()) + 1))}_{Path.GetFileName(sFichier)}"
             If File.Exists(sfich) Then My.Computer.FileSystem.DeleteFile(sfich)
             COMM_APP_WEB_COPY_FILE(sFichier, sfich, True)
             Using sr = New StreamReader(sfich, System.Text.Encoding.UTF8)
@@ -380,7 +379,7 @@ Public Class Class_DIG_FACT
 
         Randomize()
         If sDossier = "vide" Then
-            sfich = $"{My.Settings.RPTR_TPRR}\delivery_form_{CInt(Int((1000 * Rnd()) + 1))}.pdf"
+            sfich = $"c:\sources\temp_App_Web\delivery_form_{CInt(Int((1000 * Rnd()) + 1))}.pdf"
         Else
             sfich = $"{sDossier}\delivery_form_{CInt(Int((1000 * Rnd()) + 1))}.pdf"
         End If
@@ -504,41 +503,41 @@ Public Class Class_DIG_FACT_SQL
 
     Public Shared Function DIG_FACT_SQL_P_ADD_TCBL_MAT_NS_ENS_V2(iID_Passage As Long, sID_PF As String, sRepere As String, sEtape As String, sCode_SAP_Cpt As String, sNS_SENS As String, sOF As String, sLB_MOYN As String, sLB_PROG As String, sNM_MATR As String, sID_CPT As String) As String
 
-        'Dim SQL_Connexion = New SqlConnection()
-        'Dim cmd As New SqlCommand
-        'Dim resultat As String = ""
+        Dim SQL_Connexion = New SqlConnection()
+        Dim cmd As New SqlCommand
+        Dim resultat As String = ""
 
         Try
             If sNM_MATR = "" Then sNM_MATR = "0"
-            'SQL_Connexion = SQL_CONN(CS_MES_Digital_Factory)
-            'cmd = SQL_CALL_STOR_PROC(SQL_Connexion, "P_ADD_TCBL_MAT_NS_ENS_V4")
-            ''            For Each rNS_CD_ART As DataRow In dtNS_CD_ART.Rows
-            'SQL_ADD_PARA_STOR_PROC(cmd, "ID_PF", SqlDbType.VarChar, 100, sID_PF)
-            'SQL_ADD_PARA_STOR_PROC(cmd, "Repere", SqlDbType.VarChar, 10, sRepere)
-            'SQL_ADD_PARA_STOR_PROC(cmd, "Code_SAP_Cpt", SqlDbType.VarChar, 20, sCode_SAP_Cpt)
-            'SQL_ADD_PARA_STOR_PROC(cmd, "NS_SENS", SqlDbType.VarChar, 100, sNS_SENS)
-            'SQL_ADD_PARA_STOR_PROC(cmd, "Etape", SqlDbType.VarChar, 255, sEtape)
-            'SQL_ADD_PARA_STOR_PROC(cmd, "LB_MOYN", SqlDbType.VarChar, 4000, sLB_MOYN)
-            'SQL_ADD_PARA_STOR_PROC(cmd, "LB_PROG", SqlDbType.VarChar, 4000, sLB_PROG)
-            'SQL_ADD_PARA_STOR_PROC(cmd, "NM_MATR", SqlDbType.Int, 100000, sNM_MATR)
-            'SQL_ADD_PARA_STOR_PROC(cmd, "Of", SqlDbType.VarChar, 4000, sOF)
-            'SQL_ADD_PARA_STOR_PROC(cmd, "ID_CPT", SqlDbType.VarChar, 4000, sID_CPT)
-            'SQL_ADD_PARA_STOR_PROC(cmd, "ID_Passage", SqlDbType.BigInt, 200, iID_Passage, "Output")
-            'SQL_ADD_PARA_STOR_PROC(cmd, "Result", SqlDbType.VarChar, 4000, "", "Output")
-            'SQL_EXEC_STOR_PROC(cmd)
-            'iID_Passage = SQL_GET_PARA_VAL(cmd, "ID_Passage")
-            'resultat = SQL_GET_PARA_VAL(cmd, "Result")
-            'If resultat = "Erreur" Then Throw New Exception("Erreur")
-            'cmd.Parameters.Clear()
-            '           Next
-            Dim iID_PSG = New Entity.Core.Objects.ObjectParameter("ID_Passage", iID_Passage)
-            Dim sRes = New Entity.Core.Objects.ObjectParameter("Result", GetType(String))
-            Using db As New MES_Digital_FactoryEntities
-                db.P_ADD_TCBL_MAT_NS_ENS_V4(sID_PF, sRepere, sCode_SAP_Cpt, sNS_SENS, sEtape, sLB_MOYN, sLB_PROG, Convert.ToInt16(sNM_MATR), sOF, sID_CPT, iID_PSG, sRes)
-                If sRes.Value = "Erreur" Then Throw New Exception(sRes.Value)
-                Return iID_PSG.Value
-            End Using
-
+            SQL_Connexion = SQL_CONN(CS_MES_Digital_Factory)
+            cmd = SQL_CALL_STOR_PROC(SQL_Connexion, "P_ADD_TCBL_MAT_NS_ENS_V4")
+            '            For Each rNS_CD_ART As DataRow In dtNS_CD_ART.Rows
+            SQL_ADD_PARA_STOR_PROC(cmd, "ID_PF", SqlDbType.VarChar, 100, sID_PF)
+            SQL_ADD_PARA_STOR_PROC(cmd, "Repere", SqlDbType.VarChar, 10, sRepere)
+            SQL_ADD_PARA_STOR_PROC(cmd, "Code_SAP_Cpt", SqlDbType.VarChar, 20, sCode_SAP_Cpt)
+            SQL_ADD_PARA_STOR_PROC(cmd, "NS_SENS", SqlDbType.VarChar, 100, sNS_SENS)
+            SQL_ADD_PARA_STOR_PROC(cmd, "Etape", SqlDbType.VarChar, 255, sEtape)
+            SQL_ADD_PARA_STOR_PROC(cmd, "LB_MOYN", SqlDbType.VarChar, 4000, sLB_MOYN)
+            SQL_ADD_PARA_STOR_PROC(cmd, "LB_PROG", SqlDbType.VarChar, 4000, sLB_PROG)
+            SQL_ADD_PARA_STOR_PROC(cmd, "NM_MATR", SqlDbType.Int, 100000, sNM_MATR)
+            SQL_ADD_PARA_STOR_PROC(cmd, "Of", SqlDbType.VarChar, 4000, sOF)
+            SQL_ADD_PARA_STOR_PROC(cmd, "ID_CPT", SqlDbType.VarChar, 4000, sID_CPT)
+            SQL_ADD_PARA_STOR_PROC(cmd, "ID_Passage", SqlDbType.BigInt, 200, iID_Passage, "Output")
+            SQL_ADD_PARA_STOR_PROC(cmd, "Result", SqlDbType.VarChar, 4000, "", "Output")
+            SQL_EXEC_STOR_PROC(cmd)
+            iID_Passage = SQL_GET_PARA_VAL(cmd, "ID_Passage")
+            resultat = SQL_GET_PARA_VAL(cmd, "Result")
+            If resultat = "Erreur" Then Throw New Exception("Erreur")
+            cmd.Parameters.Clear()
+            'Next
+            'Dim iID_PSG = New Entity.Core.Objects.ObjectParameter("ID_Passage", iID_Passage)
+            'Dim sRes = New Entity.Core.Objects.ObjectParameter("Result", GetType(String))
+            'Using db As New MES_Digital_FactoryEntities
+            '    db.P_ADD_TCBL_MAT_NS_ENS_V4(sID_PF, sRepere, sCode_SAP_Cpt, sNS_SENS, sEtape, sLB_MOYN, sLB_PROG, Convert.ToInt16(sNM_MATR), sOF, sID_CPT, iID_PSG, sRes)
+            '    If sRes.Value = "Erreur" Then Throw New Exception(sRes.Value)
+            '    Return iID_PSG.Value
+            'End Using
+            Return iID_Passage
         Catch ex As Exception
             LOG_Erreur(GetCurrentMethod, ex.Message)
             Return Nothing
@@ -838,9 +837,9 @@ Public Class Class_DIG_FACT_SQL
                         Case dt_CFGR_ARTI_ECO(0)("Numéro de série Eolane").ToString
                             sNU_SER_ECO = sNU_SER
                             sQuery = $"SELECT [ID_NU_SER]
-	                             FROM [dbo].[V_LIAIS_NU_SER]
-	                            WHERE [NU_SER_ECO] LIKE '%{sNU_SER_ECO}%'	                    
-	                              And [NU_OF] = '{sNU_OF}'"
+	                                     FROM [dbo].[V_LIAIS_NU_SER]
+	                                    WHERE [NU_SER_ECO] LIKE '%{sNU_SER_ECO}%'	                    
+	                                      And [NU_OF] = '{sNU_OF}'"
                         Case dt_CFGR_ARTI_ECO(0)("Numéro de série client").ToString
                             sNU_SER_CLIE = sNU_SER
                             sQuery = $"SELECT [ID_NU_SER]

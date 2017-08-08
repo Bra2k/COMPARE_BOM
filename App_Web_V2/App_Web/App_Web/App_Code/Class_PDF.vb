@@ -8,6 +8,7 @@ Imports App_Web.Class_COMM_APP_WEB
 Imports System.Reflection.MethodBase
 Imports System
 Imports BarcodeLib.Barcode
+Imports System.Data
 
 Public Class Class_PDF
 
@@ -54,7 +55,7 @@ Public Class Class_PDF
                         For Each rdt_var_replace As DataRow In dt_var_pdf_replace.Rows
                             sText = Replace(sText, rdt_var_replace("Variable").ToString, rdt_var_replace("Valeur").ToString)
                         Next
-                        Dim spng As String = $"{My.Settings.RPTR_TPRR}\{CInt(Int((1000 * Rnd()) + 1))}.bmp"
+                        Dim spng As String = $"c:\sources\temp_App_Web\{CInt(Int((1000 * Rnd()) + 1))}.bmp"
                         Select Case sloctext(4)
                             Case "DATAMATRIX"
                                 'Dim spng As String = My.Settings.RPTR_TPRR & "\" & CInt(Int((1000 * Rnd()) + 1)) & ".bmp"

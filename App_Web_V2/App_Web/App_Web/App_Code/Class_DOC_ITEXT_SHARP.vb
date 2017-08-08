@@ -23,7 +23,7 @@ Public Class Class_DOC_ITEXT_SHARP
         Dim pt As PdfPTable
         Dim c_ENTE As PdfPCell
         Randomize()
-        Dim sfich As String = $"{My.Settings.RPTR_TPRR}\{CInt(Int((10000000 * Rnd()) + 1))}.pdf”
+        Dim sfich As String = $"c:\sources\temp_App_Web\{CInt(Int((10000000 * Rnd()) + 1))}.pdf”
         ' Dim iLOGO As Image
         Dim para As Paragraph
         ' Dim ipagenumber As Integer
@@ -412,7 +412,7 @@ Public Class Class_DOC_ITEXT_SHARP
         Dim para As Paragraph
         Dim phr As Phrase
         Dim sdatefcgf As String = ""
-        Dim sfich As String = $"{My.Settings.RPTR_TPRR}\{CInt(Int((10000000 * Rnd()) + 1))}.pdf”
+        Dim sfich As String = $"c:\sources\temp_App_Web\{CInt(Int((10000000 * Rnd()) + 1))}.pdf”
         Try
             Using dPDF = New Document(PageSize.A4, 20, 20, 30, 20)
                 Dim writer = PdfAWriter.GetInstance(dPDF, New FileStream(sfich, FileMode.Create))
@@ -939,7 +939,7 @@ Public Class Class_DOC_ITEXT_SHARP
 
                 Dim PdfReader As PdfReader
                 Dim sfihcsauv As String = DIG_FACT_SQL_GET_PARA(Trim(sCD_ARTI), "Chemin de sauvegarde du fichier PDF")
-                Dim sfichfcgf = $"{My.Settings.RPTR_TPRR}\{CInt(Int((10000000 * Rnd()) + 1))}.pdf”
+                Dim sfichfcgf = $"c:\sources\temp_App_Web\{CInt(Int((10000000 * Rnd()) + 1))}.pdf”
                 COMM_APP_WEB_COPY_FILE($"{sfihcsauv}\OF {sOF}\{sNU_SER}_{sdatefcgf}.pdf", sfichfcgf, True)
                 PdfReader = New PdfReader(sfichfcgf)
                 Dim numberOfPages As Integer = PdfReader.NumberOfPages
@@ -993,7 +993,7 @@ Public Class Class_DOC_ITEXT_SHARP
         Dim c_ENTE As PdfPCell
         Randomize()
         Dim para As Paragraph
-        Dim sfich As String = $"{My.Settings.RPTR_TPRR}\{CInt(Int((10000000 * Rnd()) + 1))}.pdf", sCD_ARTI_PROD As String = ""
+        Dim sfich As String = $"c:\sources\temp_App_Web\{CInt(Int((10000000 * Rnd()) + 1))}.pdf", sCD_ARTI_PROD As String = ""
         Try
             Using dPDF = New Document(PageSize.A4, 20, 20, 30, 20)
                 Dim writer = PdfAWriter.GetInstance(dPDF, New FileStream(sfich, FileMode.Create))
@@ -1157,7 +1157,7 @@ Public Class Class_DOC_ITEXT_SHARP
         Dim pt As PdfPTable
         Dim c_ENTE As PdfPCell
         Randomize()
-        Dim sfich As String = $"{My.Settings.RPTR_TPRR}\{CInt(Int((10000000 * Rnd()) + 1))}.pdf”
+        Dim sfich As String = $"c:\sources\temp_App_Web\{CInt(Int((10000000 * Rnd()) + 1))}.pdf”
         Dim sgif_bc As String = ""
         Dim para As Paragraph
         ' Dim ipagenumber As Integer
@@ -1203,7 +1203,7 @@ Public Class Class_DOC_ITEXT_SHARP
                     End If
                     Dim pt_cell As New PdfPTable(1)
                     Randomize()
-                    sgif_bc = $"{My.Settings.RPTR_TPRR}\{CInt(Int((10000000 * Rnd()) + 1))}.gif”
+                    sgif_bc = $"c:\sources\temp_App_Web\{CInt(Int((10000000 * Rnd()) + 1))}.gif”
 
                     Dim bc128 As New Barcode128()
                     bc128.CodeType = Barcode.CODE128

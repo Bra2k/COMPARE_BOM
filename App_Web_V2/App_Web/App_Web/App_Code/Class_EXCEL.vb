@@ -6,6 +6,7 @@ Imports System.IO
 Imports App_Web.Class_COMM_APP_WEB
 Imports System.Security.Permissions
 Imports System.Threading
+Imports System.Diagnostics
 Public Class Class_EXCEL
 
     Public Shared Function EXCE_OUVR() As Application

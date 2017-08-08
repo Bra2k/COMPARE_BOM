@@ -709,100 +709,120 @@ Public Class CLSG
 
     End Sub
     Protected Sub _ERGT_CLSG(sNU_OF As String, sNU_CART As String, Optional sNU_SER_ECO As String = "0", Optional sNU_SER_CLIE As String = "vide", Optional sCD_CRTN As String = "vide", Optional sQT_CRTN As String = "vide")
-        Dim sQuery As String = ""
-        Dim dt, dt_CFGR_ARTI_ECO, dtMSEG, dt_var As New DataTable
+        Dim sQuery As String = "", sid_psg As String = "", sID_NU_SER As String = ""
+        'Dim dt, dt_CFGR_ARTI_ECO, dtMSEG, dt_var As New DataTable
 
         Try
-            dt_CFGR_ARTI_ECO = DIG_FACT_SQL_CFGR_ARTI_ECO(Trim(Label_CD_ARTI_ECO.Text))
-            sQuery = "SELECT [NEW_ID_PSG]
+            Using dt_CFGR_ARTI_ECO = DIG_FACT_SQL_CFGR_ARTI_ECO(Trim(Label_CD_ARTI_ECO.Text))
+                sQuery = "SELECT [NEW_ID_PSG]
                         FROM [dbo].[V_NEW_ID_PSG_DTM_PSG]"
-            dt = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
-
-            'Enregistrement
-            sQuery = "INSERT INTO [dbo].[DTM_PSG] ([ID_PSG], [LB_ETP], [DT_DEB] , [LB_MOYN], [LB_PROG], [NM_MATR], [NM_NS_EOL], [LB_SCTN], [NM_OF])
-                           VALUES (" & dt(0)("NEW_ID_PSG").ToString & ", '" & Label_NM_DSGT_ARTI_ECO.Text & " (OP:" & Label_NU_OP.Text & ")', GETDATE(), '" & System.Net.Dns.GetHostEntry(System.Web.HttpContext.Current.Request.UserHostAddress).HostName() & "', '" & HttpContext.Current.CurrentHandler.ToString & "', '" & Session("matricule") & "', '" & sNU_SER_ECO & "', 'P', '" & sNU_OF & "')"
-            SQL_REQ_ACT(sQuery, CS_MES_Digital_Factory)
-            If sCD_CRTN = "vide" Or sCD_CRTN = "" Then
-                sQuery = "INSERT INTO [dbo].[DTM_CLSG_CART]([NU_CART], [ID_PSG])
-                               VALUES ('" & sNU_CART & "', " & dt(0)("NEW_ID_PSG").ToString & ")"
-            Else
-                sQuery = "INSERT INTO [dbo].[DTM_CLSG_CART]([NU_CART], [ID_PSG], [CD_CRTN], [QT_CRTN])
-                               VALUES ('" & sNU_CART & "', " & dt(0)("NEW_ID_PSG").ToString & ", '" & sCD_CRTN & "', '" & sQT_CRTN & "')"
-            End If
-            SQL_REQ_ACT(sQuery, CS_MES_Digital_Factory)
-            If Not (sNU_SER_CLIE = "vide" Or sNU_SER_CLIE = "") Then
-                sQuery = "INSERT INTO [dbo].[DTM_TR_CPT] ([NM_NS_EOL],[NM_NS_CLT],[ID_PSG],[DT_PSG], [ID_CPT])
-                               VALUES ('" & sNU_SER_ECO & "', '" & sNU_SER_CLIE & "', " & dt(0)("NEW_ID_PSG").ToString & ", GETDATE(), '-')"
-                SQL_REQ_ACT(sQuery, CS_MES_Digital_Factory)
-            End If
-            'enregistrer dans la base
-            For Each rGridView_REPE As GridViewRow In GridView_REPE.Rows
-                If DIG_FACT_SQL_GET_PARA(rGridView_REPE.Cells(1).Text, "Format Numéro de lot") Is Nothing Then
-                    sQuery = "INSERT INTO [dbo].[DTM_TR_CPT] ([NM_NS_EOL],[NM_NS_CLT],[ID_CPT],[ID_PSG],[DT_PSG],[NM_SAP_CPT],[NM_NS_SENS])
-                               VALUES ('" & sNU_SER_ECO & "', '" & sNU_SER_CLIE & "', '-', " & dt(0)("NEW_ID_PSG").ToString & ", GETDATE(), '" & rGridView_REPE.Cells(1).Text & "','" & rGridView_REPE.Cells(3).Text & "')"
+                Using dt = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
+                    sid_psg = dt(0)("NEW_ID_PSG").ToString
+                End Using
+                'liaison numéros de série
+                If sNU_SER_CLIE = "vide" Then
+                    sID_NU_SER = DIG_FACT_SQL_ERGT_LIAI_ID_NU_SER(Label_NU_OF.Text, sNU_SER_ECO)
                 Else
-                    dtMSEG = SAP_DATA_READ_MSEG("MATNR EQ '" & rGridView_REPE.Cells(1).Text & "' AND CHARG EQ '" & rGridView_REPE.Cells(3).Text & "'")
-                    sQuery = "INSERT INTO [dbo].[DTM_TR_CPT] ([NM_NS_EOL],[NM_NS_CLT],[ID_CPT],[ID_PSG],[DT_PSG],[NM_SAP_CPT])
-                               VALUES ('" & sNU_SER_ECO & "', '" & sNU_SER_CLIE & "', '" & dtMSEG(0)("MBLNR").ToString & dtMSEG(0)("ZEILE").ToString & dtMSEG(0)("MJAHR").ToString & "', " & dt(0)("NEW_ID_PSG").ToString & ", GETDATE(), '" & rGridView_REPE.Cells(1).Text & "')"
+                    sID_NU_SER = DIG_FACT_SQL_ERGT_LIAI_ID_NU_SER(Label_NU_OF.Text, sNU_SER_CLIE)
+                End If
+                If sID_NU_SER Is Nothing Then sID_NU_SER = ""
+
+                'Enregistrement
+                sQuery = $"INSERT INTO [dbo].[DTM_PSG] ([ID_PSG], [LB_ETP], [DT_DEB] , [LB_MOYN], [LB_PROG], [NM_MATR], [NM_NS_EOL], [LB_SCTN], [NM_OF], [ID_NU_SER])
+                            VALUES ({sid_psg}, '{Label_NM_DSGT_ARTI_ECO.Text} (OP:{Label_NU_OP.Text})', GETDATE(), '{System.Net.Dns.GetHostEntry(System.Web.HttpContext.Current.Request.UserHostAddress).HostName()}', '{HttpContext.Current.CurrentHandler.ToString}', '{Session("matricule")}', '{sNU_SER_ECO}', 'P', '{sNU_OF}', {sID_NU_SER})"
+                SQL_REQ_ACT(sQuery, CS_MES_Digital_Factory)
+                If sCD_CRTN = "vide" Or sCD_CRTN = "" Then
+                    sQuery = $"INSERT INTO [dbo].[DTM_CLSG_CART]([NU_CART], [ID_PSG])
+                                VALUES ('{sNU_CART}', {sid_psg})"
+                Else
+                    sQuery = $"INSERT INTO [dbo].[DTM_CLSG_CART]([NU_CART], [ID_PSG], [CD_CRTN], [QT_CRTN])
+                                VALUES ('{sNU_CART}', {sid_psg}, '{sCD_CRTN}', '{sQT_CRTN}')"
                 End If
                 SQL_REQ_ACT(sQuery, CS_MES_Digital_Factory)
-            Next
-            'enregistrer le n° de palette
-            sQuery = "INSERT INTO [dbo].[DTM_CLSG_PALE]([ID_PSG],[NU_PALE])
-                           VALUES (" & dt(0)("NEW_ID_PSG").ToString & "," & Label_NU_PALE_NU_V_NU_SER.Text & ")"
-            SQL_REQ_ACT(sQuery, CS_MES_Digital_Factory)
-            'impression d'une étiquette packaging
-            If dt_CFGR_ARTI_ECO(0)("Impression étiquette packaging numéro de série client").ToString = "1" Then
-                dt_var.Columns.Add("0")
-                dt_var.Columns.Add("1")
-                dt_var.Rows.Add()
-                dt_var.Rows(0)("1") = Replace(sNU_SER_CLIE, dt_CFGR_ARTI_ECO(0)("Code article client").ToString & " ", "")
-                DIG_FACT_IMPR_ETIQ(COMM_APP_WEB_GET_PARA(Label_CD_ARTI_ECO.Text & "|Numéro de série client", "TextBox_FICH_MODE", "ASP.pagesmembres_digital_factory_impr_etiq_prn_aspx"),
-                                   sNU_OF, "", "Numéro de série client", sNU_SER_CLIE, "", "", "", "", dt_var, Session("matricule"))
-            End If
-            If dt_CFGR_ARTI_ECO(0)("Impression étiquette packaging numéro de série Eolane").ToString = "1" Then
-                DIG_FACT_IMPR_ETIQ(COMM_APP_WEB_GET_PARA(Label_CD_ARTI_ECO.Text & "|Numéro de série Eolane", "TextBox_FICH_MODE", "ASP.pagesmembres_digital_factory_impr_etiq_prn_aspx"),
-                                   sNU_OF, "", "Numéro de série Eolane", "", sNU_SER_ECO, "", "", "", Nothing, Session("matricule"))
-            End If
+                If Not (sNU_SER_CLIE = "vide" Or sNU_SER_CLIE = "") Then
+                    sQuery = $"INSERT INTO [dbo].[DTM_TR_CPT] ([NM_NS_EOL],[NM_NS_CLT],[ID_PSG],[DT_PSG], [ID_CPT])
+                                VALUES ('{sNU_SER_ECO}', '{sNU_SER_CLIE}', {sid_psg}, GETDATE(), '-')"
+                    SQL_REQ_ACT(sQuery, CS_MES_Digital_Factory)
+                End If
+                'enregistrer dans la base
+                For Each rGridView_REPE As GridViewRow In GridView_REPE.Rows
+                    If DIG_FACT_SQL_GET_PARA(rGridView_REPE.Cells(1).Text, "Format Numéro de lot") Is Nothing Then
+                        sQuery = $"INSERT INTO [dbo].[DTM_TR_CPT] ([NM_NS_EOL],[NM_NS_CLT],[ID_CPT],[ID_PSG],[DT_PSG],[NM_SAP_CPT],[NM_NS_SENS])
+                                        VALUES ('{sNU_SER_ECO}', '{sNU_SER_CLIE}', '-', {sid_psg}, GETDATE(), '{rGridView_REPE.Cells(1).Text}','{rGridView_REPE.Cells(3).Text}')"
+                    Else
+                        Using dtMSEG = SAP_DATA_READ_MSEG($"MATNR EQ '{rGridView_REPE.Cells(1).Text}' AND CHARG EQ '{rGridView_REPE.Cells(3).Text}'")
+                            sQuery = $"INSERT INTO [dbo].[DTM_TR_CPT] ([NM_NS_EOL],[NM_NS_CLT],[ID_CPT],[ID_PSG],[DT_PSG],[NM_SAP_CPT])
+                                            VALUES ('{sNU_SER_ECO}', '{sNU_SER_CLIE}', '{dtMSEG(0)("MBLNR").ToString}{dtMSEG(0)("ZEILE").ToString}{dtMSEG(0)("MJAHR").ToString}', {sid_psg}, GETDATE(), '{rGridView_REPE.Cells(1).Text}')"
+                        End Using
+                    End If
+                    SQL_REQ_ACT(sQuery, CS_MES_Digital_Factory)
+                Next
+                'enregistrer le n° de palette
+                sQuery = $"INSERT INTO [dbo].[DTM_CLSG_PALE]([ID_PSG],[NU_PALE])
+                                VALUES ({sid_psg},{Label_NU_PALE_NU_V_NU_SER.Text})"
+                SQL_REQ_ACT(sQuery, CS_MES_Digital_Factory)
+                'impression d'une étiquette packaging
+                If dt_CFGR_ARTI_ECO(0)("Impression étiquette packaging numéro de série client").ToString = "1" Then
+                    Using dt_var As New DataTable
+                        dt_var.Columns.Add("0")
+                        dt_var.Columns.Add("1")
+                        dt_var.Rows.Add()
+                        dt_var.Rows(0)("1") = Replace(sNU_SER_CLIE, $"{dt_CFGR_ARTI_ECO(0)("Code article client").ToString} ", "")
+                        DIG_FACT_IMPR_ETIQ(COMM_APP_WEB_GET_PARA($"{Label_CD_ARTI_ECO.Text}|Numéro de série client", "TextBox_FICH_MODE", "ASP.pagesmembres_digital_factory_impr_etiq_prn_aspx"), sNU_OF, "", "Numéro de série client", sNU_SER_CLIE, "", "", "", "", dt_var, Session("matricule"))
+                    End Using
+                End If
+                If dt_CFGR_ARTI_ECO(0)("Impression étiquette packaging numéro de série Eolane").ToString = "1" Then DIG_FACT_IMPR_ETIQ(COMM_APP_WEB_GET_PARA($"{Label_CD_ARTI_ECO.Text}|Numéro de série Eolane", "TextBox_FICH_MODE", "ASP.pagesmembres_digital_factory_impr_etiq_prn_aspx"), sNU_OF, "", "Numéro de série Eolane", "", sNU_SER_ECO, "", "", "", Nothing, Session("matricule"))
 
-            'si param générer un ns client (medria)
-            If dt_CFGR_ARTI_ECO(0)("Génération impression numéro de série").ToString = Label_NU_OP.Text Then
-                'If COMM_APP_WEB_GET_PARA(Label_CD_ARTI_ECO.Text & "|Numéro de série client", "CheckBox_NU_SER_CLIE_GENE_AUTO", "ASP.pagesmembres_digital_factory_impr_etiq_prn_aspx") = "True" Then
-                DIG_FACT_IMPR_ETIQ(COMM_APP_WEB_GET_PARA(Label_CD_ARTI_ECO.Text & "|Numéro de série client", "TextBox_FICH_MODE", "ASP.pagesmembres_digital_factory_impr_etiq_prn_aspx"),
-                                   TextBox_NU_OF.Text, "", "Numéro de série client", "", "",
-                                   "", "", "", Nothing, Session("matricule"))
-            End If
-            'MAJ Affichage
-            sQuery = "SELECT ISNULL(COUNT([NU_NS_EOL]) ,COUNT([NU_NS_CLI])) As NB_NU_NS
-                       FROM [dbo].[V_CLSG_PRD_DTM_HIST_LIVR]
-                      WHERE [NU_OF] = '" & sNU_OF & "' AND NOT (NU_CART IS NULL OR NU_PALE IS NULL)"
-            dt = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
-            Label_QT_REST_OF.Text = (Convert.ToDecimal(Replace(Label_QT_OF.Text, ".", ",")) - Convert.ToDecimal(dt(0)("NB_NU_NS").ToString)).ToString
+                'si param générer un ns client (medria)
+                If dt_CFGR_ARTI_ECO(0)("Génération impression numéro de série").ToString = Label_NU_OP.Text Then DIG_FACT_IMPR_ETIQ(COMM_APP_WEB_GET_PARA($"{Label_CD_ARTI_ECO.Text}|Numéro de série client", "TextBox_FICH_MODE", "ASP.pagesmembres_digital_factory_impr_etiq_prn_aspx"), TextBox_NU_OF.Text, "", "Numéro de série client", "", "", "", "", "", Nothing, Session("matricule"))
 
-            sQuery = "SELECT "
-            If dt_CFGR_ARTI_ECO(0)("Numéro de série client").ToString = "1" Then sQuery &= "[NU_NS_CLI] AS [Numéro de série Client],"
-            If dt_CFGR_ARTI_ECO(0)("Numéro de série Eolane").ToString = "1" Then sQuery &= "[NU_NS_EOL] AS [Numéro de série Eolane],"
-            If dt_CFGR_ARTI_ECO(0)("Carton spécifique").ToString = "1" Then sQuery &= "[CD_CRTN] As [Code Carton], [QT_CRTN] AS [Quantité Carton],"
-            sQuery = Left(sQuery, Len(sQuery) - 1) & " "
-            sQuery &= "  FROM (
-		                           SELECT MAX([DT_SCAN]) AS [MAX_DT_EXPE],[CD_CRTN],[NU_NS_EOL],[NU_NS_CLI],[QT_CRTN]
-		                             FROM [dbo].[V_CLSG_PRD_DTM_HIST_LIVR]
-		                            WHERE [NU_CART] = '" & Label_NU_CART.Text & "' AND [NU_OF] = '" & TextBox_NU_OF.Text & "'
-		                           GROUP BY [CD_CRTN],[NU_NS_EOL],[NU_NS_CLI],[QT_CRTN],[NU_CART],[NU_OF]
-		                           ) AS A
-						 ORDER BY [MAX_DT_EXPE] DESC"
-            dt = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
-            GridView_NU_SER_SCAN.DataSource = dt
-            GridView_NU_SER_SCAN.DataBind()
-            Label_NB_CART.Text = dt.Rows.Count.ToString
+                'MAJ Affichage
+                sQuery = $"SELECT ISNULL(COUNT([NU_NS_EOL]) ,COUNT([NU_NS_CLI])) As NB_NU_NS
+                             FROM [dbo].[V_CLSG_PRD_DTM_HIST_LIVR]
+                            WHERE [NU_OF] = '{sNU_OF}' AND NOT (NU_CART IS NULL OR NU_PALE IS NULL)"
+                Using dt = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
+                    Label_QT_REST_OF.Text = (Convert.ToDecimal(Replace(Label_QT_OF.Text, ".", ",")) - Convert.ToDecimal(dt(0)("NB_NU_NS").ToString)).ToString
+                End Using
 
-            If Convert.ToDecimal(Label_NB_CART.Text) > 0 Then Button_CLOR_CART.Enabled = True
+                Dim sbquery As New StringBuilder
+                sbquery.Append("SELECT ")
+                'sQuery = "SELECT "
+                If dt_CFGR_ARTI_ECO(0)("Numéro de série client").ToString = "1" Then sbquery.Append("[NU_NS_CLI] AS [Numéro de série Client],")
+                'If dt_CFGR_ARTI_ECO(0)("Numéro de série client").ToString = "1" Then sQuery &= "[NU_NS_CLI] AS [Numéro de série Client],"
+                If dt_CFGR_ARTI_ECO(0)("Numéro de série Eolane").ToString = "1" Then sbquery.Append("[NU_NS_EOL] AS [Numéro de série Eolane],")
+                '    If dt_CFGR_ARTI_ECO(0)("Numéro de série Eolane").ToString = "1" Then sQuery &= "[NU_NS_EOL] AS [Numéro de série Eolane],"
+                If dt_CFGR_ARTI_ECO(0)("Carton spécifique").ToString = "1" Then sbquery.Append("[CD_CRTN] As [Code Carton], [QT_CRTN] AS [Quantité Carton],")
+                '    If dt_CFGR_ARTI_ECO(0)("Carton spécifique").ToString = "1" Then sQuery &= "[CD_CRTN] As [Code Carton], [QT_CRTN] AS [Quantité Carton],"
+                sbquery.Remove(sbquery.Length - 1, 1)
+                'sQuery = Left(sQuery, Len(sQuery) - 1) & " "
+                sbquery.Append($" FROM (
+		                                   SELECT MAX([DT_SCAN]) AS [MAX_DT_EXPE],[CD_CRTN],[NU_NS_EOL],[NU_NS_CLI],[QT_CRTN]
+		                                     FROM [dbo].[V_CLSG_PRD_DTM_HIST_LIVR]
+		                                    WHERE [NU_CART] = '{Label_NU_CART.Text}' AND [NU_OF] = '{TextBox_NU_OF.Text}'
+		                                   GROUP BY [CD_CRTN],[NU_NS_EOL],[NU_NS_CLI],[QT_CRTN],[NU_CART],[NU_OF]
+		                                   ) AS A
+						         ORDER BY [MAX_DT_EXPE] DESC")
+                '         sQuery &= "  FROM (
+                '                      SELECT MAX([DT_SCAN]) AS [MAX_DT_EXPE],[CD_CRTN],[NU_NS_EOL],[NU_NS_CLI],[QT_CRTN]
+                '                        FROM [dbo].[V_CLSG_PRD_DTM_HIST_LIVR]
+                '                       WHERE [NU_CART] = '" & Label_NU_CART.Text & "' AND [NU_OF] = '" & TextBox_NU_OF.Text & "'
+                '                      GROUP BY [CD_CRTN],[NU_NS_EOL],[NU_NS_CLI],[QT_CRTN],[NU_CART],[NU_OF]
+                '                      ) AS A
+                'ORDER BY [MAX_DT_EXPE] DESC"
+                Using dt = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
+                    GridView_NU_SER_SCAN.DataSource = dt
+                    GridView_NU_SER_SCAN.DataBind()
+                    Label_NB_CART.Text = dt.Rows.Count.ToString
+                End Using
 
-            'si carton plein
-            If Convert.ToDecimal(Label_NB_CART.Text) >= Convert.ToDecimal(dt_CFGR_ARTI_ECO(0)("Quantité carton").ToString) Then
-                Dim sender As New Object, e As New EventArgs
-                Button_CLOR_CART_Click(sender, e)
-            End If
+                If Convert.ToDecimal(Label_NB_CART.Text) > 0 Then Button_CLOR_CART.Enabled = True
+
+                'si carton plein
+                If Convert.ToDecimal(Label_NB_CART.Text) >= Convert.ToDecimal(dt_CFGR_ARTI_ECO(0)("Quantité carton").ToString) Then
+                    Dim sender As New Object, e As New EventArgs
+                    Button_CLOR_CART_Click(sender, e)
+                End If
+            End Using
 
             If Convert.ToDecimal(Label_QT_REST_OF.Text) <= 0 Then
                 Dim sender As New Object, e As New EventArgs

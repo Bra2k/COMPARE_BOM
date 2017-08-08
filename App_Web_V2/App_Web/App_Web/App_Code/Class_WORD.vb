@@ -4,6 +4,8 @@ Imports System.Data
 Imports System.Reflection.MethodBase
 Imports System.IO
 Imports App_Web.Class_COMM_APP_WEB
+Imports System.Diagnostics
+
 Public Class Class_WORD
 
     Public Shared Function WORD_OUVR() As Application
@@ -53,28 +55,28 @@ Public Class Class_WORD
 
     Public Shared Sub WORD_COMPR_PICS(sFichierWord As String)
 
-        Dim oWord As Microsoft.Office.Interop.Word.Application = WORD_OUVR()
-        Dim objDoc As New Microsoft.Office.Interop.Word.Document
-        Try
-            objDoc = oWord.Documents.Open(sFichierWord)
-            oWord.Visible = True
-            With objDoc.Application.CommandBars.FindControl(Id:=6382)
-                .SendKeys("%(oe)~{TAB}~")
+        'Dim oWord As Microsoft.Office.Interop.Word.Application = WORD_OUVR()
+        'Dim objDoc As New Microsoft.Office.Interop.Word.Document
+        'Try
+        '    objDoc = oWord.Documents.Open(sFichierWord)
+        '    oWord.Visible = True
+        '    With objDoc.Application.CommandBars.FindControl(Id:=6382)
+        '        .SendKeys("%(oe)~{TAB}~")
 
-                .ExecuteMso("PicturesCompress")
-                .Execute()
-            End With
-            'objDoc.SaveAs("c:\sources\coucou.docx", WdSaveFormat.wdFormatDocument)
-            objDoc.Save()
-        Catch ex As Exception
-            LOG_Erreur(GetCurrentMethod, ex.Message)
-        Finally
+        '        .ExecuteMso("PicturesCompress")
+        '        .Execute()
+        '    End With
+        '    'objDoc.SaveAs("c:\sources\coucou.docx", WdSaveFormat.wdFormatDocument)
+        '    objDoc.Save()
+        'Catch ex As Exception
+        '    LOG_Erreur(GetCurrentMethod, ex.Message)
+        'Finally
 
-            objDoc = COMM_APP_WEB_RELE_OBJ(objDoc)
-            oWord.Quit(False)
-            oWord = COMM_APP_WEB_RELE_OBJ(oWord)
-        End Try
-        LOG_Msg(GetCurrentMethod, $"La compression des images du fichier {sFichierWord} a été effectuée.")
+        '    objDoc = COMM_APP_WEB_RELE_OBJ(objDoc)
+        '    oWord.Quit(False)
+        '    oWord = COMM_APP_WEB_RELE_OBJ(oWord)
+        'End Try
+        'LOG_Msg(GetCurrentMethod, $"La compression des images du fichier {sFichierWord} a été effectuée.")
 
     End Sub
 

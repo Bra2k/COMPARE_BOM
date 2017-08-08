@@ -1,14 +1,15 @@
 ﻿Imports System.Web.Optimization
 Imports System.Web.Security
 Imports System.Security.Principal
-
+Imports System.Web
+Imports System.Web.Routing
 Public Class Global_asax
     Inherits HttpApplication
 
     Sub Application_Start(sender As Object, e As EventArgs)
         ' Se déclenche lorsque l'application est démarrée
-        RouteConfig.RegisterRoutes(RouteTable.Routes)
-        BundleConfig.RegisterBundles(BundleTable.Bundles)
+        App_Web.RouteConfig.RegisterRoutes(RouteTable.Routes)
+        App_Web.BundleConfig.RegisterBundles(BundleTable.Bundles)
     End Sub
 
     Sub Application_AuthenticateRequest(ByVal sender As Object, ByVal e As EventArgs)

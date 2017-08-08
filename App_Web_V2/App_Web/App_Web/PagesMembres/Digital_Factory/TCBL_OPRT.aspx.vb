@@ -12,6 +12,8 @@ Imports System.IO
 Imports iTextSharp
 Imports System
 Imports App_Web.Class_DOC_ITEXT_SHARP
+Imports System.Data
+
 
 Public Class TCBL_OPRT
     Inherits System.Web.UI.Page
@@ -275,11 +277,20 @@ Public Class TCBL_OPRT
 
                 'vérification que le ns n'est pas déjà associé ou passé !!! ATTENTION !!!
                 sQuery = $"SELECT [NM_NS_EOL]
-                            FROM [dbo].[ID_PF_View]
-                           WHERE (NM_NS_EOL LIKE '%{sNU_SER_ECO}%' AND [NM_NS_CLT] LIKE '%{sNU_SER_CLIE}%') AND ([LB_ETP] = '{Label_DES_OP.Text} (OP:{Label_OP.Text})' AND [LB_SCTN] = 'P')"
+                             FROM [dbo].[ID_PF_View]
+                            WHERE (NM_NS_EOL LIKE '%{sNU_SER_ECO}%' AND [NM_NS_CLT] LIKE '%{sNU_SER_CLIE}%') AND ([LB_ETP] = '{Label_DES_OP.Text} (OP:{Label_OP.Text})' AND [LB_SCTN] = 'P')"
                 Using dt_PARA = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
-                    If Not dt_PARA Is Nothing Then Throw New Exception($"Le numéro de série { .Text} est déjà passé à l'opération {Label_DES_OP.Text} (OP:{Label_OP.Text}).")
+                    If Not dt_PARA Is Nothing Then 'todo si déjà passé bon 
+
+
+                        'todo vérification si déclaré dans les anomalies et statut 2 (en cours)
+                        'todo vérification si l'opération de retour (déclaré dans les anomalies) <= à l'opération encours
+                        'todo vérification opération de retour a été effectuée
+                        Throw New Exception($"Le numéro de série { .Text} est déjà passé à l'opération {Label_DES_OP.Text} (OP:{Label_OP.Text}).")
+                    End If
                 End Using
+
+
                 'Création de l'ID_PSG
                 sQuery = "SELECT [NEW_ID_PSG], GETDATE() AS DT_DEB
                             FROM [dbo].[V_NEW_ID_PSG_DTM_PSG]"
@@ -306,6 +317,7 @@ Public Class TCBL_OPRT
                         Exit Sub
                     Else ' ou passer à la saisie des numéros de série des sous-ensemble
                         MultiView_ETAP.SetActiveView(View_VOID)
+                        'todo si anomalie, vérifier quel est l'élément à retracer en fonction de celui qui a été déclaré non-conforme et uploader les éléments à ne pas rectracer
                         For Each rGridView_REPE As GridViewRow In GridView_REPE.Rows
                             If HttpUtility.HtmlDecode(rGridView_REPE.Cells(3).Text) = "PRODUIT" Or HttpUtility.HtmlDecode(rGridView_REPE.Cells(3).Text) = "PRODUIT SEMI-FINI" Then
                                 Label_CD_SS_ENS.Text = rGridView_REPE.Cells(1).Text
