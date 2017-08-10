@@ -173,7 +173,7 @@ Public Class Class_COMM_APP_WEB
             If sFORM = "" Then Throw New Exception("Pas de format spécifié")
             sDT_CONV = CDate(sDT).ToString(sFORM)
             If sDT_CONV.IndexOf("WW") > 0 Then
-                sWeek = DatePart(DateInterval.WeekOfYear, CDate(sDT)) - 1
+                sWeek = DatePart(DateInterval.WeekOfYear, CDate(sDT)) ' - 1
                 sWeek = StrDup(2 - Len(sWeek), "0") & sWeek
                 sDT_CONV = Replace(sDT_CONV, "WW", sWeek)
             End If

@@ -17,7 +17,7 @@
     <AssemblyName>App_Web</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MyType>Custom</MyType>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort>44354</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
     <IISExpressWindowsAuthentication>enabled</IISExpressWindowsAuthentication>
@@ -568,6 +568,9 @@
     <Compile Include="App_Code\Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\bilanSemaineEtLivraisonIndicateurVendom_Result.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\C_old_V_CLSG_RAPP_TCBL.vb">
       <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
     </Compile>
@@ -635,7 +638,7 @@
       <DependentUpon>Model_ALMS_PROD_PRD.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DTM_REF_ID.vb">
-      <DependentUpon>Model_ALMS_PROD_PRD.tt</DependentUpon>
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DTM_REF_ID_TEST.vb">
       <DependentUpon>Model_ALMS_PROD_PRD.tt</DependentUpon>
@@ -794,6 +797,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model_SENSINGLABS_PRD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\paretoControlesIndicateurVendom_Result.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pdts_Test_Controles_IndicateurVendom_Result.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\PRC_DNN_CNTR_Result.vb">
       <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
     </Compile>
@@ -819,6 +828,15 @@
       <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\P_MAJ_RAPP_TEST_Result.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagramdefinition_Result.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagrams_Result.vb">
+      <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.vb">
       <DependentUpon>Model_MES_Digital_Factory.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TMP_PST_CLSG.vb">
@@ -1233,7 +1251,7 @@
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
     <None Include="My Project\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
@@ -1358,16 +1376,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
-          <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>60958</DevelopmentServerPort>
-          <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:60958/</IISUrl>
-          <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
-          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+          <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>

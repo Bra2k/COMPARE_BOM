@@ -352,6 +352,7 @@
       <PropertyRef Name="Requête_liste_produits_dans_le_carton_palette_document_DF" />
       <PropertyRef Name="Contenu_du_code_à_barre_document_DF" />
       <PropertyRef Name="Mise_à_disposition_des_documents_par_BL" />
+      <PropertyRef Name="Nombre_étiquette_largeur" />
     </Key>
     <Property Name="CD_ARTI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Code_article_client" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
@@ -425,6 +426,7 @@
     <Property Name="Requête_liste_produits_dans_le_carton_palette_document_DF" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Contenu_du_code_à_barre_document_DF" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Mise_à_disposition_des_documents_par_BL" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Nombre_étiquette_largeur" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="V_CFGR_CLIE">
     <Key>
@@ -1281,6 +1283,83 @@
     <FunctionImport Name="WorkFlow_PDT" ReturnType="Collection(MES_Digital_FactoryModel.WorkFlow_PDT_Result)">
       <Parameter Name="Article" Mode="In" Type="String" />
     </FunctionImport>
+    <EntitySet Name="sysdiagrams" EntityType="MES_Digital_FactoryModel.sysdiagram" />
+    <FunctionImport Name="bilanSemaineEtLivraisonIndicateurVendom" IsComposable="true" ReturnType="Collection(MES_Digital_FactoryModel.bilanSemaineEtLivraisonIndicateurVendom_Result)">
+      <Parameter Name="p_Num_OF" Mode="In" Type="Int32" />
+      <Parameter Name="p_Num_article" Mode="In" Type="String" />
+      <Parameter Name="p_date_deb_analyse" Mode="In" Type="String" />
+      <Parameter Name="p_date_fin_analyse" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="P_ATBT_ADRE_MAC" ReturnType="Collection(String)">
+      <Parameter Name="NM_CRIT" Mode="In" Type="String" />
+      <Parameter Name="NU_SER" Mode="In" Type="String" />
+      <Parameter Name="NM_TYPE" Mode="In" Type="String" />
+      <Parameter Name="NU_ADRE_MAC" Mode="InOut" Type="String" />
+      <Parameter Name="RESULT" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="P_GET_ADRE_MAC">
+      <Parameter Name="NM_CRIT" Mode="In" Type="String" />
+      <Parameter Name="NU_SER" Mode="In" Type="String" />
+      <Parameter Name="NM_TYPE" Mode="In" Type="String" />
+      <Parameter Name="NU_ADRE_MAC" Mode="InOut" Type="String" />
+      <Parameter Name="DT_CREA" Mode="InOut" Type="DateTime" />
+      <Parameter Name="RESULT" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="P_LIST_ADRE_MAC_DPNB" ReturnType="Collection(String)">
+      <Parameter Name="NM_CRIT" Mode="In" Type="String" />
+      <Parameter Name="NB_ADRE_MAC_DPNB" Mode="InOut" Type="Int32" />
+      <Parameter Name="RESULT" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="P_TAE_PASS_WF">
+      <Parameter Name="NU_SER" Mode="In" Type="String" />
+      <Parameter Name="NM_OPRT" Mode="In" Type="String" />
+      <Parameter Name="RES" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="paretoControlesIndicateurVendom" IsComposable="true" ReturnType="Collection(MES_Digital_FactoryModel.paretoControlesIndicateurVendom_Result)">
+      <Parameter Name="p_Num_OF" Mode="In" Type="Int32" />
+      <Parameter Name="p_Num_article" Mode="In" Type="String" />
+      <Parameter Name="p_date_deb_analyse" Mode="In" Type="String" />
+      <Parameter Name="p_date_fin_analyse" Mode="In" Type="String" />
+      <Parameter Name="p_type_controle" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="pdts_Test_Controles_IndicateurVendom" IsComposable="true" ReturnType="Collection(MES_Digital_FactoryModel.pdts_Test_Controles_IndicateurVendom_Result)">
+      <Parameter Name="p_indicSource" Mode="In" Type="Boolean" />
+      <Parameter Name="p_Num_OF" Mode="In" Type="Int32" />
+      <Parameter Name="p_Num_article" Mode="In" Type="String" />
+      <Parameter Name="p_date_deb_analyse" Mode="In" Type="String" />
+      <Parameter Name="p_date_fin_analyse" Mode="In" Type="String" />
+      <Parameter Name="p_type_controle" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(MES_Digital_FactoryModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(MES_Digital_FactoryModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
   </EntityContainer>
   <ComplexType Name="Donnees_Conteneur_Result">
     <Property Type="Int32" Name="ID_GST_CNTR" Nullable="false" />
@@ -1429,5 +1508,41 @@
     <Property Type="Int32" Name="NBR" Nullable="true" />
     <Property Type="Int32" Name="PSG" Nullable="true" />
     <Property Type="Int32" Name="CNF" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <ComplexType Name="bilanSemaineEtLivraisonIndicateurVendom_Result">
+    <Property Type="Int32" Name="QteProduite" Nullable="true" />
+    <Property Type="Int32" Name="QtePanne" Nullable="true" />
+    <Property Type="Int32" Name="totalPdtsLivres" Nullable="true" />
+    <Property Type="Int32" Name="totalStockALivre" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="paretoControlesIndicateurVendom_Result">
+    <Property Type="String" Name="descriptionErr" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="nbErr" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="pdts_Test_Controles_IndicateurVendom_Result">
+    <Property Type="Int32" Name="nbPdtsScan" Nullable="true" />
+    <Property Type="Int32" Name="nbPdtsKo" Nullable="true" />
+    <Property Type="Decimal" Name="fpy" Nullable="true" Precision="5" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
   </ComplexType>
 </Schema>

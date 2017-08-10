@@ -17,7 +17,7 @@ Namespace My
     <Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "14.0.0.0"),  _
      Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)>  _
-    Partial Friend NotInheritable Class MySettings
+    Partial Public NotInheritable Class MySettings
         Inherits Global.System.Configuration.ApplicationSettingsBase
         
         Private Shared defaultInstance As MySettings = CType(Global.System.Configuration.ApplicationSettingsBase.Synchronized(New MySettings()),MySettings)
@@ -66,14 +66,14 @@ Namespace My
 End Namespace
 
 Namespace My
-    
-    <Global.Microsoft.VisualBasic.HideModuleNameAttribute(),  _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute()>  _
-    Friend Module MySettingsProperty
-        
-        <Global.System.ComponentModel.Design.HelpKeywordAttribute("My.Settings")>  _
-        Friend ReadOnly Property Settings() As Global.App_Web.My.MySettings
+
+    <Global.Microsoft.VisualBasic.HideModuleNameAttribute(),
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+     Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute()>
+    Public Module MySettingsProperty
+
+        <Global.System.ComponentModel.Design.HelpKeywordAttribute("My.Settings")>
+        Public ReadOnly Property Settings() As Global.App_Web.My.MySettings
             Get
                 Return Global.App_Web.My.MySettings.Default
             End Get

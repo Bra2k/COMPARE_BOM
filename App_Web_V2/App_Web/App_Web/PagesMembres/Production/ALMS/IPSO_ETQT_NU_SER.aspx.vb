@@ -55,8 +55,8 @@ Public Class IPSO_ETQT_NU_SER
                     Using dtAFKO = SAP_DATA_READ_AFKO($"AUFNR Like '%{TextBox_OF.Text}'")
                         If dtAFKO Is Nothing Then Throw New Exception($"L'OF n°{TextBox_OF.Text} n'a pas été trouvé dans SAP.")
                         sQuery = $"SELECT CONVERT(INTEGER,[AUFNR]) AS AUFNR
-                             FROM [SAP].[dbo].[AFKO]
-                            WHERE CONVERT(INTEGER,[AUFNR]) = {TextBox_OF.Text}"
+                                     FROM [SAP].[dbo].[AFKO]
+                                    WHERE CONVERT(INTEGER,[AUFNR]) = {TextBox_OF.Text}"
                         Using dt = SQL_SELE_TO_DT(sQuery, CS_ALMS_PROD_PRD)
                             If dt Is Nothing Then
                                 sQuery = $"INSERT INTO [SAP].[dbo].[AFKO]
@@ -108,6 +108,13 @@ Public Class IPSO_ETQT_NU_SER
     Protected Sub Button_IPSO_Click(sender As Object, e As EventArgs) Handles Button_IPSO.Click
         Dim sFORM_NU_CLIE As String = "", sNS = "", i_nb_etqt = 1
         Try
+            'todo vérifier si déjà imprimé
+            Dim sQuery = $"SELECT [NU_SER_CLIE]
+                             FROM [dbo].[V_LIAIS_NU_SER]
+                            WHERE NM_CRIT = '{Label_CD_ARTI.Text}' AND [NU_OF] = '{TextBox_OF.Text}'"
+            Using dt = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
+                If Not dt Is Nothing Then Throw New Exception($"L'OF {TextBox_OF.Text} a déjà été imprimé.")
+            End Using
             Using dt_CFGR_ARTI_ECO = DIG_FACT_SQL_CFGR_ARTI_ECO(Trim(Label_CD_ARTI.Text))
                 Using dt_ETAT_CTRL = COMM_APP_WEB_ETAT_CTRL($"{Trim(Label_CD_ARTI.Text)}|Numéro de série client", "ASP.pagesmembres_digital_factory_impr_etiq_prn_aspx")
                     If dt_ETAT_CTRL Is Nothing Then Throw New Exception($"La base App_Web_Eco n'as pas été configurée pour l'article {Trim(Label_CD_ARTI.Text)}")
@@ -127,13 +134,6 @@ Public Class IPSO_ETQT_NU_SER
                                                                 False,
                                                                 Session("matricule"),
                                                                 TextBox_OF.Text)
-                            'Dim sQuery = $"SELECT [ID_NU_SER]
-                            '              FROM [dbo].[V_LIAIS_NU_SER]
-                            '             WHERE [NU_SER_CLIE] = '{sNS}'
-                            '               AND [NU_OF] = '{TextBox_OF.Text}'"
-                            'Using dt = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
-                            '    If dt_ETAT_CTRL.Columns.Contains("TextBox_FICH_MODE") Then
-                            'End Using
                             If i_nb_etqt = Convert.ToDecimal(dt_CFGR_ARTI_ECO(0)("Nombre étiquette largeur").ToString) Then
                                 DIG_FACT_IMPR_ETIQ_V2(dt_ETAT_CTRL(0)("TextBox_FICH_MODE").ToString, TextBox_IPMT.Text, TextBox_OF.Text, "", "Numéro de série client", "", "", "", "", dtvar)
                                 For Each rdt In dtvar.Rows
@@ -148,6 +148,7 @@ Public Class IPSO_ETQT_NU_SER
                     End Using
                 End Using
             End Using
+            LOG_MESS_UTLS(GetCurrentMethod, $"L'OF {TextBox_OF.Text} a été imprimé.", "success")
         Catch ex As Exception
             LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
             Exit Sub

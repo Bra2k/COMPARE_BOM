@@ -25,9 +25,6 @@ Public Class Class_SQL
         Get
             Return System.Configuration.ConfigurationManager.ConnectionStrings("MES_Digital_FactoryConnectionString").ToString
         End Get
-        'Set(ByVal value As String)
-        '    _CS_MES_Digital_Factory = System.Configuration.ConfigurationManager.ConnectionStrings("MES_Digital_FactoryConnectionString").ToString
-        'End Set
     End Property
     Public Shared ReadOnly Property CS_MES_Digital_Factory_DEV() As String
         Get

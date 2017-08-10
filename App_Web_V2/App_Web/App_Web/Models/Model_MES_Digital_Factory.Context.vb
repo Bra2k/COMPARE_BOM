@@ -71,6 +71,7 @@ Partial Public Class MES_Digital_FactoryEntities
     Public Overridable Property V_SERE_ARTI() As DbSet(Of V_SERE_ARTI)
     Public Overridable Property V_TAE_TCBL_HSRQ_STAT_PROD() As DbSet(Of V_TAE_TCBL_HSRQ_STAT_PROD)
     Public Overridable Property V_TAE_TCBL_NMCT_UNIT_PROD() As DbSet(Of V_TAE_TCBL_NMCT_UNIT_PROD)
+    Public Overridable Property sysdiagrams() As DbSet(Of sysdiagram)
 
     <DbFunction("MES_Digital_FactoryEntities", "F_IDCT_PASS")>
     Public Overridable Function F_IDCT_PASS(dT_DEB As Nullable(Of Date), dT_FIN As Nullable(Of Date), [oF] As String, cD_ARTI_ECO As String) As IQueryable(Of F_IDCT_PASS_Result)
@@ -813,6 +814,147 @@ Partial Public Class MES_Digital_FactoryEntities
         Dim articleParameter As ObjectParameter = If(article IsNot Nothing, New ObjectParameter("Article", article), New ObjectParameter("Article", GetType(String)))
 
         Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of WorkFlow_PDT_Result)("WorkFlow_PDT", articleParameter)
+    End Function
+
+    <DbFunction("MES_Digital_FactoryEntities", "bilanSemaineEtLivraisonIndicateurVendom")>
+    Public Overridable Function bilanSemaineEtLivraisonIndicateurVendom(p_Num_OF As Nullable(Of Integer), p_Num_article As String, p_date_deb_analyse As String, p_date_fin_analyse As String) As IQueryable(Of bilanSemaineEtLivraisonIndicateurVendom_Result)
+        Dim p_Num_OFParameter As ObjectParameter = If(p_Num_OF.HasValue, New ObjectParameter("p_Num_OF", p_Num_OF), New ObjectParameter("p_Num_OF", GetType(Integer)))
+
+        Dim p_Num_articleParameter As ObjectParameter = If(p_Num_article IsNot Nothing, New ObjectParameter("p_Num_article", p_Num_article), New ObjectParameter("p_Num_article", GetType(String)))
+
+        Dim p_date_deb_analyseParameter As ObjectParameter = If(p_date_deb_analyse IsNot Nothing, New ObjectParameter("p_date_deb_analyse", p_date_deb_analyse), New ObjectParameter("p_date_deb_analyse", GetType(String)))
+
+        Dim p_date_fin_analyseParameter As ObjectParameter = If(p_date_fin_analyse IsNot Nothing, New ObjectParameter("p_date_fin_analyse", p_date_fin_analyse), New ObjectParameter("p_date_fin_analyse", GetType(String)))
+
+         Return DirectCast(Me, IObjectContextAdapter).ObjectContext.CreateQuery(Of bilanSemaineEtLivraisonIndicateurVendom_Result)("[MES_Digital_FactoryEntities].[bilanSemaineEtLivraisonIndicateurVendom](@p_Num_OF, @p_Num_article, @p_date_deb_analyse, @p_date_fin_analyse)", p_Num_OFParameter, p_Num_articleParameter, p_date_deb_analyseParameter, p_date_fin_analyseParameter)
+    End Function
+
+    Public Overridable Function P_ATBT_ADRE_MAC(nM_CRIT As String, nU_SER As String, nM_TYPE As String, nU_ADRE_MAC As ObjectParameter, rESULT As ObjectParameter) As ObjectResult(Of String)
+        Dim nM_CRITParameter As ObjectParameter = If(nM_CRIT IsNot Nothing, New ObjectParameter("NM_CRIT", nM_CRIT), New ObjectParameter("NM_CRIT", GetType(String)))
+
+        Dim nU_SERParameter As ObjectParameter = If(nU_SER IsNot Nothing, New ObjectParameter("NU_SER", nU_SER), New ObjectParameter("NU_SER", GetType(String)))
+
+        Dim nM_TYPEParameter As ObjectParameter = If(nM_TYPE IsNot Nothing, New ObjectParameter("NM_TYPE", nM_TYPE), New ObjectParameter("NM_TYPE", GetType(String)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of String)("P_ATBT_ADRE_MAC", nM_CRITParameter, nU_SERParameter, nM_TYPEParameter, nU_ADRE_MAC, rESULT)
+    End Function
+
+    Public Overridable Function P_GET_ADRE_MAC(nM_CRIT As String, nU_SER As String, nM_TYPE As String, nU_ADRE_MAC As ObjectParameter, dT_CREA As ObjectParameter, rESULT As ObjectParameter) As Integer
+        Dim nM_CRITParameter As ObjectParameter = If(nM_CRIT IsNot Nothing, New ObjectParameter("NM_CRIT", nM_CRIT), New ObjectParameter("NM_CRIT", GetType(String)))
+
+        Dim nU_SERParameter As ObjectParameter = If(nU_SER IsNot Nothing, New ObjectParameter("NU_SER", nU_SER), New ObjectParameter("NU_SER", GetType(String)))
+
+        Dim nM_TYPEParameter As ObjectParameter = If(nM_TYPE IsNot Nothing, New ObjectParameter("NM_TYPE", nM_TYPE), New ObjectParameter("NM_TYPE", GetType(String)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction("P_GET_ADRE_MAC", nM_CRITParameter, nU_SERParameter, nM_TYPEParameter, nU_ADRE_MAC, dT_CREA, rESULT)
+    End Function
+
+    Public Overridable Function P_LIST_ADRE_MAC_DPNB(nM_CRIT As String, nB_ADRE_MAC_DPNB As ObjectParameter, rESULT As ObjectParameter) As ObjectResult(Of String)
+        Dim nM_CRITParameter As ObjectParameter = If(nM_CRIT IsNot Nothing, New ObjectParameter("NM_CRIT", nM_CRIT), New ObjectParameter("NM_CRIT", GetType(String)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of String)("P_LIST_ADRE_MAC_DPNB", nM_CRITParameter, nB_ADRE_MAC_DPNB, rESULT)
+    End Function
+
+    Public Overridable Function P_TAE_PASS_WF(nU_SER As String, nM_OPRT As String, rES As ObjectParameter) As Integer
+        Dim nU_SERParameter As ObjectParameter = If(nU_SER IsNot Nothing, New ObjectParameter("NU_SER", nU_SER), New ObjectParameter("NU_SER", GetType(String)))
+
+        Dim nM_OPRTParameter As ObjectParameter = If(nM_OPRT IsNot Nothing, New ObjectParameter("NM_OPRT", nM_OPRT), New ObjectParameter("NM_OPRT", GetType(String)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction("P_TAE_PASS_WF", nU_SERParameter, nM_OPRTParameter, rES)
+    End Function
+
+    <DbFunction("MES_Digital_FactoryEntities", "paretoControlesIndicateurVendom")>
+    Public Overridable Function paretoControlesIndicateurVendom(p_Num_OF As Nullable(Of Integer), p_Num_article As String, p_date_deb_analyse As String, p_date_fin_analyse As String, p_type_controle As String) As IQueryable(Of paretoControlesIndicateurVendom_Result)
+        Dim p_Num_OFParameter As ObjectParameter = If(p_Num_OF.HasValue, New ObjectParameter("p_Num_OF", p_Num_OF), New ObjectParameter("p_Num_OF", GetType(Integer)))
+
+        Dim p_Num_articleParameter As ObjectParameter = If(p_Num_article IsNot Nothing, New ObjectParameter("p_Num_article", p_Num_article), New ObjectParameter("p_Num_article", GetType(String)))
+
+        Dim p_date_deb_analyseParameter As ObjectParameter = If(p_date_deb_analyse IsNot Nothing, New ObjectParameter("p_date_deb_analyse", p_date_deb_analyse), New ObjectParameter("p_date_deb_analyse", GetType(String)))
+
+        Dim p_date_fin_analyseParameter As ObjectParameter = If(p_date_fin_analyse IsNot Nothing, New ObjectParameter("p_date_fin_analyse", p_date_fin_analyse), New ObjectParameter("p_date_fin_analyse", GetType(String)))
+
+        Dim p_type_controleParameter As ObjectParameter = If(p_type_controle IsNot Nothing, New ObjectParameter("p_type_controle", p_type_controle), New ObjectParameter("p_type_controle", GetType(String)))
+
+         Return DirectCast(Me, IObjectContextAdapter).ObjectContext.CreateQuery(Of paretoControlesIndicateurVendom_Result)("[MES_Digital_FactoryEntities].[paretoControlesIndicateurVendom](@p_Num_OF, @p_Num_article, @p_date_deb_analyse, @p_date_fin_analyse, @p_type_controle)", p_Num_OFParameter, p_Num_articleParameter, p_date_deb_analyseParameter, p_date_fin_analyseParameter, p_type_controleParameter)
+    End Function
+
+    <DbFunction("MES_Digital_FactoryEntities", "pdts_Test_Controles_IndicateurVendom")>
+    Public Overridable Function pdts_Test_Controles_IndicateurVendom(p_indicSource As Nullable(Of Boolean), p_Num_OF As Nullable(Of Integer), p_Num_article As String, p_date_deb_analyse As String, p_date_fin_analyse As String, p_type_controle As String) As IQueryable(Of pdts_Test_Controles_IndicateurVendom_Result)
+        Dim p_indicSourceParameter As ObjectParameter = If(p_indicSource.HasValue, New ObjectParameter("p_indicSource", p_indicSource), New ObjectParameter("p_indicSource", GetType(Boolean)))
+
+        Dim p_Num_OFParameter As ObjectParameter = If(p_Num_OF.HasValue, New ObjectParameter("p_Num_OF", p_Num_OF), New ObjectParameter("p_Num_OF", GetType(Integer)))
+
+        Dim p_Num_articleParameter As ObjectParameter = If(p_Num_article IsNot Nothing, New ObjectParameter("p_Num_article", p_Num_article), New ObjectParameter("p_Num_article", GetType(String)))
+
+        Dim p_date_deb_analyseParameter As ObjectParameter = If(p_date_deb_analyse IsNot Nothing, New ObjectParameter("p_date_deb_analyse", p_date_deb_analyse), New ObjectParameter("p_date_deb_analyse", GetType(String)))
+
+        Dim p_date_fin_analyseParameter As ObjectParameter = If(p_date_fin_analyse IsNot Nothing, New ObjectParameter("p_date_fin_analyse", p_date_fin_analyse), New ObjectParameter("p_date_fin_analyse", GetType(String)))
+
+        Dim p_type_controleParameter As ObjectParameter = If(p_type_controle IsNot Nothing, New ObjectParameter("p_type_controle", p_type_controle), New ObjectParameter("p_type_controle", GetType(String)))
+
+         Return DirectCast(Me, IObjectContextAdapter).ObjectContext.CreateQuery(Of pdts_Test_Controles_IndicateurVendom_Result)("[MES_Digital_FactoryEntities].[pdts_Test_Controles_IndicateurVendom](@p_indicSource, @p_Num_OF, @p_Num_article, @p_date_deb_analyse, @p_date_fin_analyse, @p_type_controle)", p_indicSourceParameter, p_Num_OFParameter, p_Num_articleParameter, p_date_deb_analyseParameter, p_date_fin_analyseParameter, p_type_controleParameter)
+    End Function
+
+    Public Overridable Function sp_alterdiagram(diagramname As String, owner_id As Nullable(Of Integer), version As Nullable(Of Integer), definition As Byte()) As Integer
+        Dim diagramnameParameter As ObjectParameter = If(diagramname IsNot Nothing, New ObjectParameter("diagramname", diagramname), New ObjectParameter("diagramname", GetType(String)))
+
+        Dim owner_idParameter As ObjectParameter = If(owner_id.HasValue, New ObjectParameter("owner_id", owner_id), New ObjectParameter("owner_id", GetType(Integer)))
+
+        Dim versionParameter As ObjectParameter = If(version.HasValue, New ObjectParameter("version", version), New ObjectParameter("version", GetType(Integer)))
+
+        Dim definitionParameter As ObjectParameter = If(definition IsNot Nothing, New ObjectParameter("definition", definition), New ObjectParameter("definition", GetType(Byte())))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction("sp_alterdiagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter)
+    End Function
+
+    Public Overridable Function sp_creatediagram(diagramname As String, owner_id As Nullable(Of Integer), version As Nullable(Of Integer), definition As Byte()) As Integer
+        Dim diagramnameParameter As ObjectParameter = If(diagramname IsNot Nothing, New ObjectParameter("diagramname", diagramname), New ObjectParameter("diagramname", GetType(String)))
+
+        Dim owner_idParameter As ObjectParameter = If(owner_id.HasValue, New ObjectParameter("owner_id", owner_id), New ObjectParameter("owner_id", GetType(Integer)))
+
+        Dim versionParameter As ObjectParameter = If(version.HasValue, New ObjectParameter("version", version), New ObjectParameter("version", GetType(Integer)))
+
+        Dim definitionParameter As ObjectParameter = If(definition IsNot Nothing, New ObjectParameter("definition", definition), New ObjectParameter("definition", GetType(Byte())))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction("sp_creatediagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter)
+    End Function
+
+    Public Overridable Function sp_dropdiagram(diagramname As String, owner_id As Nullable(Of Integer)) As Integer
+        Dim diagramnameParameter As ObjectParameter = If(diagramname IsNot Nothing, New ObjectParameter("diagramname", diagramname), New ObjectParameter("diagramname", GetType(String)))
+
+        Dim owner_idParameter As ObjectParameter = If(owner_id.HasValue, New ObjectParameter("owner_id", owner_id), New ObjectParameter("owner_id", GetType(Integer)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter)
+    End Function
+
+    Public Overridable Function sp_helpdiagramdefinition(diagramname As String, owner_id As Nullable(Of Integer)) As ObjectResult(Of sp_helpdiagramdefinition_Result)
+        Dim diagramnameParameter As ObjectParameter = If(diagramname IsNot Nothing, New ObjectParameter("diagramname", diagramname), New ObjectParameter("diagramname", GetType(String)))
+
+        Dim owner_idParameter As ObjectParameter = If(owner_id.HasValue, New ObjectParameter("owner_id", owner_id), New ObjectParameter("owner_id", GetType(Integer)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of sp_helpdiagramdefinition_Result)("sp_helpdiagramdefinition", diagramnameParameter, owner_idParameter)
+    End Function
+
+    Public Overridable Function sp_helpdiagrams(diagramname As String, owner_id As Nullable(Of Integer)) As ObjectResult(Of sp_helpdiagrams_Result)
+        Dim diagramnameParameter As ObjectParameter = If(diagramname IsNot Nothing, New ObjectParameter("diagramname", diagramname), New ObjectParameter("diagramname", GetType(String)))
+
+        Dim owner_idParameter As ObjectParameter = If(owner_id.HasValue, New ObjectParameter("owner_id", owner_id), New ObjectParameter("owner_id", GetType(Integer)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of sp_helpdiagrams_Result)("sp_helpdiagrams", diagramnameParameter, owner_idParameter)
+    End Function
+
+    Public Overridable Function sp_renamediagram(diagramname As String, owner_id As Nullable(Of Integer), new_diagramname As String) As Integer
+        Dim diagramnameParameter As ObjectParameter = If(diagramname IsNot Nothing, New ObjectParameter("diagramname", diagramname), New ObjectParameter("diagramname", GetType(String)))
+
+        Dim owner_idParameter As ObjectParameter = If(owner_id.HasValue, New ObjectParameter("owner_id", owner_id), New ObjectParameter("owner_id", GetType(Integer)))
+
+        Dim new_diagramnameParameter As ObjectParameter = If(new_diagramname IsNot Nothing, New ObjectParameter("new_diagramname", new_diagramname), New ObjectParameter("new_diagramname", GetType(String)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter)
+    End Function
+
+    Public Overridable Function sp_upgraddiagrams() As Integer
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction("sp_upgraddiagrams")
     End Function
 
 End Class

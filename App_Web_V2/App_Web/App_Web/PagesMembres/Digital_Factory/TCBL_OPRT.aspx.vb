@@ -28,29 +28,8 @@ Public Class TCBL_OPRT
                              FROM [SAP].[dbo].[AFKO]
                             WHERE CONVERT(INTEGER,[AUFNR]) = {TextBox_OF.Text}"
                 Using dt = SQL_SELE_TO_DT(sQuery, CS_ALMS_PROD_PRD)
-                    If dt Is Nothing Then
-                        sQuery = $"INSERT INTO [SAP].[dbo].[AFKO]
-                                               ([RSNUM]
-                                               ,[GAMNG]
-                                               ,[PLNBEZ]
-                                               ,[AUFNR]
-                                               ,[AUFPL]
-                                               ,[REVLV]
-                                               ,[STLNR]
-                                               ,[STLAL]
-                                               ,[GSTRS])
-                                         VALUES
-                                               ('{dtAFKO(0)("RSNUM").ToString}'
-                                               ,'{dtAFKO(0)("GAMNG").ToString}'
-                                               ,'{dtAFKO(0)("PLNBEZ").ToString}'
-                                               ,'{dtAFKO(0)("AUFNR").ToString}'
-                                               ,'{dtAFKO(0)("AUFPL").ToString}'
-                                               ,'{dtAFKO(0)("REVLV").ToString}'
-                                               ,'{dtAFKO(0)("STLNR").ToString}'
-                                               ,'{dtAFKO(0)("STLAL").ToString}'
-                                               ,'{dtAFKO(0)("GSTRS").ToString}')"
-                        SQL_REQ_ACT(sQuery, CS_MES_Digital_Factory)
-                    End If
+                    If dt Is Nothing Then SQL_REQ_ACT($"INSERT INTO [SAP].[dbo].[AFKO] ([RSNUM],[GAMNG],[PLNBEZ],[AUFNR],[AUFPL],[REVLV],[STLNR],[STLAL],[GSTRS])
+                                                             VALUES ('{dtAFKO(0)("RSNUM").ToString}','{dtAFKO(0)("GAMNG").ToString}','{dtAFKO(0)("PLNBEZ").ToString}','{dtAFKO(0)("AUFNR").ToString}','{dtAFKO(0)("AUFPL").ToString}','{dtAFKO(0)("REVLV").ToString}','{dtAFKO(0)("STLNR").ToString}','{dtAFKO(0)("STLAL").ToString}','{dtAFKO(0)("GSTRS").ToString}')", CS_MES_Digital_Factory)
                 End Using
                 Using dt = SAP_DATA_LECT_OF(TextBox_OF.Text)
                     Label_OF.Text = TextBox_OF.Text
@@ -110,9 +89,7 @@ Public Class TCBL_OPRT
                             'End If
                             sQuery = $"SELECT [DT_ATVT]
                                          FROM [dbo].[DTM_REF_OPRT]
-                                        WHERE [ID_MTCL_ECO] = {Session("matricule")}
-                                          AND [BL_ATVT] = 1
-                                          AND [ID_HBLT_ALMS] = 1"
+                                        WHERE [ID_MTCL_ECO] = {Session("matricule")} AND [BL_ATVT] = 1 AND [ID_HBLT_ALMS] = 1"
                             Using dt = SQL_SELE_TO_DT(sQuery, CS_ALMS_PROD_PRD)
                                 If dt Is Nothing Then
                                     Response.Redirect("~/PagesMembres/RDRC_PAGE_MEMB.aspx")
@@ -128,11 +105,9 @@ Public Class TCBL_OPRT
             End Using
 
             'charger les ns entrés
-            sQuery = $"SELECT [NU_SER_CLIE] AS [Numéro de série client]
-                             ,[NU_SER_ECO] AS [Numéro de série Eolane]
+            sQuery = $"SELECT [NU_SER_CLIE] AS [Numéro de série client],[NU_SER_ECO] AS [Numéro de série Eolane]
                          FROM [dbo].[V_DER_PASS_BON]
-                        WHERE [NM_OF] = '{Label_OF.Text}'
-                          AND [LB_ETP] = '{Label_DES_OP.Text} (OP:{Label_OP.Text})'"
+                        WHERE [NM_OF] = '{Label_OF.Text}' AND [LB_ETP] = '{Label_DES_OP.Text} (OP:{Label_OP.Text})'"
             Using dt_LIST_NU_SER_TRAC = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
                 If Not dt_LIST_NU_SER_TRAC Is Nothing Then
                     'décrément quantité totale 
@@ -178,10 +153,7 @@ Public Class TCBL_OPRT
         Dim sQuery As String = ""
         Try
             'vérification qu'il existe (FER-M-0551)
-            sQuery = $"SELECT [CD_ARTI]
-                             ,[NM_PARA]
-                             ,[VAL_PARA]
-                             ,[DT_PARA]
+            sQuery = $"SELECT [CD_ARTI],[NM_PARA],[VAL_PARA],[DT_PARA]
                          FROM [dbo].[V_DER_DTM_REF_PARA]
                         WHERE CD_ARTI = '{TextBox_MTRE_GNRQ.Text}' AND [NM_PARA] = 'Type matériel' AND [VAL_PARA] = '{HttpUtility.HtmlDecode(Label_TYPE_MTRE.Text)}'"
             Using dt = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
@@ -225,13 +197,12 @@ Public Class TCBL_OPRT
         'Dim dt_ETAP As DataTable = Session("dt_ETAP")
         Session("i_NU_ETAP") = 0
         Session("sQuery_Etap_Test") = New StringBuilder
-        'Dim dt, dt_WF, dtAFVC, dtAFKO, dtCRHD As New DataTable,
         Dim sQuery As String = "" ', sQuery_WF As String = "", sMessage_WF As String = ""
 
         Dim sNU_SER_ECO As String = "", sNU_SER_CLIE As String = ""
-        'Dim dt_PARA, dt_CFGR_ARTI_ECO, dt_ETAT_CTRL As New DataTable
         With TextBox_NU_SER
             Try
+                MultiView_ETAP.SetActiveView(View_VOID)
                 Using dt_CFGR_ARTI_ECO = DIG_FACT_SQL_CFGR_ARTI_ECO(Trim(Label_CD_ARTI.Text))
                     'Si la TextBox de génération des étiquettes est cochée
                     If dt_CFGR_ARTI_ECO(0)("Génération impression numéro de série").ToString = Label_OP.Text Then
@@ -280,19 +251,50 @@ Public Class TCBL_OPRT
                              FROM [dbo].[ID_PF_View]
                             WHERE (NM_NS_EOL LIKE '%{sNU_SER_ECO}%' AND [NM_NS_CLT] LIKE '%{sNU_SER_CLIE}%') AND ([LB_ETP] = '{Label_DES_OP.Text} (OP:{Label_OP.Text})' AND [LB_SCTN] = 'P')"
                 Using dt_PARA = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
-                    If Not dt_PARA Is Nothing Then 'todo si déjà passé bon 
-
-
-                        'todo vérification si déclaré dans les anomalies et statut 2 (en cours)
-                        'todo vérification si l'opération de retour (déclaré dans les anomalies) <= à l'opération encours
-                        'todo vérification opération de retour a été effectuée
-                        Throw New Exception($"Le numéro de série { .Text} est déjà passé à l'opération {Label_DES_OP.Text} (OP:{Label_OP.Text}).")
+                    If Not dt_PARA Is Nothing Then 'si déjà passé bon ==> passage en gestion de hors flux ALMS
+                        'todo vérification si déclaré dans les anomalies et statut 2 (en cours) (alms)
+                        Using dt = SQL_SELE_TO_DT($"SELECT [NU_SER_SPFE]
+                                                      FROM [dbo].[V_NC_LIST_NU_SER_STAT_2]
+                                                     WHERE [NU_SER_SPFE] = '{sNU_SER_CLIE}'", CS_ALMS_PROD_PRD)
+                            If dt Is Nothing Then Throw New Exception($"Le numéro de série { .Text} est déjà passé à l'opération {Label_DES_OP.Text} (OP:{Label_OP.Text}).")
+                        End Using
+                        Using dt_oprt_reto = SQL_SELE_TO_DT($"SELECT [NM_RFRC_GAMM_ECO], [DT_ITVT]
+                                                                FROM [dbo].[V_NC_OPRT_RETO_PDTO]
+                                                               WHERE [NU_SER_SPFE] = '{sNU_SER_CLIE}'", CS_ALMS_PROD_PRD)
+                            'todo vérification si l'opération de retour (déclaré dans les anomalies) = à l'opération encours
+                            If $"{Label_DES_OP.Text} (OP:{Label_OP.Text})" <> dt_oprt_reto(0)("NM_RFRC_GAMM_ECO").ToString Then
+                                Dim snu_op_encours, snu_op_retour As String
+                                Using dt_oprt_encours = SQL_SELE_TO_DT($"SELECT CONVERT(INTEGER, REPLACE(NM_PARA, 'WORKFLOW étape ', '')) AS NU_ETAP
+                                                                           FROM dbo.V_DER_DTM_REF_PARA
+                                                                          WHERE (NM_PARA LIKE N'WORKFLOW étape%') AND CD_ARTI = '{Trim(Label_CD_ARTI.Text)}' AND VAL_PARA = '{Trim(Label_DES_OP.Text)} (OP:{Trim(Label_OP.Text)})'", CS_MES_Digital_Factory)
+                                    If dt_oprt_encours Is Nothing Then Throw New Exception($"Le numéro d'ordre de l'opération {Label_DES_OP.Text} (OP:{Label_OP.Text}) n'a pas été retrouvé dans la base.")
+                                    snu_op_encours = dt_oprt_encours(0)("NU_ETAP").ToString
+                                End Using
+                                Using dt_oprt_retour = SQL_SELE_TO_DT($"SELECT CONVERT(INTEGER, REPLACE(NM_PARA, 'WORKFLOW étape ', '')) AS NU_ETAP
+                                                                          FROM dbo.V_DER_DTM_REF_PARA
+                                                                         WHERE (NM_PARA LIKE N'WORKFLOW étape%') AND CD_ARTI = '{Trim(Label_CD_ARTI.Text)}' AND VAL_PARA = '{dt_oprt_reto(0)("NM_RFRC_GAMM_ECO").ToString}'", CS_MES_Digital_Factory)
+                                    If dt_oprt_retour Is Nothing Then Throw New Exception($"Le numéro d'ordre de l'opération {dt_oprt_reto(0)("NM_RFRC_GAMM_ECO").ToString} n'a pas été retrouvé dans la base")
+                                    snu_op_retour = dt_oprt_retour(0)("NU_ETAP").ToString
+                                End Using
+                                'todo vérification si l'opération de retour (déclaré dans les anomalies) < à l'opération encours
+                                If Convert.ToDecimal(snu_op_retour) < Convert.ToDecimal(snu_op_encours) Then
+                                    'todo vérification opération de retour a été effectuée
+                                    Using dt = SQL_SELE_TO_DT($"SELECT [NM_NS_EOL]
+                                                                  FROM [dbo].[ID_PF_View]
+                                                                 WHERE (NM_NS_EOL Like '%{sNU_SER_ECO}%' AND [NM_NS_CLT] LIKE '%{sNU_SER_CLIE}%') AND ([LB_ETP] = '{dt_oprt_reto(0)("NM_RFRC_GAMM_ECO").ToString}' AND [LB_SCTN] = 'P' AND DT_DEB > '{dt_oprt_reto(0)("DT_ITVT").ToString}')", CS_MES_Digital_Factory)
+                                        If dt Is Nothing Then Throw New Exception($"L'opération {dt_oprt_reto(0)("NM_RFRC_GAMM_ECO").ToString} de retour en production n'a pas été effectuée")
+                                    End Using
+                                Else
+                                    Throw New Exception($"L'opération encours est antérieure à l'opération {dt_oprt_reto(0)("NM_RFRC_GAMM_ECO").ToString} de retour en production")
+                                End If
+                            End If
+                        End Using
                     End If
                 End Using
 
 
                 'Création de l'ID_PSG
-                sQuery = "SELECT [NEW_ID_PSG], GETDATE() AS DT_DEB
+                sQuery = "SELECT [NEW_ID_PSG], GETDATE() As DT_DEB
                             FROM [dbo].[V_NEW_ID_PSG_DTM_PSG]"
                 Using dt = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
                     Session("ID_PSG") = dt(0)("NEW_ID_PSG").ToString
@@ -316,17 +318,50 @@ Public Class TCBL_OPRT
                         MultiView_ETAP.SetActiveView(View_CHEC_ETAP)
                         Exit Sub
                     Else ' ou passer à la saisie des numéros de série des sous-ensemble
-                        MultiView_ETAP.SetActiveView(View_VOID)
                         'todo si anomalie, vérifier quel est l'élément à retracer en fonction de celui qui a été déclaré non-conforme et uploader les éléments à ne pas rectracer
-                        For Each rGridView_REPE As GridViewRow In GridView_REPE.Rows
-                            If HttpUtility.HtmlDecode(rGridView_REPE.Cells(3).Text) = "PRODUIT" Or HttpUtility.HtmlDecode(rGridView_REPE.Cells(3).Text) = "PRODUIT SEMI-FINI" Then
-                                Label_CD_SS_ENS.Text = rGridView_REPE.Cells(1).Text
-                                MultiView_ETAP.SetActiveView(View_SAI_SOUS_ENSE)
-                                TextBox_SS_ENS.Text = ""
-                                TextBox_SS_ENS.Focus()
-                                Exit Sub
-                            End If
-                        Next
+                        'Using dt_type_caus = SQL_SELE_TO_DT($"SELECT [ID_TYPE_CAUS]
+                        '                                        FROM [dbo].[V_NC_LIST_NU_SER_STAT_2]
+                        '                                       WHERE [NU_SER_SPFE] = '{sNU_SER_CLIE}'", CS_ALMS_PROD_PRD)
+                        '    If Not dt_type_caus Is Nothing Then
+                        '        Using dt_cd_arti_clie = SAP_DATA_READ_KNMT($"MATNR LIKE '{Trim(Label_CD_ARTI.Text)}%' AND KUNNR EQ '0000000451' AND VKORG EQ 'ORC3' AND VTWEG EQ 'CD'")
+                        '            If dt_cd_arti_clie Is Nothing Then Throw New Exception($"L'équivalent de {Trim(Label_CD_ARTI.Text)} en code article ALMS n'a pas été retrouvé dans SAP.")
+                        '            Using dt = SQL_SELE_TO_DT($"SELECT [CD_ARTI_COMP]
+                        '                                          FROM [dbo].[V_NC_LIST_CD_ARTI_TCBL_UNIT]
+                        '                                         WHERE [CD_ARTI_PROD] = '{Trim(dt_cd_arti_clie(0)("KDMAT").ToString)}' AND [ID_TYPE_CAUS] = {dt_type_caus(0)("ID_TYPE_CAUS").ToString}", CS_ALMS_PROD_PRD)
+                        '                If Not dt Is Nothing Then
+                        '                    Using dtKNMT = SAP_DATA_READ_KNMT($"KDMAT LIKE '{dt(0)("CD_ARTI_COMP").ToString}%'")
+                        '                        Dim scd_arti_a_remp As String = ""
+                        '                        If dtKNMT Is Nothing Then
+                        '                            scd_arti_a_remp = dt(0)("CD_ARTI_COMP").ToString
+                        '                        Else
+                        '                            scd_arti_a_remp = Trim(dtKNMT(0)("MATNR").ToString)
+                        '                        End If
+                        '                        For Each rGridView_REPE As GridViewRow In GridView_REPE.Rows
+                        '                            If rGridView_REPE.Cells(1).Text <> scd_arti_a_remp Then
+                        '                                Using dt_nu_ser_ss_ense = SQL_SELE_TO_DT($"SELECT MAX([DT_DEB]) AS DER_DT_DEB,[NM_NS_SENS]
+                        '                                                                         FROM [dbo].[ID_PF_View]
+                        '                                                                        WHERE [LB_SCTN] = 'P' AND [NM_NS_EOL] LIKE '%{sNU_SER_ECO}%' AND [NM_NS_CLT] LIKE '%{sNU_SER_CLIE}%' AND [LB_ETP] = '{Label_DES_OP.Text} (OP:{Label_OP.Text})' AND [NM_SAP_CPT] = '{rGridView_REPE.Cells(1).Text}'
+                        '                                                                       GROUP BY [NM_NS_SENS], [LB_SCTN], [NM_NS_EOL], [NM_NS_CLT], [LB_ETP], [NM_SAP_CPT]", CS_MES_Digital_Factory)
+                        '                                    If Not dt_nu_ser_ss_ense Is Nothing Then rGridView_REPE.Cells(6).Text = dt_nu_ser_ss_ense(0)("NM_NS_SENS").ToString
+                        '                                End Using
+                        '                            End If
+                        '                        Next
+                        '                    End Using
+                        '                End If
+                        '            End Using
+                        '        End Using
+                        '    End If
+                        'End Using
+                        If _VRFC_TCBL_SS_ENS_VIDE_GV_REPE() = True Then Exit Sub
+                        'For Each rGridView_REPE As GridViewRow In GridView_REPE.Rows
+                        '    If HttpUtility.HtmlDecode(rGridView_REPE.Cells(3).Text) = "PRODUIT" Or HttpUtility.HtmlDecode(rGridView_REPE.Cells(3).Text) = "PRODUIT SEMI-FINI" Then
+                        '        Label_CD_SS_ENS.Text = rGridView_REPE.Cells(1).Text
+                        '        MultiView_ETAP.SetActiveView(View_SAI_SOUS_ENSE)
+                        '        TextBox_SS_ENS.Text = ""
+                        '        TextBox_SS_ENS.Focus()
+                        '        Exit Sub
+                        '    End If
+                        'Next
                     End If
                 End Using
                 'si pas de sous-ensemble
@@ -384,20 +419,21 @@ Public Class TCBL_OPRT
                 Session("i_NU_ETAP") = i_NU_ETAP + 1
                 _AFCG_ETAP(Session("i_NU_ETAP"))
             Else 'si fini enregistrement passage ou passer à la saisie des numéros de série des sous-ensemble
-                MultiView_ETAP.SetActiveView(View_VOID)
-                For Each rGridView_REPE As GridViewRow In GridView_REPE.Rows
-                    With rGridView_REPE
-                        If HttpUtility.HtmlDecode(.Cells(3).Text) = "PRODUIT" Or HttpUtility.HtmlDecode(.Cells(3).Text) = "PRODUIT SEMI-FINI" Then
-                            Label_CD_SS_ENS.Text = .Cells(1).Text
-                            'MultiView_SAIS_OPRT.SetActiveView(View_SAIS_TCBL_COMP)
-                            'MultiView_Tracabilité.SetActiveView(View_SAI_SOUS_ENSE)
-                            MultiView_ETAP.SetActiveView(View_SAI_SOUS_ENSE)
-                            TextBox_SS_ENS.Text = ""
-                            TextBox_SS_ENS.Focus()
-                            Exit Sub
-                        End If
-                    End With
-                Next
+                'MultiView_ETAP.SetActiveView(View_VOID)
+                'For Each rGridView_REPE As GridViewRow In GridView_REPE.Rows
+                '    With rGridView_REPE
+                '        If HttpUtility.HtmlDecode(.Cells(3).Text) = "PRODUIT" Or HttpUtility.HtmlDecode(.Cells(3).Text) = "PRODUIT SEMI-FINI" Then
+                '            Label_CD_SS_ENS.Text = .Cells(1).Text
+                '            'MultiView_SAIS_OPRT.SetActiveView(View_SAIS_TCBL_COMP)
+                '            'MultiView_Tracabilité.SetActiveView(View_SAI_SOUS_ENSE)
+                '            MultiView_ETAP.SetActiveView(View_SAI_SOUS_ENSE)
+                '            TextBox_SS_ENS.Text = ""
+                '            TextBox_SS_ENS.Focus()
+                '            Exit Sub
+                '        End If
+                '    End With
+                'Next
+                If _VRFC_TCBL_SS_ENS_VIDE_GV_REPE() = True Then Exit Sub
                 'si pas de sous-ensemble
                 'Vérification documentaire (FCGF, DHR)
                 Select Case _VRFC_DCMT()
@@ -449,20 +485,21 @@ Public Class TCBL_OPRT
                 Session("i_NU_ETAP") = i_NU_ETAP + 1
                 _AFCG_ETAP(Session("i_NU_ETAP"))
             Else 'si fini enregistrement passage ou passer à la saisie des numéros de série des sous-ensemble
-                MultiView_ETAP.SetActiveView(View_VOID)
-                For Each rGridView_REPE As GridViewRow In GridView_REPE.Rows
-                    With rGridView_REPE
-                        If HttpUtility.HtmlDecode(.Cells(3).Text) = "PRODUIT" Or HttpUtility.HtmlDecode(.Cells(3).Text) = "PRODUIT SEMI-FINI" Then
-                            Label_CD_SS_ENS.Text = .Cells(1).Text
-                            'MultiView_SAIS_OPRT.SetActiveView(View_SAIS_TCBL_COMP)
-                            ' MultiView_Tracabilité.SetActiveView(View_SAI_SOUS_ENSE)
-                            MultiView_ETAP.SetActiveView(View_SAI_SOUS_ENSE)
-                            TextBox_SS_ENS.Text = ""
-                            TextBox_SS_ENS.Focus()
-                            Exit Sub
-                        End If
-                    End With
-                Next
+                If _VRFC_TCBL_SS_ENS_VIDE_GV_REPE() = True Then Exit Sub
+                'MultiView_ETAP.SetActiveView(View_VOID)
+                'For Each rGridView_REPE As GridViewRow In GridView_REPE.Rows
+                '    With rGridView_REPE
+                '        If HttpUtility.HtmlDecode(.Cells(3).Text) = "PRODUIT" Or HttpUtility.HtmlDecode(.Cells(3).Text) = "PRODUIT SEMI-FINI" Then
+                '            Label_CD_SS_ENS.Text = .Cells(1).Text
+                '            'MultiView_SAIS_OPRT.SetActiveView(View_SAIS_TCBL_COMP)
+                '            ' MultiView_Tracabilité.SetActiveView(View_SAI_SOUS_ENSE)
+                '            MultiView_ETAP.SetActiveView(View_SAI_SOUS_ENSE)
+                '            TextBox_SS_ENS.Text = ""
+                '            TextBox_SS_ENS.Focus()
+                '            Exit Sub
+                '        End If
+                '    End With
+                'Next
                 'si pas de sous-ensemble
 
                 'Vérification documentaire (FCGF, DHR)
@@ -526,6 +563,13 @@ Public Class TCBL_OPRT
         Dim sPOST_TRAV As String = ""
         Dim sIPMT_ETQT As String = ""
         Try
+            MultiView_SAIS_OPRT.SetActiveView(View_SAIS_NU_SER_CHEC)
+            MultiView_ETAP.SetActiveView(View_VOID)
+            With TextBox_NU_SER
+                .Enabled = True
+                .Text = ""
+                .Focus()
+            End With
             'Using db As New MES_Digital_FactoryEntities
             '    Dim tr_cpt As New DTM_TR_CPT With {.NM_NS_EOL = sNU_SER_ECO, .NM_NS_CLT = sNU_SER_CLIE, .ID_CPT = "-", .ID_PSG = Convert.ToInt64(Session("ID_PSG")), .DT_PSG = Now}
             '    db.DTM_TR_CPT.Add(tr_cpt)
@@ -608,11 +652,9 @@ Public Class TCBL_OPRT
             For Each rGridView_REPE As GridViewRow In GridView_REPE.Rows
                 With rGridView_REPE
                     If .Cells(5).Text <> "&nbsp;" Then
-                        sQuery = $"SELECT [NM_QTE_INIT]
-                                        ,ISNULL([NB_UTLS],0) AS NB_UTLS
+                        sQuery = $"SELECT [NM_QTE_INIT],ISNULL([NB_UTLS],0) AS NB_UTLS
                                     FROM [dbo].[V_LIST_CONT_NON_VIDE]
-                                   WHERE [NM_CNTR] = '{HttpUtility.HtmlDecode(.Cells(5).Text)}' 
-                                     AND [NM_OF] = '{TextBox_OF.Text}'"
+                                   WHERE [NM_CNTR] = '{HttpUtility.HtmlDecode(.Cells(5).Text)}' AND [NM_OF] = '{TextBox_OF.Text}'"
                         Using dt = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
                             If dt Is Nothing Then
                                 .Cells(8).Text = dt(0)("NM_QTE_INIT").ToString
@@ -662,23 +704,18 @@ Public Class TCBL_OPRT
                 End With
             Next
 
-            sQuery = $"SELECT [NU_SER_CLIE] AS [Numéro de série client]
-                             ,[NU_SER_ECO] AS [Numéro de série Eolane]
+            sQuery = $"SELECT [NU_SER_CLIE] AS [Numéro de série client],[NU_SER_ECO] AS [Numéro de série Eolane]
                          FROM [dbo].[V_DER_PASS_BON]
-                        WHERE [NM_OF] = '{Label_OF.Text}'
-                          AND [LB_ETP] = '{Label_DES_OP.Text} (OP:" & Label_OP.Text & ")'"
+                        WHERE [NM_OF] = '{Label_OF.Text}' AND [LB_ETP] = '{Label_DES_OP.Text} (OP:" & Label_OP.Text & ")'"
             Using dt_LIST_NU_SER_TRAC = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
                 If Not dt_LIST_NU_SER_TRAC Is Nothing Then
                     'décrément quantité totale 
                     Label_QT_REST_OF.Text = (Convert.ToDecimal(Replace(Label_QT_OF.Text, ".", ",")) - dt_LIST_NU_SER_TRAC.Rows.Count).ToString
-
                     'affichage de la liste des NS tracés
                     GridView_SN_TRAC.DataSource = dt_LIST_NU_SER_TRAC
                     GridView_SN_TRAC.DataBind()
                 End If
             End Using
-            MultiView_SAIS_OPRT.SetActiveView(View_SAIS_NU_SER_CHEC)
-            MultiView_ETAP.SetActiveView(View_VOID)
 
             If sSANC = "F" Then
                 Label_CONS.Text = ""
@@ -703,12 +740,12 @@ Public Class TCBL_OPRT
                     End Using
                 End Using
                 LOG_MESS_UTLS(GetCurrentMethod, $"Le numéro de série {TextBox_NU_SER.Text} est passé bon.")
-                With TextBox_NU_SER
-                    .Enabled = True
-                    .Text = ""
-                    .Focus()
-                End With
-                MultiView_ETAP.SetActiveView(View_VOID)
+                'With TextBox_NU_SER
+                '    .Enabled = True
+                '    .Text = ""
+                '    .Focus()
+                'End With
+                'MultiView_ETAP.SetActiveView(View_VOID)
 
                 If Label_QT_REST_OF.Text = "0" Then 'OF terminé
                     'For Each rGridView_LIST_MTRE As GridViewRow In GridView_LIST_MTRE.Rows 'Dissociation du matériel générique
@@ -734,12 +771,7 @@ Public Class TCBL_OPRT
                 End If
             End If
         Catch ex As Exception
-            With TextBox_NU_SER
-                .Enabled = True
-                .Text = ""
-                .Focus()
-            End With
-            MultiView_ETAP.SetActiveView(View_VOID)
+            'MultiView_ETAP.SetActiveView(View_VOID)
             LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
             Exit Sub
         End Try
@@ -1175,7 +1207,7 @@ Public Class TCBL_OPRT
                                 End If
                                 sQuery = $"SELECT [ID_NU_SER]
 	                                         FROM [dbo].[V_LIAIS_NU_SER]
-	                                        WHERE [NU_SER_CLIE] = '%{sNS}%'	
+	                                        WHERE [NU_SER_CLIE] LIKE '%{sNS}%'	
 	                                          AND [NU_OF] = '{Label_OF.Text}'"
                                 Using dt = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
                                     If dt_ETAT_CTRL.Columns.Contains("TextBox_FICH_MODE") Then DIG_FACT_IMPR_ETIQ_V2(dt_ETAT_CTRL(0)("TextBox_FICH_MODE").ToString, sIPMT_ETQT, TextBox_OF.Text, "", "Numéro de série client", dt(0)("ID_NU_SER").ToString, "", "", "", Nothing)
@@ -1284,13 +1316,20 @@ Public Class TCBL_OPRT
     End Sub
 
     Protected Sub TextBox_NU_SER_VLDT_OPRT_TextChanged(sender As Object, e As EventArgs) Handles TextBox_NU_SER_VLDT_OPRT.TextChanged
-        If TextBox_NU_SER_VLDT_OPRT.Text = TextBox_NU_SER.Text Then
-            _ERGT_OPRT_PASS("P")
-        Else
-            TextBox_NU_SER_VLDT_OPRT.Focus()
-            TextBox_NU_SER_VLDT_OPRT.Text = ""
-            LOG_MESS_UTLS(GetCurrentMethod, "Incohérence de numéro de série scanné.", "Erreur")
-        End If
+        Try
+            If TextBox_NU_SER_VLDT_OPRT.Text = TextBox_NU_SER.Text Then
+                _ERGT_OPRT_PASS("P")
+            Else
+                TextBox_NU_SER_VLDT_OPRT.Focus()
+                TextBox_NU_SER_VLDT_OPRT.Text = ""
+                Throw New Exception("Incohérence de numéro de série scanné.")
+            End If
+        Catch ex As Exception
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            Exit Sub
+        End Try
+
+
     End Sub
 
     'Public Function CREA_FCGF(sNU_SER As String, sOF As String) As String
@@ -2698,6 +2737,61 @@ Public Class TCBL_OPRT
             End If
         End If
     End Sub
+
+    Public Function _VRFC_TCBL_SS_ENS_VIDE_GV_REPE() As Boolean
+        Dim scd_arti_a_remp As String = ""
+        Try
+            'todo si anomalie, vérifier quel est l'élément à retracer en fonction de celui qui a été déclaré non-conforme et uploader les éléments à ne pas rectracer
+            Using dt_type_caus = SQL_SELE_TO_DT($"SELECT [ID_TYPE_CAUS]
+                                                    FROM [dbo].[V_NC_LIST_NU_SER_STAT_2]
+                                                   WHERE [NU_SER_SPFE] = '{TextBox_NU_SER.Text}'", CS_ALMS_PROD_PRD)
+                If Not dt_type_caus Is Nothing Then
+                    Using dt_cd_arti_clie = SAP_DATA_READ_KNMT($"MATNR LIKE '{Trim(Label_CD_ARTI.Text)}%' AND KUNNR EQ '0000000451' AND VKORG EQ 'ORC3' AND VTWEG EQ 'CD'")
+                        If dt_cd_arti_clie Is Nothing Then Throw New Exception($"L'équivalent de {Trim(Label_CD_ARTI.Text)} en code article ALMS n'a pas été retrouvé dans SAP.")
+                        Using dt = SQL_SELE_TO_DT($"SELECT [CD_ARTI_COMP]
+                                                      FROM [dbo].[V_NC_LIST_CD_ARTI_TCBL_UNIT]
+                                                     WHERE [CD_ARTI_PROD] = '{Trim(dt_cd_arti_clie(0)("KDMAT").ToString)}' AND [ID_TYPE_CAUS] = {dt_type_caus(0)("ID_TYPE_CAUS").ToString}", CS_ALMS_PROD_PRD)
+                            If Not dt Is Nothing Then
+                                Using dtKNMT = SAP_DATA_READ_KNMT($"KDMAT LIKE '{dt(0)("CD_ARTI_COMP").ToString}%'")
+                                    If dtKNMT Is Nothing Then
+                                        scd_arti_a_remp = dt(0)("CD_ARTI_COMP").ToString
+                                    Else
+                                        scd_arti_a_remp = Trim(dtKNMT(0)("MATNR").ToString)
+                                    End If
+                                    For Each rGridView_REPE As GridViewRow In GridView_REPE.Rows
+                                        If rGridView_REPE.Cells(1).Text <> scd_arti_a_remp Then
+                                            Using dt_nu_ser_ss_ense = SQL_SELE_TO_DT($"SELECT MAX([DT_DEB]) AS DER_DT_DEB,[NM_NS_SENS]
+                                                                                         FROM [dbo].[ID_PF_View]
+                                                                                        WHERE [LB_SCTN] = 'P' AND [NM_NS_EOL] LIKE '%{TextBox_NU_SER.Text}%' AND [NM_NS_CLT] LIKE '%{TextBox_NU_SER.Text}%' AND [LB_ETP] = '{Label_DES_OP.Text} (OP:{Label_OP.Text})' AND [NM_SAP_CPT] = '{rGridView_REPE.Cells(1).Text}'
+                                                                                       GROUP BY [NM_NS_SENS], [LB_SCTN], [NM_NS_EOL], [NM_NS_CLT], [LB_ETP], [NM_SAP_CPT]", CS_MES_Digital_Factory)
+                                                If Not dt_nu_ser_ss_ense Is Nothing Then rGridView_REPE.Cells(6).Text = dt_nu_ser_ss_ense(0)("NM_NS_SENS").ToString
+                                            End Using
+                                        End If
+                                    Next
+                                End Using
+                            End If
+                        End Using
+                    End Using
+                End If
+            End Using
+            MultiView_ETAP.SetActiveView(View_VOID)
+            For Each rGridView_REPE As GridViewRow In GridView_REPE.Rows
+                With rGridView_REPE
+                    If HttpUtility.HtmlDecode(.Cells(3).Text) = "PRODUIT" Or HttpUtility.HtmlDecode(.Cells(3).Text) = "PRODUIT SEMI-FINI" Then
+                        Label_CD_SS_ENS.Text = .Cells(1).Text
+                        MultiView_ETAP.SetActiveView(View_SAI_SOUS_ENSE)
+                        TextBox_SS_ENS.Text = ""
+                        TextBox_SS_ENS.Focus()
+                        Return True
+                    End If
+                End With
+            Next
+            Return False
+        Catch ex As Exception
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "error")
+            Return False
+        End Try
+    End Function
 End Class
 'Public Class HeaderFooter_FCGF
 '    Inherits PdfPageEventHelper

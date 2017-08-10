@@ -52,6 +52,7 @@
         <EntityTypeShape EntityType="MES_Digital_FactoryModel.V_SERE_ARTI" Width="1.5" PointX="18.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MES_Digital_FactoryModel.V_TAE_TCBL_HSRQ_STAT_PROD" Width="1.5" PointX="18.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MES_Digital_FactoryModel.V_TAE_TCBL_NMCT_UNIT_PROD" Width="1.5" PointX="18.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MES_Digital_FactoryModel.sysdiagram" Width="1.5" PointX="19.375" PointY="9.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

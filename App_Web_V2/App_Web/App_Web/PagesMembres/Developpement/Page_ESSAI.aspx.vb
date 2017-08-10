@@ -230,10 +230,10 @@ Public Class Page_ESSAI
 
     Protected Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
 
-        LOG_MESS_UTLS(GetCurrentMethod, "1", "success")
-        LOG_MESS_UTLS(GetCurrentMethod, "2", "info")
-        LOG_MESS_UTLS(GetCurrentMethod, "3", "warning")
-        LOG_MESS_UTLS(GetCurrentMethod, "4", "alert")
+        'LOG_MESS_UTLS(GetCurrentMethod, "1", "success")
+        LOG_MESS_UTLS(GetCurrentMethod, CS_MES_Digital_Factory, "info")
+        'LOG_MESS_UTLS(GetCurrentMethod, "3", "warning")
+        'LOG_MESS_UTLS(GetCurrentMethod, "4", "alert")
     End Sub
 
     Protected Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click

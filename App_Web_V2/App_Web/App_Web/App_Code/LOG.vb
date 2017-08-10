@@ -160,7 +160,7 @@ Public Class LOG
                 sb.Append("        }")
                 sb.Append("    ],")
                 sb.Append("     options: {class: ""padding20 dialog"",")
-                sb.Append($"     type: ""{Replace(sType, "Erreur", "alert")}"", closebutton: ""true"", place: ""default"", style: ""width: auto; height: auto; visibility: visible; font-family: verdana;"", overlay: ""true"", overlaycolor: ""op-dark"", overlayclickclose:""true""")
+                sb.Append($"     type: ""{Replace(sType, "Erreur", "alert")}"", closebutton: ""true"", place: ""default"", style: ""width: auto; height: auto; visibility: visible; font-family: verdana;"", overlay: ""true"", overlaycolor: ""op-dark"", overlayclickclose: ""true""")
                 sb.Append("}    ")
                 sb.Append("});</script>")
 

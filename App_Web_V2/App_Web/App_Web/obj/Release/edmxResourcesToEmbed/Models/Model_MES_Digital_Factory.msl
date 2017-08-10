@@ -282,6 +282,7 @@
     <EntitySetMapping Name="V_CFGR_ARTI_ECO">
       <EntityTypeMapping TypeName="MES_Digital_FactoryModel.V_CFGR_ARTI_ECO">
         <MappingFragment StoreEntitySet="V_CFGR_ARTI_ECO">
+          <ScalarProperty Name="Nombre_étiquette_largeur" ColumnName="Nombre étiquette largeur" />
           <ScalarProperty Name="CD_ARTI" ColumnName="CD_ARTI" />
           <ScalarProperty Name="Code_article_client" ColumnName="Code article client" />
           <ScalarProperty Name="Désignation_article_client" ColumnName="Désignation article client" />
@@ -1034,5 +1035,71 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="MES_Digital_FactoryModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="bilanSemaineEtLivraisonIndicateurVendom" FunctionName="MES_Digital_FactoryModel.Store.bilanSemaineEtLivraisonIndicateurVendom">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MES_Digital_FactoryModel.bilanSemaineEtLivraisonIndicateurVendom_Result">
+          <ScalarProperty Name="QteProduite" ColumnName="QteProduite" />
+          <ScalarProperty Name="QtePanne" ColumnName="QtePanne" />
+          <ScalarProperty Name="totalPdtsLivres" ColumnName="totalPdtsLivres" />
+          <ScalarProperty Name="totalStockALivre" ColumnName="totalStockALivre" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="P_ATBT_ADRE_MAC" FunctionName="MES_Digital_FactoryModel.Store.P_ATBT_ADRE_MAC" />
+    <FunctionImportMapping FunctionImportName="P_GET_ADRE_MAC" FunctionName="MES_Digital_FactoryModel.Store.P_GET_ADRE_MAC" />
+    <FunctionImportMapping FunctionImportName="P_LIST_ADRE_MAC_DPNB" FunctionName="MES_Digital_FactoryModel.Store.P_LIST_ADRE_MAC_DPNB" />
+    <FunctionImportMapping FunctionImportName="P_TAE_PASS_WF" FunctionName="MES_Digital_FactoryModel.Store.P_TAE_PASS_WF" />
+    <FunctionImportMapping FunctionImportName="paretoControlesIndicateurVendom" FunctionName="MES_Digital_FactoryModel.Store.paretoControlesIndicateurVendom">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MES_Digital_FactoryModel.paretoControlesIndicateurVendom_Result">
+          <ScalarProperty Name="descriptionErr" ColumnName="descriptionErr" />
+          <ScalarProperty Name="nbErr" ColumnName="nbErr" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="pdts_Test_Controles_IndicateurVendom" FunctionName="MES_Digital_FactoryModel.Store.pdts_Test_Controles_IndicateurVendom">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MES_Digital_FactoryModel.pdts_Test_Controles_IndicateurVendom_Result">
+          <ScalarProperty Name="nbPdtsScan" ColumnName="nbPdtsScan" />
+          <ScalarProperty Name="nbPdtsKo" ColumnName="nbPdtsKo" />
+          <ScalarProperty Name="fpy" ColumnName="fpy" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="MES_Digital_FactoryModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="MES_Digital_FactoryModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="MES_Digital_FactoryModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="MES_Digital_FactoryModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MES_Digital_FactoryModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="MES_Digital_FactoryModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MES_Digital_FactoryModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="MES_Digital_FactoryModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="MES_Digital_FactoryModel.Store.sp_upgraddiagrams" />
   </EntityContainerMapping>
 </Mapping>

@@ -83,5 +83,6 @@ Partial Public Class V_CFGR_ARTI_ECO
     Public Property Requête_liste_produits_dans_le_carton_palette_document_DF As String
     Public Property Contenu_du_code_à_barre_document_DF As String
     Public Property Mise_à_disposition_des_documents_par_BL As String
+    Public Property Nombre_étiquette_largeur As String
 
 End Class

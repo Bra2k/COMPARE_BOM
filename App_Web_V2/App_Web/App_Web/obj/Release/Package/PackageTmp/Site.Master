@@ -20,27 +20,33 @@
     <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/Scripts/jquery-1.10.2.js") %>"></script>
     <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/Scripts/metro.js") %>"></script>
 
+    <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/Scripts/respond.js") %>"></script>
+    <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/Scripts/MsAjaxBundle.js") %>"></script>
+    <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/Scripts/bootstrap.js") %>"></script>
+    <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/Scripts/jquery.js") %>"></script>
+<%--    <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/Scripts/metro.js") %>"></script>--%>
+
 </head>
 <body>
     <form runat="server">
-        <asp:ScriptManager runat="server">
+        <asp:ScriptManager>
             <Scripts>
                 <%--Pour plus d'informations sur les scripts de regroupement dans ScriptManager, consultez http://go.microsoft.com/fwlink/?LinkID=301884 --%>
                 <%--Scripts Framework--%>
-                <asp:ScriptReference Name="MsAjaxBundle" />
-                <asp:ScriptReference Name="jquery" />
-                <asp:ScriptReference Name="bootstrap" />
-                <asp:ScriptReference Name="respond" />
-                <asp:ScriptReference Name="respond" Assembly="System.Web.Extensions" />
-                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
-                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
-                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
-                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
-                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
-                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
-                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
-                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
-                <asp:ScriptReference Name="WebFormsBundle" />
+<%--                <asp:ScriptReference Name="MsAjaxBundle" ></asp:ScriptReference>
+                <asp:ScriptReference Name="jquery" ></asp:ScriptReference>
+                <asp:ScriptReference Name="bootstrap" ></asp:ScriptReference>
+                <asp:ScriptReference Name="respond" ></asp:ScriptReference>--%>
+                <asp:ScriptReference Name="respond" Assembly="System.Web.Extensions" ></asp:ScriptReference>
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" ></asp:ScriptReference>
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" ></asp:ScriptReference>
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" ></asp:ScriptReference>
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" ></asp:ScriptReference>
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" ></asp:ScriptReference>
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" ></asp:ScriptReference>
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" ></asp:ScriptReference>
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" ></asp:ScriptReference>
+                <asp:ScriptReference Name="WebFormsBundle" ></asp:ScriptReference>
 
                 <%--Scripts de site--%>
             </Scripts>

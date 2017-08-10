@@ -13,6 +13,8 @@ Imports PdfSharp.Pdf
 Imports System.IO
 Imports System
 Imports Microsoft.VisualBasic.Strings
+Imports App_Web
+
 Public Class Class_DIG_FACT
     Public Shared Function DIG_FACT_VERI_FORM_NU_SER(sCD_ARTI As String, sNM_PARA As String, sNU_SER As String) As Boolean
 
@@ -52,13 +54,13 @@ Public Class Class_DIG_FACT
         Dim dtAFKO, dtMARA, dtT179T, dtMAKT, dtLIPS, dtLIPSUP, dt_CFGR_ARTI_ECO, dt_ETAT_CTRL As New DataTable
         Dim sr As StreamReader
         Randomize()
-        Dim sfich As String = $"c:\sources\temp_App_Web\{CInt(Int((1000 * Rnd()) + 1))}_{Path.GetFileName(sFichier)}"
+        Dim sfich As String = $"{App_Web.My.Settings.RPTR_TPRR}\{CInt(Int((1000 * Rnd()) + 1))}_{Path.GetFileName(sFichier)}"
         Dim sw As StreamWriter
 
         'Génération des étiquettes AVALUN
         dtAFKO = SAP_DATA_READ_AFKO($"AUFNR LIKE '%{sNU_OF}'")
         If Not dtAFKO Is Nothing And Trim(dtAFKO(0)("PLNBEZ").ToString) = "AVAE947700$" And sFichier = "\\ceapp03\Sources\Digital Factory\Etiquettes\AVALUN\AVALUN.prn" Then
-            Dim sfich_AVA As String = $"c:\sources\temp_App_Web\{CInt(Int((1000 * Rnd()) + 1))}_{Path.GetFileName("\\ceapp03\Sources\Digital Factory\Etiquettes\AVALUN\AVALUN.prn")}"
+            Dim sfich_AVA As String = $"{App_Web.My.Settings.RPTR_TPRR}\{CInt(Int((1000 * Rnd()) + 1))}_{Path.GetFileName("\\ceapp03\Sources\Digital Factory\Etiquettes\AVALUN\AVALUN.prn")}"
             COMM_APP_WEB_COPY_FILE("\\ceapp03\Sources\Digital Factory\Etiquettes\AVALUN\AVALUN.prn", sfich_AVA, True)
             Dim sr_AVA = New StreamReader(sfich_AVA, Encoding.UTF8)
             sData = sr_AVA.ReadToEnd()
@@ -215,7 +217,7 @@ Public Class Class_DIG_FACT
 
         Try
             Randomize()
-            Dim sfich As String = $"c:\sources\temp_App_Web\{CInt(Int((1000 * Rnd()) + 1))}_{Path.GetFileName(sFichier)}"
+            Dim sfich As String = $"{App_Web.My.Settings.RPTR_TPRR}\{CInt(Int((1000 * Rnd()) + 1))}_{Path.GetFileName(sFichier)}"
             If File.Exists(sfich) Then My.Computer.FileSystem.DeleteFile(sfich)
             COMM_APP_WEB_COPY_FILE(sFichier, sfich, True)
             Using sr = New StreamReader(sfich, System.Text.Encoding.UTF8)
@@ -379,7 +381,7 @@ Public Class Class_DIG_FACT
 
         Randomize()
         If sDossier = "vide" Then
-            sfich = $"c:\sources\temp_App_Web\delivery_form_{CInt(Int((1000 * Rnd()) + 1))}.pdf"
+            sfich = $"{App_Web.My.Settings.RPTR_TPRR}\delivery_form_{CInt(Int((1000 * Rnd()) + 1))}.pdf"
         Else
             sfich = $"{sDossier}\delivery_form_{CInt(Int((1000 * Rnd()) + 1))}.pdf"
         End If
@@ -788,7 +790,7 @@ Public Class Class_DIG_FACT_SQL
         Dim sQuery As String = "", sQuery_WF As String = ""
         Try
             Using dtAFKO = SAP_DATA_READ_AFKO($"AUFNR LIKE '%{sNU_OF}'")
-                If dtAFKO Is Nothing Then Throw New Exception($"La désignation d'aticle de l'OF {sNU_OF} n'a pas été trouvé dans SAP.")
+                If dtAFKO Is Nothing Then Throw New Exception($"Le code article de l'OF {sNU_OF} n'a pas été trouvé dans SAP.")
 
                 'vérification workflow
                 sQuery = $"SELECT REPLACE(NM_PARA, 'WORKFLOW étape ', '') AS NU_ETAP
@@ -799,22 +801,39 @@ Public Class Class_DIG_FACT_SQL
                 Using dt = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
                     If dt Is Nothing Then Throw New Exception("Pas de Workflow configuré dans la base. Prévenir un Méthode")
                     If dt(0)("NU_ETAP").ToString <> "1" Then 'Première opération dans le workflow --> pas de vérification
-                        sQuery_WF = $"SELECT [NM_ETAP_PCDT]      
-                                        FROM [dbo].[V_WORK_PASS]
-                                       WHERE [NM_ETAP] = '{sLB_NU_OPRT} ' 
-                                         And [NM_OF] = '{sNU_OF}' 
-                                         And ([NU_SER_ECO] Like '%{sNU_SER_ECO}%' OR [NU_SER_ECO] Like '%{Right(sNU_SER_ECO, 13)}%')
-                                         And [NU_SER_CLIE] Like '%{sNU_SER_CLIE}%'"
-                        'LOG_Msg(GetCurrentMethod, sQuery_WF)
-                        Using dt_WF = SQL_SELE_TO_DT(sQuery_WF, sChaineConnexion)
-                            If dt_WF Is Nothing Then Throw New Exception($"Le numéro de série {sNU_SER_ECO}{sNU_SER_CLIE} n'est pas passé à l'étape précédente")
+                        'sQuery_WF = $"SELECT [NM_ETAP_PCDT]      
+                        '                FROM [dbo].[V_WORK_PASS]
+                        '               WHERE [NM_ETAP] = '{sLB_NU_OPRT} ' 
+                        '                 And [NM_OF] = '{sNU_OF}' 
+                        '                 And ([NU_SER_ECO] Like '%{sNU_SER_ECO}%' OR [NU_SER_ECO] Like '%{Right(sNU_SER_ECO, 13)}%')
+                        '                 And [NU_SER_CLIE] Like '%{sNU_SER_CLIE}%'"
+                        ''LOG_Msg(GetCurrentMethod, sQuery_WF)
+                        'Using dt_WF = SQL_SELE_TO_DT(sQuery_WF, sChaineConnexion)
+                        '    If dt_WF Is Nothing Then Throw New Exception($"Le numéro de série {sNU_SER_ECO}{sNU_SER_CLIE} n'est pas passé à l'étape précédente")
+                        'End Using
+                        Dim sNU_SER As String = ""
+                        If sNU_SER_CLIE = "" Then
+                            If Left(Trim(dtAFKO(0)("PLNBEZ").ToString), 3) = "SEN" Then
+                                sNU_SER = Right(sNU_SER_ECO, 13)
+                            Else
+                                sNU_SER = sNU_SER_ECO
+                            End If
+                        Else
+                            sNU_SER = sNU_SER_CLIE
+                        End If
+
+                        Dim sRes = New Entity.Core.Objects.ObjectParameter("RES", GetType(String))
+                        Using db As New MES_Digital_FactoryEntities
+                            Dim rs As String = db.P_TAE_PASS_WF(sNU_SER, sLB_NU_OPRT, sRes)
+                            If sRes.Value <> "PASS" Then Throw New Exception(sRes.Value)
+                            If rs Is Nothing Then Throw New Exception("Le résultat est nul")
                         End Using
                     End If
                 End Using
             End Using
             Return True
         Catch ex As Exception
-            LOG_Erreur(GetCurrentMethod, ex.Message)
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "error")
             Return False
         End Try
     End Function

@@ -157,8 +157,6 @@ avertissement 6013: Aucune clé primaire n'est définie pour la table/vue 'MES_D
     <Property Name="FT_NS_SENS" Type="nvarchar" MaxLength="100" />
     <Property Name="FT_NS_ENS" Type="nvarchar" MaxLength="100" />
   </EntityType>
-  <!--Erreurs détectées durant la génération :
-avertissement 6002: La table/vue 'MES_Digital_Factory.dbo.DTM_REF_ID' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
   <EntityType Name="DTM_REF_ID">
     <Key>
       <PropertyRef Name="ID" />
@@ -339,6 +337,16 @@ avertissement 6013: Aucune clé primaire n'est définie pour la table/vue 'MES_D
           <Property Name="Version logicielle" Type="nvarchar" MaxLength="4000" />
           <Property Name="Version séquenceur" Type="nvarchar" MaxLength="4000" />
         </EntityType>-->
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
   <EntityType Name="TMP_PST_FLAN">
     <Key>
       <PropertyRef Name="LB_PST" />
@@ -468,6 +476,14 @@ avertissement 6013: Aucune clé primaire n'est définie pour la table/vue 'MES_D
           <Property Name="ID_TR" Type="bigint" />
         </EntityType>-->
   <!--Erreurs détectées durant la génération :
+avertissement 6013: Aucune clé primaire n'est définie pour la table/vue 'MES_Digital_Factory.dbo.V_ADRE_MAC_DPNB' ; en outre, aucune clé primaire valide n'a pu être déduite. Cette table/vue a été exclue. Pour utiliser l'entité, vous devez passer en revue votre schéma, ajouter les clés appropriées et supprimer le commentaire associé.
+        <EntityType Name="V_ADRE_MAC_DPNB">
+          <Property Name="NM_CRIT" Type="nvarchar" MaxLength="50" />
+          <Property Name="ID_NU_SER" Type="bigint" />
+          <Property Name="NU_OF" Type="nvarchar" MaxLength="200" />
+          <Property Name="NU_ADRE_MAC" Type="nvarchar" MaxLength="200" />
+        </EntityType>-->
+  <!--Erreurs détectées durant la génération :
 avertissement 6013: Aucune clé primaire n'est définie pour la table/vue 'MES_Digital_Factory.dbo.V_C43E_ETCT_CRED_VERS_SOFT' ; en outre, aucune clé primaire valide n'a pu être déduite. Cette table/vue a été exclue. Pour utiliser l'entité, vous devez passer en revue votre schéma, ajouter les clés appropriées et supprimer le commentaire associé.
         <EntityType Name="V_C43E_ETCT_CRED_VERS_SOFT">
           <Property Name="NU_SER" Type="nvarchar" MaxLength="100" />
@@ -562,6 +578,7 @@ avertissement 6002: La table/vue 'MES_Digital_Factory.dbo.V_CFGR_ARTI_ECO' n'a p
       <PropertyRef Name="Requête liste produits dans le carton\palette document DF" />
       <PropertyRef Name="Contenu du code à barre document DF" />
       <PropertyRef Name="Mise à disposition des documents par BL" />
+      <PropertyRef Name="Nombre étiquette largeur" />
     </Key>
     <Property Name="CD_ARTI" Type="nvarchar" MaxLength="50" />
     <Property Name="Code article client" Type="nvarchar" MaxLength="1000" Nullable="false" />
@@ -635,6 +652,7 @@ avertissement 6002: La table/vue 'MES_Digital_Factory.dbo.V_CFGR_ARTI_ECO' n'a p
     <Property Name="Requête liste produits dans le carton\palette document DF" Type="nvarchar" MaxLength="1000" Nullable="false" />
     <Property Name="Contenu du code à barre document DF" Type="nvarchar" MaxLength="1000" Nullable="false" />
     <Property Name="Mise à disposition des documents par BL" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="Nombre étiquette largeur" Type="nvarchar" MaxLength="1000" Nullable="false" />
   </EntityType>
   <!--Erreurs détectées durant la génération :
 avertissement 6002: La table/vue 'MES_Digital_Factory.dbo.V_CFGR_CLIE' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
@@ -1196,6 +1214,9 @@ avertissement 6013: Aucune clé primaire n'est définie pour la table/vue 'MES_D
           <Property Name="ID_MTRE" Type="nvarchar" MaxLength="50" />
           <Property Name="NM_TYPE_MTRE" Type="nvarchar" MaxLength="1000" />
           <Property Name="NM_RFRC_MTRE" Type="nvarchar" MaxLength="1000" />
+          <Property Name="NM_POST_PHYS_DEDI" Type="nvarchar" MaxLength="1000" />
+          <Property Name="CD_ARTI_DEDI" Type="nvarchar" MaxLength="1000" />
+          <Property Name="NM_OPRT_DEDI" Type="nvarchar" MaxLength="1000" />
         </EntityType>-->
   <!--Erreurs détectées durant la génération :
 avertissement 6013: Aucune clé primaire n'est définie pour la table/vue 'MES_Digital_Factory.dbo.V_POST_MTLG_MTRE' ; en outre, aucune clé primaire valide n'a pu être déduite. Cette table/vue a été exclue. Pour utiliser l'entité, vous devez passer en revue votre schéma, ajouter les clés appropriées et supprimer le commentaire associé.
@@ -1313,6 +1334,15 @@ avertissement 6013: Aucune clé primaire n'est définie pour la table/vue 'MES_D
           <Property Name="NU_SER_ECO" Type="nvarchar" MaxLength="100" />
           <Property Name="NM_OF" Type="int" />
         </EntityType>-->
+  <!--Erreurs détectées durant la génération :
+avertissement 6013: Aucune clé primaire n'est définie pour la table/vue 'MES_Digital_Factory.dbo.V_WORK_PASS_2' ; en outre, aucune clé primaire valide n'a pu être déduite. Cette table/vue a été exclue. Pour utiliser l'entité, vous devez passer en revue votre schéma, ajouter les clés appropriées et supprimer le commentaire associé.
+        <EntityType Name="V_WORK_PASS_2">
+          <Property Name="NM_ETAP_PCDT" Type="nvarchar" MaxLength="255" />
+          <Property Name="NM_ETAP" Type="nvarchar" MaxLength="1000" />
+          <Property Name="NU_SER_CLIE" Type="nvarchar" MaxLength="200" />
+          <Property Name="NU_SER_ECO" Type="nvarchar" MaxLength="100" />
+          <Property Name="NM_OF" Type="int" />
+        </EntityType>-->
   <Function Name="Ajout_Gestion_Conteneur" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="N_Conteneur" Type="nvarchar" Mode="In" />
     <Parameter Name="Preparateur" Type="nvarchar" Mode="In" />
@@ -1362,6 +1392,22 @@ avertissement 6013: Aucune clé primaire n'est définie pour la table/vue 'MES_D
     <Parameter Name="N_Outillage" Type="nvarchar" Mode="In" />
     <Parameter Name="Type_outillage" Type="nvarchar" Mode="In" />
     <Parameter Name="Date_limite_Utilisation" Type="date" Mode="In" />
+  </Function>
+  <Function Name="bilanSemaineEtLivraisonIndicateurVendom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="p_Num_OF" Type="int" Mode="In" />
+    <Parameter Name="p_Num_article" Type="nvarchar" Mode="In" />
+    <Parameter Name="p_date_deb_analyse" Type="nvarchar" Mode="In" />
+    <Parameter Name="p_date_fin_analyse" Type="nvarchar" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="QteProduite" Type="int" />
+          <Property Name="QtePanne" Type="int" />
+          <Property Name="totalPdtsLivres" Type="int" />
+          <Property Name="totalStockALivre" Type="int" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
   </Function>
   <Function Name="Conteneur_Disponible" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="N_conteneur" Type="nvarchar" Mode="In" />
@@ -1429,6 +1475,7 @@ avertissement 6013: Aucune clé primaire n'est définie pour la table/vue 'MES_D
   <Function Name="F_NUMERO_SEMAINE_ISO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
     <Parameter Name="JOUR" Type="datetime" Mode="In" />
   </Function>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
   <Function Name="INS_TMP_PST_NMCL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Poste" Type="nvarchar" Mode="In" />
     <Parameter Name="NM_LGN" Type="int" Mode="In" />
@@ -1592,6 +1639,13 @@ avertissement 6013: Aucune clé primaire n'est définie pour la table/vue 'MES_D
     <Parameter Name="ID_Passage" Type="bigint" Mode="InOut" />
     <Parameter Name="Result" Type="nvarchar" Mode="InOut" />
   </Function>
+  <Function Name="P_ATBT_ADRE_MAC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NM_CRIT" Type="nvarchar" Mode="In" />
+    <Parameter Name="NU_SER" Type="nvarchar" Mode="In" />
+    <Parameter Name="NM_TYPE" Type="nvarchar" Mode="In" />
+    <Parameter Name="NU_ADRE_MAC" Type="nvarchar" Mode="InOut" />
+    <Parameter Name="RESULT" Type="nvarchar" Mode="InOut" />
+  </Function>
   <Function Name="P_AVAE_GET_TCBL_NU_SER_ENSE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="NU_SER_ENSE_UDI" Type="nvarchar" Mode="In" />
     <Parameter Name="NU_SER_MCU" Type="nvarchar" Mode="InOut" />
@@ -1615,6 +1669,14 @@ avertissement 6013: Aucune clé primaire n'est définie pour la table/vue 'MES_D
     <Parameter Name="TX_SUJE" Type="nvarchar" Mode="In" />
     <Parameter Name="NM_FICH_ATTA" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="P_GET_ADRE_MAC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NM_CRIT" Type="nvarchar" Mode="In" />
+    <Parameter Name="NU_SER" Type="nvarchar" Mode="In" />
+    <Parameter Name="NM_TYPE" Type="nvarchar" Mode="In" />
+    <Parameter Name="NU_ADRE_MAC" Type="nvarchar" Mode="InOut" />
+    <Parameter Name="DT_CREA" Type="datetime" Mode="InOut" />
+    <Parameter Name="RESULT" Type="nvarchar" Mode="InOut" />
+  </Function>
   <Function Name="P_GET_DERN_NU_SER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="NM_CRIT" Type="nvarchar" Mode="In" />
     <Parameter Name="NM_TYPE" Type="nvarchar" Mode="In" />
@@ -1632,6 +1694,11 @@ avertissement 6013: Aucune clé primaire n'est définie pour la table/vue 'MES_D
     <Parameter Name="ETAP" Type="nvarchar" Mode="In" />
     <Parameter Name="RET" Type="nvarchar" Mode="InOut" />
   </Function>
+  <Function Name="P_LIST_ADRE_MAC_DPNB" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NM_CRIT" Type="nvarchar" Mode="In" />
+    <Parameter Name="NB_ADRE_MAC_DPNB" Type="int" Mode="InOut" />
+    <Parameter Name="RESULT" Type="nvarchar" Mode="InOut" />
+  </Function>
   <Function Name="P_MAJ_RAPP_TEST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Fichier_Rapport" Type="nvarchar" Mode="In" />
   </Function>
@@ -1640,6 +1707,43 @@ avertissement 6013: Aucune clé primaire n'est définie pour la table/vue 'MES_D
   </Function>
   <Function Name="P_MAJ_VALE_TEST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Fichier_valeurs" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="P_TAE_PASS_WF" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NU_SER" Type="nvarchar" Mode="In" />
+    <Parameter Name="NM_OPRT" Type="nvarchar" Mode="In" />
+    <Parameter Name="RES" Type="nvarchar" Mode="InOut" />
+  </Function>
+  <Function Name="paretoControlesIndicateurVendom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="p_Num_OF" Type="int" Mode="In" />
+    <Parameter Name="p_Num_article" Type="nvarchar" Mode="In" />
+    <Parameter Name="p_date_deb_analyse" Type="nvarchar" Mode="In" />
+    <Parameter Name="p_date_fin_analyse" Type="nvarchar" Mode="In" />
+    <Parameter Name="p_type_controle" Type="nvarchar" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="descriptionErr" Type="nvarchar" MaxLength="200" />
+          <Property Name="nbErr" Type="int" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="pdts_Test_Controles_IndicateurVendom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="p_indicSource" Type="bit" Mode="In" />
+    <Parameter Name="p_Num_OF" Type="int" Mode="In" />
+    <Parameter Name="p_Num_article" Type="nvarchar" Mode="In" />
+    <Parameter Name="p_date_deb_analyse" Type="nvarchar" Mode="In" />
+    <Parameter Name="p_date_fin_analyse" Type="nvarchar" Mode="In" />
+    <Parameter Name="p_type_controle" Type="nvarchar" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="nbPdtsScan" Type="int" />
+          <Property Name="nbPdtsKo" Type="int" />
+          <Property Name="fpy" Type="decimal" Precision="5" Scale="2" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
   </Function>
   <Function Name="PRC_DNN_CNTR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="NM_CNTR" Type="nvarchar" Mode="In" />
@@ -1739,6 +1843,36 @@ avertissement 6013: Aucune clé primaire n'est définie pour la table/vue 'MES_D
     <Parameter Name="NM_NS_SENS" Type="nvarchar" Mode="In" />
     <Parameter Name="Result" Type="nvarchar" Mode="InOut" />
   </Function>
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="SUP_TMP_PST_NMCL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Poste" Type="nvarchar" Mode="In" />
   </Function>
@@ -1772,18 +1906,14 @@ avertissement 6013: Aucune clé primaire n'est définie pour la table/vue 'MES_D
     <EntitySet Name="DTM_PSG" EntityType="Self.DTM_PSG" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DTM_PSG_OUTI" EntityType="Self.DTM_PSG_OUTI" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DTM_REF_ENS" EntityType="Self.DTM_REF_ENS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DTM_REF_ID" EntityType="Self.DTM_REF_ID" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DTM_REF_PST_IMPR_OLD" EntityType="Self.DTM_REF_PST_IMPR_OLD" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DTM_TR_CPT" EntityType="Self.DTM_TR_CPT" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DTM_TST_RPRT" EntityType="Self.DTM_TST_RPRT" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DTM_TST_VAL" EntityType="Self.DTM_TST_VAL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TMP_PST_FLAN" EntityType="Self.TMP_PST_FLAN" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TMP_PST_NMCL" EntityType="Self.TMP_PST_NMCL" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="DTM_REF_ID" EntityType="Self.DTM_REF_ID" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [DTM_REF_ID].[ID] AS [ID], 
-    [DTM_REF_ID].[NM_CHAM] AS [NM_CHAM]
-    FROM [dbo].[DTM_REF_ID] AS [DTM_REF_ID]</DefiningQuery>
-    </EntitySet>
     <EntitySet Name="TMP_PST_OUTI" EntityType="Self.TMP_PST_OUTI" store:Type="Tables" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [TMP_PST_OUTI].[LB_PST] AS [LB_PST], 
@@ -1899,7 +2029,8 @@ avertissement 6013: Aucune clé primaire n'est définie pour la table/vue 'MES_D
     [V_CFGR_ARTI_ECO].[Document BL DF] AS [Document BL DF], 
     [V_CFGR_ARTI_ECO].[Requête liste produits dans le carton\palette document DF] AS [Requête liste produits dans le carton\palette document DF], 
     [V_CFGR_ARTI_ECO].[Contenu du code à barre document DF] AS [Contenu du code à barre document DF], 
-    [V_CFGR_ARTI_ECO].[Mise à disposition des documents par BL] AS [Mise à disposition des documents par BL]
+    [V_CFGR_ARTI_ECO].[Mise à disposition des documents par BL] AS [Mise à disposition des documents par BL], 
+    [V_CFGR_ARTI_ECO].[Nombre étiquette largeur] AS [Nombre étiquette largeur]
     FROM [dbo].[V_CFGR_ARTI_ECO] AS [V_CFGR_ARTI_ECO]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="V_CFGR_CLIE" EntityType="Self.V_CFGR_CLIE" store:Type="Views" store:Schema="dbo">
