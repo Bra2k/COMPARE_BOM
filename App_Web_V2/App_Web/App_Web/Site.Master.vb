@@ -53,7 +53,7 @@ Public Class SiteMaster
                 Session("User_Name") = Replace(Replace(System.Web.HttpContext.Current.User.Identity.Name, Environment.UserDomainName, ""), "\", "")
                 _AD_GET_USER(IdentityType.SamAccountName, Session("User_Name"))
             Catch ex As Exception
-                LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+                LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
                 Exit Sub
             End Try
         End If
@@ -63,18 +63,16 @@ Public Class SiteMaster
 
     Protected Sub Unnamed_LoggingOut(sender As Object, e As LoginCancelEventArgs)
         Context.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie)
-    End Sub
-    Protected Sub APP_WEB_LoggedOut(sender As Object, e As EventArgs)
-
         Try
-            LOG_MESS_UTLS(GetCurrentMethod, $"Session {Session("User_Name")} terminée")
+            LOG_MESS_UTLS(GetCurrentMethod, $"Session {Session("User_Name")} terminée", "warning")
             Session("User_Name") = Replace(Replace(System.Web.HttpContext.Current.User.Identity.Name, Environment.UserDomainName, ""), "\", "")
             _AD_GET_USER(IdentityType.SamAccountName, Session("User_Name"))
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
         End Try
     End Sub
+
     Protected Sub TextBox_LOG_SAP_TextChanged(sender As Object, e As EventArgs) Handles TextBox_LOG_SAP.TextChanged
         Try
             Session("matricule") = TextBox_LOG_SAP.Text
@@ -86,7 +84,7 @@ Public Class SiteMaster
             End Using
             MultiView_Master.SetActiveView(View_Master)
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
         End Try
     End Sub
@@ -105,7 +103,7 @@ Public Class SiteMaster
                 Return de.Properties(sproperty).Value.ToString
             End If
         Catch ex As Exception
-            LOG_Erreur(GetCurrentMethod, $"{sproperty} : {ex.Message}")
+            LOG_MESS_UTLS(GetCurrentMethod, $"{sproperty} : {ex.Message}", "Warning")
             Return Nothing
         End Try
     End Function
@@ -154,7 +152,7 @@ Public Class SiteMaster
             Session.Timeout = 240
 
         Catch ex As Exception
-            LOG_Erreur(GetCurrentMethod, ex.Message)
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
         End Try
 

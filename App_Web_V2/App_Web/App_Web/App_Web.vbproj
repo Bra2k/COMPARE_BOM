@@ -315,6 +315,7 @@
     <Content Include="App_Themes\Menu_Defaut\electronique-02-1.jpg" />
     <Content Include="App_Themes\Menu_Defaut\Graph-03.png" />
     <Content Include="App_Themes\Menu_Defaut\Heart-04.png" />
+    <Content Include="App_Themes\Menu_Defaut\Logout.png" />
     <Content Include="App_Themes\Menu_Defaut\Log_file_icon_2.png" />
     <Content Include="App_Themes\Menu_Defaut\News-Add.png" />
     <Content Include="App_Themes\Menu_Defaut\Operation-WF.png" />

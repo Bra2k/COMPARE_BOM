@@ -150,7 +150,7 @@ Public Class LOG
                 Dim sb As New StringBuilder
                 sb.Append("<script>$.Dialog({")
                 sb.Append($"    title: ""{mbFunction.Name}"",")
-                sb.Append($"    content: ""{Replace(sMessage, "'", "\'")}"",")
+                sb.Append($"    content: ""<p>{Replace(Replace(sMessage, "'", "\'"), Chr(13), "</br>")}</p>"", ")
                 sb.Append("     actions: [")
                 sb.Append("        {")
                 sb.Append("            title: ""Ok"",")
@@ -159,8 +159,8 @@ Public Class LOG
                 sb.Append("            }")
                 sb.Append("        }")
                 sb.Append("    ],")
-                sb.Append("     options: {class: ""padding20 dialog"",")
-                sb.Append($"     type: ""{Replace(sType, "Erreur", "alert")}"", closebutton: ""true"", place: ""default"", style: ""width: auto; height: auto; visibility: visible; font-family: verdana;"", overlay: ""true"", overlaycolor: ""op-dark"", overlayclickclose: ""true""")
+                sb.Append("     options: {")
+                sb.Append($"    overlay: ""true"", overlayColor: ""op-dark"", overlayClickClose: ""true"", type: ""{Replace(sType, "Erreur", "alert")}""")
                 sb.Append("}    ")
                 sb.Append("});</script>")
 

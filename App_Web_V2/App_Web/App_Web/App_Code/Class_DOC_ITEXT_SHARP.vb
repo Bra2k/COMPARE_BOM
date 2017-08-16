@@ -396,7 +396,7 @@ Public Class Class_DOC_ITEXT_SHARP
                 End Using
             End Using
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Return Nothing
         Finally
             'dPDF.Close()
@@ -979,7 +979,7 @@ Public Class Class_DOC_ITEXT_SHARP
                 dPDF.Close()
             End Using
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Return Nothing
         Finally
             'dPDF.Close()
@@ -1146,7 +1146,7 @@ Public Class Class_DOC_ITEXT_SHARP
                 End Using
             End Using
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Return Nothing
         Finally
             'dPDF.Close() 'Ventilateur Vendome ST40 IND01X 08/12/16
@@ -1235,7 +1235,7 @@ Public Class Class_DOC_ITEXT_SHARP
                 dPDF.Close()
             End Using
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Return Nothing
         End Try
         Return sfich

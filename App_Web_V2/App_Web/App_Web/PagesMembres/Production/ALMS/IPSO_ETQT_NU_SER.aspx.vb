@@ -97,7 +97,7 @@ Public Class IPSO_ETQT_NU_SER
                     End Using
             End Select
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Label_CD_ARTI.Text = ""
             TextBox_OF.Text = ""
             Label_QT_OF.Text = ""
@@ -150,7 +150,7 @@ Public Class IPSO_ETQT_NU_SER
             End Using
             LOG_MESS_UTLS(GetCurrentMethod, $"L'OF {TextBox_OF.Text} a été imprimé.", "success")
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
         End Try 'impression
 

@@ -36,7 +36,7 @@ Public Class WebForm1
                 DropDownList_OP.DataBind()
             End Using
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
         End Try
     End Sub
@@ -57,7 +57,7 @@ Public Class WebForm1
             End If
             MultiView_Sensing.SetActiveView(View_SAVE_TO_DB)
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
         End Try
 
@@ -90,7 +90,7 @@ Public Class WebForm1
             Return 1
 
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Return 0
         End Try
 

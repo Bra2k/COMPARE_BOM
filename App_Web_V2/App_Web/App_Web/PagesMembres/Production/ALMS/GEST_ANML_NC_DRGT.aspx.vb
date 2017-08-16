@@ -33,7 +33,7 @@ Public Class GEST_ANML_NC_DRGT
                 End If
             End If
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Response.Redirect("~/PagesMembres/RDRC_PAGE_MEMB.aspx")
             Exit Sub
         End Try
@@ -225,7 +225,7 @@ Public Class GEST_ANML_NC_DRGT
                 End If
             End Using
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
         End Try
     End Sub
@@ -252,7 +252,7 @@ Public Class GEST_ANML_NC_DRGT
                 End With
             End Using
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
         End Try
     End Sub
@@ -280,7 +280,7 @@ Public Class GEST_ANML_NC_DRGT
                 End With
             End Using
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
         End Try
     End Sub
@@ -311,7 +311,7 @@ Public Class GEST_ANML_NC_DRGT
                 End With
             End Using
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
         End Try
     End Sub
@@ -332,7 +332,7 @@ Public Class GEST_ANML_NC_DRGT
                 End If
             End Using
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
         End Try
     End Sub
@@ -351,7 +351,7 @@ Public Class GEST_ANML_NC_DRGT
     '        'If Not dt Is Nothing Then MultiView_ANML.SetActiveView(View_CHAN_TCBL_UNIT)
 
     '    Catch ex As Exception
-    '        LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+    '        LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
     '        Exit Sub
     '    End Try
     'End Sub
@@ -425,7 +425,7 @@ Public Class GEST_ANML_NC_DRGT
             '    SQL_Connexion.Close()
             'End Using
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
             'Finally
             '    SQL_Connexion = SQL_CLOS(SQL_Connexion)
@@ -475,7 +475,7 @@ Public Class GEST_ANML_NC_DRGT
             '    SQL_Connexion.Close()
             'End Using
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
             'Finally
             'SQL_Connexion = SQL_CLOS(SQL_Connexion)
@@ -540,7 +540,7 @@ Public Class GEST_ANML_NC_DRGT
             End Using
             MultiView_ANML.SetActiveView(View_SAIS)
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
         End Try
     End Sub
@@ -637,7 +637,7 @@ Public Class GEST_ANML_NC_DRGT
             '       SQL_REQ_ACT(sQuery, CS_ALMS_PROD_PRD)
             Label_ID_STAT.Text = "En cours"
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
         End Try
     End Sub
@@ -717,7 +717,7 @@ Public Class GEST_ANML_NC_DRGT
             GridView_LIST_NU_SER_DRGT.DataBind()
             dt1.Dispose()
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
         End Try
     End Sub
@@ -760,7 +760,7 @@ Public Class GEST_ANML_NC_DRGT
                 GridView_LIST_NU_SER_DRGT.DataBind()
             End Using
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
         Finally
             TextBox_NU_SER_DRGT.Text = ""
@@ -806,7 +806,7 @@ Public Class GEST_ANML_NC_DRGT
             End Using
             Label_NU_INCI.Text = i_nu_inci.ToString
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
         End Try
     End Sub

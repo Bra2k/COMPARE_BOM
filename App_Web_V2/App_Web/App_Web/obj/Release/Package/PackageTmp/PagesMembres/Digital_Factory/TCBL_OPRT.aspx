@@ -67,6 +67,8 @@
                         Saisir le numéro de série :
                         <asp:TextBox ID="TextBox_NU_SER" runat="server" AutoPostBack="True"></asp:TextBox>
                         <br />
+                        <br />
+                        <br />
                         <asp:MultiView ID="MultiView_ETAP" runat="server">
 
                             <asp:View ID="View_VOID" runat="server">
@@ -101,21 +103,6 @@
                                 <asp:TextBox ID="TextBox_SS_ENS" runat="server" AutoPostBack="True"></asp:TextBox>
                                 <br />
                                 <br />
-                                Liste des sous-ensembles à tracer :<asp:GridView ID="GridView_REPE" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" Font-Size="8pt" GridLines="Vertical" SkinID="GV_AFF_DONN">
-                                    <AlternatingRowStyle BackColor="#DCDCDC" />
-                                    <Columns>
-                                        <asp:CommandField ShowSelectButton="True" />
-                                    </Columns>
-                                    <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
-                                    <HeaderStyle BackColor="#002F60" Font-Bold="True" ForeColor="#989000" />
-                                    <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
-                                    <RowStyle BackColor="#EEEEEE" ForeColor="Black" />
-                                    <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
-                                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                                    <SortedAscendingHeaderStyle BackColor="#0000A9" />
-                                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                                    <SortedDescendingHeaderStyle BackColor="#000065" />
-                                </asp:GridView>
                             </asp:View>
                             <asp:View ID="View_DCMT" runat="server">
                                 <table style="width:100%;">
@@ -136,6 +123,22 @@
                             </asp:View>
 
                         </asp:MultiView>
+
+                        Liste des sous-ensembles à tracer :<asp:GridView ID="GridView_REPE" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" Font-Size="8pt" GridLines="Vertical" SkinID="GV_AFF_DONN">
+                            <AlternatingRowStyle BackColor="#DCDCDC" />
+                            <Columns>
+                                <asp:CommandField ShowSelectButton="True" />
+                            </Columns>
+                            <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
+                            <HeaderStyle BackColor="#002F60" Font-Bold="True" ForeColor="#989000" />
+                            <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                            <RowStyle BackColor="#EEEEEE" ForeColor="Black" />
+                            <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
+                            <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                            <SortedAscendingHeaderStyle BackColor="#0000A9" />
+                            <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                            <SortedDescendingHeaderStyle BackColor="#000065" />
+                        </asp:GridView>
 
                         <br />
 
@@ -256,9 +259,7 @@
         
 
 
-<tr>       
-          <td style="height: 22px; vertical-align: top;">Poste n° : </td>
-</tr>        
+    
         
         <%-- <tr>
             <td style="vertical-align: top">

@@ -216,7 +216,7 @@ Public Class CLSG
 
         Catch ex As Exception
             MultiView_SAIS.SetActiveView(View_OF)
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
         End Try
 
     End Sub
@@ -241,7 +241,8 @@ Public Class CLSG
                 If sNU_SER_ECO.Contains(sOF) = False Then Throw New Exception("Le numéro de série " & sNU_SER_ECO & " n'appartient pas à l'OF " & sOF)
             End If
             'vérification workflow
-            If DIG_FACT_SQL_VRFC_WF(TextBox_NU_SER_ECO.Text, "", TextBox_NU_OF.Text, Label_NM_DSGT_ARTI_ECO.Text & " (OP:" & Label_NU_OP.Text & ")", CS_MES_Digital_Factory) = False Then Throw New Exception("Problème détecté dans le Workflow.")
+            Dim sresu_wf = DIG_FACT_SQL_VRFC_WF(TextBox_NU_SER_ECO.Text, "", TextBox_NU_OF.Text, $"{Label_NM_DSGT_ARTI_ECO.Text} (OP:{Label_NU_OP.Text})", CS_MES_Digital_Factory)
+            If sresu_wf <> "PASS" Then Throw New Exception($"Problème détecté dans le Workflow. {sresu_wf}")
 
             'Saisie suivante
             TextBox_NU_SER_ECO.Enabled = False
@@ -272,7 +273,7 @@ Public Class CLSG
             End Select
 
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             TextBox_NU_SER_ECO.Text = ""
             TextBox_NU_SER_ECO.Focus()
         End Try
@@ -293,7 +294,9 @@ Public Class CLSG
             dt = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
             If Not dt Is Nothing Then Throw New Exception("Le numéro de série " & TextBox_NU_SER_CLIE.Text & " a déjà été scanné.")
             'vérification workflow
-            If DIG_FACT_SQL_VRFC_WF("", TextBox_NU_SER_CLIE.Text, TextBox_NU_OF.Text, Label_NM_DSGT_ARTI_ECO.Text & " (OP:" & Label_NU_OP.Text & ")", CS_MES_Digital_Factory) = False Then Throw New Exception("Problème détecté dans le Workflow.")
+            'If DIG_FACT_SQL_VRFC_WF("", TextBox_NU_SER_CLIE.Text, TextBox_NU_OF.Text, $"{Label_NM_DSGT_ARTI_ECO.Text} (OP:{Label_NU_OP.Text})", CS_MES_Digital_Factory) = False Then Throw New Exception("Problème détecté dans le Workflow.")
+            Dim sresu_wf = DIG_FACT_SQL_VRFC_WF("", TextBox_NU_SER_CLIE.Text, TextBox_NU_OF.Text, $"{Label_NM_DSGT_ARTI_ECO.Text} (OP:{Label_NU_OP.Text})", CS_MES_Digital_Factory)
+            If sresu_wf <> "PASS" Then Throw New Exception($"Problème détecté dans le Workflow. {sresu_wf}")
 
             'Saisie suivante
             TextBox_NU_SER_ECO.Enabled = False
@@ -316,7 +319,7 @@ Public Class CLSG
                 End Select
             End If
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             TextBox_NU_SER_CLIE.Text = ""
             TextBox_NU_SER_CLIE.Focus()
         End Try
@@ -351,7 +354,7 @@ Public Class CLSG
                     TextBox_NU_CART_SCFQ.Focus()
             End Select
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             TextBox_NU_CART_SCFQ.Text = ""
             TextBox_NU_CART_SCFQ.Focus()
         End Try
@@ -527,7 +530,7 @@ Public Class CLSG
                 End Using
             End Using
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Return Nothing
             'Finally
             '    dPDF.Close()
@@ -703,7 +706,7 @@ Public Class CLSG
                 Button_CLOR_CART.Enabled = False
             End Using
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
         End Try
 
@@ -849,7 +852,7 @@ Public Class CLSG
             TextBox_NU_SER_CLIE.Text = ""
 
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
         End Try
     End Sub
 
@@ -913,7 +916,7 @@ Public Class CLSG
             End If
             GridView_NU_SER_SCAN.DataBind()
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
         End Try
 
     End Sub
@@ -967,7 +970,7 @@ Public Class CLSG
             End If
             GridView_NU_SER_SCAN.DataBind()
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
         End Try
     End Sub
 
@@ -1025,7 +1028,7 @@ Public Class CLSG
             TextBox_NU_CART.Focus()
         Catch ex As Exception
             MultiView_SAIS.SetActiveView(View_OF)
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
         End Try
     End Sub
 
@@ -1185,7 +1188,7 @@ Public Class CLSG
             End If
 
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
         End Try
         TextBox_NU_CART.Text = ""
         TextBox_NU_CART.Focus()
@@ -1293,7 +1296,7 @@ Public Class CLSG
             GridView_REPE.DataSource = ""
             GridView_REPE.DataBind()
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
         End Try
     End Sub
     Protected Sub Button_SUPP_LIGN_V_CART_Click(sender As Object, e As ImageClickEventArgs) Handles Button_SUPP_LIGN_V_CART.Click
@@ -1483,7 +1486,7 @@ Public Class CLSG
             Next
 
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             MultiView_BASC_SAI_SEL.SetActiveView(View_SAI)
             'Exit Sub
         Finally
@@ -1544,7 +1547,7 @@ Public Class CLSG
             TextBox_NU_BL_V_PALE.Focus()
 
             'MultiView_SAIS.SetActiveView(View_OF)
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             TextBox_NU_BL_V_PALE.Text = ""
             Exit Sub
         End Try
@@ -1674,7 +1677,7 @@ Public Class CLSG
                 GridView_LIST_PALE_ENTR.DataBind()
             End If
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
         End Try
         TextBox_NU_PALE.Focus()
         TextBox_NU_PALE.Text = ""
@@ -1732,7 +1735,7 @@ Public Class CLSG
             GridView_LIST_PALE_LIBR.DataSource = ""
             GridView_LIST_PALE_LIBR.DataBind()
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
         End Try
 
@@ -1802,7 +1805,7 @@ Public Class CLSG
                 Label_NB_CART_PALE.Text = "0"
             End Using
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
         End Try
 

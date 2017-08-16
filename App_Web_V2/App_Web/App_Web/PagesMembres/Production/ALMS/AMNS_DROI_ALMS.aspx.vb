@@ -41,7 +41,7 @@ Class AMNS_DROI_ALMS
                 CheckBox_ATVT.Checked = Convert.ToBoolean(dt(0)("BL_ATVT"))
             End Using
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
         End Try
     End Sub
@@ -62,7 +62,7 @@ Class AMNS_DROI_ALMS
  WHERE [ID_MTCL_ECO] = {DropDownList_OPRT.SelectedValue}"
             SQL_REQ_ACT(squery, CS_ALMS_PROD_PRD)
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
         End Try
     End Sub
@@ -118,7 +118,7 @@ SELECT MAX([ID_OPRT]) + 1
 
 
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             DropDownList_OPRT.ClearSelection()
             MultiView_AMNS_DROI_ALMS.SetActiveView(View_MDFC_DROI)
             Exit Sub

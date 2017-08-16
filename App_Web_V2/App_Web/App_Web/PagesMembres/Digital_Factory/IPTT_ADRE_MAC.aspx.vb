@@ -32,7 +32,7 @@ Public Class IPTT_ADRE_MAC
             sbQuery.Append(";")
             SQL_REQ_ACT(Replace(sbQuery.ToString, "), ;", ")"), CS_MES_Digital_Factory)
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
         End Try
     End Sub
@@ -68,7 +68,7 @@ Public Class IPTT_ADRE_MAC
             sbQuery.Append(";")
             SQL_REQ_ACT(Replace(sbQuery.ToString, "), ;", ")"), CS_MES_Digital_Factory)
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
         End Try
     End Sub
@@ -100,7 +100,7 @@ Public Class IPTT_ADRE_MAC
                     Throw New Exception($"Le fichier ({Path.GetExtension(savePath)}) sélectionné n'a pas les extensions suivantes : xls, xlsx, csv")
             End Select
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
         End Try
     End Sub
@@ -114,7 +114,7 @@ Public Class IPTT_ADRE_MAC
                 MultiView_FICH.SetActiveView(View_SEL_DONN)
             End Using
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
         End Try
     End Sub
@@ -144,7 +144,7 @@ Public Class IPTT_ADRE_MAC
                 End Using
             End Using
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
         End Try
     End Sub

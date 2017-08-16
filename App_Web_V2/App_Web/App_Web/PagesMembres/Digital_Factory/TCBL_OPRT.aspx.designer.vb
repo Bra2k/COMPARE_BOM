@@ -275,15 +275,6 @@ Partial Public Class TCBL_OPRT
     Protected WithEvents TextBox_SS_ENS As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
-    '''Contrôle GridView_REPE.
-    '''</summary>
-    '''<remarks>
-    '''Champ généré automatiquement.
-    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-    '''</remarks>
-    Protected WithEvents GridView_REPE As Global.System.Web.UI.WebControls.GridView
-    
-    '''<summary>
     '''Contrôle View_DCMT.
     '''</summary>
     '''<remarks>
@@ -327,6 +318,15 @@ Partial Public Class TCBL_OPRT
     '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
     '''</remarks>
     Protected WithEvents TextBox_NU_SER_VLDT_OPRT As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''Contrôle GridView_REPE.
+    '''</summary>
+    '''<remarks>
+    '''Champ généré automatiquement.
+    '''Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+    '''</remarks>
+    Protected WithEvents GridView_REPE As Global.System.Web.UI.WebControls.GridView
     
     '''<summary>
     '''Contrôle View_SAIS_TCBL_COMP.

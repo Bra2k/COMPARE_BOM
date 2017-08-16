@@ -674,9 +674,7 @@ Public Class Class_DIG_FACT_SQL
     Public Shared Function DIG_FACT_SQL_GENE_NU_SER_CLIE(sBase As String, sInc As String, sFormat As String, sCritère As String, sTypeEtiquette As String, bREPR_NU_SER_REBU As Boolean,
                                                          sMTCL As String, sNU_OF As String) As String
 
-        'Dim sChaineConnexion As String = "Data Source=cedb03,1433;Initial Catalog=MES_Digital_Factory;Integrated Security=False;User ID=sa;Password=mdpsa@SQL;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
         Dim sQuerySql As String = "", sNU_SER_BASE_N As String = "", sNU_SER_GENE As String = "", sNU_SER_INC As String = ""
-        'Dim dtDER_NU_SER, dtNU_REGE, dt_NU_SER As New DataTable
         Dim iNU_SER_DEC, iNB_CARA As Integer, iPos_Car As Integer = 1
 
         Try
@@ -786,7 +784,7 @@ Public Class Class_DIG_FACT_SQL
             Return Nothing
         End Try
     End Function
-    Public Shared Function DIG_FACT_SQL_VRFC_WF(sNU_SER_ECO As String, sNU_SER_CLIE As String, sNU_OF As String, sLB_NU_OPRT As String, Optional sChaineConnexion As String = "Data Source=cedb03,1433;Initial Catalog=MES_Digital_Factory;Integrated Security=False;User ID=sa;Password=mdpsa@SQL;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False") As Boolean
+    Public Shared Function DIG_FACT_SQL_VRFC_WF(sNU_SER_ECO As String, sNU_SER_CLIE As String, sNU_OF As String, sLB_NU_OPRT As String, Optional sChaineConnexion As String = "Data Source=cedb03,1433;Initial Catalog=MES_Digital_Factory;Integrated Security=False;User ID=sa;Password=mdpsa@SQL;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False") As String
         Dim sQuery As String = "", sQuery_WF As String = ""
         Try
             Using dtAFKO = SAP_DATA_READ_AFKO($"AUFNR LIKE '%{sNU_OF}'")
@@ -831,10 +829,10 @@ Public Class Class_DIG_FACT_SQL
                     End If
                 End Using
             End Using
-            Return True
+            Return "PASS"
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "error")
-            Return False
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
+            Return ex.Message
         End Try
     End Function
     Public Shared Function EXTRACT_DATE(sNU_ECO As String) As String

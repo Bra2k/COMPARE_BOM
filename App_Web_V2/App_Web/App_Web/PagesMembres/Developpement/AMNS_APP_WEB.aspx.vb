@@ -28,18 +28,22 @@ Public Class AMNS_APP_WEB
                     Dim subinfo = New DirectoryInfo(Server.MapPath($"~/PagesMembres/{dossier.Name}"))
                     Dim listeDesFichiers = subinfo.GetFiles
                     For Each fichier In listeDesFichiers
-                        dt.Rows.Add()
-                        dt.Rows(dt.Rows.Count - 1)("Page") = $"ASP.pagesmembres_{LCase(dossier.Name)}_{Replace(LCase(fichier.Name), ".", "_")}"
-                        dt.Rows(dt.Rows.Count - 1)("URL") = $"{dossier.Name}/{fichier.Name}"
+                        If Path.GetExtension(fichier.Name) = ".aspx" Then
+                            dt.Rows.Add()
+                            dt.Rows(dt.Rows.Count - 1)("Page") = $"ASP.pagesmembres_{LCase(dossier.Name)}_{Replace(LCase(fichier.Name), ".", "_")}"
+                            dt.Rows(dt.Rows.Count - 1)("URL") = $"{dossier.Name}/{fichier.Name}"
+                        End If
                     Next
                     Dim listeDesSousDossiers = subinfo.GetDirectories()
                     For Each sousdossier In listeDesSousDossiers
                         Dim subsubinfo = New DirectoryInfo(Server.MapPath($"~/PagesMembres/{dossier.Name}/{sousdossier.Name}"))
                         Dim listeDesSousFichiers = subsubinfo.GetFiles
                         For Each fichier In listeDesSousFichiers
-                            dt.Rows.Add()
-                            dt.Rows(dt.Rows.Count - 1)("Page") = $"ASP.pagesmembres_{LCase(dossier.Name)}_{LCase(sousdossier.Name)}_{Replace(LCase(fichier.Name), ".", "_")}"
-                            dt.Rows(dt.Rows.Count - 1)("URL") = $"{dossier.Name}/{sousdossier.Name}/{fichier.Name}"
+                            If Path.GetExtension(fichier.Name) = ".aspx" Then
+                                dt.Rows.Add()
+                                dt.Rows(dt.Rows.Count - 1)("Page") = $"ASP.pagesmembres_{LCase(dossier.Name)}_{LCase(sousdossier.Name)}_{Replace(LCase(fichier.Name), ".", "_")}"
+                                dt.Rows(dt.Rows.Count - 1)("URL") = $"{dossier.Name}/{sousdossier.Name}/{fichier.Name}"
+                            End If
                         Next
                     Next
                 Next

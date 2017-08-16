@@ -147,16 +147,56 @@ Public Class CONF_ARTI
                 TextBox_VUE_FICH_PDF.Text = dt(0)("Vue fichier PDF").ToString
                 TextBox_VUE_NU_SER_ENSE_SOUS_ENSE.Text = dt(0)("Vue numéro ensemble numéros sous-ensemble").ToString
 
-                TextBox_WF_ETAP_1.Text = dt(0)("WORKFLOW étape 1").ToString
-                TextBox_WF_ETAP_2.Text = dt(0)("WORKFLOW étape 2").ToString
-                TextBox_WF_ETAP_3.Text = dt(0)("WORKFLOW étape 3").ToString
-                TextBox_WF_ETAP_4.Text = dt(0)("WORKFLOW étape 4").ToString
-                TextBox_WF_ETAP_5.Text = dt(0)("WORKFLOW étape 5").ToString
-                TextBox_WF_ETAP_6.Text = dt(0)("WORKFLOW étape 6").ToString
-                TextBox_WF_ETAP_7.Text = dt(0)("WORKFLOW étape 7").ToString
-                TextBox_WF_ETAP_8.Text = dt(0)("WORKFLOW étape 8").ToString
-                TextBox_WF_ETAP_9.Text = dt(0)("WORKFLOW étape 9").ToString
-                TextBox_WF_ETAP_10.Text = dt(0)("WORKFLOW étape 10").ToString
+                Using dt_OP As New DataTable
+                    With dt_OP
+                        .Columns.Add("op", Type.GetType("System.String"))
+                        .Columns.Add("VORNR", Type.GetType("System.String"))
+                        Using dt_MAPL = SAP_DATA_READ_MAPL($"MATNR LIKE '{Trim(TextBox_CD_ARTI_ECO.Text)}%' AND WERKS EQ 'DI31' AND LOEKZ NE 'X'")
+                            If dt_MAPL Is Nothing Then Throw New Exception("Pas de gamme pour le code article entré")
+                            Using dt_PLAS = SAP_DATA_READ_PLAS($"PLNNR EQ '{dt_MAPL(0)("PLNNR").ToString}' AND PLNAL EQ '{dt_MAPL(0)("PLNAL").ToString}' AND LOEKZ NE 'X'")
+                                .Rows.Add()
+                                If dt_PLAS Is Nothing Then Throw New Exception("Pas de gamme pour le code article entré")
+                                For Each rPLAS As DataRow In dt_PLAS.Rows
+                                    Using dt_PLPO = SAP_DATA_READ_PLPO($"PLNNR EQ '{rPLAS("PLNNR").ToString}' AND PLNKN EQ '{rPLAS("ZAEHL").ToString}'")
+                                        If dt_PLPO Is Nothing Then Continue For
+                                        .Rows.Add()
+                                        .Rows(.Rows.Count - 1)("op") = $"{Trim(dt_PLPO(0)("LTXA1").ToString)} (OP:{Convert.ToDecimal(dt_PLPO(0)("VORNR")).ToString})"
+                                        .Rows(.Rows.Count - 1)("VORNR") = dt_PLPO(0)("VORNR").ToString
+                                    End Using
+                                Next
+                            End Using
+                            .DefaultView.Sort = "VORNR ASC"
+                            Using dt_OP_SORT = .DefaultView.ToTable
+                                For i = 1 To 10
+                                    Using MainContent As ContentPlaceHolder = CType(Master.FindControl("MainContent"), ContentPlaceHolder)
+                                        Using DropDownList_GUEST = CType(MainContent.FindControl($"DropDownList_WF_ETAP_{i.ToString}"), DropDownList)
+                                            If DropDownList_GUEST Is Nothing Then Throw New Exception($"Contrôle DropDownList_WF_ETAP_{i.ToString} non trouvé")
+                                            With DropDownList_GUEST
+                                                .DataSource = dt_OP
+                                                .DataTextField = "op" '"VORNR"
+                                                .DataValueField = "op"
+                                                .SelectedValue = dt(0)($"WORKFLOW étape {i.ToString}").ToString
+                                                .DataBind()
+                                            End With
+                                        End Using
+                                    End Using
+                                Next
+                            End Using
+                        End Using
+                    End With
+                End Using
+
+                'TextBox_WF_ETAP_1.Text = dt(0)("WORKFLOW étape 1").ToString
+                'TextBox_WF_ETAP_2.Text = dt(0)("WORKFLOW étape 2").ToString
+                'TextBox_WF_ETAP_3.Text = dt(0)("WORKFLOW étape 3").ToString
+                'TextBox_WF_ETAP_4.Text = dt(0)("WORKFLOW étape 4").ToString
+                'TextBox_WF_ETAP_5.Text = dt(0)("WORKFLOW étape 5").ToString
+                'TextBox_WF_ETAP_6.Text = dt(0)("WORKFLOW étape 6").ToString
+                'TextBox_WF_ETAP_7.Text = dt(0)("WORKFLOW étape 7").ToString
+                'TextBox_WF_ETAP_8.Text = dt(0)("WORKFLOW étape 8").ToString
+                'TextBox_WF_ETAP_9.Text = dt(0)("WORKFLOW étape 9").ToString
+                'TextBox_WF_ETAP_10.Text = dt(0)("WORKFLOW étape 10").ToString
+
                 TextBox_GNRT_IPSO_NU_SER.Text = dt(0)("Génération impression numéro de série").ToString
                 If dt(0)("Format numéro de série Eolane OF6INC").ToString = "1" Then
                     CheckBox_FORM_NU_SER_ECO_OF6INC.Checked = True
@@ -210,7 +250,7 @@ Public Class CONF_ARTI
             End Using
 
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
         End Try
 
 
@@ -272,16 +312,27 @@ Public Class CONF_ARTI
             APPL_CONF_TB("Vue fichier PDF", TextBox_VUE_FICH_PDF, False)
             APPL_CONF_TB("Vue numéro ensemble numéros sous-ensemble", TextBox_VUE_NU_SER_ENSE_SOUS_ENSE, False)
 
-            APPL_CONF_TB("WORKFLOW étape 1", TextBox_WF_ETAP_1, False)
-            APPL_CONF_TB("WORKFLOW étape 2", TextBox_WF_ETAP_2, False)
-            APPL_CONF_TB("WORKFLOW étape 3", TextBox_WF_ETAP_3, False)
-            APPL_CONF_TB("WORKFLOW étape 4", TextBox_WF_ETAP_4, False)
-            APPL_CONF_TB("WORKFLOW étape 5", TextBox_WF_ETAP_5, False)
-            APPL_CONF_TB("WORKFLOW étape 6", TextBox_WF_ETAP_6, False)
-            APPL_CONF_TB("WORKFLOW étape 7", TextBox_WF_ETAP_7, False)
-            APPL_CONF_TB("WORKFLOW étape 8", TextBox_WF_ETAP_8, False)
-            APPL_CONF_TB("WORKFLOW étape 9", TextBox_WF_ETAP_9, False)
-            APPL_CONF_TB("WORKFLOW étape 10", TextBox_WF_ETAP_10, False)
+            If DropDownList_WF_ETAP_1.SelectedValue <> DIG_FACT_SQL_GET_PARA(TextBox_CD_ARTI_ECO.Text, "WORKFLOW étape 1") Then DIG_FACT_SQL_SET_PARA(TextBox_CD_ARTI_ECO.Text, "WORKFLOW étape 1", DropDownList_WF_ETAP_1.SelectedValue)
+            If DropDownList_WF_ETAP_2.SelectedValue <> DIG_FACT_SQL_GET_PARA(TextBox_CD_ARTI_ECO.Text, "WORKFLOW étape 2") Then DIG_FACT_SQL_SET_PARA(TextBox_CD_ARTI_ECO.Text, "WORKFLOW étape 2", DropDownList_WF_ETAP_2.SelectedValue)
+            If DropDownList_WF_ETAP_3.SelectedValue <> DIG_FACT_SQL_GET_PARA(TextBox_CD_ARTI_ECO.Text, "WORKFLOW étape 3") Then DIG_FACT_SQL_SET_PARA(TextBox_CD_ARTI_ECO.Text, "WORKFLOW étape 3", DropDownList_WF_ETAP_3.SelectedValue)
+            If DropDownList_WF_ETAP_4.SelectedValue <> DIG_FACT_SQL_GET_PARA(TextBox_CD_ARTI_ECO.Text, "WORKFLOW étape 4") Then DIG_FACT_SQL_SET_PARA(TextBox_CD_ARTI_ECO.Text, "WORKFLOW étape 4", DropDownList_WF_ETAP_4.SelectedValue)
+            If DropDownList_WF_ETAP_5.SelectedValue <> DIG_FACT_SQL_GET_PARA(TextBox_CD_ARTI_ECO.Text, "WORKFLOW étape 5") Then DIG_FACT_SQL_SET_PARA(TextBox_CD_ARTI_ECO.Text, "WORKFLOW étape 5", DropDownList_WF_ETAP_5.SelectedValue)
+            If DropDownList_WF_ETAP_6.SelectedValue <> DIG_FACT_SQL_GET_PARA(TextBox_CD_ARTI_ECO.Text, "WORKFLOW étape 6") Then DIG_FACT_SQL_SET_PARA(TextBox_CD_ARTI_ECO.Text, "WORKFLOW étape 6", DropDownList_WF_ETAP_6.SelectedValue)
+            If DropDownList_WF_ETAP_7.SelectedValue <> DIG_FACT_SQL_GET_PARA(TextBox_CD_ARTI_ECO.Text, "WORKFLOW étape 7") Then DIG_FACT_SQL_SET_PARA(TextBox_CD_ARTI_ECO.Text, "WORKFLOW étape 7", DropDownList_WF_ETAP_7.SelectedValue)
+            If DropDownList_WF_ETAP_8.SelectedValue <> DIG_FACT_SQL_GET_PARA(TextBox_CD_ARTI_ECO.Text, "WORKFLOW étape 8") Then DIG_FACT_SQL_SET_PARA(TextBox_CD_ARTI_ECO.Text, "WORKFLOW étape 8", DropDownList_WF_ETAP_8.SelectedValue)
+            If DropDownList_WF_ETAP_9.SelectedValue <> DIG_FACT_SQL_GET_PARA(TextBox_CD_ARTI_ECO.Text, "WORKFLOW étape 9") Then DIG_FACT_SQL_SET_PARA(TextBox_CD_ARTI_ECO.Text, "WORKFLOW étape 9", DropDownList_WF_ETAP_9.SelectedValue)
+            If DropDownList_WF_ETAP_10.SelectedValue <> DIG_FACT_SQL_GET_PARA(TextBox_CD_ARTI_ECO.Text, "WORKFLOW étape 10") Then DIG_FACT_SQL_SET_PARA(TextBox_CD_ARTI_ECO.Text, "WORKFLOW étape 10", DropDownList_WF_ETAP_10.SelectedValue)
+
+            'APPL_CONF_TB("WORKFLOW étape 1", TextBox_WF_ETAP_1, False)
+            'APPL_CONF_TB("WORKFLOW étape 2", TextBox_WF_ETAP_2, False)
+            'APPL_CONF_TB("WORKFLOW étape 3", TextBox_WF_ETAP_3, False)
+            'APPL_CONF_TB("WORKFLOW étape 4", TextBox_WF_ETAP_4, False)
+            'APPL_CONF_TB("WORKFLOW étape 5", TextBox_WF_ETAP_5, False)
+            'APPL_CONF_TB("WORKFLOW étape 6", TextBox_WF_ETAP_6, False)
+            'APPL_CONF_TB("WORKFLOW étape 7", TextBox_WF_ETAP_7, False)
+            'APPL_CONF_TB("WORKFLOW étape 8", TextBox_WF_ETAP_8, False)
+            'APPL_CONF_TB("WORKFLOW étape 9", TextBox_WF_ETAP_9, False)
+            'APPL_CONF_TB("WORKFLOW étape 10", TextBox_WF_ETAP_10, False)
             APPL_CONF_TB("Génération impression numéro de série", TextBox_GNRT_IPSO_NU_SER, False)
             APPL_CONF_CB("Format numéro de série Eolane OF6INC", CheckBox_FORM_NU_SER_ECO_OF6INC, False, True)
             APPL_CONF_CB("Vérification cohérence OF numero serie eolane", CheckBox_VRFC_CHRC_OF_NU_SER_ECO, False, True)
@@ -303,7 +354,7 @@ Public Class CONF_ARTI
             APPL_CONF_TB("Nombre étiquette largeur", TextBox_NB_ETQT_LARG, False)
 
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
         End Try
     End Sub
@@ -332,7 +383,7 @@ Public Class CONF_ARTI
                 End Select
             End If
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
         End Try
     End Sub
@@ -346,7 +397,7 @@ Public Class CONF_ARTI
                 If DIG_FACT_SQL_GET_PARA(TextBox_CD_ARTI_ECO.Text, sNM_CRIT) <> tbTextBox.Text Then DIG_FACT_SQL_SET_PARA(TextBox_CD_ARTI_ECO.Text, sNM_CRIT, tbTextBox.Text)
             End If
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
         End Try
     End Sub

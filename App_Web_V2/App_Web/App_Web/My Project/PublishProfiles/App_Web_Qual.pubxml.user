@@ -355,7 +355,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>03/16/2017 10:53:35</publishTime>
     </File>
     <File Include="bin/App_Web.dll">
-      <publishTime>08/10/2017 16:23:27</publishTime>
+      <publishTime>08/10/2017 17:14:32</publishTime>
     </File>
     <File Include="bin/App_Web_DEV.dll">
       <publishTime>06/27/2017 15:34:38</publishTime>
@@ -577,7 +577,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>03/16/2017 10:53:35</publishTime>
     </File>
     <File Include="bin/WebForms_Basic.xml">
-      <publishTime>08/10/2017 16:23:27</publishTime>
+      <publishTime>08/10/2017 17:14:32</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>03/16/2017 10:53:35</publishTime>
@@ -874,7 +874,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>03/16/2017 10:53:35</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>08/10/2017 16:23:28</publishTime>
+      <publishTime>08/10/2017 17:12:02</publishTime>
     </File>
   </ItemGroup>
 </Project>

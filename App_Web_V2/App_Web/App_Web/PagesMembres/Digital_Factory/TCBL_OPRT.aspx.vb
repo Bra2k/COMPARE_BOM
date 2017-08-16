@@ -57,7 +57,7 @@ Public Class TCBL_OPRT
             End Using
         Catch ex As Exception
             TextBox_OF.Text = ""
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
         End Try
     End Sub
@@ -98,7 +98,7 @@ Public Class TCBL_OPRT
                             End Using
                         End If
                     End Using
-                    'Opération
+                    'Opération            _VRFC_TCBL_COMP()
                     Label_DES_OP.Text = Trim(dtAFVC(0)("LTXA1").ToString)
                     Label_OP.Text = Convert.ToDecimal(DropDownList_OP.SelectedValue).ToString
                 End Using
@@ -144,7 +144,7 @@ Public Class TCBL_OPRT
             _VRFC_TCBL_COMP()
 
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
         End Try
     End Sub
@@ -186,7 +186,7 @@ Public Class TCBL_OPRT
         Catch ex As Exception
             TextBox_MTRE_GNRQ.Text = ""
             TextBox_MTRE_GNRQ.Focus()
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
         End Try
 
@@ -306,9 +306,12 @@ Public Class TCBL_OPRT
                 'Session("DT_DEB") = dt(0)("DT_DEB").ToString
 
                 'vérification workflow
-                If DIG_FACT_SQL_VRFC_WF(sNU_SER_ECO, sNU_SER_CLIE, TextBox_OF.Text, $"{Label_DES_OP.Text} (OP:{Label_OP.Text})", CS_MES_Digital_Factory) = False Then
+                Dim sresu_wf = DIG_FACT_SQL_VRFC_WF(sNU_SER_ECO, sNU_SER_CLIE, TextBox_OF.Text, $"{Label_DES_OP.Text} (OP:{Label_OP.Text})", CS_MES_Digital_Factory)
+                If sresu_wf <> "PASS" Then
+                    'If DIG_FACT_SQL_VRFC_WF(sNU_SER_ECO, sNU_SER_CLIE, TextBox_OF.Text, $"{Label_DES_OP.Text} (OP:{Label_OP.Text})", CS_MES_Digital_Factory) = False Then
                     _ERGT_OPRT_PASS("F")
-                    Throw New Exception("Problème détecté dans le Workflow.")
+                    'Throw New Exception("Problème détecté dans le Workflow.")
+                    Throw New Exception($"Problème détecté dans le Workflow. {sresu_wf}")
                 End If
 
                 .Enabled = False
@@ -383,10 +386,10 @@ Public Class TCBL_OPRT
                     _ERGT_OPRT_PASS("P")
                 End If
             Catch ex As Exception
-                LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
                 .Enabled = True
                 .Text = ""
                 .Focus()
+                LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
                 Exit Sub
             End Try
         End With
@@ -457,7 +460,7 @@ Public Class TCBL_OPRT
             TextBox_VALE.Text = ""
         Catch ex As Exception 'si mauvais enregistrement passage
             _ERGT_OPRT_PASS("F")
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             TextBox_VALE.Text = ""
             Exit Sub
         End Try
@@ -525,7 +528,7 @@ Public Class TCBL_OPRT
             TextBox_NU_SER.Enabled = True
             TextBox_NU_SER.Text = ""
             TextBox_NU_SER.Focus()
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
         End Try
 
@@ -549,7 +552,7 @@ Public Class TCBL_OPRT
             'enregistrement 
             _ERGT_OPRT_PASS("F")
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
         End Try
 
@@ -565,11 +568,7 @@ Public Class TCBL_OPRT
         Try
             MultiView_SAIS_OPRT.SetActiveView(View_SAIS_NU_SER_CHEC)
             MultiView_ETAP.SetActiveView(View_VOID)
-            With TextBox_NU_SER
-                .Enabled = True
-                .Text = ""
-                .Focus()
-            End With
+
             'Using db As New MES_Digital_FactoryEntities
             '    Dim tr_cpt As New DTM_TR_CPT With {.NM_NS_EOL = sNU_SER_ECO, .NM_NS_CLT = sNU_SER_CLIE, .ID_CPT = "-", .ID_PSG = Convert.ToInt64(Session("ID_PSG")), .DT_PSG = Now}
             '    db.DTM_TR_CPT.Add(tr_cpt)
@@ -611,7 +610,6 @@ Public Class TCBL_OPRT
             SQL_REQ_ACT(sQuery, CS_MES_Digital_Factory)
 
             'Enregitrement test
-
             Dim sb As StringBuilder = Session("sQuery_Etap_Test")
             If Not sb Is Nothing And sb.Length > 2 Then
                 sb.Remove(sb.Length - 2, 2)
@@ -626,11 +624,17 @@ Public Class TCBL_OPRT
                     If HttpUtility.HtmlDecode(.Cells(3).Text) = "PRODUIT" Or HttpUtility.HtmlDecode(.Cells(3).Text) = "PRODUIT SEMI-FINI" Then
                         sQuery = $"INSERT INTO [dbo].[DTM_TR_CPT] ([NM_NS_EOL],[NM_NS_CLT],[ID_CPT],[ID_PSG],[DT_PSG],[NM_SAP_CPT],[NM_NS_SENS])
                                    VALUES ('{sNU_SER_ECO}', '{sNU_SER_CLIE}', '-', {Session("ID_PSG")}, GETDATE(), '{HttpUtility.HtmlDecode(.Cells(1).Text)}','{HttpUtility.HtmlDecode(.Cells(6).Text)}')"
+                        iIDTT = SQL_REQ_ACT_RET_IDTT(sQuery, CS_MES_Digital_Factory)
                     Else
-                        sQuery = $"INSERT INTO [dbo].[DTM_TR_CPT] ([NM_NS_EOL],[NM_NS_CLT],[ID_CPT],[ID_PSG],[DT_PSG],[NM_SAP_CPT],[NM_NS_SENS])
-                                   VALUES ('{sNU_SER_ECO}', '{sNU_SER_CLIE}', '{HttpUtility.HtmlDecode(.Cells(6).Text)}', {Session("ID_PSG")}, GETDATE(), '{HttpUtility.HtmlDecode(.Cells(1).Text)}', '{Trim(HttpUtility.HtmlDecode(.Cells(7).Text))}')"
+                        Dim sb_tcbl_comp As New StringBuilder
+                        sb_tcbl_comp.Append("INSERT INTO [dbo].[DTM_TR_CPT] ([NM_NS_EOL], [NM_NS_CLT], [ID_CPT], [ID_PSG], [LB_RPR], [DT_PSG], [NM_SAP_CPT], [NM_NS_SENS]) VALUES ")
+                        For Each selement In Split(HttpUtility.HtmlDecode(.Cells(3).Text), "|")
+                            sQuery = $"INSERT INTO [dbo].[DTM_TR_CPT] ([NM_NS_EOL], [NM_NS_CLT], [ID_CPT], [ID_PSG], [LB_RPR], [DT_PSG], [NM_SAP_CPT], [NM_NS_SENS])
+                                            VALUES ('{sNU_SER_ECO}', '{sNU_SER_CLIE}', '{HttpUtility.HtmlDecode(.Cells(6).Text)}', {Session("ID_PSG")}, '{selement}', GETDATE(), '{HttpUtility.HtmlDecode(.Cells(1).Text)}', '{Trim(HttpUtility.HtmlDecode(.Cells(7).Text))}')"
+                            iIDTT = SQL_REQ_ACT_RET_IDTT(sQuery, CS_MES_Digital_Factory)
+                        Next
                     End If
-                    iIDTT = SQL_REQ_ACT_RET_IDTT(sQuery, CS_MES_Digital_Factory)
+
                     If .Cells(5).Text <> "&nbsp;" Then
                         sQuery = $"SELECT [ID_GST_CNTR]
                                      FROM [dbo].[V_LIST_CONT_NON_VIDE]
@@ -653,8 +657,8 @@ Public Class TCBL_OPRT
                 With rGridView_REPE
                     If .Cells(5).Text <> "&nbsp;" Then
                         sQuery = $"SELECT [NM_QTE_INIT],ISNULL([NB_UTLS],0) AS NB_UTLS
-                                    FROM [dbo].[V_LIST_CONT_NON_VIDE]
-                                   WHERE [NM_CNTR] = '{HttpUtility.HtmlDecode(.Cells(5).Text)}' AND [NM_OF] = '{TextBox_OF.Text}'"
+                                     FROM [dbo].[V_LIST_CONT_NON_VIDE]
+                                    WHERE [NM_CNTR] = '{HttpUtility.HtmlDecode(.Cells(5).Text)}' AND [NM_OF] = '{TextBox_OF.Text}'"
                         Using dt = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
                             If dt Is Nothing Then
                                 .Cells(8).Text = dt(0)("NM_QTE_INIT").ToString
@@ -706,7 +710,7 @@ Public Class TCBL_OPRT
 
             sQuery = $"SELECT [NU_SER_CLIE] AS [Numéro de série client],[NU_SER_ECO] AS [Numéro de série Eolane]
                          FROM [dbo].[V_DER_PASS_BON]
-                        WHERE [NM_OF] = '{Label_OF.Text}' AND [LB_ETP] = '{Label_DES_OP.Text} (OP:" & Label_OP.Text & ")'"
+                        WHERE [NM_OF] = '{Label_OF.Text}' AND [LB_ETP] = '{Label_DES_OP.Text} (OP:{Label_OP.Text})'"
             Using dt_LIST_NU_SER_TRAC = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
                 If Not dt_LIST_NU_SER_TRAC Is Nothing Then
                     'décrément quantité totale 
@@ -739,7 +743,7 @@ Public Class TCBL_OPRT
                         End Using
                     End Using
                 End Using
-                LOG_MESS_UTLS(GetCurrentMethod, $"Le numéro de série {TextBox_NU_SER.Text} est passé bon.")
+                LOG_MESS_UTLS(GetCurrentMethod, $"Le numéro de série {TextBox_NU_SER.Text} est passé bon.", "success")
                 'With TextBox_NU_SER
                 '    .Enabled = True
                 '    .Text = ""
@@ -747,16 +751,12 @@ Public Class TCBL_OPRT
                 'End With
                 'MultiView_ETAP.SetActiveView(View_VOID)
 
+                With TextBox_NU_SER
+                    .Enabled = True
+                    .Text = ""
+                    .Focus()
+                End With
                 If Label_QT_REST_OF.Text = "0" Then 'OF terminé
-                    'For Each rGridView_LIST_MTRE As GridViewRow In GridView_LIST_MTRE.Rows 'Dissociation du matériel générique
-                    '    With rGridView_LIST_MTRE
-                    '        If HttpUtility.HtmlDecode(.Cells(2).Text) = "Générique" Then
-                    '            sQuery = $"INSERT INTO [dbo].[DTM_REF_PARA]([NM_CRIT],[NM_PARA],[VAL_PARA],[DT_PARA])
-                    '                            VALUES ('{Label_POST.Text}','{HttpUtility.HtmlDecode(.Cells(1).Text)}','0',GETDATE())"
-                    '            SQL_REQ_ACT(sQuery, CS_MES_Digital_Factory)
-                    '        End If
-                    '    End With
-                    'Next
                     TextBox_OF.Text = ""
                     Label_OF.Text = ""
                     Label_CD_ARTI.Text = ""
@@ -771,8 +771,14 @@ Public Class TCBL_OPRT
                 End If
             End If
         Catch ex As Exception
+
+            With TextBox_NU_SER
+                .Enabled = True
+                .Text = ""
+                .Focus()
+            End With
             'MultiView_ETAP.SetActiveView(View_VOID)
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "error")
             Exit Sub
         End Try
 
@@ -805,7 +811,7 @@ Public Class TCBL_OPRT
                 End If
             End Using
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
         End Try
     End Sub
@@ -814,22 +820,16 @@ Public Class TCBL_OPRT
         'Dim sQuery As String = ""
         'Dim dt_ETAP As New DataTable
         Try
-            Dim sQuery = $"SELECT [ID_TEST]
-                            ,[ID_INDE]
-                            ,[LB_CONS_ETAP]
-                            ,[NM_CHEM_PHOT_ETAP]
-                            ,[NU_LIMI_IFRE_ETAP]
-                            ,[NU_LIMI_SPRE_ETAP]
-                            ,[NU_VERS_ETAP]
-                        FROM [dbo].[V_LIST_ETAP_OPRT]
-                       WHERE [CD_ARTI] = '{Label_CD_ARTI.Text}' AND [NM_OPRT] = '{Label_DES_OP.Text} (OP:{Label_OP.Text})'
-                      ORDER BY [ID_INDE]"
+            Dim sQuery = $"SELECT [ID_TEST],[ID_INDE],[LB_CONS_ETAP],[NM_CHEM_PHOT_ETAP],[NU_LIMI_IFRE_ETAP],[NU_LIMI_SPRE_ETAP],[NU_VERS_ETAP]
+                             FROM [dbo].[V_LIST_ETAP_OPRT]
+                            WHERE [CD_ARTI] = '{Label_CD_ARTI.Text}' AND [NM_OPRT] = '{Label_DES_OP.Text} (OP:{Label_OP.Text})'
+                           ORDER BY [ID_INDE]"
             Using dt_ETAP = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
                 If dt_ETAP Is Nothing Then Throw New Exception("Pas de config étape")
                 Return dt_ETAP
             End Using
         Catch ex As Exception
-            LOG_Erreur(GetCurrentMethod, ex.Message)
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Return Nothing
         End Try
     End Function
@@ -863,7 +863,7 @@ Public Class TCBL_OPRT
             Next
             Return "0"
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Return "0"
         End Try
     End Function
@@ -949,7 +949,7 @@ Public Class TCBL_OPRT
                 End If
 
             Catch ex As Exception
-                LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+                LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
                 MultiView_ETAP.SetActiveView(View_SAI_SOUS_ENSE)
                 .Text = ""
                 .Focus()
@@ -984,39 +984,36 @@ Public Class TCBL_OPRT
 
         'vérifier n° bac associé à l'OF et si le composant correspond
         Dim sQuery As String = ""
-        Dim dtMSEG, dt As New DataTable
+        'Dim dtMSEG, dt As New DataTable
         Try
-            sQuery = "SELECT [ID_GST_CNTR]
-                            ,[ID_CPT]
-                            ,[NM_QTE_INIT]
-                            ,ISNULL([NB_UTLS],0) AS NB_UTLS
-                        FROM [dbo].[V_LIST_CONT_NON_VIDE]
-                       WHERE [NM_CNTR] = '" & TextBox_NU_BAC.Text & "' AND [NM_OF] = '" & TextBox_OF.Text & "'"
-            dt = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
-            If dt Is Nothing Then Throw New Exception("Le bac n°" & TextBox_NU_BAC.Text & " n'existe pas ou est vide")
-            dtMSEG = SAP_DATA_READ_MSEG("MBLNR EQ '" & Left(dt(0)("ID_CPT").ToString, 10) & "' AND ZEILE EQ '" & Mid(dt(0)("ID_CPT").ToString, 11, 4) & "' AND MJAHR EQ '" & Mid(dt(0)("ID_CPT").ToString, 15, 4) & "'")
-            If dtMSEG Is Nothing Then Throw New Exception("Pas de données trouvés pour l'ID composant")
-
-            For Each rGridView_REPE As GridViewRow In GridView_REPE.Rows
-                With rGridView_REPE
-                    If dtMSEG(0)("MATNR").ToString = HttpUtility.HtmlDecode(.Cells(1).Text) Then
-                        .Cells(5).Text = TextBox_NU_BAC.Text
-                        .Cells(6).Text = dt(0)("ID_CPT").ToString
-                        .Cells(7).Text = dtMSEG(0)("CHARG").ToString
-                        .Cells(8).Text = Convert.ToDecimal(dt(0)("NM_QTE_INIT").ToString) - (Convert.ToDecimal(dt(0)("NB_UTLS").ToString) * Convert.ToDecimal(.Cells(4).Text))
-                    End If
-                    For Each rGridView_REPE0 As GridViewRow In GridView_REPE0.Rows
-                        If HttpUtility.HtmlDecode(rGridView_REPE0.Cells(1).Text) = HttpUtility.HtmlDecode(.Cells(1).Text) Then
-                            rGridView_REPE0.Cells(4).Text = HttpUtility.HtmlDecode(.Cells(4).Text)
-                            rGridView_REPE0.Cells(5).Text = HttpUtility.HtmlDecode(.Cells(5).Text)
-                            rGridView_REPE0.Cells(6).Text = HttpUtility.HtmlDecode(.Cells(6).Text)
-                            rGridView_REPE0.Cells(7).Text = HttpUtility.HtmlDecode(.Cells(7).Text)
-                            rGridView_REPE0.Cells(8).Text = HttpUtility.HtmlDecode(.Cells(8).Text)
-                        End If
+            sQuery = $"SELECT [ID_GST_CNTR],[ID_CPT],[NM_QTE_INIT],ISNULL([NB_UTLS],0) AS NB_UTLS
+                         FROM [dbo].[V_LIST_CONT_NON_VIDE]
+                        WHERE [NM_CNTR] = '{TextBox_NU_BAC.Text}' AND [NM_OF] = '{TextBox_OF.Text}'"
+            Using dt = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
+                If dt Is Nothing Then Throw New Exception($"Le bac n°{TextBox_NU_BAC.Text} n'existe pas ou est vide")
+                Using dtMSEG = SAP_DATA_READ_MSEG($"MBLNR EQ '{Left(dt(0)("ID_CPT").ToString, 10)}' AND ZEILE EQ '{Mid(dt(0)("ID_CPT").ToString, 11, 4)}' AND MJAHR EQ '{Mid(dt(0)("ID_CPT").ToString, 15, 4)}'")
+                    If dtMSEG Is Nothing Then Throw New Exception($"Pas de données trouvés pour l'ID composant {dt(0)("ID_CPT").ToString}")
+                    For Each rGridView_REPE As GridViewRow In GridView_REPE.Rows
+                        With rGridView_REPE
+                            If dtMSEG(0)("MATNR").ToString = HttpUtility.HtmlDecode(.Cells(1).Text) Then
+                                .Cells(5).Text = TextBox_NU_BAC.Text
+                                .Cells(6).Text = dt(0)("ID_CPT").ToString
+                                .Cells(7).Text = dtMSEG(0)("CHARG").ToString
+                                .Cells(8).Text = Convert.ToDecimal(dt(0)("NM_QTE_INIT").ToString) - (Convert.ToDecimal(dt(0)("NB_UTLS").ToString) * Convert.ToDecimal(.Cells(4).Text))
+                            End If
+                            For Each rGridView_REPE0 As GridViewRow In GridView_REPE0.Rows
+                                If HttpUtility.HtmlDecode(rGridView_REPE0.Cells(1).Text) = HttpUtility.HtmlDecode(.Cells(1).Text) Then
+                                    rGridView_REPE0.Cells(4).Text = HttpUtility.HtmlDecode(.Cells(4).Text)
+                                    rGridView_REPE0.Cells(5).Text = HttpUtility.HtmlDecode(.Cells(5).Text)
+                                    rGridView_REPE0.Cells(6).Text = HttpUtility.HtmlDecode(.Cells(6).Text)
+                                    rGridView_REPE0.Cells(7).Text = HttpUtility.HtmlDecode(.Cells(7).Text)
+                                    rGridView_REPE0.Cells(8).Text = HttpUtility.HtmlDecode(.Cells(8).Text)
+                                End If
+                            Next
+                        End With
                     Next
-                End With
-            Next
-
+                End Using
+            End Using
             For Each rGridView_REPE As GridViewRow In GridView_REPE.Rows
                 With rGridView_REPE
                     If .Cells(8).Text = "&nbsp;" And Not (HttpUtility.HtmlDecode(.Cells(3).Text) = "PRODUIT" Or HttpUtility.HtmlDecode(.Cells(3).Text = "PRODUIT SEMI-FINI")) Then
@@ -1033,7 +1030,7 @@ Public Class TCBL_OPRT
                 .Focus()
             End With
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             TextBox_NU_BAC.Text = ""
             TextBox_NU_BAC.Focus()
             Exit Sub
@@ -1046,11 +1043,14 @@ Public Class TCBL_OPRT
         Dim fQT_UTLS As Decimal
         Try
             Using dtMSEG = SAP_DATA_READ_MSEG($"MBLNR EQ '{Left(TextBox_ID_COMP.Text, 10)}' AND ZEILE EQ '{Mid(TextBox_ID_COMP.Text, 11, 4)}' AND MJAHR EQ '{Mid(TextBox_ID_COMP.Text, 15, 4)}'")
-                If dtMSEG Is Nothing Then Throw New Exception("Pas de données trouvés pour l'ID composant")
+                If dtMSEG Is Nothing Then Throw New Exception($"Pas de données trouvés pour l'ID composant {TextBox_ID_COMP.Text}")
                 For Each rGridView_REPE As GridViewRow In GridView_REPE.Rows
                     If dtMSEG(0)("MATNR").ToString = HttpUtility.HtmlDecode(rGridView_REPE.Cells(1).Text) Then
                         rGridView_REPE.Cells(6).Text = TextBox_ID_COMP.Text
                         rGridView_REPE.Cells(7).Text = dtMSEG(0)("CHARG").ToString
+                        'todo vérifier si déjà entré en quantité
+                        'todo sinon demander la quantité
+                        'todo enregistrer dans la base fonction nom PC/opération/of
                         sQuery = $"SELECT COUNT([DT_PSG]) AS NB_ID_COMP
                                      FROM [dbo].[DTM_TR_CPT]
                                     WHERE [ID_CPT] LIKE '{TextBox_ID_COMP.Text}%'
@@ -1063,6 +1063,7 @@ Public Class TCBL_OPRT
                                 If fQT_UTLS < Convert.ToDecimal(Replace(dtMSEG(0)("MENGE").ToString, ".", ",")) Then rGridView_REPE.Cells(8).Text = Convert.ToDecimal(Replace(dtMSEG(0)("MENGE").ToString, ".", ",")) - fQT_UTLS
                             End If
                         End Using
+
                     End If
                     For Each rGridView_REPE0 As GridViewRow In GridView_REPE0.Rows
                         If HttpUtility.HtmlDecode(rGridView_REPE0.Cells(1).Text) = HttpUtility.HtmlDecode(rGridView_REPE.Cells(1).Text) Then
@@ -1079,7 +1080,7 @@ Public Class TCBL_OPRT
                 If rGridView_REPE.Cells(8).Text = "&nbsp;" And Not (HttpUtility.HtmlDecode(rGridView_REPE.Cells(3).Text) = "PRODUIT" Or HttpUtility.HtmlDecode(rGridView_REPE.Cells(3).Text) = "PRODUIT SEMI-FINI") Then
                     TextBox_ID_COMP.Text = ""
                     TextBox_ID_COMP.Focus()
-                    LOG_Msg(GetCurrentMethod, "Panel")
+                    'LOG_Msg(GetCurrentMethod, "Panel")
                     Exit Sub
                 End If
             Next
@@ -1092,40 +1093,42 @@ Public Class TCBL_OPRT
         Catch ex As Exception
             TextBox_ID_COMP.Text = ""
             TextBox_ID_COMP.Focus()
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
         End Try
     End Sub
 
     Protected Sub TextBox_CD_LOT_COMP_TextChanged(sender As Object, e As EventArgs) Handles TextBox_CD_LOT_COMP.TextChanged
         Dim sQuery As String = ""
-        Dim dtMSEG, dt As New DataTable
+        'Dim dtMSEG, dt As New DataTable
         Dim fQT_UTLS As Decimal
         Try
             For Each rGridView_REPE As GridViewRow In GridView_REPE.Rows
                 With rGridView_REPE
                     If Label_CD_COMP.Text = HttpUtility.HtmlDecode(.Cells(1).Text) Then
-                        dtMSEG = SAP_DATA_READ_MSEG("MATNR EQ '" & Label_CD_COMP.Text & "' AND CHARG EQ '" & TextBox_CD_LOT_COMP.Text & "'")
-                        If dtMSEG Is Nothing Then Throw New Exception("Pas de données")
-                        For Each rdtMSEG As DataRow In dtMSEG.Rows
-                            sQuery = "SELECT COUNT([DT_PSG]) AS NB_ID_COMP
-                                        FROM [dbo].[DTM_TR_CPT]
-                                       WHERE [ID_CPT] LIKE '" & rdtMSEG("MBLNR").ToString & rdtMSEG("ZEILE").ToString & rdtMSEG("MJAHR").ToString & "%'
-                                      GROUP BY [ID_CPT]"
-                            dt = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
-                            If dt Is Nothing Then
-                                .Cells(8).Text = Convert.ToDecimal(Replace(rdtMSEG("MENGE").ToString, ".", ","))
-                                .Cells(6).Text = rdtMSEG("MBLNR").ToString & rdtMSEG("ZEILE").ToString & rdtMSEG("MJAHR").ToString
-                                Exit For
-                            Else
-                                fQT_UTLS = Convert.ToDecimal(dt(0)("NB_ID_COMP").ToString) * Convert.ToDecimal(.Cells(4).Text)
-                                If fQT_UTLS < Convert.ToDecimal(Replace(dtMSEG(0)("MENGE").ToString, ".", ",")) Then
-                                    .Cells(8).Text = Convert.ToDecimal(Replace(rdtMSEG("MENGE").ToString, ".", ",")) - fQT_UTLS
-                                    .Cells(6).Text = rdtMSEG("MBLNR").ToString & rdtMSEG("ZEILE").ToString & rdtMSEG("MJAHR").ToString
-                                    Exit For
-                                End If
-                            End If
-                        Next
+                        Using dtMSEG = SAP_DATA_READ_MSEG($"MATNR EQ '{Label_CD_COMP.Text}' AND CHARG EQ '{TextBox_CD_LOT_COMP.Text}'")
+                            If dtMSEG Is Nothing Then Throw New Exception($"Pas de données pour le code article '{Label_CD_COMP.Text}' et le code lot '{TextBox_CD_LOT_COMP.Text}'")
+                            For Each rdtMSEG As DataRow In dtMSEG.Rows
+                                sQuery = $"SELECT COUNT([DT_PSG]) AS NB_ID_COMP
+                                             FROM [dbo].[DTM_TR_CPT]
+                                            WHERE [ID_CPT] LIKE '{rdtMSEG("MBLNR").ToString}{rdtMSEG("ZEILE").ToString}{rdtMSEG("MJAHR").ToString}%'
+                                           GROUP BY [ID_CPT]"
+                                Using dt = SQL_SELE_TO_DT(sQuery, CS_MES_Digital_Factory)
+                                    If dt Is Nothing Then
+                                        .Cells(8).Text = Convert.ToDecimal(Replace(rdtMSEG("MENGE").ToString, ".", ","))
+                                        .Cells(6).Text = $"{rdtMSEG("MBLNR").ToString}{rdtMSEG("ZEILE").ToString}{rdtMSEG("MJAHR").ToString}"
+                                        Exit For
+                                    Else
+                                        fQT_UTLS = Convert.ToDecimal(dt(0)("NB_ID_COMP").ToString) * Convert.ToDecimal(.Cells(4).Text)
+                                        If fQT_UTLS < Convert.ToDecimal(Replace(dtMSEG(0)("MENGE").ToString, ".", ",")) Then
+                                            .Cells(8).Text = Convert.ToDecimal(Replace(rdtMSEG("MENGE").ToString, ".", ",")) - fQT_UTLS
+                                            .Cells(6).Text = $"{rdtMSEG("MBLNR").ToString}{rdtMSEG("ZEILE").ToString}{rdtMSEG("MJAHR").ToString}"
+                                            Exit For
+                                        End If
+                                    End If
+                                End Using
+                            Next
+                        End Using
                         .Cells(7).Text = TextBox_CD_LOT_COMP.Text
                     End If
                     For Each rGridView_REPE0 As GridViewRow In GridView_REPE0.Rows
@@ -1159,7 +1162,7 @@ Public Class TCBL_OPRT
                 .Focus()
             End With
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             TextBox_CD_LOT_COMP.Text = ""
             TextBox_CD_LOT_COMP.Focus()
             Exit Sub
@@ -1189,8 +1192,8 @@ Public Class TCBL_OPRT
                                     If dt_ETAT_CTRL.Columns.Contains("TextBox_FICH_MODE") Then DIG_FACT_IMPR_ETIQ_V2(dt_ETAT_CTRL(0)("TextBox_FICH_MODE").ToString, sIPMT_ETQT, TextBox_OF.Text, "", "Numéro de série Eolane", dt(0)("ID_NU_SER").ToString, "", "", "", Nothing)
                                 End Using
                                 sNS = $"{Label_OF.Text}{sNS}"
-                                End Using
-                                Case dt_CFGR_ARTI_ECO(0)("Numéro de série client").ToString
+                            End Using
+                        Case dt_CFGR_ARTI_ECO(0)("Numéro de série client").ToString
                             Dim sFORM_NU_CLIE As String = ""
                             Using dt_ETAT_CTRL = COMM_APP_WEB_ETAT_CTRL($"{Trim(Label_CD_ARTI.Text)}|Numéro de série client", "ASP.pagesmembres_digital_factory_impr_etiq_prn_aspx")
                                 If dt_ETAT_CTRL Is Nothing Then Throw New Exception($"La base App_Web_Eco n'as pas été configurée pour l'article {Trim(Label_CD_ARTI.Text)}")
@@ -1218,76 +1221,84 @@ Public Class TCBL_OPRT
                 End If
             End Using
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
         End Try
 
     End Sub
 
     Public Sub _VRFC_TCBL_COMP()
-        Dim dt_SS_ENS, dtAFKO, dtVRESB, dtSTPO, dtSTPU As New DataTable
-        Dim rdt_CD_ARTI_ENS_SENS_SAP As DataRow
+        'Dim dt_SS_ENS, dtAFKO, dtVRESB, dtSTPO, dtSTPU As New DataTable
+        'Dim rdt_CD_ARTI_ENS_SENS_SAP As DataRow
         Dim i_COUN_VRFC_PROD_SS_ENS As Integer = 0
         Try
-            dtAFKO = SAP_DATA_READ_AFKO("AUFNR LIKE '%" & TextBox_OF.Text & "'")
-            If dtAFKO Is Nothing Then Throw New Exception("L'OF n°" & TextBox_OF.Text & " n'a pas été trouvé dans SAP.")
+            Using dtAFKO = SAP_DATA_READ_AFKO($"AUFNR LIKE '%{TextBox_OF.Text}'")
+                If dtAFKO Is Nothing Then Throw New Exception($"L'OF n°{TextBox_OF.Text} n'a pas été trouvé dans SAP.")
 
-            dt_SS_ENS = App_Web.TCBL_ESB_SS_ESB_V2._LIST_ENS_SS_ENS(TextBox_OF.Text, DropDownList_OP.SelectedValue)
-            If Not dt_SS_ENS Is Nothing Then 'traçabilité composant à faire
-                With dt_SS_ENS.Columns
-                    .Remove("Numéro de série associé")
-                    .Add("Repère", Type.GetType("System.String"))
-                    .Add("Quantité par produit", Type.GetType("System.String"))
-                    .Add("N° de conteneur", Type.GetType("System.String"))
-                    .Add("Id composant", Type.GetType("System.String"))
-                    .Add("Code lot", Type.GetType("System.String"))
-                    .Add("Quantité restante", Type.GetType("System.String"))
-                End With
-                dtVRESB = SAP_DATA_READ_VRESB("RSNUM EQ '" & dtAFKO(0)("RSNUM").ToString & "' AND SPRAS EQ 'F' AND VORNR EQ '" & DropDownList_OP.SelectedValue & "'")
-                For Each rVRESB As DataRow In dtVRESB.Rows
-                    rdt_CD_ARTI_ENS_SENS_SAP = dt_SS_ENS.Select("[Code article SAP] = '" & rVRESB("MATNR").ToString & "'").FirstOrDefault
-                    If rdt_CD_ARTI_ENS_SENS_SAP Is Nothing Then Continue For
+                Using dt_SS_ENS = App_Web.TCBL_ESB_SS_ESB_V2._LIST_ENS_SS_ENS(TextBox_OF.Text, DropDownList_OP.SelectedValue)
+                    If Not dt_SS_ENS Is Nothing Then 'traçabilité composant à faire
+                        With dt_SS_ENS.Columns
+                            .Remove("Numéro de série associé")
+                            .Add("Repère", Type.GetType("System.String"))
+                            .Add("Quantité par produit", Type.GetType("System.String"))
+                            .Add("N° de conteneur", Type.GetType("System.String"))
+                            .Add("Id composant", Type.GetType("System.String"))
+                            .Add("Code lot", Type.GetType("System.String"))
+                            .Add("Quantité restante", Type.GetType("System.String"))
+                        End With
+                        Using dtVRESB = SAP_DATA_READ_VRESB($"RSNUM EQ '{dtAFKO(0)("RSNUM").ToString}' AND SPRAS EQ 'F' AND VORNR EQ '{DropDownList_OP.SelectedValue}'")
+                            For Each rVRESB As DataRow In dtVRESB.Rows
+                                Dim rdt_CD_ARTI_ENS_SENS_SAP = dt_SS_ENS.Select($"[Code article SAP] = '{rVRESB("MATNR").ToString}'").FirstOrDefault
+                                If rdt_CD_ARTI_ENS_SENS_SAP Is Nothing Then Continue For
 
-                    'Vérification saisie numéro de série (pour sous-ensemble non-déclaré en produit dans et SAP et nécessité de saisir le n° de série)
-                    If DIG_FACT_SQL_GET_PARA(Trim(rVRESB("MATNR").ToString), "Sérialisation article") = "1" Then rdt_CD_ARTI_ENS_SENS_SAP("Repère") = "PRODUIT"
+                                'Vérification saisie numéro de série (pour sous-ensemble non-déclaré en produit dans et SAP et nécessité de saisir le n° de série)
+                                If DIG_FACT_SQL_GET_PARA(Trim(rVRESB("MATNR").ToString), "Sérialisation article") = "1" Then rdt_CD_ARTI_ENS_SENS_SAP("Repère") = "PRODUIT"
 
-                    dtSTPO = SAP_DATA_READ_STPO("STLNR EQ '" & rVRESB("STLNR").ToString & "' and STLKN EQ '" & rVRESB("STLKN").ToString & "' and STPOZ EQ '" & rVRESB("STPOZ").ToString & "'")
-                    If dtSTPO Is Nothing Then
-                        rdt_CD_ARTI_ENS_SENS_SAP("Quantité par produit") = Convert.ToDecimal(Replace(Label_QT_OF.Text, ".", ",")) / Convert.ToDecimal(Replace(rVRESB("BDMNG").ToString, ".", ","))
-                    Else
-                        rdt_CD_ARTI_ENS_SENS_SAP("Quantité par produit") = Convert.ToDecimal(Replace(dtSTPO(0)("MENGE").ToString, ".", ","))
-                    End If
-                    Select Case rVRESB("MTART").ToString
-                        Case "FERT"
-                            rdt_CD_ARTI_ENS_SENS_SAP("Repère") = "PRODUIT"
-                        Case "HALB"
-                            rdt_CD_ARTI_ENS_SENS_SAP("Repère") = "PRODUIT SEMI-FINI"
-                        Case Else 'recherche du repère
-                            dtSTPU = SAP_DATA_READ_STPU("STLNR EQ '" & rVRESB("STLNR").ToString & "' and STLKN EQ '" & rVRESB("STLKN").ToString & "' and STPOZ EQ '" & rVRESB("STPOZ").ToString & "'")
-                            If dtSTPU Is Nothing Then Continue For
-                            For Each rdtSTPU As DataRow In dtSTPU.Rows
-                                rdt_CD_ARTI_ENS_SENS_SAP("Repère") &= rdtSTPU("EBORT").ToString & "|"
+                                Using dtSTPO = SAP_DATA_READ_STPO($"STLNR EQ '{rVRESB("STLNR").ToString}' and STLKN EQ '{rVRESB("STLKN").ToString}' and STPOZ EQ '{rVRESB("STPOZ").ToString}'")
+                                    If dtSTPO Is Nothing Then
+                                        rdt_CD_ARTI_ENS_SENS_SAP("Quantité par produit") = Convert.ToDecimal(Replace(Label_QT_OF.Text, ".", ",")) / Convert.ToDecimal(Replace(rVRESB("BDMNG").ToString, ".", ","))
+                                    Else
+                                        rdt_CD_ARTI_ENS_SENS_SAP("Quantité par produit") = Convert.ToDecimal(Replace(dtSTPO(0)("MENGE").ToString, ".", ","))
+                                    End If
+                                End Using
+                                Select Case rVRESB("MTART").ToString
+                                    Case "FERT"
+                                        rdt_CD_ARTI_ENS_SENS_SAP("Repère") = "PRODUIT"
+                                    Case "HALB"
+                                        rdt_CD_ARTI_ENS_SENS_SAP("Repère") = "PRODUIT SEMI-FINI"
+                                    Case Else 'recherche du repère
+                                        Using dtSTPU = SAP_DATA_READ_STPU($"STLNR EQ '{rVRESB("STLNR").ToString}' and STLKN EQ '{rVRESB("STLKN").ToString}' and STPOZ EQ '{rVRESB("STPOZ").ToString}'")
+                                            If dtSTPU Is Nothing Then Continue For
+                                            Dim sb As New StringBuilder
+                                            For Each rdtSTPU As DataRow In dtSTPU.Rows
+                                                sb.Append($"{rdtSTPU("EBORT").ToString}|")
+                                            Next
+                                            sb.Remove(sb.Length - 1, 1)
+                                            rdt_CD_ARTI_ENS_SENS_SAP("Repère") = sb.ToString
+                                        End Using
+                                        'rdt_CD_ARTI_ENS_SENS_SAP("Repère") = COMM_APP_WEB_STRI_TRIM_RIGHT(rdt_CD_ARTI_ENS_SENS_SAP("Repère"), 1)
+                                End Select
                             Next
-                            rdt_CD_ARTI_ENS_SENS_SAP("Repère") = COMM_APP_WEB_STRI_TRIM_RIGHT(rdt_CD_ARTI_ENS_SENS_SAP("Repère"), 1)
-                    End Select
-                Next
-                GridView_REPE.DataSource = dt_SS_ENS
-                GridView_REPE.DataBind()
-                GridView_REPE0.DataSource = dt_SS_ENS
-                GridView_REPE0.DataBind()
+                        End Using
+                        GridView_REPE.DataSource = dt_SS_ENS
+                        GridView_REPE.DataBind()
+                        GridView_REPE0.DataSource = dt_SS_ENS
+                        GridView_REPE0.DataBind()
 
-                's'il y a des sous-ensemble de type différent de produit ou semi-fini alors saisir les codes lot
-                For Each rGridView_REPE As GridViewRow In GridView_REPE.Rows
-                    With rGridView_REPE
-                        If Not (HttpUtility.HtmlDecode(.Cells(3).Text) = "PRODUIT" Or HttpUtility.HtmlDecode(.Cells(3).Text) = "PRODUIT SEMI-FINI") Then
-                            MultiView_SAIS_OPRT.SetActiveView(View_SAIS_TCBL_COMP)
-                            Exit Sub
-                        End If
-                    End With
-                Next
-            End If
+                        's'il y a des sous-ensemble de type différent de produit ou semi-fini alors saisir les codes lot
+                        For Each rGridView_REPE As GridViewRow In GridView_REPE.Rows
+                            With rGridView_REPE
+                                If Not (HttpUtility.HtmlDecode(.Cells(3).Text) = "PRODUIT" Or HttpUtility.HtmlDecode(.Cells(3).Text) = "PRODUIT SEMI-FINI") Then
+                                    MultiView_SAIS_OPRT.SetActiveView(View_SAIS_TCBL_COMP)
+                                    Exit Sub
+                                End If
+                            End With
+                        Next
+                    End If
+                End Using
+            End Using
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
         End Try
     End Sub
@@ -1310,7 +1321,7 @@ Public Class TCBL_OPRT
             'vérification si traçabilité composant à faire
             _VRFC_TCBL_COMP()
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
         End Try
     End Sub
@@ -1325,7 +1336,7 @@ Public Class TCBL_OPRT
                 Throw New Exception("Incohérence de numéro de série scanné.")
             End If
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
         End Try
 
@@ -1787,7 +1798,7 @@ Public Class TCBL_OPRT
     '            dPDF.Close()
     '        End Using
     '    Catch ex As Exception
-    '        LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+    '        LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
     '        Return Nothing
     '    Finally
     '        'dPDF.Close()
@@ -1810,7 +1821,7 @@ Public Class TCBL_OPRT
                 _ERGT_OPRT_PASS("P")
             End If
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
         End Try
     End Sub
@@ -1853,7 +1864,7 @@ Public Class TCBL_OPRT
             End If
             Return 0
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Return -1
         End Try
 
@@ -2476,7 +2487,7 @@ Public Class TCBL_OPRT
     '                dPDF.Close()
     '            End Using
     '        Catch ex As Exception
-    '            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+    '            LOG_MESS_UTLS(GetCurrentMethod, ex.Message,"alert")
     '            Return Nothing
     '        Finally
     '            'dPDF.Close()
@@ -2709,7 +2720,7 @@ Public Class TCBL_OPRT
     '            'End Using
 
     '        Catch ex As Exception
-    '            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+    '            LOG_MESS_UTLS(GetCurrentMethod, ex.Message,"alert")
     '            Return Nothing
     '        Finally
     '            'dPDF.Close() 'Ventilateur Vendome ST40 IND01X 08/12/16

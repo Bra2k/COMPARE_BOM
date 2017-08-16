@@ -59,7 +59,7 @@ Public Class ALMS_IMPORT
             SQL_REQ_ACT(date_store_query, CS_ALMS_PROD_DEV)
             LOG_MESS_UTLS(GetCurrentMethod, $"Le fichier {FileUpload_ALMS.FileName} a été importé")
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
         End Try
     End Sub

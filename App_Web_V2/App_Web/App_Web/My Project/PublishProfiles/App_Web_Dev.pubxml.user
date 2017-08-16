@@ -6,7 +6,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>D:\Mes_Donnees_so_spevi\Travail\Projets\IIS</_PublishTargetUrl>
+    <_PublishTargetUrl>\\cedb03\sources\Dev_app_web</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="About.aspx">
@@ -25,7 +25,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>03/16/2017 10:53:35</publishTime>
     </File>
     <File Include="App_Themes/CSS/CSS_MediaQuery.css">
-      <publishTime>07/06/2017 12:08:17</publishTime>
+      <publishTime>06/07/2017 12:08:17</publishTime>
     </File>
     <File Include="App_Themes/ICON_COMPARE/admin.ico">
       <publishTime>03/16/2017 10:53:35</publishTime>
@@ -112,94 +112,97 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>06/23/2017 15:05:47</publishTime>
     </File>
     <File Include="App_Themes/Menu_Defaut/63a.jpg">
-      <publishTime>07/06/2017 12:53:25</publishTime>
+      <publishTime>06/07/2017 12:53:25</publishTime>
     </File>
     <File Include="App_Themes/Menu_Defaut/Antenna-WF.png">
-      <publishTime>07/05/2017 21:17:32</publishTime>
+      <publishTime>05/07/2017 21:17:32</publishTime>
     </File>
     <File Include="App_Themes/Menu_Defaut/Assign.png">
-      <publishTime>07/05/2017 21:17:37</publishTime>
+      <publishTime>05/07/2017 21:17:37</publishTime>
     </File>
     <File Include="App_Themes/Menu_Defaut/Barcode.png">
-      <publishTime>07/05/2017 21:17:37</publishTime>
+      <publishTime>05/07/2017 21:17:37</publishTime>
     </File>
     <File Include="App_Themes/Menu_Defaut/Binary-Code.png">
-      <publishTime>07/05/2017 21:17:37</publishTime>
+      <publishTime>05/07/2017 21:17:37</publishTime>
     </File>
     <File Include="App_Themes/Menu_Defaut/Bio-Hazard.png">
-      <publishTime>07/05/2017 21:17:37</publishTime>
+      <publishTime>05/07/2017 21:17:37</publishTime>
     </File>
     <File Include="App_Themes/Menu_Defaut/Box - 03-WF.png">
-      <publishTime>07/05/2017 20:51:59</publishTime>
+      <publishTime>05/07/2017 20:51:59</publishTime>
     </File>
     <File Include="App_Themes/Menu_Defaut/box-palette-2.png">
-      <publishTime>07/06/2017 11:34:36</publishTime>
+      <publishTime>06/07/2017 11:34:36</publishTime>
     </File>
     <File Include="App_Themes/Menu_Defaut/colis.jpg">
-      <publishTime>07/06/2017 11:34:36</publishTime>
+      <publishTime>06/07/2017 11:34:36</publishTime>
     </File>
     <File Include="App_Themes/Menu_Defaut/Computer-IT-01-WF.png">
-      <publishTime>07/05/2017 21:17:37</publishTime>
+      <publishTime>05/07/2017 21:17:37</publishTime>
     </File>
     <File Include="App_Themes/Menu_Defaut/CPU_1-WF.png">
-      <publishTime>07/05/2017 21:17:37</publishTime>
+      <publishTime>05/07/2017 21:17:37</publishTime>
     </File>
     <File Include="App_Themes/Menu_Defaut/electronique-02-1.jpg">
-      <publishTime>07/06/2017 12:53:25</publishTime>
+      <publishTime>06/07/2017 12:53:25</publishTime>
     </File>
     <File Include="App_Themes/Menu_Defaut/Graph-03.png">
-      <publishTime>07/05/2017 21:17:37</publishTime>
+      <publishTime>05/07/2017 21:17:37</publishTime>
     </File>
     <File Include="App_Themes/Menu_Defaut/Heart-04.png">
-      <publishTime>07/05/2017 21:17:37</publishTime>
+      <publishTime>05/07/2017 21:17:37</publishTime>
     </File>
     <File Include="App_Themes/Menu_Defaut/Log file icon 2.png">
       <publishTime>07/05/2017 21:17:37</publishTime>
     </File>
+    <File Include="App_Themes/Menu_Defaut/Logout.png">
+      <publishTime>08/16/2017 14:36:03</publishTime>
+    </File>
     <File Include="App_Themes/Menu_Defaut/Log_file_icon_2.png">
-      <publishTime>07/05/2017 21:17:37</publishTime>
+      <publishTime>05/07/2017 21:17:37</publishTime>
     </File>
     <File Include="App_Themes/Menu_Defaut/News-Add.png">
-      <publishTime>07/05/2017 21:17:37</publishTime>
+      <publishTime>05/07/2017 21:17:37</publishTime>
     </File>
     <File Include="App_Themes/Menu_Defaut/Operation-WF.png">
-      <publishTime>07/05/2017 21:17:37</publishTime>
+      <publishTime>05/07/2017 21:17:37</publishTime>
     </File>
     <File Include="App_Themes/Menu_Defaut/Product Box-03-WF.png">
       <publishTime>05/07/2017 21:17:37</publishTime>
     </File>
     <File Include="App_Themes/Menu_Defaut/Product_Box-03-WF.png">
-      <publishTime>07/05/2017 21:17:37</publishTime>
+      <publishTime>05/07/2017 21:17:37</publishTime>
     </File>
     <File Include="App_Themes/Menu_Defaut/proto-process-success-story.jpg">
-      <publishTime>07/06/2017 12:53:25</publishTime>
+      <publishTime>06/07/2017 12:53:25</publishTime>
     </File>
     <File Include="App_Themes/Menu_Defaut/QR Code1-WF.png">
-      <publishTime>07/05/2017 21:17:37</publishTime>
+      <publishTime>05/07/2017 21:17:37</publishTime>
     </File>
     <File Include="App_Themes/Menu_Defaut/QR-Code - 01.png">
-      <publishTime>07/05/2017 21:17:37</publishTime>
+      <publishTime>05/07/2017 21:17:37</publishTime>
     </File>
     <File Include="App_Themes/Menu_Defaut/Reference-WF.png">
-      <publishTime>07/05/2017 21:17:37</publishTime>
+      <publishTime>05/07/2017 21:17:37</publishTime>
     </File>
     <File Include="App_Themes/Menu_Defaut/Setting_2-WF.png">
-      <publishTime>07/05/2017 21:20:27</publishTime>
+      <publishTime>05/07/2017 21:20:27</publishTime>
     </File>
     <File Include="App_Themes/Menu_Defaut/Software-SAP.png">
-      <publishTime>07/05/2017 21:17:37</publishTime>
+      <publishTime>05/07/2017 21:17:37</publishTime>
     </File>
     <File Include="App_Themes/Menu_Defaut/Student-Laptop.png">
-      <publishTime>07/05/2017 21:17:37</publishTime>
+      <publishTime>05/07/2017 21:17:37</publishTime>
     </File>
     <File Include="App_Themes/Menu_Defaut/Tag-WF.png">
-      <publishTime>07/05/2017 21:17:37</publishTime>
+      <publishTime>05/07/2017 21:17:37</publishTime>
     </File>
     <File Include="App_Themes/Menu_Defaut/Windmill-01.png">
-      <publishTime>07/05/2017 21:17:37</publishTime>
+      <publishTime>05/07/2017 21:17:37</publishTime>
     </File>
     <File Include="App_Themes/Menu_Defaut/Wireless-03.png">
-      <publishTime>07/05/2017 21:17:37</publishTime>
+      <publishTime>05/07/2017 21:17:37</publishTime>
     </File>
     <File Include="App_Themes/PIC_CHAR/14740.png">
       <publishTime>03/16/2017 10:53:35</publishTime>
@@ -289,7 +292,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>03/16/2017 10:53:35</publishTime>
     </File>
     <File Include="bin/App_Web.dll">
-      <publishTime>08/10/2017 08:15:51</publishTime>
+      <publishTime>08/16/2017 14:36:33</publishTime>
     </File>
     <File Include="bin/App_Web_DEV.dll">
       <publishTime>06/28/2017 14:56:48</publishTime>
@@ -358,10 +361,10 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>03/16/2017 10:53:35</publishTime>
     </File>
     <File Include="bin/itextsharp.dll">
-      <publishTime>10/07/2016 15:33:44</publishTime>
+      <publishTime>07/10/2016 15:33:44</publishTime>
     </File>
     <File Include="bin/itextsharp.pdfa.dll">
-      <publishTime>10/07/2016 15:33:38</publishTime>
+      <publishTime>07/10/2016 15:33:38</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
       <publishTime>03/16/2017 10:53:35</publishTime>
@@ -490,7 +493,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>03/16/2017 10:53:35</publishTime>
     </File>
     <File Include="bin/Scripts/metro.js">
-      <publishTime>07/06/2017 08:28:00</publishTime>
+      <publishTime>06/07/2017 08:28:00</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
       <publishTime>03/16/2017 10:53:35</publishTime>
@@ -511,7 +514,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>03/16/2017 10:53:35</publishTime>
     </File>
     <File Include="bin/WebForms_Basic.xml">
-      <publishTime>08/10/2017 08:15:51</publishTime>
+      <publishTime>08/16/2017 14:36:32</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>03/16/2017 10:53:35</publishTime>
@@ -529,13 +532,13 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>03/16/2017 10:53:35</publishTime>
     </File>
     <File Include="Content/metro.css">
-      <publishTime>07/06/2017 08:25:58</publishTime>
+      <publishTime>06/07/2017 08:25:58</publishTime>
     </File>
     <File Include="Content/Site.css">
       <publishTime>03/16/2017 10:53:35</publishTime>
     </File>
     <File Include="Default.aspx">
-      <publishTime>08/03/2017 10:51:33</publishTime>
+      <publishTime>08/16/2017 10:46:28</publishTime>
     </File>
     <File Include="favicon.ico">
       <publishTime>03/16/2017 10:53:35</publishTime>
@@ -574,7 +577,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>03/16/2017 10:53:35</publishTime>
     </File>
     <File Include="PagesMembres/Developpement/AMNS_APP_WEB.aspx">
-      <publishTime>08/03/2017 14:29:42</publishTime>
+      <publishTime>03/08/2017 14:29:42</publishTime>
     </File>
     <File Include="PagesMembres/Developpement/CFGR_POST.aspx">
       <publishTime>06/23/2017 11:49:11</publishTime>
@@ -595,10 +598,10 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>07/19/2017 10:04:31</publishTime>
     </File>
     <File Include="PagesMembres/Digital_Factory/CLSG.aspx">
-      <publishTime>06/23/2017 12:02:54</publishTime>
+      <publishTime>08/16/2017 11:16:03</publishTime>
     </File>
     <File Include="PagesMembres/Digital_Factory/CONF_ARTI.aspx">
-      <publishTime>08/03/2017 11:25:29</publishTime>
+      <publishTime>08/11/2017 11:59:38</publishTime>
     </File>
     <File Include="PagesMembres/Digital_Factory/CTTO_POST.aspx">
       <publishTime>07/17/2017 16:42:31</publishTime>
@@ -622,7 +625,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>06/23/2017 12:43:58</publishTime>
     </File>
     <File Include="PagesMembres/Digital_Factory/TCBL_OPRT.aspx">
-      <publishTime>08/09/2017 15:45:32</publishTime>
+      <publishTime>08/11/2017 08:13:09</publishTime>
     </File>
     <File Include="PagesMembres/Members.aspx">
       <publishTime>03/16/2017 10:53:35</publishTime>
@@ -637,7 +640,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>06/23/2017 14:46:22</publishTime>
     </File>
     <File Include="PagesMembres/Production/ALMS/ALMS_MENU.aspx">
-      <publishTime>08/03/2017 11:34:23</publishTime>
+      <publishTime>03/08/2017 11:34:23</publishTime>
     </File>
     <File Include="PagesMembres/Production/ALMS/AMNS_DROI_ALMS.aspx">
       <publishTime>07/13/2017 11:33:17</publishTime>
@@ -646,7 +649,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>07/20/2017 11:33:30</publishTime>
     </File>
     <File Include="PagesMembres/Production/ALMS/IPSO_ETQT_NU_SER.aspx">
-      <publishTime>07/19/2017 09:53:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="PagesMembres/Production/Controle_Reception/AJOU_FNS_CTRL_RCP.aspx">
       <publishTime>03/16/2017 10:53:35</publishTime>
@@ -706,13 +709,13 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>03/16/2017 10:53:35</publishTime>
     </File>
     <File Include="Scripts/LoginSAP.js">
-      <publishTime>08/02/2017 10:16:04</publishTime>
+      <publishTime>02/08/2017 10:16:04</publishTime>
     </File>
     <File Include="Scripts/Metro-UI-CSS-master.zip">
       <publishTime>07/05/2017 12:57:17</publishTime>
     </File>
     <File Include="Scripts/metro.js">
-      <publishTime>07/06/2017 08:28:00</publishTime>
+      <publishTime>06/07/2017 08:28:00</publishTime>
     </File>
     <File Include="Scripts/modernizr-2.6.2.js">
       <publishTime>03/16/2017 10:53:35</publishTime>
@@ -790,10 +793,10 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>03/16/2017 10:53:35</publishTime>
     </File>
     <File Include="Scripts/_references.js">
-      <publishTime>07/06/2017 08:28:02</publishTime>
+      <publishTime>06/07/2017 08:28:02</publishTime>
     </File>
     <File Include="Site.Master">
-      <publishTime>08/09/2017 20:24:54</publishTime>
+      <publishTime>08/16/2017 14:36:16</publishTime>
     </File>
     <File Include="Site.Master.vb">
       <publishTime>06/27/2017 14:30:05</publishTime>
@@ -805,7 +808,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>03/16/2017 10:53:35</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>08/09/2017 16:17:55</publishTime>
+      <publishTime>08/16/2017 10:39:54</publishTime>
     </File>
   </ItemGroup>
 </Project>

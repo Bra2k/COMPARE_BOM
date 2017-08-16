@@ -22,7 +22,7 @@ Public Class TCBL_COMP
         Try
             DIG_FACT_IMPR_ETIQ("\\ceapp03\Sources\Digital Factory\Etiquettes\AVALUN\AVALUN.prn", TextBox_OF.Text, "", "Numéro de série Eolane", "", TextBox_OF.Text & (Convert.ToDecimal(last_ser_num) + 1).ToString, last_ser_num, "", "", Nothing)
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
         End Try
     End Sub
 
@@ -126,7 +126,7 @@ Public Class TCBL_COMP
                 MultiView_Tracabilité.SetActiveView(View_CONT_LOT_ID_COMP)
             End If
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
         End Try
     End Sub
 
@@ -169,7 +169,7 @@ Public Class TCBL_COMP
             _ERGT_TCBL(sNU_SER_ECO, sNU_SER_CLIE)
             _RAZ_AFCG()
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             TextBox_ENS.Text = ""
             TextBox_ENS.Focus()
         End Try
@@ -242,7 +242,7 @@ Public Class TCBL_COMP
             _ERGT_TCBL(sNU_SER_ECO, sNU_SER_CLIE)
             _RAZ_AFCG()
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             MultiView_BASC_SAI_SEL.SetActiveView(View_SAI)
             TextBox_SS_ENS.Text = ""
             TextBox_SS_ENS.Focus()
@@ -286,7 +286,7 @@ Public Class TCBL_COMP
             DropDownList_OP.DataValueField = "Opération"
             DropDownList_OP.DataBind()
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
         End Try
     End Sub
 
@@ -325,7 +325,7 @@ Public Class TCBL_COMP
             TextBox_ENS.Text = ""
             TextBox_ENS.Focus()
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             TextBox_NU_BAC.Text = ""
             TextBox_NU_BAC.Focus()
         End Try
@@ -376,7 +376,7 @@ Public Class TCBL_COMP
             TextBox_ENS.Text = ""
             TextBox_ENS.Focus()
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             TextBox_CD_LOT_COMP.Text = ""
             TextBox_CD_LOT_COMP.Focus()
         End Try
@@ -418,7 +418,7 @@ Public Class TCBL_COMP
             TextBox_ENS.Text = ""
             TextBox_ENS.Focus()
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             TextBox_ID_COMP.Text = ""
             TextBox_ID_COMP.Focus()
         End Try
@@ -484,7 +484,7 @@ Public Class TCBL_COMP
                 End If
             Next
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             'Exit Sub
         End Try
     End Sub
@@ -570,7 +570,7 @@ Public Class TCBL_COMP
                 End If
             End Using
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
         End Try
     End Sub

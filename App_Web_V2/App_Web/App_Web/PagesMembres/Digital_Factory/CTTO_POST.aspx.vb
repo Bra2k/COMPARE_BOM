@@ -40,7 +40,7 @@ Public Class CTTO_POST
                            VALUES ('{TextBox_ID_MTRE.Text}','Opération dédiée','{TextBox_OPRT_DEDI.Text}',GETDATE())"
             SQL_REQ_ACT(sQuery, sChaineConnexion)
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
         End Try
 
@@ -66,7 +66,7 @@ Public Class CTTO_POST
                 End If
             End Using
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
         End Try
 
@@ -91,7 +91,7 @@ Public Class CTTO_POST
                 SQL_REQ_ACT(sQuery, sChaineConnexion)
             End If
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
         Finally
             GridView_NMCT_TPLG.DataBind()
@@ -131,7 +131,7 @@ Public Class CTTO_POST
                 .DataBind()
             End With
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
         End Try
     End Sub
@@ -165,7 +165,7 @@ Public Class CTTO_POST
             Label_NU_OPRT.Text = DropDownList_NU_OPRT.SelectedValue
             MultiView_SAIS_CTTO.SetActiveView(View_NMCT_TPLG)
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
         End Try
     End Sub

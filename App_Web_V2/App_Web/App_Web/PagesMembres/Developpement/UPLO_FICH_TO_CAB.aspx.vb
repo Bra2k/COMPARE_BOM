@@ -43,7 +43,7 @@ Public Class UPLO_FICH_TO_CAB
                 End Select
             Next
         Catch ex As Exception
-            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "Erreur")
+            LOG_MESS_UTLS(GetCurrentMethod, ex.Message, "alert")
             Exit Sub
         End Try
 
